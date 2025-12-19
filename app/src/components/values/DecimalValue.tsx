@@ -3,7 +3,10 @@ interface DecimalValueProps {
   direction: "ascending" | "descending" | "neutral";
 }
 
-export function DecimalValue({ value, direction: _direction }: DecimalValueProps) {
+export function DecimalValue({
+  value,
+  direction: _direction,
+}: DecimalValueProps) {
   // Format with appropriate decimal places
   const formatted = value.toLocaleString(undefined, {
     minimumFractionDigits: 1,

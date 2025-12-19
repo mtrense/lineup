@@ -36,7 +36,10 @@ function formatDuration(ms: number): string {
   return `${hours}:${String(remainingMinutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-export function DurationValue({ value, direction: _direction }: DurationValueProps) {
+export function DurationValue({
+  value,
+  direction: _direction,
+}: DurationValueProps) {
   const formatted = formatDuration(value);
 
   return <span className="font-mono">{formatted}</span>;

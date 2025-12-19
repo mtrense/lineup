@@ -14,12 +14,20 @@ function formatFilesize(bytes: number): string {
   const value = bytes / Math.pow(k, unitIndex);
 
   // Format with appropriate precision
-  const formatted = value < 10 ? value.toFixed(2) : value < 100 ? value.toFixed(1) : value.toFixed(0);
+  const formatted =
+    value < 10
+      ? value.toFixed(2)
+      : value < 100
+        ? value.toFixed(1)
+        : value.toFixed(0);
 
   return `${formatted} ${units[unitIndex]}`;
 }
 
-export function FilesizeValue({ value, direction: _direction }: FilesizeValueProps) {
+export function FilesizeValue({
+  value,
+  direction: _direction,
+}: FilesizeValueProps) {
   const formatted = formatFilesize(value);
 
   return <span>{formatted}</span>;

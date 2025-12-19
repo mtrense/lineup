@@ -3,7 +3,10 @@ interface IntegerValueProps {
   direction: "ascending" | "descending" | "neutral";
 }
 
-export function IntegerValue({ value, direction: _direction }: IntegerValueProps) {
+export function IntegerValue({
+  value,
+  direction: _direction,
+}: IntegerValueProps) {
   // Format with thousands separators
   const formatted = Math.round(value).toLocaleString();
 

@@ -47,18 +47,12 @@ export function ValueRenderer({ value, valueType }: ValueRendererProps) {
     switch (valueType.type) {
       case "integer":
         return (
-          <IntegerValue
-            value={Number(value)}
-            direction={valueType.direction}
-          />
+          <IntegerValue value={Number(value)} direction={valueType.direction} />
         );
 
       case "decimal":
         return (
-          <DecimalValue
-            value={Number(value)}
-            direction={valueType.direction}
-          />
+          <DecimalValue value={Number(value)} direction={valueType.direction} />
         );
 
       case "filesize":
@@ -106,7 +100,13 @@ export function ValueRenderer({ value, valueType }: ValueRendererProps) {
         );
 
       case "icon-fontawesome":
-        return <IconValue type="fontawesome" name={valueType.name} pack={valueType.pack} />;
+        return (
+          <IconValue
+            type="fontawesome"
+            name={valueType.name}
+            pack={valueType.pack}
+          />
+        );
 
       case "icon-emoji":
         return <IconValue type="emoji" emoji={valueType.emoji} />;
