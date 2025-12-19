@@ -272,6 +272,8 @@ function AttributeRow({ attribute, candidates }: AttributeRowProps) {
             <ValueRenderer
               value={attributeValue?.value}
               valueType={attribute.valueType}
+              source={attributeValue?.source}
+              comment={attributeValue?.comment}
             />
           </TableCell>
         );

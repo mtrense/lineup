@@ -10,6 +10,7 @@ import { FilesizeValue } from "./FilesizeValue";
 import { DurationValue } from "./DurationValue";
 import { PercentageValue } from "./PercentageValue";
 import { IconValue } from "./IconValue";
+import { ValueWithTooltip } from "./ValueWithTooltip";
 
 type AttributeValueType =
   | number
@@ -22,14 +23,36 @@ type AttributeValueType =
 interface ValueRendererProps {
   value: AttributeValueType;
   valueType: ValueType;
+  source?: string[];
+  comment?: string;
 }
 
-export function ValueRenderer({ value, valueType }: ValueRendererProps) {
+export function ValueRenderer({
+  value,
+  valueType,
+  source,
+  comment,
+}: ValueRendererProps) {
   // Handle null/undefined values
   if (value === null || value === undefined) {
     return <span className="text-muted-foreground">—</span>;
   }
 
+  // Render the value based on type
+  const renderedValue = renderValue(value, valueType);
+
+  // Wrap with tooltip if source or comment present
+  return (
+    <ValueWithTooltip source={source} comment={comment}>
+      {renderedValue}
+    </ValueWithTooltip>
+  );
+}
+
+function renderValue(
+  value: NonNullable<AttributeValueType>,
+  valueType: ValueType
+) {
   // Dispatch to appropriate renderer based on valueType
   if (valueType === "text") {
     return <TextValue value={String(value)} />;
