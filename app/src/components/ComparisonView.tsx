@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, Fragment } from "react";
 import { ChevronLeft, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -159,16 +159,16 @@ export function ComparisonView({
             </p>
           ) : (
             <div className="overflow-x-auto rounded-lg border border-border">
-              <Table>
+              <Table className="w-full table-fixed">
                 <TableHeader>
                   <TableRow className="border-b border-border bg-muted/30 hover:bg-muted/30">
-                    <TableHead className="sticky left-0 z-10 w-48 bg-muted/30 font-semibold">
+                    <TableHead className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/30 font-semibold">
                       Attribute
                     </TableHead>
                     {visibleCandidates.map((candidate) => (
                       <TableHead
                         key={candidate.name}
-                        className="min-w-[180px] text-center font-semibold"
+                        className="text-center font-semibold"
                       >
                         {candidate.name}
                       </TableHead>
@@ -179,10 +179,9 @@ export function ComparisonView({
                   {attributes.groups.map((group) => {
                     const isExpanded = expandedGroups.has(group.id);
                     return (
-                      <>
+                      <Fragment key={group.id}>
                         {/* Group Header Row */}
                         <TableRow
-                          key={group.id}
                           className="cursor-pointer border-b border-border bg-muted/50 hover:bg-muted/60"
                           onClick={() => toggleGroup(group.id)}
                         >
@@ -210,7 +209,7 @@ export function ComparisonView({
                               candidates={visibleCandidates}
                             />
                           ))}
-                      </>
+                      </Fragment>
                     );
                   })}
                 </TableBody>
@@ -236,13 +235,16 @@ interface AttributeRowProps {
 function AttributeRow({ attribute, candidates }: AttributeRowProps) {
   return (
     <TableRow className="border-b border-border/50 hover:bg-muted/20">
-      <TableCell className="sticky left-0 z-10 bg-background font-medium">
+      <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-background font-medium">
         {attribute.name}
       </TableCell>
       {candidates.map((candidate) => {
         const attributeValue = candidate.values[attribute.id];
         return (
-          <TableCell key={candidate.name} className="text-center">
+          <TableCell
+            key={candidate.name}
+            className="text-center align-middle break-words"
+          >
             <ValueRenderer
               value={attributeValue?.value}
               valueType={attribute.valueType}

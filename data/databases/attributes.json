@@ -1,0 +1,311 @@
+{
+  "name": "Databases",
+  "description": "Comparison of database management systems across features, scalability, and ecosystem",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Information",
+      "description": "Basic information about the database",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the database type and primary use case"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "postgresql", "value": "PostgreSQL", "color": "blue" },
+              { "id": "gpl", "value": "GPL", "color": "green" },
+              { "id": "apache2", "value": "Apache 2.0", "color": "orange" },
+              { "id": "mit", "value": "MIT", "color": "green" },
+              { "id": "bsd", "value": "BSD", "color": "blue" },
+              { "id": "sspl", "value": "SSPL", "color": "purple" },
+              { "id": "rsal", "value": "RSALv2", "color": "purple" },
+              { "id": "proprietary", "value": "Proprietary", "color": "red" },
+              { "id": "public-domain", "value": "Public Domain", "color": "green" }
+            ]
+          },
+          "description": "Primary software license"
+        },
+        {
+          "id": "first-release",
+          "name": "First Released",
+          "valueType": {
+            "type": "integer",
+            "direction": "neutral"
+          },
+          "description": "Year of initial public release"
+        },
+        {
+          "id": "latest-version",
+          "name": "Latest Version",
+          "valueType": "text",
+          "description": "Current stable version"
+        },
+        {
+          "id": "actively-maintained",
+          "name": "Actively Maintained",
+          "valueType": "boolean",
+          "description": "Has had releases or significant activity in the last 12 months"
+        }
+      ]
+    },
+    {
+      "id": "characteristics",
+      "name": "Database Characteristics",
+      "description": "Core database properties and data model",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "database-type",
+          "name": "Database Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "relational", "value": "Relational", "color": "blue" },
+              { "id": "document", "value": "Document", "color": "green" },
+              { "id": "key-value", "value": "Key-Value", "color": "orange" },
+              { "id": "wide-column", "value": "Wide-Column", "color": "purple" },
+              { "id": "graph", "value": "Graph", "color": "pink" },
+              { "id": "multi-model", "value": "Multi-Model", "color": "cyan" },
+              { "id": "embedded", "value": "Embedded", "color": "yellow" }
+            ]
+          },
+          "description": "Primary database category"
+        },
+        {
+          "id": "query-language",
+          "name": "Query Language",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "sql", "value": "SQL", "color": "blue" },
+              { "id": "mql", "value": "MQL", "color": "green" },
+              { "id": "api-only", "value": "API Only", "color": "orange" },
+              { "id": "graphql", "value": "GraphQL", "color": "pink" },
+              { "id": "cypher", "value": "Cypher", "color": "purple" },
+              { "id": "redis-commands", "value": "Redis Commands", "color": "red" }
+            ]
+          },
+          "description": "Primary query interface"
+        },
+        {
+          "id": "acid-compliant",
+          "name": "ACID Compliant",
+          "valueType": "boolean",
+          "description": "Full ACID transaction support (Atomicity, Consistency, Isolation, Durability)"
+        },
+        {
+          "id": "schema-model",
+          "name": "Schema Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "enforced", "value": "Schema-Enforced", "color": "blue" },
+              { "id": "optional", "value": "Schema-Optional", "color": "orange" },
+              { "id": "schemaless", "value": "Schema-Less", "color": "green" }
+            ]
+          },
+          "description": "How the database handles data structure definitions"
+        }
+      ]
+    },
+    {
+      "id": "scalability",
+      "name": "Scalability & Architecture",
+      "description": "Scaling and distribution capabilities",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "horizontal-scaling",
+          "name": "Horizontal Scaling",
+          "valueType": "boolean",
+          "description": "Native support for distributing data across multiple nodes"
+        },
+        {
+          "id": "replication",
+          "name": "Replication",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "primary-replica", "value": "Primary-Replica", "color": "blue" },
+              { "id": "multi-primary", "value": "Multi-Primary", "color": "green" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Supported replication modes"
+        },
+        {
+          "id": "clustering",
+          "name": "Built-in Clustering",
+          "valueType": "boolean",
+          "description": "Native clustering support without third-party tools"
+        },
+        {
+          "id": "cloud-offering",
+          "name": "Cloud-Native Offering",
+          "valueType": "boolean",
+          "description": "Official managed cloud service available"
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "name": "Features",
+      "description": "Database capabilities and functionality",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "full-text-search",
+          "name": "Full-Text Search",
+          "valueType": "boolean",
+          "description": "Built-in full-text search capabilities"
+        },
+        {
+          "id": "json-support",
+          "name": "JSON Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "storage", "value": "Storage Only", "color": "yellow" },
+              { "id": "queryable", "value": "Queryable", "color": "blue" },
+              { "id": "native", "value": "Native", "color": "green" }
+            ]
+          },
+          "description": "Level of JSON data support"
+        },
+        {
+          "id": "geospatial",
+          "name": "Geospatial",
+          "valueType": "boolean",
+          "description": "Native geospatial data types and queries"
+        },
+        {
+          "id": "time-series",
+          "name": "Time-Series",
+          "valueType": "boolean",
+          "description": "Specialized time-series data handling"
+        },
+        {
+          "id": "stored-procedures",
+          "name": "Stored Procedures",
+          "valueType": "boolean",
+          "description": "Support for server-side stored procedures or functions"
+        },
+        {
+          "id": "triggers",
+          "name": "Triggers",
+          "valueType": "boolean",
+          "description": "Database-level trigger support"
+        },
+        {
+          "id": "views",
+          "name": "Views",
+          "valueType": "boolean",
+          "description": "Support for views (regular or materialized)"
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Operations & Ecosystem",
+      "description": "Tooling and operational aspects",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "official-gui",
+          "name": "Official GUI",
+          "valueType": "boolean",
+          "description": "Official graphical administration tool"
+        },
+        {
+          "id": "cli-tool",
+          "name": "CLI Tool",
+          "valueType": "boolean",
+          "description": "Official command-line interface"
+        },
+        {
+          "id": "docker-image",
+          "name": "Docker Official Image",
+          "valueType": "boolean",
+          "description": "Official image on Docker Hub"
+        },
+        {
+          "id": "primary-language",
+          "name": "Primary Language",
+          "valueType": "text",
+          "description": "Main implementation language"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "name": "Community & Adoption",
+      "description": "Popularity and community metrics",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Stars on primary GitHub repository"
+        },
+        {
+          "id": "stackoverflow-tags",
+          "name": "Stack Overflow Questions",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of tagged questions on Stack Overflow"
+        },
+        {
+          "id": "db-engines-rank",
+          "name": "DB-Engines Rank",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Current rank on db-engines.com (lower is better)"
+        },
+        {
+          "id": "learning-curve",
+          "name": "Learning Curve",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "Ease of learning (5 = easiest to learn)"
+        }
+      ]
+    }
+  ]
+}
