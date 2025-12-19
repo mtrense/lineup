@@ -1,7 +1,7 @@
 # Lineup Roadmap
 
 ## Milestone 1: Project Foundation
-**Status:** Ready for implementation
+**Status:** Done
 
 ### Goals
 - Establish the React application with all tooling configured
@@ -9,13 +9,13 @@
 - Have a running development environment
 
 ### Success Criteria
-- [ ] `app/` directory with working Vite + React + TypeScript setup
-- [ ] pnpm configured as package manager
-- [ ] Tailwind CSS integrated and working
-- [ ] shadcn/ui installed with base components
-- [ ] Build compiles without errors
-- [ ] Dev server runs with hot module replacement
-- [ ] Basic routing structure in place (if needed)
+- [x] `app/` directory with working Vite + React + TypeScript setup
+- [x] pnpm configured as package manager
+- [x] Tailwind CSS integrated and working
+- [x] shadcn/ui installed with base components
+- [x] Build compiles without errors
+- [x] Dev server runs with hot module replacement
+- [x] Basic routing structure in place (if needed)
 
 ---
 
