@@ -77,7 +77,11 @@ type Duration = {
 
 type Date = {
     type: "date",
-    direction: "ascending" | "descending"  // newer vs older is better
+    direction: "ascending" | "descending",  // newer vs older is better
+    format?: "year" | "month-year" | "full"  // default: "full"
+    // "year" displays "2024", stored as "2024" or "2024-01-01"
+    // "month-year" displays "Jan 2024", stored as "2024-01" or "2024-01-15"
+    // "full" displays "Jan 15, 2024", stored as "2024-01-15"
 }
 
 type DateTime = {
@@ -127,7 +131,7 @@ type ValueType =
   | Decimal       // Decimal value (stored as number)
   | Filesize      // Filesize (stored as number, formatted like "1.2 MB")
   | Duration      // Time duration (stored as number of milliseconds, formatted like "1:05:42.345")
-  | Date          // Calendar date (stored as ISO 8601 string "YYYY-MM-DD", displayed like "Jan 15, 2024")
+  | Date          // Calendar date (stored as ISO 8601 string, format controls display: "2024", "Jan 2024", or "Jan 15, 2024")
   | DateTime      // Date and time (stored as ISO 8601 string "YYYY-MM-DDTHH:mm:ss", displayed like "Jan 15, 2024 14:30")
   | Percentage    // Percentage value (stored as 0-100 or 0-1, displayed with colored bar)
   | "text"        // Freeform text (stored as string)
