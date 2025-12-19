@@ -84,6 +84,8 @@ Lineup supports various value types for attributes:
 | `decimal` | Decimal numbers | Performance score |
 | `filesize` | File sizes (auto-formatted) | Binary size, memory usage |
 | `duration` | Time durations | Build time, response time |
+| `date` | Calendar dates | Release date, end-of-life date |
+| `datetime` | Date and time | Last updated, event timestamp |
 | `text` | Free-form text | Description, license |
 | `boolean` | Yes/No values | Feature support flags |
 | `rating` | Star ratings or similar | Community rating |

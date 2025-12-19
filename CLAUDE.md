@@ -75,6 +75,16 @@ type Duration = {
     direction: "ascending" | "descending"  // faster vs longer is better
 }
 
+type Date = {
+    type: "date",
+    direction: "ascending" | "descending"  // newer vs older is better
+}
+
+type DateTime = {
+    type: "datetime",
+    direction: "ascending" | "descending"  // newer vs older is better
+}
+
 type Percentage = {
     type: "percentage",
     direction: "ascending" | "descending"  // higher vs lower percentage is better
@@ -117,6 +127,8 @@ type ValueType =
   | Decimal       // Decimal value (stored as number)
   | Filesize      // Filesize (stored as number, formatted like "1.2 MB")
   | Duration      // Time duration (stored as number of milliseconds, formatted like "1:05:42.345")
+  | Date          // Calendar date (stored as ISO 8601 string "YYYY-MM-DD", displayed like "Jan 15, 2024")
+  | DateTime      // Date and time (stored as ISO 8601 string "YYYY-MM-DDTHH:mm:ss", displayed like "Jan 15, 2024 14:30")
   | Percentage    // Percentage value (stored as 0-100 or 0-1, displayed with colored bar)
   | "text"        // Freeform text (stored as string)
   | "boolean"     // Checkmark or cross (stored as boolean)
@@ -158,7 +170,7 @@ Contains a single candidate's data.
 interface AttributeValue {
   value:
     | number                          // For integer, decimal, filesize, duration, percentage, rating
-    | string                          // For text, icon, link
+    | string                          // For text, icon, link, date, datetime
     | string[]                        // For tags
     | boolean                         // For boolean
     | null;                           // Unknown/not applicable
@@ -179,7 +191,7 @@ interface CandidateFile {
 
 ## Key Concepts
 
-- **Value Types**: How an attribute is stored and displayed (integer, decimal, filesize, duration, percentage, text, boolean, rating, tags, icon, link)
+- **Value Types**: How an attribute is stored and displayed (integer, decimal, filesize, duration, date, datetime, percentage, text, boolean, rating, tags, icon, link)
 - **Direction**: For rankable types, whether ascending (higher/larger is better) or descending (lower/smaller is better) values are preferred; `neutral` for non-ranked numerics
 - **Attribute Groups**: Logical clustering of related attributes with collapsible UI
 
