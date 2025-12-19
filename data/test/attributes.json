@@ -1,6 +1,6 @@
 {
   "name": "Test Comparison",
-  "description": "A sample comparison for testing the data infrastructure",
+  "description": "A sample comparison for testing all value types",
   "groups": [
     {
       "id": "general",
@@ -44,6 +44,33 @@
           "description": "Number of GitHub stars"
         },
         {
+          "id": "version",
+          "name": "Version",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Current version number"
+        },
+        {
+          "id": "binary-size",
+          "name": "Binary Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Size of the compiled binary"
+        },
+        {
+          "id": "build-time",
+          "name": "Build Time",
+          "valueType": {
+            "type": "duration",
+            "direction": "descending"
+          },
+          "description": "Time to build from source"
+        },
+        {
           "id": "rating",
           "name": "Rating",
           "valueType": {
@@ -58,6 +85,44 @@
             }
           },
           "description": "Community rating out of 5"
+        }
+      ]
+    },
+    {
+      "id": "characteristics",
+      "name": "Characteristics",
+      "description": "Feature tags and categories",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "paradigms",
+          "name": "Paradigms",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "imperative", "value": "imperative", "color": "blue" },
+              { "id": "functional", "value": "functional", "color": "purple" },
+              { "id": "object-oriented", "value": "object-oriented", "color": "green" },
+              { "id": "declarative", "value": "declarative", "color": "orange" }
+            ]
+          },
+          "description": "Programming paradigms supported"
+        },
+        {
+          "id": "type-system",
+          "name": "Type System",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "dynamic", "value": "dynamic", "color": "orange" },
+              { "id": "static", "value": "static", "color": "blue" },
+              { "id": "strong", "value": "strong", "color": "green" },
+              { "id": "weak", "value": "weak", "color": "red" }
+            ]
+          },
+          "description": "Type system characteristics"
         }
       ]
     }
