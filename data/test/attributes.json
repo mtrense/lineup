@@ -1,0 +1,65 @@
+{
+  "name": "Test Comparison",
+  "description": "A sample comparison for testing the data infrastructure",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General",
+      "description": "Basic information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "name",
+          "name": "Name",
+          "valueType": "text",
+          "description": "The display name"
+        },
+        {
+          "id": "active",
+          "name": "Active",
+          "valueType": "boolean",
+          "description": "Whether this item is actively maintained"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website"
+        }
+      ]
+    },
+    {
+      "id": "metrics",
+      "name": "Metrics",
+      "description": "Quantitative measurements",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of GitHub stars"
+        },
+        {
+          "id": "rating",
+          "name": "Rating",
+          "valueType": {
+            "type": "rating",
+            "lower": 0,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "half": "⯨",
+              "full": "★"
+            }
+          },
+          "description": "Community rating out of 5"
+        }
+      ]
+    }
+  ]
+}
