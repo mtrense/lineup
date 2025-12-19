@@ -122,3 +122,45 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Focus styles for accessibility */
+@layer components {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+/* Print styles */
+@media print {
+  /* Hide interactive elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Expand all collapsible groups */
+  [data-print-expand] {
+    display: table-row !important;
+  }
+
+  /* Remove background colors that waste ink */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ensure table fits on page */
+  table {
+    font-size: 10pt;
+    width: 100% !important;
+  }
+
+  /* Remove sticky positioning for print */
+  .sticky {
+    position: static !important;
+  }
+
+  /* Remove shadows and borders that don't print well */
+  .shadow, .shadow-sm, .shadow-md, .shadow-lg {
+    box-shadow: none !important;
+  }
+}

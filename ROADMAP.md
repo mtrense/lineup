@@ -153,7 +153,7 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 ---
 
 ## Milestone 8: Polish and UX
-**Status:** Not planned
+**Status:** Done
 
 ### Goals
 - Refine the user experience
@@ -161,13 +161,19 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 - Ensure accessibility
 
 ### Success Criteria
-- [ ] Tooltips showing attribute descriptions
-- [ ] Source citations accessible (hover/click)
-- [ ] Keyboard navigation support
-- [ ] Dark mode support
-- [ ] Loading states and error handling
-- [ ] Empty states for missing data
-- [ ] Print-friendly view (optional)
+- [x] Tooltips showing attribute descriptions
+- [x] Source citations accessible (hover/click)
+- [x] Keyboard navigation support
+- [x] Dark mode support
+- [x] Loading states and error handling
+- [x] Empty states for missing data
+- [x] Print-friendly view
+
+### Implementation Notes
+- Keyboard navigation: Focus rings on all interactive elements, skip-to-content link, ARIA attributes
+- Loading: Skeleton component during data fetch, improved 404 error page
+- Empty states: Styled null values with tooltip, empty comparison message
+- Print: CSS media query hides navigation, adjusts table for printing
 
 ---
 

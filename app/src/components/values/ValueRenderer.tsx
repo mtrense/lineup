@@ -35,7 +35,15 @@ export function ValueRenderer({
 }: ValueRendererProps) {
   // Handle null/undefined values
   if (value === null || value === undefined) {
-    return <span className="text-muted-foreground">—</span>;
+    return (
+      <span
+        className="text-muted-foreground/50 italic"
+        title="No data available"
+        aria-label="No data available"
+      >
+        —
+      </span>
+    );
   }
 
   // Render the value based on type

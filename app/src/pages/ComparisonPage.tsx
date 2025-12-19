@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { ComparisonView, SortState } from "@/components/ComparisonView";
+import { ComparisonLoadingSkeleton } from "@/components/LoadingSkeleton";
 import { getComparisonData } from "@/lib/data";
 import type { AttributesFile, CandidateFile } from "@/types";
 
@@ -96,18 +97,23 @@ export function ComparisonPage() {
   );
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-muted-foreground">Loading comparison data...</p>
-      </div>
-    );
+    return <ComparisonLoadingSkeleton />;
   }
 
   if (error) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4">
-        <p className="text-destructive">{error}</p>
-        <button onClick={handleBack} className="text-primary hover:underline">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-4">
+        <div className="text-center">
+          <p className="mb-2 text-6xl">404</p>
+          <p className="text-lg text-destructive">{error}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            The comparison you're looking for doesn't exist or may have been removed.
+          </p>
+        </div>
+        <button
+          onClick={handleBack}
+          className="rounded-md bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
           Go back to home
         </button>
       </div>

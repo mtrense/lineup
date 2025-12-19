@@ -235,11 +235,12 @@ export function FilterDrawer({
                       <button
                         key={tag.id}
                         onClick={() => toggleTag(attr.id, tag.id)}
-                        className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                        className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                           isSelected
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
                         }`}
+                        aria-pressed={isSelected}
                       >
                         {tag.value}
                       </button>
@@ -259,34 +260,40 @@ export function FilterDrawer({
             return (
               <div key={attr.id}>
                 <div className="mb-2 text-sm font-medium">{attr.name}</div>
-                <div className="flex gap-2">
+                <div className="flex gap-2" role="radiogroup" aria-label={attr.name}>
                   <button
                     onClick={() => toggleBoolean(attr.id, null)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                       currentValue === null
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
+                    role="radio"
+                    aria-checked={currentValue === null}
                   >
                     Any
                   </button>
                   <button
                     onClick={() => toggleBoolean(attr.id, true)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                       currentValue === true
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
+                    role="radio"
+                    aria-checked={currentValue === true}
                   >
                     Yes
                   </button>
                   <button
                     onClick={() => toggleBoolean(attr.id, false)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                       currentValue === false
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
+                    role="radio"
+                    aria-checked={currentValue === false}
                   >
                     No
                   </button>

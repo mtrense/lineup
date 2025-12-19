@@ -197,8 +197,16 @@ export function ComparisonView({
 
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Skip to content link for accessibility */}
+      <a
+        href="#comparison-table"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to comparison table
+      </a>
+
       {/* Header */}
-      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 no-print">
         <div className="container mx-auto px-4 py-6">
           <div className="mb-1 flex items-center gap-2">
             <Button
@@ -223,7 +231,7 @@ export function ComparisonView({
       </header>
 
       {/* Candidate Selector */}
-      <div className="border-b border-border bg-card/50 px-4 py-4">
+      <div className="border-b border-border bg-card/50 px-4 py-4 no-print">
         <div className="container mx-auto">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-sm text-muted-foreground">
@@ -260,7 +268,7 @@ export function ComparisonView({
                 <button
                   key={candidate.name}
                   onClick={() => toggleCandidate(candidate.name)}
-                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                  className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                     isSelected
                       ? passesFilter
                         ? "bg-primary text-primary-foreground"
@@ -269,6 +277,8 @@ export function ComparisonView({
                         ? "bg-muted text-muted-foreground hover:bg-muted/80"
                         : "bg-muted/50 text-muted-foreground/50 hover:bg-muted/40"
                   }`}
+                  aria-pressed={isSelected}
+                  aria-label={`${candidate.name}${!passesFilter ? " (filtered)" : ""}`}
                 >
                   {candidate.name}
                 </button>
@@ -282,12 +292,15 @@ export function ComparisonView({
       </div>
 
       {/* Comparison Table */}
-      <main className="flex-1 overflow-x-auto">
+      <main id="comparison-table" className="flex-1 overflow-x-auto" tabIndex={-1}>
         <div className="container mx-auto px-4 py-6">
           {visibleCandidates.length === 0 ? (
-            <p className="py-12 text-center text-muted-foreground">
-              Select at least one item to compare.
-            </p>
+            <div className="py-16 text-center">
+              <p className="text-4xl text-muted-foreground/30">No items</p>
+              <p className="mt-2 text-muted-foreground">
+                Select at least one item above to compare.
+              </p>
+            </div>
           ) : (
             <div className="overflow-x-auto rounded-lg border border-border">
               <Table className="w-full">
@@ -315,6 +328,16 @@ export function ComparisonView({
                         <TableRow
                           className="cursor-pointer border-b border-border bg-muted/50 hover:bg-muted/60"
                           onClick={() => toggleGroup(group.id)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              toggleGroup(group.id);
+                            }
+                          }}
+                          tabIndex={0}
+                          role="button"
+                          aria-expanded={isExpanded}
+                          aria-controls={`group-${group.id}`}
                         >
                           <TableCell
                             colSpan={visibleCandidates.length + 1}
@@ -353,7 +376,7 @@ export function ComparisonView({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border py-4 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-border py-4 text-center text-sm text-muted-foreground no-print">
         Data sourced from project documentation
       </footer>
     </div>
@@ -394,15 +417,16 @@ function AttributeRow({
         {isSortable ? (
           <button
             onClick={handleSort}
-            className="flex w-full items-center gap-1 text-left hover:text-primary"
+            className="flex w-full items-center gap-1 rounded text-left hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`Sort by ${attribute.name}${sortDirection ? `, currently ${sortDirection === "asc" ? "ascending" : "descending"}` : ""}`}
           >
             <span>{attribute.name}</span>
             {sortDirection === "asc" ? (
-              <ArrowUp className="h-3 w-3 text-primary" />
+              <ArrowUp className="h-3 w-3 text-primary" aria-hidden="true" />
             ) : sortDirection === "desc" ? (
-              <ArrowDown className="h-3 w-3 text-primary" />
+              <ArrowDown className="h-3 w-3 text-primary" aria-hidden="true" />
             ) : (
-              <ArrowUpDown className="h-3 w-3 opacity-30" />
+              <ArrowUpDown className="h-3 w-3 opacity-30" aria-hidden="true" />
             )}
           </button>
         ) : (
