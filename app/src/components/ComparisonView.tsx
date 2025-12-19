@@ -20,6 +20,7 @@ import { ValueRenderer } from "@/components/values/ValueRenderer";
 import {
   isSortableType,
   createCandidateSorter,
+  findBestIndices,
 } from "@/lib/compare";
 import type { AttributesFile, CandidateFile, Attribute } from "@/types";
 
@@ -338,6 +339,11 @@ function AttributeRow({
   const isCurrentSort = sortState?.attributeId === attribute.id;
   const sortDirection = isCurrentSort ? sortState.direction : null;
 
+  // Find best values for highlighting
+  const values = candidates.map((c) => c.values[attribute.id]?.value);
+  const bestIndices = findBestIndices(values, attribute.valueType);
+  const bestIndexSet = new Set(bestIndices);
+
   const handleSort = () => {
     if (isSortable) {
       onSort(attribute.id);
@@ -365,12 +371,15 @@ function AttributeRow({
           attribute.name
         )}
       </TableCell>
-      {candidates.map((candidate) => {
+      {candidates.map((candidate, index) => {
         const attributeValue = candidate.values[attribute.id];
+        const isBest = bestIndexSet.has(index);
         return (
           <TableCell
             key={candidate.name}
-            className="text-center align-middle break-words"
+            className={`text-center align-middle break-words ${
+              isBest ? "bg-green-50 dark:bg-green-950/30" : ""
+            }`}
           >
             <ValueRenderer
               value={attributeValue?.value}
