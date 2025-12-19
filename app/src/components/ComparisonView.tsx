@@ -1,4 +1,4 @@
-import { useState, useMemo, Fragment } from "react";
+import { useState, useMemo, Fragment, useEffect } from "react";
 import { ChevronLeft, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,17 +15,34 @@ import type { AttributesFile, CandidateFile, Attribute } from "@/types";
 interface ComparisonViewProps {
   attributes: AttributesFile;
   candidates: CandidateFile[];
+  initialSelection?: string[] | null;
   onBack: () => void;
+  onSelectionChange?: (selected: string[]) => void;
 }
 
 export function ComparisonView({
   attributes,
   candidates,
+  initialSelection,
   onBack,
+  onSelectionChange,
 }: ComparisonViewProps) {
   // Track which candidates are selected for comparison
   const [selectedCandidates, setSelectedCandidates] = useState<Set<string>>(
-    () => new Set(candidates.map((c) => c.name))
+    () => {
+      if (initialSelection && initialSelection.length > 0) {
+        // Filter to only valid candidate names
+        const validNames = new Set(candidates.map((c) => c.name));
+        const validSelection = initialSelection.filter((name) =>
+          validNames.has(name)
+        );
+        if (validSelection.length > 0) {
+          return new Set(validSelection);
+        }
+      }
+      // Default to all candidates selected
+      return new Set(candidates.map((c) => c.name));
+    }
   );
 
   // Track which groups are expanded
@@ -38,6 +55,13 @@ export function ComparisonView({
     });
     return initial;
   });
+
+  // Notify parent of selection changes
+  useEffect(() => {
+    if (onSelectionChange) {
+      onSelectionChange(Array.from(selectedCandidates));
+    }
+  }, [selectedCandidates, onSelectionChange]);
 
   // Filter candidates based on selection
   const visibleCandidates = useMemo(
@@ -109,7 +133,7 @@ export function ComparisonView({
         <div className="container mx-auto">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-sm text-muted-foreground">
-              Select Languages to Compare
+              Select items to compare
             </span>
             <div className="flex gap-2">
               <button
@@ -159,7 +183,7 @@ export function ComparisonView({
             </p>
           ) : (
             <div className="overflow-x-auto rounded-lg border border-border">
-              <Table className="w-full table-fixed">
+              <Table className="w-full">
                 <TableHeader>
                   <TableRow className="border-b border-border bg-muted/30 hover:bg-muted/30">
                     <TableHead className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/30 font-semibold">

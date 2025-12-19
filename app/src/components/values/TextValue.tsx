@@ -3,5 +3,5 @@ interface TextValueProps {
 }
 
 export function TextValue({ value }: TextValueProps) {
-  return <span>{value}</span>;
+  return <span className="whitespace-normal break-words">{value}</span>;
 }
