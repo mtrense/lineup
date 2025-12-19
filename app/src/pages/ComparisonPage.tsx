@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
-import { ComparisonView } from "@/components/ComparisonView";
+import { ComparisonView, SortState } from "@/components/ComparisonView";
 import { getComparisonData } from "@/lib/data";
 import type { AttributesFile, CandidateFile } from "@/types";
 
@@ -21,6 +21,14 @@ export function ComparisonPage() {
   const selectedFromUrl = candidatesParam
     ? candidatesParam.split(",").filter(Boolean)
     : null;
+
+  // Parse sort state from URL
+  const sortParam = searchParams.get("sort");
+  const sortDirParam = searchParams.get("sortDir");
+  const sortFromUrl: SortState | null =
+    sortParam && (sortDirParam === "asc" || sortDirParam === "desc")
+      ? { attributeId: sortParam, direction: sortDirParam }
+      : null;
 
   const loadComparison = useCallback(async (id: string) => {
     setLoading(true);
@@ -71,6 +79,22 @@ export function ComparisonPage() {
     [comparisonData, setSearchParams]
   );
 
+  const handleSortChange = useCallback(
+    (sort: SortState | null) => {
+      setSearchParams((prev) => {
+        if (sort) {
+          prev.set("sort", sort.attributeId);
+          prev.set("sortDir", sort.direction);
+        } else {
+          prev.delete("sort");
+          prev.delete("sortDir");
+        }
+        return prev;
+      });
+    },
+    [setSearchParams]
+  );
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -99,8 +123,10 @@ export function ComparisonPage() {
       attributes={comparisonData.attributes}
       candidates={comparisonData.candidates}
       initialSelection={selectedFromUrl}
+      initialSort={sortFromUrl}
       onBack={handleBack}
       onSelectionChange={handleSelectionChange}
+      onSortChange={handleSortChange}
     />
   );
 }

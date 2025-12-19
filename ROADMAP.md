@@ -127,7 +127,7 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 ---
 
 ## Milestone 7: Filtering and Sorting
-**Status:** Ready for implementation
+**Status:** Done
 
 ### Goals
 - Enable filtering candidates by attribute values
@@ -136,11 +136,19 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 - Highlight best/worst values
 
 ### Success Criteria
-- [ ] Sort candidates by any sortable attribute
-- [ ] Visual ranking indicators based on direction
-- [ ] Filter candidates by tag values
-- [ ] Filter candidates by boolean attributes
-- [ ] Highlight best value in each row (respecting direction)
+- [x] Sort candidates by any sortable attribute
+- [x] Visual ranking indicators based on direction
+- [x] Filter candidates by tag values
+- [x] Filter candidates by boolean attributes
+- [x] Highlight best value in each row (respecting direction)
+
+### Implementation Notes
+- Sorting: Click attribute names to cycle through ascending → descending → none
+- Highlighting: Best values get subtle green background, respects direction
+- Tag filters: OR logic within attribute, AND between attributes
+- Boolean filters: Tri-state (Any/Yes/No)
+- Filtered candidates appear greyed out and moved to end of selector
+- Sort state persisted to URL (`?sort=attribute-id&sortDir=asc|desc`)
 
 ---
 
