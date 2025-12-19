@@ -1,5 +1,12 @@
 import { useState, useMemo, Fragment, useEffect } from "react";
-import { ChevronLeft, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronDown,
+  ChevronRight,
+  ArrowUp,
+  ArrowDown,
+  ArrowUpDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -10,22 +17,35 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ValueRenderer } from "@/components/values/ValueRenderer";
+import {
+  isSortableType,
+  createCandidateSorter,
+} from "@/lib/compare";
 import type { AttributesFile, CandidateFile, Attribute } from "@/types";
+
+export interface SortState {
+  attributeId: string;
+  direction: "asc" | "desc";
+}
 
 interface ComparisonViewProps {
   attributes: AttributesFile;
   candidates: CandidateFile[];
   initialSelection?: string[] | null;
+  initialSort?: SortState | null;
   onBack: () => void;
   onSelectionChange?: (selected: string[]) => void;
+  onSortChange?: (sort: SortState | null) => void;
 }
 
 export function ComparisonView({
   attributes,
   candidates,
   initialSelection,
+  initialSort,
   onBack,
   onSelectionChange,
+  onSortChange,
 }: ComparisonViewProps) {
   // Track which candidates are selected for comparison
   const [selectedCandidates, setSelectedCandidates] = useState<Set<string>>(
@@ -56,6 +76,22 @@ export function ComparisonView({
     return initial;
   });
 
+  // Track sort state
+  const [sortState, setSortState] = useState<SortState | null>(
+    initialSort ?? null
+  );
+
+  // Build a map of attribute id to attribute for sorting
+  const attributeMap = useMemo(() => {
+    const map = new Map<string, Attribute>();
+    attributes.groups.forEach((group) => {
+      group.attributes.forEach((attr) => {
+        map.set(attr.id, attr);
+      });
+    });
+    return map;
+  }, [attributes]);
+
   // Notify parent of selection changes
   useEffect(() => {
     if (onSelectionChange) {
@@ -63,11 +99,28 @@ export function ComparisonView({
     }
   }, [selectedCandidates, onSelectionChange]);
 
-  // Filter candidates based on selection
-  const visibleCandidates = useMemo(
-    () => candidates.filter((c) => selectedCandidates.has(c.name)),
-    [candidates, selectedCandidates]
-  );
+  // Notify parent of sort changes
+  useEffect(() => {
+    if (onSortChange) {
+      onSortChange(sortState);
+    }
+  }, [sortState, onSortChange]);
+
+  // Filter and sort candidates
+  const visibleCandidates = useMemo(() => {
+    let result = candidates.filter((c) => selectedCandidates.has(c.name));
+
+    // Apply sorting if active
+    if (sortState) {
+      const attribute = attributeMap.get(sortState.attributeId);
+      if (attribute) {
+        const sorter = createCandidateSorter(attribute, sortState.direction);
+        result = [...result].sort(sorter);
+      }
+    }
+
+    return result;
+  }, [candidates, selectedCandidates, sortState, attributeMap]);
 
   const toggleCandidate = (name: string) => {
     setSelectedCandidates((prev) => {
@@ -98,6 +151,21 @@ export function ComparisonView({
         next.add(groupId);
       }
       return next;
+    });
+  };
+
+  const toggleSort = (attributeId: string) => {
+    setSortState((prev) => {
+      if (prev?.attributeId !== attributeId) {
+        // Start sorting by this attribute, ascending
+        return { attributeId, direction: "asc" };
+      }
+      if (prev.direction === "asc") {
+        // Switch to descending
+        return { attributeId, direction: "desc" };
+      }
+      // Clear sort
+      return null;
     });
   };
 
@@ -231,6 +299,8 @@ export function ComparisonView({
                               key={attribute.id}
                               attribute={attribute}
                               candidates={visibleCandidates}
+                              sortState={sortState}
+                              onSort={toggleSort}
                             />
                           ))}
                       </Fragment>
@@ -254,13 +324,46 @@ export function ComparisonView({
 interface AttributeRowProps {
   attribute: Attribute;
   candidates: CandidateFile[];
+  sortState: SortState | null;
+  onSort: (attributeId: string) => void;
 }
 
-function AttributeRow({ attribute, candidates }: AttributeRowProps) {
+function AttributeRow({
+  attribute,
+  candidates,
+  sortState,
+  onSort,
+}: AttributeRowProps) {
+  const isSortable = isSortableType(attribute.valueType);
+  const isCurrentSort = sortState?.attributeId === attribute.id;
+  const sortDirection = isCurrentSort ? sortState.direction : null;
+
+  const handleSort = () => {
+    if (isSortable) {
+      onSort(attribute.id);
+    }
+  };
+
   return (
     <TableRow className="border-b border-border/50 hover:bg-muted/20">
       <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-background font-medium">
-        {attribute.name}
+        {isSortable ? (
+          <button
+            onClick={handleSort}
+            className="flex w-full items-center gap-1 text-left hover:text-primary"
+          >
+            <span>{attribute.name}</span>
+            {sortDirection === "asc" ? (
+              <ArrowUp className="h-3 w-3 text-primary" />
+            ) : sortDirection === "desc" ? (
+              <ArrowDown className="h-3 w-3 text-primary" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3 opacity-30" />
+            )}
+          </button>
+        ) : (
+          attribute.name
+        )}
       </TableCell>
       {candidates.map((candidate) => {
         const attributeValue = candidate.values[attribute.id];

@@ -107,7 +107,7 @@
 ---
 
 ## Milestone 6: Candidate Selection
-**Status:** Not planned
+**Status:** Done
 
 ### Goals
 - Allow users to select which candidates to compare
@@ -115,20 +115,24 @@
 - Remember selection state
 
 ### Success Criteria
-- [ ] Candidate picker/selector UI
-- [ ] Add/remove candidates from active comparison
-- [ ] Visual indication of selected candidates
-- [ ] Support comparing 2-N candidates
-- [ ] URL state for shareable comparisons
+- [x] Candidate picker/selector UI
+- [x] Add/remove candidates from active comparison
+- [x] Visual indication of selected candidates
+- [x] Support comparing 2-N candidates
+- [x] URL state for shareable comparisons
+
+### Notes
+This milestone was implemented as part of Milestone 5 work. The candidate selector with pill buttons, selection state management, and URL persistence were all built into the initial ComparisonView component.
 
 ---
 
 ## Milestone 7: Filtering and Sorting
-**Status:** Not planned
+**Status:** Ready for implementation
 
 ### Goals
 - Enable filtering candidates by attribute values
 - Support sorting by specific attributes
+- Filtered candidates are greyed out and put to the back of the selection list
 - Highlight best/worst values
 
 ### Success Criteria
