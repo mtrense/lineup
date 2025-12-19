@@ -1,6 +1,13 @@
 import { useMemo } from "react";
-import { X } from "lucide-react";
+import { Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import type { AttributesFile, CandidateFile, TagsType } from "@/types";
 
 export interface TagFilter {
@@ -23,19 +30,26 @@ export const emptyFilterState: FilterState = {
   booleans: [],
 };
 
-interface FilterPanelProps {
+export function getActiveFilterCount(filterState: FilterState): number {
+  return (
+    filterState.tags.reduce((sum, f) => sum + f.tagIds.size, 0) +
+    filterState.booleans.length
+  );
+}
+
+interface FilterDrawerProps {
   attributes: AttributesFile;
   candidates: CandidateFile[];
   filterState: FilterState;
   onFilterChange: (state: FilterState) => void;
 }
 
-export function FilterPanel({
+export function FilterDrawer({
   attributes,
   candidates,
   filterState,
   onFilterChange,
-}: FilterPanelProps) {
+}: FilterDrawerProps) {
   // Find all tag-type attributes with their available tags
   const tagAttributes = useMemo(() => {
     const result: {
@@ -167,40 +181,45 @@ export function FilterPanel({
   const hasActiveFilters =
     filterState.tags.length > 0 || filterState.booleans.length > 0;
 
-  const activeFilterCount =
-    filterState.tags.reduce((sum, f) => sum + f.tagIds.size, 0) +
-    filterState.booleans.length;
+  const activeFilterCount = getActiveFilterCount(filterState);
 
+  // Don't render if no filterable attributes
   if (tagAttributes.length === 0 && booleanAttributes.length === 0) {
     return null;
   }
 
   return (
-    <div className="border-b border-border bg-card/30 px-4 py-3">
-      <div className="container mx-auto">
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-sm font-medium text-muted-foreground">
-            Filters
-            {activeFilterCount > 0 && (
-              <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
-                {activeFilterCount}
-              </span>
-            )}
-          </span>
-          {hasActiveFilters && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearAllFilters}
-              className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
-            >
-              <X className="mr-1 h-3 w-3" />
-              Clear all
-            </Button>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline" size="sm" className="gap-2">
+          <Filter className="h-4 w-4" />
+          Filters
+          {activeFilterCount > 0 && (
+            <span className="rounded-full bg-primary px-1.5 py-0.5 text-xs text-primary-foreground">
+              {activeFilterCount}
+            </span>
           )}
-        </div>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="overflow-y-auto">
+        <SheetHeader>
+          <SheetTitle className="flex items-center justify-between">
+            <span>Filters</span>
+            {hasActiveFilters && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearAllFilters}
+                className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+              >
+                <X className="mr-1 h-3 w-3" />
+                Clear all
+              </Button>
+            )}
+          </SheetTitle>
+        </SheetHeader>
 
-        <div className="space-y-3">
+        <div className="space-y-6 px-4 pb-4">
           {/* Tag Filters */}
           {tagAttributes.map((attr) => {
             const activeFilter = filterState.tags.find(
@@ -208,17 +227,15 @@ export function FilterPanel({
             );
             return (
               <div key={attr.id}>
-                <div className="mb-1 text-xs text-muted-foreground">
-                  {attr.name}
-                </div>
-                <div className="flex flex-wrap gap-1">
+                <div className="mb-2 text-sm font-medium">{attr.name}</div>
+                <div className="flex flex-wrap gap-2">
                   {attr.tags.map((tag) => {
                     const isSelected = activeFilter?.tagIds.has(tag.id);
                     return (
                       <button
                         key={tag.id}
                         onClick={() => toggleTag(attr.id, tag.id)}
-                        className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                        className={`rounded-full px-3 py-1 text-sm transition-colors ${
                           isSelected
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -241,13 +258,11 @@ export function FilterPanel({
             const currentValue = activeFilter?.value ?? null;
             return (
               <div key={attr.id}>
-                <div className="mb-1 text-xs text-muted-foreground">
-                  {attr.name}
-                </div>
-                <div className="flex gap-1">
+                <div className="mb-2 text-sm font-medium">{attr.name}</div>
+                <div className="flex gap-2">
                   <button
                     onClick={() => toggleBoolean(attr.id, null)}
-                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
                       currentValue === null
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -257,7 +272,7 @@ export function FilterPanel({
                   </button>
                   <button
                     onClick={() => toggleBoolean(attr.id, true)}
-                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
                       currentValue === true
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -267,7 +282,7 @@ export function FilterPanel({
                   </button>
                   <button
                     onClick={() => toggleBoolean(attr.id, false)}
-                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                    className={`rounded-full px-3 py-1 text-sm transition-colors ${
                       currentValue === false
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -280,8 +295,8 @@ export function FilterPanel({
             );
           })}
         </div>
-      </div>
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 }
 

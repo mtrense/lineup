@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { ValueRenderer } from "@/components/values/ValueRenderer";
 import {
-  FilterPanel,
+  FilterDrawer,
   FilterState,
   emptyFilterState,
   candidatePassesFilters,
@@ -222,14 +222,6 @@ export function ComparisonView({
         </div>
       </header>
 
-      {/* Filter Panel */}
-      <FilterPanel
-        attributes={attributes}
-        candidates={candidates}
-        filterState={filterState}
-        onFilterChange={setFilterState}
-      />
-
       {/* Candidate Selector */}
       <div className="border-b border-border bg-card/50 px-4 py-4">
         <div className="container mx-auto">
@@ -237,19 +229,27 @@ export function ComparisonView({
             <span className="text-sm text-muted-foreground">
               Select items to compare
             </span>
-            <div className="flex gap-2">
-              <button
-                onClick={selectAll}
-                className="text-sm text-primary hover:underline"
-              >
-                Select All
-              </button>
-              <button
-                onClick={clearAll}
-                className="text-sm text-primary hover:underline"
-              >
-                Clear
-              </button>
+            <div className="flex items-center gap-3">
+              <FilterDrawer
+                attributes={attributes}
+                candidates={candidates}
+                filterState={filterState}
+                onFilterChange={setFilterState}
+              />
+              <div className="flex gap-2">
+                <button
+                  onClick={selectAll}
+                  className="text-sm text-primary hover:underline"
+                >
+                  Select All
+                </button>
+                <button
+                  onClick={clearAll}
+                  className="text-sm text-primary hover:underline"
+                >
+                  Clear
+                </button>
+              </div>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
