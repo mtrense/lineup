@@ -89,7 +89,24 @@
 
 ---
 
-## Milestone 5: Candidate Selection
+## Milestone 5: Usability Improvements
+**Status:** Ready for implementation
+
+### Goals
+- Add URL-based routing for navigation and shareability
+- Fix text rendering issues in comparison table
+- Improve overall usability
+
+### Success Criteria
+- [ ] Path-based routing (e.g., `/databases`, `/databases?candidates=postgresql,mysql`)
+- [ ] Browser back/forward navigation works correctly
+- [ ] Text values wrap properly in table cells
+- [ ] Long descriptions display readably
+- [ ] Deep links to specific comparisons work
+
+---
+
+## Milestone 6: Candidate Selection
 **Status:** Not planned
 
 ### Goals
@@ -102,11 +119,11 @@
 - [ ] Add/remove candidates from active comparison
 - [ ] Visual indication of selected candidates
 - [ ] Support comparing 2-N candidates
-- [ ] URL state for shareable comparisons (optional)
+- [ ] URL state for shareable comparisons
 
 ---
 
-## Milestone 6: Filtering and Sorting
+## Milestone 7: Filtering and Sorting
 **Status:** Not planned
 
 ### Goals
@@ -123,7 +140,7 @@
 
 ---
 
-## Milestone 7: Polish and UX
+## Milestone 8: Polish and UX
 **Status:** Not planned
 
 ### Goals
