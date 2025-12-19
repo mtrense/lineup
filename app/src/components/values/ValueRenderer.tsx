@@ -8,6 +8,7 @@ import { TagsValue } from "./TagsValue";
 import { RatingValue } from "./RatingValue";
 import { FilesizeValue } from "./FilesizeValue";
 import { DurationValue } from "./DurationValue";
+import { PercentageValue } from "./PercentageValue";
 import { IconValue } from "./IconValue";
 
 type AttributeValueType =
@@ -71,6 +72,14 @@ export function ValueRenderer({ value, valueType }: ValueRendererProps) {
       case "duration":
         return (
           <DurationValue
+            value={Number(value)}
+            direction={valueType.direction}
+          />
+        );
+
+      case "percentage":
+        return (
+          <PercentageValue
             value={Number(value)}
             direction={valueType.direction}
           />

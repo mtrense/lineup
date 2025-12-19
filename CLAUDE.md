@@ -75,6 +75,11 @@ type Duration = {
     direction: "ascending" | "descending"  // faster vs longer is better
 }
 
+type Percentage = {
+    type: "percentage",
+    direction: "ascending" | "descending"  // higher vs lower percentage is better
+}
+
 type Rating = {
     lower: number,
     upper: number,
@@ -112,9 +117,10 @@ type ValueType =
   | Decimal       // Decimal value (stored as number)
   | Filesize      // Filesize (stored as number, formatted like "1.2 MB")
   | Duration      // Time duration (stored as number of milliseconds, formatted like "1:05:42.345")
+  | Percentage    // Percentage value (stored as 0-100 or 0-1, displayed with colored bar)
   | "text"        // Freeform text (stored as string)
   | "boolean"     // Checkmark or cross (stored as boolean)
-  | Rating        // Star rating or similar (stored as decimal, formatted as defined in the nested object)
+  | Rating        // Star rating or similar (stored as decimal, displayed with symbols and numeric ratio)
   | Tags          // A list of tags
   | Icon          // Icon or small graphic
   | "link";       // Clickable URL
@@ -151,7 +157,7 @@ Contains a single candidate's data.
 ```typescript
 interface AttributeValue {
   value:
-    | number                          // For integer, decimal, filesize, duration, rating
+    | number                          // For integer, decimal, filesize, duration, percentage, rating
     | string                          // For text, icon, link
     | string[]                        // For tags
     | boolean                         // For boolean
@@ -173,7 +179,7 @@ interface CandidateFile {
 
 ## Key Concepts
 
-- **Value Types**: How an attribute is stored and displayed (integer, decimal, filesize, duration, text, boolean, rating, icon, link)
+- **Value Types**: How an attribute is stored and displayed (integer, decimal, filesize, duration, percentage, text, boolean, rating, tags, icon, link)
 - **Direction**: For rankable types, whether ascending (higher/larger is better) or descending (lower/smaller is better) values are preferred; `neutral` for non-ranked numerics
 - **Attribute Groups**: Logical clustering of related attributes with collapsible UI
 

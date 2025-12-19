@@ -20,6 +20,11 @@ export interface DurationType {
   direction: "ascending" | "descending";
 }
 
+export interface PercentageType {
+  type: "percentage";
+  direction: "ascending" | "descending";
+}
+
 export interface RatingType {
   type: "rating";
   lower: number;
@@ -60,6 +65,7 @@ export type ValueType =
   | DecimalType
   | FilesizeType
   | DurationType
+  | PercentageType
   | "text"
   | "boolean"
   | RatingType

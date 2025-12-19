@@ -8,4 +8,5 @@ export { TagsValue } from "./TagsValue";
 export { RatingValue } from "./RatingValue";
 export { FilesizeValue } from "./FilesizeValue";
 export { DurationValue } from "./DurationValue";
+export { PercentageValue } from "./PercentageValue";
 export { IconValue } from "./IconValue";
