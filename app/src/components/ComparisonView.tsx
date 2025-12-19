@@ -18,6 +18,12 @@ import {
 } from "@/components/ui/table";
 import { ValueRenderer } from "@/components/values/ValueRenderer";
 import {
+  FilterPanel,
+  FilterState,
+  emptyFilterState,
+  candidatePassesFilters,
+} from "@/components/FilterPanel";
+import {
   isSortableType,
   createCandidateSorter,
   findBestIndices,
@@ -82,6 +88,9 @@ export function ComparisonView({
     initialSort ?? null
   );
 
+  // Track filter state
+  const [filterState, setFilterState] = useState<FilterState>(emptyFilterState);
+
   // Build a map of attribute id to attribute for sorting
   const attributeMap = useMemo(() => {
     const map = new Map<string, Attribute>();
@@ -107,7 +116,23 @@ export function ComparisonView({
     }
   }, [sortState, onSortChange]);
 
-  // Filter and sort candidates
+  // Track which candidates pass filters
+  const candidateFilterStatus = useMemo(() => {
+    const map = new Map<string, boolean>();
+    candidates.forEach((c) => {
+      map.set(c.name, candidatePassesFilters(c, filterState));
+    });
+    return map;
+  }, [candidates, filterState]);
+
+  // Order candidates for the selector: passing filters first, then filtered out
+  const orderedCandidates = useMemo(() => {
+    const passing = candidates.filter((c) => candidateFilterStatus.get(c.name));
+    const filtered = candidates.filter((c) => !candidateFilterStatus.get(c.name));
+    return [...passing, ...filtered];
+  }, [candidates, candidateFilterStatus]);
+
+  // Filter and sort candidates for the table
   const visibleCandidates = useMemo(() => {
     let result = candidates.filter((c) => selectedCandidates.has(c.name));
 
@@ -197,6 +222,14 @@ export function ComparisonView({
         </div>
       </header>
 
+      {/* Filter Panel */}
+      <FilterPanel
+        attributes={attributes}
+        candidates={candidates}
+        filterState={filterState}
+        onFilterChange={setFilterState}
+      />
+
       {/* Candidate Selector */}
       <div className="border-b border-border bg-card/50 px-4 py-4">
         <div className="container mx-auto">
@@ -220,16 +253,21 @@ export function ComparisonView({
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            {candidates.map((candidate) => {
+            {orderedCandidates.map((candidate) => {
               const isSelected = selectedCandidates.has(candidate.name);
+              const passesFilter = candidateFilterStatus.get(candidate.name);
               return (
                 <button
                   key={candidate.name}
                   onClick={() => toggleCandidate(candidate.name)}
                   className={`rounded-full px-3 py-1 text-sm transition-colors ${
                     isSelected
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                      ? passesFilter
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-primary/50 text-primary-foreground/70"
+                      : passesFilter
+                        ? "bg-muted text-muted-foreground hover:bg-muted/80"
+                        : "bg-muted/50 text-muted-foreground/50 hover:bg-muted/40"
                   }`}
                 >
                   {candidate.name}

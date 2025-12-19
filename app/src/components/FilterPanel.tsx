@@ -1,0 +1,319 @@
+import { useMemo } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { AttributesFile, CandidateFile, TagsType } from "@/types";
+
+export interface TagFilter {
+  attributeId: string;
+  tagIds: Set<string>;
+}
+
+export interface BooleanFilter {
+  attributeId: string;
+  value: boolean;
+}
+
+export interface FilterState {
+  tags: TagFilter[];
+  booleans: BooleanFilter[];
+}
+
+export const emptyFilterState: FilterState = {
+  tags: [],
+  booleans: [],
+};
+
+interface FilterPanelProps {
+  attributes: AttributesFile;
+  candidates: CandidateFile[];
+  filterState: FilterState;
+  onFilterChange: (state: FilterState) => void;
+}
+
+export function FilterPanel({
+  attributes,
+  candidates,
+  filterState,
+  onFilterChange,
+}: FilterPanelProps) {
+  // Find all tag-type attributes with their available tags
+  const tagAttributes = useMemo(() => {
+    const result: {
+      id: string;
+      name: string;
+      tags: { id: string; value: string; color?: string }[];
+      usedTagIds: Set<string>;
+    }[] = [];
+
+    attributes.groups.forEach((group) => {
+      group.attributes.forEach((attr) => {
+        if (
+          typeof attr.valueType === "object" &&
+          attr.valueType.type === "tags"
+        ) {
+          const tagsType = attr.valueType as TagsType;
+
+          // Find which tags are actually used by candidates
+          const usedTagIds = new Set<string>();
+          candidates.forEach((candidate) => {
+            const value = candidate.values[attr.id]?.value;
+            if (Array.isArray(value)) {
+              value.forEach((tagId) => usedTagIds.add(tagId));
+            }
+          });
+
+          if (usedTagIds.size > 0) {
+            result.push({
+              id: attr.id,
+              name: attr.name,
+              tags: tagsType.tags.filter((t) => usedTagIds.has(t.id)),
+              usedTagIds,
+            });
+          }
+        }
+      });
+    });
+
+    return result;
+  }, [attributes, candidates]);
+
+  // Find all boolean attributes
+  const booleanAttributes = useMemo(() => {
+    const result: { id: string; name: string }[] = [];
+
+    attributes.groups.forEach((group) => {
+      group.attributes.forEach((attr) => {
+        if (attr.valueType === "boolean") {
+          result.push({ id: attr.id, name: attr.name });
+        }
+      });
+    });
+
+    return result;
+  }, [attributes]);
+
+  const toggleTag = (attributeId: string, tagId: string) => {
+    const existingFilter = filterState.tags.find(
+      (f) => f.attributeId === attributeId
+    );
+
+    if (existingFilter) {
+      const newTagIds = new Set(existingFilter.tagIds);
+      if (newTagIds.has(tagId)) {
+        newTagIds.delete(tagId);
+      } else {
+        newTagIds.add(tagId);
+      }
+
+      if (newTagIds.size === 0) {
+        // Remove this filter entirely
+        onFilterChange({
+          ...filterState,
+          tags: filterState.tags.filter((f) => f.attributeId !== attributeId),
+        });
+      } else {
+        onFilterChange({
+          ...filterState,
+          tags: filterState.tags.map((f) =>
+            f.attributeId === attributeId ? { ...f, tagIds: newTagIds } : f
+          ),
+        });
+      }
+    } else {
+      // Create new filter
+      onFilterChange({
+        ...filterState,
+        tags: [
+          ...filterState.tags,
+          { attributeId, tagIds: new Set([tagId]) },
+        ],
+      });
+    }
+  };
+
+  const toggleBoolean = (attributeId: string, value: boolean | null) => {
+    if (value === null) {
+      // Remove filter
+      onFilterChange({
+        ...filterState,
+        booleans: filterState.booleans.filter(
+          (f) => f.attributeId !== attributeId
+        ),
+      });
+    } else {
+      const existing = filterState.booleans.find(
+        (f) => f.attributeId === attributeId
+      );
+      if (existing) {
+        onFilterChange({
+          ...filterState,
+          booleans: filterState.booleans.map((f) =>
+            f.attributeId === attributeId ? { ...f, value } : f
+          ),
+        });
+      } else {
+        onFilterChange({
+          ...filterState,
+          booleans: [...filterState.booleans, { attributeId, value }],
+        });
+      }
+    }
+  };
+
+  const clearAllFilters = () => {
+    onFilterChange(emptyFilterState);
+  };
+
+  const hasActiveFilters =
+    filterState.tags.length > 0 || filterState.booleans.length > 0;
+
+  const activeFilterCount =
+    filterState.tags.reduce((sum, f) => sum + f.tagIds.size, 0) +
+    filterState.booleans.length;
+
+  if (tagAttributes.length === 0 && booleanAttributes.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="border-b border-border bg-card/30 px-4 py-3">
+      <div className="container mx-auto">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-sm font-medium text-muted-foreground">
+            Filters
+            {activeFilterCount > 0 && (
+              <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
+                {activeFilterCount}
+              </span>
+            )}
+          </span>
+          {hasActiveFilters && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearAllFilters}
+              className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <X className="mr-1 h-3 w-3" />
+              Clear all
+            </Button>
+          )}
+        </div>
+
+        <div className="space-y-3">
+          {/* Tag Filters */}
+          {tagAttributes.map((attr) => {
+            const activeFilter = filterState.tags.find(
+              (f) => f.attributeId === attr.id
+            );
+            return (
+              <div key={attr.id}>
+                <div className="mb-1 text-xs text-muted-foreground">
+                  {attr.name}
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {attr.tags.map((tag) => {
+                    const isSelected = activeFilter?.tagIds.has(tag.id);
+                    return (
+                      <button
+                        key={tag.id}
+                        onClick={() => toggleTag(attr.id, tag.id)}
+                        className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                          isSelected
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted text-muted-foreground hover:bg-muted/80"
+                        }`}
+                      >
+                        {tag.value}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Boolean Filters */}
+          {booleanAttributes.map((attr) => {
+            const activeFilter = filterState.booleans.find(
+              (f) => f.attributeId === attr.id
+            );
+            const currentValue = activeFilter?.value ?? null;
+            return (
+              <div key={attr.id}>
+                <div className="mb-1 text-xs text-muted-foreground">
+                  {attr.name}
+                </div>
+                <div className="flex gap-1">
+                  <button
+                    onClick={() => toggleBoolean(attr.id, null)}
+                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                      currentValue === null
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    Any
+                  </button>
+                  <button
+                    onClick={() => toggleBoolean(attr.id, true)}
+                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                      currentValue === true
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={() => toggleBoolean(attr.id, false)}
+                    className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                      currentValue === false
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Check if a candidate passes all active filters.
+ */
+export function candidatePassesFilters(
+  candidate: CandidateFile,
+  filterState: FilterState
+): boolean {
+  // Check tag filters (OR within attribute, AND between attributes)
+  for (const tagFilter of filterState.tags) {
+    const candidateValue = candidate.values[tagFilter.attributeId]?.value;
+    if (!Array.isArray(candidateValue)) {
+      return false;
+    }
+    // Candidate must have at least one of the selected tags
+    const hasMatch = candidateValue.some((tagId) =>
+      tagFilter.tagIds.has(tagId)
+    );
+    if (!hasMatch) {
+      return false;
+    }
+  }
+
+  // Check boolean filters
+  for (const boolFilter of filterState.booleans) {
+    const candidateValue = candidate.values[boolFilter.attributeId]?.value;
+    if (candidateValue !== boolFilter.value) {
+      return false;
+    }
+  }
+
+  return true;
+}
