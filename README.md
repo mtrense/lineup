@@ -9,7 +9,7 @@ A static React application for comparing items side-by-side across shared attrib
 - **Rich value types** - Display data as text, numbers, ratings, tags, icons, file sizes, durations, and more
 - **Collapsible attribute groups** - Organize related attributes into logical sections
 - **Value ranking** - Visual indicators for best/worst values based on configurable direction (higher or lower is better)
-- **Source citations** - Every data point can include sources for verification
+- **Source citations** - Every data point can include sources and comments, shown in tooltips on hover
 - **Responsive design** - Works on desktop and mobile devices
 
 ## Getting Started

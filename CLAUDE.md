@@ -178,9 +178,11 @@ interface AttributeValue {
     | string[]                        // For tags
     | boolean                         // For boolean
     | null;                           // Unknown/not applicable
-  source?: string[];                  // Source URLs for this value
-  comment?: string;                   // Any comment on the source or the value itself
+  source?: string[];                  // Source URLs for this value (shown in tooltip)
+  comment?: string;                   // Additional context (shown in tooltip)
 }
+// Note: When source or comment are present, hovering over the value
+// displays a tooltip with the comment text and clickable source links.
 
 interface CandidateFile {
   name: string;                       // Display name (e.g., "PostgreSQL")
