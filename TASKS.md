@@ -55,9 +55,9 @@ Implement Option 3: Enhanced candidate list in `index.json` where each candidate
 
 **Files:** `data/*/index.json` (3 files: databases, rich-text-editors, test)
 
-- [ ] Convert `data/databases/index.json` to new format (all `shownByDefault: true` for backward compatibility)
-- [ ] Convert `data/rich-text-editors/index.json` to new format (select prominent editors as default)
-- [ ] Convert `data/test/index.json` to new format
+- [x] Convert `data/databases/index.json` to new format (all `shownByDefault: true` for backward compatibility)
+- [x] Convert `data/rich-text-editors/index.json` to new format (select prominent editors as default)
+- [x] Convert `data/test/index.json` to new format
 
 ### Increment 5: Update Documentation
 
