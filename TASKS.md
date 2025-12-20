@@ -47,9 +47,9 @@ Implement Option 3: Enhanced candidate list in `index.json` where each candidate
 
 **Files:** `app/src/components/ComparisonView.tsx`, `app/src/pages/ComparisonPage.tsx`
 
-- [ ] Modify props or data flow to pass `shownByDefault` information
-- [ ] Update initial `selectedCandidates` state to use `shownByDefault` when no URL selection is present
-- [ ] Ensure URL-based selection still overrides `shownByDefault`
+- [x] Modify props or data flow to pass `shownByDefault` information
+- [x] Update initial `selectedCandidates` state to use `shownByDefault` when no URL selection is present
+- [x] Ensure URL-based selection still overrides `shownByDefault`
 
 ### Increment 4: Migrate Existing Data Files
 

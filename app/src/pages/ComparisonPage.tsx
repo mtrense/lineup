@@ -3,7 +3,7 @@ import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { ComparisonView, SortState } from "@/components/ComparisonView";
 import { ComparisonLoadingSkeleton } from "@/components/LoadingSkeleton";
 import { getComparisonData } from "@/lib/data";
-import type { AttributesFile, CandidateFile } from "@/types";
+import type { AttributesFile, CandidateFile, CandidateEntry } from "@/types";
 
 export function ComparisonPage() {
   const { comparisonId } = useParams<{ comparisonId: string }>();
@@ -13,6 +13,7 @@ export function ComparisonPage() {
   const [comparisonData, setComparisonData] = useState<{
     attributes: AttributesFile;
     candidates: CandidateFile[];
+    candidateEntries: CandidateEntry[];
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -128,6 +129,7 @@ export function ComparisonPage() {
     <ComparisonView
       attributes={comparisonData.attributes}
       candidates={comparisonData.candidates}
+      candidateEntries={comparisonData.candidateEntries}
       initialSelection={selectedFromUrl}
       initialSort={sortFromUrl}
       onBack={handleBack}

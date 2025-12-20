@@ -28,7 +28,7 @@ import {
   createCandidateSorter,
   findBestIndices,
 } from "@/lib/compare";
-import type { AttributesFile, CandidateFile, Attribute } from "@/types";
+import type { AttributesFile, CandidateFile, Attribute, CandidateEntry } from "@/types";
 
 export interface SortState {
   attributeId: string;
@@ -38,6 +38,7 @@ export interface SortState {
 interface ComparisonViewProps {
   attributes: AttributesFile;
   candidates: CandidateFile[];
+  candidateEntries: CandidateEntry[];
   initialSelection?: string[] | null;
   initialSort?: SortState | null;
   onBack: () => void;
@@ -48,6 +49,7 @@ interface ComparisonViewProps {
 export function ComparisonView({
   attributes,
   candidates,
+  candidateEntries,
   initialSelection,
   initialSort,
   onBack,
@@ -67,8 +69,24 @@ export function ComparisonView({
           return new Set(validSelection);
         }
       }
-      // Default to all candidates selected
-      return new Set(candidates.map((c) => c.name));
+      // Use shownByDefault from candidateEntries
+      const defaultShown = candidateEntries
+        .filter((entry) => entry.shownByDefault)
+        .map((entry) => {
+          // Find the candidate by matching the entry id to candidate name (case-insensitive, normalized)
+          const candidate = candidates.find(
+            (c) => c.name.toLowerCase().replace(/\s+/g, "-") === entry.id ||
+                   c.name.toLowerCase() === entry.id.toLowerCase()
+          );
+          return candidate?.name;
+        })
+        .filter((name): name is string => name !== undefined);
+
+      // If no candidates are marked as shownByDefault, show all
+      if (defaultShown.length === 0) {
+        return new Set(candidates.map((c) => c.name));
+      }
+      return new Set(defaultShown);
     }
   );
 
