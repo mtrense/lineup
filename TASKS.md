@@ -63,8 +63,8 @@ Implement Option 3: Enhanced candidate list in `index.json` where each candidate
 
 **Files:** `CLAUDE.md`
 
-- [ ] Update the `CandidateIndex` schema documentation to reflect new structure
-- [ ] Add explanation of `shownByDefault` behavior
+- [x] Update the `CandidateIndex` schema documentation to reflect new structure
+- [x] Add explanation of `shownByDefault` behavior
 
 ## Notes
 

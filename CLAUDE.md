@@ -166,6 +166,23 @@ interface AttributesFile {
 }
 ```
 
+### index.json (per comparison type)
+
+Lists the candidates for a comparison type and controls initial visibility.
+
+```typescript
+interface CandidateEntry {
+  id: string;                         // Candidate file name (without .json)
+  shownByDefault: boolean;            // Whether candidate is shown on initial page load
+}
+
+interface CandidateIndex {
+  candidates: CandidateEntry[];       // List of candidates in display order
+}
+```
+
+**Note:** When `shownByDefault` is `false`, the candidate is still available but not selected initially. Users can toggle visibility. If no candidates have `shownByDefault: true`, all candidates are shown.
+
 ### <candidate>.json
 
 Contains a single candidate's data.
