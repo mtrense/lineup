@@ -11,6 +11,11 @@ export interface ComparisonsIndex {
   comparisons: ComparisonType[];
 }
 
+export interface CandidateEntry {
+  id: string;
+  shownByDefault: boolean;
+}
+
 export interface CandidateIndex {
-  candidates: string[];
+  candidates: CandidateEntry[];
 }
