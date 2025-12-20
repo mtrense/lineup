@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Filter, X } from "lucide-react";
+import { Check, Filter, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -145,6 +145,13 @@ export function FilterDrawer({
     }
   };
 
+  const clearTagFilter = (attributeId: string) => {
+    onFilterChange({
+      ...filterState,
+      tags: filterState.tags.filter((f) => f.attributeId !== attributeId),
+    });
+  };
+
   const toggleBoolean = (attributeId: string, value: boolean | null) => {
     if (value === null) {
       // Remove filter
@@ -171,6 +178,22 @@ export function FilterDrawer({
           booleans: [...filterState.booleans, { attributeId, value }],
         });
       }
+    }
+  };
+
+  // Cycle through: null (Any) -> true (Yes) -> false (No) -> null (Any)
+  const cycleBooleanFilter = (attributeId: string) => {
+    const existing = filterState.booleans.find(
+      (f) => f.attributeId === attributeId
+    );
+    const currentValue = existing?.value ?? null;
+
+    if (currentValue === null) {
+      toggleBoolean(attributeId, true);
+    } else if (currentValue === true) {
+      toggleBoolean(attributeId, false);
+    } else {
+      toggleBoolean(attributeId, null);
     }
   };
 
@@ -219,23 +242,27 @@ export function FilterDrawer({
           </SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-6 px-4 pb-4">
-          {/* Tag Filters */}
+        <div className="space-y-4 px-4 pb-4">
+          {/* Tag Filters - Compact pill groups with clear button */}
           {tagAttributes.map((attr) => {
             const activeFilter = filterState.tags.find(
               (f) => f.attributeId === attr.id
             );
+            const hasSelection = activeFilter && activeFilter.tagIds.size > 0;
+
             return (
               <div key={attr.id}>
-                <div className="mb-2 text-sm font-medium">{attr.name}</div>
-                <div className="flex flex-wrap gap-2">
+                <div className="mb-1.5 text-xs font-medium text-muted-foreground">
+                  {attr.name}
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
                   {attr.tags.map((tag) => {
                     const isSelected = activeFilter?.tagIds.has(tag.id);
                     return (
                       <button
                         key={tag.id}
                         onClick={() => toggleTag(attr.id, tag.id)}
-                        className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                        className={`rounded-full px-2.5 py-0.5 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                           isSelected
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -246,59 +273,59 @@ export function FilterDrawer({
                       </button>
                     );
                   })}
+                  {hasSelection && (
+                    <button
+                      onClick={() => clearTagFilter(attr.id)}
+                      className="ml-1 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      aria-label={`Clear ${attr.name} filter`}
+                    >
+                      <X className="h-3.5 w-3.5" aria-hidden="true" />
+                    </button>
+                  )}
                 </div>
               </div>
             );
           })}
 
-          {/* Boolean Filters */}
+          {/* Boolean Filters - Compact tri-state buttons */}
           {booleanAttributes.map((attr) => {
             const activeFilter = filterState.booleans.find(
               (f) => f.attributeId === attr.id
             );
             const currentValue = activeFilter?.value ?? null;
+
+            // Determine styling and icon based on current state
+            let stateClass: string;
+            let StateIcon: typeof Check;
+            let stateLabel: string;
+
+            if (currentValue === true) {
+              stateClass =
+                "bg-green-500/20 text-green-700 dark:text-green-400 hover:bg-green-500/30";
+              StateIcon = Check;
+              stateLabel = "Yes";
+            } else if (currentValue === false) {
+              stateClass =
+                "bg-red-500/20 text-red-700 dark:text-red-400 hover:bg-red-500/30";
+              StateIcon = X;
+              stateLabel = "No";
+            } else {
+              stateClass = "bg-muted text-muted-foreground hover:bg-muted/80";
+              StateIcon = Minus;
+              stateLabel = "Any";
+            }
+
             return (
-              <div key={attr.id}>
-                <div className="mb-2 text-sm font-medium">{attr.name}</div>
-                <div className="flex gap-2" role="radiogroup" aria-label={attr.name}>
-                  <button
-                    onClick={() => toggleBoolean(attr.id, null)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      currentValue === null
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
-                    role="radio"
-                    aria-checked={currentValue === null}
-                  >
-                    Any
-                  </button>
-                  <button
-                    onClick={() => toggleBoolean(attr.id, true)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      currentValue === true
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
-                    role="radio"
-                    aria-checked={currentValue === true}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => toggleBoolean(attr.id, false)}
-                    className={`rounded-full px-3 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      currentValue === false
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
-                    role="radio"
-                    aria-checked={currentValue === false}
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
+              <button
+                key={attr.id}
+                onClick={() => cycleBooleanFilter(attr.id)}
+                className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${stateClass}`}
+                aria-label={`${attr.name}: ${stateLabel}. Click to cycle filter.`}
+              >
+                <StateIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{attr.name}</span>
+                <span className="sr-only">Current: {stateLabel}</span>
+              </button>
             );
           })}
         </div>
