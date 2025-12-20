@@ -158,24 +158,24 @@ Core editors that are widely used or foundational:
 
 ### Tier 2 (Should Have)
 Notable alternatives and specialized editors:
-- [ ] **Draft.js** - Meta's legacy editor (still widely used)
-- [ ] **Yoopta Editor** - Block-based Notion-like editor (https://github.com/yoopta-editor/Yoopta-Editor)
-- [ ] **Novel** - Notion-style editor with AI features (https://novel.sh/)
-- [ ] **Notitap** - Notion-like Tiptap implementation (https://sereneinserenade.github.io/notitap/)
-- [ ] **Redactor** - Commercial, clean UI (https://imperavi.com/redactor/)
-- [ ] **Editor.js** - Block-based, outputting clean JSON
-- [ ] **Milkdown** - Markdown-first, plugin-driven
-- [ ] **Toast UI Editor** - Markdown + WYSIWYG hybrid
+- [x] **Draft.js** - Meta's legacy editor (archived, still widely used)
+- [x] **Yoopta Editor** - Block-based Notion-like editor (https://github.com/yoopta-editor/Yoopta-Editor)
+- [x] **Novel** - Notion-style editor with AI features (https://novel.sh/)
+- [x] ~~**Notitap**~~ - Skipped: Demo project, not a reusable library
+- [x] **Redactor** - Commercial, clean UI (https://imperavi.com/redactor/)
+- [x] **Editor.js** - Block-based, outputting clean JSON
+- [x] **Milkdown** - Markdown-first, plugin-driven
+- [x] **Toast UI Editor** - Markdown + WYSIWYG hybrid
 
 ### Tier 3 (Nice to Have)
 Specialized or emerging options:
-- [ ] **Remirror** - React ProseMirror toolkit
-- [ ] **BlockNote** - Block-based Notion-like
-- [ ] **Plate** - Headless Slate plugins
-- [ ] **Froala** - Commercial, modern UI
-- [ ] **Summernote** - jQuery-based (legacy but still used)
-- [ ] **Jodit** - Lightweight, no dependencies
-- [ ] **Etherpad** - Focused on real-time collaboration
+- [x] **Remirror** - React ProseMirror toolkit (https://remirror.io/)
+- [x] **BlockNote** - Block-based Notion-like (https://www.blocknotejs.org/)
+- [x] **Plate** - Headless Slate plugins (https://platejs.org/)
+- [x] **Froala** - Commercial, modern UI (https://froala.com/wysiwyg-editor/)
+- [x] **Summernote** - jQuery-based (legacy but still used) (https://summernote.org/)
+- [x] **Jodit** - Lightweight, no dependencies (https://xdsoft.net/jodit/)
+- [x] **Etherpad** - Focused on real-time collaboration (https://etherpad.org/)
 
 ## Notes for Researchers
 
