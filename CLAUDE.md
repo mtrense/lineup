@@ -231,9 +231,91 @@ For each increment planned in `TASKS.md`:
 ## Adding and maintaining Comparison Data
 
 ### `RESEARCH.md`
-- Guidelines on which attributes to research for every candidate
-- Guidelines on how to research and assess the given attributes
-- Contains a list of candidates not yet researched or planned for re-assessment
+
+Each comparison type should have a `RESEARCH.md` file that serves as the authoritative guide for researching candidates. This file ensures consistency across all candidate data files.
+
+#### Required Sections
+
+1. **Overview**
+   - Brief description of the comparison type's purpose
+   - What users should be able to learn from this comparison
+
+2. **Scope**
+   - **Included**: What types of items belong in this comparison
+   - **Excluded**: What's explicitly out of scope (prevents ambiguity)
+
+3. **Attribute Groups**
+   - Mirror the structure from `attributes.json`
+   - For each attribute, provide a table with columns:
+     | Attribute | Type | Research Notes |
+     |-----------|------|----------------|
+   - Research Notes explain how to determine the value (what to look for, edge cases)
+
+4. **Research Sources**
+   - **Primary Sources**: Preferred sources (official docs, GitHub, official website)
+   - **Secondary Sources**: Fallback sources (Wikipedia, community sites, rankings)
+
+5. **Assessment Guidelines**
+   - Clarify how to assess ambiguous attributes
+   - Define thresholds and criteria for subjective ratings
+   - Specify when to use `null` vs a value
+
+6. **Initial Candidates**
+   - Prioritized list of candidates to research
+   - Use checkboxes to track completion: `- [x] Done` / `- [ ] Pending`
+   - Organize into tiers (Must Have, Should Have, Nice to Have)
+
+7. **Notes for Researchers**
+   - General principles (verify before recording, cite sources, admit uncertainty)
+   - Date-sensitive data handling
+   - Version-specific considerations
+
+#### Example Structure
+
+```markdown
+# [Comparison Type] Research Guide
+
+## Overview
+[Purpose and goals of this comparison]
+
+## Scope
+**Included:** [What belongs here]
+**Excluded:** [What doesn't belong]
+
+## Attribute Groups
+
+### 1. [Group Name]
+| Attribute | Type | Research Notes |
+|-----------|------|----------------|
+| **Attr 1** | text | How to find this value |
+| **Attr 2** | boolean | Criteria for true vs false |
+
+## Research Sources
+
+### Primary Sources (Preferred)
+1. Official Documentation
+2. Official GitHub Repository
+
+### Secondary Sources
+3. Wikipedia
+4. Community resources
+
+## Assessment Guidelines
+- **[Attribute]**: Specific criteria for this attribute...
+
+## Initial Candidates
+
+### Tier 1 (Must Have)
+- [ ] Candidate A - reason for inclusion
+- [ ] Candidate B - reason for inclusion
+
+### Tier 2 (Should Have)
+- [ ] Candidate C
+
+## Notes for Researchers
+1. Always verify claims from multiple sources
+2. Use `null` for values that cannot be reliably determined
+```
 
 ### Adding a New Comparison Type
 When asked to create a new type of comparison:
