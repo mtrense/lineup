@@ -4,6 +4,7 @@ import type {
   AttributesFile,
   CandidateFile,
   CandidateIndex,
+  CandidateEntry,
 } from "@/types";
 
 // Import the root index at build time
@@ -57,7 +58,7 @@ export async function getAllCandidates(
 ): Promise<CandidateFile[]> {
   const index = await getCandidateIndex(comparisonId);
   const candidates = await Promise.all(
-    index.candidates.map((id) => getCandidate(comparisonId, id))
+    index.candidates.map((entry) => getCandidate(comparisonId, entry.id))
   );
   return candidates;
 }
@@ -68,10 +69,14 @@ export async function getAllCandidates(
 export async function getComparisonData(comparisonId: string): Promise<{
   attributes: AttributesFile;
   candidates: CandidateFile[];
+  candidateEntries: CandidateEntry[];
 }> {
-  const [attributes, candidates] = await Promise.all([
+  const [attributes, index] = await Promise.all([
     getAttributes(comparisonId),
-    getAllCandidates(comparisonId),
+    getCandidateIndex(comparisonId),
   ]);
-  return { attributes, candidates };
+  const candidates = await Promise.all(
+    index.candidates.map((entry) => getCandidate(comparisonId, entry.id))
+  );
+  return { attributes, candidates, candidateEntries: index.candidates };
 }

@@ -39,9 +39,9 @@ Implement Option 3: Enhanced candidate list in `index.json` where each candidate
 
 **Files:** `app/src/lib/data.ts`
 
-- [ ] Modify `getAllCandidates()` to extract `id` from candidate entries
-- [ ] Add new function `getCandidateIndex()` or modify existing to return full index with `shownByDefault` info
-- [ ] Update `getComparisonData()` to include `shownByDefault` metadata alongside candidates
+- [x] Modify `getAllCandidates()` to extract `id` from candidate entries
+- [x] Add new function `getCandidateIndex()` or modify existing to return full index with `shownByDefault` info
+- [x] Update `getComparisonData()` to include `shownByDefault` metadata alongside candidates
 
 ### Increment 3: Update ComparisonView Initial Selection
 
