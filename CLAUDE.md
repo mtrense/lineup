@@ -341,7 +341,7 @@ When asked to create a new type of comparison:
 3. Use `RESEARCH.md` to create `attributes.json` following the schema
 4. Add the comparison type to `data/index.json`
 5. Make a suggestion for an initial set of candidates and add them to `RESEARCH.md`
-6. Create `<candidate>.json` files for each candidate to compare
+6. Commit the gathered information with a commit message of "data(<comparison-type>): RESEARCH \n <summary of the research>"
 
 ### Gathering Candidate Data
 When asked to research a candidate:
@@ -349,6 +349,7 @@ When asked to research a candidate:
 2. Admit missing of information or ambiguity when the research on an attribute isn't given proper information
 3. Create a `<candidate>.json` file according to the given schema with all the gathered information
 4. Add the candidate to `data/<comparison-type>/index.json`
+5. Commit the gathered information with a commit message of "data(<comparison-type>): CANDIDATE <initial|refresh> <date-and-time> \n <summary or the gathered information>"
 
 ## Code Conventions
 - Data files use JSON format
