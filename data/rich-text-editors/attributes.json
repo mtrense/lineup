@@ -1,0 +1,385 @@
+{
+  "name": "Rich Text Editors",
+  "description": "Web-based rich text editor libraries for building content editing experiences",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Info",
+      "icon": "info-circle",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the editor's main value proposition"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website or documentation"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "GitHub or GitLab repository URL"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": "text",
+          "description": "Software license (MIT, Apache-2.0, GPL-3.0, Commercial, etc.)"
+        },
+        {
+          "id": "initial-release",
+          "name": "Initial Release",
+          "valueType": {
+            "type": "date",
+            "direction": "descending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent stable release"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of GitHub stars"
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "name": "Technical Foundation",
+      "icon": "code",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "framework",
+          "name": "Framework",
+          "valueType": {
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "vanilla", "value": "Vanilla JS", "color": "#f7df1e" },
+              { "id": "react", "value": "React", "color": "#61dafb" },
+              { "id": "vue", "value": "Vue", "color": "#42b883" },
+              { "id": "angular", "value": "Angular", "color": "#dd0031" },
+              { "id": "svelte", "value": "Svelte", "color": "#ff3e00" },
+              { "id": "solid", "value": "Solid", "color": "#2c4f7c" }
+            ]
+          },
+          "description": "Supported frameworks"
+        },
+        {
+          "id": "base-library",
+          "name": "Base Library",
+          "valueType": "text",
+          "description": "Underlying editor library if this is a wrapper (e.g., ProseMirror, Slate)"
+        },
+        {
+          "id": "data-model",
+          "name": "Data Model",
+          "valueType": {
+            "defaultColor": "#8b5cf6",
+            "tags": [
+              { "id": "html", "value": "HTML", "color": "#e34c26" },
+              { "id": "json", "value": "JSON", "color": "#10b981" },
+              { "id": "markdown", "value": "Markdown", "color": "#083fa1" },
+              { "id": "custom", "value": "Custom", "color": "#6b7280" }
+            ]
+          },
+          "description": "How content is stored internally"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript",
+          "valueType": "boolean",
+          "description": "Written in TypeScript or has official type definitions"
+        },
+        {
+          "id": "bundle-size",
+          "name": "Bundle Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Minified + gzipped size of core package"
+        },
+        {
+          "id": "headless",
+          "name": "Headless Mode",
+          "valueType": "boolean",
+          "description": "Can run without UI for server-side processing"
+        }
+      ]
+    },
+    {
+      "id": "collaboration",
+      "name": "Collaboration",
+      "icon": "users",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "realtime-collab",
+          "name": "Real-time Collaboration",
+          "valueType": "boolean",
+          "description": "Built-in or official plugin for real-time multi-user editing"
+        },
+        {
+          "id": "collab-protocol",
+          "name": "Collaboration Protocol",
+          "valueType": {
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "yjs", "value": "Yjs", "color": "#22c55e" },
+              { "id": "crdt", "value": "CRDT", "color": "#3b82f6" },
+              { "id": "ot", "value": "OT", "color": "#f59e0b" },
+              { "id": "proprietary", "value": "Proprietary", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Technology used for real-time collaboration"
+        },
+        {
+          "id": "offline-support",
+          "name": "Offline Support",
+          "valueType": "boolean",
+          "description": "Can queue changes while offline and sync when reconnected"
+        },
+        {
+          "id": "change-tracking",
+          "name": "Change Tracking",
+          "valueType": "boolean",
+          "description": "Track changes / revision history like Word's review mode"
+        },
+        {
+          "id": "comments",
+          "name": "Comments",
+          "valueType": "boolean",
+          "description": "Inline comments or annotations on content"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "Content Features",
+      "icon": "file-text",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "tables",
+          "name": "Tables",
+          "valueType": "boolean",
+          "description": "Create and edit tables with rows and columns"
+        },
+        {
+          "id": "images",
+          "name": "Images",
+          "valueType": "boolean",
+          "description": "Insert, resize, and position images"
+        },
+        {
+          "id": "embeds",
+          "name": "Embeds",
+          "valueType": "boolean",
+          "description": "Embed videos, iframes, or other external content"
+        },
+        {
+          "id": "code-blocks",
+          "name": "Code Blocks",
+          "valueType": "boolean",
+          "description": "Fenced code blocks with syntax highlighting"
+        },
+        {
+          "id": "math-latex",
+          "name": "Math/LaTeX",
+          "valueType": "boolean",
+          "description": "Render mathematical equations"
+        },
+        {
+          "id": "mentions",
+          "name": "Mentions",
+          "valueType": "boolean",
+          "description": "@mention functionality for users or entities"
+        },
+        {
+          "id": "emoji-picker",
+          "name": "Emoji Picker",
+          "valueType": "boolean",
+          "description": "Built-in emoji insertion triggered by :colon: syntax"
+        },
+        {
+          "id": "slash-commands",
+          "name": "Slash Commands",
+          "valueType": "boolean",
+          "description": "Forward-slash menu for inserting blocks (like Notion's / menu)"
+        },
+        {
+          "id": "drag-drop-blocks",
+          "name": "Drag & Drop Blocks",
+          "valueType": "boolean",
+          "description": "Reorder content blocks via drag and drop"
+        },
+        {
+          "id": "nested-blocks",
+          "name": "Nested Blocks",
+          "valueType": "boolean",
+          "description": "Support for nested or indented block structures"
+        }
+      ]
+    },
+    {
+      "id": "editing",
+      "name": "Editing Experience",
+      "icon": "edit",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "toolbar",
+          "name": "Toolbar",
+          "valueType": {
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "fixed", "value": "Fixed", "color": "#3b82f6" },
+              { "id": "floating", "value": "Floating", "color": "#8b5cf6" },
+              { "id": "bubble", "value": "Bubble", "color": "#ec4899" },
+              { "id": "customizable", "value": "Customizable", "color": "#10b981" }
+            ]
+          },
+          "description": "Toolbar style options"
+        },
+        {
+          "id": "mobile-support",
+          "name": "Mobile Support",
+          "valueType": "boolean",
+          "description": "Officially tested and supported on mobile browsers"
+        },
+        {
+          "id": "keyboard-shortcuts",
+          "name": "Keyboard Shortcuts",
+          "valueType": "boolean",
+          "description": "Comprehensive keyboard shortcut support"
+        },
+        {
+          "id": "accessibility",
+          "name": "Accessibility",
+          "valueType": "boolean",
+          "description": "ARIA labels, screen reader support, WCAG compliance"
+        },
+        {
+          "id": "undo-redo",
+          "name": "Undo/Redo",
+          "valueType": "boolean",
+          "description": "Built-in history management"
+        },
+        {
+          "id": "find-replace",
+          "name": "Find & Replace",
+          "valueType": "boolean",
+          "description": "Search and replace functionality"
+        },
+        {
+          "id": "spell-check",
+          "name": "Spell Check",
+          "valueType": "boolean",
+          "description": "Native or integrated spell checking"
+        }
+      ]
+    },
+    {
+      "id": "extensibility",
+      "name": "Extensibility",
+      "icon": "puzzle-piece",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "plugin-system",
+          "name": "Plugin System",
+          "valueType": "boolean",
+          "description": "Documented API for extending functionality via plugins"
+        },
+        {
+          "id": "custom-nodes",
+          "name": "Custom Nodes",
+          "valueType": "boolean",
+          "description": "Define custom block or inline node types"
+        },
+        {
+          "id": "custom-marks",
+          "name": "Custom Marks",
+          "valueType": "boolean",
+          "description": "Define custom inline formatting (marks/decorations)"
+        },
+        {
+          "id": "schema-customization",
+          "name": "Schema Customization",
+          "valueType": "boolean",
+          "description": "Modify or extend the document schema"
+        },
+        {
+          "id": "themes",
+          "name": "Themes",
+          "valueType": "boolean",
+          "description": "Built-in theming or CSS customization support"
+        }
+      ]
+    },
+    {
+      "id": "developer-experience",
+      "name": "Developer Experience",
+      "icon": "terminal",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "Quality of documentation (1=minimal, 5=excellent)"
+        },
+        {
+          "id": "npm-downloads",
+          "name": "npm Weekly Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Weekly download count from npm"
+        },
+        {
+          "id": "active-maintenance",
+          "name": "Active Maintenance",
+          "valueType": "boolean",
+          "description": "Regular commits or releases in the last 6 months"
+        },
+        {
+          "id": "commercial-support",
+          "name": "Commercial Support",
+          "valueType": "boolean",
+          "description": "Paid support or enterprise tier available"
+        }
+      ]
+    }
+  ]
+}
