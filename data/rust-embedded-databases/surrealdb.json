@@ -1,0 +1,242 @@
+{
+  "name": "SurrealDB",
+  "description": "Multi-model database (document, graph, SQL) with native embedded mode and multiple storage backends",
+  "icon": null,
+  "url": "https://surrealdb.com/",
+  "values": {
+    "description": {
+      "value": "Multi-model database (document, graph, SQL) with native embedded mode and multiple storage backends",
+      "source": ["https://github.com/surrealdb/surrealdb"],
+      "comment": "Combines document, graph, relational, time-series, and geospatial models in a unified engine"
+    },
+    "license": {
+      "value": ["bsl-1.1"],
+      "source": ["https://github.com/surrealdb/surrealdb"],
+      "comment": "Core database uses Business Source License 1.1; SDKs use Apache-2.0/MIT"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/surrealdb/surrealdb"],
+      "comment": "99.8% Rust; some storage backends (RocksDB) require C++ dependencies"
+    },
+    "repository": {
+      "value": "https://github.com/surrealdb/surrealdb"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/surrealdb"
+    },
+    "documentation": {
+      "value": "https://surrealdb.com/docs"
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://lib.rs/crates/surrealdb"],
+      "comment": "First crates.io release July 24, 2022"
+    },
+    "latest-version": {
+      "value": "3.0.0-beta.1",
+      "source": ["https://lib.rs/crates/surrealdb"],
+      "comment": "As of December 2025"
+    },
+    "database-type": {
+      "value": ["document", "graph", "sql"],
+      "source": ["https://surrealdb.com/"],
+      "comment": "True multi-model: document, graph, relational, time-series, and geospatial in one engine"
+    },
+    "schema-model": {
+      "value": ["flexible"],
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Supports both schemaless and schema-enforced modes"
+    },
+    "query-language": {
+      "value": "SurrealQL (SQL-like)",
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Custom SQL-like query language with graph traversal, record links, and advanced features"
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Full ACID transactions"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "SQL-style range queries and ordering"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Supports indexes on any field"
+    },
+    "in-memory-mode": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs/surrealdb/embedding/rust"],
+      "comment": "kv-mem feature enables in-memory storage"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs/surrealdb/embedding/rust"],
+      "comment": "Multiple persistent backends: RocksDB, TiKV, FoundationDB, SurrealKV"
+    },
+    "storage-architecture": {
+      "value": "Pluggable storage backends",
+      "source": ["https://surrealdb.com/docs/surrealdb/embedding/rust"],
+      "comment": "Supports multiple backends: RocksDB (LSM), TiKV, FoundationDB, in-memory, SurrealKV"
+    },
+    "compression": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Depends on storage backend; RocksDB provides compression"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "No native encryption at rest in embedded mode"
+    },
+    "memory-mapped-io": {
+      "value": false,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Depends on storage backend"
+    },
+    "max-db-size": {
+      "value": "Storage backend dependent",
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "RocksDB and other backends support terabyte-scale databases"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://surrealdb.com/docs/surrealdb/embedding/rust"],
+      "comment": "Core is Rust but RocksDB backend requires C++ dependencies; in-memory mode is pure Rust"
+    },
+    "async-support": {
+      "value": ["native-async"],
+      "source": ["https://surrealdb.com/docs/sdk/rust"],
+      "comment": "Native async API built for tokio"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://docs.rs/surrealdb"],
+      "comment": "Safe Rust API"
+    },
+    "idiomatic-api": {
+      "value": 5,
+      "source": ["https://surrealdb.com/docs/sdk/rust"],
+      "comment": "Modern Rust patterns, async/await, builder patterns, strong typing"
+    },
+    "type-safety": {
+      "value": ["generic"],
+      "source": ["https://surrealdb.com/docs/sdk/rust"],
+      "comment": "Generic type parameters with serde serialization"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs/sdk/rust"],
+      "comment": "Native serde support for all data operations"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/surrealdb"],
+      "comment": "Requires std"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://docs.rs/surrealdb/latest/surrealdb/engine/local/index.html"],
+      "comment": "kv-indxdb feature provides IndexedDB backend for browser WASM"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Full ACID compliance"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Depends on storage backend; RocksDB provides crash recovery"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"]
+    },
+    "concurrent-writers": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Multi-writer support"
+    },
+    "multi-process": {
+      "value": false,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Embedded mode is single-process"
+    },
+    "write-ahead-log": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Storage backend dependent; RocksDB uses WAL"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://lib.rs/crates/surrealdb"],
+      "comment": "Currently at 3.0.0-beta.1; actively developed but still in beta"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"]
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Mobile support available"
+    },
+    "android": {
+      "value": true,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Mobile support available"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/surrealdb"],
+      "comment": "Requires std"
+    },
+    "use-cases": {
+      "value": ["application-state", "document-store", "session-storage", "web-backend", "mobile-app", "desktop-app"],
+      "source": ["https://surrealdb.com/"],
+      "comment": "Designed for full-stack applications needing multi-model capabilities"
+    },
+    "github-stars": {
+      "value": 30600,
+      "source": ["https://github.com/surrealdb/surrealdb"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "comment": "Could not retrieve from crates.io; lib.rs shows ~26k/month"
+    },
+    "last-release": {
+      "value": "2025-12-17",
+      "source": ["https://lib.rs/crates/surrealdb"],
+      "comment": "Version 3.0.0-beta.1"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/surrealdb/surrealdb"],
+      "comment": "Heavily active development with frequent releases"
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Comprehensive documentation with tutorials, API reference, and examples"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/surrealdb"],
+      "comment": "Backed by SurrealDB company with 1.1k forks and active team"
+    }
+  }
+}

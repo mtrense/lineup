@@ -196,14 +196,16 @@ Well-maintained alternatives and specialized options:
 ### Tier 3 (Nice to Have)
 Newer, more specialized, or niche options:
 
-- [ ] **surrealdb embedded** - If supports true embedded mode
-- [ ] **agatedb** - TiKV's RocksDB alternative in Rust
-- [ ] **nebari** - From BonsaiDb project, transactional B-tree
-- [ ] **native_db** - Pure Rust with secondary indexes
-- [ ] **cacache** - Content-addressable cache (if fits scope)
-- [ ] **pickledb-rs** - Simple JSON store
-- [ ] **unqlite** - UnQLite bindings
-- [ ] **vedis-rs** - Vedis bindings (in-memory, Redis-like)
+- [x] **surrealdb embedded** - Multi-model database with true embedded mode (RocksDB, in-memory, etc.)
+- [x] **nebari** - From BonsaiDb project, ACID-compliant append-only B-tree
+- [x] **native_db** - Pure Rust with secondary indexes, built on redb
+- [x] **cacache** - Content-addressable cache with async support
+- [x] **pickledb** - Simple JSON/YAML/CBOR key-value store
+- [x] **unqlite** - UnQLite bindings (C library, unmaintained bindings)
+
+### Not Researched (with reasons)
+- **agatedb** - Crate name reserved only; 0.1.0 from 2020 is experimental and marked "not recommended"
+- **vedis-rs** - No Rust bindings found; Vedis is C library without active Rust wrapper
 
 ### Not Including (with reasons)
 - **TiKV** - Distributed, not embedded
