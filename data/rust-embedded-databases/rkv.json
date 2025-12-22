@@ -1,0 +1,241 @@
+{
+  "name": "rkv",
+  "description": "Mozilla's type-safe key-value storage library with LMDB and SafeMode backends",
+  "icon": null,
+  "url": "https://github.com/mozilla/rkv",
+  "values": {
+    "description": {
+      "value": "Mozilla's simple, humane, typed key-value storage solution with SafeMode backend for production use",
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Provides type-safe wrapper over LMDB with safer production-ready backend option"
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Apache License 2.0"
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Wraps LMDB with optional SafeMode pure Rust backend"
+    },
+    "repository": {
+      "value": "https://github.com/mozilla/rkv"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rkv"
+    },
+    "documentation": {
+      "value": "https://docs.rs/rkv"
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://lib.rs/crates/rkv"],
+      "comment": "First release March 13, 2018 (version 0.2.0)"
+    },
+    "latest-version": {
+      "value": "0.20.0",
+      "source": ["https://lib.rs/crates/rkv"],
+      "comment": "Released July 2, 2025"
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://docs.rs/rkv/latest/rkv/"]
+    },
+    "schema-model": {
+      "value": ["typed"],
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Type-safe compile-time guarantees with value type enum"
+    },
+    "query-language": {
+      "value": "API-only",
+      "source": ["https://docs.rs/rkv/latest/rkv/"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "ACID transactions inherited from LMDB"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Supports ordered iteration via LMDB cursors"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Key-value store only"
+    },
+    "in-memory-mode": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "SafeMode supports in-memory storage with sync to disk on commit"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"]
+    },
+    "storage-architecture": {
+      "value": "B+tree (LMDB) / In-memory with disk sync (SafeMode)",
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB uses copy-on-write B+tree; SafeMode uses in-memory with sync"
+    },
+    "compression": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "No built-in compression"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "No native encryption support"
+    },
+    "memory-mapped-io": {
+      "value": true,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB backend uses mmap; SafeMode does not"
+    },
+    "max-db-size": {
+      "value": "Limited by mmap (LMDB backend)",
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB limited by address space; SafeMode by memory"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB backend requires C library; SafeMode is pure Rust"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Synchronous API only"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "SafeMode is safe; LMDB backend has some unsafe internals"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Functional but somewhat complex Manager/Rkv/Store abstraction"
+    },
+    "type-safety": {
+      "value": ["typed-keys"],
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Type-tagged serialization with bincode/serde"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Uses bincode/serde for platform-independent encoding"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Requires std"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Depends on filesystem and C library (LMDB backend)"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Full ACID via LMDB backend"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "LMDB provides crash recovery; SafeMode syncs on commit"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "MVCC allows unlimited concurrent readers"
+    },
+    "concurrent-writers": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Single writer at a time (LMDB limitation)"
+    },
+    "multi-process": {
+      "value": true,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB supports multi-process access"
+    },
+    "write-ahead-log": {
+      "value": false,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "LMDB uses copy-on-write instead of WAL"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Used in production at Mozilla; stable API"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/mozilla/rkv"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/mozilla/rkv"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/mozilla/rkv"]
+    },
+    "ios": {
+      "value": null,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Not explicitly documented"
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/nicokoch/rust-on-android"],
+      "comment": "Mozilla uses for Firefox on Android"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Requires std and filesystem"
+    },
+    "use-cases": {
+      "value": ["application-state", "config-storage", "desktop-app", "mobile-app"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Used in Firefox for local storage needs"
+    },
+    "github-stars": {
+      "value": 333,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 13649,
+      "source": ["https://lib.rs/crates/rkv"],
+      "comment": "Monthly downloads as of December 2025"
+    },
+    "last-release": {
+      "value": "2025-07-02",
+      "source": ["https://lib.rs/crates/rkv"],
+      "comment": "Version 0.20.0"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Maintained by Mozilla with regular releases"
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Only 4.6% documented on docs.rs; minimal examples"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "Mozilla-maintained with multiple contributors"
+    }
+  }
+}

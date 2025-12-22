@@ -1,0 +1,241 @@
+{
+  "name": "fjall",
+  "description": "LSM-tree based key-value storage engine with thread-safe BTreeMap-like API",
+  "icon": null,
+  "url": "https://github.com/fjall-rs/fjall",
+  "values": {
+    "description": {
+      "value": "LSM-tree based key-value storage engine with thread-safe BTreeMap-like API, similar to RocksDB but pure Rust",
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Designed as a pure Rust alternative to RocksDB with modern API"
+    },
+    "license": {
+      "value": ["mit", "apache-2"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Dual-licensed under MIT OR Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "100% safe and stable Rust with no unsafe code"
+    },
+    "repository": {
+      "value": "https://github.com/fjall-rs/fjall"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/fjall"
+    },
+    "documentation": {
+      "value": "https://docs.rs/fjall"
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://lib.rs/crates/fjall"],
+      "comment": "First release December 21, 2023 (version 0.1.0)"
+    },
+    "latest-version": {
+      "value": "2.11.2",
+      "source": ["https://github.com/fjall-rs/fjall/releases"],
+      "comment": "Released July 21, 2025"
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://docs.rs/fjall/latest/fjall/"]
+    },
+    "schema-model": {
+      "value": ["typed"],
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Type-safe API through Rust generics with Keyspace and PartitionHandle"
+    },
+    "query-language": {
+      "value": "API-only (BTreeMap-like)",
+      "source": ["https://docs.rs/fjall/latest/fjall/"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Optional serializable transactions with OptimisticTransactionDatabase or SingleWriterTransactionDatabase"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Range and prefix searching with bidirectional iteration"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Key-value store only, no built-in secondary index support"
+    },
+    "in-memory-mode": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Disk-based LSM-tree storage"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"]
+    },
+    "storage-architecture": {
+      "value": "LSM-tree (Log-Structured Merge-tree)",
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Similar to RocksDB architecture with MVCC for snapshot isolation"
+    },
+    "compression": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Built-in LZ4 compression enabled by default"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "No native encryption support"
+    },
+    "memory-mapped-io": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Does not use mmap; uses standard file I/O"
+    },
+    "max-db-size": {
+      "value": "Limited by disk space",
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "No documented size limits; LSM-tree design scales well"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "100% safe and stable Rust with no C dependencies"
+    },
+    "async-support": {
+      "value": ["tokio-compatible"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Thread-safe API compatible with tokio; example provided in docs"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "100% safe Rust with no unsafe code"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Modern BTreeMap-like API with Result types and iterators"
+    },
+    "type-safety": {
+      "value": ["byte-oriented"],
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Byte-oriented API; user handles serialization"
+    },
+    "serde-integration": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "No built-in serde support; users implement serialization"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Requires std for filesystem operations"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Relies on filesystem I/O, not WASM compatible"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Full ACID when using transaction mode"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "WAL-based durability ensures crash recovery"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Thread-safe with MVCC for snapshot isolation"
+    },
+    "concurrent-writers": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Supports multiple writers with OptimisticTransactionDatabase"
+    },
+    "multi-process": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Single-process only; cannot be accessed from multiple processes"
+    },
+    "write-ahead-log": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Uses WAL for durability"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://lib.rs/crates/fjall"],
+      "comment": "Active development since late 2023, not yet 1.0"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall"]
+    },
+    "ios": {
+      "value": null,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Not explicitly documented; pure Rust suggests possible but unverified"
+    },
+    "android": {
+      "value": null,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Not explicitly documented; pure Rust suggests possible but unverified"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Requires std and filesystem"
+    },
+    "use-cases": {
+      "value": ["application-state", "caching", "time-series", "desktop-app", "cli-tool", "web-backend"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Good for write-heavy workloads with LSM-tree architecture"
+    },
+    "github-stars": {
+      "value": 1400,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 24298,
+      "source": ["https://lib.rs/crates/fjall"],
+      "comment": "Monthly downloads as of December 2025"
+    },
+    "last-release": {
+      "value": "2025-07-21",
+      "source": ["https://github.com/fjall-rs/fjall/releases"],
+      "comment": "Version 2.11.2"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "Very active development with frequent releases"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "Adequate API docs with examples, but limited guides"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/fjall-rs/fjall/graphs/contributors"],
+      "comment": "Primarily single maintainer project"
+    }
+  }
+}

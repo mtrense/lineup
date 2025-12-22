@@ -185,13 +185,13 @@ Core databases that most Rust developers will consider:
 ### Tier 2 (Should Have)
 Well-maintained alternatives and specialized options:
 
-- [ ] **fjall** - LSM-based, pure Rust, key-value + blob storage
-- [ ] **lmdb-rkv** (rkv) - Mozilla's LMDB wrapper
-- [ ] **persy** - Pure Rust, ACID, unique design
-- [ ] **jammdb** - Pure Rust, LMDB-like API
+- [x] **fjall** - LSM-based, pure Rust, key-value + blob storage
+- [x] **lmdb-rkv** (rkv) - Mozilla's LMDB wrapper
+- [x] **persy** - Pure Rust, ACID, unique design
+- [x] **jammdb** - Pure Rust, LMDB-like API
 - [ ] **sqlite (rusqlite bundled)** - SQLite with bundled build
-- [ ] **duckdb-rs** - DuckDB bindings, analytical queries
-- [ ] **polodb** - MongoDB-like API, embedded document store
+- [x] **duckdb-rs** - DuckDB bindings, analytical queries
+- [x] **polodb** - MongoDB-like API, embedded document store
 
 ### Tier 3 (Nice to Have)
 Newer, more specialized, or niche options:
