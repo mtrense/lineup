@@ -1,0 +1,239 @@
+{
+  "name": "sled",
+  "description": "Lock-free, pure Rust embedded database with BTreeMap-like API and ACID transactions",
+  "icon": null,
+  "url": "https://sled.rs/",
+  "values": {
+    "description": {
+      "value": "Lock-free, pure Rust embedded database with BTreeMap-like API and ACID transactions",
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Self-described as 'the champagne of beta embedded databases'"
+    },
+    "license": {
+      "value": ["mit", "apache-2"],
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Dual-licensed under MIT OR Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://crates.io/crates/sled"]
+    },
+    "repository": {
+      "value": "https://github.com/spacejam/sled"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/sled"
+    },
+    "documentation": {
+      "value": "https://docs.rs/sled"
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://dbdb.io/db/sled"],
+      "comment": "Originally created as 'rsdb' in 2016, renamed to sled in 2017"
+    },
+    "latest-version": {
+      "value": "0.34.7",
+      "source": ["https://crates.io/crates/sled"]
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://docs.rs/sled/latest/sled/"]
+    },
+    "schema-model": {
+      "value": ["schemaless"],
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Raw byte-oriented API similar to BTreeMap<[u8], [u8]>"
+    },
+    "query-language": {
+      "value": "API-only (BTreeMap-like)",
+      "source": ["https://docs.rs/sled/latest/sled/"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "ACID-compliant serializable transactions across multiple keyspaces"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Ordered key-value store with iterator operations"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "No built-in secondary index support"
+    },
+    "in-memory-mode": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Persistent storage only, no dedicated in-memory mode"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"]
+    },
+    "storage-architecture": {
+      "value": "Lock-free pagecache on log-structured storage",
+      "source": ["https://github.com/spacejam/sled", "https://ayende.com/blog/186753-A/reviewing-sled-part-i"],
+      "comment": "LLAMA-based pagecache with scatter-gather page materialization, optimized for SSDs"
+    },
+    "compression": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Optional zstd compression support"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "No native encryption at rest support"
+    },
+    "memory-mapped-io": {
+      "value": false,
+      "source": ["https://ayende.com/blog/186753-A/reviewing-sled-part-i"],
+      "comment": "Uses custom pagecache instead of mmap"
+    },
+    "max-db-size": {
+      "value": "4 billion pages (32-bit) / much larger (64-bit)",
+      "source": ["http://sled.rs/perf.html"],
+      "comment": "32-bit: ~4B pages limit; 64-bit: significantly higher. Database on 64-bit may not be valid on 32-bit"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://crates.io/crates/sled"],
+      "comment": "100% pure Rust with no C/C++ dependencies"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Primarily synchronous API, though has flush_async and Future-based subscriptions"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Public API is safe Rust, lock-free internally"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "BTreeMap-like API is familiar to Rust developers, though byte-oriented keys/values require manual serialization"
+    },
+    "type-safety": {
+      "value": ["byte-oriented"],
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Raw [u8] interface, no built-in type safety"
+    },
+    "serde-integration": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "No native serde integration, users must serialize manually"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Requires std (filesystem operations)"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Not compatible with WASM due to file I/O requirements"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Full ACID transaction support with serializable isolation"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Automatic fsync every 500ms (configurable) with crash recovery"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Fully thread-safe with lock-free reads"
+    },
+    "concurrent-writers": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled/issues/232"],
+      "comment": "Lock-free concurrent writes, optimistic transactions"
+    },
+    "multi-process": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Single process per database instance only"
+    },
+    "write-ahead-log": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Log-structured storage with periodic fsync"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Explicitly beta status. README states: 'if reliability is your primary constraint, use SQLite'"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/spacejam/sled"]
+    },
+    "ios": {
+      "value": true,
+      "source": ["http://sled.rs/"],
+      "comment": "Described as usable on 'servers and phones'"
+    },
+    "android": {
+      "value": true,
+      "source": ["http://sled.rs/"],
+      "comment": "Described as usable on 'servers and phones'"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Requires std, not no_std compatible"
+    },
+    "use-cases": {
+      "value": ["application-state", "caching", "session-storage", "desktop-app", "cli-tool", "web-backend"],
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Best for stateful services and systems requiring embedded persistence with high concurrency"
+    },
+    "github-stars": {
+      "value": 8800,
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 8516861,
+      "source": ["https://crates.io/crates/sled"],
+      "comment": "All-time downloads as of December 2025"
+    },
+    "last-release": {
+      "value": "2021-07-27",
+      "source": ["https://crates.io/crates/sled"],
+      "comment": "Version 0.34.7 released, over 4 years ago"
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/spacejam/sled"],
+      "comment": "Last release 2021, though author is working on komora/marble rewrite. Limited recent activity beyond dependabot updates"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/sled/latest/sled/"],
+      "comment": "Good API documentation and examples, but some features need more explanation"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/spacejam"],
+      "comment": "Tyler Neely (spacejam) is the primary maintainer"
+    }
+  }
+}
