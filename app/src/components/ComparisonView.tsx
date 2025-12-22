@@ -1,4 +1,4 @@
-import { useState, useMemo, Fragment, useEffect } from "react";
+import { useState, useMemo, Fragment, useEffect, useCallback } from "react";
 import {
   ChevronLeft,
   ChevronDown,
@@ -6,6 +6,7 @@ import {
   ArrowUp,
   ArrowDown,
   ArrowUpDown,
+  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -108,6 +109,9 @@ export function ComparisonView({
 
   // Track filter state
   const [filterState, setFilterState] = useState<FilterState>(emptyFilterState);
+
+  // Track which attribute rows are expanded (for showing descriptions/sources/comments)
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   // Build a map of attribute id to attribute for sorting
   const attributeMap = useMemo(() => {
@@ -212,6 +216,34 @@ export function ComparisonView({
       return null;
     });
   };
+
+  const toggleRow = useCallback((attributeId: string) => {
+    setExpandedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(attributeId)) {
+        next.delete(attributeId);
+      } else {
+        next.add(attributeId);
+      }
+      return next;
+    });
+  }, []);
+
+  // Check if an attribute row has expandable content
+  const hasExpandableContent = useCallback(
+    (attribute: Attribute, candidateList: CandidateFile[]): boolean => {
+      // Has description
+      if (attribute.description) {
+        return true;
+      }
+      // Any candidate has source or comment for this attribute
+      return candidateList.some((c) => {
+        const val = c.values[attribute.id];
+        return val && ((val.source && val.source.length > 0) || val.comment);
+      });
+    },
+    []
+  );
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -381,6 +413,12 @@ export function ComparisonView({
                               candidates={visibleCandidates}
                               sortState={sortState}
                               onSort={toggleSort}
+                              isExpanded={expandedRows.has(attribute.id)}
+                              isExpandable={hasExpandableContent(
+                                attribute,
+                                visibleCandidates
+                              )}
+                              onToggleExpand={toggleRow}
                             />
                           ))}
                       </Fragment>
@@ -406,6 +444,9 @@ interface AttributeRowProps {
   candidates: CandidateFile[];
   sortState: SortState | null;
   onSort: (attributeId: string) => void;
+  isExpanded: boolean;
+  isExpandable: boolean;
+  onToggleExpand: (attributeId: string) => void;
 }
 
 function AttributeRow({
@@ -413,6 +454,9 @@ function AttributeRow({
   candidates,
   sortState,
   onSort,
+  isExpanded,
+  isExpandable,
+  onToggleExpand,
 }: AttributeRowProps) {
   const isSortable = isSortableType(attribute.valueType);
   const isCurrentSort = sortState?.attributeId === attribute.id;
@@ -423,53 +467,165 @@ function AttributeRow({
   const bestIndices = findBestIndices(values, attribute.valueType);
   const bestIndexSet = new Set(bestIndices);
 
-  const handleSort = () => {
+  const handleSort = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (isSortable) {
       onSort(attribute.id);
     }
   };
 
+  const handleToggleExpand = () => {
+    if (isExpandable) {
+      onToggleExpand(attribute.id);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (isExpandable && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      onToggleExpand(attribute.id);
+    }
+  };
+
+  const expandedRowId = `expanded-${attribute.id}`;
+
   return (
-    <TableRow className="border-b border-border/50 hover:bg-muted/20">
-      <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-background font-medium">
-        {isSortable ? (
-          <button
-            onClick={handleSort}
-            className="flex w-full items-center gap-1 rounded text-left hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={`Sort by ${attribute.name}${sortDirection ? `, currently ${sortDirection === "asc" ? "ascending" : "descending"}` : ""}`}
-          >
-            <span>{attribute.name}</span>
-            {sortDirection === "asc" ? (
-              <ArrowUp className="h-3 w-3 text-primary" aria-hidden="true" />
-            ) : sortDirection === "desc" ? (
-              <ArrowDown className="h-3 w-3 text-primary" aria-hidden="true" />
+    <>
+      <TableRow
+        className={`border-b border-border/50 hover:bg-muted/20 ${isExpandable ? "cursor-pointer" : ""}`}
+        onClick={handleToggleExpand}
+        onKeyDown={handleKeyDown}
+        tabIndex={isExpandable ? 0 : undefined}
+        role={isExpandable ? "button" : undefined}
+        aria-expanded={isExpandable ? isExpanded : undefined}
+        aria-controls={isExpandable ? expandedRowId : undefined}
+      >
+        <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-background font-medium">
+          <div className="flex items-center gap-1">
+            {/* Expand/collapse chevron */}
+            {isExpandable ? (
+              <span className="flex-shrink-0 text-muted-foreground">
+                {isExpanded ? (
+                  <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+                ) : (
+                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+                )}
+              </span>
             ) : (
-              <ArrowUpDown className="h-3 w-3 opacity-30" aria-hidden="true" />
+              <span className="w-3.5 flex-shrink-0" aria-hidden="true" />
             )}
-          </button>
-        ) : (
-          attribute.name
-        )}
-      </TableCell>
-      {candidates.map((candidate, index) => {
-        const attributeValue = candidate.values[attribute.id];
-        const isBest = bestIndexSet.has(index);
-        return (
-          <TableCell
-            key={candidate.name}
-            className={`text-center align-middle break-words ${
-              isBest ? "bg-green-50 dark:bg-green-950/30" : ""
-            }`}
-          >
-            <ValueRenderer
-              value={attributeValue?.value}
-              valueType={attribute.valueType}
-              source={attributeValue?.source}
-              comment={attributeValue?.comment}
-            />
+            {/* Attribute name with optional sort */}
+            {isSortable ? (
+              <button
+                onClick={handleSort}
+                className="flex items-center gap-1 rounded text-left hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label={`Sort by ${attribute.name}${sortDirection ? `, currently ${sortDirection === "asc" ? "ascending" : "descending"}` : ""}`}
+              >
+                <span>{attribute.name}</span>
+                {sortDirection === "asc" ? (
+                  <ArrowUp className="h-3 w-3 text-primary" aria-hidden="true" />
+                ) : sortDirection === "desc" ? (
+                  <ArrowDown className="h-3 w-3 text-primary" aria-hidden="true" />
+                ) : (
+                  <ArrowUpDown className="h-3 w-3 opacity-30" aria-hidden="true" />
+                )}
+              </button>
+            ) : (
+              <span>{attribute.name}</span>
+            )}
+          </div>
+        </TableCell>
+        {candidates.map((candidate, index) => {
+          const attributeValue = candidate.values[attribute.id];
+          const isBest = bestIndexSet.has(index);
+          return (
+            <TableCell
+              key={candidate.name}
+              className={`text-center align-middle break-words ${
+                isBest ? "bg-green-50 dark:bg-green-950/30" : ""
+              }`}
+            >
+              <ValueRenderer
+                value={attributeValue?.value}
+                valueType={attribute.valueType}
+                source={attributeValue?.source}
+                comment={attributeValue?.comment}
+              />
+            </TableCell>
+          );
+        })}
+      </TableRow>
+
+      {/* Expanded content row */}
+      {isExpanded && (
+        <TableRow
+          id={expandedRowId}
+          className="border-b border-border/50 bg-muted/30"
+        >
+          {/* Attribute description cell */}
+          <TableCell className="sticky left-0 z-10 bg-muted/30 align-top text-sm">
+            {attribute.description && (
+              <p className="text-muted-foreground italic pl-4">
+                {attribute.description}
+              </p>
+            )}
           </TableCell>
-        );
-      })}
-    </TableRow>
+          {/* Per-candidate source/comment cells */}
+          {candidates.map((candidate) => {
+            const attributeValue = candidate.values[attribute.id];
+            const hasContent =
+              attributeValue &&
+              ((attributeValue.source && attributeValue.source.length > 0) ||
+                attributeValue.comment);
+
+            return (
+              <TableCell
+                key={candidate.name}
+                className="align-top text-sm"
+              >
+                {hasContent && (
+                  <div className="space-y-1">
+                    {attributeValue.comment && (
+                      <p className="text-muted-foreground text-xs">
+                        {attributeValue.comment}
+                      </p>
+                    )}
+                    {attributeValue.source &&
+                      attributeValue.source.length > 0 && (
+                        <div className="space-y-0.5">
+                          {attributeValue.source.map((url, idx) => (
+                            <a
+                              key={idx}
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1 text-xs text-primary hover:underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <ExternalLink className="h-3 w-3 flex-shrink-0" />
+                              <span className="truncate">
+                                {formatSourceUrl(url)}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                  </div>
+                )}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      )}
+    </>
   );
+}
+
+function formatSourceUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
