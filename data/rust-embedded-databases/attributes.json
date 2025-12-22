@@ -1,0 +1,505 @@
+{
+  "name": "Rust Embedded Databases",
+  "description": "Embedded databases written in Rust or with first-class Rust bindings",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Information",
+      "icon": "info-circle",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the database and its main value proposition"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "#22c55e" },
+              { "id": "apache-2", "value": "Apache-2.0", "color": "#3b82f6" },
+              { "id": "bsd-3", "value": "BSD-3-Clause", "color": "#8b5cf6" },
+              { "id": "mpl-2", "value": "MPL-2.0", "color": "#f59e0b" },
+              { "id": "gpl-3", "value": "GPL-3.0", "color": "#ef4444" },
+              { "id": "lgpl", "value": "LGPL", "color": "#f97316" },
+              { "id": "unlicense", "value": "Unlicense", "color": "#6b7280" },
+              { "id": "proprietary", "value": "Proprietary", "color": "#dc2626" }
+            ]
+          },
+          "description": "Software license(s)"
+        },
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "pure-rust", "value": "Pure Rust", "color": "#f74c00" },
+              { "id": "rust-bindings", "value": "Rust Bindings", "color": "#3b82f6" },
+              { "id": "hybrid", "value": "Hybrid", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Whether pure Rust, bindings to native library, or hybrid"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Source code repository URL"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Crates.io package page"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Documentation site (docs.rs or custom)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "descending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-version",
+          "name": "Latest Version",
+          "valueType": "text",
+          "description": "Current stable version number"
+        }
+      ]
+    },
+    {
+      "id": "data-model",
+      "name": "Data Model",
+      "icon": "database",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "database-type",
+          "name": "Database Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "key-value", "value": "Key-Value", "color": "#22c55e" },
+              { "id": "document", "value": "Document", "color": "#3b82f6" },
+              { "id": "sql", "value": "SQL", "color": "#8b5cf6" },
+              { "id": "graph", "value": "Graph", "color": "#ec4899" },
+              { "id": "column-family", "value": "Column-Family", "color": "#f59e0b" },
+              { "id": "time-series", "value": "Time-Series", "color": "#06b6d4" }
+            ]
+          },
+          "description": "Primary data model"
+        },
+        {
+          "id": "schema-model",
+          "name": "Schema Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "schemaless", "value": "Schemaless", "color": "#22c55e" },
+              { "id": "typed", "value": "Typed", "color": "#3b82f6" },
+              { "id": "sql-schema", "value": "SQL Schema", "color": "#8b5cf6" },
+              { "id": "flexible", "value": "Flexible", "color": "#f59e0b" }
+            ]
+          },
+          "description": "How schema is defined (schemaless, Rust types, SQL DDL)"
+        },
+        {
+          "id": "query-language",
+          "name": "Query Language",
+          "valueType": "text",
+          "description": "SQL, custom DSL, or API-only"
+        },
+        {
+          "id": "transactions",
+          "name": "Transactions",
+          "valueType": "boolean",
+          "description": "Supports ACID transactions"
+        },
+        {
+          "id": "range-queries",
+          "name": "Range Queries",
+          "valueType": "boolean",
+          "description": "Supports ordered key iteration and range scans"
+        },
+        {
+          "id": "secondary-indexes",
+          "name": "Secondary Indexes",
+          "valueType": "boolean",
+          "description": "Can query by non-primary-key fields"
+        },
+        {
+          "id": "in-memory-mode",
+          "name": "In-Memory Mode",
+          "valueType": "boolean",
+          "description": "Can operate purely in-memory without disk"
+        },
+        {
+          "id": "persistent-storage",
+          "name": "Persistent Storage",
+          "valueType": "boolean",
+          "description": "Supports durable on-disk storage"
+        }
+      ]
+    },
+    {
+      "id": "storage-engine",
+      "name": "Storage Engine",
+      "icon": "hdd",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "storage-architecture",
+          "name": "Storage Architecture",
+          "valueType": "text",
+          "description": "Core design: LSM-tree, B+tree, append-only, etc."
+        },
+        {
+          "id": "compression",
+          "name": "Compression",
+          "valueType": "boolean",
+          "description": "Built-in data compression support"
+        },
+        {
+          "id": "encryption-at-rest",
+          "name": "Encryption at Rest",
+          "valueType": "boolean",
+          "description": "Native support for encrypting stored data"
+        },
+        {
+          "id": "memory-mapped-io",
+          "name": "Memory-Mapped I/O",
+          "valueType": "boolean",
+          "description": "Uses mmap for file access"
+        },
+        {
+          "id": "max-db-size",
+          "name": "Max Database Size",
+          "valueType": "text",
+          "description": "Known size limits or 'unlimited'"
+        }
+      ]
+    },
+    {
+      "id": "rust-integration",
+      "name": "Rust Integration",
+      "icon": "code",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "pure-rust",
+          "name": "Pure Rust",
+          "valueType": "boolean",
+          "description": "No C/C++ dependencies in the dependency tree"
+        },
+        {
+          "id": "async-support",
+          "name": "Async Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "native-async", "value": "Native Async", "color": "#22c55e" },
+              { "id": "tokio-compatible", "value": "Tokio Compatible", "color": "#3b82f6" },
+              { "id": "sync-only", "value": "Sync Only", "color": "#f59e0b" },
+              { "id": "async-wrapper", "value": "Async Wrapper", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Level of async/await support"
+        },
+        {
+          "id": "api-safety",
+          "name": "API Safety",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "fully-safe", "value": "Fully Safe", "color": "#22c55e" },
+              { "id": "minimal-unsafe", "value": "Minimal Unsafe", "color": "#3b82f6" },
+              { "id": "unsafe-required", "value": "Unsafe Required", "color": "#f59e0b" },
+              { "id": "ffi-unsafe", "value": "FFI Unsafe", "color": "#ef4444" }
+            ]
+          },
+          "description": "Unsafe code exposure in public API"
+        },
+        {
+          "id": "idiomatic-api",
+          "name": "Idiomatic API",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "How idiomatic the Rust API is (1=C-style, 5=excellent Rust patterns)"
+        },
+        {
+          "id": "type-safety",
+          "name": "Type Safety",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "generic", "value": "Generic", "color": "#22c55e" },
+              { "id": "typed-keys", "value": "Typed Keys", "color": "#3b82f6" },
+              { "id": "byte-oriented", "value": "Byte-Oriented", "color": "#f59e0b" },
+              { "id": "sql-typed", "value": "SQL Typed", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Type safety approach for keys and values"
+        },
+        {
+          "id": "serde-integration",
+          "name": "Serde Integration",
+          "valueType": "boolean",
+          "description": "Native serde support for serializing values"
+        },
+        {
+          "id": "no-std",
+          "name": "no_std Compatible",
+          "valueType": "boolean",
+          "description": "Can compile without standard library"
+        },
+        {
+          "id": "wasm-compatible",
+          "name": "WASM Compatible",
+          "valueType": "boolean",
+          "description": "Works in WebAssembly (browser or WASI)"
+        }
+      ]
+    },
+    {
+      "id": "reliability",
+      "name": "Reliability & Concurrency",
+      "icon": "shield",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "acid-compliant",
+          "name": "ACID Compliant",
+          "valueType": "boolean",
+          "description": "Full ACID transaction guarantees"
+        },
+        {
+          "id": "crash-recovery",
+          "name": "Crash Recovery",
+          "valueType": "boolean",
+          "description": "Automatically recovers after unexpected shutdown"
+        },
+        {
+          "id": "concurrent-readers",
+          "name": "Concurrent Readers",
+          "valueType": "boolean",
+          "description": "Multiple threads can read simultaneously"
+        },
+        {
+          "id": "concurrent-writers",
+          "name": "Concurrent Writers",
+          "valueType": "boolean",
+          "description": "Multiple threads can write simultaneously"
+        },
+        {
+          "id": "multi-process",
+          "name": "Multi-Process Access",
+          "valueType": "boolean",
+          "description": "Safe access from multiple OS processes"
+        },
+        {
+          "id": "write-ahead-log",
+          "name": "Write-Ahead Log",
+          "valueType": "boolean",
+          "description": "Uses WAL for durability"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "experimental", "value": "Experimental", "color": "#ef4444" },
+              { "id": "beta", "value": "Beta", "color": "#f59e0b" },
+              { "id": "stable", "value": "Stable", "color": "#22c55e" },
+              { "id": "mature", "value": "Mature", "color": "#3b82f6" }
+            ]
+          },
+          "description": "Project maturity level"
+        }
+      ]
+    },
+    {
+      "id": "platform-support",
+      "name": "Platform Support",
+      "icon": "desktop",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "linux",
+          "name": "Linux",
+          "valueType": "boolean",
+          "description": "Supported on Linux"
+        },
+        {
+          "id": "macos",
+          "name": "macOS",
+          "valueType": "boolean",
+          "description": "Supported on macOS"
+        },
+        {
+          "id": "windows",
+          "name": "Windows",
+          "valueType": "boolean",
+          "description": "Supported on Windows"
+        },
+        {
+          "id": "ios",
+          "name": "iOS",
+          "valueType": "boolean",
+          "description": "Can be built for iOS targets"
+        },
+        {
+          "id": "android",
+          "name": "Android",
+          "valueType": "boolean",
+          "description": "Can be built for Android targets"
+        },
+        {
+          "id": "embedded",
+          "name": "Embedded/no_std",
+          "valueType": "boolean",
+          "description": "Usable on embedded systems without OS"
+        }
+      ]
+    },
+    {
+      "id": "use-cases",
+      "name": "Use Cases",
+      "icon": "tags",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "use-cases",
+          "name": "Use Cases",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "config-storage", "value": "Config Storage", "color": "#22c55e" },
+              { "id": "application-state", "value": "Application State", "color": "#3b82f6" },
+              { "id": "caching", "value": "Caching", "color": "#8b5cf6" },
+              { "id": "time-series", "value": "Time-Series", "color": "#06b6d4" },
+              { "id": "session-storage", "value": "Session Storage", "color": "#ec4899" },
+              { "id": "document-store", "value": "Document Store", "color": "#f59e0b" },
+              { "id": "analytics", "value": "Analytics", "color": "#14b8a6" },
+              { "id": "iot-edge", "value": "IoT/Edge", "color": "#84cc16" },
+              { "id": "mobile-app", "value": "Mobile App", "color": "#a855f7" },
+              { "id": "desktop-app", "value": "Desktop App", "color": "#f43f5e" },
+              { "id": "cli-tool", "value": "CLI Tool", "color": "#64748b" },
+              { "id": "web-backend", "value": "Web Backend", "color": "#0ea5e9" }
+            ]
+          },
+          "description": "Common use cases this database is suited for"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "name": "Community & Maintenance",
+      "icon": "users",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of GitHub stars"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "All-time downloads from crates.io"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent release"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively Maintained", "color": "#22c55e" },
+              { "id": "passively-maintained", "value": "Passively Maintained", "color": "#f59e0b" },
+              { "id": "seeking-maintainer", "value": "Seeking Maintainer", "color": "#ef4444" },
+              { "id": "archived", "value": "Archived", "color": "#6b7280" }
+            ]
+          },
+          "description": "Current maintenance status"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "Quality of documentation (1=minimal, 5=excellent)"
+        },
+        {
+          "id": "bus-factor",
+          "name": "Bus Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "solo", "value": "Solo", "color": "#ef4444" },
+              { "id": "small-team", "value": "Small Team", "color": "#f59e0b" },
+              { "id": "organization", "value": "Organization", "color": "#22c55e" }
+            ]
+          },
+          "description": "Team size and backing"
+        }
+      ]
+    }
+  ]
+}
