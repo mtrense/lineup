@@ -352,17 +352,17 @@ export function ComparisonView({
               </p>
             </div>
           ) : (
-            <div className="max-h-[calc(100vh-280px)] overflow-auto rounded-lg border border-border">
+            <div className="overflow-x-auto rounded-lg border border-border">
               <Table className="w-full">
-                <TableHeader className="sticky top-0 z-20">
+                <TableHeader>
                   <TableRow className="border-b border-border bg-muted/30 hover:bg-muted/30">
-                    <TableHead className="sticky left-0 top-0 z-30 w-40 min-w-[160px] bg-muted/30 font-semibold">
+                    <TableHead className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/30 font-semibold">
                       Attribute
                     </TableHead>
                     {visibleCandidates.map((candidate) => (
                       <TableHead
                         key={candidate.name}
-                        className="bg-muted/30 text-center font-semibold"
+                        className="text-center font-semibold"
                       >
                         {candidate.name}
                       </TableHead>

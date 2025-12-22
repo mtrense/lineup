@@ -232,6 +232,38 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
+## Milestone 11: Filter Dialog Fix
+**Status:** Done
+
+### Goals
+- Resolve overlapping buttons in the filters dialog
+
+### Success Criteria
+- [x] Filter dialog close button (X) and clear all button no longer overlap
+- [x] Dialog layout is clean and accessible on all supported viewport sizes
+
+### Implementation Notes
+- Filter dialog SheetTitle uses `pr-8` padding to avoid overlap with the close button
+
+---
+
+## Milestone 12: Sticky Table Header
+**Status:** Not planned
+
+### Goals
+- Fix table header to remain visible when scrolling down the comparison table
+
+### Success Criteria
+- [ ] Table header (candidate names row) stays fixed/sticky when scrolling vertically
+- [ ] Candidate columns remain aligned with their headers during scroll
+- [ ] Horizontal scrolling works correctly with sticky header
+
+### Notes
+- Attempted contained scrolling and fixed header approaches - both had alignment issues
+- May require restructuring the table layout or using a different approach
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
