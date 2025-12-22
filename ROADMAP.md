@@ -203,6 +203,34 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
+## Milestone 10: Attribute Descriptions and Expandable Rows
+**Status:** Ready for implementation
+
+### Goals
+- Add optional descriptions to attributes for more context on what's being assessed
+- Replace value tooltips with an expandable row behavior for better discoverability and readability
+- Provide a consistent UX pattern matching the existing group collapse behavior
+
+### Success Criteria
+- [ ] `Attribute` interface extended with optional `description?: string` field
+- [ ] Expandable rows indicated by subtle angle icon on the left (similar to attribute groups)
+- [ ] Clicking a row expands to show:
+  - Attribute description (if present)
+  - Source citations (if present)
+  - Value comments (if present)
+- [ ] Expanded state visually distinct but unobtrusive
+- [ ] Only rows with additional content (description, sources, or comments) show expand indicator
+- [ ] Tooltips removed in favor of expand behavior
+- [ ] Keyboard accessible (Enter/Space to toggle expand)
+- [ ] Animation consistent with group collapse/expand
+
+### Implementation Notes
+- The expand icon should mirror the chevron used for attribute groups
+- Consider whether multiple rows can be expanded simultaneously or only one at a time
+- Expanded content should span all candidate columns for readability
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
