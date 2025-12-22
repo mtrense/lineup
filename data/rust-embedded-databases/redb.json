@@ -1,0 +1,241 @@
+{
+  "name": "redb",
+  "description": "Simple, portable, high-performance, ACID embedded key-value store written in pure Rust, inspired by LMDB",
+  "icon": null,
+  "url": "https://www.redb.org/",
+  "values": {
+    "description": {
+      "value": "Simple, portable, high-performance, ACID embedded key-value store written in pure Rust, inspired by LMDB",
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Designed as a pure Rust alternative to LMDB with type-safe API"
+    },
+    "license": {
+      "value": ["mit", "apache-2"],
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Dual-licensed under MIT OR Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "100% pure Rust with no C dependencies except libc for file locking"
+    },
+    "repository": {
+      "value": "https://github.com/cberner/redb"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/redb"
+    },
+    "documentation": {
+      "value": "https://docs.rs/redb"
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "First commit September 23, 2018"
+    },
+    "latest-version": {
+      "value": "3.0.0",
+      "source": ["https://github.com/cberner/redb/releases"],
+      "comment": "Released August 9, 2025"
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://docs.rs/redb/latest/redb/"]
+    },
+    "schema-model": {
+      "value": ["typed"],
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Uses Rust generics with TableDefinition<K, V> for compile-time type safety"
+    },
+    "query-language": {
+      "value": "API-only (BTreeMap-like)",
+      "source": ["https://docs.rs/redb/latest/redb/"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "ACID-compliant with configurable durability modes and savepoints"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Ordered B-tree iteration with range() method"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Key-value store only, no built-in secondary index support"
+    },
+    "in-memory-mode": {
+      "value": false,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Requires file backing; can use tempfile for temporary databases"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"]
+    },
+    "storage-architecture": {
+      "value": "Copy-on-write B-tree with mmap",
+      "source": ["https://github.com/cberner/redb/blob/master/docs/design.md"],
+      "comment": "Uses copy-on-write with dual database headers for atomic commits"
+    },
+    "compression": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "No native compression support"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "No native encryption support"
+    },
+    "memory-mapped-io": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Uses mmap for file access"
+    },
+    "max-db-size": {
+      "value": "~32 TB (v2) / larger (v3)",
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "v2 format ~32TB limit for savepoints; v3 supports larger databases"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Pure Rust with no C dependencies except libc"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/cberner/redb/issues/30"],
+      "comment": "Blocking I/O only; issue #30 tracks async read interface"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Public API is completely safe Rust"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Type-safe BTreeMap-like API with TableDefinition generics, very Rust-idiomatic"
+    },
+    "type-safety": {
+      "value": ["generic"],
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Compile-time type safety via TableDefinition<K, V> generics"
+    },
+    "serde-integration": {
+      "value": false,
+      "source": ["https://github.com/cberner/redb/blob/master/examples/bincode_keys.rs"],
+      "comment": "No built-in serde; examples show bincode pattern for custom serialization"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Requires std for filesystem operations"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "WASI support via wasm32-wasip1-threads target, not browser WASM"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Full ACID with configurable durability modes"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Automatic recovery with two-phase commit option for faster recovery"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "MVCC enables unlimited concurrent readers"
+    },
+    "concurrent-writers": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Single writer at a time"
+    },
+    "multi-process": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb/releases/tag/v3.0.0"],
+      "comment": "v3.0.0+ allows multiple read-only processes via ReadOnlyDatabase with file locks"
+    },
+    "write-ahead-log": {
+      "value": false,
+      "source": ["https://github.com/cberner/redb/blob/master/docs/design.md"],
+      "comment": "Uses copy-on-write with dual database headers instead of WAL"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://www.redb.org/post/2023/06/16/1-0-stable-release/"],
+      "comment": "1.0 stable released June 2023, file format is stable"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/cberner/redb"]
+    },
+    "ios": {
+      "value": null,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Not explicitly documented; pure Rust suggests possible but unverified"
+    },
+    "android": {
+      "value": null,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Not explicitly documented; pure Rust suggests possible but unverified"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "Requires std and filesystem"
+    },
+    "use-cases": {
+      "value": ["application-state", "config-storage", "desktop-app", "cli-tool"],
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Best for single-writer, multiple-reader scenarios with type-safe requirements"
+    },
+    "github-stars": {
+      "value": 4100,
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 63118,
+      "source": ["https://crates.io/crates/redb"],
+      "comment": "All-time downloads as of December 2025"
+    },
+    "last-release": {
+      "value": "2025-08-09",
+      "source": ["https://github.com/cberner/redb/releases"],
+      "comment": "Version 3.0.0"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/cberner/redb"],
+      "comment": "Active development with stable releases"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "68.46% coverage, good API docs, examples, design document"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/cberner/redb/graphs/contributors"],
+      "comment": "Christopher Berner is primary author with 30 contributors"
+    }
+  }
+}

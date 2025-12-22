@@ -176,11 +176,11 @@ Users should be able to:
 ### Tier 1 (Must Have)
 Core databases that most Rust developers will consider:
 
-- [ ] **sled** - Popular pure-Rust embedded database, modern API
-- [ ] **redb** - Pure Rust, LMDB-inspired, simple and fast
-- [ ] **rocksdb** (rust-rocksdb) - Facebook's LSM-tree, industry standard
-- [ ] **rusqlite** - SQLite bindings, most common embedded SQL choice
-- [ ] **heed** - LMDB bindings, type-safe wrapper
+- [x] **sled** - Popular pure-Rust embedded database, modern API
+- [x] **redb** - Pure Rust, LMDB-inspired, simple and fast
+- [x] **rocksdb** (rust-rocksdb) - Facebook's LSM-tree, industry standard
+- [x] **rusqlite** - SQLite bindings, most common embedded SQL choice
+- [x] **heed** - LMDB bindings, type-safe wrapper
 
 ### Tier 2 (Should Have)
 Well-maintained alternatives and specialized options:

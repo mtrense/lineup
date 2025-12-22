@@ -1,0 +1,242 @@
+{
+  "name": "heed",
+  "description": "Type-safe, fully-typed Rust bindings for LMDB with zero-copy reads, backed by Meilisearch",
+  "icon": null,
+  "url": "https://github.com/meilisearch/heed",
+  "values": {
+    "description": {
+      "value": "Type-safe, fully-typed Rust bindings for LMDB with zero-copy reads, backed by Meilisearch",
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Used in production by Meilisearch search engine"
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "MIT license"
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Rust bindings to LMDB C library"
+    },
+    "repository": {
+      "value": "https://github.com/meilisearch/heed"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/heed"
+    },
+    "documentation": {
+      "value": "https://docs.rs/heed"
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/crates/heed"],
+      "comment": "Created October 4, 2019"
+    },
+    "latest-version": {
+      "value": "0.22.0",
+      "source": ["https://crates.io/crates/heed"],
+      "comment": "Recent release within 28 days as of December 2025"
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://docs.rs/heed/latest/heed/"]
+    },
+    "schema-model": {
+      "value": ["typed"],
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Compile-time type safety with Database<K, V> generics"
+    },
+    "query-language": {
+      "value": "API-only (typed key-value access)",
+      "source": ["https://docs.rs/heed/latest/heed/"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Full ACID transactions inherited from LMDB"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "LMDB supports ordered keys and cursor-based range iteration"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Can be implemented using DupSort databases (LMDB feature)"
+    },
+    "in-memory-mode": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "LMDB can use tmpfs but isn't designed for pure in-memory use"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"]
+    },
+    "storage-architecture": {
+      "value": "B+tree with memory-mapped I/O",
+      "source": ["https://en.wikipedia.org/wiki/Lightning_Memory-Mapped_Database", "http://www.lmdb.tech/doc/"],
+      "comment": "LMDB's copy-on-write B+tree design"
+    },
+    "compression": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "LMDB doesn't have built-in compression"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Standard heed has no encryption; heed3 variant supports encryption via mdb.master3 branch"
+    },
+    "memory-mapped-io": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Core feature of LMDB - entire database memory-mapped"
+    },
+    "max-db-size": {
+      "value": "128 TB",
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Practical limit on 64-bit systems with 48-bit address space"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Bindings to C LMDB library"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "LMDB is synchronous; use spawn_blocking for async contexts"
+    },
+    "api-safety": {
+      "value": ["unsafe-required"],
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Environment opening requires unsafe blocks; other operations are safe"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Typed databases, good error handling, zerocopy integration; some unsafe requirements"
+    },
+    "type-safety": {
+      "value": ["generic"],
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Compile-time type safety with Database<K, V> generics"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Native serde support for compatible types"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "LMDB requires OS features (mmap, file I/O)"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Requires filesystem and mmap, not available in WASM"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Full ACID guarantees from LMDB"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Copy-on-write design ensures database is always consistent"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "MVCC allows unlimited concurrent readers"
+    },
+    "concurrent-writers": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Only one write transaction at a time (serialized)"
+    },
+    "multi-process": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "LMDB natively supports multi-process access"
+    },
+    "write-ahead-log": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "LMDB uses copy-on-write/shadow paging instead of WAL"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Used in production by Meilisearch, well-maintained"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/meilisearch/heed"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/meilisearch/heed"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/meilisearch/heed/pull/25"],
+      "comment": "Windows support added via PR #25"
+    },
+    "ios": {
+      "value": true,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "LMDB works on POSIX systems; SwiftLMDB exists as precedent"
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/erthink/libmdbx"],
+      "comment": "LMDB is portable; libmdbx explicitly supports Android"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "Requires OS with mmap support"
+    },
+    "use-cases": {
+      "value": ["application-state", "config-storage", "desktop-app", "web-backend", "cli-tool", "caching"],
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Used by Meilisearch; ideal for read-heavy workloads with multi-process access"
+    },
+    "github-stars": {
+      "value": 828,
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 2137541,
+      "source": ["https://crates.io/crates/heed"],
+      "comment": "All-time downloads as of December 2025"
+    },
+    "last-release": {
+      "value": "2025-11-24",
+      "source": ["https://crates.io/crates/heed"],
+      "comment": "Version 0.22.0"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/meilisearch/heed"],
+      "comment": "Backed by Meilisearch organization with regular releases"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/heed/latest/heed/"],
+      "comment": "Has cookbook, examples directory, good API docs; improved in v0.20.0"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/meilisearch"],
+      "comment": "Backed by Meilisearch company; Kerollmops (CTO) is primary maintainer"
+    }
+  }
+}

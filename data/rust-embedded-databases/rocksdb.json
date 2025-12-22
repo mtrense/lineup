@@ -1,0 +1,244 @@
+{
+  "name": "rust-rocksdb",
+  "description": "High-performance Rust bindings for RocksDB, a proven LSM-tree based key-value store optimized for write-heavy workloads",
+  "icon": null,
+  "url": "https://github.com/rust-rocksdb/rust-rocksdb",
+  "values": {
+    "description": {
+      "value": "High-performance Rust bindings for RocksDB, a proven LSM-tree based key-value store optimized for write-heavy workloads",
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Wraps Facebook's battle-tested RocksDB C++ library, used in production at Facebook, Yahoo, LinkedIn, and many others"
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Apache-2.0 license"
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Rust wrapper around C++ RocksDB via FFI (librocksdb-sys)"
+    },
+    "repository": {
+      "value": "https://github.com/rust-rocksdb/rust-rocksdb"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rocksdb"
+    },
+    "documentation": {
+      "value": "https://docs.rs/rocksdb"
+    },
+    "first-release": {
+      "value": "2014",
+      "source": ["https://crates.io/crates/rocksdb"],
+      "comment": "First release v0.0.1 on November 29, 2014"
+    },
+    "latest-version": {
+      "value": "0.24.0",
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb/releases"],
+      "comment": "Released August 10, 2024, bundles RocksDB v10.4.2"
+    },
+    "database-type": {
+      "value": ["key-value"],
+      "source": ["https://rocksdb.org/"]
+    },
+    "schema-model": {
+      "value": ["schemaless"],
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Raw byte-oriented key-value store with optional column families for namespacing"
+    },
+    "query-language": {
+      "value": "API-only (get/put/delete/iterator)",
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Supports range scans via iterators and prefix seeks for multimap-like queries"
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/", "https://github.com/facebook/rocksdb/wiki/Transactions"],
+      "comment": "Supports both pessimistic (TransactionDB) and optimistic transactions with ACID guarantees"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/Iterator", "https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Native support for ordered iteration with automatic readahead and prefix seek optimization"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://github.com/nlfiedler/mokuroku"],
+      "comment": "No built-in secondary indexes; requires manual implementation or third-party libraries like mokuroku"
+    },
+    "in-memory-mode": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/How-to-persist-in-memory-RocksDB-database"],
+      "comment": "Can operate as in-memory database with WAL on persistent storage for durability"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://rocksdb.org/"]
+    },
+    "storage-architecture": {
+      "value": "LSM-tree (Log-Structured Merge-tree)",
+      "source": ["https://getstream.io/blog/rocksdb-fundamentals/", "https://artem.krylysov.com/blog/2023/04/19/how-rocksdb-works/"],
+      "comment": "Multi-level LSM-tree with memtable, WAL, and tiered SSTables. Optimized for write-heavy workloads and SSDs"
+    },
+    "compression": {
+      "value": true,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Supports Snappy, LZ4, Zstd, Zlib, and Bzip2 compression via feature flags (all enabled by default)"
+    },
+    "encryption-at-rest": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/blog/cockroachdb-on-rocksd/"],
+      "comment": "File-based or block-based encryption via modular SSTable encryption support, requires external key management"
+    },
+    "memory-mapped-io": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/IO"],
+      "comment": "Optional mmap support via allow_mmap_reads/allow_mmap_writes options; not recommended for block devices due to performance issues"
+    },
+    "max-db-size": {
+      "value": "Unlimited (configurable via SstFileManager)",
+      "source": ["https://github.com/facebook/rocksdb/wiki/Managing-Disk-Space-Utilization"],
+      "comment": "No hard size limit; can cap total disk space via SstFileManager API. Proven at multi-petabyte scale"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Requires C++ RocksDB library and Clang/LLVM for building; not pure Rust"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/", "https://users.rust-lang.org/t/if-we-use-rocksdb-inside-tokio-app-rocksdb-do-blocking-tokio-scheduler-or-not/71178"],
+      "comment": "Synchronous API only; use tokio::task::spawn_blocking() for async runtimes to avoid blocking"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Safe Rust API wrapping FFI calls; unsafe code hidden behind abstraction layer with automatic resource cleanup"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/", "https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Reasonably idiomatic with RAII patterns and type-based threading modes, but byte-oriented interface and complex options structs reflect C++ origins"
+    },
+    "type-safety": {
+      "value": ["byte-oriented"],
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Raw byte slice API (&[u8]); no built-in type safety for keys/values"
+    },
+    "serde-integration": {
+      "value": false,
+      "source": ["https://blog.petitviolet.net/post/2021-03-25/use-rocksdb-from-rust", "https://github.com/birktj/rocksbin-db"],
+      "comment": "No native serde support; optional 'serde1' feature for internal types only. Third-party wrappers like rocksbin-db provide automatic serialization"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Requires std and filesystem access; not no_std compatible"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Rust_to_Wasm"],
+      "comment": "Not WASM-compatible due to C++ dependencies, file I/O, and threading requirements"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/Transactions", "https://github.com/facebook/rocksdb/wiki/RocksDB-Overview"],
+      "comment": "Full ACID guarantees with WriteBatch atomicity, configurable isolation levels (snapshot or current), and WAL durability"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://rocksdb.org/blog/2022/10/05/lost-buffered-write-recovery.html", "https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-(WAL)"],
+      "comment": "Automatic recovery via WAL replay; guarantees no data loss with WriteOptions.sync=true, recovers committed data otherwise"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://rocksdb.org/blog/2014/05/14/lock.html", "https://rocksdb.org/blog/2014/06/27/avoid-expensive-locks-in-get.html"],
+      "comment": "Lock-free concurrent reads within a single process via multiversion concurrency control (MVCC)"
+    },
+    "concurrent-writers": {
+      "value": true,
+      "source": ["https://rocksdb.org/blog/2014/05/14/lock.html", "https://getstream.io/blog/rocksdb-fundamentals/"],
+      "comment": "Multiple threads can write concurrently; write requests may be batched for efficiency"
+    },
+    "multi-process": {
+      "value": false,
+      "source": ["https://github.com/facebook/rocksdb/wiki/RocksDB-FAQ", "https://github.com/facebook/rocksdb/issues/908"],
+      "comment": "Single process per database via file locking (db/LOCK); read-only secondary instances or RPC proxy required for multi-process access"
+    },
+    "write-ahead-log": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-(WAL)"],
+      "comment": "WAL for durability with configurable directory, TTL, size limits, and manual/auto flush modes"
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://rocksdb.org/", "https://dl.acm.org/doi/fullHtml/10.1145/3483840"],
+      "comment": "Production-proven at web scale (Facebook, LinkedIn, Yahoo); RocksDB itself has 10+ years of development, Rust bindings actively maintained since 2014"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Full support including io-uring feature for optimized async I/O"
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Supports both /MT and /MD runtime libraries via mt_static feature"
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb/issues/324", "https://github.com/marykdb/rocksdb-multiplatform"],
+      "comment": "Possible but challenging; requires manual cross-compilation. Third-party Kotlin Multiplatform wrappers provide easier integration"
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/issues/1193", "https://github.com/marykdb/rocksdb-android"],
+      "comment": "Supported but requires NDK compilation. Third-party rocksdb-android library provides pre-built binaries for arm64-v8a, armeabi-v7a, x86, x86_64"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Not suitable for embedded systems; requires std, filesystem, and substantial resources"
+    },
+    "use-cases": {
+      "value": ["application-state", "caching", "time-series", "web-backend", "mobile-app", "desktop-app"],
+      "source": ["https://rockset.com/blog/rocksdb-is-eating-the-database-world/", "https://getstream.io/blog/rocksdb-fundamentals/"],
+      "comment": "Ideal for write-heavy workloads: streaming state stores (Kafka Streams, Flink), metadata indexing, time-series/logs, blockchain ledgers, AI model serving caches"
+    },
+    "github-stars": {
+      "value": 2100,
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "As of December 2024"
+    },
+    "crates-io-downloads": {
+      "value": 9054601,
+      "source": ["https://crates.io/crates/rocksdb"],
+      "comment": "All-time downloads as of December 2024; librocksdb-sys has 35M+ downloads"
+    },
+    "last-release": {
+      "value": "2024-08-10",
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb/releases"],
+      "comment": "Version 0.24.0 with RocksDB v10.4.2, added AIX support, GCC 15 support, WriteBatch::put_log_data"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb"],
+      "comment": "Active development with 202 contributors, regular updates tracking upstream RocksDB releases, multiple issues resolved in 2025"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/rocksdb/latest/rocksdb/"],
+      "comment": "Good API docs with basic examples; relies heavily on upstream RocksDB wiki for concepts. Some advanced features need better Rust-specific documentation"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/rust-rocksdb/rust-rocksdb/blob/master/MAINTAINERSHIP.md"],
+      "comment": "Community-maintained with documented maintainership process requiring consensus; 202 total contributors across project history"
+    }
+  }
+}

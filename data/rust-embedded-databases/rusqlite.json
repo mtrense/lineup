@@ -1,0 +1,242 @@
+{
+  "name": "rusqlite",
+  "description": "Ergonomic Rust bindings to SQLite, providing safe wrappers around the embedded SQL database",
+  "icon": null,
+  "url": "https://github.com/rusqlite/rusqlite",
+  "values": {
+    "description": {
+      "value": "Ergonomic Rust bindings to SQLite, providing safe wrappers around the embedded SQL database",
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Wraps the SQLite C library with Rust's safety guarantees, inspired by rust-postgres API"
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Licensed under MIT"
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Rust bindings to SQLite C library via libsqlite3-sys"
+    },
+    "repository": {
+      "value": "https://github.com/rusqlite/rusqlite"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rusqlite"
+    },
+    "documentation": {
+      "value": "https://docs.rs/rusqlite"
+    },
+    "first-release": {
+      "value": "2014",
+      "source": ["https://packages.ecosyste.ms/registries/crates.io/packages/rusqlite"],
+      "comment": "First published to crates.io on November 21, 2014"
+    },
+    "latest-version": {
+      "value": "0.38.0",
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Released December 20, 2025 with SQLite 3.51.1"
+    },
+    "database-type": {
+      "value": ["sql"],
+      "source": ["https://sqlite.org/arch.html"]
+    },
+    "schema-model": {
+      "value": ["sql-schema"],
+      "source": ["https://sqlite.org/lang.html"],
+      "comment": "SQL DDL-defined schema with CREATE TABLE statements"
+    },
+    "query-language": {
+      "value": "SQL (SQLite dialect)",
+      "source": ["https://sqlite.org/lang.html"]
+    },
+    "transactions": {
+      "value": true,
+      "source": ["https://sqlite.org/wal.html"],
+      "comment": "Full ACID transactions with WAL mode support"
+    },
+    "range-queries": {
+      "value": true,
+      "source": ["https://sqlite.org/lang.html"],
+      "comment": "Full SQL range query support with WHERE clauses"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://sqlite.org/lang_createindex.html"],
+      "comment": "CREATE INDEX statements for secondary indexes"
+    },
+    "in-memory-mode": {
+      "value": true,
+      "source": ["https://sqlite.org/inmemorydb.html"],
+      "comment": "Use ':memory:' as database path for in-memory operation"
+    },
+    "persistent-storage": {
+      "value": true,
+      "source": ["https://sqlite.org/fileformat.html"]
+    },
+    "storage-architecture": {
+      "value": "B-tree",
+      "source": ["https://sqlite.org/btreemodule.html", "https://fly.io/blog/sqlite-internals-btree/"],
+      "comment": "Each table and index stored as separate B-tree in database file with 512-65536 byte pages"
+    },
+    "compression": {
+      "value": false,
+      "source": ["https://github.com/techrah/sqlite3-compression-encryption-vfs"],
+      "comment": "No built-in compression; requires custom VFS extension"
+    },
+    "encryption-at-rest": {
+      "value": false,
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "No native encryption; SQLCipher available via 'sqlcipher' feature flag"
+    },
+    "memory-mapped-io": {
+      "value": true,
+      "source": ["https://sqlite.org/mmap.html"],
+      "comment": "Optional via PRAGMA mmap_size, disabled by default"
+    },
+    "max-db-size": {
+      "value": "281 TB (with 65536 byte pages)",
+      "source": ["https://sqlite.org/limits.html"],
+      "comment": "Maximum 4,294,967,294 pages at 65,536 bytes each = ~281 terabytes"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Wraps SQLite C library via FFI bindings"
+    },
+    "async-support": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/", "https://crates.io/crates/tokio-rusqlite"],
+      "comment": "Synchronous API only; use tokio-rusqlite crate for async wrapper"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/"],
+      "comment": "Safe Rust wrapper around unsafe FFI calls; public API is safe"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/"],
+      "comment": "Idiomatic Rust with params! macro, Result types, and iterator patterns; inspired by rust-postgres"
+    },
+    "type-safety": {
+      "value": ["sql-typed"],
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/types/index.html"],
+      "comment": "ToSql and FromSql traits provide runtime type safety for SQL values"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/"],
+      "comment": "Optional serde_json feature for Value type integration"
+    },
+    "no-std": {
+      "value": false,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/"],
+      "comment": "Requires std library due to SQLite's file I/O and system dependencies"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/", "https://lib.rs/crates/sqlite-wasm-rs"],
+      "comment": "Supports wasm32-wasi via 'wasm32-wasi-vfs' feature; browser via sqlite-wasm-rs"
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://sqlite.org/transactional.html"],
+      "comment": "Full ACID compliance; WAL mode provides additional concurrency"
+    },
+    "crash-recovery": {
+      "value": true,
+      "source": ["https://sqlite.org/wal.html", "https://avi.im/blag/2025/sqlite-fsync/"],
+      "comment": "Automatic recovery on next open; durability depends on synchronous PRAGMA setting"
+    },
+    "concurrent-readers": {
+      "value": true,
+      "source": ["https://sqlite.org/wal.html"],
+      "comment": "Unlimited concurrent readers in WAL mode with snapshot isolation"
+    },
+    "concurrent-writers": {
+      "value": false,
+      "source": ["https://sqlite.org/wal.html"],
+      "comment": "Single writer at a time; writes serialized even in WAL mode"
+    },
+    "multi-process": {
+      "value": true,
+      "source": ["https://sqlite.org/lockingv3.html", "https://sqlite.org/sharedcache.html"],
+      "comment": "Multiple processes supported on same host; not over network filesystems"
+    },
+    "write-ahead-log": {
+      "value": true,
+      "source": ["https://sqlite.org/wal.html"],
+      "comment": "WAL mode available via PRAGMA journal_mode=WAL since SQLite 3.7.0"
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://github.com/rusqlite/rusqlite", "https://sqlite.org/"],
+      "comment": "SQLite is extremely mature; rusqlite has 10+ years of development since 2014"
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/rusqlite/rusqlite"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/rusqlite/rusqlite"]
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Vcpkg integration for Windows builds"
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://logankeenan.com/posts/cross-platform-rust-database-access/"],
+      "comment": "Cross-compilation supported; use bundled feature for easier builds"
+    },
+    "android": {
+      "value": true,
+      "source": ["https://android.googlesource.com/platform/external/rust/crates/rusqlite/"],
+      "comment": "Included in Android platform's Rust crates; use bundled feature recommended"
+    },
+    "embedded": {
+      "value": false,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/"],
+      "comment": "Requires std and OS-level file system operations"
+    },
+    "use-cases": {
+      "value": ["application-state", "analytics", "mobile-app", "desktop-app", "cli-tool", "web-backend"],
+      "source": ["https://sqlite.org/whentouse.html"],
+      "comment": "Ideal for embedded SQL needs, local storage, and applications requiring relational queries"
+    },
+    "github-stars": {
+      "value": 4000,
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "As of December 2025"
+    },
+    "crates-io-downloads": {
+      "value": 30334515,
+      "source": ["https://packages.ecosyste.ms/registries/crates.io/packages/rusqlite"],
+      "comment": "All-time downloads as of December 2025; top 0.5% on crates.io"
+    },
+    "last-release": {
+      "value": "2025-12-20",
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Version 0.38.0 released December 20, 2025"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/rusqlite/rusqlite"],
+      "comment": "Regular releases and active maintenance; latest release December 2025"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/rusqlite/latest/rusqlite/", "https://rust-lang-nursery.github.io/rust-cookbook/database/sqlite.html"],
+      "comment": "Comprehensive API docs with examples; Rust Cookbook has tutorials; could use more guides"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/rusqlite/rusqlite/graphs/contributors"],
+      "comment": "Multiple active contributors; gwenn is primary maintainer with others contributing regularly"
+    }
+  }
+}
