@@ -7,24 +7,12 @@ interface ValueWithTooltipProps {
 }
 
 /**
- * Wraps a value with a visual indicator if it has source or comment metadata.
- * The actual content is shown in the expandable row, not as a tooltip.
+ * Pass-through component for values.
+ * Previously wrapped values with tooltips, now just renders children directly.
+ * Source/comment metadata is shown in expandable rows instead.
  */
 export function ValueWithTooltip({
   children,
-  source,
-  comment,
 }: ValueWithTooltipProps) {
-  const hasMetadata = (source && source.length > 0) || comment;
-
-  if (!hasMetadata) {
-    return <>{children}</>;
-  }
-
-  // Show a subtle visual indicator (dotted underline) for values with metadata
-  return (
-    <span className="border-b border-dotted border-muted-foreground/50">
-      {children}
-    </span>
-  );
+  return <>{children}</>;
 }
