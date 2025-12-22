@@ -226,7 +226,7 @@ export function FilterDrawer({
       </SheetTrigger>
       <SheetContent side="right" className="overflow-y-auto">
         <SheetHeader>
-          <SheetTitle className="flex items-center justify-between">
+          <SheetTitle className="flex items-center justify-between pr-8">
             <span>Filters</span>
             {hasActiveFilters && (
               <Button
