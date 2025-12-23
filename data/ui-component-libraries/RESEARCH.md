@@ -312,7 +312,7 @@ Notable alternatives and specialized options:
 - [x] **NextUI** - Beautiful, modern React UI (rebranded to HeroUI in Jan 2025)
 - [x] **Tremor** - React components for dashboards
 - [x] **Park UI** - Like shadcn for multiple frameworks
-- [ ] **Ark UI** - Chakra team's headless primitives
+- [x] **Ark UI** - Chakra team's headless primitives
 - [ ] **React Bootstrap** - Bootstrap for React
 - [ ] **Reactstrap** - Bootstrap 5 React components
 
