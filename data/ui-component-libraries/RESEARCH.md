@@ -308,7 +308,7 @@ Notable alternatives and specialized options:
 **React**
 - [x] **Blueprint** - Palantir's data-dense UI toolkit
 - [x] **Evergreen** - Segment's design system
-- [ ] **Geist UI** - Vercel-inspired minimal design
+- [x] **Geist UI** - Vercel-inspired minimal design
 - [ ] **NextUI** - Beautiful, modern React UI
 - [ ] **Tremor** - React components for dashboards
 - [ ] **Park UI** - Like shadcn for multiple frameworks
