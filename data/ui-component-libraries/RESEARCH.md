@@ -307,7 +307,7 @@ Notable alternatives and specialized options:
 
 **React**
 - [x] **Blueprint** - Palantir's data-dense UI toolkit
-- [ ] **Evergreen** - Segment's design system
+- [x] **Evergreen** - Segment's design system
 - [ ] **Geist UI** - Vercel-inspired minimal design
 - [ ] **NextUI** - Beautiful, modern React UI
 - [ ] **Tremor** - React components for dashboards
