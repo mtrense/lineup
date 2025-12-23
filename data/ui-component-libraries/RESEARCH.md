@@ -309,7 +309,7 @@ Notable alternatives and specialized options:
 - [x] **Blueprint** - Palantir's data-dense UI toolkit
 - [x] **Evergreen** - Segment's design system
 - [x] **Geist UI** - Vercel-inspired minimal design
-- [ ] **NextUI** - Beautiful, modern React UI
+- [x] **NextUI** - Beautiful, modern React UI (rebranded to HeroUI in Jan 2025)
 - [ ] **Tremor** - React components for dashboards
 - [ ] **Park UI** - Like shadcn for multiple frameworks
 - [ ] **Ark UI** - Chakra team's headless primitives
