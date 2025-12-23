@@ -306,7 +306,7 @@ High-adoption libraries across major frameworks:
 Notable alternatives and specialized options:
 
 **React**
-- [ ] **Blueprint** - Palantir's data-dense UI toolkit
+- [x] **Blueprint** - Palantir's data-dense UI toolkit
 - [ ] **Evergreen** - Segment's design system
 - [ ] **Geist UI** - Vercel-inspired minimal design
 - [ ] **NextUI** - Beautiful, modern React UI
