@@ -40,6 +40,7 @@ Users should be able to:
 | **Website** | link | Official website or documentation site |
 | **Repository** | link | GitHub/GitLab repository URL; null for closed-source |
 | **License** | text | SPDX license identifier (MIT, Apache-2.0, Commercial, etc.) |
+| **Active Maintenance** | boolean | Regular commits/releases in last 6 months |
 | **Initial Release** | date (year) | Year of first public release |
 | **Latest Release** | date (full) | Date of most recent stable release |
 | **GitHub Stars** | integer (ascending) | Current star count; null for closed-source |
@@ -204,7 +205,6 @@ Users should be able to:
 | **Figma Kit** | boolean | Official Figma design kit available |
 | **CLI/Generator** | boolean | CLI tool for scaffolding or adding components |
 | **npm Weekly Downloads** | integer (ascending) | Weekly download count from npm |
-| **Active Maintenance** | boolean | Regular commits/releases in last 6 months |
 | **Commercial Support** | boolean | Paid support or enterprise tier available |
 
 ### 9. Customization
