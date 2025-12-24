@@ -289,6 +289,7 @@ High-adoption libraries across major frameworks:
 - [x] **React Aria** - Adobe's accessibility primitives
 - [x] **Headless UI** - Tailwind Labs' unstyled components
 - [x] **Mantine** - Full-featured library with hooks
+- [ ] **PrimeReact** - Enterprise React component suite from PrimeTek
 
 **Vue**
 - [x] **Vuetify** - Material Design for Vue
@@ -301,6 +302,7 @@ High-adoption libraries across major frameworks:
 **Multi-Framework**
 - [x] **Shoelace** - Web Components, framework-agnostic
 - [x] **daisyUI** - Tailwind component classes
+- [ ] **Web Awesome** - Shoelace successor with Font Awesome integration
 
 ### Tier 2 (Should Have)
 Notable alternatives and specialized options:
