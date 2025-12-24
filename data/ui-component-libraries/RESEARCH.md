@@ -289,7 +289,7 @@ High-adoption libraries across major frameworks:
 - [x] **React Aria** - Adobe's accessibility primitives
 - [x] **Headless UI** - Tailwind Labs' unstyled components
 - [x] **Mantine** - Full-featured library with hooks
-- [ ] **PrimeReact** - Enterprise React component suite from PrimeTek
+- [x] **PrimeReact** - Enterprise React component suite from PrimeTek
 
 **Vue**
 - [x] **Vuetify** - Material Design for Vue
