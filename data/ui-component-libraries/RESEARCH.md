@@ -313,7 +313,7 @@ Notable alternatives and specialized options:
 - [x] **Tremor** - React components for dashboards
 - [x] **Park UI** - Like shadcn for multiple frameworks
 - [x] **Ark UI** - Chakra team's headless primitives
-- [ ] **React Bootstrap** - Bootstrap for React
+- [x] **React Bootstrap** - Bootstrap for React
 - [ ] **Reactstrap** - Bootstrap 5 React components
 
 **Vue**
