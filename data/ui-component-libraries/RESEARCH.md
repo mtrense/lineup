@@ -321,8 +321,8 @@ Notable alternatives and specialized options:
 **Vue**
 - [x] **Vuestic UI** - Vue 3 with Tailwind
 - [x] **Oruga** - Lightweight Vue 3 UI
-- [ ] **Anu** - DX-focused Vue component library
-- [ ] **Headless UI Vue** - Tailwind Labs for Vue
+- [x] **Anu** - SKIPPED: No longer maintained (recommends shadcn-vue or Nuxt UI instead)
+- [x] **Headless UI Vue** - Tailwind Labs for Vue
 
 **Angular**
 - [ ] **Angular Material** - Official Material Design
