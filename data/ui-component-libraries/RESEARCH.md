@@ -325,7 +325,7 @@ Notable alternatives and specialized options:
 - [x] **Headless UI Vue** - Tailwind Labs for Vue
 
 **Angular**
-- [ ] **Angular Material** - Official Material Design
+- [x] **Angular Material** - Official Material Design
 - [ ] **PrimeNG** - Enterprise Angular components
 - [ ] **NG-ZORRO** - Ant Design for Angular
 - [ ] **Clarity** - VMware's design system
