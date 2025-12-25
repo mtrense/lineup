@@ -338,7 +338,7 @@ Notable alternatives and specialized options:
 
 **Solid**
 - [ ] **Solid UI** - Solid component library
-- [ ] **Kobalte** - Headless Solid primitives
+- [x] **Kobalte** - Headless Solid primitives
 - [ ] **Hope UI** - Chakra-inspired for Solid
 
 ### Tier 3 (Nice to Have)
