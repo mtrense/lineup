@@ -319,7 +319,7 @@ Notable alternatives and specialized options:
 - [x] **Reactstrap** - Bootstrap 5 React components
 
 **Vue**
-- [ ] **Vuestic UI** - Vue 3 with Tailwind
+- [x] **Vuestic UI** - Vue 3 with Tailwind
 - [ ] **Oruga** - Lightweight Vue 3 UI
 - [ ] **Anu** - DX-focused Vue component library
 - [ ] **Headless UI Vue** - Tailwind Labs for Vue
