@@ -339,11 +339,11 @@ Notable alternatives and specialized options:
 **Solid**
 - [x] **Solid UI** - Solid component library (shadcn/ui port for SolidJS)
 - [x] **Kobalte** - Headless Solid primitives
-- [ ] **Hope UI** - Chakra-inspired for Solid
+- [x] **Hope UI** - SKIPPED: No longer maintained (succeeded by Pigment from Kobalte team)
 
 ### Tier 3 (Nice to Have)
 Specialized, emerging, or legacy options:
-- [ ] **Semantic UI React** - Natural language principles
+- [x] **Semantic UI React** - Natural language principles
 - [ ] **Grommet** - HPE's responsive components
 - [ ] **Rebass** - Primitive styled components
 - [ ] **Theme UI** - Themeable design systems
