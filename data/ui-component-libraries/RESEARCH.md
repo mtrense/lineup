@@ -337,7 +337,7 @@ Notable alternatives and specialized options:
 - [x] **shadcn-svelte** - shadcn port for Svelte
 
 **Solid**
-- [ ] **Solid UI** - Solid component library
+- [x] **Solid UI** - Solid component library (shadcn/ui port for SolidJS)
 - [x] **Kobalte** - Headless Solid primitives
 - [ ] **Hope UI** - Chakra-inspired for Solid
 
