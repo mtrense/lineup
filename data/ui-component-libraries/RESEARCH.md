@@ -316,7 +316,7 @@ Notable alternatives and specialized options:
 - [x] **Park UI** - Like shadcn for multiple frameworks
 - [x] **Ark UI** - Chakra team's headless primitives
 - [x] **React Bootstrap** - Bootstrap for React
-- [ ] **Reactstrap** - Bootstrap 5 React components
+- [x] **Reactstrap** - Bootstrap 5 React components
 
 **Vue**
 - [ ] **Vuestic UI** - Vue 3 with Tailwind
