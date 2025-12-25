@@ -331,7 +331,7 @@ Notable alternatives and specialized options:
 - [x] **Clarity** - VMware's design system
 
 **Svelte**
-- [ ] **Skeleton** - Tailwind UI toolkit for Svelte
+- [x] **Skeleton** - Tailwind UI toolkit for Svelte
 - [ ] **Melt UI** - Headless Svelte primitives
 - [ ] **Bits UI** - Headless component primitives
 - [ ] **shadcn-svelte** - shadcn port for Svelte
