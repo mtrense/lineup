@@ -332,7 +332,7 @@ Notable alternatives and specialized options:
 
 **Svelte**
 - [x] **Skeleton** - Tailwind UI toolkit for Svelte
-- [ ] **Melt UI** - Headless Svelte primitives
+- [x] **Melt UI** - Headless Svelte primitives
 - [ ] **Bits UI** - Headless component primitives
 - [ ] **shadcn-svelte** - shadcn port for Svelte
 
