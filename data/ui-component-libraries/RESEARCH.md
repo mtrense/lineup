@@ -326,7 +326,7 @@ Notable alternatives and specialized options:
 
 **Angular**
 - [x] **Angular Material** - Official Material Design
-- [ ] **PrimeNG** - Enterprise Angular components
+- [x] **PrimeNG** - Enterprise Angular components
 - [ ] **NG-ZORRO** - Ant Design for Angular
 - [ ] **Clarity** - VMware's design system
 
