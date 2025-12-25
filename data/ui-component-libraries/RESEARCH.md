@@ -328,7 +328,7 @@ Notable alternatives and specialized options:
 - [x] **Angular Material** - Official Material Design
 - [x] **PrimeNG** - Enterprise Angular components
 - [x] **NG-ZORRO** - Ant Design for Angular
-- [ ] **Clarity** - VMware's design system
+- [x] **Clarity** - VMware's design system
 
 **Svelte**
 - [ ] **Skeleton** - Tailwind UI toolkit for Svelte
