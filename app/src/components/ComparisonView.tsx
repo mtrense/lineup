@@ -76,7 +76,7 @@ export function ComparisonView({
         .map((entry) => {
           // Find the candidate by matching the entry id to candidate name (case-insensitive, normalized)
           const candidate = candidates.find(
-            (c) => c.name.toLowerCase().replace(/\s+/g, "-") === entry.id ||
+            (c) => c.name.toLowerCase().replace(/[\s/]+/g, "-") === entry.id ||
                    c.name.toLowerCase() === entry.id.toLowerCase()
           );
           return candidate?.name;
