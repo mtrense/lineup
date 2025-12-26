@@ -252,7 +252,7 @@ The dominant frameworks with the largest ecosystems:
 - [x] **React** - Meta's declarative UI library, industry standard
 - [x] **Vue** - Progressive framework, strong in Asia and growing globally
 - [x] **Angular** - Google's opinionated platform, enterprise standard
-- [ ] **Svelte** - Compiler-based, no virtual DOM, rising popularity
+- [x] **Svelte** - Compiler-based, no virtual DOM, rising popularity
 - [ ] **Solid** - Fine-grained reactivity, React-like syntax, performance-focused
 - [ ] **Preact** - Lightweight React alternative, same API
 
