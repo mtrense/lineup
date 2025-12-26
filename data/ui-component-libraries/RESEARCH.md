@@ -345,7 +345,7 @@ Notable alternatives and specialized options:
 Specialized, emerging, or legacy options:
 - [x] **Semantic UI React** - Natural language principles
 - [x] **Grommet** - HPE's responsive components
-- [ ] **Rebass** - Primitive styled components
+- [x] **Rebass** - Primitive styled components (no longer actively maintained; last release Oct 2019)
 - [ ] **Theme UI** - Themeable design systems
 - [ ] **Reakit** - (now Ariakit) Accessibility toolkit
 - [ ] **Ariakit** - Reakit successor, headless a11y
