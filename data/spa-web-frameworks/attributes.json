@@ -1,0 +1,813 @@
+{
+  "name": "SPA Web Frameworks",
+  "description": "Frontend frameworks for building Single Page Applications, including JavaScript/TypeScript and WebAssembly-based options",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Info",
+      "description": "Basic information about the framework",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "name",
+          "name": "Name",
+          "valueType": "text",
+          "description": "Official name of the framework"
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "One-line description of the framework's main value proposition"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website or documentation site"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "GitHub repository URL"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": "text",
+          "description": "SPDX license identifier (MIT, Apache-2.0, etc.)"
+        },
+        {
+          "id": "initial-release",
+          "name": "Initial Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent stable release"
+        },
+        {
+          "id": "current-version",
+          "name": "Current Version",
+          "valueType": "text",
+          "description": "Latest stable version number"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Current star count"
+        },
+        {
+          "id": "active-maintenance",
+          "name": "Active Maintenance",
+          "valueType": "boolean",
+          "description": "Regular commits/releases in last 6 months"
+        }
+      ]
+    },
+    {
+      "id": "philosophy-design",
+      "name": "Philosophy & Design",
+      "description": "Core architecture and design decisions",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "reactivity-model",
+          "name": "Reactivity Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "virtual-dom", "value": "Virtual DOM", "color": "blue" },
+              { "id": "fine-grained", "value": "Fine-grained", "color": "green" },
+              { "id": "signals", "value": "Signals", "color": "purple" },
+              { "id": "dirty-checking", "value": "Dirty Checking", "color": "orange" },
+              { "id": "compiler-based", "value": "Compiler-based", "color": "cyan" }
+            ]
+          },
+          "description": "How state changes propagate to the DOM"
+        },
+        {
+          "id": "component-model",
+          "name": "Component Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "class", "value": "Class", "color": "blue" },
+              { "id": "function", "value": "Function", "color": "green" },
+              { "id": "sfc", "value": "SFC", "color": "purple" },
+              { "id": "template-based", "value": "Template-based", "color": "orange" }
+            ]
+          },
+          "description": "How components are defined"
+        },
+        {
+          "id": "rendering-paradigm",
+          "name": "Rendering Paradigm",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "declarative", "value": "Declarative", "color": "green" },
+              { "id": "imperative", "value": "Imperative", "color": "orange" },
+              { "id": "hybrid", "value": "Hybrid", "color": "purple" }
+            ]
+          },
+          "description": "Rendering approach"
+        },
+        {
+          "id": "state-management-approach",
+          "name": "State Management",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "external-required", "value": "External Required", "color": "orange" },
+              { "id": "optional-external", "value": "Optional External", "color": "blue" }
+            ]
+          },
+          "description": "Built-in state patterns"
+        },
+        {
+          "id": "opinionatedness",
+          "name": "Opinionatedness",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "opinionated", "value": "Opinionated", "color": "purple" },
+              { "id": "flexible", "value": "Flexible", "color": "green" },
+              { "id": "balanced", "value": "Balanced", "color": "blue" }
+            ]
+          },
+          "description": "How prescriptive the framework is"
+        },
+        {
+          "id": "backward-compatibility",
+          "name": "Backward Compatibility",
+          "valueType": "boolean",
+          "description": "Strong commitment to avoiding breaking changes"
+        }
+      ]
+    },
+    {
+      "id": "language-syntax",
+      "name": "Language & Syntax",
+      "description": "Programming language and template syntax",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "primary-language",
+          "name": "Primary Language",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "javascript", "value": "JavaScript", "color": "yellow" },
+              { "id": "typescript", "value": "TypeScript", "color": "blue" },
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "cyan" },
+              { "id": "csharp", "value": "C#", "color": "purple" },
+              { "id": "dart", "value": "Dart", "color": "blue" },
+              { "id": "kotlin", "value": "Kotlin", "color": "purple" },
+              { "id": "elm", "value": "Elm", "color": "green" },
+              { "id": "purescript", "value": "PureScript", "color": "gray" },
+              { "id": "scala", "value": "Scala", "color": "red" },
+              { "id": "clojure", "value": "Clojure", "color": "green" }
+            ]
+          },
+          "description": "Main programming language"
+        },
+        {
+          "id": "compiles-to",
+          "name": "Compiles To",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "javascript", "value": "JavaScript", "color": "yellow" },
+              { "id": "wasm", "value": "WebAssembly", "color": "purple" },
+              { "id": "both", "value": "Both", "color": "blue" }
+            ]
+          },
+          "description": "Target output format"
+        },
+        {
+          "id": "typescript-support",
+          "name": "TypeScript Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "native", "value": "Native", "color": "blue" },
+              { "id": "first-class", "value": "First-class", "color": "green" },
+              { "id": "supported", "value": "Supported", "color": "yellow" },
+              { "id": "limited", "value": "Limited", "color": "orange" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "TypeScript integration level"
+        },
+        {
+          "id": "template-syntax",
+          "name": "Template Syntax",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "jsx", "value": "JSX", "color": "yellow" },
+              { "id": "tsx", "value": "TSX", "color": "blue" },
+              { "id": "html-template", "value": "HTML Template", "color": "orange" },
+              { "id": "sfc", "value": "SFC", "color": "green" },
+              { "id": "tagged-template", "value": "Tagged Template", "color": "purple" },
+              { "id": "macro-based", "value": "Macro-based", "color": "red" },
+              { "id": "elm-like", "value": "Elm-like", "color": "cyan" },
+              { "id": "dsl", "value": "DSL", "color": "pink" }
+            ]
+          },
+          "description": "How views are written"
+        },
+        {
+          "id": "styling-approach",
+          "name": "Styling Approach",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "css-modules", "value": "CSS Modules", "color": "blue" },
+              { "id": "scoped-css", "value": "Scoped CSS", "color": "green" },
+              { "id": "css-in-js", "value": "CSS-in-JS", "color": "purple" },
+              { "id": "inline-styles", "value": "Inline Styles", "color": "orange" },
+              { "id": "external-only", "value": "External Only", "color": "gray" }
+            ]
+          },
+          "description": "Built-in styling patterns"
+        },
+        {
+          "id": "build-required",
+          "name": "Build Required",
+          "valueType": "boolean",
+          "description": "Whether a build step is required (vs CDN usage)"
+        },
+        {
+          "id": "wasm-interop",
+          "name": "WASM Interop",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "full", "value": "Full", "color": "green" },
+              { "id": "bridge", "value": "Bridge", "color": "yellow" },
+              { "id": "limited", "value": "Limited", "color": "orange" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "JavaScript interop approach for WASM frameworks"
+        }
+      ]
+    },
+    {
+      "id": "core-features",
+      "name": "Core Features",
+      "description": "Built-in framework capabilities",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "reactive-primitives",
+          "name": "Reactive Primitives",
+          "valueType": "boolean",
+          "description": "Built-in reactive state primitives (signals, refs, observables)"
+        },
+        {
+          "id": "computed-values",
+          "name": "Computed Values",
+          "valueType": "boolean",
+          "description": "Derived state that auto-updates"
+        },
+        {
+          "id": "two-way-binding",
+          "name": "Two-Way Binding",
+          "valueType": "boolean",
+          "description": "Built-in two-way data binding for forms"
+        },
+        {
+          "id": "event-handling",
+          "name": "Event Handling",
+          "valueType": "boolean",
+          "description": "Declarative event binding in templates"
+        },
+        {
+          "id": "conditional-rendering",
+          "name": "Conditional Rendering",
+          "valueType": "boolean",
+          "description": "Built-in conditional display (v-if, {#if}, ternary)"
+        },
+        {
+          "id": "list-rendering",
+          "name": "List Rendering",
+          "valueType": "boolean",
+          "description": "Built-in iteration/mapping for lists"
+        },
+        {
+          "id": "component-slots",
+          "name": "Component Slots",
+          "valueType": "boolean",
+          "description": "Content projection / children / slots"
+        },
+        {
+          "id": "teleport-portal",
+          "name": "Teleport/Portal",
+          "valueType": "boolean",
+          "description": "Render content outside component tree"
+        },
+        {
+          "id": "suspense",
+          "name": "Suspense",
+          "valueType": "boolean",
+          "description": "Async loading boundaries"
+        },
+        {
+          "id": "error-boundaries",
+          "name": "Error Boundaries",
+          "valueType": "boolean",
+          "description": "Catch and handle errors in component tree"
+        },
+        {
+          "id": "context-provide-inject",
+          "name": "Context/Provide-Inject",
+          "valueType": "boolean",
+          "description": "Dependency injection without prop drilling"
+        },
+        {
+          "id": "refs-direct-dom-access",
+          "name": "Refs/Direct DOM Access",
+          "valueType": "boolean",
+          "description": "Escape hatch for direct DOM manipulation"
+        }
+      ]
+    },
+    {
+      "id": "routing-navigation",
+      "name": "Routing & Navigation",
+      "description": "Client-side routing capabilities",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "official-router",
+          "name": "Official Router",
+          "valueType": "boolean",
+          "description": "First-party routing solution"
+        },
+        {
+          "id": "router-name",
+          "name": "Router Name",
+          "valueType": "text",
+          "description": "Name of official router (e.g., Vue Router, React Router)"
+        },
+        {
+          "id": "nested-routes",
+          "name": "Nested Routes",
+          "valueType": "boolean",
+          "description": "Support for nested/child routes"
+        },
+        {
+          "id": "dynamic-routes",
+          "name": "Dynamic Routes",
+          "valueType": "boolean",
+          "description": "Parameterized routes (/user/:id)"
+        },
+        {
+          "id": "route-guards",
+          "name": "Route Guards",
+          "valueType": "boolean",
+          "description": "Navigation guards/hooks (beforeEnter, etc.)"
+        },
+        {
+          "id": "lazy-loading-routes",
+          "name": "Lazy Loading Routes",
+          "valueType": "boolean",
+          "description": "Code-split routes loaded on demand"
+        },
+        {
+          "id": "scroll-restoration",
+          "name": "Scroll Restoration",
+          "valueType": "boolean",
+          "description": "Maintain scroll position on navigation"
+        }
+      ]
+    },
+    {
+      "id": "state-management",
+      "name": "State Management",
+      "description": "State management capabilities and tooling",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "built-in-state",
+          "name": "Built-in State",
+          "valueType": "boolean",
+          "description": "Core reactivity for local component state"
+        },
+        {
+          "id": "built-in-global-state",
+          "name": "Built-in Global State",
+          "valueType": "boolean",
+          "description": "Official solution for app-wide state (not third-party)"
+        },
+        {
+          "id": "global-state-library",
+          "name": "Global State Library",
+          "valueType": "text",
+          "description": "Name of official/recommended library (Pinia, Redux Toolkit, NgRx)"
+        },
+        {
+          "id": "devtools-state-inspection",
+          "name": "Devtools State Inspection",
+          "valueType": "boolean",
+          "description": "Browser devtools can inspect state"
+        },
+        {
+          "id": "state-persistence",
+          "name": "State Persistence",
+          "valueType": "boolean",
+          "description": "Built-in or official persistence layer"
+        },
+        {
+          "id": "time-travel-debugging",
+          "name": "Time-Travel Debugging",
+          "valueType": "boolean",
+          "description": "Devtools support for undo/redo state changes"
+        }
+      ]
+    },
+    {
+      "id": "developer-experience",
+      "name": "Developer Experience",
+      "description": "Tooling, documentation, and debugging",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "official-cli",
+          "name": "Official CLI",
+          "valueType": "boolean",
+          "description": "First-party project scaffolding tool"
+        },
+        {
+          "id": "hot-module-replacement",
+          "name": "Hot Module Replacement",
+          "valueType": "boolean",
+          "description": "Live code updates without full reload"
+        },
+        {
+          "id": "browser-devtools",
+          "name": "Browser Devtools",
+          "valueType": "boolean",
+          "description": "Official browser extension for debugging"
+        },
+        {
+          "id": "vs-code-extension",
+          "name": "VS Code Extension",
+          "valueType": "boolean",
+          "description": "Official or widely-used VS Code extension"
+        },
+        {
+          "id": "error-messages",
+          "name": "Error Messages",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "Quality of error messages: 1=cryptic, 3=helpful, 5=excellent"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "1=minimal, 3=adequate, 5=excellent"
+        },
+        {
+          "id": "interactive-tutorial",
+          "name": "Interactive Tutorial",
+          "valueType": "link",
+          "description": "URL to official interactive learning experience"
+        },
+        {
+          "id": "playground",
+          "name": "Playground",
+          "valueType": "link",
+          "description": "URL to online REPL/playground for quick experiments"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Bundle size and runtime performance",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "bundle-size-core",
+          "name": "Bundle Size (Core)",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Core runtime bundle, minified + gzipped"
+        },
+        {
+          "id": "bundle-size-full",
+          "name": "Bundle Size (Full)",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Full framework with common addons, minified + gzipped"
+        },
+        {
+          "id": "virtual-dom",
+          "name": "Virtual DOM",
+          "valueType": "boolean",
+          "description": "Uses virtual DOM diffing"
+        },
+        {
+          "id": "compile-time-optimization",
+          "name": "Compile-Time Optimization",
+          "valueType": "boolean",
+          "description": "Compiler performs static analysis optimizations"
+        },
+        {
+          "id": "tree-shaking",
+          "name": "Tree Shaking",
+          "valueType": "boolean",
+          "description": "Unused code is eliminated"
+        },
+        {
+          "id": "code-splitting",
+          "name": "Code Splitting",
+          "valueType": "boolean",
+          "description": "Automatic or easy code splitting"
+        },
+        {
+          "id": "lazy-components",
+          "name": "Lazy Components",
+          "valueType": "boolean",
+          "description": "Components can be loaded on demand"
+        },
+        {
+          "id": "ssr-capable",
+          "name": "SSR Capable",
+          "valueType": "boolean",
+          "description": "Can render on server (hydration)"
+        },
+        {
+          "id": "streaming-ssr",
+          "name": "Streaming SSR",
+          "valueType": "boolean",
+          "description": "Supports streaming server-side rendering"
+        },
+        {
+          "id": "partial-hydration",
+          "name": "Partial Hydration",
+          "valueType": "boolean",
+          "description": "Can hydrate only interactive parts (islands)"
+        },
+        {
+          "id": "js-framework-benchmark",
+          "name": "JS Framework Benchmark",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Geometric mean from js-framework-benchmark (lower is better)"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-community",
+      "name": "Ecosystem & Community",
+      "description": "Community size and ecosystem maturity",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "npm-weekly-downloads",
+          "name": "npm Weekly Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Weekly download count from npm"
+        },
+        {
+          "id": "component-libraries",
+          "name": "Component Libraries",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of major UI component libraries available"
+        },
+        {
+          "id": "meta-framework",
+          "name": "Meta-Framework",
+          "valueType": "text",
+          "description": "Primary SSR/SSG framework (Next.js, Nuxt, SvelteKit, etc.)"
+        },
+        {
+          "id": "major-companies-using",
+          "name": "Major Companies Using",
+          "valueType": "text",
+          "description": "Notable companies using in production"
+        },
+        {
+          "id": "official-sponsor-backer",
+          "name": "Official Sponsor/Backer",
+          "valueType": "text",
+          "description": "Corporate backing (Meta, Google, Vercel, etc.) or Community"
+        },
+        {
+          "id": "discord-community-size",
+          "name": "Discord/Community Size",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Approximate Discord/forum member count"
+        },
+        {
+          "id": "stack-overflow-questions",
+          "name": "Stack Overflow Questions",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of tagged questions"
+        },
+        {
+          "id": "job-market-demand",
+          "name": "Job Market Demand",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "1=niche, 2=growing, 3=moderate, 4=strong, 5=dominant"
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "name": "Testing",
+      "description": "Testing tools and integration",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "official-testing-library",
+          "name": "Official Testing Library",
+          "valueType": "boolean",
+          "description": "First-party testing utilities"
+        },
+        {
+          "id": "testing-library-name",
+          "name": "Testing Library Name",
+          "valueType": "text",
+          "description": "Name of official/recommended testing solution"
+        },
+        {
+          "id": "component-testing",
+          "name": "Component Testing",
+          "valueType": "boolean",
+          "description": "Unit testing individual components"
+        },
+        {
+          "id": "e2e-testing-integration",
+          "name": "E2E Testing Integration",
+          "valueType": "boolean",
+          "description": "Integration with Playwright, Cypress, etc."
+        },
+        {
+          "id": "snapshot-testing",
+          "name": "Snapshot Testing",
+          "valueType": "boolean",
+          "description": "Supported snapshot testing"
+        }
+      ]
+    },
+    {
+      "id": "mobile-cross-platform",
+      "name": "Mobile & Cross-Platform",
+      "description": "Mobile and desktop deployment options",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "mobile-framework",
+          "name": "Mobile Framework",
+          "valueType": "text",
+          "description": "Official mobile solution (React Native, Ionic, NativeScript)"
+        },
+        {
+          "id": "pwa-support",
+          "name": "PWA Support",
+          "valueType": "boolean",
+          "description": "Built-in or official PWA tooling"
+        },
+        {
+          "id": "desktop-framework",
+          "name": "Desktop Framework",
+          "valueType": "text",
+          "description": "Official desktop solution (Electron, Tauri)"
+        }
+      ]
+    },
+    {
+      "id": "learning-adoption",
+      "name": "Learning & Adoption",
+      "description": "Ease of learning and migration",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "learning-curve",
+          "name": "Learning Curve",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "descending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "1=very steep, 3=moderate, 5=gentle"
+        },
+        {
+          "id": "concepts-to-learn",
+          "name": "Concepts to Learn",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Number of core concepts before being productive"
+        },
+        {
+          "id": "time-to-hello-world",
+          "name": "Time to Hello World",
+          "valueType": {
+            "type": "duration",
+            "direction": "descending"
+          },
+          "description": "Time to create first component (minutes)"
+        },
+        {
+          "id": "migration-path",
+          "name": "Migration Path",
+          "valueType": "boolean",
+          "description": "Official migration guides from other frameworks"
+        },
+        {
+          "id": "incremental-adoption",
+          "name": "Incremental Adoption",
+          "valueType": "boolean",
+          "description": "Can be added to existing apps gradually"
+        }
+      ]
+    }
+  ]
+}
