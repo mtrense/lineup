@@ -263,7 +263,7 @@ Notable alternatives with specific niches:
 - [x] **Lit** - Google's web components library
 - [x] **Alpine.js** - Lightweight, sprinkle interactivity on HTML
 - [x] **HTMX** - HTML-centric, minimal JavaScript approach
-- [ ] **Ember.js** - Convention over configuration, batteries included
+- [x] **Ember.js** - Convention over configuration, batteries included
 - [ ] **Inferno** - Extremely fast React alternative
 
 ### Tier 2.5 (WASM/Compiled Languages)
