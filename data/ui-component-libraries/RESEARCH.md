@@ -344,7 +344,7 @@ Notable alternatives and specialized options:
 ### Tier 3 (Nice to Have)
 Specialized, emerging, or legacy options:
 - [x] **Semantic UI React** - Natural language principles
-- [ ] **Grommet** - HPE's responsive components
+- [x] **Grommet** - HPE's responsive components
 - [ ] **Rebass** - Primitive styled components
 - [ ] **Theme UI** - Themeable design systems
 - [ ] **Reakit** - (now Ariakit) Accessibility toolkit
