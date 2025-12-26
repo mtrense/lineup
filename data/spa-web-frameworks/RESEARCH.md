@@ -259,7 +259,7 @@ The dominant frameworks with the largest ecosystems:
 ### Tier 2 (Should Have)
 Notable alternatives with specific niches:
 
-- [ ] **Qwik** - Resumability-focused, O(1) loading performance
+- [x] **Qwik** - Resumability-focused, O(1) loading performance
 - [ ] **Lit** - Google's web components library
 - [ ] **Alpine.js** - Lightweight, sprinkle interactivity on HTML
 - [ ] **HTMX** - HTML-centric, minimal JavaScript approach
