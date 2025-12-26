@@ -347,8 +347,7 @@ Specialized, emerging, or legacy options:
 - [x] **Grommet** - HPE's responsive components
 - [x] **Rebass** - Primitive styled components (no longer actively maintained; last release Oct 2019)
 - [x] **Theme UI** - Themeable design systems
-- [ ] **Reakit** - (now Ariakit) Accessibility toolkit
-- [ ] **Ariakit** - Reakit successor, headless a11y
+- [x] **Reakit/Ariakit** - Accessibility toolkit (Reakit renamed to Ariakit)
 - [ ] **Fluent UI** - Microsoft's design system
 - [ ] **Carbon** - IBM's design system
 
