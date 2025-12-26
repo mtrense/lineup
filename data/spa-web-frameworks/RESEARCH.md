@@ -264,7 +264,7 @@ Notable alternatives with specific niches:
 - [x] **Alpine.js** - Lightweight, sprinkle interactivity on HTML
 - [x] **HTMX** - HTML-centric, minimal JavaScript approach
 - [x] **Ember.js** - Convention over configuration, batteries included
-- [ ] **Inferno** - Extremely fast React alternative
+- [x] **Inferno** - Extremely fast React alternative
 
 ### Tier 2.5 (WASM/Compiled Languages)
 Frameworks using WebAssembly or compiled from non-JS languages:
