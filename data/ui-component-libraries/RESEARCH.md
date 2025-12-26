@@ -349,7 +349,7 @@ Specialized, emerging, or legacy options:
 - [x] **Theme UI** - Themeable design systems
 - [x] **Reakit/Ariakit** - Accessibility toolkit (Reakit renamed to Ariakit)
 - [x] **Fluent UI** - Microsoft's design system
-- [ ] **Carbon** - IBM's design system
+- [x] **Carbon** - IBM's design system
 
 ## Notes for Researchers
 
