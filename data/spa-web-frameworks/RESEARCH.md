@@ -270,7 +270,7 @@ Notable alternatives with specific niches:
 Frameworks using WebAssembly or compiled from non-JS languages:
 
 **Rust**
-- [ ] **Leptos** - Full-stack Rust framework with fine-grained reactivity
+- [x] **Leptos** - Full-stack Rust framework with fine-grained reactivity
 - [ ] **Yew** - React-like Rust framework, mature ecosystem
 - [ ] **Dioxus** - Cross-platform Rust UI (web, desktop, mobile)
 - [ ] **Sycamore** - Reactive Rust library with fine-grained updates
