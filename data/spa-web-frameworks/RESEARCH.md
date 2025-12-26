@@ -262,7 +262,7 @@ Notable alternatives with specific niches:
 - [x] **Qwik** - Resumability-focused, O(1) loading performance
 - [x] **Lit** - Google's web components library
 - [x] **Alpine.js** - Lightweight, sprinkle interactivity on HTML
-- [ ] **HTMX** - HTML-centric, minimal JavaScript approach
+- [x] **HTMX** - HTML-centric, minimal JavaScript approach
 - [ ] **Ember.js** - Convention over configuration, batteries included
 - [ ] **Inferno** - Extremely fast React alternative
 
