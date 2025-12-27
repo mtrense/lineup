@@ -285,7 +285,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Uno Platform** - XAML-based cross-platform UI
 
 **Other Compiled Languages**
-- [ ] **Elm** - Functional language with strong guarantees, compiles to JS
+- [x] **Elm** - Functional language with strong guarantees, compiles to JS
 - [ ] **PureScript** - Strongly-typed functional language, compiles to JS
 - [ ] **Kotlin/JS** - Kotlin compiling to JavaScript
 - [ ] **Dart (Flutter Web)** - Flutter's web target using Dart
