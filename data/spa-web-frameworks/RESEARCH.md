@@ -274,7 +274,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Yew** - React-like Rust framework, mature ecosystem
 - [x] **Dioxus** - Cross-platform Rust UI (web, desktop, mobile)
 - [x] **Sycamore** - Reactive Rust library with fine-grained updates
-- [ ] **Percy** - Rust + WASM for isomorphic web apps
+- [x] **Percy** - Rust + WASM for isomorphic web apps
 
 **Go**
 - [ ] **Vugu** - Vue-inspired Go framework compiling to WASM
