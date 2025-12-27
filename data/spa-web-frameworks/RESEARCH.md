@@ -278,7 +278,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 
 **Go**
 - [x] **Vugu** - Vue-inspired Go framework compiling to WASM
-- [ ] **Vecty** - React-like library for Go with GopherJS/WASM
+- [x] **Vecty** - React-like library for Go with GopherJS/WASM
 
 **C# / .NET**
 - [ ] **Blazor WebAssembly** - Microsoft's C# in the browser via WASM

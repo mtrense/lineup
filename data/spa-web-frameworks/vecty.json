@@ -1,0 +1,443 @@
+{
+  "name": "Vecty",
+  "description": "React-like library for building web frontends in Go using WebAssembly with minimal dependencies",
+  "icon": "https://avatars.githubusercontent.com/u/11462?s=200&v=4",
+  "url": "https://github.com/hexops/vecty",
+  "values": {
+    "name": {
+      "value": "Vecty"
+    },
+    "description": {
+      "value": "React-like library for building web frontends in Go using WebAssembly with minimal dependencies",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "website": {
+      "value": "https://github.com/hexops/vecty",
+      "comment": "No dedicated website; GitHub repository serves as primary documentation",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "repository": {
+      "value": "https://github.com/hexops/vecty",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "license": {
+      "value": "BSD-3-Clause",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "initial-release": {
+      "value": "2017",
+      "comment": "Repository history shows development starting circa 2017; project has been in development over 4 years per docs",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "latest-release": {
+      "value": null,
+      "comment": "No formal GitHub releases published; uses Go module versioning (v0.6.0 on pkg.go.dev)",
+      "source": ["https://github.com/hexops/vecty/releases"]
+    },
+    "current-version": {
+      "value": "0.6.0",
+      "comment": "v0.6.0 per pkg.go.dev; no official GitHub releases",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "github-stars": {
+      "value": 2900,
+      "comment": "~2.9k stars as of December 2025",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "active-maintenance": {
+      "value": false,
+      "comment": "Last meaningful commit was October 2022; no activity in 2023, 2024, or 2025; project is dormant",
+      "source": ["https://github.com/hexops/vecty/commits/main"]
+    },
+    "reactivity-model": {
+      "value": ["virtual-dom"],
+      "comment": "Fast expectation-based DOM diffing (virtual DOM with less resource usage); requires explicit Rerender() calls",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "component-model": {
+      "value": ["class"],
+      "comment": "Components are Go structs embedding vecty.Core; implement Render() method returning ComponentOrHTML",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "rendering-paradigm": {
+      "value": ["declarative"],
+      "comment": "Declarative component tree built with elem and prop packages; similar to React's JSX but with Go function calls",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "state-management-approach": {
+      "value": ["built-in"],
+      "comment": "Component-level state via struct fields; updates trigger manual vecty.Rerender() calls",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty", "https://blog.logrocket.com/building-full-stack-web-apps-with-go-vecty-and-webassembly/"]
+    },
+    "opinionatedness": {
+      "value": ["flexible"],
+      "comment": "Minimal framework asking 'What is the best way to solve this problem in Go?' rather than translating other libraries",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "backward-compatibility": {
+      "value": false,
+      "comment": "Pre-v1.0.0 experimental project; docs explicitly state APIs will change (maybe extensively)",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "primary-language": {
+      "value": ["go"],
+      "comment": "100% Go; nearly zero dependencies, only relies on reflect from Go stdlib",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "compiles-to": {
+      "value": ["both"],
+      "comment": "Compiles to WebAssembly (via standard Go compiler) and vanilla JavaScript (via GopherJS)",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "typescript-support": {
+      "value": ["n-a"],
+      "comment": "Go framework; uses Go's type system instead of TypeScript",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "template-syntax": {
+      "value": ["dsl"],
+      "comment": "Go DSL using elem and prop packages; function calls like elem.Div(elem.H1(vecty.Text(\"Hello\")))",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "styling-approach": {
+      "value": ["inline-styles", "external-only"],
+      "comment": "vecty.Style() for inline styles; vecty.Class() for CSS classes; no built-in scoping",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "build-required": {
+      "value": true,
+      "comment": "Requires Go 1.14+ with GOOS=js GOARCH=wasm; wasmserve recommended for development",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "wasm-interop": {
+      "value": ["bridge"],
+      "comment": "Uses syscall/js for WASM interop; SyscallJSValue type for testing without browser",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "reactive-primitives": {
+      "value": false,
+      "comment": "No built-in reactive primitives; state changes require manual Rerender() calls",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty", "https://blog.logrocket.com/building-full-stack-web-apps-with-go-vecty-and-webassembly/"]
+    },
+    "computed-values": {
+      "value": false,
+      "comment": "No automatic computed values; derived state must be calculated in Render() or component methods",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "two-way-binding": {
+      "value": false,
+      "comment": "No built-in two-way binding; manual event handling and state updates required",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "event-handling": {
+      "value": true,
+      "comment": "Declarative event binding via event package (e.g., event.Input, event.Click with callback functions)",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty", "https://blog.logrocket.com/building-full-stack-web-apps-with-go-vecty-and-webassembly/"]
+    },
+    "conditional-rendering": {
+      "value": true,
+      "comment": "Standard Go conditionals (if statements) in Render() method; vecty.If() helper available",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "list-rendering": {
+      "value": true,
+      "comment": "Go for loops in Render(); vecty.List type for returning multiple elements",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "component-slots": {
+      "value": true,
+      "comment": "Children passed as ComponentOrHTML to component Render methods",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "teleport-portal": {
+      "value": false,
+      "comment": "No documented teleport/portal functionality",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "suspense": {
+      "value": false,
+      "comment": "No built-in suspense; async operations handled via goroutines with manual rerendering",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "error-boundaries": {
+      "value": false,
+      "comment": "No built-in error boundary component",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "context-provide-inject": {
+      "value": false,
+      "comment": "No built-in context/dependency injection; can pass via component struct fields",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "refs-direct-dom-access": {
+      "value": true,
+      "comment": "Direct DOM access via syscall/js package; RenderInto targets specific CSS selectors",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "official-router": {
+      "value": false,
+      "comment": "No official router; URL-based routing listed as pre-v1.0.0 goal not yet ready",
+      "source": ["https://github.com/hexops/vecty", "https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "router-name": {
+      "value": null,
+      "comment": "No official router exists",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "nested-routes": {
+      "value": null,
+      "comment": "No official router",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "dynamic-routes": {
+      "value": null,
+      "comment": "No official router",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "route-guards": {
+      "value": null,
+      "comment": "No official router",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "lazy-loading-routes": {
+      "value": null,
+      "comment": "No official router; WASM binary compiled as single unit",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "scroll-restoration": {
+      "value": null,
+      "comment": "No official router",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "built-in-state": {
+      "value": true,
+      "comment": "Component state via Go struct fields; manual Rerender() to propagate changes",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "built-in-global-state": {
+      "value": false,
+      "comment": "No built-in global state solution; can use shared Go package variables or pass through props",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "global-state-library": {
+      "value": null,
+      "comment": "No official global state library",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "devtools-state-inspection": {
+      "value": false,
+      "comment": "No browser devtools for state inspection; debugging via standard Go/WASM tools",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "state-persistence": {
+      "value": false,
+      "comment": "No built-in persistence; can use browser storage APIs manually via syscall/js",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "time-travel-debugging": {
+      "value": false,
+      "comment": "No time-travel debugging support",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "official-cli": {
+      "value": false,
+      "comment": "No official CLI; recommends wasmserve for development; vectytemplater is community tool",
+      "source": ["https://github.com/hexops/vecty", "https://github.com/soypat/vectytemplater"]
+    },
+    "hot-module-replacement": {
+      "value": false,
+      "comment": "No HMR; wasmserve provides development server but requires manual refresh",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "browser-devtools": {
+      "value": false,
+      "comment": "No Vecty-specific browser extension; relies on standard WebAssembly debugging",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "vs-code-extension": {
+      "value": false,
+      "comment": "No Vecty-specific VS Code extension; uses standard Go tooling",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "error-messages": {
+      "value": 3,
+      "comment": "Go compiler errors are helpful with type safety; designed to be easily mastered by newcomers",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "documentation-quality": {
+      "value": 2,
+      "comment": "Basic README and pkg.go.dev reference; extensive docs listed as pre-v1.0.0 goal not yet ready; community-maintained vectydoc exists",
+      "source": ["https://github.com/hexops/vecty", "https://github.com/AnikHasibul/vectydoc"]
+    },
+    "interactive-tutorial": {
+      "value": null,
+      "comment": "No interactive tutorial; examples in repository",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "playground": {
+      "value": null,
+      "comment": "No online playground due to Go/WASM compilation requirements",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "bundle-size-core": {
+      "value": 587000,
+      "comment": "~587KB gzipped for hello world with Go 1.15; minimal dependencies (only reflect from stdlib)",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty", "https://github.com/hexops/vecty"]
+    },
+    "bundle-size-full": {
+      "value": 1010000,
+      "comment": "~1MB gzipped for markdown app example; TodoMVC is 825KB gzipped",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "virtual-dom": {
+      "value": true,
+      "comment": "Uses expectation-based DOM diffing (virtual DOM approach but with less resource usage)",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "compile-time-optimization": {
+      "value": true,
+      "comment": "Standard Go compiler optimizations; TinyGo support tracked in issue #269",
+      "source": ["https://github.com/hexops/vecty", "https://github.com/hexops/vecty/issues/269"]
+    },
+    "tree-shaking": {
+      "value": true,
+      "comment": "Go compiler eliminates unused code; framework has nearly zero dependencies",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "code-splitting": {
+      "value": false,
+      "comment": "No WASM binary splitting; entire app compiles to single WASM file",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "lazy-components": {
+      "value": false,
+      "comment": "No lazy component loading; all components part of single WASM binary",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "ssr-capable": {
+      "value": false,
+      "comment": "Server-side rendering listed as pre-v1.0.0 goal not yet ready",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "streaming-ssr": {
+      "value": false,
+      "comment": "No SSR support",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "partial-hydration": {
+      "value": false,
+      "comment": "No SSR or hydration support",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "js-framework-benchmark": {
+      "value": null,
+      "comment": "Not included in js-framework-benchmark; Go/WASM framework with limited benchmark data",
+      "source": ["https://krausest.github.io/js-framework-benchmark/"]
+    },
+    "npm-weekly-downloads": {
+      "value": null,
+      "comment": "Go module, not npm package; distributed via Go modules (go get github.com/hexops/vecty)",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "component-libraries": {
+      "value": 3,
+      "comment": "soypat/mdc (Material Design), vecty-components/material, wizenerd/ui (Material Design Lite)",
+      "source": ["https://github.com/hexops/vecty/blob/main/doc/projects-using-vecty.md"]
+    },
+    "meta-framework": {
+      "value": null,
+      "comment": "No meta-framework; designed for browser-based WebAssembly apps only",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "major-companies-using": {
+      "value": null,
+      "comment": "No publicly documented production usage by major companies; experimental project used by hobbyists (Go Package Store, Go Play Space)",
+      "source": ["https://github.com/hexops/vecty/blob/main/doc/projects-using-vecty.md"]
+    },
+    "official-sponsor-backer": {
+      "value": "Community",
+      "comment": "Community-driven project under hexops; previously under gopherjs and gowasm orgs",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "discord-community-size": {
+      "value": null,
+      "comment": "Uses Slack (#gopherjs and #vecty channels on Gophers Slack) instead of Discord",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "stack-overflow-questions": {
+      "value": null,
+      "comment": "Very few Stack Overflow questions; no dedicated tag; community primarily uses GitHub issues and Slack",
+      "source": ["https://stackoverflow.com"]
+    },
+    "job-market-demand": {
+      "value": 1,
+      "comment": "Niche; experimental Go/WASM framework with minimal job market presence; dormant development",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "official-testing-library": {
+      "value": true,
+      "comment": "SyscallJSValue allows testing Vecty under native 'go test' without browser",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "testing-library-name": {
+      "value": "go test (native)",
+      "comment": "Standard Go testing with SyscallJSValue for browser-less component testing",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "component-testing": {
+      "value": true,
+      "comment": "Components can be tested via native Go tests using SyscallJSValue",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "e2e-testing-integration": {
+      "value": false,
+      "comment": "No documented E2E testing integration; wasmbrowsertest can be used for browser tests",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "snapshot-testing": {
+      "value": false,
+      "comment": "No built-in snapshot testing; would require manual implementation",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "mobile-framework": {
+      "value": null,
+      "comment": "No official mobile framework; browser-only WebAssembly target",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "pwa-support": {
+      "value": false,
+      "comment": "No built-in PWA support; would require manual service worker configuration",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "desktop-framework": {
+      "value": null,
+      "comment": "No official desktop framework; could theoretically work with Electron or Tauri",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "learning-curve": {
+      "value": 3,
+      "comment": "Moderate; requires Go knowledge; React-like patterns are familiar; designed to be easily mastered by newcomers",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "concepts-to-learn": {
+      "value": 6,
+      "comment": "Go basics, vecty.Core embedding, Render() method, elem/prop packages, event handling, WASM build process",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    },
+    "time-to-hello-world": {
+      "value": 300000,
+      "comment": "~5 minutes with Go installed; wasmserve provides quick development setup",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "migration-path": {
+      "value": false,
+      "comment": "No migration guides from JS frameworks; requires rewrite in Go",
+      "source": ["https://github.com/hexops/vecty"]
+    },
+    "incremental-adoption": {
+      "value": true,
+      "comment": "RenderInto allows targeting specific CSS selectors; WASM can be integrated into existing websites",
+      "source": ["https://pkg.go.dev/github.com/hexops/vecty"]
+    }
+  }
+}
