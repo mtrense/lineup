@@ -282,7 +282,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 
 **C# / .NET**
 - [x] **Blazor WebAssembly** - Microsoft's C# in the browser via WASM
-- [ ] **Uno Platform** - XAML-based cross-platform UI
+- [x] **Uno Platform** - XAML-based cross-platform UI
 
 **Other Compiled Languages**
 - [ ] **Elm** - Functional language with strong guarantees, compiles to JS
