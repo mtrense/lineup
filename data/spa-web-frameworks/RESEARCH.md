@@ -272,7 +272,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 **Rust**
 - [x] **Leptos** - Full-stack Rust framework with fine-grained reactivity
 - [x] **Yew** - React-like Rust framework, mature ecosystem
-- [ ] **Dioxus** - Cross-platform Rust UI (web, desktop, mobile)
+- [x] **Dioxus** - Cross-platform Rust UI (web, desktop, mobile)
 - [ ] **Sycamore** - Reactive Rust library with fine-grained updates
 - [ ] **Percy** - Rust + WASM for isomorphic web apps
 
