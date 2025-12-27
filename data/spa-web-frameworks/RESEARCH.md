@@ -281,7 +281,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Vecty** - React-like library for Go with GopherJS/WASM
 
 **C# / .NET**
-- [ ] **Blazor WebAssembly** - Microsoft's C# in the browser via WASM
+- [x] **Blazor WebAssembly** - Microsoft's C# in the browser via WASM
 - [ ] **Uno Platform** - XAML-based cross-platform UI
 
 **Other Compiled Languages**
