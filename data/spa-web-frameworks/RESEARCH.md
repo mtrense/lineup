@@ -288,7 +288,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Elm** - Functional language with strong guarantees, compiles to JS
 - [x] **PureScript** - Strongly-typed functional language, compiles to JS
 - [x] **Kotlin/JS** - Kotlin compiling to JavaScript
-- [ ] **Dart (Flutter Web)** - Flutter's web target using Dart
+- [x] **Dart (Flutter Web)** - Flutter's web target using Dart
 - [ ] **Scala.js** - Scala compiling to JavaScript
 - [ ] **ClojureScript** - Clojure for the browser (often with Reagent/Re-frame)
 
