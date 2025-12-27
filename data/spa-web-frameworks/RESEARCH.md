@@ -300,7 +300,7 @@ Emerging, specialized, or declining options:
 - [x] **Mithril** - Lightweight, hyperscript-based
 - [x] **Riot.js** - Simple, elegant component library
 - [x] **Hyperapp** - 1KB framework for building web interfaces
-- [ ] **Aurelia** - Convention-based, standards-focused
+- [x] **Aurelia** - Convention-based, standards-focused
 - [ ] **Backbone.js** - Legacy but still in maintenance mode
 - [ ] **Knockout.js** - MVVM pattern, legacy but maintained
 
