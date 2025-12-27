@@ -301,7 +301,7 @@ Emerging, specialized, or declining options:
 - [x] **Riot.js** - Simple, elegant component library
 - [x] **Hyperapp** - 1KB framework for building web interfaces
 - [x] **Aurelia** - Convention-based, standards-focused
-- [ ] **Backbone.js** - Legacy but still in maintenance mode
+- [x] **Backbone.js** - Legacy but still in maintenance mode
 - [ ] **Knockout.js** - MVVM pattern, legacy but maintained
 
 ## Notes for Researchers
