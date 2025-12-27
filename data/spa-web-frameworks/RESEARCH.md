@@ -297,7 +297,7 @@ Emerging, specialized, or declining options:
 
 - [x] **Marko** - eBay's streaming-focused framework
 - [x] **Stencil** - Web components compiler from Ionic
-- [ ] **Mithril** - Lightweight, hyperscript-based
+- [x] **Mithril** - Lightweight, hyperscript-based
 - [ ] **Riot.js** - Simple, elegant component library
 - [ ] **Hyperapp** - 1KB framework for building web interfaces
 - [ ] **Aurelia** - Convention-based, standards-focused
