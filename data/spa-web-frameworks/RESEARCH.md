@@ -277,7 +277,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Percy** - Rust + WASM for isomorphic web apps
 
 **Go**
-- [ ] **Vugu** - Vue-inspired Go framework compiling to WASM
+- [x] **Vugu** - Vue-inspired Go framework compiling to WASM
 - [ ] **Vecty** - React-like library for Go with GopherJS/WASM
 
 **C# / .NET**

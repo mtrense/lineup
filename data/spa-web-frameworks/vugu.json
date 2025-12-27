@@ -1,0 +1,440 @@
+{
+  "name": "Vugu",
+  "description": "A Vue-inspired library for building web UIs in Go + WebAssembly with single-file components",
+  "icon": "https://www.vugu.org/assets/favicon.ico",
+  "url": "https://www.vugu.org",
+  "values": {
+    "name": {
+      "value": "Vugu"
+    },
+    "description": {
+      "value": "A Vue-inspired library for building web UIs in Go + WebAssembly with single-file components",
+      "source": ["https://www.vugu.org", "https://github.com/vugu/vugu"]
+    },
+    "website": {
+      "value": "https://www.vugu.org",
+      "source": ["https://www.vugu.org"]
+    },
+    "repository": {
+      "value": "https://github.com/vugu/vugu",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "initial-release": {
+      "value": "2019",
+      "comment": "Repository created March 2019; first public release v0.2.1 in April 2020",
+      "source": ["https://github.com/vugu/vugu", "https://github.com/vugu/vugu/tags"]
+    },
+    "latest-release": {
+      "value": "2024-05-28",
+      "comment": "Version 0.4.0 released May 28, 2024",
+      "source": ["https://github.com/vugu/vugu/tags"]
+    },
+    "current-version": {
+      "value": "0.4.0",
+      "source": ["https://github.com/vugu/vugu/tags"]
+    },
+    "github-stars": {
+      "value": 5000,
+      "comment": "~5k stars as of December 2025",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "active-maintenance": {
+      "value": true,
+      "comment": "v0.4.0 released May 2024 with mage-based build refactor; 609 commits total",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "reactivity-model": {
+      "value": ["fine-grained"],
+      "comment": "Modification tracking via vugu:\"data\" struct tags to avoid unnecessary re-renders",
+      "source": ["https://www.vugu.org/doc/files/code"]
+    },
+    "component-model": {
+      "value": ["sfc"],
+      "comment": "Single-file components (.vugu files) with HTML template and Go code sections; compiles to Go structs",
+      "source": ["https://www.vugu.org/doc/files/code"]
+    },
+    "rendering-paradigm": {
+      "value": ["declarative"],
+      "comment": "Declarative HTML templates with Vue-like directives (vg-if, vg-for, vg-content)",
+      "source": ["https://www.vugu.org"]
+    },
+    "state-management-approach": {
+      "value": ["built-in"],
+      "comment": "Built-in state via Go struct fields with vugu:\"data\" tags; wire function pattern for dependency injection",
+      "source": ["https://www.vugu.org/doc/wiring"]
+    },
+    "opinionatedness": {
+      "value": ["flexible"],
+      "comment": "Library philosophy - you control program flow, wiring, and render loop; Vugu provides utilities",
+      "source": ["https://www.vugu.org/doc", "https://www.vugu.org/faq"]
+    },
+    "backward-compatibility": {
+      "value": false,
+      "comment": "Not 1.0 yet; experimental with breaking changes between versions (e.g., v0.1.0 to v0.2.0 refactor)",
+      "source": ["https://www.vugu.org/faq"]
+    },
+    "primary-language": {
+      "value": ["go"],
+      "comment": "Written in Go (93%); JavaScript only for minimal WASM interop layer",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "comment": "Compiles Go to WebAssembly; supports both standard Go and TinyGo compilers",
+      "source": ["https://www.vugu.org", "https://www.vugu.org/doc/tinygo"]
+    },
+    "typescript-support": {
+      "value": ["n-a"],
+      "comment": "Go framework; uses Go's type system instead of TypeScript",
+      "source": ["https://www.vugu.org"]
+    },
+    "template-syntax": {
+      "value": ["sfc", "html-template"],
+      "comment": ".vugu files with Vue-like HTML templates; vg-if, vg-for, vg-content directives; Go expressions in attributes",
+      "source": ["https://www.vugu.org"]
+    },
+    "styling-approach": {
+      "value": ["scoped-css"],
+      "comment": "CSS included directly in .vugu component files; scoped to component",
+      "source": ["https://www.vugu.org"]
+    },
+    "build-required": {
+      "value": true,
+      "comment": "Requires Go toolchain with GOOS=js GOARCH=wasm; vgrun development server or manual go generate",
+      "source": ["https://www.vugu.org/doc/start", "https://www.vugu.org/doc/build-and-dist"]
+    },
+    "wasm-interop": {
+      "value": ["bridge"],
+      "comment": "DOM access via embedded JS file; Go wasm_exec.js for runtime support; event.Prop() for JS data access",
+      "source": ["https://www.vugu.org/faq", "https://www.vugu.org/doc/dom-events"]
+    },
+    "reactive-primitives": {
+      "value": true,
+      "comment": "Struct fields tagged with vugu:\"data\" are tracked for modifications and trigger re-renders",
+      "source": ["https://www.vugu.org/doc/files/code"]
+    },
+    "computed-values": {
+      "value": true,
+      "comment": "Compute(ctx) lifecycle method called before each render for derived state",
+      "source": ["https://www.vugu.org/doc/components"]
+    },
+    "two-way-binding": {
+      "value": true,
+      "comment": "vgform package provides two-way binding for form controls via StringPtr, SliceOptions, etc.",
+      "source": ["https://www.vugu.org/doc/forms"]
+    },
+    "event-handling": {
+      "value": true,
+      "comment": "Declarative @event syntax (e.g., @click='c.HandleClick()'); vugu.DOMEvent provides event data",
+      "source": ["https://www.vugu.org/doc/dom-events"]
+    },
+    "conditional-rendering": {
+      "value": true,
+      "comment": "vg-if directive for conditional rendering",
+      "source": ["https://www.vugu.org"]
+    },
+    "list-rendering": {
+      "value": true,
+      "comment": "vg-for directive for iteration over slices and maps",
+      "source": ["https://www.vugu.org"]
+    },
+    "component-slots": {
+      "value": true,
+      "comment": "Slots via DefaultSlot and named slots (<vg-slot name=\"...\">); implemented as Go anonymous functions",
+      "source": ["https://www.vugu.org/doc/components"]
+    },
+    "teleport-portal": {
+      "value": false,
+      "comment": "No documented teleport/portal functionality",
+      "source": ["https://www.vugu.org/doc"]
+    },
+    "suspense": {
+      "value": false,
+      "comment": "No built-in suspense; async operations handled via goroutines with EventEnv.Lock()",
+      "source": ["https://www.vugu.org/doc/dom-events"]
+    },
+    "error-boundaries": {
+      "value": false,
+      "comment": "No built-in error boundary component",
+      "source": ["https://www.vugu.org"]
+    },
+    "context-provide-inject": {
+      "value": true,
+      "comment": "Wire function pattern provides dependency injection; components receive dependencies via setter interfaces",
+      "source": ["https://www.vugu.org/doc/wiring"]
+    },
+    "refs-direct-dom-access": {
+      "value": true,
+      "comment": "Direct DOM access possible via js package; vugu/js provides DOM manipulation utilities",
+      "source": ["https://pkg.go.dev/github.com/vugu/vugu/js"]
+    },
+    "official-router": {
+      "value": true,
+      "comment": "vgrouter is the official first-party URL router for Vugu",
+      "source": ["https://www.vugu.org/doc/routing", "https://github.com/vugu/vgrouter"]
+    },
+    "router-name": {
+      "value": "vgrouter",
+      "source": ["https://github.com/vugu/vgrouter"]
+    },
+    "nested-routes": {
+      "value": true,
+      "comment": "Routes can be registered sequentially; partial path matching allows nested route patterns",
+      "source": ["https://www.vugu.org/doc/routing"]
+    },
+    "dynamic-routes": {
+      "value": true,
+      "comment": "BindParams feature for route parameter binding (documentation notes it needs more docs)",
+      "source": ["https://www.vugu.org/doc/routing"]
+    },
+    "route-guards": {
+      "value": false,
+      "comment": "No documented route guard/middleware system; routes are matched in registration order",
+      "source": ["https://www.vugu.org/doc/routing"]
+    },
+    "lazy-loading-routes": {
+      "value": false,
+      "comment": "No lazy loading; WASM binary compiled as single unit",
+      "source": ["https://www.vugu.org"]
+    },
+    "scroll-restoration": {
+      "value": false,
+      "comment": "Not documented; ListenForPopState handles browser history but no scroll restoration mentioned",
+      "source": ["https://www.vugu.org/doc/routing"]
+    },
+    "built-in-state": {
+      "value": true,
+      "comment": "Component state via Go struct fields with modification tracking via vugu:\"data\" tag",
+      "source": ["https://www.vugu.org/doc/files/code"]
+    },
+    "built-in-global-state": {
+      "value": true,
+      "comment": "Wire function pattern for injecting shared state objects across components",
+      "source": ["https://www.vugu.org/doc/wiring"]
+    },
+    "global-state-library": {
+      "value": null,
+      "comment": "No external state library needed; wire function pattern is built-in solution",
+      "source": ["https://www.vugu.org/doc/wiring"]
+    },
+    "devtools-state-inspection": {
+      "value": false,
+      "comment": "No browser devtools for state inspection; debugging via standard Go/WASM tools",
+      "source": ["https://www.vugu.org"]
+    },
+    "state-persistence": {
+      "value": false,
+      "comment": "No built-in persistence; can use browser storage APIs manually",
+      "source": ["https://www.vugu.org"]
+    },
+    "time-travel-debugging": {
+      "value": false,
+      "comment": "No time-travel debugging support",
+      "source": ["https://www.vugu.org"]
+    },
+    "official-cli": {
+      "value": true,
+      "comment": "vgrun CLI for development server; vugugen for code generation; vugufmt for formatting",
+      "source": ["https://www.vugu.org/doc/start", "https://www.vugu.org/doc/tools"]
+    },
+    "hot-module-replacement": {
+      "value": true,
+      "comment": "vgrun devserver provides file watching and automatic page reload on .vugu file changes",
+      "source": ["https://www.vugu.org/doc/start"]
+    },
+    "browser-devtools": {
+      "value": false,
+      "comment": "No Vugu-specific browser extension; relies on standard WebAssembly debugging",
+      "source": ["https://www.vugu.org"]
+    },
+    "vs-code-extension": {
+      "value": true,
+      "comment": "vscode-vugu extension provides syntax highlighting for .vugu files",
+      "source": ["https://github.com/bluetel/vscode-vugu"]
+    },
+    "error-messages": {
+      "value": 3,
+      "comment": "Go compiler errors are helpful; type safety catches many errors at compile time",
+      "source": ["https://www.vugu.org/faq"]
+    },
+    "documentation-quality": {
+      "value": 3,
+      "comment": "Adequate docs with getting started guide, API concepts, and FAQ; some sections marked as needing more documentation",
+      "source": ["https://www.vugu.org/doc"]
+    },
+    "interactive-tutorial": {
+      "value": null,
+      "comment": "No interactive tutorial; getting started guide is text-based",
+      "source": ["https://www.vugu.org/doc/start"]
+    },
+    "playground": {
+      "value": null,
+      "comment": "No online playground due to Go/WASM compilation requirements",
+      "source": ["https://www.vugu.org"]
+    },
+    "bundle-size-core": {
+      "value": 2000000,
+      "comment": "Standard Go compiler produces multi-megabyte WASM; ~2MB+ compressed typical for basic apps",
+      "source": ["https://www.vugu.org/faq"]
+    },
+    "bundle-size-full": {
+      "value": 500000,
+      "comment": "TinyGo compilation reduces to hundreds of kilobytes; ~500KB typical with TinyGo and -no-debug flag",
+      "source": ["https://www.vugu.org/doc/tinygo", "https://www.vugu.org/faq"]
+    },
+    "virtual-dom": {
+      "value": false,
+      "comment": "Not Virtual DOM; uses modification tracking and direct DOM synchronization",
+      "source": ["https://www.vugu.org/doc"]
+    },
+    "compile-time-optimization": {
+      "value": true,
+      "comment": "Go compiler optimizations; TinyGo provides additional size optimization for WASM output",
+      "source": ["https://www.vugu.org/doc/tinygo"]
+    },
+    "tree-shaking": {
+      "value": true,
+      "comment": "Go compiler eliminates unused code; TinyGo more aggressive for WASM targets",
+      "source": ["https://www.vugu.org/doc/tinygo"]
+    },
+    "code-splitting": {
+      "value": false,
+      "comment": "No WASM binary splitting; entire app compiles to single WASM file",
+      "source": ["https://www.vugu.org/doc/build-and-dist"]
+    },
+    "lazy-components": {
+      "value": false,
+      "comment": "No lazy component loading; all components part of single WASM binary",
+      "source": ["https://www.vugu.org"]
+    },
+    "ssr-capable": {
+      "value": true,
+      "comment": "StaticHTMLEnv generates static HTML on server; ParserGo/ParserGoPkg for server-side rendering",
+      "source": ["https://www.vugu.org/doc", "https://pkg.go.dev/github.com/vugu/vugu"]
+    },
+    "streaming-ssr": {
+      "value": false,
+      "comment": "Renders to static string; no streaming SSR support",
+      "source": ["https://www.vugu.org"]
+    },
+    "partial-hydration": {
+      "value": false,
+      "comment": "No documented hydration; SSR generates static HTML without client-side interactivity takeover",
+      "source": ["https://www.vugu.org"]
+    },
+    "js-framework-benchmark": {
+      "value": null,
+      "comment": "Not included in js-framework-benchmark; Go/WASM framework with limited benchmark data",
+      "source": ["https://krausest.github.io/js-framework-benchmark/"]
+    },
+    "npm-weekly-downloads": {
+      "value": null,
+      "comment": "Go module, not npm package; distributed via Go modules (go get)",
+      "source": ["https://pkg.go.dev/github.com/vugu/vugu"]
+    },
+    "component-libraries": {
+      "value": 0,
+      "comment": "No known UI component libraries; ecosystem is small",
+      "source": ["https://www.vugu.org"]
+    },
+    "meta-framework": {
+      "value": null,
+      "comment": "No meta-framework; can be paired with any Go HTTP server",
+      "source": ["https://www.vugu.org"]
+    },
+    "major-companies-using": {
+      "value": null,
+      "comment": "No publicly documented production usage by major companies; experimental project",
+      "source": ["https://www.vugu.org"]
+    },
+    "official-sponsor-backer": {
+      "value": "Community",
+      "comment": "Community-driven project by Brad Peabody and contributors; no corporate backing",
+      "source": ["https://github.com/vugu/vugu"]
+    },
+    "discord-community-size": {
+      "value": null,
+      "comment": "Uses Slack (#vugu channel in GolangBridge workspace) instead of Discord",
+      "source": ["https://github.com/vugu/vugu/issues/42"]
+    },
+    "stack-overflow-questions": {
+      "value": null,
+      "comment": "Very few Stack Overflow questions; community primarily uses GitHub issues and Slack",
+      "source": ["https://stackoverflow.com"]
+    },
+    "job-market-demand": {
+      "value": 1,
+      "comment": "Niche; experimental Go/WASM framework with minimal job market presence",
+      "source": ["https://www.vugu.org/faq"]
+    },
+    "official-testing-library": {
+      "value": true,
+      "comment": "StaticHTMLEnv can be used for testing by generating static output for comparison",
+      "source": ["https://www.vugu.org/doc", "https://pkg.go.dev/github.com/vugu/vugu"]
+    },
+    "testing-library-name": {
+      "value": "StaticHTMLEnv",
+      "comment": "StaticHTMLEnv renders components to static HTML for testing; mage manages test process",
+      "source": ["https://pkg.go.dev/github.com/vugu/vugu"]
+    },
+    "component-testing": {
+      "value": true,
+      "comment": "Components can be tested via static renderer; standard Go testing with wasm targets",
+      "source": ["https://www.vugu.org"]
+    },
+    "e2e-testing-integration": {
+      "value": false,
+      "comment": "No documented E2E testing integration; standard browser testing tools can be used",
+      "source": ["https://www.vugu.org"]
+    },
+    "snapshot-testing": {
+      "value": true,
+      "comment": "StaticHTMLEnv output can be used for snapshot comparison testing",
+      "source": ["https://www.vugu.org/doc"]
+    },
+    "mobile-framework": {
+      "value": null,
+      "comment": "No official mobile framework; mobile browser support not well tested",
+      "source": ["https://www.vugu.org/faq"]
+    },
+    "pwa-support": {
+      "value": false,
+      "comment": "No built-in PWA support; would require manual service worker configuration",
+      "source": ["https://www.vugu.org"]
+    },
+    "desktop-framework": {
+      "value": null,
+      "comment": "No official desktop framework; could theoretically work with Electron or Tauri",
+      "source": ["https://www.vugu.org"]
+    },
+    "learning-curve": {
+      "value": 3,
+      "comment": "Moderate; requires Go knowledge but Vue-like templates are familiar; simpler than Rust alternatives",
+      "source": ["https://www.vugu.org/doc/start"]
+    },
+    "concepts-to-learn": {
+      "value": 7,
+      "comment": "Go basics, .vugu files, vg-directives, component struct, wire function, event handling, WASM build",
+      "source": ["https://www.vugu.org/doc"]
+    },
+    "time-to-hello-world": {
+      "value": 300000,
+      "comment": "~5 minutes with Go installed; vgrun -new-from-example creates project, vgrun devserver.go starts it",
+      "source": ["https://www.vugu.org/doc/start"]
+    },
+    "migration-path": {
+      "value": false,
+      "comment": "No migration guides from JS frameworks; requires rewrite in Go",
+      "source": ["https://www.vugu.org"]
+    },
+    "incremental-adoption": {
+      "value": true,
+      "comment": "WASM output can be integrated into existing websites; doesn't require full rewrite",
+      "source": ["https://www.vugu.org/doc/build-and-dist"]
+    }
+  }
+}
