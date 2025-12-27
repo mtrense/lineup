@@ -296,7 +296,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 Emerging, specialized, or declining options:
 
 - [x] **Marko** - eBay's streaming-focused framework
-- [ ] **Stencil** - Web components compiler from Ionic
+- [x] **Stencil** - Web components compiler from Ionic
 - [ ] **Mithril** - Lightweight, hyperscript-based
 - [ ] **Riot.js** - Simple, elegant component library
 - [ ] **Hyperapp** - 1KB framework for building web interfaces
