@@ -299,7 +299,7 @@ Emerging, specialized, or declining options:
 - [x] **Stencil** - Web components compiler from Ionic
 - [x] **Mithril** - Lightweight, hyperscript-based
 - [x] **Riot.js** - Simple, elegant component library
-- [ ] **Hyperapp** - 1KB framework for building web interfaces
+- [x] **Hyperapp** - 1KB framework for building web interfaces
 - [ ] **Aurelia** - Convention-based, standards-focused
 - [ ] **Backbone.js** - Legacy but still in maintenance mode
 - [ ] **Knockout.js** - MVVM pattern, legacy but maintained
