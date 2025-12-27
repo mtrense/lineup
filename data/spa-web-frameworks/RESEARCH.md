@@ -302,7 +302,7 @@ Emerging, specialized, or declining options:
 - [x] **Hyperapp** - 1KB framework for building web interfaces
 - [x] **Aurelia** - Convention-based, standards-focused
 - [x] **Backbone.js** - Legacy but still in maintenance mode
-- [ ] **Knockout.js** - MVVM pattern, legacy but maintained
+- [x] **Knockout.js** - MVVM pattern, legacy but maintained
 
 ## Notes for Researchers
 
