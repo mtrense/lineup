@@ -295,7 +295,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 ### Tier 3 (Nice to Have)
 Emerging, specialized, or declining options:
 
-- [ ] **Marko** - eBay's streaming-focused framework
+- [x] **Marko** - eBay's streaming-focused framework
 - [ ] **Stencil** - Web components compiler from Ionic
 - [ ] **Mithril** - Lightweight, hyperscript-based
 - [ ] **Riot.js** - Simple, elegant component library
