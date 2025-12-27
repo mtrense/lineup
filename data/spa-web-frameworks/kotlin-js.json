@@ -1,0 +1,441 @@
+{
+  "name": "Kotlin/JS",
+  "description": "Kotlin transpiled to JavaScript for type-safe, multiplatform web development with JetBrains tooling",
+  "icon": "K",
+  "url": "https://kotlinlang.org/docs/js-overview.html",
+  "values": {
+    "name": {
+      "value": "Kotlin/JS"
+    },
+    "description": {
+      "value": "Kotlin transpiled to JavaScript for type-safe, multiplatform web development with JetBrains tooling",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "website": {
+      "value": "https://kotlinlang.org/docs/js-overview.html",
+      "source": ["https://kotlinlang.org"]
+    },
+    "repository": {
+      "value": "https://github.com/JetBrains/kotlin",
+      "source": ["https://github.com/JetBrains/kotlin"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/JetBrains/kotlin"]
+    },
+    "initial-release": {
+      "value": "2017",
+      "comment": "Kotlin 1.1 (March 2017) introduced JavaScript interoperability; Kotlin 1.0 was released February 2016 but JS support came later",
+      "source": ["https://en.wikipedia.org/wiki/Kotlin_(programming_language)", "https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/"]
+    },
+    "latest-release": {
+      "value": "2025-12-16",
+      "comment": "Kotlin 2.3.0 released December 16, 2025",
+      "source": ["https://github.com/jetbrains/kotlin/releases"]
+    },
+    "current-version": {
+      "value": "2.3.0",
+      "source": ["https://blog.jetbrains.com/kotlin/2025/12/kotlin-2-3-0-released/"]
+    },
+    "github-stars": {
+      "value": 52100,
+      "comment": "As of December 2025; this is for Kotlin language overall, not JS-specific",
+      "source": ["https://github.com/JetBrains/kotlin"]
+    },
+    "active-maintenance": {
+      "value": true,
+      "comment": "Actively maintained by JetBrains with regular releases; 2.3.0 released Dec 2025 with JS-specific improvements",
+      "source": ["https://kotlinlang.org/docs/releases.html"]
+    },
+    "reactivity-model": {
+      "value": ["virtual-dom", "fine-grained"],
+      "comment": "Depends on framework: KVision uses Snabbdom virtual DOM; Kobweb/Kilua use Compose-based fine-grained reactivity",
+      "source": ["https://github.com/rjaros/kvision", "https://kobweb.varabyte.com/docs"]
+    },
+    "component-model": {
+      "value": ["function", "class"],
+      "comment": "Supports both: Kotlin wrappers for React use functional components; KVision uses object-oriented class-based components",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers", "https://kvision.gitbook.io/kvision-guide/introduction"]
+    },
+    "rendering-paradigm": {
+      "value": ["declarative"],
+      "comment": "All major Kotlin/JS frameworks use declarative rendering: type-safe DSLs, React wrappers, or Compose HTML",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "state-management-approach": {
+      "value": ["built-in", "optional-external"],
+      "comment": "Frameworks like KVision and fritz2 have built-in state management; can also use React ecosystem patterns",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "opinionatedness": {
+      "value": ["flexible"],
+      "comment": "Kotlin/JS itself is flexible; you can choose between KVision (opinionated), Kobweb (Next.js-like), or React wrappers",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "backward-compatibility": {
+      "value": true,
+      "comment": "JetBrains committed to long-term backward compatibility since Kotlin 1.0; Kotlin/JS IR backend stable since 1.8",
+      "source": ["https://kotlinlang.org/docs/releases.html"]
+    },
+    "primary-language": {
+      "value": ["kotlin"],
+      "comment": "Kotlin is the primary language; compiles to JavaScript",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "compiles-to": {
+      "value": ["javascript"],
+      "comment": "Kotlin/JS compiles to JavaScript (ES5 or ES2015); Kotlin/Wasm is a separate target for WebAssembly",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "typescript-support": {
+      "value": ["n-a"],
+      "comment": "Kotlin has its own type system; can generate .d.ts TypeScript definitions for interop, but TypeScript not used directly",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "template-syntax": {
+      "value": ["dsl"],
+      "comment": "Type-safe DSLs for HTML: kotlinx.html, Compose HTML, or React wrapper DSL; no templates or JSX",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "styling-approach": {
+      "value": ["css-in-js", "external-only"],
+      "comment": "Kobweb provides type-safe CSS-in-Kotlin; styled-components available via wrappers; external CSS also works",
+      "source": ["https://kobweb.varabyte.com/docs"]
+    },
+    "build-required": {
+      "value": true,
+      "comment": "Kotlin compiler required; uses Gradle with Kotlin Multiplatform plugin",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "wasm-interop": {
+      "value": ["n-a"],
+      "comment": "Kotlin/JS compiles to JavaScript, not WebAssembly; Kotlin/Wasm is a separate compilation target",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "reactive-primitives": {
+      "value": true,
+      "comment": "fritz2 uses Kotlin Flows; KVision has observable state; Kobweb/Kilua use Compose State",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "computed-values": {
+      "value": true,
+      "comment": "Via Kotlin Flows, derivedStateOf in Compose, or computed properties in KVision",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "two-way-binding": {
+      "value": true,
+      "comment": "KVision supports two-way data binding for forms; Kobweb uses controlled components",
+      "source": ["https://kvision.gitbook.io/kvision-guide/introduction"]
+    },
+    "event-handling": {
+      "value": true,
+      "comment": "Declarative event handling via DSL: onClick, onInput, etc. in all Kotlin/JS frameworks",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "conditional-rendering": {
+      "value": true,
+      "comment": "Via Kotlin if/when expressions in DSL; type-safe conditional rendering",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "list-rendering": {
+      "value": true,
+      "comment": "Via Kotlin collections and forEach/map functions in DSL",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "component-slots": {
+      "value": true,
+      "comment": "Via lambda parameters (children content) in DSL; Compose-based frameworks use content slots",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "teleport-portal": {
+      "value": true,
+      "comment": "Available in React wrappers via createPortal; Kobweb has PopupPlacement",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "suspense": {
+      "value": true,
+      "comment": "React Suspense available via kotlin-react wrappers",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "error-boundaries": {
+      "value": true,
+      "comment": "React Error Boundaries available via kotlin-react wrappers",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "context-provide-inject": {
+      "value": true,
+      "comment": "React Context via wrappers; Compose-based frameworks have CompositionLocal",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "refs-direct-dom-access": {
+      "value": true,
+      "comment": "Direct DOM access via kotlinx.browser.document; refs available in React wrappers",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "official-router": {
+      "value": true,
+      "comment": "Kobweb has built-in file-based routing; React Router available via wrappers",
+      "source": ["https://kobweb.varabyte.com/docs/concepts/foundation/routing"]
+    },
+    "router-name": {
+      "value": "Kobweb Router / React Router wrapper",
+      "comment": "Kobweb provides built-in Next.js-style routing; React Router available via kotlin-react-router",
+      "source": ["https://kobweb.varabyte.com/docs", "https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "nested-routes": {
+      "value": true,
+      "comment": "Kobweb supports nested routes via directory structure; React Router wrapper supports nested routes",
+      "source": ["https://kobweb.varabyte.com/docs/concepts/foundation/routing"]
+    },
+    "dynamic-routes": {
+      "value": true,
+      "comment": "Kobweb supports dynamic routes with parameters via file naming conventions",
+      "source": ["https://kobweb.varabyte.com/docs/concepts/foundation/routing"]
+    },
+    "route-guards": {
+      "value": true,
+      "comment": "Can implement route guards in Kotlin code; React Router hooks available",
+      "source": ["https://kobweb.varabyte.com/docs"]
+    },
+    "lazy-loading-routes": {
+      "value": true,
+      "comment": "Webpack code splitting available; Kobweb supports deferred loading",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "scroll-restoration": {
+      "value": true,
+      "comment": "Available via browser APIs or React Router wrapper",
+      "source": ["https://kobweb.varabyte.com/docs"]
+    },
+    "built-in-state": {
+      "value": true,
+      "comment": "All Kotlin/JS frameworks provide local component state mechanisms",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "built-in-global-state": {
+      "value": true,
+      "comment": "fritz2 has built-in stores; KVision has StateFlow integration; Kobweb has built-in state",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "global-state-library": {
+      "value": "Framework-dependent (fritz2 stores, Redux wrapper)",
+      "comment": "fritz2 has built-in stores; kotlin-react-redux provides Redux integration",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html", "https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "devtools-state-inspection": {
+      "value": true,
+      "comment": "React DevTools work with kotlin-react; Redux DevTools via kotlin-react-redux",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "state-persistence": {
+      "value": false,
+      "comment": "No built-in persistence; available via localStorage APIs or community libraries",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "time-travel-debugging": {
+      "value": true,
+      "comment": "Via Redux DevTools when using kotlin-react-redux",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "official-cli": {
+      "value": true,
+      "comment": "Kobweb has its own CLI; projects typically use Gradle with Kotlin Multiplatform plugin",
+      "source": ["https://kobweb.varabyte.com/docs", "https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "hot-module-replacement": {
+      "value": true,
+      "comment": "Webpack HMR supported; Kobweb provides live-reloading; KVision supports HMR",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html", "https://github.com/rjaros/kvision"]
+    },
+    "browser-devtools": {
+      "value": true,
+      "comment": "React DevTools work with kotlin-react; standard browser devtools for debugging",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "vs-code-extension": {
+      "value": true,
+      "comment": "Kotlin extension available but IntelliJ IDEA provides the best Kotlin experience",
+      "source": ["https://kotlinlang.org"]
+    },
+    "error-messages": {
+      "value": 4,
+      "comment": "Kotlin compiler provides helpful error messages with type information; IDE integration excellent in IntelliJ",
+      "source": ["https://kotlinlang.org"]
+    },
+    "documentation-quality": {
+      "value": 4,
+      "comment": "Comprehensive Kotlin/JS docs from JetBrains; individual frameworks (Kobweb, KVision) have good documentation",
+      "source": ["https://kotlinlang.org/docs/js-overview.html", "https://kvision.gitbook.io/kvision-guide/introduction"]
+    },
+    "interactive-tutorial": {
+      "value": "https://play.kotlinlang.org/koans/overview",
+      "comment": "Kotlin Koans provide interactive learning; supports JS target",
+      "source": ["https://play.kotlinlang.org"]
+    },
+    "playground": {
+      "value": "https://play.kotlinlang.org/",
+      "comment": "Official Kotlin Playground supports JS and JS IR targets",
+      "source": ["https://play.kotlinlang.org"]
+    },
+    "bundle-size-core": {
+      "value": null,
+      "comment": "Bundle size varies significantly based on framework and DCE; Kotlin stdlib adds overhead. Reports of 1MB+ for simple apps before DCE",
+      "source": ["https://touchlab.co/measuring-kotlin-js-bundle", "https://discuss.kotlinlang.org/t/kotlin-js-react-enormous-bundle-size/21237"]
+    },
+    "bundle-size-full": {
+      "value": null,
+      "comment": "Full bundle sizes vary widely (reported 30MB+ before optimization in some cases); heavily dependent on DCE effectiveness",
+      "source": ["https://touchlab.co/measuring-kotlin-js-bundle"]
+    },
+    "virtual-dom": {
+      "value": true,
+      "comment": "KVision uses Snabbdom virtual DOM; React wrappers use React's virtual DOM",
+      "source": ["https://github.com/rjaros/kvision"]
+    },
+    "compile-time-optimization": {
+      "value": true,
+      "comment": "Kotlin compiler performs optimizations; IR backend enables better dead code elimination",
+      "source": ["https://kotlinlang.org/docs/js-ir-compiler.html"]
+    },
+    "tree-shaking": {
+      "value": true,
+      "comment": "Webpack tree shaking + Kotlin DCE (dead code elimination); IR backend improves tree shaking",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "code-splitting": {
+      "value": true,
+      "comment": "Webpack code splitting available in Kotlin/JS projects",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "lazy-components": {
+      "value": true,
+      "comment": "React.lazy available via kotlin-react; dynamic imports supported",
+      "source": ["https://github.com/JetBrains/kotlin-wrappers"]
+    },
+    "ssr-capable": {
+      "value": true,
+      "comment": "Kilua supports true SSR; Kobweb supports static site export; Node.js server rendering possible",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html", "https://kobweb.varabyte.com/docs"]
+    },
+    "streaming-ssr": {
+      "value": false,
+      "comment": "Limited streaming SSR support in Kotlin/JS frameworks",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "partial-hydration": {
+      "value": false,
+      "comment": "No islands architecture in current Kotlin/JS frameworks",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "js-framework-benchmark": {
+      "value": null,
+      "comment": "Kotlin/JS not included in js-framework-benchmark main results",
+      "source": ["https://github.com/krausest/js-framework-benchmark"]
+    },
+    "npm-weekly-downloads": {
+      "value": null,
+      "comment": "Kotlin/JS distributed via Gradle/Maven, not npm; kotlin npm package exists but not primary distribution",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "component-libraries": {
+      "value": 5,
+      "comment": "KVision components, Kobweb Silk, React wrappers (Material UI, Bootstrap, etc.), Kilua components",
+      "source": ["https://kotlinlang.org/docs/js-frameworks.html"]
+    },
+    "meta-framework": {
+      "value": "Kobweb",
+      "comment": "Kobweb is Next.js-inspired with file-based routing, SSG export, and built-in features",
+      "source": ["https://kobweb.varabyte.com/docs"]
+    },
+    "major-companies-using": {
+      "value": "JetBrains, companies using Kotlin Multiplatform",
+      "comment": "Kotlin/JS adoption is typically within larger Kotlin Multiplatform strategies; JetBrains uses internally",
+      "source": ["https://kotlinlang.org"]
+    },
+    "official-sponsor-backer": {
+      "value": "JetBrains",
+      "comment": "JetBrains created and maintains Kotlin; provides official kotlin-wrappers for JS ecosystem",
+      "source": ["https://kotlinlang.org"]
+    },
+    "discord-community-size": {
+      "value": null,
+      "comment": "Kotlin has Slack (kotlinlang.slack.com) and Discord communities; JS-specific channels within larger Kotlin community",
+      "source": ["https://kotlinlang.org/community/"]
+    },
+    "stack-overflow-questions": {
+      "value": 1000,
+      "comment": "Approximate count for kotlin-js tag; Kotlin overall has 80,000+ questions",
+      "source": ["https://stackoverflow.com/questions/tagged/kotlin-js"]
+    },
+    "job-market-demand": {
+      "value": 1,
+      "comment": "Niche for web; Kotlin job demand is primarily for Android/backend. Web-specific Kotlin/JS jobs are rare",
+      "source": ["https://kotlinlang.org"]
+    },
+    "official-testing-library": {
+      "value": true,
+      "comment": "kotlin-test supports JS target; integrates with Jasmine, Mocha, Jest, QUnit",
+      "source": ["https://kotlinlang.org/api/core/kotlin-test/"]
+    },
+    "testing-library-name": {
+      "value": "kotlin-test + Kotest",
+      "comment": "kotlin-test is official; Kotest provides additional testing capabilities for Kotlin/JS",
+      "source": ["https://kotlinlang.org/api/core/kotlin-test/", "https://kotest.io"]
+    },
+    "component-testing": {
+      "value": true,
+      "comment": "Component testing via kotlin-test with Karma/Mocha runners",
+      "source": ["https://kotlinlang.org/docs/js-project-setup.html"]
+    },
+    "e2e-testing-integration": {
+      "value": true,
+      "comment": "Playwright, Cypress work with Kotlin/JS output; standard browser testing",
+      "source": ["https://kotlinlang.org"]
+    },
+    "snapshot-testing": {
+      "value": true,
+      "comment": "Available via Jest integration or custom test runners",
+      "source": ["https://kotlinlang.org/api/core/kotlin-test/"]
+    },
+    "mobile-framework": {
+      "value": "Kotlin Multiplatform / Compose Multiplatform",
+      "comment": "Share code with native mobile via Kotlin Multiplatform; Compose Multiplatform for UI",
+      "source": ["https://kotlinlang.org/docs/multiplatform.html"]
+    },
+    "pwa-support": {
+      "value": false,
+      "comment": "No built-in PWA tooling; can be added manually via service workers and manifest",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "desktop-framework": {
+      "value": "Compose Multiplatform / Electron",
+      "comment": "Compose Multiplatform supports desktop; Kotlin/JS can run in Electron",
+      "source": ["https://www.jetbrains.com/lp/compose-multiplatform/"]
+    },
+    "learning-curve": {
+      "value": 2,
+      "comment": "Requires learning Kotlin language, Gradle build system, and chosen framework (KVision, Kobweb, etc.)",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "concepts-to-learn": {
+      "value": 10,
+      "comment": "Kotlin basics, null safety, coroutines, Gradle, Kotlin Multiplatform, JS interop, chosen framework patterns",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "time-to-hello-world": {
+      "value": 900000,
+      "comment": "~15 minutes with Kobweb CLI; longer with manual Gradle setup; requires JDK and Gradle",
+      "source": ["https://kobweb.varabyte.com/docs"]
+    },
+    "migration-path": {
+      "value": false,
+      "comment": "No migration tools from JavaScript frameworks; requires rewrite in Kotlin",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    },
+    "incremental-adoption": {
+      "value": true,
+      "comment": "Kotlin/JS can be embedded in existing pages; can call JS from Kotlin and vice versa",
+      "source": ["https://kotlinlang.org/docs/js-overview.html"]
+    }
+  }
+}
