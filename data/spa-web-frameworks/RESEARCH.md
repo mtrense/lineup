@@ -290,7 +290,7 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Kotlin/JS** - Kotlin compiling to JavaScript
 - [x] **Dart (Flutter Web)** - Flutter's web target using Dart
 - [x] **Scala.js** - Scala compiling to JavaScript
-- [ ] **ClojureScript** - Clojure for the browser (often with Reagent/Re-frame)
+- [x] **ClojureScript** - Clojure for the browser (often with Reagent/Re-frame)
 
 ### Tier 3 (Nice to Have)
 Emerging, specialized, or declining options:

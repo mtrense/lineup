@@ -1,0 +1,442 @@
+{
+  "name": "ClojureScript",
+  "description": "A compiler for Clojure that targets JavaScript, featuring immutable data structures and a powerful macro system",
+  "icon": "https://clojurescript.org/images/cljs-logo-120b.png",
+  "url": "https://clojurescript.org",
+  "values": {
+    "name": {
+      "value": "ClojureScript"
+    },
+    "description": {
+      "value": "A compiler for Clojure that targets JavaScript, featuring immutable data structures and a powerful macro system",
+      "source": ["https://clojurescript.org"]
+    },
+    "website": {
+      "value": "https://clojurescript.org",
+      "source": ["https://clojurescript.org"]
+    },
+    "repository": {
+      "value": "https://github.com/clojure/clojurescript",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "license": {
+      "value": "EPL-1.0",
+      "comment": "Eclipse Public License 1.0",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "initial-release": {
+      "value": "2011",
+      "comment": "ClojureScript was released in July 2011",
+      "source": ["https://github.com/clojure/clojurescript", "https://en.wikipedia.org/wiki/ClojureScript"]
+    },
+    "latest-release": {
+      "value": "2025-12-09",
+      "comment": "Version 1.12.134 released December 9, 2025",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "current-version": {
+      "value": "1.12.134",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "github-stars": {
+      "value": 9400,
+      "comment": "As of December 2025",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "active-maintenance": {
+      "value": true,
+      "comment": "Actively maintained with recent releases; developed by Cognitect/Nubank",
+      "source": ["https://github.com/clojure/clojurescript"]
+    },
+    "reactivity-model": {
+      "value": ["virtual-dom"],
+      "comment": "When used with Reagent/Re-frame, leverages React's virtual DOM; persistent data structures enable efficient change detection",
+      "source": ["https://reagent-project.github.io", "https://day8.github.io/re-frame/re-frame/"]
+    },
+    "component-model": {
+      "value": ["function"],
+      "comment": "Components are pure Clojure functions returning Hiccup-style data structures; Reagent wraps these for React",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "rendering-paradigm": {
+      "value": ["declarative"],
+      "comment": "Declarative UI via Hiccup syntax; views are pure functions of state",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "state-management-approach": {
+      "value": ["built-in"],
+      "comment": "Re-frame provides comprehensive built-in state management with unidirectional data flow",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "opinionatedness": {
+      "value": ["balanced"],
+      "comment": "ClojureScript is flexible; Re-frame provides opinionated structure but Reagent alone is more flexible",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "backward-compatibility": {
+      "value": true,
+      "comment": "Strong commitment to backward compatibility in both ClojureScript and the Clojure ecosystem",
+      "source": ["https://clojurescript.org"]
+    },
+    "primary-language": {
+      "value": ["clojure"],
+      "comment": "ClojureScript is a dialect of Clojure, a Lisp language",
+      "source": ["https://clojurescript.org"]
+    },
+    "compiles-to": {
+      "value": ["javascript"],
+      "comment": "Compiles to JavaScript compatible with Google Closure compiler's advanced optimization",
+      "source": ["https://clojurescript.org"]
+    },
+    "typescript-support": {
+      "value": ["n-a"],
+      "comment": "ClojureScript has its own type system via clojure.spec; TypeScript not applicable",
+      "source": ["https://clojurescript.org"]
+    },
+    "template-syntax": {
+      "value": ["dsl"],
+      "comment": "Hiccup-style syntax: nested vectors representing HTML [:div {:class \"foo\"} \"content\"]",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "styling-approach": {
+      "value": ["external-only", "inline-styles"],
+      "comment": "External CSS or inline styles via Hiccup attributes; libraries like garden available for CSS-in-CLJS",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "build-required": {
+      "value": true,
+      "comment": "Requires ClojureScript compiler; typically via shadow-cljs or figwheel for development",
+      "source": ["https://clojurescript.org"]
+    },
+    "wasm-interop": {
+      "value": ["n-a"],
+      "comment": "Compiles to JavaScript, not WebAssembly",
+      "source": ["https://clojurescript.org"]
+    },
+    "reactive-primitives": {
+      "value": true,
+      "comment": "Reagent provides r/atom (reactive atoms) that trigger re-renders on change",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "computed-values": {
+      "value": true,
+      "comment": "Re-frame subscriptions provide computed/derived values with caching; Reagent reactions also available",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "two-way-binding": {
+      "value": false,
+      "comment": "Unidirectional data flow; form inputs use explicit on-change handlers",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "event-handling": {
+      "value": true,
+      "comment": "Events via Hiccup attributes [:button {:on-click handler} \"Click\"]",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "conditional-rendering": {
+      "value": true,
+      "comment": "Via Clojure's when, if, and cond expressions in view functions",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "list-rendering": {
+      "value": true,
+      "comment": "Via map, for, and other Clojure sequence functions to generate elements",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "component-slots": {
+      "value": true,
+      "comment": "Functions accept child elements as arguments; standard Clojure function composition",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "teleport-portal": {
+      "value": true,
+      "comment": "Available via React portals through Reagent's React interop",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "suspense": {
+      "value": true,
+      "comment": "Available via React Suspense through Reagent's React 18 support",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "error-boundaries": {
+      "value": true,
+      "comment": "Available via React error boundaries; Reagent components can implement getDerivedStateFromError",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "context-provide-inject": {
+      "value": true,
+      "comment": "React Context available through Reagent; Re-frame provides global state as alternative",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "refs-direct-dom-access": {
+      "value": true,
+      "comment": "Via React refs through Reagent; also direct JS interop available",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "official-router": {
+      "value": false,
+      "comment": "No official router; community libraries like reitit and bidi are widely used",
+      "source": ["https://clojurescript.org"]
+    },
+    "router-name": {
+      "value": "reitit / bidi / secretary",
+      "comment": "reitit is the most popular modern choice; secretary is older but still used",
+      "source": ["https://github.com/metosin/reitit"]
+    },
+    "nested-routes": {
+      "value": true,
+      "comment": "Supported by reitit and other routing libraries",
+      "source": ["https://github.com/metosin/reitit"]
+    },
+    "dynamic-routes": {
+      "value": true,
+      "comment": "Path parameters supported by all major ClojureScript routers",
+      "source": ["https://github.com/metosin/reitit"]
+    },
+    "route-guards": {
+      "value": true,
+      "comment": "Implemented via Re-frame effects/coeffects or router middleware",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "lazy-loading-routes": {
+      "value": true,
+      "comment": "Shadow-cljs supports code splitting and dynamic imports",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html"]
+    },
+    "scroll-restoration": {
+      "value": false,
+      "comment": "Not built-in; can be implemented via Re-frame effects",
+      "source": ["https://clojurescript.org"]
+    },
+    "built-in-state": {
+      "value": true,
+      "comment": "Reagent atoms provide reactive local state; ClojureScript has atoms for mutable state",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "built-in-global-state": {
+      "value": true,
+      "comment": "Re-frame provides app-db, a single global state atom with subscriptions",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "global-state-library": {
+      "value": "Re-frame",
+      "comment": "Re-frame is the de facto standard for ClojureScript SPAs; built on Reagent",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "devtools-state-inspection": {
+      "value": true,
+      "comment": "Re-frame-10x provides in-browser state inspection; cljs-devtools enhances console output",
+      "source": ["https://github.com/day8/re-frame-10x", "https://github.com/binaryage/cljs-devtools"]
+    },
+    "state-persistence": {
+      "value": false,
+      "comment": "No built-in persistence; available via libraries like re-frame-storage-fx",
+      "source": ["https://day8.github.io/re-frame/re-frame/"]
+    },
+    "time-travel-debugging": {
+      "value": true,
+      "comment": "Re-frame-10x provides time-travel debugging for events and state",
+      "source": ["https://github.com/day8/re-frame-10x"]
+    },
+    "official-cli": {
+      "value": false,
+      "comment": "No official CLI; shadow-cljs and figwheel are the primary build tools",
+      "source": ["https://clojurescript.org"]
+    },
+    "hot-module-replacement": {
+      "value": true,
+      "comment": "Excellent HMR via shadow-cljs or figwheel with state preservation",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html", "https://figwheel.org"]
+    },
+    "browser-devtools": {
+      "value": true,
+      "comment": "cljs-devtools enhances Chrome DevTools for ClojureScript; Dirac provides full ClojureScript DevTools",
+      "source": ["https://github.com/binaryage/cljs-devtools", "https://github.com/binaryage/dirac"]
+    },
+    "vs-code-extension": {
+      "value": true,
+      "comment": "Calva provides ClojureScript development support including REPL integration",
+      "source": ["https://marketplace.visualstudio.com/items?itemName=betterthantomorrow.calva"]
+    },
+    "error-messages": {
+      "value": 3,
+      "comment": "ClojureScript errors can be cryptic; shadow-cljs improves this with better source mapping",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html"]
+    },
+    "documentation-quality": {
+      "value": 3,
+      "comment": "Official docs cover basics; Re-frame has excellent documentation. Learning resources scattered across ecosystem",
+      "source": ["https://clojurescript.org", "https://day8.github.io/re-frame/re-frame/"]
+    },
+    "interactive-tutorial": {
+      "value": null,
+      "comment": "No official interactive tutorial; various community tutorials available",
+      "source": ["https://clojurescript.org"]
+    },
+    "playground": {
+      "value": "https://clojurescript.io",
+      "comment": "Community-run online ClojureScript REPL",
+      "source": ["https://clojurescript.io"]
+    },
+    "bundle-size-core": {
+      "value": 79000,
+      "comment": "~79 KB gzipped for TodoMVC with Reagent (advanced compilation); includes cljs.core and React",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "bundle-size-full": {
+      "value": 170000,
+      "comment": "~170 KB gzipped for full Re-frame app with router and common libraries",
+      "source": ["https://github.com/thheller/shadow-cljs/issues/817"]
+    },
+    "virtual-dom": {
+      "value": true,
+      "comment": "Uses React's virtual DOM via Reagent; persistent data structures enable efficient shouldComponentUpdate",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "compile-time-optimization": {
+      "value": true,
+      "comment": "Google Closure compiler performs dead code elimination and advanced optimizations",
+      "source": ["https://clojurescript.org"]
+    },
+    "tree-shaking": {
+      "value": true,
+      "comment": "Google Closure compiler's advanced mode provides excellent tree shaking",
+      "source": ["https://clojurescript.org"]
+    },
+    "code-splitting": {
+      "value": true,
+      "comment": "Shadow-cljs supports code splitting with :modules configuration",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html"]
+    },
+    "lazy-components": {
+      "value": true,
+      "comment": "Via React.lazy through Reagent interop and shadow-cljs dynamic imports",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html"]
+    },
+    "ssr-capable": {
+      "value": true,
+      "comment": "Via Clojure backend rendering or Node.js; frameworks like kit provide SSR support",
+      "source": ["https://kit-clj.github.io"]
+    },
+    "streaming-ssr": {
+      "value": false,
+      "comment": "Not commonly used; possible with React 18 streaming via Reagent",
+      "source": ["https://clojurescript.org"]
+    },
+    "partial-hydration": {
+      "value": false,
+      "comment": "Not built-in; full hydration via React/Reagent",
+      "source": ["https://reagent-project.github.io"]
+    },
+    "js-framework-benchmark": {
+      "value": 1.69,
+      "comment": "Reagent v0.8 achieved 1.69x geometric mean slowdown vs vanilla JS in js-framework-benchmark",
+      "source": ["https://www.metosin.fi/blog/implemeting-reagent-test-case-for-js-framework-benchmark"]
+    },
+    "npm-weekly-downloads": {
+      "value": null,
+      "comment": "ClojureScript distributed via Clojars (Clojure package manager), not npm",
+      "source": ["https://clojars.org"]
+    },
+    "component-libraries": {
+      "value": 2,
+      "comment": "Re-com is the main component library; can also use React component libraries via interop",
+      "source": ["https://github.com/day8/re-com"]
+    },
+    "meta-framework": {
+      "value": "Kit / re-frame-template",
+      "comment": "Kit provides full-stack Clojure/ClojureScript; re-frame-template for SPA scaffolding",
+      "source": ["https://kit-clj.github.io"]
+    },
+    "major-companies-using": {
+      "value": "Nubank, CircleCI, Cisco, eBay, Capital One, Consumer Reports, Thomson Reuters",
+      "comment": "Nubank (600+ Clojure developers) is the largest corporate user; acquired Cognitect",
+      "source": ["https://clojurescript.org/community/companies"]
+    },
+    "official-sponsor-backer": {
+      "value": "Nubank / Cognitect",
+      "comment": "Nubank acquired Cognitect (creators of Clojure/ClojureScript) in 2020",
+      "source": ["https://building.nubank.com/nubank-acquires-cognitect/"]
+    },
+    "discord-community-size": {
+      "value": 15000,
+      "comment": "Clojurians Slack has ~15K members with active #clojurescript channel; Discord ~1.5K",
+      "source": ["https://clojurians.slack.com", "https://clojure.org/community/resources"]
+    },
+    "stack-overflow-questions": {
+      "value": 6000,
+      "comment": "Approximately 6,000+ questions tagged 'clojurescript'; community also uses ask.clojure.org",
+      "source": ["https://ask.clojure.org"]
+    },
+    "job-market-demand": {
+      "value": 1,
+      "comment": "Niche but well-paid; salary range $105K-$260K; mainly fintech, healthcare sectors",
+      "source": ["https://clojurejobboard.com", "https://www.ziprecruiter.com/Jobs/Clojurescript"]
+    },
+    "official-testing-library": {
+      "value": true,
+      "comment": "cljs.test is the official testing namespace; re-frame-test for Re-frame apps",
+      "source": ["https://clojurescript.org", "https://github.com/day8/re-frame-test"]
+    },
+    "testing-library-name": {
+      "value": "cljs.test + re-frame-test",
+      "comment": "cljs.test for unit tests; re-frame-test for testing events and subscriptions",
+      "source": ["https://github.com/day8/re-frame-test"]
+    },
+    "component-testing": {
+      "value": true,
+      "comment": "Via cljs.test and libraries like reagent-test; React Testing Library usable via interop",
+      "source": ["https://github.com/day8/re-frame-test"]
+    },
+    "e2e-testing-integration": {
+      "value": true,
+      "comment": "Works with Playwright, Cypress since output is standard JavaScript",
+      "source": ["https://clojurescript.org"]
+    },
+    "snapshot-testing": {
+      "value": true,
+      "comment": "Available via test runners; Hiccup output is naturally diffable data",
+      "source": ["https://clojurescript.org"]
+    },
+    "mobile-framework": {
+      "value": "React Native (via re-natal, Krell, shadow-cljs)",
+      "comment": "ClojureScript works with React Native through shadow-cljs or Krell; re-natal is legacy",
+      "source": ["https://cljsrn.org", "https://blog.logrocket.com/getting-started-react-native-clojurescript/"]
+    },
+    "pwa-support": {
+      "value": false,
+      "comment": "No built-in PWA tooling; community libraries like page-renderer available",
+      "source": ["https://github.com/gja/pwa-clojure"]
+    },
+    "desktop-framework": {
+      "value": null,
+      "comment": "No official desktop solution; Electron can be used with ClojureScript",
+      "source": ["https://clojurescript.org"]
+    },
+    "learning-curve": {
+      "value": 1,
+      "comment": "Requires learning Clojure (Lisp syntax, immutability, functional programming), plus Reagent/Re-frame patterns",
+      "source": ["https://clojurescript.org"]
+    },
+    "concepts-to-learn": {
+      "value": 10,
+      "comment": "Lisp syntax, S-expressions, Immutability, Atoms, Sequences, Hiccup, Reagent, Re-frame events/subs/effects, Interop, REPL workflow",
+      "source": ["https://clojurescript.org", "https://day8.github.io/re-frame/re-frame/"]
+    },
+    "time-to-hello-world": {
+      "value": 1200000,
+      "comment": "~20 minutes including JVM setup, shadow-cljs installation, and understanding Hiccup syntax",
+      "source": ["https://shadow-cljs.github.io/docs/UsersGuide.html"]
+    },
+    "migration-path": {
+      "value": false,
+      "comment": "Complete paradigm shift required; no migration tools from JS frameworks",
+      "source": ["https://clojurescript.org"]
+    },
+    "incremental-adoption": {
+      "value": true,
+      "comment": "ClojureScript/Reagent can mount to a single DOM node within existing apps",
+      "source": ["https://reagent-project.github.io"]
+    }
+  }
+}
