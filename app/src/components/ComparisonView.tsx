@@ -13,8 +13,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { ValueRenderer } from "@/components/values/ValueRenderer";
@@ -354,21 +352,6 @@ export function ComparisonView({
           ) : (
             <div className="overflow-x-auto rounded-lg border border-border">
               <Table className="w-full">
-                <TableHeader>
-                  <TableRow className="border-b border-border bg-muted/30 hover:bg-muted/30">
-                    <TableHead className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/30 font-semibold">
-                      Attribute
-                    </TableHead>
-                    {visibleCandidates.map((candidate) => (
-                      <TableHead
-                        key={candidate.name}
-                        className="text-center font-semibold"
-                      >
-                        {candidate.name}
-                      </TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
                 <TableBody>
                   {attributes.groups.map((group) => {
                     const isExpanded = expandedGroups.has(group.id);
