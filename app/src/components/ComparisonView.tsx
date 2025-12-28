@@ -390,13 +390,13 @@ export function ComparisonView({
                         {/* Section Header Row - repeats candidate names */}
                         {isExpanded && (
                           <TableRow className="border-b border-border/50 bg-muted/20">
-                            <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/20 py-1.5 text-xs font-medium text-muted-foreground">
+                            <TableCell className="sticky left-0 z-10 w-40 min-w-[160px] bg-muted/20 py-1.5 font-medium text-muted-foreground">
                               Attribute
                             </TableCell>
                             {visibleCandidates.map((candidate) => (
                               <TableCell
                                 key={candidate.name}
-                                className="py-1.5 text-center text-xs font-medium text-muted-foreground"
+                                className="py-1.5 text-center font-medium text-muted-foreground"
                               >
                                 {candidate.name}
                               </TableCell>
