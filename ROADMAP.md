@@ -247,20 +247,19 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
-## Milestone 12: Sticky Table Header
-**Status:** Not planned
+## Milestone 12: Repeated Candidate Headers in Sections
+**Status:** Ready for implementation
 
 ### Goals
-- Fix table header to remain visible when scrolling down the comparison table
+- Display candidate names at the top of each attribute group section
+- Provide visual context for which candidate is which when scrolling through long comparisons
+- Simpler alternative to sticky headers that avoids alignment issues
 
 ### Success Criteria
-- [ ] Table header (candidate names row) stays fixed/sticky when scrolling vertically
-- [ ] Candidate columns remain aligned with their headers during scroll
-- [ ] Horizontal scrolling works correctly with sticky header
-
-### Notes
-- Attempted contained scrolling and fixed header approaches - both had alignment issues
-- May require restructuring the table layout or using a different approach
+- [ ] Each attribute group shows candidate names in a header row when expanded
+- [ ] Header row styling matches the main title row (same look and feel)
+- [ ] Header row collapses/expands with its attribute group
+- [ ] Works correctly with all existing features (sorting, filtering, highlighting)
 
 ---
 
