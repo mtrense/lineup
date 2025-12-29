@@ -100,6 +100,36 @@
       "source": ["https://docs.rs/persy/latest/persy/"],
       "comment": "Single file storage"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://persy.rs/posts/tools.html", "https://lib.rs/crates/persy_expimp"],
+      "comment": "persy_expimp tool is described as for 'cold backup and data migration' - requires database to be closed"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://lib.rs/crates/persy_expimp"],
+      "comment": "No incremental backup support; only full export/import"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://docs.rs/persy/latest/persy/struct.Persy.html"],
+      "comment": "Recover struct allows selective transaction recovery after crash, but not arbitrary PITR"
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://docs.rs/persy/latest/persy/"],
+      "comment": "No compaction API documented; copy-on-write architecture may require export/import for space reclamation"
+    },
+    "repair-tools": {
+      "value": true,
+      "source": ["https://docs.rs/persy/latest/persy/struct.Persy.html"],
+      "comment": "Recover struct allows selective transaction commit/rollback during recovery; open_with_recover() for custom recovery logic"
+    },
+    "export-format": {
+      "value": "JSON, bincode",
+      "source": ["https://lib.rs/crates/persy_expimp"],
+      "comment": "persy_expimp tool supports JSON and bincode formats for export/import"
+    },
     "pure-rust": {
       "value": true,
       "source": ["https://gitlab.com/persy/persy"],
