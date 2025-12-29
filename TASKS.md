@@ -89,11 +89,11 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 4: Label Formatters for Range Values
 **Files:** `app/src/lib/range-utils.ts`
 
-- [ ] Create unified label formatter:
+- [x] Create unified label formatter:
   ```typescript
   function formatRangeLabel(value: number, valueType: ValueType): string
   ```
-- [ ] Reuse existing formatting logic from value components:
+- [x] Reuse existing formatting logic from value components:
   - Integer: locale-formatted whole number
   - Decimal: 1-2 decimal places
   - Percentage: "X%"
@@ -102,7 +102,7 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
   - Duration: "5:30" or "1.5s" format
   - Date: "Jan 15, 2024" format
   - DateTime: "Jan 15, 2024 14:30" format
-- [ ] Export formatters for use in RangeSlider labels
+- [x] Export formatters for use in RangeSlider labels
 
 **Commit:** `feat(filters): add range label formatters`
 

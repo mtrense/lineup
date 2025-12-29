@@ -94,3 +94,139 @@ export function calculateRangeBounds(
 
   return { min, max };
 }
+
+// ============================================================================
+// Label Formatters
+// ============================================================================
+
+const FILESIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"];
+
+/**
+ * Format a filesize value (in bytes) to a human-readable string.
+ */
+function formatFilesize(bytes: number): string {
+  if (bytes === 0) return "0 B";
+
+  const k = 1024;
+  const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
+  const unitIndex = Math.min(i, FILESIZE_UNITS.length - 1);
+  const value = bytes / Math.pow(k, unitIndex);
+
+  // Format with appropriate precision
+  const formatted =
+    value < 10
+      ? value.toFixed(2)
+      : value < 100
+        ? value.toFixed(1)
+        : value.toFixed(0);
+
+  return `${formatted} ${FILESIZE_UNITS[unitIndex]}`;
+}
+
+/**
+ * Format a duration value (in milliseconds) to a human-readable string.
+ */
+function formatDuration(ms: number): string {
+  if (ms < 0) return "0ms";
+
+  // Less than a second
+  if (ms < 1000) {
+    return `${Math.round(ms)}ms`;
+  }
+
+  const totalSeconds = Math.floor(ms / 1000);
+  const milliseconds = ms % 1000;
+
+  // Less than a minute
+  if (totalSeconds < 60) {
+    if (milliseconds > 0) {
+      return `${totalSeconds}.${String(Math.round(milliseconds)).padStart(3, "0").slice(0, 2)}s`;
+    }
+    return `${totalSeconds}s`;
+  }
+
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  // Less than an hour
+  if (minutes < 60) {
+    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  return `${hours}:${String(remainingMinutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+/**
+ * Format a date timestamp (in milliseconds) to a human-readable string.
+ */
+function formatDate(timestamp: number): string {
+  const date = new Date(timestamp);
+  return date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+/**
+ * Format a datetime timestamp (in milliseconds) to a human-readable string.
+ */
+function formatDateTime(timestamp: number): string {
+  const date = new Date(timestamp);
+  return date.toLocaleString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+/**
+ * Format a numeric value for display in a range slider label.
+ * The formatting depends on the value type.
+ */
+export function formatRangeLabel(value: number, valueType: ValueType): string {
+  const typeString = getValueTypeString(valueType);
+
+  switch (typeString) {
+    case "integer":
+      return Math.round(value).toLocaleString();
+
+    case "decimal":
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 2,
+      });
+
+    case "percentage":
+      // Normalize: if value is between 0 and 1, treat as decimal percentage
+      const percentage = value <= 1 ? Math.round(value * 100) : Math.round(value);
+      return `${percentage}%`;
+
+    case "rating":
+      // For rating, just show the numeric value
+      return value.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1,
+      });
+
+    case "filesize":
+      return formatFilesize(value);
+
+    case "duration":
+      return formatDuration(value);
+
+    case "date":
+      return formatDate(value);
+
+    case "datetime":
+      return formatDateTime(value);
+
+    default:
+      return String(value);
+  }
+}
