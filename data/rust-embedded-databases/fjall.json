@@ -100,6 +100,36 @@
       "source": ["https://github.com/fjall-rs/fjall"],
       "comment": "No documented size limits; LSM-tree design scales well"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall/issues/52"],
+      "comment": "No built-in hot backup yet; issue #52 tracks checkpointing feature request. Currently requires shutdown for safe backup."
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall/issues/52"],
+      "comment": "No incremental backup support; backup feature itself is still planned"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "WAL recovery is automatic on crash but no arbitrary point-in-time restore capability"
+    },
+    "online-compaction": {
+      "value": true,
+      "source": ["https://github.com/fjall-rs/fjall", "https://fjall-rs.github.io/post/fjall-2-5/"],
+      "comment": "Automatic background compaction with size-tiered, leveled, and FIFO strategies; concurrent compaction since v2.5"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://github.com/fjall-rs/fjall"],
+      "comment": "No dedicated repair tools; recommendation is to let app crash and restart for recovery from transient errors"
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/fjall/latest/fjall/"],
+      "comment": "No built-in export format; bulk loading API can help restore from external backups"
+    },
     "pure-rust": {
       "value": true,
       "source": ["https://github.com/fjall-rs/fjall"],
