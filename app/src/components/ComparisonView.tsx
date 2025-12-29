@@ -19,6 +19,7 @@ import { ValueRenderer } from "@/components/values/ValueRenderer";
 import {
   FilterDrawer,
   FilterState,
+  RangeFilter,
   emptyFilterState,
   candidatePassesFilters,
 } from "@/components/FilterPanel";
@@ -40,9 +41,11 @@ interface ComparisonViewProps {
   candidateEntries: CandidateEntry[];
   initialSelection?: string[] | null;
   initialSort?: SortState | null;
+  initialRangeFilters?: RangeFilter[] | null;
   onBack: () => void;
   onSelectionChange?: (selected: string[]) => void;
   onSortChange?: (sort: SortState | null) => void;
+  onRangeFiltersChange?: (filters: RangeFilter[]) => void;
 }
 
 export function ComparisonView({
@@ -51,9 +54,11 @@ export function ComparisonView({
   candidateEntries,
   initialSelection,
   initialSort,
+  initialRangeFilters,
   onBack,
   onSelectionChange,
   onSortChange,
+  onRangeFiltersChange,
 }: ComparisonViewProps) {
   // Track which candidates are selected for comparison
   const [selectedCandidates, setSelectedCandidates] = useState<Set<string>>(
@@ -105,8 +110,16 @@ export function ComparisonView({
     initialSort ?? null
   );
 
-  // Track filter state
-  const [filterState, setFilterState] = useState<FilterState>(emptyFilterState);
+  // Track filter state - initialize with initial range filters if provided
+  const [filterState, setFilterState] = useState<FilterState>(() => {
+    if (initialRangeFilters && initialRangeFilters.length > 0) {
+      return {
+        ...emptyFilterState,
+        ranges: initialRangeFilters,
+      };
+    }
+    return emptyFilterState;
+  });
 
   // Track which attribute rows are expanded (for showing descriptions/sources/comments)
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
@@ -135,6 +148,13 @@ export function ComparisonView({
       onSortChange(sortState);
     }
   }, [sortState, onSortChange]);
+
+  // Notify parent of range filter changes
+  useEffect(() => {
+    if (onRangeFiltersChange) {
+      onRangeFiltersChange(filterState.ranges);
+    }
+  }, [filterState.ranges, onRangeFiltersChange]);
 
   // Track which candidates pass filters
   const candidateFilterStatus = useMemo(() => {

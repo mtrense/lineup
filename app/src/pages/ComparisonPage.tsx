@@ -1,8 +1,14 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { ComparisonView, SortState } from "@/components/ComparisonView";
 import { ComparisonLoadingSkeleton } from "@/components/LoadingSkeleton";
 import { getComparisonData } from "@/lib/data";
+import {
+  parseRangeFiltersFromParams,
+  serializeRangeFiltersToParams,
+  removeRangeFiltersFromParams,
+  type RangeFilter,
+} from "@/lib/range-url";
 import type { AttributesFile, CandidateFile, CandidateEntry } from "@/types";
 
 export function ComparisonPage() {
@@ -31,6 +37,12 @@ export function ComparisonPage() {
     sortParam && (sortDirParam === "asc" || sortDirParam === "desc")
       ? { attributeId: sortParam, direction: sortDirParam }
       : null;
+
+  // Parse range filters from URL
+  const rangeFiltersFromUrl = useMemo(
+    () => parseRangeFiltersFromParams(searchParams),
+    [searchParams]
+  );
 
   const loadComparison = useCallback(async (id: string) => {
     setLoading(true);
@@ -97,6 +109,21 @@ export function ComparisonPage() {
     [setSearchParams]
   );
 
+  const handleRangeFiltersChange = useCallback(
+    (filters: RangeFilter[]) => {
+      setSearchParams((prev) => {
+        // Remove all existing range filter params
+        removeRangeFiltersFromParams(prev);
+        // Add new range filter params
+        if (filters.length > 0) {
+          serializeRangeFiltersToParams(filters, prev);
+        }
+        return prev;
+      });
+    },
+    [setSearchParams]
+  );
+
   if (loading) {
     return <ComparisonLoadingSkeleton />;
   }
@@ -132,9 +159,11 @@ export function ComparisonPage() {
       candidateEntries={comparisonData.candidateEntries}
       initialSelection={selectedFromUrl}
       initialSort={sortFromUrl}
+      initialRangeFilters={rangeFiltersFromUrl.length > 0 ? rangeFiltersFromUrl : null}
       onBack={handleBack}
       onSelectionChange={handleSelectionChange}
       onSortChange={handleSortChange}
+      onRangeFiltersChange={handleRangeFiltersChange}
     />
   );
 }

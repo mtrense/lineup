@@ -172,14 +172,14 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ---
 
 ### Increment 9: URL Persistence for Range Filters
-**Files:** `app/src/pages/ComparisonPage.tsx`, `app/src/components/FilterPanel.tsx`
+**Files:** `app/src/pages/ComparisonPage.tsx`, `app/src/components/ComparisonView.tsx`, `app/src/lib/range-url.ts`
 
-- [ ] Define URL format: `filter.{attrId}={min},{max}` or `filter.{attrId}={min},{max},null`
+- [x] Define URL format: `filter.{attrId}={min},{max}` or `filter.{attrId}={min},{max},null`
   - Example: `?filter.stars=3,5` or `?filter.size=1000,5000,null`
   - The `,null` suffix indicates includeNull=true
-- [ ] Parse range filters from URL on page load
-- [ ] Update URL when range filters change
-- [ ] Handle edge cases:
+- [x] Parse range filters from URL on page load
+- [x] Update URL when range filters change
+- [x] Handle edge cases:
   - Missing min or max (open-ended ranges): `filter.stars=,5` or `filter.stars=3,`
   - Invalid values (ignore and use defaults)
 
