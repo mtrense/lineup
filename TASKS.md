@@ -63,16 +63,16 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 3: Value Normalization Utilities
 **Files:** `app/src/lib/range-utils.ts` (new)
 
-- [ ] Create utility to extract numeric value from different attribute types:
+- [x] Create utility to extract numeric value from different attribute types:
   ```typescript
   function getNumericValue(value: AttributeValue, valueType: ValueType): number | null
   ```
-- [ ] Handle type-specific extraction:
+- [x] Handle type-specific extraction:
   - Integer/Decimal/Percentage/Rating: direct number
   - Filesize: number (bytes)
   - Duration: number (milliseconds)
   - Date/DateTime: number (Unix timestamp)
-- [ ] Create utility to calculate min/max bounds from candidates:
+- [x] Create utility to calculate min/max bounds from candidates:
   ```typescript
   function calculateRangeBounds(
     candidates: CandidateFile[],
@@ -80,7 +80,7 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
     valueType: ValueType
   ): { min: number; max: number } | null
   ```
-- [ ] Return null if no valid numeric values exist
+- [x] Return null if no valid numeric values exist
 
 **Commit:** `feat(filters): add range value normalization utilities`
 
