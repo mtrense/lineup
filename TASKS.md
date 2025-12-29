@@ -125,15 +125,15 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 6: Range Filter UI in FilterDrawer
 **Files:** `app/src/components/FilterPanel.tsx`
 
-- [ ] Update `filterableGroups` memo to include rangeable attributes
-- [ ] Create `RangeFilterControl` component for individual range filters:
+- [x] Update `filterableGroups` memo to include rangeable attributes
+- [x] Create `RangeFilterControl` component for individual range filters:
   - Attribute name label
   - RangeSlider with type-appropriate formatting
   - "Include unknown" checkbox for null handling
   - Clear button to reset to full range
-- [ ] Render range filters alongside tag and boolean filters in groups
-- [ ] Calculate bounds dynamically from current candidates
-- [ ] Handle edge case: skip rendering if all values are null or only one unique value
+- [x] Render range filters alongside tag and boolean filters in groups
+- [x] Calculate bounds dynamically from current candidates
+- [x] Handle edge case: skip rendering if all values are null or only one unique value
 
 **Commit:** `feat(filters): add range filter controls to filter dialog`
 

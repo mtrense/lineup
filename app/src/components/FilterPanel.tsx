@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { Check, Filter, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetContent,
@@ -8,7 +10,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import type { AttributesFile, CandidateFile, TagsType } from "@/types";
+import { RangeSlider } from "@/components/ui/range-slider";
+import type { AttributesFile, CandidateFile, TagsType, ValueType } from "@/types";
+import {
+  isRangeableType,
+  calculateRangeBounds,
+  formatRangeLabel,
+} from "@/lib/range-utils";
 
 export interface TagFilter {
   attributeId: string;
@@ -67,7 +75,18 @@ type BooleanFilterableAttribute = {
   name: string;
 };
 
-type FilterableAttribute = TagFilterableAttribute | BooleanFilterableAttribute;
+type RangeFilterableAttribute = {
+  type: "range";
+  id: string;
+  name: string;
+  valueType: ValueType;
+  bounds: { min: number; max: number };
+};
+
+type FilterableAttribute =
+  | TagFilterableAttribute
+  | BooleanFilterableAttribute
+  | RangeFilterableAttribute;
 
 interface FilterableGroup {
   id: string;
@@ -121,6 +140,25 @@ export function FilterDrawer({
             id: attr.id,
             name: attr.name,
           });
+        }
+        // Check for rangeable attributes
+        else if (isRangeableType(attr.valueType)) {
+          const bounds = calculateRangeBounds(
+            candidates,
+            attr.id,
+            attr.valueType
+          );
+
+          // Only add if we have valid bounds and more than one unique value
+          if (bounds !== null && bounds.min !== bounds.max) {
+            filterableAttrs.push({
+              type: "range",
+              id: attr.id,
+              name: attr.name,
+              valueType: attr.valueType,
+              bounds,
+            });
+          }
         }
       });
 
@@ -233,6 +271,83 @@ export function FilterDrawer({
     }
   };
 
+  const handleRangeChange = (
+    attributeId: string,
+    min: number,
+    max: number,
+    bounds: { min: number; max: number }
+  ) => {
+    // If range matches full bounds, remove the filter
+    if (min === bounds.min && max === bounds.max) {
+      onFilterChange({
+        ...filterState,
+        ranges: filterState.ranges.filter((f) => f.attributeId !== attributeId),
+      });
+      return;
+    }
+
+    const existing = filterState.ranges.find(
+      (f) => f.attributeId === attributeId
+    );
+
+    if (existing) {
+      onFilterChange({
+        ...filterState,
+        ranges: filterState.ranges.map((f) =>
+          f.attributeId === attributeId ? { ...f, min, max } : f
+        ),
+      });
+    } else {
+      onFilterChange({
+        ...filterState,
+        ranges: [
+          ...filterState.ranges,
+          { attributeId, min, max, includeNull: true },
+        ],
+      });
+    }
+  };
+
+  const handleRangeIncludeNullChange = (
+    attributeId: string,
+    includeNull: boolean,
+    bounds: { min: number; max: number }
+  ) => {
+    const existing = filterState.ranges.find(
+      (f) => f.attributeId === attributeId
+    );
+
+    if (existing) {
+      onFilterChange({
+        ...filterState,
+        ranges: filterState.ranges.map((f) =>
+          f.attributeId === attributeId ? { ...f, includeNull } : f
+        ),
+      });
+    } else {
+      // Create a new filter with full range but custom includeNull
+      onFilterChange({
+        ...filterState,
+        ranges: [
+          ...filterState.ranges,
+          {
+            attributeId,
+            min: bounds.min,
+            max: bounds.max,
+            includeNull,
+          },
+        ],
+      });
+    }
+  };
+
+  const clearRangeFilter = (attributeId: string) => {
+    onFilterChange({
+      ...filterState,
+      ranges: filterState.ranges.filter((f) => f.attributeId !== attributeId),
+    });
+  };
+
   const clearAllFilters = () => {
     onFilterChange(emptyFilterState);
   };
@@ -337,7 +452,7 @@ export function FilterDrawer({
                         </div>
                       </div>
                     );
-                  } else {
+                  } else if (attr.type === "boolean") {
                     // Boolean filter
                     const activeFilter = filterState.booleans.find(
                       (f) => f.attributeId === attr.id
@@ -380,6 +495,73 @@ export function FilterDrawer({
                         <span>{attr.name}</span>
                         <span className="sr-only">Current: {stateLabel}</span>
                       </button>
+                    );
+                  } else {
+                    // Range filter
+                    const activeFilter = filterState.ranges.find(
+                      (f) => f.attributeId === attr.id
+                    );
+                    const currentMin = activeFilter?.min ?? attr.bounds.min;
+                    const currentMax = activeFilter?.max ?? attr.bounds.max;
+                    const includeNull = activeFilter?.includeNull ?? true;
+                    const isModified =
+                      activeFilter !== undefined &&
+                      (currentMin !== attr.bounds.min ||
+                        currentMax !== attr.bounds.max ||
+                        !includeNull);
+
+                    return (
+                      <div key={attr.id} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-medium text-muted-foreground">
+                            {attr.name}
+                          </span>
+                          {isModified && (
+                            <button
+                              onClick={() => clearRangeFilter(attr.id)}
+                              className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                              aria-label={`Clear ${attr.name} filter`}
+                            >
+                              <X className="h-3 w-3" aria-hidden="true" />
+                            </button>
+                          )}
+                        </div>
+                        <RangeSlider
+                          min={attr.bounds.min}
+                          max={attr.bounds.max}
+                          value={[currentMin, currentMax]}
+                          onChange={(value) =>
+                            handleRangeChange(
+                              attr.id,
+                              value[0],
+                              value[1],
+                              attr.bounds
+                            )
+                          }
+                          formatLabel={(v) =>
+                            formatRangeLabel(v, attr.valueType)
+                          }
+                        />
+                        <div className="flex items-center gap-2">
+                          <Checkbox
+                            id={`${attr.id}-include-null`}
+                            checked={includeNull}
+                            onCheckedChange={(checked) =>
+                              handleRangeIncludeNullChange(
+                                attr.id,
+                                checked === true,
+                                attr.bounds
+                              )
+                            }
+                          />
+                          <Label
+                            htmlFor={`${attr.id}-include-null`}
+                            className="text-xs text-muted-foreground"
+                          >
+                            Include unknown
+                          </Label>
+                        </div>
+                      </div>
                     );
                   }
                 })}
