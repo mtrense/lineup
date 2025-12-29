@@ -65,7 +65,18 @@ Users should be able to:
 | **Memory-Mapped I/O** | boolean | Uses mmap for file access. Note: can affect behavior on network filesystems. |
 | **Max Database Size** | text | Known size limits or "unlimited". Note practical limits observed in issues/docs. |
 
-### 4. Rust Integration
+### 4. Operations
+
+| Attribute | Type | Research Notes |
+|-----------|------|----------------|
+| **Hot/Live Backup** | boolean | Can create consistent backups while database is actively being written to. `true` only if officially supported; manual file copies don't count. |
+| **Incremental Backup** | boolean | Supports backing up only changes since last backup, reducing backup size/time. |
+| **Point-in-Time Recovery** | boolean | Can restore to arbitrary point in time (not just latest backup). Requires WAL/journal retention. |
+| **Online Compaction** | boolean | Can reclaim space/defragment without taking database offline. Note if it blocks writes in comment. |
+| **Repair Tools** | boolean | Provides utilities to recover from corruption or verify database integrity. Note specific tools in comment (e.g., `sled-recover`, `sqlite3 .recover`). |
+| **Export Format** | text | Supported export formats for portability: `native-only`, `json`, `sql-dump`, `csv`, or specific format names. |
+
+### 5. Rust Integration
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
@@ -78,7 +89,7 @@ Users should be able to:
 | **no_std Compatible** | boolean | Can compile without standard library. Check Cargo.toml features. |
 | **WASM Compatible** | boolean | Works in WebAssembly (browser or WASI). Check for wasm32 target support. |
 
-### 5. Reliability & Concurrency
+### 6. Reliability & Concurrency
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
@@ -90,7 +101,7 @@ Users should be able to:
 | **Write-Ahead Log** | boolean | Uses WAL for durability. Important for crash recovery characteristics. |
 | **Maturity** | tags | `experimental` (not production ready), `beta` (usable but evolving), `stable` (production ready), `mature` (battle-tested, years of production use) |
 
-### 6. Platform Support
+### 7. Platform Support
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
@@ -101,13 +112,13 @@ Users should be able to:
 | **Android** | boolean | Can be built for Android targets |
 | **Embedded/no_std** | boolean | Usable on embedded systems without OS |
 
-### 7. Use Cases
+### 8. Use Cases
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Use Cases** | tags | Select all that apply: `config-storage`, `application-state`, `caching`, `time-series`, `session-storage`, `document-store`, `full-text-search`, `analytics`, `iot-edge`, `mobile-app`, `desktop-app`, `cli-tool`, `web-backend` |
 
-### 8. Community & Maintenance
+### 9. Community & Maintenance
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
@@ -164,6 +175,14 @@ Users should be able to:
 - **3**: Adequate API documentation, basic examples
 - **2**: Minimal documentation, few examples
 - **1**: Missing or severely outdated documentation
+
+### Operations Assessment
+- **Hot/Live Backup**: Must be explicitly documented or have dedicated API. Copying files while database is open only counts if database guarantees consistency during such copies (e.g., SQLite in WAL mode with checkpoint).
+- **Incremental Backup**: Only `true` if database tracks changes for backup purposes. Application-level diffing doesn't count.
+- **Point-in-Time Recovery**: Requires both WAL retention AND documented recovery procedure.
+- **Online Compaction**: For LSM databases, check if compaction is automatic. For B-tree databases, check for VACUUM or equivalent. Note write pauses in comment.
+- **Repair Tools**: Look for dedicated CLI tools, recovery functions, or integrity check APIs.
+- **Export Format**: `native-only` if no portable export exists. Note if export requires custom code.
 
 ### When to Use `null`
 - Platform support unknown and cannot be determined from CI/docs
