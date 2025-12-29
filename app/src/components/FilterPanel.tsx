@@ -20,20 +20,30 @@ export interface BooleanFilter {
   value: boolean;
 }
 
+export interface RangeFilter {
+  attributeId: string;
+  min: number | null; // null = no lower bound
+  max: number | null; // null = no upper bound
+  includeNull: boolean; // whether to include candidates with null values
+}
+
 export interface FilterState {
   tags: TagFilter[];
   booleans: BooleanFilter[];
+  ranges: RangeFilter[];
 }
 
 export const emptyFilterState: FilterState = {
   tags: [],
   booleans: [],
+  ranges: [],
 };
 
 export function getActiveFilterCount(filterState: FilterState): number {
   return (
     filterState.tags.reduce((sum, f) => sum + f.tagIds.size, 0) +
-    filterState.booleans.length
+    filterState.booleans.length +
+    filterState.ranges.length
   );
 }
 
@@ -228,7 +238,9 @@ export function FilterDrawer({
   };
 
   const hasActiveFilters =
-    filterState.tags.length > 0 || filterState.booleans.length > 0;
+    filterState.tags.length > 0 ||
+    filterState.booleans.length > 0 ||
+    filterState.ranges.length > 0;
 
   const activeFilterCount = getActiveFilterCount(filterState);
 
@@ -381,6 +393,55 @@ export function FilterDrawer({
 }
 
 /**
+ * Extract numeric value from an attribute value for range filtering.
+ * Returns null if the value cannot be converted to a number.
+ */
+function getNumericValueForRange(value: unknown): number | null {
+  if (value === null || value === undefined) {
+    return null;
+  }
+  if (typeof value === "number") {
+    return value;
+  }
+  // Handle date/datetime strings (ISO 8601 format)
+  if (typeof value === "string") {
+    const timestamp = Date.parse(value);
+    if (!isNaN(timestamp)) {
+      return timestamp;
+    }
+  }
+  return null;
+}
+
+/**
+ * Check if a candidate passes a single range filter.
+ */
+function candidatePassesRangeFilter(
+  candidate: CandidateFile,
+  rangeFilter: RangeFilter
+): boolean {
+  const candidateValue = candidate.values[rangeFilter.attributeId]?.value;
+  const numericValue = getNumericValueForRange(candidateValue);
+
+  // Handle null values
+  if (numericValue === null) {
+    return rangeFilter.includeNull;
+  }
+
+  // Check lower bound
+  if (rangeFilter.min !== null && numericValue < rangeFilter.min) {
+    return false;
+  }
+
+  // Check upper bound
+  if (rangeFilter.max !== null && numericValue > rangeFilter.max) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Check if a candidate passes all active filters.
  */
 export function candidatePassesFilters(
@@ -406,6 +467,13 @@ export function candidatePassesFilters(
   for (const boolFilter of filterState.booleans) {
     const candidateValue = candidate.values[boolFilter.attributeId]?.value;
     if (candidateValue !== boolFilter.value) {
+      return false;
+    }
+  }
+
+  // Check range filters
+  for (const rangeFilter of filterState.ranges) {
+    if (!candidatePassesRangeFilter(candidate, rangeFilter)) {
       return false;
     }
   }
