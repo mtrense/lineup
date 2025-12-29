@@ -44,23 +44,42 @@ interface FilterDrawerProps {
   onFilterChange: (state: FilterState) => void;
 }
 
+type TagFilterableAttribute = {
+  type: "tags";
+  id: string;
+  name: string;
+  tags: { id: string; value: string; color?: string }[];
+};
+
+type BooleanFilterableAttribute = {
+  type: "boolean";
+  id: string;
+  name: string;
+};
+
+type FilterableAttribute = TagFilterableAttribute | BooleanFilterableAttribute;
+
+interface FilterableGroup {
+  id: string;
+  name: string;
+  attributes: FilterableAttribute[];
+}
+
 export function FilterDrawer({
   attributes,
   candidates,
   filterState,
   onFilterChange,
 }: FilterDrawerProps) {
-  // Find all tag-type attributes with their available tags
-  const tagAttributes = useMemo(() => {
-    const result: {
-      id: string;
-      name: string;
-      tags: { id: string; value: string; color?: string }[];
-      usedTagIds: Set<string>;
-    }[] = [];
+  // Build filterable groups preserving the original group structure and attribute order
+  const filterableGroups = useMemo(() => {
+    const result: FilterableGroup[] = [];
 
     attributes.groups.forEach((group) => {
+      const filterableAttrs: FilterableAttribute[] = [];
+
       group.attributes.forEach((attr) => {
+        // Check for tag-type attributes
         if (
           typeof attr.valueType === "object" &&
           attr.valueType.type === "tags"
@@ -77,34 +96,41 @@ export function FilterDrawer({
           });
 
           if (usedTagIds.size > 0) {
-            result.push({
+            filterableAttrs.push({
+              type: "tags",
               id: attr.id,
               name: attr.name,
               tags: tagsType.tags.filter((t) => usedTagIds.has(t.id)),
-              usedTagIds,
             });
           }
         }
+        // Check for boolean attributes
+        else if (attr.valueType === "boolean") {
+          filterableAttrs.push({
+            type: "boolean",
+            id: attr.id,
+            name: attr.name,
+          });
+        }
       });
+
+      // Only include groups that have filterable attributes
+      if (filterableAttrs.length > 0) {
+        result.push({
+          id: group.id,
+          name: group.name,
+          attributes: filterableAttrs,
+        });
+      }
     });
 
     return result;
   }, [attributes, candidates]);
 
-  // Find all boolean attributes
-  const booleanAttributes = useMemo(() => {
-    const result: { id: string; name: string }[] = [];
-
-    attributes.groups.forEach((group) => {
-      group.attributes.forEach((attr) => {
-        if (attr.valueType === "boolean") {
-          result.push({ id: attr.id, name: attr.name });
-        }
-      });
-    });
-
-    return result;
-  }, [attributes]);
+  // Check if there are any filterable attributes
+  const hasFilterableAttributes = filterableGroups.some(
+    (g) => g.attributes.length > 0
+  );
 
   const toggleTag = (attributeId: string, tagId: string) => {
     const existingFilter = filterState.tags.find(
@@ -207,7 +233,7 @@ export function FilterDrawer({
   const activeFilterCount = getActiveFilterCount(filterState);
 
   // Don't render if no filterable attributes
-  if (tagAttributes.length === 0 && booleanAttributes.length === 0) {
+  if (!hasFilterableAttributes) {
     return null;
   }
 
@@ -242,92 +268,112 @@ export function FilterDrawer({
           </SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-4 px-4 pb-4">
-          {/* Tag Filters - Compact pill groups with clear button */}
-          {tagAttributes.map((attr) => {
-            const activeFilter = filterState.tags.find(
-              (f) => f.attributeId === attr.id
-            );
-            const hasSelection = activeFilter && activeFilter.tagIds.size > 0;
+        <div className="space-y-6 px-4 pb-4">
+          {filterableGroups.map((group, groupIndex) => (
+            <div key={group.id}>
+              {/* Group divider (except for first group) */}
+              {groupIndex > 0 && <div className="mb-4 border-t border-border" />}
 
-            return (
-              <div key={attr.id}>
-                <div className="mb-1.5 text-xs font-medium text-muted-foreground">
-                  {attr.name}
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {attr.tags.map((tag) => {
-                    const isSelected = activeFilter?.tagIds.has(tag.id);
+              {/* Group header */}
+              <div className="mb-3 text-sm font-semibold text-foreground">
+                {group.name}
+              </div>
+
+              {/* Filters within this group */}
+              <div className="space-y-3">
+                {group.attributes.map((attr) => {
+                  if (attr.type === "tags") {
+                    // Tag filter
+                    const activeFilter = filterState.tags.find(
+                      (f) => f.attributeId === attr.id
+                    );
+                    const hasSelection =
+                      activeFilter && activeFilter.tagIds.size > 0;
+
+                    return (
+                      <div key={attr.id}>
+                        <div className="mb-1.5 text-xs font-medium text-muted-foreground">
+                          {attr.name}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {attr.tags.map((tag) => {
+                            const isSelected = activeFilter?.tagIds.has(tag.id);
+                            return (
+                              <button
+                                key={tag.id}
+                                onClick={() => toggleTag(attr.id, tag.id)}
+                                className={`rounded-full px-2.5 py-0.5 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                                  isSelected
+                                    ? "bg-primary text-primary-foreground"
+                                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                                }`}
+                                aria-pressed={isSelected}
+                              >
+                                {tag.value}
+                              </button>
+                            );
+                          })}
+                          {hasSelection && (
+                            <button
+                              onClick={() => clearTagFilter(attr.id)}
+                              className="ml-1 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                              aria-label={`Clear ${attr.name} filter`}
+                            >
+                              <X className="h-3.5 w-3.5" aria-hidden="true" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  } else {
+                    // Boolean filter
+                    const activeFilter = filterState.booleans.find(
+                      (f) => f.attributeId === attr.id
+                    );
+                    const currentValue = activeFilter?.value ?? null;
+
+                    // Determine styling and icon based on current state
+                    let stateClass: string;
+                    let StateIcon: typeof Check;
+                    let stateLabel: string;
+
+                    if (currentValue === true) {
+                      stateClass =
+                        "bg-green-500/20 text-green-700 dark:text-green-400 hover:bg-green-500/30";
+                      StateIcon = Check;
+                      stateLabel = "Yes";
+                    } else if (currentValue === false) {
+                      stateClass =
+                        "bg-red-500/20 text-red-700 dark:text-red-400 hover:bg-red-500/30";
+                      StateIcon = X;
+                      stateLabel = "No";
+                    } else {
+                      stateClass =
+                        "bg-muted text-muted-foreground hover:bg-muted/80";
+                      StateIcon = Minus;
+                      stateLabel = "Any";
+                    }
+
                     return (
                       <button
-                        key={tag.id}
-                        onClick={() => toggleTag(attr.id, tag.id)}
-                        className={`rounded-full px-2.5 py-0.5 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                          isSelected
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
-                        }`}
-                        aria-pressed={isSelected}
+                        key={attr.id}
+                        onClick={() => cycleBooleanFilter(attr.id)}
+                        className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${stateClass}`}
+                        aria-label={`${attr.name}: ${stateLabel}. Click to cycle filter.`}
                       >
-                        {tag.value}
+                        <StateIcon
+                          className="h-4 w-4 shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span>{attr.name}</span>
+                        <span className="sr-only">Current: {stateLabel}</span>
                       </button>
                     );
-                  })}
-                  {hasSelection && (
-                    <button
-                      onClick={() => clearTagFilter(attr.id)}
-                      className="ml-1 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      aria-label={`Clear ${attr.name} filter`}
-                    >
-                      <X className="h-3.5 w-3.5" aria-hidden="true" />
-                    </button>
-                  )}
-                </div>
+                  }
+                })}
               </div>
-            );
-          })}
-
-          {/* Boolean Filters - Compact tri-state buttons */}
-          {booleanAttributes.map((attr) => {
-            const activeFilter = filterState.booleans.find(
-              (f) => f.attributeId === attr.id
-            );
-            const currentValue = activeFilter?.value ?? null;
-
-            // Determine styling and icon based on current state
-            let stateClass: string;
-            let StateIcon: typeof Check;
-            let stateLabel: string;
-
-            if (currentValue === true) {
-              stateClass =
-                "bg-green-500/20 text-green-700 dark:text-green-400 hover:bg-green-500/30";
-              StateIcon = Check;
-              stateLabel = "Yes";
-            } else if (currentValue === false) {
-              stateClass =
-                "bg-red-500/20 text-red-700 dark:text-red-400 hover:bg-red-500/30";
-              StateIcon = X;
-              stateLabel = "No";
-            } else {
-              stateClass = "bg-muted text-muted-foreground hover:bg-muted/80";
-              StateIcon = Minus;
-              stateLabel = "Any";
-            }
-
-            return (
-              <button
-                key={attr.id}
-                onClick={() => cycleBooleanFilter(attr.id)}
-                className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${stateClass}`}
-                aria-label={`${attr.name}: ${stateLabel}. Click to cycle filter.`}
-              >
-                <StateIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{attr.name}</span>
-                <span className="sr-only">Current: {stateLabel}</span>
-              </button>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </SheetContent>
     </Sheet>
