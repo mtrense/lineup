@@ -39,8 +39,8 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 2: Create Range Slider Component
 **Files:** `app/src/components/ui/range-slider.tsx` (new)
 
-- [ ] Install/verify shadcn Slider component is available
-- [ ] Create `RangeSlider` component with dual handles:
+- [x] Install/verify shadcn Slider component is available
+- [x] Create `RangeSlider` component with dual handles:
   ```typescript
   interface RangeSliderProps {
     min: number;
@@ -52,9 +52,9 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
     disabled?: boolean;
   }
   ```
-- [ ] Display current min/max values above the slider
-- [ ] Style to match existing UI (consistent with shadcn theme)
-- [ ] Ensure keyboard accessibility (arrow keys to adjust)
+- [x] Display current min/max values above the slider
+- [x] Style to match existing UI (consistent with shadcn theme)
+- [x] Ensure keyboard accessibility (arrow keys to adjust)
 
 **Commit:** `feat(ui): add RangeSlider component`
 
