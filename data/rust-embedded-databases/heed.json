@@ -100,6 +100,36 @@
       "source": ["http://www.lmdb.tech/doc/"],
       "comment": "Practical limit on 64-bit systems with 48-bit address space"
     },
+    "hot-backup": {
+      "value": true,
+      "source": ["https://docs.rs/heed/latest/heed/struct.Env.html", "https://github.com/LMDB/lmdb/blob/mdb.master/libraries/liblmdb/lmdb.h"],
+      "comment": "Env::copy_to_path() wraps mdb_env_copy2; runs with read transaction allowing concurrent writes"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://github.com/LMDB/lmdb/blob/mdb.master/libraries/liblmdb/lmdb.h"],
+      "comment": "LMDB only supports full environment copies; no change tracking for incremental backups"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["http://www.lmdb.tech/doc/"],
+      "comment": "No WAL or journal retention; copy-on-write design only provides crash recovery to last commit"
+    },
+    "online-compaction": {
+      "value": true,
+      "source": ["https://docs.rs/heed/latest/heed/struct.Env.html", "https://manpages.debian.org/testing/lmdb-doc/mdb_copy.3.en.html"],
+      "comment": "CompactionOption::Enabled with copy_to_path(); creates compacted copy while DB is active, but requires copying to new file"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://github.com/LMDB/lmdb/blob/mdb.master/libraries/liblmdb/mdb_stat.1"],
+      "comment": "mdb_stat -v can access previous state if latest corrupted; Env::clear_stale_readers() cleans lock table; no dedicated repair tool"
+    },
+    "export-format": {
+      "value": "native-only (mdb_dump flat-text)",
+      "source": ["https://www.mankier.com/1/mdb_dump"],
+      "comment": "LMDB's mdb_dump produces portable flat-text format for mdb_load; no JSON/CSV export built-in"
+    },
     "pure-rust": {
       "value": false,
       "source": ["https://github.com/meilisearch/heed"],
