@@ -190,17 +190,17 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 10: Integration Testing and Edge Cases
 **Files:** Various
 
-- [ ] Test with comparison data that has:
+- [x] Test with comparison data that has:
   - All null values for an attribute (should hide filter)
   - Single unique value (should hide or disable filter)
   - Mixed null and numeric values
   - Very large ranges (filesize: bytes to TB)
   - Very small ranges (ratings: 1-5)
-- [ ] Verify filtering works correctly with:
+- [x] Verify filtering works correctly with:
   - Multiple range filters active
   - Range + tag + boolean filters combined
   - Candidates sorted while filtered
-- [ ] Test URL persistence:
+- [x] Test URL persistence:
   - Page reload preserves filters
   - Share URL applies filters correctly
   - Invalid URL params handled gracefully
