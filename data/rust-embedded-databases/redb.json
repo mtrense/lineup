@@ -236,6 +236,36 @@
       "value": ["small-team"],
       "source": ["https://github.com/cberner/redb/graphs/contributors"],
       "comment": "Christopher Berner is primary author with 30 contributors"
+    },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://github.com/cberner/redb/issues/634"],
+      "comment": "Cannot safely copy database file during writes. Must use begin_read() and manually iterate/export data within a transaction for consistent backup."
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/"],
+      "comment": "No incremental backup or change tracking support. No WAL to track changes."
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://github.com/cberner/redb/blob/master/docs/design.md"],
+      "comment": "Savepoints exist but are for transaction rollback only, not arbitrary point-in-time recovery. No WAL retention for PITR."
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://docs.rs/redb/latest/redb/struct.Database.html#method.compact"],
+      "comment": "compact() requires exclusive access (no active transactions). Returns TransactionInProgress error if any readers exist."
+    },
+    "repair-tools": {
+      "value": true,
+      "source": ["https://docs.rs/redb/latest/redb/struct.Database.html#method.check_integrity", "https://docs.rs/redb/latest/redb/struct.RepairSession.html"],
+      "comment": "check_integrity() verifies and repairs database. RepairSession provides progress tracking. Returns Ok(true) if valid, Ok(false) if repaired."
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://github.com/cberner/redb/issues/411"],
+      "comment": "No built-in export. Issue #411 requested dump/restore but was declined. Users must manually iterate tables via iter()/range()."
     }
   }
 }
