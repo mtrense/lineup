@@ -100,6 +100,36 @@
       "source": ["https://github.com/vincent-herlemont/native_db"],
       "comment": "Inherits redb's 4TB limit"
     },
+    "hot-backup": {
+      "value": true,
+      "source": ["https://docs.rs/native_db/latest/native_db/struct.Database.html"],
+      "comment": "snapshot() creates a consistent snapshot to a specified path while database is open"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://docs.rs/native_db"],
+      "comment": "No incremental backup support; only full snapshots"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://docs.rs/native_db"],
+      "comment": "No WAL-based point-in-time recovery"
+    },
+    "online-compaction": {
+      "value": true,
+      "source": ["https://docs.rs/native_db/latest/native_db/struct.Database.html"],
+      "comment": "compact() reduces file size by removing unused space; similar to redb's compact"
+    },
+    "repair-tools": {
+      "value": true,
+      "source": ["https://docs.rs/native_db/latest/native_db/struct.Database.html"],
+      "comment": "check_integrity() verifies database structure; similar to redb's check_integrity"
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/native_db"],
+      "comment": "Snapshot produces native format; no portable export (JSON, CSV, etc.)"
+    },
     "pure-rust": {
       "value": true,
       "source": ["https://github.com/vincent-herlemont/native_db"],
