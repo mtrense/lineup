@@ -102,6 +102,36 @@
       "source": ["https://duckdb.org/"],
       "comment": "Designed to handle larger-than-memory datasets"
     },
+    "hot-backup": {
+      "value": true,
+      "source": ["https://ducklake.select/docs/stable/duckdb/guides/backups_and_recovery"],
+      "comment": "Can attach database as READ_ONLY and use COPY FROM DATABASE to backup while running"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://duckdb.org/faq"],
+      "comment": "No native incremental backup; MotherDuck offers this via Differential Storage but not in core DuckDB"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://duckdb.org/faq"],
+      "comment": "Time travel and database snapshotting not yet supported in native DuckDB"
+    },
+    "online-compaction": {
+      "value": true,
+      "source": ["https://duckdb.org/docs/stable/sql/statements/checkpoint"],
+      "comment": "CHECKPOINT reclaims space from deleted rows (~25% threshold); VACUUM only rebuilds statistics, not space"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://duckdb.org/docs/stable/configuration/pragmas"],
+      "comment": "No PRAGMA integrity_check or repair tools; verification PRAGMAs are for development only"
+    },
+    "export-format": {
+      "value": "CSV, Parquet, JSON",
+      "source": ["https://duckdb.org/docs/stable/sql/statements/export.html"],
+      "comment": "EXPORT DATABASE supports CSV (default), Parquet with compression options, and JSON"
+    },
     "pure-rust": {
       "value": false,
       "source": ["https://github.com/duckdb/duckdb-rs"],
