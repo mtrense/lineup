@@ -234,6 +234,36 @@
       "value": ["solo"],
       "source": ["https://github.com/spacejam"],
       "comment": "Tyler Neely (spacejam) is the primary maintainer"
+    },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled/issues/1198", "https://docs.rs/sled/latest/sled/struct.Db.html"],
+      "comment": "No dedicated backup API. Issue #1198 requesting checkpoint/snapshot/backup system remains open since Nov 2020. export() is for version migrations only."
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled/issues/1198", "https://docs.rs/sled/latest/sled/struct.Db.html"],
+      "comment": "No incremental backup support. Issue #1198 explicitly requested this feature alongside full backups."
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled", "https://docs.rs/sled/latest/sled/struct.Db.html"],
+      "comment": "No PITR support. Uses log-structured storage with crash recovery, but no documented WAL retention or restore-to-timestamp capability."
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://github.com/spacejam/sled/issues/1333", "https://sled.rs/perf.html"],
+      "comment": "No explicit compaction API. Background GC runs only during CPU idle time. Known space amplification issues; marble rewrite planned to address this."
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://docs.rs/sled/latest/sled/struct.Db.html", "https://github.com/spacejam/sled/issues/1533"],
+      "comment": "No repair utilities. checksum() verifies integrity but cannot repair. Open corruption issues exist without dedicated repair tools."
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/sled/latest/sled/struct.Db.html#method.export"],
+      "comment": "export()/import() API for sled version migrations only. Returns raw byte collections, no JSON/CSV/SQL dump support."
     }
   }
 }
