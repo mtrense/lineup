@@ -100,6 +100,36 @@
       "source": ["https://github.com/mozilla/rkv"],
       "comment": "LMDB limited by address space; SafeMode by memory"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/backend/trait.BackendEnvironment.html"],
+      "comment": "No backup API exposed; get_files_on_disk() lists files but no copy method. LMDB's mdb_env_copy not wrapped."
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "No incremental backup support; underlying LMDB only supports full copies anyway"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "No WAL or journal retention; LMDB copy-on-write provides crash recovery only"
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://docs.rs/rkv/latest/rkv/backend/trait.BackendEnvironment.html"],
+      "comment": "No compaction API exposed; LMDB's MDB_CP_COMPACT not accessible through rkv"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://github.com/mozilla/rkv"],
+      "comment": "No repair utilities; freelist() and stat() provide diagnostics but no recovery tools"
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/rkv/latest/rkv/"],
+      "comment": "Data stored via bincode/serde but no built-in export; must iterate and serialize manually"
+    },
     "pure-rust": {
       "value": false,
       "source": ["https://github.com/mozilla/rkv"],
