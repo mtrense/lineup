@@ -111,12 +111,12 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 5: Identify Rangeable Attributes
 **Files:** `app/src/lib/range-utils.ts`
 
-- [ ] Create type guard for rangeable value types:
+- [x] Create type guard for rangeable value types:
   ```typescript
   function isRangeableType(valueType: ValueType): boolean
   ```
-- [ ] Include: integer, decimal, percentage, rating, filesize, duration, date, datetime
-- [ ] Exclude: text, boolean, tags, icon, link
+- [x] Include: integer, decimal, percentage, rating, filesize, duration, date, datetime
+- [x] Exclude: text, boolean, tags, icon, link
 
 **Commit:** `feat(filters): add rangeable type identification`
 

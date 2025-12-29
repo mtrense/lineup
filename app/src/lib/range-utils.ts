@@ -10,6 +10,30 @@ function getValueTypeString(valueType: ValueType): string {
   return valueType.type;
 }
 
+/** Set of value types that support range filtering */
+const RANGEABLE_TYPES = new Set([
+  "integer",
+  "decimal",
+  "percentage",
+  "rating",
+  "filesize",
+  "duration",
+  "date",
+  "datetime",
+]);
+
+/**
+ * Check if a value type supports range filtering.
+ * Rangeable types are numeric or temporal types that can be compared.
+ *
+ * Included: integer, decimal, percentage, rating, filesize, duration, date, datetime
+ * Excluded: text, boolean, tags, icon, link
+ */
+export function isRangeableType(valueType: ValueType): boolean {
+  const typeString = getValueTypeString(valueType);
+  return RANGEABLE_TYPES.has(typeString);
+}
+
 /**
  * Extract a numeric value from an AttributeValue based on its ValueType.
  * Returns null if the value cannot be converted to a number.
