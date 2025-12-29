@@ -103,6 +103,36 @@
       "source": ["https://surrealdb.com/docs"],
       "comment": "RocksDB and other backends support terabyte-scale databases"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://github.com/surrealdb/surrealdb/issues/1681", "https://surrealdb.com/docs/surrealdb/cli/export"],
+      "comment": "No dedicated hot backup API; uses export command which outputs SurrealQL script"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://surrealdb.com/features"],
+      "comment": "Planned for future; currently only full exports supported"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://surrealdb.com/features"],
+      "comment": "Versioned temporal tables planned but not yet available; no PITR currently"
+    },
+    "online-compaction": {
+      "value": null,
+      "source": ["https://surrealdb.com/docs"],
+      "comment": "Depends on storage backend; RocksDB handles compaction automatically"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://surrealdb.com/docs/surrealdb/cli/fix", "https://surrealdb.com/docs/surrealdb/cli/validate"],
+      "comment": "fix command is for v1.x to v2.x migration only; validate checks SurrealQL syntax, not database integrity"
+    },
+    "export-format": {
+      "value": "SurrealQL script (.surql)",
+      "source": ["https://surrealdb.com/docs/surrealdb/cli/export"],
+      "comment": "Exports as executable SurrealQL statements; includes schema, auth, and data"
+    },
     "pure-rust": {
       "value": false,
       "source": ["https://surrealdb.com/docs/surrealdb/embedding/rust"],
