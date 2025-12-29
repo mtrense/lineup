@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useCallback, useRef, useEffect } from "react";
 import { Check, Filter, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -271,75 +271,81 @@ export function FilterDrawer({
     }
   };
 
-  const handleRangeChange = (
-    attributeId: string,
-    min: number,
-    max: number,
-    bounds: { min: number; max: number }
-  ) => {
-    // If range matches full bounds, remove the filter
-    if (min === bounds.min && max === bounds.max) {
-      onFilterChange({
-        ...filterState,
-        ranges: filterState.ranges.filter((f) => f.attributeId !== attributeId),
-      });
-      return;
-    }
+  // Debounce timeout refs for each attribute
+  const debounceTimers = useRef<Map<string, NodeJS.Timeout>>(new Map());
 
-    const existing = filterState.ranges.find(
-      (f) => f.attributeId === attributeId
-    );
+  // Clean up any pending timers on unmount
+  useEffect(() => {
+    return () => {
+      debounceTimers.current.forEach((timer) => clearTimeout(timer));
+      debounceTimers.current.clear();
+    };
+  }, []);
 
-    if (existing) {
-      onFilterChange({
-        ...filterState,
-        ranges: filterState.ranges.map((f) =>
-          f.attributeId === attributeId ? { ...f, min, max } : f
-        ),
-      });
-    } else {
-      onFilterChange({
-        ...filterState,
-        ranges: [
-          ...filterState.ranges,
-          { attributeId, min, max, includeNull: true },
-        ],
-      });
-    }
-  };
+  /**
+   * Unified handler for range filter changes.
+   * Handles min/max range updates and includeNull flag.
+   * Debounces slider changes to avoid excessive re-renders.
+   */
+  const handleRangeChange = useCallback(
+    (
+      attributeId: string,
+      min: number | null,
+      max: number | null,
+      includeNull: boolean,
+      bounds?: { min: number; max: number }
+    ) => {
+      // Clear any pending debounce timer for this attribute
+      const existingTimer = debounceTimers.current.get(attributeId);
+      if (existingTimer) {
+        clearTimeout(existingTimer);
+      }
 
-  const handleRangeIncludeNullChange = (
-    attributeId: string,
-    includeNull: boolean,
-    bounds: { min: number; max: number }
-  ) => {
-    const existing = filterState.ranges.find(
-      (f) => f.attributeId === attributeId
-    );
+      // Debounce the state update
+      const timer = setTimeout(() => {
+        // If range matches full bounds and includeNull is true, remove the filter
+        if (bounds && min === bounds.min && max === bounds.max && includeNull) {
+          onFilterChange({
+            ...filterState,
+            ranges: filterState.ranges.filter(
+              (f) => f.attributeId !== attributeId
+            ),
+          });
+          return;
+        }
 
-    if (existing) {
-      onFilterChange({
-        ...filterState,
-        ranges: filterState.ranges.map((f) =>
-          f.attributeId === attributeId ? { ...f, includeNull } : f
-        ),
-      });
-    } else {
-      // Create a new filter with full range but custom includeNull
-      onFilterChange({
-        ...filterState,
-        ranges: [
-          ...filterState.ranges,
-          {
-            attributeId,
-            min: bounds.min,
-            max: bounds.max,
-            includeNull,
-          },
-        ],
-      });
-    }
-  };
+        const existing = filterState.ranges.find(
+          (f) => f.attributeId === attributeId
+        );
+
+        if (existing) {
+          // Update existing filter
+          onFilterChange({
+            ...filterState,
+            ranges: filterState.ranges.map((f) =>
+              f.attributeId === attributeId
+                ? { ...f, min, max, includeNull }
+                : f
+            ),
+          });
+        } else {
+          // Create new filter
+          onFilterChange({
+            ...filterState,
+            ranges: [
+              ...filterState.ranges,
+              { attributeId, min, max, includeNull },
+            ],
+          });
+        }
+
+        debounceTimers.current.delete(attributeId);
+      }, 300); // 300ms debounce delay
+
+      debounceTimers.current.set(attributeId, timer);
+    },
+    [filterState, onFilterChange]
+  );
 
   const clearRangeFilter = (attributeId: string) => {
     onFilterChange({
@@ -535,6 +541,7 @@ export function FilterDrawer({
                               attr.id,
                               value[0],
                               value[1],
+                              includeNull,
                               attr.bounds
                             )
                           }
@@ -547,8 +554,10 @@ export function FilterDrawer({
                             id={`${attr.id}-include-null`}
                             checked={includeNull}
                             onCheckedChange={(checked) =>
-                              handleRangeIncludeNullChange(
+                              handleRangeChange(
                                 attr.id,
+                                currentMin,
+                                currentMax,
                                 checked === true,
                                 attr.bounds
                               )
