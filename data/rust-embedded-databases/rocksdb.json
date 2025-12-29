@@ -239,6 +239,36 @@
       "value": ["small-team"],
       "source": ["https://github.com/rust-rocksdb/rust-rocksdb/blob/master/MAINTAINERSHIP.md"],
       "comment": "Community-maintained with documented maintainership process requiring consensus; 202 total contributors across project history"
+    },
+    "hot-backup": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/How-to-backup-RocksDB", "https://docs.rs/rocksdb/latest/rocksdb/backup/index.html", "https://github.com/facebook/rocksdb/wiki/Checkpoints"],
+      "comment": "BackupEngine API creates consistent backups while database is running with checksum verification. Checkpoint API creates point-in-time snapshots using hard links."
+    },
+    "incremental-backup": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/How-to-backup-RocksDB", "https://docs.rs/rocksdb/latest/rocksdb/backup/index.html"],
+      "comment": "BackupEngine creates incremental backups by default - SST files are immutable, so unchanged files are shared between backup snapshots."
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://github.com/facebook/rocksdb/wiki/WAL-Recovery-Modes", "https://github.com/facebook/rocksdb/wiki/RocksDB-Repairer"],
+      "comment": "No restore to arbitrary timestamp. WAL 'PointInTimeRecovery' mode refers to crash recovery stopping at first corrupted record, not user-specified timestamp restore."
+    },
+    "online-compaction": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/Compaction", "https://github.com/facebook/rocksdb/wiki/Manual-Compaction", "https://docs.rs/rocksdb/latest/rocksdb/struct.DBCommon.html"],
+      "comment": "Automatic background compaction runs continuously via configurable thread pools. Manual compaction via compact_range() is blocking but database remains operational."
+    },
+    "repair-tools": {
+      "value": true,
+      "source": ["https://github.com/facebook/rocksdb/wiki/RocksDB-Repairer", "https://docs.rs/rocksdb/latest/rocksdb/struct.DBCommon.html"],
+      "comment": "DBCommon::repair() method for programmatic recovery. Upstream ldb repair CLI tool available. Scans files, replays WAL, rebuilds manifest."
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://github.com/facebook/rocksdb/wiki/Administration-and-Data-Access-Tool", "https://github.com/facebook/rocksdb/blob/main/DUMP_FORMAT.md"],
+      "comment": "No built-in JSON/CSV export. Native formats: SST files, hex dump via ldb, or ROCKDUMP format. Portable export requires custom iteration code."
     }
   }
 }
