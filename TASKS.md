@@ -212,16 +212,16 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 11: Date-Specific Enhancements (Optional)
 **Files:** `app/src/components/ui/date-range-picker.tsx` (new, optional)
 
-- [ ] Consider date range picker alternative to slider for date/datetime types
-- [ ] Evaluate UX trade-offs:
+- [x] Consider date range picker alternative to slider for date/datetime types
+- [x] Evaluate UX trade-offs:
   - Slider: consistent UI, works for all types
   - Date picker: better precision, calendar visualization
-- [ ] If implementing date picker:
+- [x] If implementing date picker:
   - Use shadcn Calendar component
   - Create DateRangePicker wrapper
   - Integrate into FilterDrawer for date/datetime attributes
 
-**Commit:** `feat(filters): add date range picker (optional enhancement)`
+**Commit:** `feat(filters): add date range picker for date/datetime filters`
 
 ---
 

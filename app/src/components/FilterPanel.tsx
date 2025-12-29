@@ -11,9 +11,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { RangeSlider } from "@/components/ui/range-slider";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 import type { AttributesFile, CandidateFile, TagsType, ValueType } from "@/types";
 import {
   isRangeableType,
+  isDateType,
   calculateRangeBounds,
   formatRangeLabel,
 } from "@/lib/range-utils";
@@ -81,6 +83,8 @@ type RangeFilterableAttribute = {
   name: string;
   valueType: ValueType;
   bounds: { min: number; max: number };
+  /** Whether this is a date/datetime type that should use date picker UI */
+  useDatePicker: boolean;
 };
 
 type FilterableAttribute =
@@ -157,6 +161,7 @@ export function FilterDrawer({
               name: attr.name,
               valueType: attr.valueType,
               bounds,
+              useDatePicker: isDateType(attr.valueType),
             });
           }
         }
@@ -516,10 +521,11 @@ export function FilterDrawer({
                         currentMax !== attr.bounds.max ||
                         !includeNull);
 
-                    // Format the current range for display
-                    const currentRangeText = isModified
-                      ? `${formatRangeLabel(currentMin, attr.valueType)} - ${formatRangeLabel(currentMax, attr.valueType)}`
-                      : null;
+                    // Format the current range for display (only for non-date types, date picker shows its own format)
+                    const currentRangeText =
+                      isModified && !attr.useDatePicker
+                        ? `${formatRangeLabel(currentMin, attr.valueType)} - ${formatRangeLabel(currentMax, attr.valueType)}`
+                        : null;
 
                     return (
                       <div
@@ -549,23 +555,43 @@ export function FilterDrawer({
                             {currentRangeText}
                           </div>
                         )}
-                        <RangeSlider
-                          min={attr.bounds.min}
-                          max={attr.bounds.max}
-                          value={[currentMin, currentMax]}
-                          onChange={(value) =>
-                            handleRangeChange(
-                              attr.id,
-                              value[0],
-                              value[1],
-                              includeNull,
-                              attr.bounds
-                            )
-                          }
-                          formatLabel={(v) =>
-                            formatRangeLabel(v, attr.valueType)
-                          }
-                        />
+                        {attr.useDatePicker ? (
+                          <DateRangePicker
+                            valueAsTimestamps={{
+                              from: currentMin,
+                              to: currentMax,
+                            }}
+                            onChangeTimestamps={(range) => {
+                              handleRangeChange(
+                                attr.id,
+                                range.from ?? attr.bounds.min,
+                                range.to ?? attr.bounds.max,
+                                includeNull,
+                                attr.bounds
+                              );
+                            }}
+                            minDate={new Date(attr.bounds.min)}
+                            maxDate={new Date(attr.bounds.max)}
+                          />
+                        ) : (
+                          <RangeSlider
+                            min={attr.bounds.min}
+                            max={attr.bounds.max}
+                            value={[currentMin, currentMax]}
+                            onChange={(value) =>
+                              handleRangeChange(
+                                attr.id,
+                                value[0],
+                                value[1],
+                                includeNull,
+                                attr.bounds
+                              )
+                            }
+                            formatLabel={(v) =>
+                              formatRangeLabel(v, attr.valueType)
+                            }
+                          />
+                        )}
                         <div className="flex items-center gap-2">
                           <Checkbox
                             id={`${attr.id}-include-null`}

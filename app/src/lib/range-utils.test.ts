@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   isRangeableType,
+  isDateType,
   getNumericValue,
   calculateRangeBounds,
   formatRangeLabel,
@@ -50,6 +51,40 @@ describe("Range Utils - Edge Cases", () => {
 
       for (const type of nonRangeableTypes) {
         expect(isRangeableType(type)).toBe(false);
+      }
+    });
+  });
+
+  describe("isDateType", () => {
+    it("should return true for date types", () => {
+      const dateTypes: ValueType[] = [
+        { type: "date", direction: "ascending" },
+        { type: "date", direction: "descending" },
+        { type: "datetime", direction: "ascending" },
+        { type: "datetime", direction: "descending" },
+      ];
+
+      for (const type of dateTypes) {
+        expect(isDateType(type)).toBe(true);
+      }
+    });
+
+    it("should return false for non-date types", () => {
+      const nonDateTypes: ValueType[] = [
+        { type: "integer", direction: "ascending" },
+        { type: "decimal", direction: "ascending" },
+        { type: "percentage", direction: "ascending" },
+        { type: "rating", lower: 1, upper: 5, direction: "ascending", symbols: { empty: "o", full: "x" } },
+        { type: "filesize", direction: "ascending" },
+        { type: "duration", direction: "ascending" },
+        "text",
+        "boolean",
+        "link",
+        { type: "tags", defaultColor: "gray", tags: [] },
+      ];
+
+      for (const type of nonDateTypes) {
+        expect(isDateType(type)).toBe(false);
       }
     });
   });

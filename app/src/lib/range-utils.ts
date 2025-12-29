@@ -34,6 +34,18 @@ export function isRangeableType(valueType: ValueType): boolean {
   return RANGEABLE_TYPES.has(typeString);
 }
 
+/** Set of date/datetime types that should use date picker instead of slider */
+const DATE_TYPES = new Set(["date", "datetime"]);
+
+/**
+ * Check if a value type is a date or datetime type.
+ * These types benefit from a date picker UI instead of a slider.
+ */
+export function isDateType(valueType: ValueType): boolean {
+  const typeString = getValueTypeString(valueType);
+  return DATE_TYPES.has(typeString);
+}
+
 /**
  * Extract a numeric value from an AttributeValue based on its ValueType.
  * Returns null if the value cannot be converted to a number.
