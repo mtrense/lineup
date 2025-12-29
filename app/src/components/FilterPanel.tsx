@@ -516,8 +516,20 @@ export function FilterDrawer({
                         currentMax !== attr.bounds.max ||
                         !includeNull);
 
+                    // Format the current range for display
+                    const currentRangeText = isModified
+                      ? `${formatRangeLabel(currentMin, attr.valueType)} - ${formatRangeLabel(currentMax, attr.valueType)}`
+                      : null;
+
                     return (
-                      <div key={attr.id} className="space-y-2">
+                      <div
+                        key={attr.id}
+                        className={`space-y-2 rounded-md p-3 transition-colors ${
+                          isModified
+                            ? "border border-primary/30 bg-primary/5"
+                            : "border border-transparent"
+                        }`}
+                      >
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-medium text-muted-foreground">
                             {attr.name}
@@ -532,6 +544,11 @@ export function FilterDrawer({
                             </button>
                           )}
                         </div>
+                        {currentRangeText && (
+                          <div className="text-xs font-medium text-primary">
+                            {currentRangeText}
+                          </div>
+                        )}
                         <RangeSlider
                           min={attr.bounds.min}
                           max={attr.bounds.max}

@@ -162,10 +162,10 @@ Add range slider filters for numeric and temporal attribute types (integer, deci
 ### Increment 8: Visual Indicators for Active Range Filters
 **Files:** `app/src/components/FilterPanel.tsx`
 
-- [ ] Show visual indicator when range is narrowed from full extent
-- [ ] Display current range as text label (e.g., "1.2 MB - 5.6 GB")
-- [ ] Style clear button to appear only when range is modified
-- [ ] Update filter count badge to reflect active range filters
+- [x] Show visual indicator when range is narrowed from full extent
+- [x] Display current range as text label (e.g., "1.2 MB - 5.6 GB")
+- [x] Style clear button to appear only when range is modified
+- [x] Update filter count badge to reflect active range filters
 
 **Commit:** `feat(filters): add visual indicators for active range filters`
 
