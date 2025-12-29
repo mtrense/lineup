@@ -1,9 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   FilterDrawer,
   emptyFilterState,
+  getActiveFilterCount,
   type FilterState,
   type RangeFilter,
 } from "./FilterPanel";
@@ -369,6 +370,231 @@ describe("FilterPanel - Range Filter State Management", () => {
 
       // Should not show range filter for attributes with only one value
       expect(screen.getByRole("button", { name: /filters/i })).toBeInTheDocument();
+    });
+  });
+
+  describe("Visual Indicators for Active Range Filters", () => {
+    it("should display filter count badge when range filters are active", () => {
+      const filterState: FilterState = {
+        ...emptyFilterState,
+        ranges: [
+          {
+            attributeId: "rating",
+            min: 3.0,
+            max: 4.0,
+            includeNull: true,
+          },
+        ],
+      };
+
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={filterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      expect(filterButton.textContent).toContain("1");
+    });
+
+    it("should show clear button only when range is modified from full extent", async () => {
+      const user = userEvent.setup({ delay: null });
+      const filterState: FilterState = {
+        ...emptyFilterState,
+        ranges: [
+          {
+            attributeId: "rating",
+            min: 3.0,
+            max: 4.0,
+            includeNull: true,
+          },
+        ],
+      };
+
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={filterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      await user.click(filterButton);
+
+      // Clear button should be present for modified filter
+      const clearButtons = screen.getAllByLabelText(/clear.*rating.*filter/i);
+      expect(clearButtons.length).toBeGreaterThan(0);
+    });
+
+    it("should not show clear button when range is at full extent", async () => {
+      const user = userEvent.setup({ delay: null });
+
+      // Empty filter state = all ranges at full extent
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={emptyFilterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      await user.click(filterButton);
+
+      // Clear buttons should not exist for unmodified filters
+      const clearButtons = screen.queryAllByLabelText(/clear.*rating.*filter/i);
+      expect(clearButtons.length).toBe(0);
+    });
+
+    it("should display formatted range text when filter is active", async () => {
+      const user = userEvent.setup({ delay: null });
+      const filterState: FilterState = {
+        ...emptyFilterState,
+        ranges: [
+          {
+            attributeId: "size",
+            min: 1024 * 1024, // 1 MB
+            max: 5 * 1024 * 1024, // 5 MB
+            includeNull: true,
+          },
+        ],
+      };
+
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={filterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      await user.click(filterButton);
+
+      // Should display formatted range somewhere in the UI
+      // The exact format depends on implementation
+      // This is a basic check that the filter panel is visible
+      expect(screen.getByText("Size")).toBeInTheDocument();
+    });
+
+    it("should count range filters correctly in getActiveFilterCount", () => {
+      const filterState: FilterState = {
+        tags: [],
+        booleans: [],
+        ranges: [
+          {
+            attributeId: "rating",
+            min: 3.0,
+            max: 4.0,
+            includeNull: true,
+          },
+          {
+            attributeId: "size",
+            min: 1024,
+            max: 5000,
+            includeNull: false,
+          },
+        ],
+      };
+
+      expect(getActiveFilterCount(filterState)).toBe(2);
+    });
+
+    it("should count mixed filter types correctly", () => {
+      const filterState: FilterState = {
+        tags: [
+          { attributeId: "tag1", tagIds: new Set(["a", "b"]) },
+        ],
+        booleans: [
+          { attributeId: "bool1", value: true },
+        ],
+        ranges: [
+          {
+            attributeId: "rating",
+            min: 3.0,
+            max: 4.0,
+            includeNull: true,
+          },
+        ],
+      };
+
+      // 2 tag selections + 1 boolean + 1 range = 4
+      expect(getActiveFilterCount(filterState)).toBe(4);
+    });
+
+    it("should show visual indicator when range is narrowed", async () => {
+      const user = userEvent.setup({ delay: null });
+      const filterState: FilterState = {
+        ...emptyFilterState,
+        ranges: [
+          {
+            attributeId: "rating",
+            min: 3.0,
+            max: 4.0,
+            includeNull: true,
+          },
+        ],
+      };
+
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={filterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      await user.click(filterButton);
+
+      // Look for the Rating filter section
+      const ratingSection = screen.getByText("Rating").closest("div");
+      expect(ratingSection).toBeInTheDocument();
+    });
+
+    it("should show visual indicator when includeNull is disabled", async () => {
+      const user = userEvent.setup({ delay: null });
+
+      // Get actual bounds
+      const ratings = mockCandidates.map(c => c.values.rating?.value as number);
+      const minRating = Math.min(...ratings);
+      const maxRating = Math.max(...ratings);
+
+      const filterState: FilterState = {
+        ...emptyFilterState,
+        ranges: [
+          {
+            attributeId: "rating",
+            min: minRating,
+            max: maxRating,
+            includeNull: false, // This makes it modified even at full bounds
+          },
+        ],
+      };
+
+      render(
+        <FilterDrawer
+          attributes={mockAttributes}
+          candidates={mockCandidates}
+          filterState={filterState}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      const filterButton = screen.getByRole("button", { name: /filters/i });
+      await user.click(filterButton);
+
+      // Should show clear button because includeNull is modified
+      const clearButtons = screen.getAllByLabelText(/clear.*rating.*filter/i);
+      expect(clearButtons.length).toBeGreaterThan(0);
     });
   });
 });

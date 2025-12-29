@@ -291,6 +291,43 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
+## Milestone 14: Range Slider Filters
+**Status:** Ready for implementation
+
+### Goals
+- Add range slider filters for numeric and temporal attribute types
+- Allow users to filter candidates by value ranges (min/max bounds)
+- Provide intuitive UI for setting range boundaries
+
+### Success Criteria
+- [ ] Range slider component with dual handles (min/max)
+- [ ] Filter support for numeric types:
+  - [ ] Integer attributes
+  - [ ] Decimal attributes
+  - [ ] Rating attributes
+  - [ ] Filesize attributes (with formatted labels)
+  - [ ] Duration attributes (with formatted labels)
+  - [ ] Percentage attributes
+- [ ] Filter support for temporal types:
+  - [ ] Date attributes
+  - [ ] DateTime attributes
+- [ ] Range bounds calculated from actual candidate values (dynamic min/max)
+- [ ] Clear button to reset range to full extent
+- [ ] Visual indication of narrowed range vs full range
+- [ ] Range filters integrated into filter dialog (organized by attribute group)
+- [ ] Range filter state persisted to URL
+- [ ] Candidates outside range are filtered out (greyed out, moved to end)
+- [ ] Null values handling: option to include/exclude candidates with null values
+
+### Implementation Notes
+- Use shadcn Slider component as base (supports range mode)
+- Display current range values above/below the slider
+- Format labels appropriately per type (e.g., "1.2 MB - 5.6 GB" for filesize)
+- For dates, consider a date range picker alternative to slider for better UX
+- URL format: `?filter.attrId=min,max` (e.g., `?filter.stars=3,5`)
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
