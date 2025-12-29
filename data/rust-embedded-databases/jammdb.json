@@ -100,6 +100,36 @@
       "source": ["https://github.com/pjtatlow/jammdb"],
       "comment": "Single file; limited by address space for memory mapping"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://docs.rs/jammdb/latest/jammdb/struct.DB.html"],
+      "comment": "No backup API; copy-on-write design may allow safe file copies but not officially supported"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://docs.rs/jammdb/latest/jammdb/"],
+      "comment": "No incremental backup support"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://docs.rs/jammdb/latest/jammdb/"],
+      "comment": "No point-in-time recovery support"
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://docs.rs/jammdb/latest/jammdb/"],
+      "comment": "No compaction API; copy-on-write B+ tree design means database file grows over time"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://docs.rs/jammdb/latest/jammdb/struct.OpenOptions.html"],
+      "comment": "strict_mode option checks for errors before writes but no repair/recovery tools"
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/jammdb/latest/jammdb/"],
+      "comment": "No export functionality; single-file database only"
+    },
     "pure-rust": {
       "value": true,
       "source": ["https://github.com/pjtatlow/jammdb"],
