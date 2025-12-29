@@ -99,6 +99,36 @@
       "source": ["https://github.com/zkat/cacache-rs"],
       "comment": "Limited by filesystem"
     },
+    "hot-backup": {
+      "value": false,
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No dedicated backup API; content-addressable design allows safe file copying while idle"
+    },
+    "incremental-backup": {
+      "value": false,
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No change tracking for backup purposes"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No WAL or journal retention; cache is ephemeral by design"
+    },
+    "online-compaction": {
+      "value": false,
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No compaction; uses clear() for full cache reset or remove() for individual entries"
+    },
+    "repair-tools": {
+      "value": false,
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No repair tools; integrity verification on read via .check() method, but no proactive repair"
+    },
+    "export-format": {
+      "value": "native-only",
+      "source": ["https://docs.rs/cacache"],
+      "comment": "No export utilities; data stored in proprietary content-addressable format"
+    },
     "pure-rust": {
       "value": true,
       "source": ["https://github.com/zkat/cacache-rs"],
