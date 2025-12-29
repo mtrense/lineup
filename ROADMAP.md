@@ -268,6 +268,29 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
+## Milestone 13: Filter Dialog Organization
+**Status:** Ready for implementation
+
+### Goals
+- Organize filters in the dialog by their attribute group sections
+- Match the order of filters to how attributes appear in attributes.json
+- Improve discoverability by grouping related filters together
+
+### Success Criteria
+- [ ] Filters grouped by attribute group (matching attributes.json structure)
+- [ ] Group headers displayed in the filter dialog to separate sections
+- [ ] Filters within each group maintain their original attribute order
+- [ ] Visual hierarchy makes it easy to find specific filters
+- [ ] Existing filter functionality preserved (URL state, filter logic, clear buttons)
+
+### Implementation Notes
+- Currently filters are sorted by type (tags first, then boolean fields)
+- New approach: iterate through attribute groups from attributes.json, display filters in that order
+- Group headers in filter dialog should match attribute group names
+- Consider collapsible groups if filter panel becomes too long
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
