@@ -233,6 +233,21 @@
       "value": true,
       "source": ["https://cassandra.apache.org/doc/latest/cassandra/managing/operating/cdc.html"],
       "comment": "Built-in CDC since Cassandra 3.8. Captures changes via commitlog hard links. Works with Debezium for Kafka integration."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "No native watch/subscribe mechanism for real-time push notifications on data changes. Users must implement solutions using CDC with Kafka or custom event-driven architectures."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/4.1/cassandra/cql/triggers.html"],
+      "comment": "Supports triggers via custom Java code. Trigger logic must be written in JVM languages, compiled to JAR, and deployed to lib/triggers on every node. Fires before DML operations."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://www.instaclustr.com/blog/change-data-capture-cdc-with-kafka-and-debezium/", "https://cwiki.apache.org/confluence/display/CASSANDRA/CEP-44:+Kafka+integration+for+Cassandra+CDC+using+Sidecar"],
+      "comment": "Kafka integration via Debezium Cassandra connector is the primary event streaming solution. CEP-44 proposes native Kafka integration via Sidecar. No built-in Pulsar or Kinesis connectors from vendor."
     }
   }
 }
