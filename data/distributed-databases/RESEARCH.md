@@ -196,7 +196,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] CockroachDB - Leading open-source NewSQL, strong consistency
 - [x] TiDB - MySQL-compatible distributed SQL from PingCAP
 - [x] YugabyteDB - PostgreSQL-compatible distributed SQL
-- [ ] Apache Cassandra - Battle-tested wide-column store
+- [x] Apache Cassandra - Battle-tested wide-column store
 - [ ] ScyllaDB - C++ rewrite of Cassandra for performance
 - [ ] Amazon DynamoDB - AWS's flagship NoSQL, serverless
 - [ ] Google Cloud Spanner - Google's globally-distributed SQL

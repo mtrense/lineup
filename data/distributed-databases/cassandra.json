@@ -1,0 +1,238 @@
+{
+  "name": "Apache Cassandra",
+  "description": "Highly scalable, distributed wide-column NoSQL database designed for high availability with no single point of failure",
+  "icon": "🔷",
+  "url": "https://cassandra.apache.org/",
+  "values": {
+    "website": {
+      "value": "https://cassandra.apache.org/",
+      "source": ["https://cassandra.apache.org/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/apache/cassandra/blob/trunk/LICENSE.txt"],
+      "comment": "True open source under Apache License 2.0."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://cassandra.apache.org/", "https://www.datastax.com/astra-pricing"],
+      "comment": "Self-hosted is primary deployment. DataStax Astra is the official managed service. Also available via Instaclustr, AWS Keyspaces, and others."
+    },
+    "initial-release": {
+      "value": "2008",
+      "source": ["https://en.wikipedia.org/wiki/Apache_Cassandra"],
+      "comment": "Originally developed at Facebook, released as open source in July 2008, became Apache top-level project in 2010."
+    },
+    "primary-language": {
+      "value": "Java",
+      "source": ["https://github.com/apache/cassandra"]
+    },
+    "data-model": {
+      "value": ["wide-column"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Partitioned row store with wide-column model. Data organized into tables with rows and columns."
+    },
+    "topology": {
+      "value": ["leaderless"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Peer-to-peer architecture where all nodes are equal. No single point of failure. Uses gossip protocol for cluster communication."
+    },
+    "sharding": {
+      "value": ["hash", "automatic"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Uses Murmur3 hash partitioner by default to distribute data across nodes. Partition key determines data placement."
+    },
+    "replication-factor": {
+      "value": "3 (configurable per keyspace)",
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Configurable replication factor per keyspace. Supports different replication strategies including NetworkTopologyStrategy for multi-datacenter deployments."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Native support for multi-datacenter deployments. Can withstand entire datacenter outages with no data loss."
+    },
+    "cap-position": {
+      "value": ["ap", "tunable"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/guarantees.html"],
+      "comment": "Defaults to AP (availability and partition tolerance). Consistency is tunable per-operation - can be configured for strong consistency with QUORUM or ALL levels."
+    },
+    "consistency-model": {
+      "value": ["eventual", "strong", "linearizable"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/guarantees.html"],
+      "comment": "Tunable consistency from eventual (ONE) to strong (QUORUM) to linearizable (via lightweight transactions with Paxos)."
+    },
+    "acid-transactions": {
+      "value": false,
+      "source": ["https://www.yugabyte.com/blog/apache-cassandra-lightweight-transactions-secondary-indexes-tunable-consistency/"],
+      "comment": "No full ACID transactions. Lightweight transactions (LWT) provide linearizable consistency for single-partition compare-and-set operations using Paxos."
+    },
+    "transaction-scope": {
+      "value": ["single-partition"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/guarantees.html"],
+      "comment": "Lightweight transactions limited to single-partition operations. Batch statements provide atomicity within a single partition."
+    },
+    "isolation-levels": {
+      "value": null,
+      "comment": "Traditional isolation levels don't apply. Cassandra uses tunable consistency levels (ONE, QUORUM, ALL, etc.) instead."
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/guarantees.html"],
+      "comment": "No cross-partition distributed transactions. Lightweight transactions use Paxos but are limited to single partition."
+    },
+    "query-language": {
+      "value": ["cql"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/cql/"]
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/cql/"],
+      "comment": "CQL (Cassandra Query Language) is SQL-like but not SQL-compatible. No JOINs, subqueries, or aggregations across partitions."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-overview.html"],
+      "comment": "Storage-Attached Indexing (SAI) in Cassandra 5.0 provides efficient secondary indexes. Previous versions had 2i and SASI."
+    },
+    "joins": {
+      "value": ["none"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/cql/"],
+      "comment": "No JOIN support. Data model should be denormalized for query patterns."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/cql/"],
+      "comment": "Basic aggregations (COUNT, SUM, AVG, MIN, MAX) supported within a single partition. User-defined aggregates available."
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-overview.html"],
+      "comment": "No built-in full-text search. SAI supports LIKE queries and some text searching. External solutions like Elasticsearch often used."
+    },
+    "max-cluster-size": {
+      "value": 160000,
+      "source": ["https://news.apache.org/foundation/entry/the-apache-cassandra-project-releases"],
+      "comment": "Apple runs over 160,000 Cassandra instances storing 100+ petabytes across 1,000+ clusters."
+    },
+    "write-throughput": {
+      "value": "Millions of ops/sec (Apple, Netflix)",
+      "source": ["https://cassandra.apache.org/_/case-studies.html"],
+      "comment": "Apple regularly achieves millions of operations per second. Netflix handles over 1 trillion requests per day."
+    },
+    "read-latency-p99": {
+      "value": "Single-digit ms (typical)",
+      "source": ["https://cassandra.apache.org/_/case-studies.html"],
+      "comment": "Low latency optimized. Actual latency depends on consistency level, cluster configuration, and data model."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting_started/production.html"],
+      "comment": "Nodes can be added without downtime, but scaling is a manual operation. Some managed services offer auto-scaling."
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html"],
+      "comment": "Hot spots must be addressed through data model design. Proper partition key selection is critical."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.instaclustr.com/support/documentation/cassandra/cassandra-cluster-operations/cassandra-version-upgrades/"],
+      "comment": "Rolling upgrades supported. Nodes upgraded one at a time while cluster remains available."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/cql/"],
+      "comment": "Schema changes propagate via gossip protocol. Most schema changes don't require downtime."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://axonops.com/blog/axonops-cassandra-commitlog-archiving-and-point-in-time-restore-feature"],
+      "comment": "Possible via commitlog archiving combined with snapshots, but not built-in. Requires external tooling or managed service features."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/operating/backups.html"],
+      "comment": "Built-in snapshot and incremental backup via SSTable hard links. Point-in-time recovery requires commitlog archiving."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/k8ssandra/cass-operator"],
+      "comment": "K8ssandra cass-operator is the community-standard Kubernetes operator, originally from DataStax. Supports automated deployment, scaling, and operations."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html"],
+      "comment": "Community-maintained rust-driver available."
+    },
+    "go-driver": {
+      "value": ["community"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html"],
+      "comment": "GoCQL is the well-established community driver, linked from official docs."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apache/cassandra-java-driver"],
+      "comment": "Official Apache Cassandra Java driver (formerly DataStax driver), now maintained by Apache as of version 4.18."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html"],
+      "comment": "DataStax C# driver available, community maintained."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html", "https://pypi.org/project/cassandra-driver/"],
+      "comment": "DataStax Python driver (cassandra-driver package) is the official driver."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html"],
+      "comment": "Ruby driver available, community maintained."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/getting-started/drivers.html"],
+      "comment": "DataStax C++ driver available."
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "Limited ORM support due to wide-column data model. Spring Data Cassandra available for Java."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/apache/cassandra"],
+      "comment": "True open source under Apache License 2.0. Apache Software Foundation project."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.datastax.com/astra-pricing"],
+      "comment": "DataStax Astra offers free tier with $25/month credit (80GB storage, 20M ops/month)."
+    },
+    "pricing-model": {
+      "value": ["per-storage", "per-request", "per-node"],
+      "source": ["https://www.datastax.com/astra-pricing"],
+      "comment": "Astra uses per-operation and per-storage pricing. Self-hosted has no licensing cost. Enterprise support available."
+    },
+    "cost-estimate-small": {
+      "value": "~$200-400/month (Astra, 3-node equivalent)",
+      "source": ["https://www.datastax.com/astra-pricing"],
+      "comment": "Varies by usage pattern. Astra pay-as-you-go pricing. Self-hosted only costs infrastructure."
+    },
+    "github-stars": {
+      "value": 9500,
+      "source": ["https://github.com/apache/cassandra"],
+      "comment": "As of December 2024. Repository has 9.5k stars and 3.8k forks."
+    },
+    "stackoverflow-tags": {
+      "value": 20243,
+      "source": ["https://stackoverflow.com/questions/tagged/cassandra"],
+      "comment": "Over 20,000 questions tagged with 'cassandra' on Stack Overflow."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/managing/operating/cdc.html"],
+      "comment": "Built-in CDC since Cassandra 3.8. Captures changes via commitlog hard links. Works with Debezium for Kafka integration."
+    }
+  }
+}
