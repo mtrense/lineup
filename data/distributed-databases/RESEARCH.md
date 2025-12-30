@@ -194,7 +194,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 
 ### Tier 1 (Must Have) - Industry leaders
 - [x] CockroachDB - Leading open-source NewSQL, strong consistency
-- [ ] TiDB - MySQL-compatible distributed SQL from PingCAP
+- [x] TiDB - MySQL-compatible distributed SQL from PingCAP
 - [ ] YugabyteDB - PostgreSQL-compatible distributed SQL
 - [ ] Apache Cassandra - Battle-tested wide-column store
 - [ ] ScyllaDB - C++ rewrite of Cassandra for performance

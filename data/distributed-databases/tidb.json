@@ -1,0 +1,240 @@
+{
+  "name": "TiDB",
+  "description": "Open-source, cloud-native, distributed SQL database designed for HTAP workloads with MySQL compatibility",
+  "icon": "https://avatars.githubusercontent.com/u/11618566",
+  "url": "https://www.pingcap.com/",
+  "values": {
+    "website": {
+      "value": "https://www.pingcap.com/",
+      "source": ["https://www.pingcap.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/pingcap/tidb/blob/master/LICENSE"],
+      "comment": "Fully open source under Apache 2.0 license, including enterprise features. TiKV (storage layer) is a CNCF graduated project."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "serverless"],
+      "source": ["https://www.pingcap.com/pricing/"],
+      "comment": "TiDB Cloud offers Serverless (Starter), Dedicated, and Self-Managed options. Serverless includes generous free tier."
+    },
+    "initial-release": {
+      "value": "2015",
+      "source": ["https://github.com/pingcap/tidb"],
+      "comment": "PingCAP founded in 2015. Repository created September 2015. Inspired by Google Spanner and F1 papers."
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/pingcap/tidb"],
+      "comment": "TiDB (SQL layer) is written in Go. TiKV (storage layer) is written in Rust."
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://docs.pingcap.com/tidb/stable/overview/"],
+      "comment": "Relational database with HTAP (Hybrid Transactional and Analytical Processing) capabilities."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://docs.pingcap.com/tidb/stable/tidb-architecture/"],
+      "comment": "Uses Raft consensus for each Region (data chunk). Each Region has a leader that handles reads/writes."
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://docs.pingcap.com/tidb/stable/tidb-architecture/"],
+      "comment": "Data automatically sharded into Regions (ranges of rows). Regions are split and redistributed dynamically as data grows."
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "source": ["https://docs.pingcap.com/tidb/stable/tidb-architecture/"],
+      "comment": "Default 3 replicas per Region. Configurable; recommended 5 replicas for geo-distributed deployments."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://docs.pingcap.com/tidb/stable/geo-distributed-deployment-topology/"],
+      "comment": "Native support for geo-distributed deployments. Supports 3 AZs in 2 cities topology with placement rules for data locality."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://www.pingcap.com/article/ensuring-data-consistency-in-distributed-systems-with-tidb/"],
+      "comment": "Prioritizes consistency using Raft consensus. Strong consistency maintained even during node failures via quorum."
+    },
+    "consistency-model": {
+      "value": ["strong"],
+      "source": ["https://www.pingcap.com/blog/distributed-transactions-tidb/"],
+      "comment": "Strong consistency using Raft consensus for replication. Implements snapshot isolation with Percolator protocol."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://www.pingcap.com/blog/distributed-transactions-tidb/"],
+      "comment": "Full ACID support using 2PC protocol based on Percolator. Both optimistic and pessimistic transaction modes supported."
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://www.pingcap.com/blog/distributed-transactions-tidb/"],
+      "comment": "Transactions can span multiple nodes and Regions across the entire cluster."
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "snapshot", "serializable"],
+      "source": ["https://docs.pingcap.com/tidb/stable/transaction-isolation-levels/"],
+      "comment": "Default is Snapshot Isolation (advertised as Repeatable Read for MySQL compatibility). Read Committed available in pessimistic mode. Serializable supported."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://www.pingcap.com/blog/distributed-transactions-tidb/"],
+      "comment": "Uses two-phase commit (2PC) based on Percolator protocol with MVCC for distributed transaction coordination."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://docs.pingcap.com/tidb/stable/"]
+    },
+    "sql-compatibility": {
+      "value": ["mysql"],
+      "source": ["https://docs.pingcap.com/tidb/stable/mysql-compatibility/"],
+      "comment": "MySQL wire protocol compatible. Most MySQL drivers and tools work without modification. Some feature differences documented."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-create-secondary-indexes/"],
+      "comment": "Full secondary index support including composite indexes. Indexes are global and distributed across nodes."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://tikv.org/deep-dive/distributed-sql/dist-sql/"],
+      "comment": "Full distributed JOIN support. TiDB's Co-Processor pushes join operations to TiKV nodes when possible."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://tikv.org/deep-dive/distributed-sql/dist-sql/"],
+      "comment": "Full aggregation support with pre-aggregation pushed down to TiKV nodes for performance."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://docs.pingcap.com/tidbcloud/vector-search-full-text-search-sql/"],
+      "comment": "Native full-text search using inverted indexes. Fully integrated with SQL including joins, filters, and aggregations."
+    },
+    "max-cluster-size": {
+      "value": 512,
+      "source": ["https://docs.pingcap.com/tidb/stable/overview/"],
+      "comment": "Computing layer supports max 512 nodes. Cluster capacity scales to petabyte level."
+    },
+    "write-throughput": {
+      "value": "TPC-C benchmark, scales linearly with nodes",
+      "source": ["https://docs.pingcap.com/tidbcloud/v8.5-performance-benchmarking-with-tpcc/"],
+      "comment": "Performance scales near-linearly with TiDB nodes (slightly sub-linear beyond 8 nodes). Official TPC-C benchmarks available."
+    },
+    "read-latency-p99": {
+      "value": "~84ms (TPC-C workload)",
+      "source": ["https://docs.pingcap.com/tidb/stable/performance-tuning-methods/"],
+      "comment": "P99 latency ~84ms in example TPC-C workloads. Average latency ~10.8ms. Varies by workload and configuration."
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://www.pingcap.com/tidb-cloud-starter/"],
+      "comment": "TiDB Cloud Serverless auto-scales including scale-to-zero. Self-hosted supports adding/removing nodes without downtime."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://docs.pingcap.com/tidb/stable/tidb-architecture/"],
+      "comment": "Automatic Region splitting and rebalancing via PD (Placement Driver). Load-based scheduling distributes hot Regions."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.pingcap.com/blog/achieving-zero-downtime-upgrades-tidb/"],
+      "comment": "Rolling upgrades supported. TiProxy provides seamless session migration during TiDB server reboots."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://www.pingcap.com/blog/effective-online-ddl-database-schema-changes-zero-downtime/"],
+      "comment": "Online DDL based on Google F1 design. Schema changes run incrementally with zero downtime."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://docs.pingcap.com/tidb/stable/br-pitr-guide/"],
+      "comment": "PITR via log backup with RPO as short as 5 minutes. Restores full snapshot plus log replay to target timestamp."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "continuous", "cdc-based"],
+      "source": ["https://docs.pingcap.com/tidb/stable/backup-and-restore-overview/"],
+      "comment": "BR tool supports full/incremental snapshots. Continuous log backup for PITR. TiCDC for streaming changes."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/pingcap/tidb-operator"],
+      "comment": "Official TiDB Operator by PingCAP. Open-sourced in August 2018. Supports AWS EKS, GKE, and other K8s platforms."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-choose-driver-or-orm/"],
+      "comment": "Uses MySQL-compatible Rust drivers via MySQL wire protocol. No official TiDB-specific driver."
+    },
+    "go-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-sample-application-golang-sql-driver/"],
+      "comment": "Uses go-sql-driver/mysql via MySQL wire protocol. Compatible with GORM ORM."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://docs.pingcap.com/tidb/stable/java-app-best-practices/"],
+      "comment": "TiDB-JDBC is a customized driver based on MySQL 8.0.29 with TiDB-specific features. Standard MySQL JDBC also works."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-choose-driver-or-orm/"],
+      "comment": "Uses MySQL Connector/NET via MySQL wire protocol compatibility."
+    },
+    "python-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-sample-application-python-sqlalchemy/"],
+      "comment": "Uses PyMySQL, mysqlclient, or MySQL Connector/Python. django-tidb dialect available for Django ORM."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-choose-driver-or-orm/"],
+      "comment": "Uses mysql2 gem via MySQL wire protocol compatibility."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-choose-driver-or-orm/"],
+      "comment": "Uses MySQL Connector/C++ via MySQL wire protocol compatibility."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "gorm", "sequelize", "activerecord"],
+      "source": ["https://docs.pingcap.com/tidb/stable/dev-guide-choose-driver-or-orm/"],
+      "comment": "Supports major ORMs via MySQL compatibility. django-tidb provides Django ORM dialect. SQLAlchemy, GORM, Hibernate, Sequelize, peewee supported."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://www.pingcap.com/blog/open-source-is-in-our-dna-reaffirming-tidb-commitment/"],
+      "comment": "Fully open source under Apache 2.0 license including all enterprise features. TiKV is a CNCF graduated project."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.pingcap.com/tidb-serverless-pricing-details/"],
+      "comment": "TiDB Cloud Serverless includes free quota: 5 GiB row + 5 GiB columnar storage + 50M Request Units per cluster, up to 5 clusters per org."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-storage", "per-request"],
+      "source": ["https://www.pingcap.com/pricing/"],
+      "comment": "Serverless uses per-request (RU) + per-storage. Dedicated uses traditional node-based pricing."
+    },
+    "cost-estimate-small": {
+      "value": "Free tier available; Dedicated starts ~$500+/month",
+      "source": ["https://www.pingcap.com/pricing/"],
+      "comment": "Serverless free tier generous for development. Dedicated pricing varies by configuration and cloud provider."
+    },
+    "github-stars": {
+      "value": 39500,
+      "source": ["https://github.com/pingcap/tidb"],
+      "comment": "As of December 2024. One of the most starred database projects on GitHub."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Stack Overflow activity is low; community primarily uses TiDB Forum (ask.pingcap.com) and Discord."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/TiDB"],
+      "comment": "TiCDC streams changes to Kafka, MySQL, and other downstream systems. Supports real-time data replication."
+    }
+  }
+}
