@@ -231,6 +231,21 @@
       "value": true,
       "source": ["https://www.cockroachlabs.com/docs/stable/change-data-capture-overview"],
       "comment": "Built-in changefeeds with support for Kafka, cloud storage, webhooks, and other sinks."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://github.com/cockroachdb/cockroach/issues/41522"],
+      "comment": "PostgreSQL LISTEN/NOTIFY not supported. Realtime subscriptions require changefeeds to external messaging systems."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/triggers"],
+      "comment": "Row-level triggers (preview) for INSERT/UPDATE/DELETE with BEFORE/AFTER timing. Statement-level and TRUNCATE triggers not supported."
+    },
+    "event-streaming": {
+      "value": ["kafka", "pulsar", "custom"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/changefeed-sinks"],
+      "comment": "Native changefeed sinks for Kafka (including Amazon MSK), Pulsar (via KoP), Google Cloud Pub/Sub, Azure Event Hubs, and webhooks. No native Kinesis sink."
     }
   }
 }
