@@ -104,12 +104,19 @@ Users should be able to:
 | **Pricing Model** | tags | How the service is priced: per-node, per-vCPU, per-storage, per-request, per-hour, enterprise-license |
 | **Cost Estimate (Small)** | text | Rough monthly cost for small deployment (3 nodes, basic specs). Cite source. |
 
-### 9. Ecosystem & Community
+### 9. Realtime & Events
+| Attribute | Type | Research Notes |
+|-----------|------|----------------|
+| **Change Data Capture** | boolean | Built-in CDC for streaming changes to external systems |
+| **Watch/Subscribe** | boolean | Clients can subscribe to changes on specific keys, documents, or queries |
+| **Triggers** | boolean | Database-side triggers that execute on data changes |
+| **Event Streaming** | tags | Integration with streaming platforms: kafka, pulsar, kinesis, custom |
+
+### 10. Ecosystem & Community
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **GitHub Stars** | integer | Stars on main repository (if open source) |
 | **Stack Overflow Tags** | integer | Number of questions with relevant tag |
-| **Change Data Capture** | boolean | Built-in CDC for streaming changes |
 
 ## Research Sources
 
@@ -189,6 +196,16 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - **per-request**: Pay per read/write operation (serverless model)
 - **per-hour**: Hourly billing for running instances
 - **enterprise-license**: Annual/contract-based enterprise licensing
+
+### Realtime & Events
+- **Change Data Capture**: Mark `true` if the database has built-in CDC capability (e.g., CockroachDB changefeeds, MongoDB change streams, DynamoDB Streams). Third-party CDC tools like Debezium don't count as "built-in."
+- **Watch/Subscribe**: Mark `true` if clients can receive push notifications when data changes. This includes MongoDB change streams, CouchDB continuous changes feed, RethinkDB realtime queries, etc. Polling-based approaches don't qualify.
+- **Triggers**: Mark `true` if the database supports server-side triggers (stored procedures that fire on INSERT/UPDATE/DELETE). Note: Some NoSQL databases don't have this concept.
+- **Event Streaming**: Tags for native integrations with streaming platforms:
+  - **kafka**: Direct Kafka connector/sink maintained by the vendor
+  - **pulsar**: Apache Pulsar integration
+  - **kinesis**: AWS Kinesis integration
+  - **custom**: Proprietary streaming protocol (e.g., DynamoDB Streams)
 
 ## Initial Candidates
 
