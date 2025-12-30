@@ -235,6 +235,21 @@
       "value": true,
       "source": ["https://docs.scylladb.com/manual/stable/features/cdc/", "https://www.scylladb.com/product/scylladb-cdc/"],
       "comment": "Built-in CDC stores changes in CQL tables. Integrates with Kafka via Debezium connector. Shard-aware CDC libraries for Rust, Go, Java."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://github.com/scylladb/scylladb/issues/611"],
+      "comment": "No native push-based change notifications. Feature request for RethinkDB-style change feeds opened in 2015 remains unimplemented. CDC polling or Kafka/Debezium required for change streaming."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://github.com/scylladb/scylladb/issues/2205", "https://forum.scylladb.com/t/are-there-any-plans-for-triggers-procedures-of-any-kind-on-the-scylladb-roadmap/889"],
+      "comment": "No trigger support. GitHub issue #2205 open since 2017 but deprioritized due to lack of demand. Unlike Cassandra, would not use Java-based implementation."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://github.com/scylladb/scylla-cdc-source-connector", "https://www.confluent.io/hub/scylladb/scylla-cdc-source-connector"],
+      "comment": "Official shard-aware Kafka CDC Source Connector (Debezium-based). Pulsar works via Cassandra-compatible connector but not shard-aware. No native Kinesis integration."
     }
   }
 }
