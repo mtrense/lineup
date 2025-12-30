@@ -233,8 +233,23 @@
     },
     "change-data-capture": {
       "value": true,
-      "source": ["https://en.wikipedia.org/wiki/TiDB"],
-      "comment": "TiCDC streams changes to Kafka, MySQL, and other downstream systems. Supports real-time data replication."
+      "source": ["https://docs.pingcap.com/tidb/stable/ticdc-overview"],
+      "comment": "TiCDC streams changes to Kafka, Pulsar, MySQL, TiDB, and cloud storage (S3, GCS, Azure Blob). Supports Canal-JSON, Avro, and Debezium formats."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://docs.pingcap.com/tidb/stable/ticdc-overview"],
+      "comment": "No native client subscription API. Real-time notifications require consuming TiCDC changefeeds via Kafka/Pulsar. Community tipubsub library provides pub/sub pattern using TiDB as backend."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://docs.pingcap.com/tidb/stable/tidb-faq/", "https://docs.pingcap.com/tidbcloud/tidb-cloud-faq/"],
+      "comment": "TiDB does not support triggers, stored procedures, or user-defined functions. Server-side logic must be implemented at the application layer."
+    },
+    "event-streaming": {
+      "value": ["kafka", "pulsar"],
+      "source": ["https://docs.pingcap.com/tidb/stable/ticdc-overview", "https://docs.pingcap.com/tidb/stable/ticdc-sink-to-pulsar/"],
+      "comment": "TiCDC supports native Kafka and Pulsar sinks. Pulsar support improved in v7.5.1/v8.0.0 with OAuth2 and TLS. No native Kinesis support."
     }
   }
 }
