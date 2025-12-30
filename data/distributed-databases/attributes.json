@@ -1,0 +1,584 @@
+{
+  "name": "Distributed Databases",
+  "description": "Comparison of distributed database systems for scalable, fault-tolerant applications",
+  "groups": [
+    {
+      "id": "overview",
+      "name": "Overview",
+      "description": "Basic information about the database",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official project or product website"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": "text",
+          "description": "Software license (SPDX identifier preferred)"
+        },
+        {
+          "id": "hosting-options",
+          "name": "Hosting Options",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "self-hosted", "value": "Self-Hosted", "color": "blue" },
+              { "id": "official-managed", "value": "Official Managed", "color": "green" },
+              { "id": "third-party-managed", "value": "Third-Party Managed", "color": "orange" },
+              { "id": "serverless", "value": "Serverless", "color": "purple" }
+            ]
+          },
+          "description": "Available deployment models"
+        },
+        {
+          "id": "initial-release",
+          "name": "Initial Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "primary-language",
+          "name": "Primary Language",
+          "valueType": "text",
+          "description": "Main implementation language"
+        },
+        {
+          "id": "data-model",
+          "name": "Data Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "relational", "value": "Relational", "color": "blue" },
+              { "id": "document", "value": "Document", "color": "green" },
+              { "id": "key-value", "value": "Key-Value", "color": "orange" },
+              { "id": "wide-column", "value": "Wide-Column", "color": "purple" },
+              { "id": "graph", "value": "Graph", "color": "pink" },
+              { "id": "time-series", "value": "Time-Series", "color": "cyan" }
+            ]
+          },
+          "description": "Primary data model(s) supported"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "name": "Distribution Architecture",
+      "description": "How data is distributed and replicated across nodes",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "topology",
+          "name": "Topology",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "leader-follower", "value": "Leader-Follower", "color": "blue" },
+              { "id": "multi-leader", "value": "Multi-Leader", "color": "green" },
+              { "id": "leaderless", "value": "Leaderless", "color": "orange" }
+            ]
+          },
+          "description": "Cluster architecture style"
+        },
+        {
+          "id": "sharding",
+          "name": "Sharding",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "hash", "value": "Hash", "color": "blue" },
+              { "id": "range", "value": "Range", "color": "green" },
+              { "id": "geographic", "value": "Geographic", "color": "purple" },
+              { "id": "automatic", "value": "Automatic", "color": "cyan" },
+              { "id": "manual", "value": "Manual", "color": "orange" }
+            ]
+          },
+          "description": "How data is partitioned across nodes"
+        },
+        {
+          "id": "replication-factor",
+          "name": "Replication Factor",
+          "valueType": "text",
+          "description": "Default/configurable replication (e.g., \"3 (configurable)\")"
+        },
+        {
+          "id": "multi-region",
+          "name": "Multi-Region",
+          "valueType": "boolean",
+          "description": "Native support for geo-distributed deployments"
+        },
+        {
+          "id": "cap-position",
+          "name": "CAP Position",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "cp", "value": "CP", "color": "blue" },
+              { "id": "ap", "value": "AP", "color": "green" },
+              { "id": "tunable", "value": "Tunable", "color": "orange" }
+            ]
+          },
+          "description": "Primary CAP theorem focus (Consistency vs Availability)"
+        }
+      ]
+    },
+    {
+      "id": "consistency",
+      "name": "Consistency & Transactions",
+      "description": "Transaction support and consistency guarantees",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "consistency-model",
+          "name": "Consistency Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "linearizable", "value": "Linearizable", "color": "blue" },
+              { "id": "serializable", "value": "Serializable", "color": "blue" },
+              { "id": "strong", "value": "Strong", "color": "green" },
+              { "id": "causal", "value": "Causal", "color": "orange" },
+              { "id": "read-your-writes", "value": "Read-Your-Writes", "color": "yellow" },
+              { "id": "eventual", "value": "Eventual", "color": "red" }
+            ]
+          },
+          "description": "Consistency guarantees provided"
+        },
+        {
+          "id": "acid-transactions",
+          "name": "ACID Transactions",
+          "valueType": "boolean",
+          "description": "Full ACID transaction support"
+        },
+        {
+          "id": "transaction-scope",
+          "name": "Transaction Scope",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "single-row", "value": "Single-Row", "color": "red" },
+              { "id": "single-partition", "value": "Single-Partition", "color": "orange" },
+              { "id": "cross-partition", "value": "Cross-Partition", "color": "green" },
+              { "id": "global", "value": "Global", "color": "blue" }
+            ]
+          },
+          "description": "Scope of transaction support"
+        },
+        {
+          "id": "isolation-levels",
+          "name": "Isolation Levels",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "read-uncommitted", "value": "Read Uncommitted", "color": "red" },
+              { "id": "read-committed", "value": "Read Committed", "color": "orange" },
+              { "id": "repeatable-read", "value": "Repeatable Read", "color": "yellow" },
+              { "id": "snapshot", "value": "Snapshot", "color": "green" },
+              { "id": "serializable", "value": "Serializable", "color": "blue" }
+            ]
+          },
+          "description": "Supported transaction isolation levels"
+        },
+        {
+          "id": "distributed-transactions",
+          "name": "Distributed Transactions",
+          "valueType": "boolean",
+          "description": "Cross-node transaction coordination"
+        }
+      ]
+    },
+    {
+      "id": "query",
+      "name": "Query Capabilities",
+      "description": "Query language and features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "query-language",
+          "name": "Query Language",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "sql", "value": "SQL", "color": "blue" },
+              { "id": "cql", "value": "CQL", "color": "purple" },
+              { "id": "mongodb-query", "value": "MongoDB Query", "color": "green" },
+              { "id": "graphql", "value": "GraphQL", "color": "pink" },
+              { "id": "cypher", "value": "Cypher", "color": "orange" },
+              { "id": "gremlin", "value": "Gremlin", "color": "cyan" },
+              { "id": "api-only", "value": "API Only", "color": "gray" }
+            ]
+          },
+          "description": "Primary query interface"
+        },
+        {
+          "id": "sql-compatibility",
+          "name": "SQL Compatibility",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "partial", "value": "Partial", "color": "orange" },
+              { "id": "full", "value": "Full", "color": "green" },
+              { "id": "postgresql", "value": "PostgreSQL-Compatible", "color": "blue" },
+              { "id": "mysql", "value": "MySQL-Compatible", "color": "cyan" }
+            ]
+          },
+          "description": "Level of SQL standard support"
+        },
+        {
+          "id": "secondary-indexes",
+          "name": "Secondary Indexes",
+          "valueType": "boolean",
+          "description": "Support for indexes beyond the primary key"
+        },
+        {
+          "id": "joins",
+          "name": "Joins",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "local-only", "value": "Local Only", "color": "orange" },
+              { "id": "distributed", "value": "Distributed", "color": "green" },
+              { "id": "materialized", "value": "Materialized", "color": "blue" }
+            ]
+          },
+          "description": "Join support across tables/partitions"
+        },
+        {
+          "id": "aggregations",
+          "name": "Aggregations",
+          "valueType": "boolean",
+          "description": "Native aggregation/GROUP BY support"
+        },
+        {
+          "id": "full-text-search",
+          "name": "Full-Text Search",
+          "valueType": "boolean",
+          "description": "Built-in full-text search capabilities"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance & Scalability",
+      "description": "Scaling and performance characteristics",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "max-cluster-size",
+          "name": "Max Tested Cluster Size",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Largest documented cluster (nodes) in production or benchmarks"
+        },
+        {
+          "id": "write-throughput",
+          "name": "Write Throughput",
+          "valueType": "text",
+          "description": "Representative benchmark figures (cite source)"
+        },
+        {
+          "id": "read-latency-p99",
+          "name": "Read Latency (p99)",
+          "valueType": "text",
+          "description": "Representative latency figures (cite source)"
+        },
+        {
+          "id": "auto-scaling",
+          "name": "Auto-Scaling",
+          "valueType": "boolean",
+          "description": "Automatic scale-out/scale-in without manual intervention"
+        },
+        {
+          "id": "hot-spot-handling",
+          "name": "Hot Spot Handling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "automatic", "value": "Automatic", "color": "green" },
+              { "id": "splitting", "value": "Splitting", "color": "blue" },
+              { "id": "manual", "value": "Manual", "color": "orange" }
+            ]
+          },
+          "description": "How it handles uneven load distribution"
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Operations & Reliability",
+      "description": "Operational characteristics and reliability features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "zero-downtime-upgrades",
+          "name": "Zero-Downtime Upgrades",
+          "valueType": "boolean",
+          "description": "Can upgrade without service interruption"
+        },
+        {
+          "id": "online-schema-changes",
+          "name": "Online Schema Changes",
+          "valueType": "boolean",
+          "description": "Schema modifications without locking/downtime"
+        },
+        {
+          "id": "point-in-time-recovery",
+          "name": "Point-in-Time Recovery",
+          "valueType": "boolean",
+          "description": "Restore to arbitrary past timestamp"
+        },
+        {
+          "id": "backup-strategy",
+          "name": "Backup Strategy",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "snapshot", "value": "Snapshot", "color": "blue" },
+              { "id": "incremental", "value": "Incremental", "color": "green" },
+              { "id": "continuous", "value": "Continuous", "color": "purple" },
+              { "id": "cdc-based", "value": "CDC-Based", "color": "orange" }
+            ]
+          },
+          "description": "Supported backup approaches"
+        },
+        {
+          "id": "kubernetes-operator",
+          "name": "Kubernetes Operator",
+          "valueType": "boolean",
+          "description": "Official K8s operator available"
+        }
+      ]
+    },
+    {
+      "id": "language-support",
+      "name": "Language Support",
+      "description": "Official and community drivers for programming languages",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "rust-driver",
+          "name": "Rust Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "Rust client library availability"
+        },
+        {
+          "id": "go-driver",
+          "name": "Go Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "Go client library availability"
+        },
+        {
+          "id": "java-driver",
+          "name": "Java Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "Java/JDK client library availability"
+        },
+        {
+          "id": "dotnet-driver",
+          "name": "C#/.NET Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": ".NET client library availability"
+        },
+        {
+          "id": "python-driver",
+          "name": "Python Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "Python client library availability"
+        },
+        {
+          "id": "ruby-driver",
+          "name": "Ruby Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "Ruby client library availability"
+        },
+        {
+          "id": "c-cpp-driver",
+          "name": "C/C++ Driver",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "official", "value": "Official", "color": "green" },
+              { "id": "community", "value": "Community", "color": "blue" },
+              { "id": "third-party", "value": "Third-Party", "color": "orange" }
+            ]
+          },
+          "description": "C/C++ client library availability"
+        },
+        {
+          "id": "orm-support",
+          "name": "ORM Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "hibernate", "value": "Hibernate", "color": "orange" },
+              { "id": "sqlalchemy", "value": "SQLAlchemy", "color": "blue" },
+              { "id": "prisma", "value": "Prisma", "color": "purple" },
+              { "id": "gorm", "value": "GORM", "color": "cyan" },
+              { "id": "typeorm", "value": "TypeORM", "color": "green" },
+              { "id": "sequelize", "value": "Sequelize", "color": "yellow" },
+              { "id": "entity-framework", "value": "Entity Framework", "color": "pink" },
+              { "id": "activerecord", "value": "ActiveRecord", "color": "red" }
+            ]
+          },
+          "description": "Major ORMs with native support"
+        }
+      ]
+    },
+    {
+      "id": "cost",
+      "name": "Cost & Licensing",
+      "description": "Pricing and licensing information",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Core database is open source (OSI-approved license)"
+        },
+        {
+          "id": "free-tier",
+          "name": "Free Tier",
+          "valueType": "boolean",
+          "description": "Official managed service offers a free tier"
+        },
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "per-node", "value": "Per-Node", "color": "blue" },
+              { "id": "per-vcpu", "value": "Per-vCPU", "color": "green" },
+              { "id": "per-storage", "value": "Per-Storage", "color": "orange" },
+              { "id": "per-request", "value": "Per-Request", "color": "purple" },
+              { "id": "per-hour", "value": "Per-Hour", "color": "cyan" },
+              { "id": "enterprise-license", "value": "Enterprise License", "color": "red" }
+            ]
+          },
+          "description": "How the managed service is priced"
+        },
+        {
+          "id": "cost-estimate-small",
+          "name": "Cost Estimate (Small)",
+          "valueType": "text",
+          "description": "Rough monthly cost for small deployment (3 nodes, basic specs)"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem",
+      "name": "Ecosystem & Community",
+      "description": "Community size and ecosystem maturity",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Stars on primary GitHub repository"
+        },
+        {
+          "id": "stackoverflow-tags",
+          "name": "Stack Overflow Questions",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of tagged questions on Stack Overflow"
+        },
+        {
+          "id": "change-data-capture",
+          "name": "Change Data Capture",
+          "valueType": "boolean",
+          "description": "Built-in CDC for streaming changes"
+        }
+      ]
+    }
+  ]
+}
