@@ -1,0 +1,240 @@
+{
+  "name": "ScyllaDB",
+  "description": "High-performance distributed wide-column NoSQL database, a C++ rewrite of Apache Cassandra using the Seastar framework",
+  "icon": "🦑",
+  "url": "https://www.scylladb.com/",
+  "values": {
+    "website": {
+      "value": "https://www.scylladb.com/",
+      "source": ["https://www.scylladb.com/"]
+    },
+    "license": {
+      "value": "Source Available (proprietary)",
+      "source": ["https://www.scylladb.com/2024/12/18/why-were-moving-to-a-source-available-license/"],
+      "comment": "As of December 2024, moved from AGPL-3.0 to source available license. ScyllaDB OSS AGPL 6.2 is the final open source release. Enterprise 2025.1+ is source available."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://www.scylladb.com/download/", "https://www.scylladb.com/product/scylla-cloud/"],
+      "comment": "Self-hosted via Docker/packages, ScyllaDB Cloud as official managed service. Also available via AWS Marketplace."
+    },
+    "initial-release": {
+      "value": "2015",
+      "source": ["https://en.wikipedia.org/wiki/ScyllaDB"],
+      "comment": "Released as open source in September 2015."
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/scylladb/scylladb"],
+      "comment": "Written in C++20 using the Seastar asynchronous framework, replacing Cassandra's Java implementation."
+    },
+    "data-model": {
+      "value": ["wide-column", "key-value"],
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "Wide-column store compatible with Cassandra CQL. Also provides DynamoDB-compatible key-value API (Alternator)."
+    },
+    "topology": {
+      "value": ["leaderless"],
+      "source": ["https://docs.scylladb.com/stable/get-started/scylladb-basics.html"],
+      "comment": "Peer-to-peer architecture like Cassandra. All nodes are equal with no single point of failure."
+    },
+    "sharding": {
+      "value": ["hash", "automatic"],
+      "source": ["https://docs.scylladb.com/stable/get-started/scylladb-basics.html"],
+      "comment": "Uses consistent hashing for data distribution. Additionally implements shard-per-core architecture for internal parallelism."
+    },
+    "replication-factor": {
+      "value": "3 (configurable per keyspace)",
+      "source": ["https://docs.scylladb.com/manual/stable/kb/consistency.html"],
+      "comment": "Replication factor of 3 recommended for production. Configurable per keyspace using replication strategies."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://www.scylladb.com/product/scylla-cloud/"],
+      "comment": "Native support for multi-datacenter deployments. ScyllaDB Cloud supports multi-region clusters."
+    },
+    "cap-position": {
+      "value": ["ap", "tunable"],
+      "source": ["https://docs.scylladb.com/manual/stable/kb/consistency.html"],
+      "comment": "Defaults to AP like Cassandra. Tunable consistency per-operation from ONE to ALL. LWT provides linearizability."
+    },
+    "consistency-model": {
+      "value": ["eventual", "strong", "linearizable"],
+      "source": ["https://docs.scylladb.com/manual/stable/kb/consistency.html"],
+      "comment": "Tunable consistency from eventual (ONE) to strong (QUORUM) to linearizable (via LWT with Paxos)."
+    },
+    "acid-transactions": {
+      "value": false,
+      "source": ["https://docs.scylladb.com/manual/stable/features/lwt.html"],
+      "comment": "No full ACID transactions. Lightweight transactions (LWT) provide linearizable compare-and-set operations for single partitions only."
+    },
+    "transaction-scope": {
+      "value": ["single-partition"],
+      "source": ["https://docs.scylladb.com/manual/stable/features/lwt.html"],
+      "comment": "LWT limited to single-partition operations. Conditional batches support multiple statements but all must target same partition key."
+    },
+    "isolation-levels": {
+      "value": null,
+      "comment": "Traditional isolation levels don't apply. Uses tunable consistency levels (ONE, QUORUM, ALL, SERIAL, etc.) instead."
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://docs.scylladb.com/manual/stable/features/lwt.html"],
+      "comment": "No cross-partition distributed transactions. LWT uses Paxos but limited to single partition."
+    },
+    "query-language": {
+      "value": ["cql"],
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "Full CQL compatibility with Cassandra. Also supports DynamoDB API via Alternator."
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "CQL is SQL-like but not SQL-compatible. No JOINs, subqueries, or cross-partition aggregations."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.scylladb.com/manual/stable/using-scylla/secondary-indexes.html"],
+      "comment": "Global and local secondary indexes supported. Also supports materialized views."
+    },
+    "joins": {
+      "value": ["none"],
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "No JOIN support. Data model should be denormalized for query patterns."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "Basic aggregations (COUNT, SUM, AVG, MIN, MAX) supported within a single partition. User-defined aggregates available."
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "No built-in full-text search. External solutions like Elasticsearch often used."
+    },
+    "max-cluster-size": {
+      "value": 177,
+      "source": ["https://discord.com/blog/how-discord-stores-trillions-of-messages"],
+      "comment": "Discord migrated from 177 Cassandra nodes to 72 ScyllaDB nodes storing trillions of messages. Comcast migrated from 962 to 78 nodes."
+    },
+    "write-throughput": {
+      "value": "1M+ ops/sec per node",
+      "source": ["https://www.scylladb.com/2024/02/20/enterprise2024/"],
+      "comment": "ScyllaDB Enterprise 2024.1 achieves 50% higher throughput than previous release. Discord handles trillions of messages."
+    },
+    "read-latency-p99": {
+      "value": "<10ms (typical)",
+      "source": ["https://discord.com/blog/how-discord-stores-trillions-of-messages", "https://www.scylladb.com/product/benchmarks/"],
+      "comment": "Discord achieved 15ms p99 read latency vs 40-125ms with Cassandra. ScyllaDB typically achieves sub-10ms p99."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://cloud.docs.scylladb.com/stable/manage-clusters/scylla-cloud-scale-cluster.html"],
+      "comment": "Nodes can be added without downtime. ScyllaDB Cloud supports managed scaling but not fully automatic."
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://docs.scylladb.com/stable/get-started/scylladb-basics.html"],
+      "comment": "Hot spots addressed through data model design. Shard-per-core architecture helps distribute load within nodes."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.scylladb.com/product/scylladb-operator-kubernetes/"],
+      "comment": "Rolling upgrades supported. ScyllaDB Operator automates rolling upgrades in Kubernetes."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.scylladb.com/"],
+      "comment": "Schema changes propagate via gossip protocol without downtime."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://cloud.docs.scylladb.com/"],
+      "comment": "Available in ScyllaDB Cloud and Enterprise. Combines snapshots with CDC for recovery."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "cdc-based"],
+      "source": ["https://www.scylladb.com/product/scylladb-operator-kubernetes/"],
+      "comment": "Snapshot and incremental backups to S3 or GCS. ScyllaDB Manager provides backup automation. CDC enables streaming backups."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://www.scylladb.com/product/scylladb-operator-kubernetes/"],
+      "comment": "Official ScyllaDB Operator for Kubernetes. Automates deployment, scaling, backups, upgrades, and self-healing."
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://rust-driver.docs.scylladb.com/", "https://github.com/scylladb/scylla-rust-driver"],
+      "comment": "Official async Rust driver using Tokio. Production-ready since version 1.0. Shard-aware for optimal performance."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Official shard-aware Go driver (gocqlx fork). Also compatible with standard GoCQL driver."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Official shard-aware Java driver. Also compatible with DataStax/Apache Cassandra Java driver."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Compatible with DataStax C# driver for Cassandra. No ScyllaDB-specific driver."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Official Python driver (fork of cassandra-driver) with shard-awareness."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Compatible with Cassandra Ruby driver."
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://docs.scylladb.com/stable/get-started/develop-with-scylladb/install-drivers.html"],
+      "comment": "Official shard-aware C++ driver."
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "Limited ORM support due to wide-column data model. Spring Data Cassandra compatible."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.scylladb.com/2024/12/18/why-were-moving-to-a-source-available-license/"],
+      "comment": "As of December 2024, source available license (not OSI-approved). AGPL 6.2 is final open source version."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.scylladb.com/source-available-faq/"],
+      "comment": "Source available license allows free production use up to 50 vCPU and 10 TB per organization."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-hour", "enterprise-license"],
+      "source": ["https://www.scylladb.com/pricing/", "https://cloud.docs.scylladb.com/stable/cloud-services/scylla-cloud-costs.html"],
+      "comment": "ScyllaDB Cloud pricing based on node type, count, and deployment region. On-demand hourly or annual subscription."
+    },
+    "cost-estimate-small": {
+      "value": "~$500-1000/month (ScyllaDB Cloud, 3 nodes)",
+      "source": ["https://www.scylladb.com/pricing/"],
+      "comment": "Varies by instance type and region. Contact sales for specific pricing. Claims 1/5th cost of DynamoDB for equivalent workloads."
+    },
+    "github-stars": {
+      "value": 15200,
+      "source": ["https://github.com/scylladb/scylladb"],
+      "comment": "As of December 2024. Repository has 15.2k stars and 1.5k forks."
+    },
+    "stackoverflow-tags": {
+      "value": 500,
+      "source": ["https://stackoverflow.com/questions/tagged/scylla"],
+      "comment": "Estimated based on ScyllaDB tag. Community primarily uses ScyllaDB Forum and Slack."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://docs.scylladb.com/manual/stable/features/cdc/", "https://www.scylladb.com/product/scylladb-cdc/"],
+      "comment": "Built-in CDC stores changes in CQL tables. Integrates with Kafka via Debezium connector. Shard-aware CDC libraries for Rust, Go, Java."
+    }
+  }
+}
