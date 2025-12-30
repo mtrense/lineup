@@ -1,0 +1,240 @@
+{
+  "name": "YugabyteDB",
+  "description": "PostgreSQL-compatible distributed SQL database for cloud-native applications with high availability and global scale",
+  "icon": "🐘",
+  "url": "https://www.yugabyte.com/",
+  "values": {
+    "website": {
+      "value": "https://www.yugabyte.com/",
+      "source": ["https://www.yugabyte.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/yugabyte/yugabyte-db"],
+      "comment": "Core database is Apache 2.0. Managed service binaries use Polyform Free Trial License 1.0.0."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://www.yugabyte.com/pricing/"],
+      "comment": "YugabyteDB Aeon is the official managed DBaaS. Available on AWS, GCP, and Azure. Also supports self-hosted and bring-your-own-cloud deployments."
+    },
+    "initial-release": {
+      "value": "2017",
+      "source": ["https://github.com/yugabyte/yugabyte-db"],
+      "comment": "Repository created October 2017. First public release in 2017."
+    },
+    "primary-language": {
+      "value": "C/C++",
+      "source": ["https://github.com/yugabyte/yugabyte-db"],
+      "comment": "Primarily C (30.6%) and C++ (24.0%). Storage layer (DocDB) is C++."
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://docs.yugabyte.com/"],
+      "comment": "PostgreSQL-compatible relational model via YSQL. Also offers Cassandra-compatible YCQL API for wide-column workloads."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/key-concepts/"],
+      "comment": "Uses Raft consensus protocol. Each tablet (shard) has a leader that handles reads/writes, with followers for replication."
+    },
+    "sharding": {
+      "value": ["hash", "range", "automatic"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/key-concepts/"],
+      "comment": "Supports both hash and range sharding. Automatic tablet splitting when tablets grow. Default is hash-based partitioning."
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "source": ["https://docs.yugabyte.com/stable/architecture/key-concepts/"],
+      "comment": "Default replication factor is 3 for fault tolerance. Configurable per table or globally."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/explore/multi-region-deployments/"],
+      "comment": "Native support for geo-distributed deployments with xCluster replication, tablespace-based geo-partitioning, and read replicas."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/"],
+      "comment": "Strongly consistent (CP). Prioritizes consistency over availability during network partitions."
+    },
+    "consistency-model": {
+      "value": ["serializable", "strong"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/isolation-levels/"],
+      "comment": "Provides strong consistency. Supports serializable and snapshot isolation. Linearizable for single-key operations when clocks are synchronized."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/"],
+      "comment": "Full ACID transaction support across distributed data. Inspired by Google Spanner architecture."
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/distributed-txns/"],
+      "comment": "Transactions can span multiple tablets, tables, and nodes across the entire cluster."
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "snapshot", "serializable"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/isolation-levels/"],
+      "comment": "YSQL supports Serializable, Snapshot (Repeatable Read), and Read Committed. Default is Snapshot. YCQL supports Snapshot only."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/architecture/transactions/distributed-txns/"],
+      "comment": "Uses Raft consensus and hybrid logical clocks for distributed transaction coordination."
+    },
+    "query-language": {
+      "value": ["sql", "cql"],
+      "source": ["https://docs.yugabyte.com/"],
+      "comment": "YSQL (PostgreSQL-compatible SQL) and YCQL (Cassandra Query Language compatible)."
+    },
+    "sql-compatibility": {
+      "value": ["postgresql"],
+      "source": ["https://docs.yugabyte.com/stable/"],
+      "comment": "PostgreSQL wire protocol compatible. Reuses the PostgreSQL query layer. Currently rebased to PostgreSQL 15."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/"],
+      "comment": "Full support for secondary indexes in both YSQL and YCQL. Online index builds supported."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://docs.yugabyte.com/stable/"],
+      "comment": "Full distributed JOIN support through PostgreSQL query layer compatibility."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/"]
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/"],
+      "comment": "PostgreSQL-compatible full-text search with TSVECTOR/TSQUERY inherited from PostgreSQL query layer."
+    },
+    "max-cluster-size": {
+      "value": 100,
+      "source": ["https://www.yugabyte.com/blog/how-yugabytedb-scales-to-more-than-1-million-inserts-per-sec/"],
+      "comment": "100-node cluster tested with linear scalability in AWS benchmarks."
+    },
+    "write-throughput": {
+      "value": "1.26M inserts/sec (100 nodes)",
+      "source": ["https://www.yugabyte.com/blog/how-yugabytedb-scales-to-more-than-1-million-inserts-per-sec/"],
+      "comment": "100-node cluster on AWS c5.4xlarge instances achieved 1.26M inserts/sec with 3x replication and 1.66ms average latency."
+    },
+    "read-latency-p99": {
+      "value": "~1ms (single-row, same region)",
+      "source": ["https://www.yugabyte.com/blog/how-yugabytedb-scales-to-more-than-1-million-inserts-per-sec/"],
+      "comment": "0.56ms average read latency in 100-node benchmark. 2.8M reads/sec achieved."
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://github.com/yugabyte/yugabyte-k8s-operator"],
+      "comment": "K8s operator supports transparent scale out/in. YugabyteDB Aeon managed service auto-scales."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://docs.yugabyte.com/stable/architecture/key-concepts/"],
+      "comment": "Automatic tablet splitting and load balancing. Smart drivers distribute connections across nodes."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.yugabyte.com/blog/postgresql-upgrade-framework/"],
+      "comment": "Rolling upgrades supported. New v2025.1 supports in-place online upgrades and downgrades including PostgreSQL major version changes."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/"],
+      "comment": "Online index builds supported. Schema changes can be performed without blocking concurrent writes."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/explore/cluster-management/point-in-time-recovery-ysql/"],
+      "comment": "PITR with microsecond precision. Fast operation (seconds). Supports time-travel queries within retention period."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "cdc-based"],
+      "source": ["https://docs.yugabyte.com/stable/manage/backup-restore/"],
+      "comment": "Distributed snapshots, incremental backups, and CDC-based replication supported."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/yugabyte/yugabyte-k8s-operator"],
+      "comment": "Official Kubernetes operator supporting deployments, upgrades, backups, and restores via CRDs."
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/rust/"],
+      "comment": "Official YugabyteDB smart driver for Rust. Also works with rust-postgres via PostgreSQL compatibility."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/drivers-orms/go/"],
+      "comment": "Official YugabyteDB PGX Smart Driver (v4) with cluster-aware load balancing."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Official YugabyteDB JDBC Smart Driver (42.7.3-yb-4) with topology awareness and connection load balancing."
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Official YugabyteDB smart driver for C#. Also works with Npgsql via PostgreSQL compatibility."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Official YugabyteDB Psycopg2 Smart Driver (2.9.3) with cluster-aware load balancing."
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Official YugabyteDB smart driver for Ruby with topology awareness."
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Official C/C++ driver support. Works with libpq via PostgreSQL wire protocol."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "prisma", "gorm", "sequelize", "activerecord"],
+      "source": ["https://docs.yugabyte.com/preview/develop/drivers-orms/"],
+      "comment": "Full support for Hibernate, SQLAlchemy, Prisma, GORM, Sequelize, and ActiveRecord via PostgreSQL compatibility."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/yugabyte/yugabyte-db"],
+      "comment": "Core database and all enterprise features are Apache 2.0 licensed. Fully open source."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.yugabyte.com/pricing/"],
+      "comment": "14-day free trial for YugabyteDB Aeon managed service."
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage"],
+      "source": ["https://www.yugabyte.com/pricing/"],
+      "comment": "Credit-based pricing (100 Consumption Units = $1). Tiers: Starter, Professional, Enterprise. Storage and data transfer additional."
+    },
+    "cost-estimate-small": {
+      "value": "Pay-as-you-go, varies by usage",
+      "source": ["https://www.yugabyte.com/pricing/"],
+      "comment": "Credit-based consumption model. Contact sales for committed pricing. Self-hosted is free."
+    },
+    "github-stars": {
+      "value": 10000,
+      "source": ["https://github.com/yugabyte/yugabyte-db"],
+      "comment": "Approximately 10k stars as of December 2024."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count from Stack Overflow. YugabyteDB has an active presence on Stack Overflow as a community support channel."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/stable/explore/change-data-capture/"],
+      "comment": "Built-in CDC using Debezium connector. Supports Kafka, PostgreSQL logical replication. At-least-once delivery guarantee."
+    }
+  }
+}
