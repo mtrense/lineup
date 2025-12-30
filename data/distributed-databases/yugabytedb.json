@@ -235,6 +235,24 @@
       "value": true,
       "source": ["https://docs.yugabyte.com/stable/explore/change-data-capture/"],
       "comment": "Built-in CDC using Debezium connector. Supports Kafka, PostgreSQL logical replication. At-least-once delivery guarantee."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://github.com/yugabyte/yugabyte-db/issues/2899"],
+      "comment": "PostgreSQL LISTEN/NOTIFY not yet supported. Open GitHub issue #2899 tracks this feature request. Clients cannot receive push notifications on data changes."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://docs.yugabyte.com/preview/explore/ysql-language-features/advanced-features/triggers/"],
+      "comment": "Full PostgreSQL-compatible triggers via YSQL. Supports BEFORE/AFTER triggers on INSERT, UPDATE, DELETE, TRUNCATE. Also supports event triggers."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": [
+        "https://docs.yugabyte.com/stable/additional-features/change-data-capture/using-yugabytedb-grpc-replication/debezium-connector-yugabytedb/",
+        "https://www.yugabyte.com/blog/yugabytedb-source-connector-for-confluent-cloud/"
+      ],
+      "comment": "Official Debezium connector for Kafka Connect and native YugabyteDB Source Connector for Confluent Cloud. Also supports Azure Event Hubs (Kafka-compatible)."
     }
   }
 }
