@@ -1,0 +1,236 @@
+{
+  "name": "CockroachDB",
+  "description": "Distributed SQL database designed for high availability, effortless scale, and control over data placement",
+  "icon": "🪳",
+  "url": "https://www.cockroachlabs.com/",
+  "values": {
+    "website": {
+      "value": "https://www.cockroachlabs.com/",
+      "source": ["https://www.cockroachlabs.com/"]
+    },
+    "license": {
+      "value": "CockroachDB Software License",
+      "source": ["https://github.com/cockroachdb/cockroach/blob/master/LICENSE"],
+      "comment": "Changed from BSL to proprietary CockroachDB Software License in November 2024. Older versions (21.1 and earlier) are Apache 2.0."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed", "serverless"],
+      "source": ["https://www.cockroachlabs.com/pricing/"],
+      "comment": "CockroachDB Cloud offers Basic (serverless), Standard, and Advanced (dedicated) tiers. Also available via third-party providers."
+    },
+    "initial-release": {
+      "value": "2015",
+      "source": ["https://en.wikipedia.org/wiki/CockroachDB"],
+      "comment": "Development started in 2014, first public release under Apache 2.0 in 2015 when Cockroach Labs was founded."
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/cockroachdb/cockroach"]
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"]
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Uses Raft consensus protocol with per-range leader election. Each range has a leaseholder that coordinates reads and writes."
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Data is divided into ranges (default 64MB) that are automatically split, merged, and rebalanced. Range-based sharding on primary key."
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Default replication factor is 3. Configurable per zone/table."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Native support for global deployments with locality-aware data placement and geo-partitioning."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://www.cockroachlabs.com/blog/consistency-model/"],
+      "comment": "Prioritizes consistency over availability. May reject writes during network partitions to maintain consistency."
+    },
+    "consistency-model": {
+      "value": ["serializable"],
+      "source": ["https://www.cockroachlabs.com/blog/consistency-model/"],
+      "comment": "Offers serializable isolation by default. Provides single-key linearizability and 'no stale reads' guarantee."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/transactions"],
+      "comment": "Full ACID transaction support across distributed data, even for globally distributed workloads."
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/transactions"],
+      "comment": "Transactions can span arbitrary tables and rows across the entire cluster."
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "serializable"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/transactions"],
+      "comment": "Offers SERIALIZABLE (default) and READ COMMITTED isolation levels."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/transaction-layer"],
+      "comment": "Uses Raft consensus for distributed transaction coordination across nodes."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/"]
+    },
+    "sql-compatibility": {
+      "value": ["postgresql"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/"],
+      "comment": "PostgreSQL wire protocol compatible. Most PostgreSQL drivers work without modification."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/"]
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/"],
+      "comment": "Full distributed JOIN support across tables and partitions."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/"]
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/blog/full-text-indexing-search/"],
+      "comment": "PostgreSQL-compatible full-text search with TSVECTOR/TSQUERY since v23.1. Uses GIN indexes."
+    },
+    "max-cluster-size": {
+      "value": 256,
+      "source": ["https://www.cockroachlabs.com/docs/stable/performance"],
+      "comment": "Near-linear performance scaling demonstrated at 256 nodes."
+    },
+    "write-throughput": {
+      "value": "1.7M tpmC (81 nodes, TPC-C)",
+      "source": ["https://www.cockroachlabs.com/blog/cockroachdb-performance-20-2/"],
+      "comment": "CockroachDB v21.1 achieved 1.68M tpmC with 140K warehouses on 81 c5d.9xlarge nodes."
+    },
+    "read-latency-p99": {
+      "value": "~80ms (TPC-C workload)",
+      "source": ["https://www.cockroachlabs.com/blog/cockroachdb-performance-20-2/"],
+      "comment": "p99 ~79.7ms under TPC-C benchmark. Single-row reads ~1ms within single AZ."
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/product/kubernetes/"],
+      "comment": "Automatic rebalancing when nodes are added/removed. CockroachDB Cloud serverless tier auto-scales."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Automatic range splitting and rebalancing to handle hot spots."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/"],
+      "comment": "Rolling upgrades supported without service interruption."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/blog/online-schema-changes-in-cockroachdb/"],
+      "comment": "Schema changes run as background jobs without locking tables. Based on Google F1 design."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/take-full-and-incremental-backups"],
+      "comment": "Supports incremental backups with revision history for point-in-time recovery. Subject to GC TTL."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "cdc-based"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/take-full-and-incremental-backups"],
+      "comment": "Full and incremental backups to cloud storage. CDC changefeeds can be used for backup/replication."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/cockroachdb/cockroach-operator"],
+      "comment": "Official Kubernetes operator maintained by Cockroach Labs."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/build-a-rust-app-with-cockroachdb"],
+      "comment": "Uses rust-postgres driver via PostgreSQL wire protocol compatibility."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/cockroachdb/cockroach-go"],
+      "comment": "Official cockroach-go package with transaction retry helpers. Also supports pgx and pq drivers."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/install-client-drivers"],
+      "comment": "Uses PostgreSQL JDBC driver with official Hibernate dialect support."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/install-client-drivers"],
+      "comment": "Uses Npgsql (PostgreSQL .NET driver) via wire protocol compatibility."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/install-client-drivers"],
+      "comment": "Supports psycopg2/psycopg3 with official sqlalchemy-cockroachdb adapter."
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/cockroachdb/activerecord-cockroachdb-adapter"],
+      "comment": "Uses pg gem with official ActiveRecord CockroachDB adapter maintained by Cockroach Labs."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/install-client-drivers"],
+      "comment": "Uses libpqxx (PostgreSQL C++ driver) via wire protocol compatibility."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "prisma", "gorm", "activerecord"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/install-client-drivers"],
+      "comment": "Official support for Hibernate (Java), SQLAlchemy (Python), Prisma (TypeScript), GORM (Go), ActiveRecord (Ruby), and Django ORM."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://news.ycombinator.com/item?id=41256222"],
+      "comment": "Changed to proprietary CockroachDB Software License in November 2024. Older versions remain under Apache 2.0 or BSL."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/pricing/"],
+      "comment": "Basic (serverless) tier includes 10 GiB storage and 50M Request Units free per month."
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage", "per-request"],
+      "source": ["https://www.cockroachlabs.com/docs/cockroachcloud/costs"],
+      "comment": "Pricing varies by tier: Basic uses per-request (RU), Standard/Advanced use per-vCPU and per-storage."
+    },
+    "cost-estimate-small": {
+      "value": "~$200-400/month (3 nodes, Standard)",
+      "source": ["https://www.cockroachlabs.com/pricing/"],
+      "comment": "Varies by cloud provider and region. Basic tier free up to limits; production Standard starts around $200/month."
+    },
+    "github-stars": {
+      "value": 31657,
+      "source": ["https://github.com/cockroachdb/cockroach"],
+      "comment": "As of December 2024"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count from Stack Overflow."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/change-data-capture-overview"],
+      "comment": "Built-in changefeeds with support for Kafka, cloud storage, webhooks, and other sinks."
+    }
+  }
+}
