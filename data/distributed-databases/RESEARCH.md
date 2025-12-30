@@ -198,7 +198,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] YugabyteDB - PostgreSQL-compatible distributed SQL
 - [x] Apache Cassandra - Battle-tested wide-column store
 - [x] ScyllaDB - C++ rewrite of Cassandra for performance
-- [ ] Amazon DynamoDB - AWS's flagship NoSQL, serverless
+- [x] Amazon DynamoDB - AWS's flagship NoSQL, serverless
 - [ ] Google Cloud Spanner - Google's globally-distributed SQL
 - [ ] MongoDB (Sharded) - Document DB with native sharding
 - [ ] Vitess - MySQL sharding middleware (YouTube origin)

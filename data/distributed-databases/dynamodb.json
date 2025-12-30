@@ -1,0 +1,236 @@
+{
+  "name": "Amazon DynamoDB",
+  "description": "Fully managed, serverless NoSQL database with single-digit millisecond performance at any scale",
+  "icon": "aws",
+  "url": "https://aws.amazon.com/dynamodb/",
+  "values": {
+    "website": {
+      "value": "https://aws.amazon.com/dynamodb/",
+      "source": ["https://aws.amazon.com/dynamodb/"]
+    },
+    "license": {
+      "value": "Proprietary",
+      "source": ["https://aws.amazon.com/dynamodb/"]
+    },
+    "hosting-options": {
+      "value": ["official-managed", "serverless"],
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "DynamoDB is only available as an AWS managed service; no self-hosted option exists"
+    },
+    "initial-release": {
+      "value": "2012",
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-dynamodb/"],
+      "comment": "Launched January 2012"
+    },
+    "primary-language": {
+      "value": "Proprietary",
+      "comment": "Internal AWS implementation, language not disclosed"
+    },
+    "data-model": {
+      "value": ["key-value", "document"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Supports both key-value and document data models"
+    },
+    "topology": {
+      "value": ["leaderless"],
+      "source": ["https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf"],
+      "comment": "Uses leaderless architecture with consistent hashing; based on the original Dynamo paper"
+    },
+    "sharding": {
+      "value": ["hash", "automatic"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html"],
+      "comment": "Automatic partitioning based on partition key using consistent hashing"
+    },
+    "replication-factor": {
+      "value": "3 (fixed within region)",
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Data automatically replicated across 3 Availability Zones within a region"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html"],
+      "comment": "Global Tables provide multi-active replication across AWS regions"
+    },
+    "cap-position": {
+      "value": ["tunable"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"],
+      "comment": "Supports both eventually consistent and strongly consistent reads; defaults to AP but can be tuned to CP per-operation"
+    },
+    "consistency-model": {
+      "value": ["strong", "eventual"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"],
+      "comment": "Configurable per-request: eventual consistency (default) or strong consistency"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html"],
+      "comment": "Full ACID transactions via TransactWriteItems and TransactGetItems APIs"
+    },
+    "transaction-scope": {
+      "value": ["cross-partition"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html"],
+      "comment": "Transactions can span up to 100 items across multiple tables within a single region; not cross-region"
+    },
+    "isolation-levels": {
+      "value": ["serializable"],
+      "source": ["https://www.infoq.com/articles/amazon-dynamodb-transactions/"],
+      "comment": "Transactional operations provide serializable isolation"
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html"],
+      "comment": "Cross-partition transactions within a single region; uses optimistic concurrency control"
+    },
+    "query-language": {
+      "value": ["api-only", "sql"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "Primary access via API; PartiQL provides SQL-like syntax for queries"
+    },
+    "sql-compatibility": {
+      "value": ["partial"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "PartiQL provides limited SQL-like syntax but no JOINs or complex SQL features"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html"],
+      "comment": "Supports both Local Secondary Indexes (LSI) and Global Secondary Indexes (GSI)"
+    },
+    "joins": {
+      "value": ["none"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "No JOIN support; denormalization is recommended"
+    },
+    "aggregations": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "No native aggregation support; must be done client-side or via Streams"
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "No built-in full-text search; integration with OpenSearch recommended"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Serverless architecture with no exposed node concept; scales automatically without explicit cluster sizing"
+    },
+    "write-throughput": {
+      "value": ">500K requests/second",
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Handles peak traffic over 500,000 requests per second; processes over 1 billion requests per hour for Amazon properties"
+    },
+    "read-latency-p99": {
+      "value": "Single-digit milliseconds",
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Consistent single-digit millisecond latency at any scale; microseconds with DAX caching"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/pricing/on-demand/"],
+      "comment": "On-demand mode provides automatic scaling with no capacity planning; provisioned mode also supports auto-scaling policies"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"],
+      "comment": "Adaptive capacity automatically isolates hot partitions; partition splitting for sustained load"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Fully managed service with zero downtime maintenance"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"],
+      "comment": "Schema-less design; GSI can be added online"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html"],
+      "comment": "PITR enables restore to any second within the last 35 days"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "continuous"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html"],
+      "comment": "On-demand backups (snapshots) and continuous backups with PITR"
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "comment": "No Kubernetes operator as DynamoDB is only available as a managed service"
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/awslabs/aws-sdk-rust"],
+      "comment": "Official AWS SDK for Rust includes DynamoDB support"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/aws/aws-sdk-go-v2"],
+      "comment": "Official AWS SDK for Go v2"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/aws/aws-sdk-java-v2"],
+      "comment": "Official AWS SDK for Java 2.x with Enhanced Client"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/aws/aws-sdk-net"],
+      "comment": "Official AWS SDK for .NET"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/boto/boto3"],
+      "comment": "Official Boto3 SDK for Python"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/aws/aws-sdk-ruby"],
+      "comment": "Official AWS SDK for Ruby"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/aws/aws-sdk-cpp"],
+      "comment": "Official AWS SDK for C++"
+    },
+    "orm-support": {
+      "value": [],
+      "comment": "No traditional ORM support due to NoSQL nature; SDKs provide high-level abstractions like DynamoDB Enhanced Client"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "Proprietary AWS service; not open source"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/pricing/on-demand/"],
+      "comment": "25GB storage, 25 WCUs, 25 RCUs free per month"
+    },
+    "pricing-model": {
+      "value": ["per-request", "per-storage", "per-hour"],
+      "source": ["https://aws.amazon.com/dynamodb/pricing/"],
+      "comment": "On-demand: per-request pricing; Provisioned: per-hour for capacity units; both charge per-GB for storage"
+    },
+    "cost-estimate-small": {
+      "value": "~$30-100/month (on-demand, moderate traffic)",
+      "source": ["https://aws.amazon.com/dynamodb/pricing/on-demand/"],
+      "comment": "Highly variable based on usage pattern; 25GB storage free, $0.625/million writes, $0.125/million reads (Nov 2024 pricing)"
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Proprietary service with no public repository"
+    },
+    "stackoverflow-tags": {
+      "value": 25000,
+      "source": ["https://stackoverflow.com/questions/tagged/amazon-dynamodb"],
+      "comment": "Approximate count as of December 2024"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"],
+      "comment": "DynamoDB Streams provides time-ordered sequence of item-level changes; also integrates with Kinesis Data Streams"
+    }
+  }
+}
