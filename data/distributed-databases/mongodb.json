@@ -1,0 +1,263 @@
+{
+  "name": "MongoDB (Sharded)",
+  "description": "Document-oriented NoSQL database with native sharding for horizontal scaling and flexible schema design",
+  "icon": "mongodb",
+  "url": "https://www.mongodb.com/",
+  "values": {
+    "website": {
+      "value": "https://www.mongodb.com/",
+      "source": ["https://www.mongodb.com/"]
+    },
+    "license": {
+      "value": "SSPL-1.0",
+      "source": ["https://www.mongodb.com/legal/licensing/server-side-public-license"],
+      "comment": "Server Side Public License since October 2018; source-available but not OSI-approved"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed", "serverless"],
+      "source": [
+        "https://www.mongodb.com/docs/manual/installation/",
+        "https://www.mongodb.com/products/platform/atlas-database"
+      ],
+      "comment": "Self-hosted Community/Enterprise, MongoDB Atlas (official managed), serverless Atlas option, and third-party providers like Aiven"
+    },
+    "initial-release": {
+      "value": "2009",
+      "source": ["https://en.wikipedia.org/wiki/MongoDB"],
+      "comment": "First released in February 2009 by 10gen (now MongoDB Inc.)"
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/mongodb/mongo"],
+      "comment": "Core server written in C++"
+    },
+    "data-model": {
+      "value": ["document"],
+      "source": ["https://www.mongodb.com/docs/manual/core/document/"],
+      "comment": "BSON document model with flexible schema; supports nested documents and arrays"
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://www.mongodb.com/docs/manual/core/sharded-cluster-components/"],
+      "comment": "Each shard is a replica set with primary-secondary topology; mongos routers distribute queries"
+    },
+    "sharding": {
+      "value": ["hash", "range", "manual"],
+      "source": ["https://www.mongodb.com/docs/manual/sharding/"],
+      "comment": "Supports hashed sharding, range-based sharding, and zone sharding; shard key must be chosen manually"
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "source": ["https://www.mongodb.com/docs/manual/core/replica-set-members/"],
+      "comment": "Default 3-node replica sets per shard; configurable from 1 to 50 members"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/core/zone-sharding/"],
+      "comment": "Zone sharding enables geo-distributed deployments; Atlas provides multi-region clusters"
+    },
+    "cap-position": {
+      "value": ["tunable"],
+      "source": ["https://www.mongodb.com/docs/manual/reference/write-concern/"],
+      "comment": "Tunable via read/write concerns; defaults to CP with primary reads, configurable for AP"
+    },
+    "consistency-model": {
+      "value": ["linearizable", "causal", "read-your-writes", "eventual"],
+      "source": [
+        "https://www.mongodb.com/docs/manual/reference/read-concern/",
+        "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/"
+      ],
+      "comment": "Configurable per operation: linearizable (with snapshot), causal sessions, read-your-writes, eventual consistency"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/core/transactions/"],
+      "comment": "Full multi-document ACID transactions since v4.0 (replica sets) and v4.2 (sharded clusters)"
+    },
+    "transaction-scope": {
+      "value": ["cross-partition", "global"],
+      "source": ["https://www.mongodb.com/docs/manual/core/transactions/"],
+      "comment": "Distributed transactions span multiple shards, collections, and databases within a cluster"
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "snapshot"],
+      "source": ["https://www.mongodb.com/docs/manual/core/transactions/"],
+      "comment": "Transactions use snapshot isolation by default; read concern 'majority' provides read-committed"
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/core/transactions/"],
+      "comment": "Cross-shard transactions supported since v4.2; some limitations on creating collections in cross-shard transactions"
+    },
+    "query-language": {
+      "value": ["mongodb-query"],
+      "source": ["https://www.mongodb.com/docs/manual/tutorial/query-documents/"],
+      "comment": "MongoDB Query Language (MQL) with JSON-like syntax; aggregation pipeline for complex operations"
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://www.mongodb.com/docs/manual/"],
+      "comment": "No native SQL support; uses MQL and aggregation framework. Third-party tools like Atlas SQL Interface provide limited SQL"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/indexes/"],
+      "comment": "Supports single-field, compound, multikey, text, geospatial, and hashed indexes"
+    },
+    "joins": {
+      "value": ["local-only"],
+      "source": ["https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/"],
+      "comment": "$lookup performs left outer joins within aggregation pipeline; recommended to denormalize for performance"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/aggregation/"],
+      "comment": "Powerful aggregation pipeline with $group, $match, $sort, $project and many stages"
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/core/indexes/index-types/index-text/"],
+      "comment": "Text indexes for basic full-text search; Atlas Search provides advanced search with $search stage"
+    },
+    "max-cluster-size": {
+      "value": 1500,
+      "source": ["https://www.mongodb.com/products/capabilities/mongodb-scale"],
+      "comment": "Qihoo runs 1,500+ nodes supporting 20B operations/day; Baidu runs 600 nodes with 1PB data"
+    },
+    "write-throughput": {
+      "value": "20B operations/day (Qihoo)",
+      "source": ["https://www.mongodb.com/products/capabilities/mongodb-scale"],
+      "comment": "Production reference: Qihoo serves 20 billion operations per day across 1,500 nodes"
+    },
+    "read-latency-p99": {
+      "value": "Single-digit milliseconds",
+      "source": ["https://www.mongodb.com/docs/manual/"],
+      "comment": "Typical latency for indexed queries; varies significantly based on query complexity and data size"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/atlas/cluster-autoscaling/"],
+      "comment": "Atlas provides auto-scaling for compute and storage; self-hosted requires manual intervention"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://www.mongodb.com/docs/manual/core/sharding-data-partitioning/"],
+      "comment": "Balancer automatically migrates chunks between shards; chunks split when exceeding size threshold"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.mongodb.com/blog/post/your-ultimate-guide-to-rolling-upgrades"],
+      "comment": "Rolling upgrades supported for replica sets and sharded clusters; upgrade one node at a time"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/core/document/"],
+      "comment": "Schema-less design allows adding fields without migration; indexes can be built in rolling fashion"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/atlas/recover-pit-continuous-cloud-backup/"],
+      "comment": "Available via Ops Manager/Atlas continuous backups with oplog replay; Percona tools also support PITR"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "continuous"],
+      "source": ["https://www.mongodb.com/docs/manual/core/backups/"],
+      "comment": "mongodump/mongorestore snapshots, filesystem snapshots, continuous oplog-based backups via Ops Manager/Atlas"
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/mongodb/mongodb-kubernetes"],
+      "comment": "MongoDB Controllers for Kubernetes (MCK) - official operator supporting Community and Enterprise editions"
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/mongodb/mongo-rust-driver"],
+      "comment": "Official MongoDB Rust driver maintained by MongoDB"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/drivers/go/current/"],
+      "comment": "Official MongoDB Go driver"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/drivers/java/sync/current/"],
+      "comment": "Official MongoDB Java driver with sync and reactive variants"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/drivers/csharp/current/"],
+      "comment": "Official MongoDB .NET/C# driver"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/drivers/pymongo/"],
+      "comment": "PyMongo - official Python driver with 4.3K GitHub stars"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/ruby-driver/current/"],
+      "comment": "Official MongoDB Ruby driver; Mongoid ODM also available"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://www.mongodb.com/docs/drivers/c/"],
+      "comment": "Official MongoDB C and C++ drivers"
+    },
+    "orm-support": {
+      "value": ["prisma"],
+      "source": ["https://www.prisma.io/docs/orm/overview/databases/mongodb"],
+      "comment": "Prisma supports MongoDB; Mongoose is the popular Node.js ODM (not a traditional ORM)"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.mongodb.com/legal/licensing/server-side-public-license"],
+      "comment": "SSPL is not OSI-approved; considered source-available rather than open source"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.mongodb.com/pricing"],
+      "comment": "Atlas M0 free tier with 512MB storage; no credit card required"
+    },
+    "pricing-model": {
+      "value": ["per-hour", "per-vcpu", "per-storage"],
+      "source": ["https://www.mongodb.com/pricing"],
+      "comment": "Atlas pricing based on instance hours, vCPU, RAM, storage, and data transfer"
+    },
+    "cost-estimate-small": {
+      "value": "~$57/month (M10 dedicated)",
+      "source": ["https://www.mongodb.com/pricing"],
+      "comment": "M10 dedicated cluster starts at ~$57/month; M2/M5 shared tiers at $9-25/month"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/changestreams/"],
+      "comment": "Change streams provide CDC functionality built on oplog; available since v3.6"
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/manual/changestreams/"],
+      "comment": "watch() method allows clients to subscribe to real-time changes on collections, databases, or deployments"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/"],
+      "comment": "Atlas Database Triggers execute Atlas Functions on data changes; runs on serverless compute layer"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://www.mongodb.com/docs/kafka-connector/current/"],
+      "comment": "Official MongoDB Kafka Connector for source and sink; Confluent-verified"
+    },
+    "github-stars": {
+      "value": 28000,
+      "source": ["https://github.com/mongodb/mongo"],
+      "comment": "Approximate count as of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": 166000,
+      "source": ["https://stackoverflow.com/questions/tagged/mongodb"],
+      "comment": "Approximate count as of December 2025"
+    }
+  }
+}
