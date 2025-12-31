@@ -1,0 +1,256 @@
+{
+  "name": "TimescaleDB",
+  "description": "PostgreSQL extension for high-performance time-series analytics with automatic partitioning",
+  "icon": "timescaledb",
+  "url": "https://www.tigerdata.com/",
+  "values": {
+    "website": {
+      "value": "https://www.tigerdata.com/",
+      "source": ["https://www.tigerdata.com/"],
+      "comment": "Timescale Inc. rebranded to TigerData in June 2025"
+    },
+    "license": {
+      "value": "Apache-2.0 / TSL",
+      "source": ["https://github.com/timescale/timescaledb/blob/main/LICENSE"],
+      "comment": "Dual-licensed: core features under Apache 2.0, advanced features under Timescale License (TSL). TSL is source-available but not OSI-approved"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://www.tigerdata.com/", "https://supabase.com/docs/guides/database/extensions/timescaledb"],
+      "comment": "Tiger Cloud (official managed), self-hosted via extension, available on Supabase and other providers"
+    },
+    "initial-release": {
+      "value": "2017",
+      "source": ["https://en.wikipedia.org/wiki/TimescaleDB"],
+      "comment": "Open-sourced in April 2017; first stable release (1.0) in October 2018"
+    },
+    "primary-language": {
+      "value": "C",
+      "source": ["https://github.com/timescale/timescaledb"],
+      "comment": "65.9% C, 26.9% PL/pgSQL"
+    },
+    "data-model": {
+      "value": ["relational", "time-series"],
+      "source": ["https://www.tigerdata.com/"],
+      "comment": "PostgreSQL extension optimized for time-series data, inherits relational model"
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://github.com/timescale/timescaledb/blob/main/docs/MultiNodeDeprecation.md"],
+      "comment": "Uses PostgreSQL streaming replication (leader-follower). Multi-node distributed hypertables deprecated in v2.14"
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Automatic time-based partitioning via hypertables (chunks). Multi-node sharding deprecated"
+    },
+    "replication-factor": {
+      "value": "Configurable (PostgreSQL streaming replication)",
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Inherits PostgreSQL replication; Tiger Cloud offers HA with read replicas"
+    },
+    "multi-region": {
+      "value": false,
+      "source": ["https://github.com/timescale/timescaledb/blob/main/docs/MultiNodeDeprecation.md"],
+      "comment": "Multi-node distributed hypertables deprecated in v2.14. No native multi-region support currently"
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Inherits PostgreSQL's CP characteristics with strong consistency"
+    },
+    "consistency-model": {
+      "value": ["strong", "serializable"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Inherits PostgreSQL ACID compliance with full consistency guarantees"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Full ACID compliance inherited from PostgreSQL"
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Single-node: full PostgreSQL transaction scope. Multi-node was deprecated"
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "repeatable-read", "serializable"],
+      "source": ["https://www.postgresql.org/docs/current/transaction-iso.html"],
+      "comment": "Inherits PostgreSQL isolation levels"
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://github.com/timescale/timescaledb/blob/main/docs/MultiNodeDeprecation.md"],
+      "comment": "Multi-node support deprecated in v2.14; single-node only now"
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://www.tigerdata.com/"],
+      "comment": "Full PostgreSQL SQL plus time-series-specific functions (time_bucket, continuous aggregates)"
+    },
+    "sql-compatibility": {
+      "value": ["postgresql"],
+      "source": ["https://www.tigerdata.com/"],
+      "comment": "Native PostgreSQL extension with full SQL and wire protocol compatibility"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Full PostgreSQL index support (B-tree, hash, GiST, GIN, BRIN)"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Full PostgreSQL join support across tables and hypertables"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Full SQL aggregations plus continuous aggregates for pre-computed time-series analytics"
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://www.postgresql.org/docs/current/textsearch.html"],
+      "comment": "Inherits PostgreSQL full-text search capabilities"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Single-node focused after multi-node deprecation. Vendor reports scaling to 2M inserts/sec on single node"
+    },
+    "write-throughput": {
+      "value": "1.2M rows/sec (1K hosts), 100K rows/sec (production, Cloudflare)",
+      "source": ["https://questdb.com/blog/timescaledb-vs-questdb-comparison/", "https://blog.cloudflare.com/timescaledb-art/"],
+      "comment": "TSBS benchmark: peaks at 1.2M rows/sec for 1K hosts. Cloudflare production: ~100K aggregated rows/sec"
+    },
+    "read-latency-p99": {
+      "value": "Sub-100ms typical (with continuous aggregates)",
+      "source": ["https://blog.cloudflare.com/timescaledb-art/"],
+      "comment": "Cloudflare reports query latencies in hundreds of ms for most customers; continuous aggregates improve this significantly"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/pricing"],
+      "comment": "Tiger Cloud: automatic storage scaling. Compute requires manual adjustment"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Time-based chunking naturally distributes time-series writes across partitions"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Tiger Cloud offers rolling upgrades; self-hosted follows PostgreSQL upgrade patterns"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Inherits PostgreSQL online DDL capabilities"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/"],
+      "comment": "Tiger Cloud includes PITR; self-hosted uses PostgreSQL WAL archiving"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "continuous"],
+      "source": ["https://github.com/timescale/helm-charts"],
+      "comment": "Supports PostgreSQL backup methods including pg_dump, pg_basebackup, and continuous WAL archiving"
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "source": ["https://github.com/timescale/helm-charts"],
+      "comment": "Official Helm charts available but no dedicated operator. Compatible with CloudNativePG operator"
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://crates.io/crates/tokio-postgres"],
+      "comment": "Via PostgreSQL wire protocol (tokio-postgres, sqlx)"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/jackc/pgx"],
+      "comment": "Via PostgreSQL wire protocol (pgx, lib/pq)"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://jdbc.postgresql.org/"],
+      "comment": "Via PostgreSQL JDBC driver"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://www.npgsql.org/"],
+      "comment": "Via Npgsql PostgreSQL driver"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://www.psycopg.org/"],
+      "comment": "Via psycopg2/psycopg3 PostgreSQL drivers"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ged/ruby-pg"],
+      "comment": "Via pg gem for PostgreSQL"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://www.postgresql.org/docs/current/libpq.html"],
+      "comment": "Via libpq PostgreSQL C library"
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "prisma", "gorm", "typeorm", "sequelize", "entity-framework", "activerecord"],
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "Full PostgreSQL ORM compatibility"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/timescale/timescaledb/blob/main/LICENSE"],
+      "comment": "Core features are Apache 2.0, but advanced features (compression, continuous aggregates) require TSL which is source-available, not OSI-approved"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.tigerdata.com/pricing"],
+      "comment": "Tiger Cloud Free plan: up to 2 services, 750MB storage per service, shared compute"
+    },
+    "pricing-model": {
+      "value": ["per-hour", "per-storage"],
+      "source": ["https://www.tigerdata.com/pricing"],
+      "comment": "Hourly compute billing + per-GB storage. Performance plan starts at $30/mo compute + $0.177/GB-mo storage"
+    },
+    "cost-estimate-small": {
+      "value": "~$90-150/month (single node, 8GB RAM, 100GB storage)",
+      "source": ["https://www.tigerdata.com/pricing"],
+      "comment": "Estimate based on Tiger Cloud Performance/Scale plans. Single-node architecture after multi-node deprecation"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://github.com/noctarius/timescaledb-event-streamer", "https://debezium.io/blog/2024/01/11/Debezium-and-TimescaleDB/"],
+      "comment": "Via PostgreSQL logical replication. Debezium supports TimescaleDB. Also timescaledb-event-streamer for hypertable CDC"
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://www.tigerdata.com/docs/"],
+      "comment": "No native push-based subscription mechanism; requires polling or external CDC tools"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://www.postgresql.org/docs/current/triggers.html"],
+      "comment": "Full PostgreSQL trigger support"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://debezium.io/documentation/reference/stable/transformations/timescaledb.html"],
+      "comment": "Via Debezium Kafka connector with TimescaleDB transformation. Also supports timescaledb-event-streamer for Kafka/NATS"
+    },
+    "github-stars": {
+      "value": 21300,
+      "source": ["https://github.com/timescale/timescaledb"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count"
+    }
+  }
+}

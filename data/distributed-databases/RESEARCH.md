@@ -235,7 +235,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] etcd - Distributed key-value for config/coordination
 - [x] ClickHouse (Clustered) - If including analytical
 - [x] QuestDB - Time-series with SQL
-- [ ] TimescaleDB (Distributed) - PostgreSQL-based time-series
+- [x] TimescaleDB (Distributed) - PostgreSQL-based time-series
 - [ ] Fauna - Serverless document-relational
 - [ ] SurrealDB - Multi-model newcomer
 - [ ] Dolt - Git-like versioned SQL database
