@@ -218,7 +218,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Amazon DynamoDB - AWS's flagship NoSQL, serverless (Realtime & Events complete)
 - [x] Google Cloud Spanner - Google's globally-distributed SQL
 - [x] MongoDB (Sharded) - Document DB with native sharding
-- [ ] Vitess - MySQL sharding middleware (YouTube origin)
+- [x] Vitess - MySQL sharding middleware (YouTube origin)
 
 ### Tier 2 (Should Have) - Significant players
 - [ ] FoundationDB - Apple's ordered key-value store, unique architecture

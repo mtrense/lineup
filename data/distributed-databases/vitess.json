@@ -1,0 +1,254 @@
+{
+  "name": "Vitess",
+  "description": "Cloud-native MySQL sharding middleware for horizontal scaling, originally developed at YouTube, now a CNCF graduated project",
+  "icon": "https://avatars.githubusercontent.com/u/16566590",
+  "url": "https://vitess.io/",
+  "values": {
+    "website": {
+      "value": "https://vitess.io/",
+      "source": ["https://vitess.io/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "Fully open source under Apache 2.0 license."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed"],
+      "source": ["https://planetscale.com/vitess", "https://vitess.io/docs/21.0/get-started/operator/"],
+      "comment": "Self-hosted via Kubernetes Operator. PlanetScale provides managed Vitess service with branching workflows and enterprise features."
+    },
+    "initial-release": {
+      "value": "2013",
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "Repository created June 2013. Originally developed at YouTube starting 2011. Open-sourced and became CNCF graduated project in 2019."
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "Server code is entirely written in Go (golang). Relies on MySQL for storage engine."
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Relational data model. Acts as sharding middleware over MySQL databases."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://andrewjdawson2016.medium.com/understanding-the-architecture-of-vitess-5f3c042c4cdd"],
+      "comment": "Each shard contains one MySQL primary and multiple replicas. Leader-follower per shard with asynchronous replication."
+    },
+    "sharding": {
+      "value": ["hash", "range", "automatic", "manual"],
+      "source": ["https://vitess.io/docs/23.0/reference/features/sharding/", "https://vitess.io/docs/22.0/reference/features/vindexes/"],
+      "comment": "Supports hash and range-based sharding via Vindexes (sharding indexes). Automatic resharding via MoveTables and Reshard workflows. Manual shard selection also supported."
+    },
+    "replication-factor": {
+      "value": "Configurable (MySQL replication)",
+      "source": ["https://andrewjdawson2016.medium.com/understanding-the-architecture-of-vitess-5f3c042c4cdd"],
+      "comment": "Uses MySQL native asynchronous replication. Typical setup has 1 primary + multiple replicas per shard across availability zones."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://vitess.io/docs/21.0/reference/features/topology-service/"],
+      "comment": "Supports multi-region via 'cells' concept. Each cell represents a failure domain (e.g., AWS region). Cross-region deployments supported."
+    },
+    "cap-position": {
+      "value": ["ap"],
+      "source": ["https://www.pingcap.com/blog/comparing-vitess-tidb-cross-shard-queries-consistency-az-outages/"],
+      "comment": "Relies on MySQL's asynchronous replication. Prioritizes availability. Replica reads may be stale depending on replication lag."
+    },
+    "consistency-model": {
+      "value": ["strong", "eventual", "read-your-writes"],
+      "source": ["https://vitess.io/docs/archive/15.0/overview/scalability-philosophy/"],
+      "comment": "Strong consistency on PRIMARY reads/writes within single shard. Eventual consistency on REPLICA reads. Configurable per-query routing."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://vitess.io/docs/21.0/reference/features/distributed-transaction/"],
+      "comment": "Full ACID for single-shard transactions. Cross-shard transactions support best-effort or 2PC mode (slower, no isolation guarantee)."
+    },
+    "transaction-scope": {
+      "value": ["single-partition", "cross-partition"],
+      "source": ["https://vitess.io/docs/21.0/reference/features/distributed-transaction/", "https://vitess.io/docs/20.0/user-guides/configuration-advanced/shard-isolation-atomicity/"],
+      "comment": "Single-shard transactions are fully ACID. Cross-shard available in MULTI (best-effort) or TWOPC modes. 2PC guarantees atomicity but not isolation."
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "repeatable-read"],
+      "source": ["https://vitess.io/docs/archive/15.0/overview/scalability-philosophy/"],
+      "comment": "PRIMARY reads use READ_COMMITTED. Single-shard transactions provide REPEATABLE_READ. Cross-shard lacks isolation guarantees."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://vitess.io/docs/21.0/reference/features/distributed-transaction/"],
+      "comment": "Two-Phase Commit (2PC) mode provides atomic cross-shard transactions. Performance overhead is significant (~10x slower). Recommended to design schema to avoid cross-shard transactions."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"]
+    },
+    "sql-compatibility": {
+      "value": ["mysql"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "MySQL wire protocol compatible. Most MySQL drivers work. Some features have limitations in sharded mode (documented incompatibilities)."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/features/vindexes/"],
+      "comment": "Secondary Vindexes provide cross-shard indexing. Allows WHERE clauses on non-sharding keys. Can be functional or lookup-based."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://planetscale.com/blog/grouping-and-aggregations-on-vitess"],
+      "comment": "VTGate supports distributed JOINs. Inner joins and left joins supported. Cross-shard joins executed at VTGate layer when needed."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://vitess.io/blog/2024-11-12-grouping-and-aggregations-on-vitess/", "https://planetscale.com/blog/grouping-and-aggregations-on-vitess"],
+      "comment": "Full aggregation support. Vitess splits into local (pushed to MySQL) and global (aggregated at VTGate) operations. Optimized query planning."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Uses MySQL's built-in full-text search capabilities. Available on underlying MySQL instances."
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "YouTube ran Vitess with tens of thousands of MySQL nodes. Slack and other large deployments also run thousands of shards. No documented hard limit."
+    },
+    "write-throughput": {
+      "value": "Scales linearly with shards (YouTube: tens of thousands of nodes)",
+      "source": ["https://www.cncf.io/projects/vitess/"],
+      "comment": "Performance scales with number of shards. YouTube ran tens of thousands of MySQL nodes. Slack handles 25k writes/sec on some tables."
+    },
+    "read-latency-p99": {
+      "value": "~2ms overhead over MySQL",
+      "source": ["https://benchmark.vitess.io/"],
+      "comment": "Each network hop adds ~1ms. Approximately 2ms additional latency over direct MySQL access. Official benchmarks at benchmark.vitess.io."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://vitess.io/docs/23.0/reference/features/sharding/"],
+      "comment": "Resharding requires manual initiation via VReplication workflows (MoveTables, Reshard). Zero-downtime resharding but not automatic."
+    },
+    "hot-spot-handling": {
+      "value": ["splitting", "manual"],
+      "source": ["https://vitess.io/docs/23.0/reference/features/sharding/"],
+      "comment": "Supports horizontal and vertical splits via Reshard and MoveTables. Resharding is operator-initiated, not automatic."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://vitess.io/blog/2020-11-09-vitess-operator-for-kubernetes/"],
+      "comment": "Vitess Operator supports planned rollouts with automatic failover before instance shutdown. Minimal downtime during traffic switching."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/features/schema-management/"],
+      "comment": "Integrated with pt-online-schema-change and gh-ost. Background schema changes with atomic cutover. Command-line interface for migration management."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://vitess.io/docs/21.0/reference/features/recovery/"],
+      "comment": "Supports PITR via incremental backup and binlog replay. Restore to specific timestamp or GTID position. Uses SNAPSHOT keyspaces for recovery."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://vitess.io/docs/22.0/user-guides/operating-vitess/backup-and-restore/overview/"],
+      "comment": "Full snapshots plus incremental backups via MySQL binary logs. Supports restore to arbitrary point in time."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/planetscale/vitess-operator"],
+      "comment": "PlanetScale maintains the official Vitess Operator for Kubernetes. Supports zero-downtime resharding, failover, and planned rollouts."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://vitess.io/docs/contributing/"],
+      "comment": "Uses MySQL-compatible Rust drivers via MySQL wire protocol. No Vitess-specific Rust driver."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://pkg.go.dev/vitess.io/vitess/go/vt/vitessdriver"],
+      "comment": "Official vitessdriver package provides Go database/sql driver. Connects to VTGate using gRPC or MySQL protocol."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://vitess.io/docs/contributing/"],
+      "comment": "Official Java client using gRPC. Standard MySQL JDBC drivers also work via MySQL wire protocol."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Uses MySQL Connector/NET via MySQL wire protocol compatibility."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://vitess.io/docs/contributing/"],
+      "comment": "Official Python client library. MySQL-compatible drivers also work via wire protocol."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Uses mysql2 gem via MySQL wire protocol compatibility."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Uses MySQL Connector/C++ via MySQL wire protocol compatibility."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "gorm", "sequelize", "activerecord"],
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Major MySQL-compatible ORMs work via MySQL wire protocol. Some query patterns may need adjustment for sharded mode."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "Fully open source under Apache 2.0 license. CNCF graduated project since 2019."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "PlanetScale paid plans start at $39/month. No free tier for Vitess-based offering (PostgreSQL offering has different pricing)."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-storage", "enterprise-license"],
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "PlanetScale uses resource-based pricing (storage + compute). Enterprise and Managed plans have custom pricing."
+    },
+    "cost-estimate-small": {
+      "value": "PlanetScale starts at $39/month; self-hosted is infrastructure-only",
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "PlanetScale Starter at $39/month. Self-hosted costs depend on infrastructure. Enterprise/Managed plans are custom."
+    },
+    "github-stars": {
+      "value": 20600,
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "As of December 2024. CNCF graduated project."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Limited Stack Overflow presence. Community primarily uses Vitess Slack and GitHub issues."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://vitess.io/blog/2024-07-29-cdc-vstream/", "https://vitess.io/docs/22.0/reference/vreplication/vstream/"],
+      "comment": "VStream API provides built-in CDC via gRPC. Used by Debezium Vitess connector. Handles resharding automatically."
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/vreplication/vstream/"],
+      "comment": "VStream allows clients to subscribe to change events. Supports copying current state then streaming new changes."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "MySQL triggers are supported on underlying MySQL instances. Standard MySQL trigger functionality available."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://github.com/debezium/debezium-connector-vitess", "https://current.confluent.io/2024-sessions/change-data-capture-kafka-how-slack-transitioned-to-cdc-with-debezium-kafka-connect"],
+      "comment": "Debezium Vitess Connector streams changes to Kafka. Developed with Slack. Supports automatic reshard handling."
+    }
+  }
+}
