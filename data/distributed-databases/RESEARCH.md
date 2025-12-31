@@ -221,7 +221,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Vitess - MySQL sharding middleware (YouTube origin)
 
 ### Tier 2 (Should Have) - Significant players
-- [ ] FoundationDB - Apple's ordered key-value store, unique architecture
+- [x] FoundationDB - Apple's ordered key-value store, unique architecture
 - [ ] Couchbase - Document DB with strong mobile sync story
 - [ ] ArangoDB - Multi-model (document, graph, key-value)
 - [ ] Neo4j (Cluster) - Leading graph database

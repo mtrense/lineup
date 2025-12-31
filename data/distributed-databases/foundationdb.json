@@ -1,0 +1,248 @@
+{
+  "name": "FoundationDB",
+  "description": "Apple's open-source distributed, transactional key-value store with unique layered architecture",
+  "url": "https://www.foundationdb.org/",
+  "values": {
+    "website": {
+      "value": "https://www.foundationdb.org/",
+      "source": ["https://www.foundationdb.org/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/apple/foundationdb"],
+      "comment": "Open sourced by Apple in April 2018 under Apache 2.0"
+    },
+    "hosting-options": {
+      "value": ["self-hosted"],
+      "source": ["https://apple.github.io/foundationdb/"],
+      "comment": "No official managed service; self-hosted only"
+    },
+    "initial-release": {
+      "value": "2013",
+      "source": ["https://en.wikipedia.org/wiki/FoundationDB"],
+      "comment": "Version 1.0 released August 20, 2013. Alpha program started January 2012."
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/apple/foundationdb"],
+      "comment": "65.3% C++ according to GitHub"
+    },
+    "data-model": {
+      "value": ["key-value"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Ordered key-value store with lexicographical key ordering. Higher-level data models (document, relational, graph) implemented via layers."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://apple.github.io/foundationdb/architecture.html"],
+      "comment": "Decoupled architecture with heterogeneous roles: Cluster Controller (singleton), Master, Sequencer, Proxies, Resolvers, LogServers, StorageServers"
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://apple.github.io/foundationdb/architecture.html"],
+      "comment": "Data Distributor automatically assigns key ranges to storage servers and ensures even distribution"
+    },
+    "replication-factor": {
+      "value": "3 (configurable: single, double, triple, three_datacenter)",
+      "source": ["https://apple.github.io/foundationdb/configuration.html"],
+      "comment": "Triple replication recommended for 5+ machines. Three_datacenter mode replicates 6 times across 3 DCs."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://apple.github.io/foundationdb/configuration.html"],
+      "comment": "Supports up to two regions with automatic failover. Multi-DC mode replicates across three datacenters."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Prioritizes consistency with strict serializability. May reject writes during partitions."
+    },
+    "consistency-model": {
+      "value": ["serializable", "linearizable"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Strict serializability - transactions appear to occur sequentially"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Full ACID transactions spanning multiple machines"
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Transactions can span any keys across the entire cluster"
+    },
+    "isolation-levels": {
+      "value": ["serializable"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Serializable isolation with optimistic concurrency control (OCC)"
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://apple.github.io/foundationdb/architecture.html"],
+      "comment": "Cross-node transaction coordination via Sequencer, Proxies, and Resolvers"
+    },
+    "query-language": {
+      "value": ["api-only"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "No query language - pure key-value API. SQL and other query capabilities provided via layers (e.g., Record Layer)"
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Core database has no SQL. SQL available via layers like FoundationDB Record Layer."
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Core key-value store has no built-in secondary indexes. Implemented via layers."
+    },
+    "joins": {
+      "value": ["none"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "No join support in core database. Available via layers."
+    },
+    "aggregations": {
+      "value": false,
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "No built-in aggregations. Implemented at application level or via layers."
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "No built-in full-text search"
+    },
+    "max-cluster-size": {
+      "value": 384,
+      "source": ["https://apple.github.io/foundationdb/performance.html"],
+      "comment": "Official benchmark used 384-process cluster (24 machines x 16 cores). Apple runs much larger clusters in production for iCloud."
+    },
+    "write-throughput": {
+      "value": "720K writes/sec (48-core cluster), 8.2M ops/sec (384-process, 90/10 read/write)",
+      "source": ["https://apple.github.io/foundationdb/performance.html"],
+      "comment": "Benchmark on commodity hardware with SATA SSDs"
+    },
+    "read-latency-p99": {
+      "value": "0.6ms average read latency",
+      "source": ["https://apple.github.io/foundationdb/performance.html"],
+      "comment": "Single-core transactional reads from fully durable database. Commit latency ~2-3ms."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://apple.github.io/foundationdb/building-cluster.html"],
+      "comment": "Adding nodes is easy but manual. No automatic scale-out/scale-in."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://apple.github.io/foundationdb/architecture.html"],
+      "comment": "Data Distributor automatically rebalances data across storage servers. Ratekeeper monitors load."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://apple.github.io/foundationdb/administration.html"],
+      "comment": "Rolling upgrades supported"
+    },
+    "online-schema-changes": {
+      "value": null,
+      "comment": "Not applicable - schemaless key-value store"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "True moment-in-time snapshot backup and restore capability"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "continuous"],
+      "source": ["https://apple.github.io/foundationdb/features.html"],
+      "comment": "Integrated backup system with scheduled snapshots to remote filesystem"
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/FoundationDB/fdb-kubernetes-operator"],
+      "comment": "Official operator developed by Apple's FoundationDB SRE team"
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/foundationdb-rs/foundationdb-rs", "https://crates.io/crates/foundationdb"],
+      "comment": "foundationdb-rs community project, not official"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apple/foundationdb/tree/main/bindings/go"],
+      "comment": "Official bindings in main repository"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apple/foundationdb/tree/main/bindings/java"],
+      "comment": "Official bindings in main repository"
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/Doxense/foundationdb-dotnet-client", "https://www.nuget.org/packages/FoundationDB.Client"],
+      "comment": "Community binding by Doxense, available on NuGet"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apple/foundationdb/tree/main/bindings/python"],
+      "comment": "Official bindings in main repository"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apple/foundationdb/tree/main/bindings/ruby", "https://rubygems.org/gems/fdb"],
+      "comment": "Official bindings, available as 'fdb' gem"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/apple/foundationdb/tree/main/bindings/c"],
+      "comment": "Official C bindings; all other bindings wrap the C client"
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "Key-value store - no traditional ORM support. Layers provide higher-level abstractions."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/apple/foundationdb"],
+      "comment": "Apache 2.0 license, open sourced by Apple in April 2018"
+    },
+    "free-tier": {
+      "value": null,
+      "comment": "No official managed service available"
+    },
+    "pricing-model": {
+      "value": null,
+      "comment": "Self-hosted only, no commercial pricing"
+    },
+    "cost-estimate-small": {
+      "value": null,
+      "comment": "Self-hosted only; infrastructure costs depend on cloud provider"
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://forums.foundationdb.org/t/changefeeds-watching-and-getting-updates-on-ranges-of-keys/511"],
+      "comment": "No built-in CDC. Watch API exists for single keys only, not ranges."
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://github.com/apple/foundationdb/wiki/An-Overview-how-Watches-Work"],
+      "comment": "Watch API for single keys. Watches fire once and must be re-registered. No range watches."
+    },
+    "triggers": {
+      "value": false,
+      "comment": "No server-side triggers in core database"
+    },
+    "event-streaming": {
+      "value": null,
+      "comment": "No native streaming platform integrations"
+    },
+    "github-stars": {
+      "value": 16100,
+      "source": ["https://github.com/apple/foundationdb"],
+      "comment": "As of late 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Could not retrieve Stack Overflow tag count; community primarily uses FoundationDB forums"
+    }
+  }
+}
