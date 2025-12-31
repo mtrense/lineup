@@ -1,0 +1,252 @@
+{
+  "name": "ClickHouse",
+  "description": "Open-source columnar OLAP database designed for real-time analytics on large datasets, originally developed at Yandex",
+  "url": "https://clickhouse.com",
+  "values": {
+    "website": {
+      "value": "https://clickhouse.com",
+      "source": ["https://clickhouse.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/ClickHouse/ClickHouse/blob/master/LICENSE"],
+      "comment": "Released as open source in 2016 under Apache 2.0 license"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://clickhouse.com/cloud", "https://www.tinybird.co/blog/clickhouse-deployment-options"],
+      "comment": "ClickHouse Cloud is official managed service; third-party options include Altinity, Aiven, Instaclustr"
+    },
+    "initial-release": {
+      "value": "2016",
+      "source": ["https://en.wikipedia.org/wiki/ClickHouse", "https://clickhouse.com/docs/about-us/history"],
+      "comment": "Development started at Yandex in 2009, production use in 2012, open-sourced in June 2016"
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/ClickHouse/ClickHouse"],
+      "comment": "Built as a single, statically-linked binary without dependencies"
+    },
+    "data-model": {
+      "value": ["relational", "time-series"],
+      "source": ["https://clickhouse.com/docs/academic_overview"],
+      "comment": "Columnar OLAP database with strong time-series capabilities; tables with rows and columns, schema-enforced"
+    },
+    "topology": {
+      "value": ["multi-leader"],
+      "source": ["https://sairamkrish.medium.com/clickhouse-sharding-and-replication-95b3275c873e"],
+      "comment": "Replication is asynchronous and multi-leader; inserts can be issued to any node"
+    },
+    "sharding": {
+      "value": ["hash", "manual"],
+      "source": ["https://clickhouse.com/docs/shards", "https://altinity.com/wp-content/uploads/2024/05/Deep-Dive-on-ClickHouse-Sharding-and-Replication-2024-1-1.pdf"],
+      "comment": "Uses hash-based sharding with configurable sharding key; sharding is optional and manually configured"
+    },
+    "replication-factor": {
+      "value": "Configurable (3 recommended)",
+      "source": ["https://www.instaclustr.com/blog/clickhouse-best-practices-part-2-scaling-data-management-and-optimization/"],
+      "comment": "Each shard should have multiple replicas (three recommended) for high availability"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://clickhouse.com/cloud"],
+      "comment": "Supports multi-datacenter deployments; tolerates failure of one datacenter with proper ZK/Keeper setup"
+    },
+    "cap-position": {
+      "value": ["ap"],
+      "source": ["https://sairamkrish.medium.com/clickhouse-sharding-and-replication-95b3275c873e"],
+      "comment": "Not consistent by default due to async replication; linearizability can be enabled. Prioritizes availability."
+    },
+    "consistency-model": {
+      "value": ["eventual"],
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional"],
+      "comment": "Asynchronous replication means eventual consistency by default; can enable linearizable reads via select_sequential_consistency"
+    },
+    "acid-transactions": {
+      "value": false,
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional", "https://www.singlestore.com/blog/the-acid-dilemma-clickhouse-falls-short-singlestore-delivers/"],
+      "comment": "No full ACID; experimental transaction support for MergeTree only. Single-statement operations are atomic."
+    },
+    "transaction-scope": {
+      "value": ["single-row", "single-partition"],
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional"],
+      "comment": "INSERT into each partition is transactional on its own; no multi-statement transactions in production"
+    },
+    "isolation-levels": {
+      "value": ["snapshot"],
+      "source": ["https://chistadata.com/transaction-isolation-levels-with-clickhouse/"],
+      "comment": "MVCC provides Snapshot Isolation for reading queries"
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional"],
+      "comment": "INSERT into Distributed table is not transactional as a whole; each shard insertion is separate"
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://clickhouse.com/docs/academic_overview"],
+      "comment": "Full SQL dialect optimized for analytical queries"
+    },
+    "sql-compatibility": {
+      "value": ["full"],
+      "source": ["https://clickhouse.com/docs/academic_overview", "https://medium.com/clickhousedb/clickhouse-a-blazingly-fast-dbms-with-full-sql-join-support-under-the-hood-part-2-cc32a8bb9067"],
+      "comment": "Comprehensive SQL support including full JOIN support; optimized for OLAP workloads"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/academic_overview"],
+      "comment": "Supports various index types including sparse indexes; uses n-gram Bloom filter indexes for text"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://medium.com/clickhousedb/clickhouse-a-blazingly-fast-dbms-with-full-sql-join-support-under-the-hood-part-2-cc32a8bb9067", "https://www.glassflow.dev/blog/clickhouse-joins"],
+      "comment": "Full SQL Join support with 6 different join algorithms; GLOBAL JOIN for distributed scenarios"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/academic_overview"],
+      "comment": "Highly optimized for aggregations; columnar architecture accelerates SUM, AVG, COUNT operations"
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/whats-new/changelog", "https://www.cloudquery.io/blog/why-and-how-we-built-our-own-full-text-search-engine-with-clickhouse"],
+      "comment": "Full-text search now in beta; uses n-gram Bloom filter indexes"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "ClickHouse prefers scale-up over scale-out; clusters with hundreds of nodes documented but specific max not stated"
+    },
+    "write-throughput": {
+      "value": "Billions of rows/day on single node",
+      "source": ["https://anthonynsimon.com/blog/clickhouse-deployment/"],
+      "comment": "Given enough resources, can process billions of records on a single server"
+    },
+    "read-latency-p99": {
+      "value": "Sub-second on billion-row queries",
+      "source": ["https://clickhouse.com/clickhouse"],
+      "comment": "Columnar architecture enables sub-second queries across billions of observability events"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/cloud/manage/billing/overview"],
+      "comment": "ClickHouse Cloud supports automatic scaling with configurable limits"
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://clickhouse.com/docs/shards"],
+      "comment": "Sharding key selection is manual; automatic rebalancing not built-in"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://chistadata.com/zero-downtime-clickhouse-upgrades/", "https://www.instaclustr.com/blog/a-guide-to-clickhouse-upgrades-and-best-practices/"],
+      "comment": "Zero-downtime upgrades possible with rolling upgrade strategy across replicas"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://chistadata.com/clickhouse-online-schema-change/", "https://www.tinybird.co/blog/clickhouse-schema-migrations"],
+      "comment": "Online ALTER TABLE stable since v20.3; some changes are metadata-only, others require part rewrites"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://altinity.com/blog/introduction-to-clickhouse-backups-and-clickhouse-backup"],
+      "comment": "No native PITR; requires Kafka offset tracking for replay-based recovery"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://clickhouse.com/docs/operations/backup", "https://github.com/Altinity/clickhouse-backup"],
+      "comment": "Supports full and incremental backups; clickhouse-backup tool for production use"
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://www.tinybird.co/blog/clickhouse-deployment-options"],
+      "comment": "Altinity Kubernetes operator available for automated ClickHouse cluster management"
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ClickHouse/clickhouse-rs"],
+      "comment": "Official pure Rust client: clickhouse-rs with serde support and TLS"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ClickHouse/clickhouse-go"],
+      "comment": "Official Go driver: clickhouse-go with native protocol support"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ClickHouse/clickhouse-java"],
+      "comment": "Official Java client and JDBC driver: clickhouse-java"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://clickhouse.com/docs/integrations/csharp"],
+      "comment": "Official C# driver: ClickHouse.Driver (formerly ClickHouse.Client)"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ClickHouse/clickhouse-connect"],
+      "comment": "Official Python driver: clickhouse-connect with Pandas and SQLAlchemy integration"
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://clickhouse.com/docs/interfaces/third-party/client-libraries", "https://github.com/shlima/click_house"],
+      "comment": "Community drivers: click_house, clickhouse gem, clickhouse-activerecord"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/ClickHouse/ClickHouse"],
+      "comment": "ClickHouse itself is C++; native protocol available for C/C++ integration"
+    },
+    "orm-support": {
+      "value": ["sqlalchemy", "entity-framework", "activerecord"],
+      "source": ["https://clickhouse.com/docs/integrations/csharp", "https://github.com/PNixx/clickhouse-activerecord"],
+      "comment": "SQLAlchemy via clickhouse-connect; Entity Framework Core via EntityFrameworkCore.ClickHouse; ActiveRecord via clickhouse-activerecord"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/ClickHouse/ClickHouse/blob/master/LICENSE"],
+      "comment": "True open source under Apache 2.0 license"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://clickhouse.com/pricing"],
+      "comment": "ClickHouse Cloud offers a free trial tier"
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage"],
+      "source": ["https://clickhouse.com/docs/cloud/manage/billing/overview", "https://quesma.com/blog/clickhouse-pricing/"],
+      "comment": "Consumption-based pricing for compute, storage, and data transfer"
+    },
+    "cost-estimate-small": {
+      "value": "~$50-100/month minimum",
+      "source": ["https://www.tinybird.co/blog/self-hosted-clickhouse-cost"],
+      "comment": "Managed services have minimum monthly costs around $50-100 for smallest tiers"
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://clickhouse.com/blog/clickhouse-postgresql-change-data-capture-cdc-part-1"],
+      "comment": "No built-in CDC for outbound streaming; ClickPipes supports inbound CDC from Postgres"
+    },
+    "watch-subscribe": {
+      "value": false,
+      "comment": "No native client subscription mechanism for data changes"
+    },
+    "triggers": {
+      "value": false,
+      "comment": "No database-side triggers; uses materialized views for data transformation"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://clickhouse.com/blog/clickhouse-postgresql-change-data-capture-cdc-part-1"],
+      "comment": "Kafka table engine for consuming from Kafka; integrations with streaming platforms for inbound data"
+    },
+    "github-stars": {
+      "value": 44900,
+      "source": ["https://github.com/ClickHouse/ClickHouse"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve current count"
+    }
+  }
+}

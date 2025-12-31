@@ -233,7 +233,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 ### Tier 3 (Nice to Have) - Specialized/Emerging
 - [x] TiKV - Distributed key-value (from TiDB stack)
 - [x] etcd - Distributed key-value for config/coordination
-- [ ] ClickHouse (Clustered) - If including analytical
+- [x] ClickHouse (Clustered) - If including analytical
 - [ ] QuestDB - Time-series with SQL
 - [ ] TimescaleDB (Distributed) - PostgreSQL-based time-series
 - [ ] Fauna - Serverless document-relational
