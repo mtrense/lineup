@@ -1,0 +1,247 @@
+{
+  "name": "CrateDB",
+  "description": "Distributed SQL database for real-time analytics, optimized for time-series, full-text search, and machine data",
+  "icon": "📊",
+  "url": "https://cratedb.com/",
+  "values": {
+    "website": {
+      "value": "https://cratedb.com/",
+      "source": ["https://cratedb.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/crate/crate"]
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed"],
+      "source": ["https://cratedb.com/pricing"],
+      "comment": "CrateDB Cloud available on AWS, Azure, and GCP. Also available via AWS and Azure Marketplaces."
+    },
+    "initial-release": {
+      "value": "2014",
+      "source": ["https://en.wikipedia.org/wiki/CrateDB"],
+      "comment": "CrateDB was first released in 2014 by Crate.io."
+    },
+    "primary-language": {
+      "value": "Java",
+      "source": ["https://github.com/crate/crate"],
+      "comment": "99.6% Java. Built on Apache Lucene."
+    },
+    "data-model": {
+      "value": ["relational", "document", "time-series"],
+      "source": ["https://cratedb.com/docs/guide/home/index.html"],
+      "comment": "Supports relational tables, JSON documents, time-series data, geospatial, full-text, and vector data within a single system."
+    },
+    "topology": {
+      "value": ["leaderless"],
+      "source": ["https://cratedb.com/docs/crate/reference/en/latest/concepts/resiliency.html"],
+      "comment": "Shared-nothing distributed architecture. Every node is equal in terms of functionality."
+    },
+    "sharding": {
+      "value": ["hash", "automatic"],
+      "source": ["https://cratedb.com/product/features/distributed-database"],
+      "comment": "Data is automatically distributed across nodes through auto-sharding and auto-rebalancing."
+    },
+    "replication-factor": {
+      "value": "1 (configurable)",
+      "source": ["https://cratedb.com/docs/crate/reference/en/latest/concepts/resiliency.html"],
+      "comment": "Default is 1 replica per shard. Configurable per table."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://cratedb.com/docs/crate/reference/en/latest/concepts/resiliency.html"],
+      "comment": "Supports nodes across multiple zones, data centers, or geographical regions."
+    },
+    "cap-position": {
+      "value": ["ap"],
+      "source": ["https://cratedb.com/docs/crate/reference/en/latest/concepts/resiliency.html"],
+      "comment": "Eventual consistency is the trade-off CrateDB makes for high availability. Prioritizes availability over consistency."
+    },
+    "consistency-model": {
+      "value": ["eventual", "read-your-writes"],
+      "source": ["https://cratedb.com/storage/durability-and-consistency"],
+      "comment": "Eventual consistency across replicas with MVCC. Row-level atomicity and durability. Get operations see immediate writes via translog."
+    },
+    "acid-transactions": {
+      "value": false,
+      "source": ["https://cratedb.com/storage/durability-and-consistency"],
+      "comment": "CrateDB does not support ACID transactions. Offers row-level atomicity and optimistic concurrency control via versioning."
+    },
+    "transaction-scope": {
+      "value": ["single-row"],
+      "source": ["https://cratedb.com/storage/durability-and-consistency"],
+      "comment": "Operations are atomic at the row level only. No multi-statement transaction support."
+    },
+    "isolation-levels": {
+      "value": null,
+      "comment": "CrateDB does not support traditional isolation levels as it doesn't have multi-statement transactions."
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://cratedb.com/storage/durability-and-consistency"],
+      "comment": "No distributed transaction coordination. Uses optimistic concurrency control with versioning instead."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://cratedb.com/docs/guide/home/index.html"]
+    },
+    "sql-compatibility": {
+      "value": ["postgresql"],
+      "source": ["https://cratedb.com/connectivity/postgresql-wire-protocol"],
+      "comment": "PostgreSQL wire protocol compatible. Standard PostgreSQL drivers work, but autocommit should be enabled as transactions aren't supported."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://cratedb.com/data/dynamic-schemas"],
+      "comment": "Every field is automatically indexed. Built on Lucene."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://cratedb.com/product/features/distributed-database"],
+      "comment": "Supports distributed JOINs, sub-selects, and ad-hoc queries across the cluster."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://cratedb.com/product/features/distributed-database"]
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://cratedb.com/docs/guide/home/index.html"],
+      "comment": "Native full-text search powered by Apache Lucene."
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "No specific maximum cluster size documented. CrateDB is designed to scale horizontally."
+    },
+    "write-throughput": {
+      "value": null,
+      "comment": "No independent benchmark figures available. Vendor claims real-time ingestion at scale."
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "No independent benchmark figures available. Designed for in-memory speed analytics."
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://cratedb.com/deployment/public-cloud"],
+      "comment": "Automatic rebalancing when nodes are added/removed. CrateDB Cloud supports elastic scaling."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "source": ["https://cratedb.com/product/features/distributed-database"],
+      "comment": "Automatic rebalancing of data across nodes."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://cratedb.com/docs/guide/admin/upgrade/rolling.html"],
+      "comment": "Rolling upgrades supported between consecutive feature versions with zero downtime."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://cratedb.com/data/dynamic-schemas"],
+      "comment": "Dynamic schema evolution. New fields can be added automatically without downtime or migrations."
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://cratedb.com/storage/backup"],
+      "comment": "Snapshots represent state at snapshot time. No continuous point-in-time recovery to arbitrary timestamps."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://cratedb.com/storage/backup"],
+      "comment": "Snapshot-based backups with incremental support. Can store on S3, Azure Blob, or local filesystem."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/crate/crate-operator"],
+      "comment": "Official Kubernetes operator with Helm chart. Supports safe scaling, rolling upgrades, and SSL."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://cratedb.com/connectivity/postgresql-wire-protocol"],
+      "comment": "Uses Rust PostgreSQL drivers via PostgreSQL wire protocol compatibility."
+    },
+    "go-driver": {
+      "value": ["community"],
+      "source": ["https://cratedb.com/connectivity/drivers-client-libraries"],
+      "comment": "Available via ecosystem using PostgreSQL wire protocol."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://cratedb.com/docs/jdbc/en/latest/index.html"],
+      "comment": "Official JDBC driver based on PostgreSQL JDBC. Pure Java, Type 4 driver."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://cratedb.com/connectivity/drivers-client-libraries"],
+      "comment": "Available via ecosystem using PostgreSQL wire protocol."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://cratedb.com/connectivity/drivers-client-libraries"],
+      "comment": "Official crate client library implementing Python DB API 2.0. Also supports SQLAlchemy."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://cratedb.com/connectivity/postgresql-wire-protocol"],
+      "comment": "Uses Ruby PostgreSQL drivers via PostgreSQL wire protocol compatibility."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://cratedb.com/connectivity/postgresql-wire-protocol"],
+      "comment": "Uses C/C++ PostgreSQL drivers via PostgreSQL wire protocol compatibility."
+    },
+    "orm-support": {
+      "value": ["sqlalchemy", "hibernate"],
+      "source": ["https://cratedb.com/connectivity/drivers-client-libraries"],
+      "comment": "SQLAlchemy support for Python. Hibernate works via JDBC. Frameworks using PostgreSQL drivers generally compatible."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/crate/crate"],
+      "comment": "Open source under Apache 2.0 license."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://cratedb.com/pricing"],
+      "comment": "CrateDB Cloud offers a forever-free tier for development and testing."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-hour"],
+      "source": ["https://cratedb.com/pricing"],
+      "comment": "Pricing based on cluster configuration. Plans range from ~$51/month to $1400+/month based on resources."
+    },
+    "cost-estimate-small": {
+      "value": "~$150-450/month (3 nodes, CR1-CR2)",
+      "source": ["https://cratedb.com/pricing"],
+      "comment": "Based on CrateDB Cloud pricing. CR1 ~$187/month per node, CR2 ~$437/month per node."
+    },
+    "github-stars": {
+      "value": 4300,
+      "source": ["https://github.com/crate/crate"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count from Stack Overflow."
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://cratedb.com/docs/guide/integrate/cdc/index.html"],
+      "comment": "No built-in CDC. Supports ingesting CDC from other databases via Debezium and Kafka, but not as a source."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "comment": "No native push-based subscription mechanism for data changes."
+    },
+    "triggers": {
+      "value": false,
+      "comment": "CrateDB does not support database-side triggers."
+    },
+    "event-streaming": {
+      "value": ["kafka", "kinesis"],
+      "source": ["https://cratedb.com/docs/guide/integrate/cdc/index.html"],
+      "comment": "Integrates with Kafka via Debezium/StreamSets. Supports AWS DMS with Kinesis for data ingestion. Acts as sink, not source."
+    }
+  }
+}
