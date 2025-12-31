@@ -1,0 +1,243 @@
+{
+  "name": "Dolt",
+  "description": "Git-like version controlled SQL database with MySQL compatibility",
+  "icon": "database",
+  "url": "https://www.dolthub.com/",
+  "values": {
+    "website": {
+      "value": "https://www.dolthub.com/",
+      "source": ["https://www.dolthub.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/dolthub/dolt"]
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed"],
+      "source": ["https://docs.dolthub.com/products/hosted"],
+      "comment": "Self-hosted via CLI/Docker, Hosted Dolt managed service available"
+    },
+    "initial-release": {
+      "value": "2019",
+      "source": ["https://www.dolthub.com/blog/2024-07-25-dolt-timeline/"],
+      "comment": "First public release (v0.9.7) in August 2019"
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/dolthub/dolt"],
+      "comment": "84.2% Go according to GitHub"
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://docs.dolthub.com/"]
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://docs.dolthub.com/sql-reference/server/replication"],
+      "comment": "Supports primary-standby replication; multi-primary not fully supported"
+    },
+    "sharding": {
+      "value": null,
+      "comment": "Dolt is primarily a single-node database. It does not support native sharding. Data distribution follows Git-like clone/push/pull semantics."
+    },
+    "replication-factor": {
+      "value": "Configurable standbys",
+      "source": ["https://docs.dolthub.com/sql-reference/server/replication"],
+      "comment": "Primary-standby replication with configurable standby remotes"
+    },
+    "multi-region": {
+      "value": false,
+      "source": ["https://docs.dolthub.com/architecture/architecture"],
+      "comment": "No native multi-region support; data can be cloned/pushed to multiple locations but not synchronized in real-time"
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Single-node with optional replication prioritizes consistency"
+    },
+    "consistency-model": {
+      "value": ["strong", "serializable"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "MySQL-compatible ACID semantics on single node"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Full ACID transactions with MySQL-compatible semantics"
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Single-node database supports full table transactions"
+    },
+    "isolation-levels": {
+      "value": ["read-uncommitted", "read-committed", "repeatable-read", "serializable"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Supports MySQL-compatible isolation levels"
+    },
+    "distributed-transactions": {
+      "value": false,
+      "comment": "Single-node database; no distributed transaction coordination"
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://docs.dolthub.com/"]
+    },
+    "sql-compatibility": {
+      "value": ["mysql"],
+      "source": ["https://www.dolthub.com/blog/2025-01-02-dolt-mysql-differences/"],
+      "comment": "Drop-in MySQL replacement with wire protocol compatibility"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://github.com/dolthub/dolt"]
+    },
+    "joins": {
+      "value": ["local-only"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Full SQL joins on single node; no distributed joins as it's not a distributed database"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/"]
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "MySQL-compatible FULLTEXT indexes supported"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Dolt is designed as single-node; replication is primary-standby, not clustered"
+    },
+    "write-throughput": {
+      "value": "~37 TPS (TPC-C)",
+      "source": ["https://docs.dolthub.com/sql-reference/benchmarks/latency"],
+      "comment": "36.85 TPS on TPC-C benchmark vs MySQL's 93.54 TPS (2.54x multiplier)"
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "P99 figures not published; mean sysbench latency ~1.05x MySQL"
+    },
+    "auto-scaling": {
+      "value": false,
+      "comment": "Single-node database; no auto-scaling capabilities"
+    },
+    "hot-spot-handling": {
+      "value": null,
+      "comment": "Not applicable for single-node database"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/sql-reference/server/replication"],
+      "comment": "Possible via primary-standby failover"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Supports online DDL via version control branches"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://docs.dolthub.com/sql-reference/version-control/querying-history"],
+      "comment": "Git-like version control allows checkout of any historical commit"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://docs.dolthub.com/"],
+      "comment": "Native version control provides incremental snapshots via commits"
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "comment": "No official Kubernetes operator; Docker images available"
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/sql-reference/supported-clients/clients"],
+      "comment": "Uses MySQL rust crate (mysql); tested by DoltHub"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/dolthub/driver"],
+      "comment": "Official dolthub/driver for embedded use; also supports go-sql-driver/mysql"
+    },
+    "java-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/sql-reference/supported-clients/clients"],
+      "comment": "Uses MySQL JDBC connectors (mysql-connector-j, mariadb-java-client)"
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/sql-reference/supported-clients/clients"],
+      "comment": "Uses MySQL .NET connectors; tested with EF Core"
+    },
+    "python-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/sql-reference/supported-clients/clients"],
+      "comment": "Uses mysql.connector, pymysql; tested by DoltHub"
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/guides/dolt-tested-apps"],
+      "comment": "Uses MySQL Ruby drivers; Rails integration documented"
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://docs.dolthub.com/sql-reference/supported-clients/clients"],
+      "comment": "Uses MySQL C client libraries"
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "prisma", "gorm", "entity-framework", "activerecord"],
+      "source": ["https://docs.dolthub.com/guides/dolt-tested-apps"],
+      "comment": "Django, SQLAlchemy, Prisma, GORM, Hibernate, EF Core, Rails all tested"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/dolthub/dolt"],
+      "comment": "Apache 2.0 license"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.dolthub.com/pricing"],
+      "comment": "DoltHub hosts public databases for free; Hosted Dolt has paid tiers starting ~$50/month"
+    },
+    "pricing-model": {
+      "value": ["per-hour", "per-storage"],
+      "source": ["https://hosted.doltdb.com/pricing"],
+      "comment": "Hosted Dolt charges based on instance size and storage"
+    },
+    "cost-estimate-small": {
+      "value": "~$50/month",
+      "source": ["https://sourceforge.net/software/product/Dolt/"],
+      "comment": "Starting price for Hosted Dolt; single-node typically sufficient"
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://www.dolthub.com/blog/2024-07-19-debezium-works-with-dolt/"],
+      "comment": "No built-in CDC; supports Debezium via MySQL binlog replication"
+    },
+    "watch-subscribe": {
+      "value": false,
+      "comment": "No native watch/subscribe functionality"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://www.dolthub.com/blog/2020-10-02-announcing-triggers/"],
+      "comment": "Full MySQL-compatible trigger support"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://www.dolthub.com/blog/2024-07-19-debezium-works-with-dolt/"],
+      "comment": "Via Debezium connector using MySQL binlog; not native integration"
+    },
+    "github-stars": {
+      "value": 19500,
+      "source": ["https://github.com/dolthub/dolt"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "No significant Stack Overflow tag presence found"
+    }
+  }
+}
