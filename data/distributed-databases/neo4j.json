@@ -1,0 +1,257 @@
+{
+  "name": "Neo4j (Cluster)",
+  "description": "Leading native graph database with Cypher query language, ACID transactions, and scalable cluster architecture for connected data",
+  "icon": "https://neo4j.com/favicon.ico",
+  "url": "https://neo4j.com/",
+  "values": {
+    "website": {
+      "value": "https://neo4j.com/",
+      "source": ["https://neo4j.com/"]
+    },
+    "license": {
+      "value": "GPL-3.0",
+      "source": ["https://github.com/neo4j/neo4j"],
+      "comment": "Community Edition is GPL-3.0. Enterprise Edition requires commercial license. APOC and other extensions have separate licensing."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://neo4j.com/pricing/", "https://aws.amazon.com/marketplace/pp/prodview-delmyam4ns2nm"],
+      "comment": "Self-hosted Community/Enterprise editions. AuraDB is the official managed service. Available on AWS, Azure, and GCP marketplaces."
+    },
+    "initial-release": {
+      "value": "2010",
+      "source": ["https://en.wikipedia.org/wiki/Neo4j"],
+      "comment": "First public release in February 2010. Company founded in 2007, development started earlier."
+    },
+    "primary-language": {
+      "value": "Java",
+      "source": ["https://github.com/neo4j/neo4j"],
+      "comment": "Java (70.1%) with significant Scala (29.2%). The '4j' in Neo4j references Java."
+    },
+    "data-model": {
+      "value": ["graph"],
+      "source": ["https://neo4j.com/"],
+      "comment": "Native property graph database. Stores nodes, relationships, and properties. Also supports vector embeddings for AI applications."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/introduction/"],
+      "comment": "Cluster uses Primary servers (handle reads/writes via Raft consensus) and Secondary servers (asynchronous replication for read scaling)."
+    },
+    "sharding": {
+      "value": ["manual"],
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/", "https://neo4j.com/press-releases/neo4j-launches-infinigraph/"],
+      "comment": "Traditional clustering replicates entire database. Infinigraph (Sept 2025) introduces property sharding - keeps nodes/relationships together, shards properties across machines."
+    },
+    "replication-factor": {
+      "value": "3+ (configurable)",
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/introduction/"],
+      "comment": "Recommended 3+ primary servers for high availability. 2 primaries possible but not fault-tolerant."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/operations-manual/4.4/clustering-advanced/multi-data-center/design/"],
+      "comment": "Supports multi-data center deployments. Can deploy 3 Core instances per data center across 3 data centers for full DC failure tolerance."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://neo4j.com/blog/acid-vs-base-consistency-models-explained/"],
+      "comment": "CP system - uses ACID model for consistency. Raft consensus ensures consistency in cluster. May reject writes during partitions."
+    },
+    "consistency-model": {
+      "value": ["causal", "serializable"],
+      "source": ["https://neo4j.com/docs/query-api/current/bookmarks/"],
+      "comment": "Causal consistency via bookmarks for session-based consistency. ACID transactions provide serializability within transactions."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/cypher-manual/current/introduction/cypher-neo4j/"],
+      "comment": "Full ACID compliance. All Cypher queries run within transactions. Transactions are atomic, consistent, isolated, and durable."
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://neo4j.com/docs/query-api/current/transactions/"],
+      "comment": "Transactions can span arbitrary nodes and relationships across the database. Both explicit and implicit transaction modes supported."
+    },
+    "isolation-levels": {
+      "value": ["read-committed"],
+      "source": ["https://neo4j.com/docs/cypher-manual/current/introduction/cypher-neo4j/"],
+      "comment": "Read-committed isolation by default. Uses multiversion concurrency control (MVCC) for consistent reads."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/introduction/"],
+      "comment": "Uses Raft consensus protocol for distributed transaction coordination across primary servers in cluster."
+    },
+    "query-language": {
+      "value": ["cypher"],
+      "source": ["https://neo4j.com/docs/cypher-manual/current/"],
+      "comment": "Cypher is Neo4j's declarative graph query language. ISO GQL standard is based on Cypher."
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://neo4j.com/docs/cypher-manual/current/"],
+      "comment": "Uses Cypher, not SQL. Cypher is purpose-built for graph traversals with pattern matching syntax (e.g., MATCH, CREATE, MERGE)."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/cypher-manual/current/"],
+      "comment": "Supports B-tree, full-text, point (spatial), range, text, and token lookup indexes on node/relationship properties."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://neo4j.com/"],
+      "comment": "Graph traversals replace traditional joins. Native graph storage (adjacency lists) makes multi-hop traversals extremely efficient."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/cypher-manual/current/"],
+      "comment": "Full aggregation support in Cypher: COUNT, SUM, AVG, MIN, MAX, COLLECT, percentile functions, and grouping."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/cypher-manual/current/"],
+      "comment": "Built-in full-text search indexes using Apache Lucene. Supports fuzzy matching, phrase search, and custom analyzers."
+    },
+    "max-cluster-size": {
+      "value": null,
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/"],
+      "comment": "No documented maximum cluster size. Typical deployments use 3-9 primary servers with additional read replicas."
+    },
+    "write-throughput": {
+      "value": null,
+      "source": ["https://neo4j.com/docs/operations-manual/current/performance/"],
+      "comment": "Highly workload-dependent. Optimized for graph traversals rather than bulk writes. Vendor benchmarks not directly comparable."
+    },
+    "read-latency-p99": {
+      "value": "Sub-millisecond (bounded traversals)",
+      "source": ["https://memgraph.com/blog/memgraph-vs-neo4j-performance-benchmark-comparison"],
+      "comment": "Sub-millisecond for bounded (≤2-hop) queries. Complex traversals 14-3100ms depending on query complexity per independent benchmarks."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/"],
+      "comment": "Manual scaling by adding/removing servers. AuraDB managed service offers more automated scaling capabilities."
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/"],
+      "comment": "Read replicas can distribute read load. Infinigraph property sharding (2025) improves distribution for large graphs."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/operations-manual/current/clustering/"],
+      "comment": "Rolling upgrades supported in cluster deployments by upgrading one server at a time."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/operations-manual/current/"],
+      "comment": "Schema-optional property graph model. Indexes and constraints can be created online without locking."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/operations-manual/current/backup-restore/restore-backup/"],
+      "comment": "Supported via --restore-until parameter on backup restore. Requires Enterprise Edition. Can restore to specific UTC timestamp."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://neo4j.com/docs/operations-manual/current/backup-restore/"],
+      "comment": "Full and differential backups (Enterprise). Differential backups form chains for PITR. Supports cloud storage (S3, Azure, GCS)."
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "source": ["https://neo4j.com/labs/neo4j-helm/"],
+      "comment": "No official Kubernetes operator. Uses Helm charts for K8s deployment. neo4j-helm provides deployment automation."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://neo4j.com/docs/getting-started/languages-guides/community-drivers/"],
+      "comment": "neo4rs is the community-maintained Rust driver. Supports Bolt protocol from Neo4j 4.4+."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://neo4j.com/docs/bolt/current/neo4j-drivers/"],
+      "comment": "Official Go driver maintained by Neo4j. Part of the officially supported driver suite."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/neo4j/neo4j-java-driver"],
+      "comment": "Official Java driver using Bolt protocol. Mature driver with reactive support."
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://neo4j.com/docs/bolt/current/neo4j-drivers/"],
+      "comment": "Official .NET driver maintained by Neo4j. Supports .NET Standard."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/neo4j/neo4j-python-driver"],
+      "comment": "Official Python driver (neo4j package). Optional Rust extensions available for 10x performance improvement."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/neo4jrb/neo4j-ruby-driver"],
+      "comment": "Community neo4j-ruby-driver with pure Ruby and JRuby implementations. API mirrors official Java driver."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://neo4j.com/docs/getting-started/languages-guides/community-drivers/"],
+      "comment": "libneo4j-omni is a community C driver. Not officially maintained by Neo4j."
+    },
+    "orm-support": {
+      "value": [],
+      "source": ["https://neo4j.com/docs/getting-started/languages-guides/"],
+      "comment": "Spring Data Neo4j for Java. Neo4j OGM (Object-Graph Mapper). No traditional SQL ORMs due to graph model."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/neo4j/neo4j"],
+      "comment": "Community Edition is open source under GPL-3.0. Enterprise Edition requires commercial license for production use."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://neo4j.com/pricing/"],
+      "comment": "AuraDB Free tier available for learning and exploration. Community Edition free for self-hosted deployments."
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage", "per-hour", "enterprise-license"],
+      "source": ["https://neo4j.com/pricing/"],
+      "comment": "AuraDB: consumption-based pricing from $65/month (Professional). Enterprise Edition requires license. Self-managed Community is free."
+    },
+    "cost-estimate-small": {
+      "value": "~$200-450/month (3 nodes)",
+      "source": ["https://neo4j.com/pricing/"],
+      "comment": "AuraDB Professional starts at $65/month. Business Critical with HA starts at $146/month. 4GB instance ~$259/month."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://neo4j.com/docs/cdc/current/"],
+      "comment": "Built-in CDC with DIFF and FULL modes. Captures node/relationship creates, updates, deletes. Supports Kafka via official connector."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://neo4j.com/docs/cdc/current/"],
+      "comment": "No native client-side subscriptions. CDC is server-side polling via procedures (db.cdc.query). Requires external systems for push notifications."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://medium.com/neo4j/eventing-graph-data-neo4j-rabbitmq-e16b91274fbc"],
+      "comment": "APOC triggers allow custom procedures to fire on data changes. Part of APOC extension library, not core database."
+    },
+    "event-streaming": {
+      "value": ["kafka", "custom"],
+      "source": ["https://neo4j.com/developer-blog/change-data-capture-cdc-ga/"],
+      "comment": "Official Neo4j Connector for Kafka (v5.1 GA). Supports CDC strategy for streaming changes to Kafka topics."
+    },
+    "github-stars": {
+      "value": 15600,
+      "source": ["https://github.com/neo4j/neo4j"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": 15000,
+      "source": ["https://stackoverflow.com/questions/tagged/neo4j"],
+      "comment": "More than 15,000 questions on Stack Overflow per Neo4j documentation."
+    }
+  }
+}

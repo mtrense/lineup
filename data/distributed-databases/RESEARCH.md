@@ -224,7 +224,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] FoundationDB - Apple's ordered key-value store, unique architecture
 - [x] Couchbase - Document DB with strong mobile sync story
 - [x] ArangoDB - Multi-model (document, graph, key-value)
-- [ ] Neo4j (Cluster) - Leading graph database
+- [x] Neo4j (Cluster) - Leading graph database
 - [ ] PlanetScale - Managed Vitess with branching workflows
 - [ ] CrateDB - Distributed SQL for machine data
 - [ ] RethinkDB - Real-time push architecture (consider if maintained)
