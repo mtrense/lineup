@@ -236,7 +236,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] ClickHouse (Clustered) - If including analytical
 - [x] QuestDB - Time-series with SQL
 - [x] TimescaleDB (Distributed) - PostgreSQL-based time-series
-- [ ] Fauna - Serverless document-relational
+- [x] Fauna - Serverless document-relational (SERVICE ENDING MAY 2025)
 - [ ] SurrealDB - Multi-model newcomer
 - [ ] Dolt - Git-like versioned SQL database
 

@@ -1,0 +1,251 @@
+{
+  "name": "Fauna",
+  "description": "Serverless document-relational database with global distribution and strict serializability (service ending May 2025)",
+  "icon": "fauna",
+  "url": "https://fauna.com/",
+  "values": {
+    "website": {
+      "value": "https://fauna.com/",
+      "source": ["https://fauna.com/"]
+    },
+    "license": {
+      "value": "Proprietary (source-available)",
+      "source": ["https://github.com/fauna/faunadb"],
+      "comment": "Core database is proprietary; company announced plans to open-source after shutdown"
+    },
+    "hosting-options": {
+      "value": ["official-managed", "serverless"],
+      "source": ["https://fauna.com/"],
+      "comment": "Fauna is a fully managed serverless database; service ending May 30, 2025"
+    },
+    "initial-release": {
+      "value": "2017",
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "Company founded 2012 by ex-Twitter engineers; FaunaDB came to market in 2017"
+    },
+    "primary-language": {
+      "value": "Scala",
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "Runs on the JVM as a JAR file; requires JDK 17"
+    },
+    "data-model": {
+      "value": ["document", "relational", "graph", "key-value"],
+      "source": ["https://dbdb.io/db/faunadb", "https://fauna.com/document-relational"],
+      "comment": "Multi-paradigm indexed document store supporting relational, document, graph, and key-value access patterns"
+    },
+    "topology": {
+      "value": ["multi-leader"],
+      "source": ["https://fauna.com/blog/consistency-without-clocks-faunadb-transaction-protocol"],
+      "comment": "Active-active architecture with deterministic transaction processing via Calvin protocol"
+    },
+    "sharding": {
+      "value": ["automatic"],
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "Automatic partitioning across cluster with shared-nothing design"
+    },
+    "replication-factor": {
+      "value": "3 (within region group)",
+      "source": ["https://docs.fauna.com/fauna/current/get-started/overview/"],
+      "comment": "Data replicated across locations within a region group"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://fauna.com/"],
+      "comment": "Global distribution across multiple regions in a region group with strong consistency"
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://fauna.com/blog/acid-transactions-in-a-globally-distributed-database"],
+      "comment": "Prioritizes consistency; uses Calvin protocol for globally consistent transactions"
+    },
+    "consistency-model": {
+      "value": ["serializable", "linearizable"],
+      "source": ["https://jepsen.io/analyses/faunadb-2.5.4", "https://fauna.com/distributed-transaction-engine"],
+      "comment": "Strict serializability for read-write transactions with serializable indexes; snapshot isolation for read-only queries"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://fauna.com/blog/acid-transactions-in-a-globally-distributed-database"],
+      "comment": "Full ACID transactions using the Calvin distributed transaction protocol"
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://fauna.com/distributed-transaction-engine"],
+      "comment": "Global transactions across all replicas with single-phase commit"
+    },
+    "isolation-levels": {
+      "value": ["snapshot", "serializable"],
+      "source": ["https://jepsen.io/analyses/faunadb-2.5.4"],
+      "comment": "Serializable for read-write with serialized indexes; snapshot isolation for read-only and non-serialized index reads"
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://fauna.com/blog/consistency-without-clocks-faunadb-transaction-protocol"],
+      "comment": "Calvin-based deterministic transaction processing across all nodes"
+    },
+    "query-language": {
+      "value": ["graphql"],
+      "source": ["https://dbdb.io/db/faunadb", "https://fauna.com/product/fql"],
+      "comment": "Fauna Query Language (FQL) as primary interface; GraphQL also supported"
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://fauna.com/product/fql"],
+      "comment": "Uses FQL, a TypeScript/Python-inspired expression language; no SQL support"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "Supports B+Tree and hash table indexes with pagination"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://dbdb.io/db/faunadb", "https://fauna.com/document-relational"],
+      "comment": "Native joins via Ref() type; supports hash join and sort-merge join operations"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://fauna.com/product/fql"],
+      "comment": "FQL supports aggregation operations"
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://docs.fauna.com/fauna/current/"],
+      "comment": "No built-in full-text search capabilities"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Serverless architecture; cluster size abstracted from users"
+    },
+    "write-throughput": {
+      "value": null,
+      "comment": "No public benchmark figures available for Fauna"
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "No public latency benchmarks available; claims low latency due to single-phase commit"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://fauna.com/blog/fauna-the-truly-serverless-database"],
+      "comment": "Fully serverless with automatic scaling; no capacity planning required"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "source": ["https://fauna.com/"],
+      "comment": "Automatic load distribution in serverless architecture"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://fauna.com/"],
+      "comment": "Fully managed service with zero downtime maintenance"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://fauna.com/"],
+      "comment": "Document-based schema with online modifications"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "MVCC with configurable data retention enables temporal queries"
+    },
+    "backup-strategy": {
+      "value": ["snapshot"],
+      "source": ["https://fauna.com/"],
+      "comment": "Managed backup as part of the service"
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "comment": "No Kubernetes operator as Fauna is only available as a managed service"
+    },
+    "rust-driver": {
+      "value": ["none"],
+      "source": ["https://docs.fauna.com/fauna/current/build/drivers/"],
+      "comment": "No official Rust driver; community drivers may exist but not maintained"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/fauna/fauna-go"],
+      "comment": "Official Go driver for Fauna v10"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://docs.fauna.com/fauna/current/build/drivers/"],
+      "comment": "Official Java driver available"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://docs.fauna.com/fauna/current/build/drivers/"],
+      "comment": "Official .NET/C# driver available"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/fauna/fauna-python"],
+      "comment": "Official Python driver for Fauna v10"
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/fauna-labs/awesome-fauna"],
+      "comment": "Community-maintained Ruby driver; not officially supported"
+    },
+    "c-cpp-driver": {
+      "value": ["none"],
+      "comment": "No C/C++ driver available"
+    },
+    "orm-support": {
+      "value": [],
+      "comment": "No traditional ORM support; FQL is the primary interface"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.infoq.com/news/2025/03/fauna-shuts-down/"],
+      "comment": "Currently proprietary; company announced plans to open-source after service shutdown"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://fauna.com/pricing"],
+      "comment": "Generous free tier for prototyping and small apps; note service ending May 2025"
+    },
+    "pricing-model": {
+      "value": ["per-request", "per-storage"],
+      "source": ["https://fauna.com/pricing"],
+      "comment": "True serverless pay-per-use pricing; scales to zero when not in use"
+    },
+    "cost-estimate-small": {
+      "value": "Variable (pay-per-request)",
+      "source": ["https://fauna.com/pricing"],
+      "comment": "Costs scale with usage; can be very low for light workloads. Service ending May 2025"
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://github.com/fauna"],
+      "comment": "Core database not open source; driver repos have minimal stars (fauna-js: ~50, fauna-shell: ~77)"
+    },
+    "stackoverflow-tags": {
+      "value": 1500,
+      "source": ["https://stackoverflow.com/questions/tagged/faunadb"],
+      "comment": "Approximate count as of December 2024"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://fauna.com/blog/fauna-adds-support-for-change-data-capture"],
+      "comment": "Event feeds provide pull-based CDC for processing changes at your own pace"
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://fauna.com/product/event-driven-architectures", "https://docs.fauna.com/fauna/current/learn/cdc/"],
+      "comment": "Event streams provide real-time push-based subscriptions to document and collection changes"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://dbdb.io/db/faunadb"],
+      "comment": "Supports user-defined functions/stored procedures that can act as triggers"
+    },
+    "event-streaming": {
+      "value": ["custom"],
+      "source": ["https://docs.fauna.com/fauna/current/learn/cdc/"],
+      "comment": "Proprietary event streams and event feeds; no native Kafka/Kinesis integration"
+    }
+  }
+}
