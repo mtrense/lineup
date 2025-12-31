@@ -1,0 +1,256 @@
+{
+  "name": "SurrealDB",
+  "description": "Multi-model database combining document, graph, relational, time-series, and vector data models with real-time capabilities and edge deployment options.",
+  "url": "https://surrealdb.com/",
+  "values": {
+    "website": {
+      "value": "https://surrealdb.com/",
+      "source": ["https://surrealdb.com/"]
+    },
+    "license": {
+      "value": "BSL-1.1",
+      "comment": "Business Source License 1.1 with automatic conversion to Apache-2.0 after 4 years. SDKs and libraries are Apache-2.0 or MIT.",
+      "source": ["https://github.com/surrealdb/license", "https://surrealdb.com/license"]
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed"],
+      "comment": "Self-hosted with various storage backends (RocksDB, TiKV, SurrealKV). Surreal Cloud launched December 2024 as official managed service.",
+      "source": ["https://surrealdb.com/cloud", "https://surrealdb.com/docs/surrealdb/deployment"]
+    },
+    "initial-release": {
+      "value": "2022",
+      "comment": "First version completed in 2017 (Go), source made public in 2021, v1.0 released September 2023. Rust rewrite is the current version.",
+      "source": ["https://handwiki.org/wiki/Software:SurrealDB", "https://surrealdb.com/blog/announcing-surrealdb-1-0"]
+    },
+    "primary-language": {
+      "value": "Rust",
+      "comment": "99.8% Rust according to GitHub",
+      "source": ["https://github.com/surrealdb/surrealdb"]
+    },
+    "data-model": {
+      "value": ["document", "graph", "relational", "key-value", "time-series"],
+      "comment": "Multi-model database supporting document, graph, relational, time-series, geospatial and key-value data types with vector search capabilities.",
+      "source": ["https://surrealdb.com/features", "https://surrealdb.com/"]
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "comment": "In distributed mode, uses TiKV as storage backend which implements Raft consensus with leader-follower topology. SurrealDB compute nodes are stateless.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture", "https://surrealdb.com/docs/surrealdb/installation/running/tikv"]
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "comment": "When using TiKV backend, data is automatically sharded by range with no manual sharding required. TiKV handles data partitioning and replication.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture", "https://surrealdb.com/docs/surrealdb/installation/running/tikv"]
+    },
+    "replication-factor": {
+      "value": "3 (via TiKV)",
+      "comment": "In distributed mode with TiKV, inherits TiKV's default of 3 replicas. Single-node mode has no replication.",
+      "source": ["https://surrealdb.com/docs/surrealdb/installation/running/tikv"]
+    },
+    "multi-region": {
+      "value": true,
+      "comment": "Supported via TiKV backend which enables geo-distributed deployments. Surreal Cloud supports multi-region configurations.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture", "https://surrealdb.com/cloud"]
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "comment": "When using TiKV backend, inherits TiKV's CP (consistency-focused) behavior with Raft consensus.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "consistency-model": {
+      "value": ["read-your-writes"],
+      "comment": "Supports read-your-own-writes consistency with read snapshots for consistent database views. MVCC support with snapshot isolation.",
+      "source": ["https://surrealdb.com/blog/vart-a-persistent-data-structure-for-snapshot-isolation", "https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "acid-transactions": {
+      "value": true,
+      "comment": "Full ACID compliance with support for multi-row, multi-table transactions with no duration limit.",
+      "source": ["https://surrealdb.com/features", "https://github.com/surrealdb/surrealkv"]
+    },
+    "transaction-scope": {
+      "value": ["cross-partition", "global"],
+      "comment": "Supports transactions across multiple rows and tables. In distributed mode with TiKV, provides global cross-partition transactions.",
+      "source": ["https://surrealdb.com/features", "https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "isolation-levels": {
+      "value": ["snapshot"],
+      "comment": "Snapshot isolation via MVCC. Supports non-blocking concurrent reads and writes.",
+      "source": ["https://github.com/surrealdb/surrealkv", "https://surrealdb.com/blog/vart-a-persistent-data-structure-for-snapshot-isolation"]
+    },
+    "distributed-transactions": {
+      "value": true,
+      "comment": "When using TiKV backend, leverages TiKV's distributed transaction support. Designed to handle multi-table transactions without row/table locks.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "query-language": {
+      "value": ["sql"],
+      "comment": "Uses SurrealQL, a SQL-like query language with extensions for graph traversal, relations, and multi-model operations.",
+      "source": ["https://surrealdb.com/features", "https://surrealdb.com/docs/surrealql"]
+    },
+    "sql-compatibility": {
+      "value": ["partial"],
+      "comment": "SurrealQL is SQL-inspired but not SQL-compatible. Has unique syntax for graph edges, record links, and multi-model features.",
+      "source": ["https://surrealdb.com/features", "https://surrealdb.com/docs/surrealql"]
+    },
+    "secondary-indexes": {
+      "value": true,
+      "comment": "Supports traditional indexes, unique indexes/constraints, full-text search indexes, and vector embedding indexes.",
+      "source": ["https://surrealdb.com/docs/surrealql/statements/define/indexes", "https://surrealdb.com/features/full-text-search"]
+    },
+    "joins": {
+      "value": ["distributed"],
+      "comment": "Supports relations via RELATE statements creating graph edges. Graph traversal syntax enables relationship navigation.",
+      "source": ["https://surrealdb.com/features"]
+    },
+    "aggregations": {
+      "value": true,
+      "comment": "Built-in aggregate analytics views with support for moving averages, time-based windowing, and attribute-based counting.",
+      "source": ["https://surrealdb.com/features"]
+    },
+    "full-text-search": {
+      "value": true,
+      "comment": "Built-in full-text search with custom analyzers, multiple tokenizers, BM25/TF-IDF ranking, and support for 17 languages.",
+      "source": ["https://surrealdb.com/features/full-text-search", "https://surrealdb.com/docs/surrealdb/reference-guide/full-text-search"]
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Claims scalability to 'hundreds of nodes' via TiKV backend, but no specific tested cluster size documented.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "write-throughput": {
+      "value": null,
+      "comment": "No published benchmarks available. Performance depends on storage backend (RocksDB, TiKV, SurrealKV).",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "No published latency benchmarks available.",
+      "source": ["https://surrealdb.com/"]
+    },
+    "auto-scaling": {
+      "value": true,
+      "comment": "SurrealDB compute nodes are stateless and can be scaled independently. Storage scaling depends on backend (TiKV provides automatic scaling).",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture", "https://surrealdb.com/cloud"]
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "comment": "Via TiKV backend which handles automatic Region splitting and rebalancing. SurrealKV is still under optimization.",
+      "source": ["https://surrealdb.com/docs/surrealdb/introduction/architecture"]
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "comment": "Stateless compute nodes enable rolling upgrades. Kubernetes deployments support rolling updates via Helm charts.",
+      "source": ["https://surrealdb.com/docs/surrealdb/deployment/kubernetes"]
+    },
+    "online-schema-changes": {
+      "value": true,
+      "comment": "Schema-flexible with support for schemaless and schemafull modes. Schema changes don't require downtime.",
+      "source": ["https://surrealdb.com/features"]
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "comment": "SurrealKV supports versioned queries for historical data access, but full PITR requires external backup tooling.",
+      "source": ["https://surrealdb.com/features"]
+    },
+    "backup-strategy": {
+      "value": ["snapshot"],
+      "comment": "SQL export/import for backup and restoration. Surreal Cloud provides managed backups.",
+      "source": ["https://surrealdb.com/features", "https://surrealdb.com/cloud"]
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "comment": "No official Kubernetes operator. Provides Helm charts and uses TiDB Operator for TiKV backend deployments.",
+      "source": ["https://surrealdb.com/docs/surrealdb/deployment/kubernetes", "https://www.linode.com/docs/guides/deploy-surrealdb-cluster/"]
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "comment": "Official surrealdb.rs SDK. Supports SurrealDB v2.0.0 to v2.4.0. Requires Rust 1.80.1+.",
+      "source": ["https://github.com/surrealdb/surrealdb.rs", "https://surrealdb.com/docs/sdk/rust"]
+    },
+    "go-driver": {
+      "value": ["official"],
+      "comment": "Official surrealdb.go SDK",
+      "source": ["https://github.com/surrealdb", "https://surrealdb.com/docs/surrealdb/integration/sdks"]
+    },
+    "java-driver": {
+      "value": ["official"],
+      "comment": "Official Java SDK available",
+      "source": ["https://surrealdb.com/docs/surrealdb/integration/sdks"]
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "comment": "Official SurrealDb.Net SDK. Supports .NET 6.0+ and .NET Standard 2.1+. Available on NuGet.",
+      "source": ["https://github.com/surrealdb/surrealdb.net", "https://surrealdb.com/docs/sdk/dotnet"]
+    },
+    "python-driver": {
+      "value": ["official"],
+      "comment": "Official surrealdb.py SDK",
+      "source": ["https://github.com/surrealdb", "https://surrealdb.com/docs/sdk/python"]
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "comment": "Community 'mylk' library provides Ruby client with HTTP and WebSocket support. Not an official SDK.",
+      "source": ["https://github.com/surrealdb/awesome-surreal"]
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "comment": "Official C driver (surrealdb.c) supports WebSocket connections. No dedicated C++ driver.",
+      "source": ["https://github.com/surrealdb/surrealdb.c"]
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "No mainstream ORM support. Prisma support requested but not implemented. Community surreal_orm for Rust exists.",
+      "source": ["https://github.com/prisma/prisma/discussions/15453", "https://github.com/Oyelowo/surreal_orm"]
+    },
+    "open-source": {
+      "value": false,
+      "comment": "BSL-1.1 is source-available but not OSI-approved open source. Converts to Apache-2.0 after 4 years.",
+      "source": ["https://surrealdb.com/license", "https://github.com/surrealdb/license"]
+    },
+    "free-tier": {
+      "value": true,
+      "comment": "Surreal Cloud offers a free tier for prototypes and getting started.",
+      "source": ["https://surrealdb.com/pricing"]
+    },
+    "pricing-model": {
+      "value": ["per-hour", "per-storage", "enterprise-license"],
+      "comment": "Surreal Cloud starts at $0.02/hour with compute and storage pricing. Enterprise tier available for on-premise or private cloud.",
+      "source": ["https://surrealdb.com/pricing", "https://www.saasworthy.com/product/surrealdb/pricing"]
+    },
+    "cost-estimate-small": {
+      "value": "~$15/month (starting tier)",
+      "comment": "Starting at $0.02/hour ≈ $15/month for basic tier. Actual costs depend on compute and storage requirements.",
+      "source": ["https://surrealdb.com/pricing"]
+    },
+    "change-data-capture": {
+      "value": true,
+      "comment": "Built-in Change Feeds for streaming data changes. Supports SINCE <time> syntax for historical changes.",
+      "source": ["https://surrealdb.com/blog/unlocking-streaming-data-magic-with-surrealdb-live-queries-and-change-feeds"]
+    },
+    "watch-subscribe": {
+      "value": true,
+      "comment": "Live Queries allow real-time subscriptions to data changes with row-level authorization. Supports DIFF-PATCH-MATCH for efficient updates.",
+      "source": ["https://surrealdb.com/features/realtime-data-sync", "https://surrealdb.com/docs/sdk/javascript/core/streaming"]
+    },
+    "triggers": {
+      "value": true,
+      "comment": "Supports event triggers that execute on data changes.",
+      "source": ["https://medium.com/@firmanbrilian/designing-real-time-event-driven-architectures-with-surrealdb-a-data-engineers-perspective-cea79090ba76"]
+    },
+    "event-streaming": {
+      "value": ["kafka", "custom"],
+      "comment": "Can integrate with Kafka, MQTT, or Airflow in event processing pipelines. Live queries provide custom real-time streaming.",
+      "source": ["https://medium.com/@firmanbrilian/designing-real-time-event-driven-architectures-with-surrealdb-a-data-engineers-perspective-cea79090ba76"]
+    },
+    "github-stars": {
+      "value": 30700,
+      "comment": "As of December 2025",
+      "source": ["https://github.com/surrealdb/surrealdb"]
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Stack Overflow tag exists but specific question count not available. Community primarily uses Discord and GitHub.",
+      "source": ["https://surrealdb.com/community"]
+    }
+  }
+}

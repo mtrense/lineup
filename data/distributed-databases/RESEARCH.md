@@ -237,7 +237,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] QuestDB - Time-series with SQL
 - [x] TimescaleDB (Distributed) - PostgreSQL-based time-series
 - [x] Fauna - Serverless document-relational (SERVICE ENDING MAY 2025)
-- [ ] SurrealDB - Multi-model newcomer
+- [x] SurrealDB - Multi-model newcomer
 - [ ] Dolt - Git-like versioned SQL database
 
 ## Notes for Researchers
