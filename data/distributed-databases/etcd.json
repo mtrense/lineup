@@ -1,0 +1,249 @@
+{
+  "name": "etcd",
+  "description": "Distributed reliable key-value store for the most critical data of a distributed system, powering Kubernetes and other cloud-native infrastructure",
+  "url": "https://etcd.io/",
+  "values": {
+    "website": {
+      "value": "https://etcd.io/",
+      "source": ["https://etcd.io/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/etcd-io/etcd"]
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "third-party-managed"],
+      "comment": "Self-hosted is primary model. IBM Cloud offers Databases for etcd as managed service. No official managed offering from etcd team.",
+      "source": ["https://etcd.io/", "https://www.ibm.com/cloud/databases-for-etcd/pricing"]
+    },
+    "initial-release": {
+      "value": "2013",
+      "comment": "Originally created by CoreOS in 2013",
+      "source": ["https://github.com/etcd-io/etcd"]
+    },
+    "primary-language": {
+      "value": "Go",
+      "comment": "95.9% Go",
+      "source": ["https://github.com/etcd-io/etcd"]
+    },
+    "data-model": {
+      "value": ["key-value"],
+      "comment": "Flat key-value model with no native hierarchical or nested data structures",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "comment": "Uses Raft consensus algorithm with single leader for writes, followers replicate",
+      "source": ["https://etcd.io/docs/v3.5/learning/"]
+    },
+    "sharding": {
+      "value": ["manual"],
+      "comment": "etcd does not support automatic sharding. Data is replicated across all nodes, not partitioned. For very large datasets, users must manually partition data across multiple etcd clusters.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/hardware/"]
+    },
+    "replication-factor": {
+      "value": "3-5 nodes (configurable)",
+      "comment": "Recommended cluster sizes of 3, 5, or 7 nodes for fault tolerance. All data replicated to all nodes.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/hardware/"]
+    },
+    "multi-region": {
+      "value": false,
+      "comment": "Not recommended for multi-region due to latency sensitivity. Documentation recommends deploying within a single data center.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/hardware/"]
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "comment": "Prioritizes consistency over availability. Uses Raft consensus requiring majority quorum for writes.",
+      "source": ["https://jepsen.io/analyses/etcd-3.4.3"]
+    },
+    "consistency-model": {
+      "value": ["linearizable", "serializable"],
+      "comment": "Provides strict serializability (linearizable + serializable) for all operations. Jepsen confirmed this in v3.4.3 testing.",
+      "source": ["https://jepsen.io/analyses/etcd-3.4.3", "https://etcd.io/blog/2020/jepsen-343-results/"]
+    },
+    "acid-transactions": {
+      "value": true,
+      "comment": "Supports multi-key transactions with compare-and-swap operations. Transactions are atomic.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "comment": "Transactions can span any keys in the cluster. All data is on all nodes.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "isolation-levels": {
+      "value": ["serializable"],
+      "comment": "Strict serializable isolation for all operations",
+      "source": ["https://jepsen.io/analyses/etcd-3.4.3"]
+    },
+    "distributed-transactions": {
+      "value": true,
+      "comment": "Uses Raft consensus for coordinating writes across nodes",
+      "source": ["https://etcd.io/docs/v3.5/learning/"]
+    },
+    "query-language": {
+      "value": ["api-only"],
+      "comment": "gRPC API only. No query language - just key-value operations (get, put, delete, range queries, watch)",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://etcd.io/"]
+    },
+    "secondary-indexes": {
+      "value": false,
+      "comment": "No secondary indexes. Keys are the only index.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "joins": {
+      "value": ["none"],
+      "comment": "Key-value store with no join capabilities",
+      "source": ["https://etcd.io/"]
+    },
+    "aggregations": {
+      "value": false,
+      "comment": "No aggregation support. Application must perform aggregations.",
+      "source": ["https://etcd.io/"]
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://etcd.io/"]
+    },
+    "max-cluster-size": {
+      "value": 7,
+      "comment": "Recommended max of 7 nodes. Larger clusters increase latency due to Raft consensus overhead. Designed for small metadata stores, not large data volumes.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/hardware/"]
+    },
+    "write-throughput": {
+      "value": "10,000 writes/sec",
+      "comment": "Official benchmark figure on SSD storage",
+      "source": ["https://etcd.io/"]
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "No official p99 latency figures published. Latency depends heavily on disk I/O."
+    },
+    "auto-scaling": {
+      "value": false,
+      "comment": "No automatic scaling. Cluster membership changes require manual intervention.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/runtime-configuration/"]
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "comment": "All data replicated to all nodes, so hot spots are handled by the entire cluster. No automatic rebalancing mechanism.",
+      "source": ["https://etcd.io/"]
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "comment": "Rolling upgrades supported - upgrade nodes one at a time while cluster continues serving requests",
+      "source": ["https://etcd.io/docs/v3.5/upgrades/"]
+    },
+    "online-schema-changes": {
+      "value": null,
+      "comment": "Not applicable - etcd is a schema-less key-value store"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "comment": "Snapshot-based recovery. Can restore to any snapshot point. The --bump-revision option allows proper revision handling after restore.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/recovery/"]
+    },
+    "backup-strategy": {
+      "value": ["snapshot"],
+      "comment": "Built-in snapshot functionality via etcdctl snapshot save. Snapshots are point-in-time backups.",
+      "source": ["https://etcd.io/docs/v3.5/op-guide/recovery/"]
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "comment": "Official operator at github.com/etcd-io/etcd-operator. Also community operators available.",
+      "source": ["https://github.com/etcd-io/etcd-operator"]
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "comment": "jimmycuadra/rust-etcd supports v2 API only",
+      "source": ["https://etcd.io/docs/v3.5/integrations/"]
+    },
+    "go-driver": {
+      "value": ["official"],
+      "comment": "Official etcd/client/v3 maintained by etcd team",
+      "source": ["https://pkg.go.dev/go.etcd.io/etcd/client/v3"]
+    },
+    "java-driver": {
+      "value": ["official"],
+      "comment": "coreos/jetcd is the official Java client supporting v3 API",
+      "source": ["https://github.com/etcd-io/jetcd"]
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "comment": "shubhamranjan/dotnet-etcd supports v3+ with gRPC",
+      "source": ["https://etcd.io/docs/v3.5/integrations/"]
+    },
+    "python-driver": {
+      "value": ["community"],
+      "comment": "kragniz/python-etcd3 and Revolution1/etcd3-py for v3 API. Not officially maintained by etcd team.",
+      "source": ["https://etcd.io/docs/v3.5/integrations/"]
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "comment": "davissp14/etcdv3-ruby for v3 API",
+      "source": ["https://etcd.io/docs/v3.5/integrations/"]
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "comment": "etcd-cpp-apiv3/etcd-cpp-apiv3 for v3, multiple community C libraries for v2",
+      "source": ["https://etcd.io/docs/v3.5/integrations/"]
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "Not applicable - etcd is a key-value store, not a relational database"
+    },
+    "open-source": {
+      "value": true,
+      "comment": "Apache 2.0 license - true open source",
+      "source": ["https://github.com/etcd-io/etcd"]
+    },
+    "free-tier": {
+      "value": true,
+      "comment": "IBM Cloud Databases for etcd offers a free tier. Compose offered 30-day free trial.",
+      "source": ["https://www.ibm.com/cloud/databases-for-etcd/pricing"]
+    },
+    "pricing-model": {
+      "value": ["per-storage", "per-vcpu"],
+      "comment": "IBM Cloud pricing based on RAM, storage, and vCPUs allocated",
+      "source": ["https://www.ibm.com/cloud/databases-for-etcd/pricing"]
+    },
+    "cost-estimate-small": {
+      "value": "~$50-100/month (IBM Cloud)",
+      "comment": "Small deployment on IBM Cloud Databases for etcd. Self-hosted is free (infrastructure costs only).",
+      "source": ["https://www.ibm.com/cloud/databases-for-etcd/pricing"]
+    },
+    "change-data-capture": {
+      "value": false,
+      "comment": "No built-in CDC. The Watch API provides real-time notifications but isn't CDC in the traditional sense.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "watch-subscribe": {
+      "value": true,
+      "comment": "Excellent Watch API - clients can subscribe to key changes with ordered, unique, reliable, atomic, and resumable guarantees. Core feature used by Kubernetes.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api_guarantees/"]
+    },
+    "triggers": {
+      "value": false,
+      "comment": "No server-side triggers. Watch API is client-side subscription model.",
+      "source": ["https://etcd.io/"]
+    },
+    "event-streaming": {
+      "value": ["custom"],
+      "comment": "Custom gRPC streaming via Watch API. No native Kafka/Pulsar integration - requires external tooling.",
+      "source": ["https://etcd.io/docs/v3.5/learning/api/"]
+    },
+    "github-stars": {
+      "value": 51200,
+      "comment": "~51.2k stars as of December 2025",
+      "source": ["https://github.com/etcd-io/etcd"]
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count. etcd questions exist on Stack Overflow under the 'etcd' tag."
+    }
+  }
+}
