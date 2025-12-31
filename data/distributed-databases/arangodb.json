@@ -1,0 +1,257 @@
+{
+  "name": "ArangoDB",
+  "description": "Native multi-model database supporting document, graph, and key-value data models with AQL query language",
+  "icon": "https://www.arangodb.com/favicon.ico",
+  "url": "https://arango.ai/",
+  "values": {
+    "website": {
+      "value": "https://arango.ai/",
+      "source": ["https://arango.ai/"]
+    },
+    "license": {
+      "value": "BSL-1.1",
+      "source": ["https://arangodb.com/2024/02/update-evolving-arangodbs-licensing-model-for-a-sustainable-future/"],
+      "comment": "Changed from Apache-2.0 to BSL-1.1 starting with v3.12. Community Edition binaries have additional 100GB limit. Converts to Apache-2.0 after 4 years."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": ["https://arango.ai/pricing/", "https://aws.amazon.com/marketplace/pp/prodview-keoythdz3ffv6"],
+      "comment": "Self-hosted via Community/Enterprise editions. ArangoGraph is the official managed service. Available on AWS Marketplace."
+    },
+    "initial-release": {
+      "value": "2012",
+      "source": ["https://en.wikipedia.org/wiki/ArangoDB", "https://dbdb.io/db/arangodb"],
+      "comment": "First released in spring 2012 as AvocadoDB, renamed to ArangoDB in May 2012. First commit October 2011."
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/arangodb/arangodb"],
+      "comment": "C++ (50.5%), with significant JavaScript (45.2%) for Foxx microservices and tooling"
+    },
+    "data-model": {
+      "value": ["document", "graph", "key-value"],
+      "source": ["https://arango.ai/"],
+      "comment": "Native multi-model: document, graph, and key-value in a single engine. Also includes full-text search via ArangoSearch."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://www.arangodb.com/docs/stable/architecture-deployment-modes-cluster-architecture.html"],
+      "comment": "Cluster uses Coordinators (stateless routers), DB-Servers (data shards), and Agents (Raft consensus for metadata). Each shard has a leader with followers."
+    },
+    "sharding": {
+      "value": ["hash", "manual"],
+      "source": ["https://www.arangodb.com/docs/stable/architecture-deployment-modes-cluster-data-models.html"],
+      "comment": "Default hash-based sharding on document key. SmartGraphs and SatelliteGraphs (Enterprise) allow optimized data placement."
+    },
+    "replication-factor": {
+      "value": "1-10 (configurable, default 1)",
+      "source": ["https://docs.arangodb.com/3.12/deploy/"],
+      "comment": "Replication factor configurable per collection, typically 2-3 for production"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://medium.com/@firmanbrilian/implementing-multi-region-data-replication-and-high-availability-in-arangodb-cluster-69fff137cf05"],
+      "comment": "Supports both active-passive and active-active multi-region deployments. Recommends async replication for cross-region writes."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://dbdb.io/db/arangodb"],
+      "comment": "CP system - prefers consistency over availability during network partitions. Uses Raft for agent consensus."
+    },
+    "consistency-model": {
+      "value": ["causal", "read-your-writes"],
+      "source": ["https://docs.arangodb.com/3.11/develop/transactions/"],
+      "comment": "Provides Causal-Consistency for transactions. Local Snapshot Isolation per DB-Server. Full ACID on single server or OneShard deployments."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://docs.arangodb.com/3.11/develop/transactions/"],
+      "comment": "Full ACID on single server and OneShard. In multi-shard clusters, distributed transactions may not be fully atomic if a node fails during commit."
+    },
+    "transaction-scope": {
+      "value": ["single-partition", "cross-partition"],
+      "source": ["https://docs.arangodb.com/3.11/develop/transactions/limitations/"],
+      "comment": "Single-partition is fully ACID. Cross-partition transactions supported but atomicity during commit may be compromised if DB-Server fails."
+    },
+    "isolation-levels": {
+      "value": ["snapshot"],
+      "source": ["https://docs.arangodb.com/3.11/develop/transactions/"],
+      "comment": "Local Snapshot Isolation - all operations in a transaction see the same snapshot of data on each DB-Server."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://arangodb.com/2019/08/multi-model-database-3-5-released-distributed-joins-transactions-graphdb-search/"],
+      "comment": "Introduced in v3.5. Supports Stream Transactions API for multi-document transactions with explicit begin/commit/abort."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://arango.ai/"],
+      "comment": "AQL (ArangoDB Query Language) - SQL-like declarative language for documents, graphs, and key-value operations"
+    },
+    "sql-compatibility": {
+      "value": ["partial"],
+      "source": ["https://docs.arangodb.com/3.11/aql/"],
+      "comment": "AQL is SQL-like but not SQL-compatible. Different syntax for JOINs (graph traversals), no standard SQL wire protocol."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.arangodb.com/3.10/index-and-search/indexing/"],
+      "comment": "Supports persistent indexes, TTL indexes, geo indexes, fulltext indexes (deprecated in favor of ArangoSearch), and inverted indexes"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://arangodb.com/2019/08/multi-model-database-3-5-released-distributed-joins-transactions-graphdb-search/"],
+      "comment": "Distributed joins introduced in v3.5. Graph traversals and document joins across shards. SmartJoins (Enterprise) optimize co-located data."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://docs.arangodb.com/3.11/aql/"],
+      "comment": "Full aggregation support in AQL: COLLECT (GROUP BY), AGGREGATE, WITH COUNT, etc."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://arangodb.com/community-edition/arangosearch/"],
+      "comment": "ArangoSearch: integrated C++ full-text search engine with BM25/TFIDF ranking, phrase search, fuzzy matching, 30 languages supported"
+    },
+    "max-cluster-size": {
+      "value": 80,
+      "source": ["https://arangodb.com/resources/white-papers/cluster-benchmark/"],
+      "comment": "Benchmarked up to 80 nodes (640 vCPUs) on Mesosphere DCOS. Scales linearly for document operations."
+    },
+    "write-throughput": {
+      "value": "1.1M docs/sec (80 nodes, 640 vCPUs)",
+      "source": ["https://d2iq.com/blog/arangodb-benchmark-dcos"],
+      "comment": "~1GB/sec sustained write load. ~1,730 docs/sec per vCPU. Measured on Mesosphere DCOS cluster."
+    },
+    "read-latency-p99": {
+      "value": "< 30ms (p95 in benchmark)",
+      "source": ["https://arangodb.com/resources/white-papers/cluster-benchmark/"],
+      "comment": "Median latency < 5ms, 95th percentile < 30ms in cluster benchmark under write load"
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://docs.arangodb.com/3.12/deploy/"],
+      "comment": "Manual scaling by adding/removing DB-Servers. ArangoGraph managed service may offer more automated scaling."
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://www.arangodb.com/docs/stable/architecture-deployment-modes-cluster-data-models.html"],
+      "comment": "Requires manual resharding or SmartGraphs/SatelliteGraphs (Enterprise) for optimized data distribution"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://arangodb.github.io/kube-arangodb/docs/upgrading.html"],
+      "comment": "Rolling upgrades via Kubernetes operator. Sequential upgrade of servers one at a time. Recommended to take backup before upgrading."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.arangodb.com/3.12/"],
+      "comment": "Schema-free document model allows flexible schema evolution. Index creation is online."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://github.com/arangodb/arangodb/issues/13197"],
+      "comment": "PITR via Hot Backups (Enterprise Edition only, introduced in v3.5.1). Creates consistent snapshots with minimal operational impact."
+    },
+    "backup-strategy": {
+      "value": ["snapshot"],
+      "source": ["https://docs.arangodb.com/3.11/operations/backup-and-restore/"],
+      "comment": "Hot Backups (Enterprise): near-instantaneous snapshots using hard links. Also supports arangodump logical backups and physical (cold) backups."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/arangodb/kube-arangodb"],
+      "comment": "Official kube-arangodb operator. Production ready, supports K8s 1.18+. Provides PersistentVolumes, DC-to-DC replication."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/arangodb"],
+      "comment": "Community-maintained Rust drivers available (e.g., arangors)"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/arangodb/go-driver"],
+      "comment": "Official go-driver maintained by ArangoDB. Version 2 is the current recommended version."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "Official Java driver. Spring Data ArangoDB integration available for Spring-based applications."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "Community-maintained .NET drivers available"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "python-arango is the official Python driver"
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "Community-maintained Ruby driver available"
+    },
+    "c-cpp-driver": {
+      "value": ["none"],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "No dedicated C/C++ driver; the database itself is written in C++ and uses HTTP/VelocyPack API"
+    },
+    "orm-support": {
+      "value": [],
+      "source": ["https://arangodb.com/arangodb-drivers/"],
+      "comment": "Spring Data ArangoDB for Java. No support for traditional SQL ORMs due to AQL query language."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://arangodb.com/2023/10/evolving-arangodbs-licensing-model-for-a-sustainable-future/"],
+      "comment": "Changed to BSL-1.1 (source-available, not OSI-approved) from v3.12. Converts to Apache-2.0 after 4 years. Drivers remain Apache-2.0."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://arango.ai/pricing/"],
+      "comment": "14-day free trial on ArangoGraph. Community Edition free for local/non-commercial use with 100GB data limit."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-storage", "per-hour"],
+      "source": ["https://arango.ai/pricing/"],
+      "comment": "ArangoGraph pricing based on cloud provider, node count, memory, and storage. Starts at $0.20/hour."
+    },
+    "cost-estimate-small": {
+      "value": "~$450-600/month (3 nodes)",
+      "source": ["https://arango.ai/pricing/"],
+      "comment": "Estimate based on $0.20/hour base pricing. Actual cost depends on cloud provider, region, and configuration."
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://github.com/arangodb/arangodb/issues/602"],
+      "comment": "No native built-in CDC. Can use replication API or WAL tailing with external tools. Kafka Connect sink available via community."
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://github.com/arangodb/arangodb/issues/602"],
+      "comment": "No native live queries or change feeds. Long-standing feature request (Issue #602). Requires polling or external solutions."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://docs.arangodb.com/3.11/"],
+      "comment": "No database-side triggers. Foxx microservices can implement application-level logic but not true database triggers."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://github.com/jaredpetersen/kafka-connect-arangodb"],
+      "comment": "Community Kafka Connect sink connector available. No official vendor-maintained streaming integrations."
+    },
+    "github-stars": {
+      "value": 14000,
+      "source": ["https://github.com/arangodb/arangodb"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "source": ["https://stackoverflow.com/questions/tagged/arangodb"],
+      "comment": "Unable to retrieve exact count. ArangoDB tag exists on Stack Overflow."
+    }
+  }
+}
