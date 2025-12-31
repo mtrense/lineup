@@ -1,0 +1,255 @@
+{
+  "name": "QuestDB",
+  "description": "High-performance open-source time-series database with SQL support, optimized for fast ingestion and low-latency queries",
+  "icon": "questdb",
+  "url": "https://questdb.com/",
+  "values": {
+    "website": {
+      "value": "https://questdb.com/",
+      "source": ["https://questdb.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/questdb/questdb"],
+      "comment": "Core database is Apache-2.0; Enterprise features require commercial license"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "third-party-managed"],
+      "source": ["https://questdb.com/enterprise/", "https://aws.amazon.com/marketplace/pp/prodview-cddeafdirexw6"],
+      "comment": "QuestDB Cloud was discontinued; now offers Enterprise BYOC (Bring Your Own Cloud) model. Available on AWS Marketplace."
+    },
+    "initial-release": {
+      "value": "2014",
+      "source": ["https://dbdb.io/db/questdb", "https://news.ycombinator.com/item?id=23975807"],
+      "comment": "Started as side project in 2014 by Vlad Ilyushchenko; incorporated in 2019; YC S20"
+    },
+    "primary-language": {
+      "value": "Java/C++",
+      "source": ["https://github.com/questdb/questdb"],
+      "comment": "Zero-GC Java and C++ core; Enterprise includes Rust components"
+    },
+    "data-model": {
+      "value": ["relational", "time-series"],
+      "source": ["https://questdb.com/docs/"],
+      "comment": "Relational model with column-based storage optimized for time-series workloads"
+    },
+    "topology": {
+      "value": ["leader-follower", "multi-leader"],
+      "source": ["https://questdb.com/docs/concept/replication/", "https://questdb.com/docs/operations/multi-primary-ingestion/"],
+      "comment": "Primary-replica replication (Enterprise); multi-primary ingestion available in Enterprise with FoundationDB-backed sequencer"
+    },
+    "sharding": {
+      "value": ["range"],
+      "source": ["https://questdb.com/docs/guides/schema-design-essentials/"],
+      "comment": "Time-based partitioning (hourly, daily, monthly, yearly); no automatic horizontal sharding across nodes in open-source"
+    },
+    "replication-factor": {
+      "value": "Configurable (Enterprise)",
+      "source": ["https://questdb.com/docs/concept/replication/"],
+      "comment": "Replication via object store (S3, Azure Blob, NFS); any number of replicas can read from object store"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://questdb.com/docs/concept/replication/"],
+      "comment": "Replication through object store enables geo-distribution; replicas can be in different regions"
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://questdb.com/docs/concept/replication/"],
+      "comment": "Eventual consistency for replication, but primary provides strong consistency via WAL"
+    },
+    "consistency-model": {
+      "value": ["eventual", "read-your-writes"],
+      "source": ["https://questdb.com/docs/concept/replication/", "https://dbdb.io/db/questdb"],
+      "comment": "Read-committed isolation on primary; eventual consistency for replicas"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://questdb.com/glossary/acid-table/", "https://x.com/QuestDb/status/1750575093153968312"],
+      "comment": "ACID-compliant transactions via WAL (since v7.0)"
+    },
+    "transaction-scope": {
+      "value": ["single-partition"],
+      "source": ["https://dbdb.io/db/questdb"],
+      "comment": "Single-writer model with WAL; transactions are table-scoped"
+    },
+    "isolation-levels": {
+      "value": ["read-committed"],
+      "source": ["https://dbdb.io/db/questdb"],
+      "comment": "Read Committed isolation level"
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://questdb.com/docs/operations/multi-primary-ingestion/"],
+      "comment": "Multi-primary uses optimistic locking for conflict resolution, not distributed transactions"
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://questdb.com/docs/reference/sql/overview/"],
+      "comment": "Standard SQL with time-series extensions (SAMPLE BY, LATEST ON, ASOF JOIN)"
+    },
+    "sql-compatibility": {
+      "value": ["partial", "postgresql"],
+      "source": ["https://questdb.com/docs/reference/api/postgres/"],
+      "comment": "PostgreSQL wire protocol compatible for querying; SQL with time-series extensions but missing some standard SQL features"
+    },
+    "secondary-indexes": {
+      "value": false,
+      "source": ["https://questdb.com/docs/guides/schema-design-essentials/"],
+      "comment": "Only Symbol column type supports indexing; no general secondary indexes"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://questdb.com/docs/reference/sql/join/"],
+      "comment": "Supports INNER, LEFT OUTER, CROSS, ASOF, LT, SPLICE, and WINDOW JOINs; hash join and nested loop implementations"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://questdb.com/docs/reference/sql/group-by/"],
+      "comment": "Full aggregation support including GROUP BY, SAMPLE BY for time bucketing, window functions"
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://questdb.com/docs/reference/function/text/"],
+      "comment": "String functions and regex matching available, but no dedicated full-text search engine"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "No documented maximum cluster size; horizontal scaling for reads via replicas"
+    },
+    "write-throughput": {
+      "value": "4-11.4M rows/sec (TSBS)",
+      "source": ["https://questdb.com/blog/timescaledb-vs-questdb-comparison/"],
+      "comment": "4M rows/sec at low cardinality scaling to 11.4M rows/sec at 100K hosts in TSBS benchmarks; 6-13x faster than TimescaleDB"
+    },
+    "read-latency-p99": {
+      "value": "<2ms single-groupby queries",
+      "source": ["https://questdb.com/blog/timescaledb-vs-questdb-comparison/"],
+      "comment": "Sub-2ms for single-groupby queries; 40-58ms for full-table double-groupby aggregations"
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://questdb.com/docs/operations/replication/"],
+      "comment": "Manual replica management; no automatic scale-out in open-source"
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://questdb.com/docs/guides/schema-design-essentials/"],
+      "comment": "Time-based partitioning; partition strategy must be chosen upfront and cannot be changed"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://questdb.com/docs/concept/replication/"],
+      "comment": "With replication, replicas can serve reads during primary upgrade; failover handled automatically in Enterprise"
+    },
+    "online-schema-changes": {
+      "value": false,
+      "source": ["https://questdb.com/docs/guides/schema-design-essentials/"],
+      "comment": "Partitioning strategy cannot be changed; column modifications require copy-and-rename pattern"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://questdb.com/docs/operations/backup/"],
+      "comment": "Via WAL replay from object store; requires replication.recovery.timestamp setting"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "continuous"],
+      "source": ["https://questdb.com/docs/operations/backup/"],
+      "comment": "CHECKPOINT mode for filesystem snapshots; continuous WAL shipping to object store for replication"
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/questdb/questdb-operator", "https://github.com/questdb/questdb-kubernetes"],
+      "comment": "Official Helm charts and Kubernetes Operator available"
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "source": ["https://questdb.com/docs/clients/ingest-rust/", "https://crates.io/crates/questdb-rs"],
+      "comment": "Official questdb-rs crate for ILP ingestion"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/questdb"],
+      "comment": "Official Go client for ILP ingestion; PostgreSQL drivers (pgx) for querying"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://questdb.com/docs/pgwire/java/"],
+      "comment": "Official Java client for ILP; PostgreSQL JDBC driver for querying"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/questdb"],
+      "comment": "Official .NET client available"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/questdb/py-questdb-client"],
+      "comment": "Official py-questdb-client for ILP; psycopg3 for querying via PostgreSQL wire protocol"
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://questdb.com/docs/reference/api/postgres/"],
+      "comment": "Via PostgreSQL wire protocol compatibility using standard Ruby PostgreSQL gems"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/questdb/c-questdb-client"],
+      "comment": "Official C/C++ client library built from the Rust client"
+    },
+    "orm-support": {
+      "value": ["sqlalchemy"],
+      "source": ["https://github.com/questdb/questdb-connect"],
+      "comment": "questdb-connect provides SQLAlchemy dialect and Apache Superset integration"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/questdb/questdb"],
+      "comment": "Apache-2.0 licensed; Enterprise features (HA, multi-primary, RBAC) are commercial"
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://questdb.com/enterprise/"],
+      "comment": "QuestDB Cloud was discontinued; Enterprise is contact-for-pricing BYOC model"
+    },
+    "pricing-model": {
+      "value": ["enterprise-license"],
+      "source": ["https://questdb.com/enterprise/"],
+      "comment": "Enterprise pricing is custom/contact-based; open-source is free"
+    },
+    "cost-estimate-small": {
+      "value": "Contact for pricing (Enterprise)",
+      "source": ["https://questdb.com/enterprise/"],
+      "comment": "No public pricing; Enterprise BYOC requires custom quote"
+    },
+    "change-data-capture": {
+      "value": false,
+      "source": ["https://github.com/questdb/questdb/issues/2252"],
+      "comment": "CDC as a source is an open feature request; QuestDB can receive CDC data but not emit it natively"
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://questdb.com/docs/"],
+      "comment": "No native change subscription mechanism"
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://questdb.com/docs/reference/sql/overview/"],
+      "comment": "No database-side triggers"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://questdb.com/docs/third-party-tools/kafka/"],
+      "comment": "Official QuestDB Kafka connector (sink) for ingestion from Kafka; integrates with Debezium for CDC pipelines"
+    },
+    "github-stars": {
+      "value": 16500,
+      "source": ["https://github.com/questdb/questdb"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve exact count; questdb tag exists on Stack Overflow"
+    }
+  }
+}
