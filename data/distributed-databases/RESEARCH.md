@@ -216,7 +216,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Apache Cassandra - Battle-tested wide-column store
 - [x] ScyllaDB - C++ rewrite of Cassandra for performance
 - [x] Amazon DynamoDB - AWS's flagship NoSQL, serverless (Realtime & Events complete)
-- [ ] Google Cloud Spanner - Google's globally-distributed SQL
+- [x] Google Cloud Spanner - Google's globally-distributed SQL
 - [ ] MongoDB (Sharded) - Document DB with native sharding
 - [ ] Vitess - MySQL sharding middleware (YouTube origin)
 

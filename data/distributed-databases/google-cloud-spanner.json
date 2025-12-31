@@ -1,0 +1,256 @@
+{
+  "name": "Google Cloud Spanner",
+  "description": "Fully managed, globally distributed, strongly consistent relational database service with virtually unlimited scale",
+  "icon": "🔷",
+  "url": "https://cloud.google.com/spanner",
+  "values": {
+    "website": {
+      "value": "https://cloud.google.com/spanner",
+      "source": ["https://cloud.google.com/spanner"]
+    },
+    "license": {
+      "value": "Proprietary",
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Google Cloud Spanner is a fully proprietary, managed-only database service. No self-hosted option available."
+    },
+    "hosting-options": {
+      "value": ["official-managed"],
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Available exclusively as a managed service on Google Cloud Platform. No self-hosted or third-party managed options."
+    },
+    "initial-release": {
+      "value": "2017",
+      "source": ["https://en.wikipedia.org/wiki/Spanner_(database)", "https://techcrunch.com/2017/02/14/google-launches-cloud-spanner-a-new-globally-distributed-database-service/"],
+      "comment": "Beta launched February 2017, general availability on May 14, 2017. Internal Google Spanner has been in use since 2012."
+    },
+    "primary-language": {
+      "value": "Proprietary",
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Implementation details not publicly disclosed. Built on Google's internal infrastructure including Colossus distributed filesystem."
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Relational database with support for both GoogleSQL and PostgreSQL dialects. Also supports graph queries and vector search as of 2025."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://research.google/pubs/spanner-googles-globally-distributed-database-2/"],
+      "comment": "Uses Paxos consensus with per-split leader election. Each split has a designated leader replica that handles write operations."
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://cloud.google.com/spanner/docs/schema-design"],
+      "comment": "Data is divided into splits based on primary key ranges. Spanner automatically splits and rebalances as data grows or hot spots emerge."
+    },
+    "replication-factor": {
+      "value": "Automatic (3+ replicas)",
+      "source": ["https://cloud.google.com/spanner/docs/instances"],
+      "comment": "Replication is managed automatically by Google. Regional configs have 3 replicas, multi-region configs have 5+ replicas across regions."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Native global distribution with synchronous replication. Offers predefined multi-region configurations (nam3, nam6, nam-eur-asia1, etc.)."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://research.google/pubs/spanner-googles-globally-distributed-database-2/"],
+      "comment": "Strongly consistent (CP). Uses TrueTime for external consistency. May have increased latency during partitions but maintains consistency."
+    },
+    "consistency-model": {
+      "value": ["linearizable", "serializable", "strong"],
+      "source": ["https://cloud.google.com/spanner/docs/true-time-external-consistency"],
+      "comment": "Provides external consistency (linearizability) using TrueTime. All transactions are serializable by default."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Full ACID transactions across rows, tables, and even across regions with global strong consistency."
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://cloud.google.com/spanner/docs/transactions"],
+      "comment": "Transactions can span any rows across the entire database, including across regions in multi-region configurations."
+    },
+    "isolation-levels": {
+      "value": ["serializable"],
+      "source": ["https://cloud.google.com/spanner/docs/transactions"],
+      "comment": "Provides serializable isolation. Read-only transactions can use bounded staleness for improved performance."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://research.google/pubs/spanner-googles-globally-distributed-database-2/"],
+      "comment": "Uses Paxos-based two-phase commit with TrueTime for globally distributed transactions with external consistency."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://cloud.google.com/spanner/docs/reference/standard-sql/query-syntax"]
+    },
+    "sql-compatibility": {
+      "value": ["full", "postgresql"],
+      "source": ["https://cloud.google.com/spanner/docs/postgresql-interface"],
+      "comment": "Offers two dialects: GoogleSQL (similar to BigQuery) and PostgreSQL interface. PostgreSQL interface requires PGAdapter for full compatibility."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/secondary-indexes"],
+      "comment": "Supports secondary indexes including unique indexes, null-filtered indexes, and storing clause for covering indexes."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://cloud.google.com/spanner/docs/query-execution-plans"],
+      "comment": "Full distributed JOIN support. Interleaved tables can enable co-located joins for parent-child relationships."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/reference/standard-sql/aggregate_functions"],
+      "comment": "Full SQL aggregation support including GROUP BY, HAVING, and window functions."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/full-text-search"],
+      "comment": "Built-in full-text search with tokenization, phrase matching, and relevance ranking. Supports search indexes."
+    },
+    "max-cluster-size": {
+      "value": null,
+      "source": ["https://cloud.google.com/spanner/quotas"],
+      "comment": "Designed for virtually unlimited scale. Default quota is 85 nodes per project but can be increased. Google internal Spanner handles billions of QPS."
+    },
+    "write-throughput": {
+      "value": "~7K QPS/node (YCSB), linear scaling",
+      "source": ["https://cloud.google.com/blog/products/databases/benchmarking-spanner-for-key-value-workloads/"],
+      "comment": "YCSB benchmark shows ~7K QPS per node at 65% CPU. Throughput scales linearly with nodes. Handles 4B+ QPS internally at Google."
+    },
+    "read-latency-p99": {
+      "value": "Single-digit ms (regional), higher multi-region",
+      "source": ["https://cloud.google.com/spanner/docs/performance"],
+      "comment": "Regional deployments achieve single-digit ms latency. Multi-region has higher latency due to synchronous global replication."
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/managed-autoscaler"],
+      "comment": "Managed autoscaler automatically adjusts compute capacity based on utilization. Also supports third-party autoscaler tools."
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "source": ["https://cloud.google.com/spanner/docs/schema-design"],
+      "comment": "Automatic split detection and rebalancing. Schema design guidelines help avoid hot spots (e.g., avoid monotonic keys)."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Fully managed service with automatic upgrades handled by Google with no downtime or user intervention required."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/schema-updates"],
+      "comment": "Schema changes are applied online without blocking reads or writes. Some operations may take time to complete on large tables."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/pitr"],
+      "comment": "Point-in-time recovery allows restoring database to any point within the version retention period (default 1 hour, configurable up to 7 days)."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "continuous"],
+      "source": ["https://cloud.google.com/spanner/docs/backup"],
+      "comment": "Supports on-demand backups, scheduled backups, and continuous backups. Backups are stored in Google Cloud and geo-redundant."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/GoogleCloudPlatform/k8s-config-connector"],
+      "comment": "GCP Config Connector allows managing Spanner resources via Kubernetes CRDs. Community autoscaler operators also available."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://docs.cloud.google.com/spanner/docs/drivers-overview"],
+      "comment": "No official Rust driver. Community wrappers over gRPC available. Can use PostgreSQL drivers via PGAdapter."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/google-cloud-go/tree/main/spanner"],
+      "comment": "Official Go client library. Also provides database/sql driver for standard Go database interface."
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/java-spanner"],
+      "comment": "Official Java client library with JDBC driver and R2DBC support for reactive applications."
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/google-cloud-dotnet"],
+      "comment": "Official .NET client library (Google.Cloud.Spanner.Data) with ADO.NET provider."
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/python-spanner", "https://pypi.org/project/google-cloud-spanner/"],
+      "comment": "Official Python client library with DB-API 2.0 (PEP-249) support for standard database interface."
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/google-cloud-ruby"],
+      "comment": "Official Ruby client library (google-cloud-spanner gem)."
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/googleapis/google-cloud-cpp"],
+      "comment": "Official C++ client library as part of google-cloud-cpp."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "gorm", "activerecord", "django", "spring-data"],
+      "source": ["https://docs.cloud.google.com/spanner/docs/drivers-overview"],
+      "comment": "Official support for Hibernate, Spring Data, SQLAlchemy, Django, GORM, ActiveRecord. Also Entity Framework via .NET driver."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Proprietary managed service. Not open source or source available. Some client libraries and tools are open source."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/pricing"],
+      "comment": "90-day free trial with $300 credit. No permanent free tier for production use."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-storage", "per-hour"],
+      "source": ["https://cloud.google.com/spanner/pricing"],
+      "comment": "Charges for compute capacity (nodes/processing units) per hour, storage per GB/month, and network egress. Editions: Standard, Enterprise, Enterprise Plus."
+    },
+    "cost-estimate-small": {
+      "value": "~$650/month (1 node regional)",
+      "source": ["https://cloud.google.com/spanner/pricing"],
+      "comment": "1 node in us-central1 at $0.90/hr = ~$648/month. Multi-region significantly higher (~$2,160/month for nam3). Storage $0.30/GB/month."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://cloud.google.com/spanner"],
+      "comment": "Proprietary service, no main repository. Client libraries have separate repos (e.g., java-spanner, python-spanner)."
+    },
+    "stackoverflow-tags": {
+      "value": 595,
+      "source": ["https://stackoverflow.com/questions/tagged/google-cloud-spanner"],
+      "comment": "Questions tagged with 'google-cloud-spanner' as of December 2024."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/change-streams"],
+      "comment": "Built-in change streams capture inserts, updates, and deletes at table/column level. Supports OLD_AND_NEW_VALUES, NEW_VALUES, NEW_ROW capture modes."
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://cloud.google.com/spanner/docs/change-streams"],
+      "comment": "Change streams can be read directly via Spanner API or through Dataflow. Enables real-time subscriptions to data changes."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://medium.com/nerd-for-tech/migrating-to-cloud-spanner-heres-what-you-need-to-know-215259c46d34"],
+      "comment": "Does not support database triggers. Trigger-like behavior must be implemented in application logic or via Cloud Functions with change streams."
+    },
+    "event-streaming": {
+      "value": ["kafka", "custom"],
+      "source": ["https://cloud.google.com/blog/products/databases/track-and-integrate-change-data-with-spanner-change-streams"],
+      "comment": "Change streams integrate with Dataflow (Apache Beam), Pub/Sub, BigQuery, and Kafka via Debezium connector. Can stream to GCS for compliance."
+    }
+  }
+}
