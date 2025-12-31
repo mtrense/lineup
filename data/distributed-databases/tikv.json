@@ -1,0 +1,253 @@
+{
+  "name": "TiKV",
+  "description": "Open-source, distributed, transactional key-value database built in Rust, originally created to complement TiDB. CNCF graduated project.",
+  "url": "https://tikv.org/",
+  "values": {
+    "website": {
+      "value": "https://tikv.org/",
+      "source": ["https://tikv.org/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/tikv/tikv/blob/master/LICENSE"]
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "third-party-managed"],
+      "comment": "Self-hosted is primary deployment model. No dedicated TiKV managed service exists, but TiDB Cloud (which uses TiKV) provides managed hosting. Third-party managed via TiDB Cloud.",
+      "source": ["https://tikv.org/", "https://www.pingcap.com/pricing/"]
+    },
+    "initial-release": {
+      "value": "2016",
+      "comment": "First version released alongside TiDB in 2016, development started in 2015",
+      "source": ["https://dbdb.io/db/tikv", "https://en.wikipedia.org/wiki/TiDB"]
+    },
+    "primary-language": {
+      "value": "Rust",
+      "comment": "97.3% Rust according to GitHub",
+      "source": ["https://github.com/tikv/tikv"]
+    },
+    "data-model": {
+      "value": ["key-value"],
+      "source": ["https://tikv.org/"]
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "comment": "Uses Raft consensus with leader election per Region (shard). Each Region has a leader that handles writes.",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/", "https://tikv.github.io/deep-dive-tikv/print.html"]
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "comment": "Data is partitioned into Regions by key range. Regions automatically split and merge based on size thresholds. Placement Driver (PD) handles automatic data migration.",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/", "https://docs.pingcap.com/tidb/stable/tidb-architecture/"]
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "comment": "Default is 3 replicas per Region, configurable",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/"]
+    },
+    "multi-region": {
+      "value": true,
+      "comment": "Supports geo-replication with configurable placement rules",
+      "source": ["https://tikv.org/"]
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "comment": "Prioritizes consistency using Raft consensus. Writes require majority acknowledgment.",
+      "source": ["https://tikv.org/", "https://tikv.github.io/deep-dive-tikv/print.html"]
+    },
+    "consistency-model": {
+      "value": ["linearizable", "serializable", "strong"],
+      "comment": "Strong consistency via Raft. Linearizable reads from leader. Serializable isolation through Percolator-based transactions.",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/", "https://docs.pingcap.com/tidb/stable/tikv-overview/"]
+    },
+    "acid-transactions": {
+      "value": true,
+      "comment": "Full ACID compliance with distributed transactions using Percolator-inspired two-phase commit",
+      "source": ["https://tikv.org/", "https://github.com/tikv/tikv"]
+    },
+    "transaction-scope": {
+      "value": ["cross-partition", "global"],
+      "comment": "Supports distributed transactions across multiple Regions (partitions) using two-phase commit",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/", "https://tikv.github.io/deep-dive-tikv/print.html"]
+    },
+    "isolation-levels": {
+      "value": ["snapshot", "serializable"],
+      "comment": "Provides snapshot isolation (SI) by default. Also supports snapshot isolation with lock (SELECT ... FOR UPDATE) and externally consistent transactions.",
+      "source": ["https://tikv.org/", "https://tikv.github.io/deep-dive-tikv/print.html"]
+    },
+    "distributed-transactions": {
+      "value": true,
+      "comment": "Cross-node transaction coordination via Percolator-style two-phase commit protocol",
+      "source": ["https://tikv.org/", "https://docs.pingcap.com/tidb/stable/tikv-overview/"]
+    },
+    "query-language": {
+      "value": ["api-only"],
+      "comment": "Pure key-value API. No SQL interface - TiKV provides raw KV and transactional KV APIs. For SQL, use TiDB which sits on top of TiKV.",
+      "source": ["https://tikv.org/docs/6.1/develop/clients/introduction/"]
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "comment": "TiKV itself has no SQL interface. SQL is provided by TiDB layer.",
+      "source": ["https://tikv.org/"]
+    },
+    "secondary-indexes": {
+      "value": false,
+      "comment": "As a key-value store, TiKV doesn't have built-in secondary index support. Indexes are managed at the TiDB layer.",
+      "source": ["https://tikv.org/"]
+    },
+    "joins": {
+      "value": ["none"],
+      "comment": "Key-value store with no join support at the TiKV layer",
+      "source": ["https://tikv.org/"]
+    },
+    "aggregations": {
+      "value": false,
+      "comment": "Has coprocessor framework for pushing down computations, but no native aggregation API. Aggregations handled by TiDB layer.",
+      "source": ["https://tikv.org/"]
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://tikv.org/"]
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "Designed to scale to thousands of nodes. Official benchmarks use 3-12 nodes. No specific maximum tested cluster size documented.",
+      "source": ["https://tikv.github.io/deep-dive-tikv/print.html", "https://tikv.org/docs/7.1/deploy/performance/overview/"]
+    },
+    "write-throughput": {
+      "value": "~15K ops/sec per node (YCSB insert)",
+      "comment": "Varies significantly based on hardware and workload. YCSB benchmarks show ~15K insert ops/sec, ~7K update ops/sec per node.",
+      "source": ["https://tikv.org/docs/6.1/deploy/performance/overview/", "https://gist.github.com/scriptnull/ba6ac2d45215758e5139d3023b8a3b50"]
+    },
+    "read-latency-p99": {
+      "value": "<10ms avg under high throughput",
+      "comment": "Suitable for latency-sensitive services. Average latency <10ms even at high pressure. P99 varies with workload and cluster size.",
+      "source": ["https://tikv.org/docs/6.1/deploy/performance/overview/"]
+    },
+    "auto-scaling": {
+      "value": true,
+      "comment": "Automatic data rebalancing via Placement Driver (PD). Can scale out by adding nodes; PD automatically redistributes Regions.",
+      "source": ["https://tikv.org/", "https://tikv.org/docs/3.0/tasks/scale/ansible/"]
+    },
+    "hot-spot-handling": {
+      "value": ["automatic", "splitting"],
+      "comment": "Automatic Region splitting when size exceeds threshold. PD handles load balancing and automatic rebalancing.",
+      "source": ["https://tikv.org/docs/6.1/concepts/overview/", "https://tikv.github.io/deep-dive-tikv/print.html"]
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "comment": "Rolling upgrade strategy. Components upgraded one at a time with leader eviction before stopping each instance.",
+      "source": ["https://tikv.org/docs/7.1/deploy/operate/upgrade/", "https://www.pingcap.com/blog/achieving-zero-downtime-upgrades-tidb/"]
+    },
+    "online-schema-changes": {
+      "value": null,
+      "comment": "Not applicable - TiKV is schema-less as a key-value store. Schema changes are handled at the TiDB layer.",
+      "source": ["https://tikv.org/"]
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "comment": "Supported via BR (Backup & Restore) tool with snapshot + log backup. PITR available since v6.2.0 for RawKV.",
+      "source": ["https://docs.pingcap.com/tidb/stable/br-pitr-guide/", "https://docs.pingcap.com/tidb/stable/backup-and-restore-overview/"]
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "continuous"],
+      "comment": "Full snapshot backup, incremental log backup, and continuous backup for PITR. Supports S3, GCS, Azure Blob, NFS.",
+      "source": ["https://docs.pingcap.com/tidb/stable/backup-and-restore-overview/", "https://docs.pingcap.com/tidb/stable/br-snapshot-guide/"]
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "comment": "TiKV Operator exists but is deprecated. Recommended to use TiDB Operator which manages TiKV as a component.",
+      "source": ["https://github.com/tikv/tikv-operator", "https://docs.pingcap.com/tidb-in-kubernetes/stable/tidb-operator-overview/"]
+    },
+    "rust-driver": {
+      "value": ["official"],
+      "comment": "Official tikv/client-rust crate. Noted as not yet production-ready with unstable APIs.",
+      "source": ["https://github.com/tikv/client-rust", "https://tikv.org/docs/7.1/develop/clients/rust/"]
+    },
+    "go-driver": {
+      "value": ["official"],
+      "comment": "Official client-go, most stable and feature-complete driver",
+      "source": ["https://tikv.org/docs/6.1/develop/clients/go/", "https://github.com/tikv/client-go"]
+    },
+    "java-driver": {
+      "value": ["official"],
+      "comment": "Official tikv-client-java, requires Java 8+",
+      "source": ["https://tikv.org/docs/7.1/develop/clients/java/"]
+    },
+    "dotnet-driver": {
+      "value": ["none"],
+      "comment": "No official or known community .NET driver",
+      "source": ["https://tikv.org/docs/6.1/develop/clients/introduction/"]
+    },
+    "python-driver": {
+      "value": ["official"],
+      "comment": "Official client-py built on Rust client via PyO3. Proof-of-concept stage, requires Python 3.6+.",
+      "source": ["https://github.com/tikv/client-py", "https://tikv.org/docs/6.1/develop/clients/introduction/"]
+    },
+    "ruby-driver": {
+      "value": ["none"],
+      "comment": "No official or known community Ruby driver",
+      "source": ["https://tikv.org/docs/6.1/develop/clients/introduction/"]
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "comment": "C client exists but noted as early development stage",
+      "source": ["https://tikv.org/docs/6.1/develop/clients/introduction/"]
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "Not applicable - TiKV is a key-value store without SQL interface. ORMs work with TiDB layer.",
+      "source": ["https://tikv.org/"]
+    },
+    "open-source": {
+      "value": true,
+      "comment": "Apache 2.0 license, CNCF graduated project (September 2020)",
+      "source": ["https://github.com/tikv/tikv", "https://www.cncf.io/projects/tikv/"]
+    },
+    "free-tier": {
+      "value": false,
+      "comment": "No dedicated TiKV managed service. TiDB Cloud (which uses TiKV) has a free tier but is primarily for TiDB.",
+      "source": ["https://www.pingcap.com/pricing/"]
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage", "per-hour"],
+      "comment": "Via TiDB Cloud: pricing based on vCPUs, storage, and hourly compute. No standalone TiKV managed service.",
+      "source": ["https://www.pingcap.com/tidb-dedicated-pricing-details/"]
+    },
+    "cost-estimate-small": {
+      "value": "~$140/month via TiDB Cloud (3 TiKV nodes)",
+      "comment": "Estimated from TiDB Cloud pricing: 3x 8vCPU TiKV nodes at ~$1.37/hr each ≈ $140/month compute only, plus storage.",
+      "source": ["https://www.pingcap.com/tidb-dedicated-pricing-details/"]
+    },
+    "change-data-capture": {
+      "value": true,
+      "comment": "TiKV-CDC available for RawKV since v6.2.0. TiCDC available for transactional API via TiDB stack.",
+      "source": ["https://tikv.org/docs/7.1/concepts/explore-tikv-features/cdc/cdc/", "https://docs.pingcap.com/tidb/v5.4/ticdc-overview/"]
+    },
+    "watch-subscribe": {
+      "value": true,
+      "comment": "TiKV-CDC supports subscribing to data changes on RawKV for real-time replication",
+      "source": ["https://tikv.org/docs/7.1/concepts/explore-tikv-features/cdc/cdc/"]
+    },
+    "triggers": {
+      "value": false,
+      "comment": "No database-side triggers - TiKV is a key-value store without stored procedure support",
+      "source": ["https://tikv.org/"]
+    },
+    "event-streaming": {
+      "value": ["kafka", "custom"],
+      "comment": "TiCDC supports sinking to Kafka. TiKV-CDC provides custom streaming protocol for cross-cluster replication.",
+      "source": ["https://docs.pingcap.com/tidb/v5.4/ticdc-overview/", "https://tikv.org/docs/7.1/concepts/explore-tikv-features/cdc/cdc/"]
+    },
+    "github-stars": {
+      "value": 16400,
+      "comment": "As of December 2025",
+      "source": ["https://github.com/tikv/tikv"]
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Stack Overflow tag exists but question count is very low. Community primarily uses ask.pingcap.com forum.",
+      "source": ["https://stackoverflow.com/questions/tagged/tikv", "https://ask.pingcap.com/t/should-questions-be-asked-here-or-on-stack-overflow/10488"]
+    }
+  }
+}

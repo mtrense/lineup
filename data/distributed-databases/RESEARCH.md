@@ -231,7 +231,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Dgraph - Distributed graph database
 
 ### Tier 3 (Nice to Have) - Specialized/Emerging
-- [ ] TiKV - Distributed key-value (from TiDB stack)
+- [x] TiKV - Distributed key-value (from TiDB stack)
 - [ ] etcd - Distributed key-value for config/coordination
 - [ ] ClickHouse (Clustered) - If including analytical
 - [ ] QuestDB - Time-series with SQL
