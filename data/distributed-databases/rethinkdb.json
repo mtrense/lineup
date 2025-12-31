@@ -1,0 +1,254 @@
+{
+  "name": "RethinkDB",
+  "description": "Open-source distributed document database built from the ground up for realtime push queries",
+  "icon": "rethinkdb",
+  "url": "https://rethinkdb.com",
+  "values": {
+    "website": {
+      "value": "https://rethinkdb.com",
+      "source": ["https://rethinkdb.com/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/rethinkdb/rethinkdb"],
+      "comment": "Licensed by Linux Foundation under Apache 2.0 after CNCF acquired the source code in 2017"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "third-party-managed"],
+      "source": ["https://rethinkdb.com/docs/paas/", "https://www.stackhero.io/en/services/RethinkDB/benefits"],
+      "comment": "Self-hosted is primary option; third-party managed available via Stackhero, Compose, and RethinkDB Cloud (Heroku add-on). No official managed service."
+    },
+    "initial-release": {
+      "value": "2012",
+      "source": ["https://en.wikipedia.org/wiki/RethinkDB"],
+      "comment": "Y Combinator seed funded in 2009; first public release in 2012"
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/rethinkdb/rethinkdb"],
+      "comment": "80.2% C++ according to GitHub"
+    },
+    "data-model": {
+      "value": ["document"],
+      "source": ["https://rethinkdb.com/faq"],
+      "comment": "Stores JSON documents with dynamic schemas"
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://rethinkdb.com/docs/architecture/"],
+      "comment": "Data is assigned to a primary server for each shard; uses Raft for cluster consensus and automatic failover"
+    },
+    "sharding": {
+      "value": ["range", "automatic"],
+      "source": ["https://rethinkdb.com/docs/sharding-and-replication/", "https://rethinkdb.com/docs/architecture/"],
+      "comment": "Currently implements range shards with automatic split point determination. Up to 64 shards per table."
+    },
+    "replication-factor": {
+      "value": "Configurable per-table",
+      "source": ["https://rethinkdb.com/docs/sharding-and-replication/"],
+      "comment": "Replication factor set via web UI or ReQL reconfigure command"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/architecture/"],
+      "comment": "Uses same protocol for intra-datacenter and cross-datacenter communication. Immediate consistency avoids quorum latency issues common in Dynamo-style systems."
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://rethinkdb.com/docs/consistency/", "https://rethinkdb.com/faq"],
+      "comment": "Prioritizes consistency over availability; may reject writes during partitions. Trades write availability for data consistency."
+    },
+    "consistency-model": {
+      "value": ["linearizable"],
+      "source": ["https://rethinkdb.com/docs/consistency/"],
+      "comment": "Linearizability guaranteed for individual atomic operations on individual documents with proper settings. Read modes: majority (strongest), single, outdated."
+    },
+    "acid-transactions": {
+      "value": false,
+      "source": ["https://rethinkdb.com/docs/consistency/", "https://rethinkdb.com/faq"],
+      "comment": "Operations are never atomic across multiple keys. RethinkDB explicitly states it cannot be considered an ACID database."
+    },
+    "transaction-scope": {
+      "value": ["single-row"],
+      "source": ["https://rethinkdb.com/docs/consistency/"],
+      "comment": "Linearizability only for atomic operations on individual documents; no multi-document transactions"
+    },
+    "isolation-levels": {
+      "value": null,
+      "comment": "No traditional isolation levels; single-document atomicity only"
+    },
+    "distributed-transactions": {
+      "value": false,
+      "source": ["https://rethinkdb.com/docs/consistency/"],
+      "comment": "No cross-node transaction coordination; single-document atomicity only"
+    },
+    "query-language": {
+      "value": ["api-only"],
+      "source": ["https://rethinkdb.com/docs/"],
+      "comment": "ReQL (RethinkDB Query Language) - chainable, embeddable query language built into drivers. Not SQL-based."
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://rethinkdb.com/faq"],
+      "comment": "Uses ReQL, a custom query language; no SQL interface"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/secondary-indexes/"],
+      "comment": "Supports simple, compound, multi, and arbitrary expression-based secondary indexes"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://rethinkdb.com/docs/table-joins/", "https://rethinkdb.com/docs/architecture/"],
+      "comment": "Distributed joins via eqJoin (efficient, uses indexes), inner_join, and outer_join. Commands automatically distributed across nodes."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/", "https://dbdb.io/db/rethinkdb"],
+      "comment": "Supports map-reduce, group-map-reduce, and aggregation functions"
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://rethinkdb.com/docs/elasticsearch/", "https://github.com/rethinkdb/rethinkdb/issues/3140"],
+      "comment": "No native full-text search. Elasticsearch integration via River plugin was recommended but is incompatible with RethinkDB 2.2+."
+    },
+    "max-cluster-size": {
+      "value": 32,
+      "source": ["https://rethinkdb.com/blog/rethinkdb-performance-report"],
+      "comment": "BigchainDB benchmarked on 32-server cluster on EC2; official benchmarks up to 16 nodes"
+    },
+    "write-throughput": {
+      "value": "1M+ writes/sec (32-node EC2 cluster)",
+      "source": ["https://rethinkdb.com/blog/rethinkdb-performance-report"],
+      "comment": "BigchainDB measured >1M writes/sec on 32-node EC2. Official benchmark: 100K+ ops/sec mixed 50:50 workload on 16-node cluster."
+    },
+    "read-latency-p99": {
+      "value": "3ms (16-node, majority read)",
+      "source": ["https://rethinkdb.com/docs/2-1-5-performance-report/"],
+      "comment": "RethinkDB 2.1.5 benchmark: p95 latency 3ms for heavy read workloads forbidding stale reads on 16-node cluster"
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://rethinkdb.com/docs/sharding-and-replication/", "https://github.com/rethinkdb/rethinkdb/issues/6743"],
+      "comment": "Manual sharding/replication changes via web UI or ReQL commands. Can be automated via scripts and config management tools."
+    },
+    "hot-spot-handling": {
+      "value": ["manual"],
+      "source": ["https://rethinkdb.com/docs/sharding-and-replication/"],
+      "comment": "Split points not automatically changed after table creation. Manual rebalancing via rebalance command when needed."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/"],
+      "comment": "Rolling upgrades possible with replicated cluster"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/"],
+      "comment": "Schema-less document model allows adding fields without downtime. Index creation is online."
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://rethinkdb.com/docs/backup/"],
+      "comment": "Backup via dump/restore commands creates point-in-time snapshots but no continuous PITR capability"
+    },
+    "backup-strategy": {
+      "value": ["snapshot"],
+      "source": ["https://rethinkdb.com/docs/backup/"],
+      "comment": "Hot backups via rethinkdb dump command; creates tar.gz archive of JSON documents. Uses MVCC so doesn't lock clients."
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "source": ["https://github.com/pozetroninc/rethinkdb-helm-chart", "https://artifacthub.io/packages/helm/pozetron/rethinkdb"],
+      "comment": "No official K8s operator. Community Helm charts available (Pozetron fork of deprecated official chart) using StatefulSets."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Community-supported Rust driver"
+    },
+    "go-driver": {
+      "value": ["community"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Community-supported Go driver (not official)"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Official Java driver provided"
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Multiple community C# drivers available (bchavez, mfenniak)"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Official Python driver provided"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Official Ruby driver provided"
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://rethinkdb.com/docs/install-drivers/"],
+      "comment": "Community-supported C++ driver"
+    },
+    "orm-support": {
+      "value": null,
+      "comment": "No major ORM support due to custom ReQL query language"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/rethinkdb/rethinkdb"],
+      "comment": "Apache 2.0 license - true open source. Owned by Linux Foundation."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://rethinkdb.com/"],
+      "comment": "No official managed service. Third-party providers may offer trials but no permanent free tier."
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-hour"],
+      "source": ["https://www.stackhero.io/en/services/RethinkDB/benefits"],
+      "comment": "Third-party managed services typically charge per-node/per-hour. Self-hosted is free."
+    },
+    "cost-estimate-small": {
+      "value": "~$60-150/month (third-party managed)",
+      "source": ["https://www.stackhero.io/en/services/RethinkDB/benefits"],
+      "comment": "Varies by provider. Self-hosted has no licensing cost. Stackhero and similar providers charge based on resources."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/changefeeds/"],
+      "comment": "Changefeeds are RethinkDB's core realtime feature - stream changes from tables, documents, or query results"
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://rethinkdb.com/docs/changefeeds/"],
+      "comment": "changes() command returns cursor that streams inserts, updates, deletes in realtime. Include_initial option available. Server buffers up to 100K elements."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://github.com/rethinkdb/rethinkdb/issues/997", "https://github.com/rethinkdb/rethinkdb/issues/5420"],
+      "comment": "No server-side triggers. Triggers were proposed but not implemented. Changefeeds are the recommended alternative for reactive functionality."
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://docs.lenses.io/4.2/integrations/connectors/stream-reactor/sources/rethinksourceconnector/"],
+      "comment": "Kafka integration via Stream Reactor connectors (Lenses.io) - both source and sink connectors available"
+    },
+    "github-stars": {
+      "value": 27000,
+      "source": ["https://github.com/rethinkdb/rethinkdb"],
+      "comment": "As of late 2024"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve current count"
+    }
+  }
+}
