@@ -222,7 +222,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 
 ### Tier 2 (Should Have) - Significant players
 - [x] FoundationDB - Apple's ordered key-value store, unique architecture
-- [ ] Couchbase - Document DB with strong mobile sync story
+- [x] Couchbase - Document DB with strong mobile sync story
 - [ ] ArangoDB - Multi-model (document, graph, key-value)
 - [ ] Neo4j (Cluster) - Leading graph database
 - [ ] PlanetScale - Managed Vitess with branching workflows

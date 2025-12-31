@@ -1,0 +1,263 @@
+{
+  "name": "Couchbase",
+  "description": "Multi-model NoSQL database combining document, key-value, and full-text search with SQL++ query language and mobile sync",
+  "icon": "couchbase",
+  "url": "https://www.couchbase.com/",
+  "values": {
+    "website": {
+      "value": "https://www.couchbase.com/",
+      "source": ["https://www.couchbase.com/"]
+    },
+    "license": {
+      "value": "BSL-1.1",
+      "source": ["https://www.couchbase.com/blog/couchbase-adopts-bsl-license/"],
+      "comment": "Business Source License 1.1; source-available but not OSI-approved. Converts to Apache 2.0 after 4 years"
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "third-party-managed"],
+      "source": [
+        "https://docs.couchbase.com/server/current/introduction/editions.html",
+        "https://www.couchbase.com/products/capella/"
+      ],
+      "comment": "Self-hosted Community/Enterprise editions, Couchbase Capella (official managed DBaaS), available on AWS/Azure/GCP marketplaces"
+    },
+    "initial-release": {
+      "value": "2011",
+      "source": ["https://en.wikipedia.org/wiki/Couchbase_Server"],
+      "comment": "Formed from merger of Membase and CouchOne in February 2011; Couchbase Server 1.8 released January 2012"
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://github.com/couchbase"],
+      "comment": "Core database engine written in C++ (derived from Memcached heritage)"
+    },
+    "data-model": {
+      "value": ["document", "key-value"],
+      "source": ["https://docs.couchbase.com/server/current/learn/architecture-overview.html"],
+      "comment": "JSON documents with optional key-value access; also supports full-text search and vector search"
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/vbuckets.html"],
+      "comment": "Each vBucket has a primary and replicas; masterless client architecture where each client coordinates its own operations"
+    },
+    "sharding": {
+      "value": ["hash", "automatic"],
+      "source": ["https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/vbuckets.html"],
+      "comment": "Uses 1024 vBuckets per bucket with CRC32 hash partitioning; automatic rebalancing when nodes added/removed"
+    },
+    "replication-factor": {
+      "value": "1-3 (configurable)",
+      "source": ["https://docs.couchbase.com/server/current/learn/clusters-and-availability/replication-architecture.html"],
+      "comment": "Supports 0 to 3 replicas per bucket; default is 1 replica"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-overview.html"],
+      "comment": "Cross Data Center Replication (XDCR) enables active-active geo-distribution; Enterprise Edition feature only"
+    },
+    "cap-position": {
+      "value": ["cp", "tunable"],
+      "source": ["https://www.couchbase.com/blog/cap-theorem-and-couchbase-server-time-xdcr/"],
+      "comment": "Primarily CP with strong consistency on master reads; can be tuned toward AP with replica reads and XDCR eventual consistency"
+    },
+    "consistency-model": {
+      "value": ["strong", "read-your-writes", "eventual"],
+      "source": [
+        "https://www.couchbase.com/blog/consistency-models-couchbase-vs-cockroachdb/",
+        "https://docs.couchbase.com/server/current/learn/data/transactions.html"
+      ],
+      "comment": "Strong consistency by default with master reads; replica reads provide eventual consistency; XDCR uses eventual consistency"
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/learn/data/transactions.html"],
+      "comment": "Full distributed multi-document ACID transactions across buckets, scopes, and collections"
+    },
+    "transaction-scope": {
+      "value": ["cross-partition", "global"],
+      "source": ["https://www.couchbase.com/transactions/"],
+      "comment": "Distributed transactions can span multiple documents across different nodes, collections, scopes, and buckets"
+    },
+    "isolation-levels": {
+      "value": ["read-committed"],
+      "source": ["https://docs.couchbase.com/server/current/learn/data/transactions.html"],
+      "comment": "Provides Read Committed isolation with Monotonic Atomic View (MAV) semantics; prevents lost updates via CAS"
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://www.infoq.com/news/2021/04/couchbase-transactions/"],
+      "comment": "Client-coordinated distributed transactions with no central coordinator; each SDK handles its own transaction coordination"
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://docs.couchbase.com/server/current/n1ql/query.html"],
+      "comment": "SQL++ (formerly N1QL) - SQL-like query language extended for JSON documents"
+    },
+    "sql-compatibility": {
+      "value": ["partial"],
+      "source": ["https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html"],
+      "comment": "SQL++ extends SQL with JSON-specific features; supports SELECT, INSERT, UPDATE, DELETE, JOINs, subqueries, but schema differences from traditional SQL"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/createindex.html"],
+      "comment": "Global Secondary Indexes (GSI) for efficient query execution; supports composite, array, and covering indexes"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html"],
+      "comment": "SQL++ supports INNER, LEFT OUTER, and NEST joins across documents and collections"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/aggregatefun.html"],
+      "comment": "Full aggregation support including GROUP BY, COUNT, SUM, AVG, MIN, MAX, ARRAY_AGG"
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://www.couchbase.com/products/full-text-search/"],
+      "comment": "Built-in FTS service based on Bleve; integrated with SQL++ queries; supports vector search since v7.6"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "source": ["https://docs.couchbase.com/server/current/install/sizing-general.html"],
+      "comment": "No documented hard limit; production deployments commonly use 10-100+ nodes; forum discussions mention 130+ nodes"
+    },
+    "write-throughput": {
+      "value": "6000+ ops/sec per node (SSD)",
+      "source": ["https://docs.couchbase.com/server/current/install/sizing-general.html"],
+      "comment": "~6000 writes/sec per node with SSD; ~1500 with 10K drives; scales linearly with nodes"
+    },
+    "read-latency-p99": {
+      "value": "<1ms (cached)",
+      "source": ["https://docs.couchbase.com/server/current/install/sizing-general.html"],
+      "comment": "Sub-200us on 10G network, 500-900us on 1Gbps, 1-2ms on AWS for cached key-value operations"
+    },
+    "auto-scaling": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/operator/current/concept-couchbase-autoscaling-best-practices.html"],
+      "comment": "Capella provides auto-scaling; Kubernetes Operator supports horizontal pod autoscaling; self-hosted requires manual rebalance"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "source": ["https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/vbuckets.html"],
+      "comment": "vBuckets distributed evenly across nodes with automatic rebalancing during topology changes"
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://www.couchbase.com/blog/Couchbase-rolling-upgrades/"],
+      "comment": "Rolling online upgrades supported; swap rebalance allows upgrading without capacity reduction"
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/learn/data/document-data-model.html"],
+      "comment": "Schema-less JSON documents; fields can be added/removed without migration; indexes can be created online"
+    },
+    "point-in-time-recovery": {
+      "value": false,
+      "source": ["https://www.couchbase.com/forums/t/point-in-time-recovery-by-using-cbbackupmgr/17484"],
+      "comment": "PITR is in Developer Preview; production relies on scheduled incremental backups and CDC"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://docs.couchbase.com/server/current/backup-restore/enterprise-backup-restore.html"],
+      "comment": "cbbackupmgr provides full and incremental backups; Backup Service supports scheduled backups with AWS S3 integration"
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://www.couchbase.com/products/operator/"],
+      "comment": "Couchbase Autonomous Operator; certified for OpenShift, EKS, AKS, GKE, and Rancher"
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/couchbaselabs/couchbase-rs"],
+      "comment": "Official community-supported Rust SDK in couchbaselabs; currently in development, not production-ready"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://docs.couchbase.com/go-sdk/current/hello-world/overview.html"],
+      "comment": "Official Couchbase Go SDK"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://docs.couchbase.com/java-sdk/current/hello-world/overview.html"],
+      "comment": "Official Couchbase Java SDK with sync and reactive APIs"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://docs.couchbase.com/dotnet-sdk/current/project-docs/compatibility.html"],
+      "comment": "Official Couchbase .NET SDK; supports .NET Standard 2.0/2.1, .NET 6.0+"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://pypi.org/project/couchbase/"],
+      "comment": "Official Couchbase Python SDK with asyncio and Twisted support"
+    },
+    "ruby-driver": {
+      "value": ["official"],
+      "source": ["https://www.couchbase.com/developers/sdks/"],
+      "comment": "Official Couchbase Ruby SDK"
+    },
+    "c-cpp-driver": {
+      "value": ["official"],
+      "source": ["https://docs.couchbase.com/c-sdk/current/project-docs/compatibility.html"],
+      "comment": "Official C++ SDK (libcouchbase); also serves as core for Python, Ruby, PHP, and Node.js SDKs"
+    },
+    "orm-support": {
+      "value": [],
+      "source": ["https://www.couchbase.com/developers/"],
+      "comment": "Spring Data Couchbase available for Java; no major ORM support for traditional ORMs due to document model"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.couchbase.com/blog/couchbase-adopts-bsl-license/"],
+      "comment": "BSL 1.1 is not OSI-approved; considered source-available. Community Edition has cluster size restrictions"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.couchbase.com/blog/free-tier-capella-dev-available/"],
+      "comment": "Capella Free Tier launched September 2024; perpetual free tier for learning/development, no credit card required"
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage", "per-hour"],
+      "source": ["https://www.couchbase.com/pricing/"],
+      "comment": "Capella uses credits based on compute, storage, IOPS, and region; Enterprise license for self-hosted"
+    },
+    "cost-estimate-small": {
+      "value": "~$200-400/month (3-node)",
+      "source": ["https://www.couchbase.com/pricing/"],
+      "comment": "Estimate for 3-node basic Capella cluster; varies by region, compute specs, and storage"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/eventing/eventing-overview.html"],
+      "comment": "Database Change Protocol (DCP) provides streaming changes; CDC capabilities for Magma storage since v7.2.2"
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/eventing/eventing-overview.html"],
+      "comment": "Eventing Service provides OnUpdate/OnDelete handlers for document mutations in real-time"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://docs.couchbase.com/server/current/learn/services-and-indexes/services/eventing-service.html"],
+      "comment": "Eventing Service executes JavaScript functions on document mutations and timers"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://docs.couchbase.com/kafka-connector/current/index.html"],
+      "comment": "Official Kafka Connect Couchbase connector for source and sink; Confluent-verified"
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://github.com/couchbase"],
+      "comment": "Couchbase Server uses multi-repo structure; individual SDK repos have modest star counts (52-277 stars)"
+    },
+    "stackoverflow-tags": {
+      "value": 8500,
+      "source": ["https://stackoverflow.com/questions/tagged/couchbase"],
+      "comment": "Approximate count as of December 2025; related tags include n1ql, spring-data-couchbase, couchbase-lite"
+    }
+  }
+}
