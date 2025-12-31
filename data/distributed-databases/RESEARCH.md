@@ -225,7 +225,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Couchbase - Document DB with strong mobile sync story
 - [x] ArangoDB - Multi-model (document, graph, key-value)
 - [x] Neo4j (Cluster) - Leading graph database
-- [ ] PlanetScale - Managed Vitess with branching workflows
+- [x] PlanetScale - Managed Vitess with branching workflows
 - [ ] CrateDB - Distributed SQL for machine data
 - [ ] RethinkDB - Real-time push architecture (consider if maintained)
 - [ ] Dgraph - Distributed graph database

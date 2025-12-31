@@ -1,0 +1,253 @@
+{
+  "name": "PlanetScale",
+  "description": "Managed MySQL-compatible database platform built on Vitess with Git-like branching workflows and non-blocking schema changes",
+  "icon": "https://avatars.githubusercontent.com/u/35612527",
+  "url": "https://planetscale.com/",
+  "values": {
+    "website": {
+      "value": "https://planetscale.com/",
+      "source": ["https://planetscale.com/"]
+    },
+    "license": {
+      "value": "Proprietary",
+      "source": ["https://planetscale.com/"],
+      "comment": "PlanetScale is a managed service built on open-source Vitess. The platform itself is proprietary."
+    },
+    "hosting-options": {
+      "value": ["official-managed"],
+      "source": ["https://planetscale.com/docs/plans/deployment-options"],
+      "comment": "Managed service only. PlanetScale Managed allows deployment in customer's own AWS/GCP accounts. Not self-hosted; uses Vitess under the hood which is open source."
+    },
+    "initial-release": {
+      "value": "2021",
+      "source": ["https://tracxn.com/d/companies/planetscale/__5PmSMTqTM1gc8puXBmfTEUiTk1LvbJqq8JnwenJkS94"],
+      "comment": "Company founded 2018. Hosted database platform launched June 2021. GA in November 2021."
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/vitessio/vitess"],
+      "comment": "Built on Vitess which is written in Go. PlanetScale's proprietary components are not disclosed."
+    },
+    "data-model": {
+      "value": ["relational"],
+      "source": ["https://planetscale.com/docs/vitess/architecture"],
+      "comment": "MySQL-compatible relational database. Also offers PostgreSQL support as of 2025."
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://planetscale.com/docs/vitess/architecture"],
+      "comment": "Each production branch has a single primary MySQL instance and two replicas. Primary handles writes; replicas serve reads."
+    },
+    "sharding": {
+      "value": ["hash", "range", "automatic", "manual"],
+      "source": ["https://planetscale.com/docs/vitess/architecture", "https://vitess.io/docs/23.0/reference/features/sharding/"],
+      "comment": "Inherits Vitess sharding via Vindexes. Supports hash and range-based sharding. PlanetScale handles resharding operations."
+    },
+    "replication-factor": {
+      "value": "3 (1 primary + 2 replicas)",
+      "source": ["https://planetscale.com/docs/vitess/architecture"],
+      "comment": "Production branches include 1 primary and 2 replicas across 3 availability zones by default."
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://planetscale.com/docs/vitess/scaling/read-only-regions"],
+      "comment": "Supports read-only regions for global distribution. Primary writes in single region; read replicas can be added in any available region."
+    },
+    "cap-position": {
+      "value": ["ap"],
+      "source": ["https://planetscale.com/blog/rails-multi-region-database"],
+      "comment": "Uses asynchronous replication for multi-region. Read replicas may have replication lag. Prioritizes availability over strict consistency."
+    },
+    "consistency-model": {
+      "value": ["strong", "eventual", "read-your-writes"],
+      "source": ["https://planetscale.com/blog/rails-multi-region-database"],
+      "comment": "Strong consistency on primary reads/writes. Eventual consistency on replica reads due to async replication. Applications can implement read-your-writes patterns."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/acid-transactions-are-not-just-for-banks-vitess-approach"],
+      "comment": "Full ACID for single-shard transactions via MySQL. Cross-shard transactions supported via Vitess 2PC mode."
+    },
+    "transaction-scope": {
+      "value": ["single-partition", "cross-partition"],
+      "source": ["https://planetscale.com/blog/acid-transactions-are-not-just-for-banks-vitess-approach", "https://planetscale.com/blog/announcing-vitess-21"],
+      "comment": "Single-shard transactions are fully ACID. Cross-shard atomic transactions reintroduced in Vitess 21 with improved resilience (experimental)."
+    },
+    "isolation-levels": {
+      "value": ["read-committed", "repeatable-read"],
+      "source": ["https://planetscale.com/blog/mysql-isolation-levels-and-how-they-work"],
+      "comment": "MySQL default is REPEATABLE READ. Read-committed available. Cross-shard transactions have limited isolation guarantees."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/announcing-vitess-21"],
+      "comment": "Two-Phase Commit available via Vitess. Atomic distributed transactions reintroduced in Vitess 21 with improved integration."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://planetscale.com/docs/vitess/architecture"]
+    },
+    "sql-compatibility": {
+      "value": ["mysql"],
+      "source": ["https://planetscale.com/docs/vitess/architecture"],
+      "comment": "MySQL wire protocol compatible. Standard MySQL drivers work. Some limitations in sharded mode for certain query patterns."
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/features/vindexes/"],
+      "comment": "Standard MySQL indexes plus Vitess Secondary Vindexes for cross-shard indexing."
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://planetscale.com/blog/grouping-and-aggregations-on-vitess"],
+      "comment": "VTGate supports distributed JOINs across shards. Query planning optimizes for data locality when possible."
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/grouping-and-aggregations-on-vitess"],
+      "comment": "Full aggregation support. Vitess splits into local (pushed to MySQL) and global (aggregated at VTGate) operations."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "Uses MySQL's built-in full-text search capabilities on underlying MySQL instances."
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "PlanetScale manages hundreds of thousands of database clusters. Individual cluster size depends on plan. Inherits Vitess scalability (YouTube: tens of thousands of nodes)."
+    },
+    "write-throughput": {
+      "value": "Scales with cluster size (NVMe drives provide unlimited IOPS)",
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Metal tier uses direct-attached NVMe for maximum IOPS. Throughput scales with compute resources."
+    },
+    "read-latency-p99": {
+      "value": "Sub-millisecond on Metal tier",
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Metal tier with NVMe drives provides significantly lower latencies than Aurora/Cloud SQL. Exact figures vary by workload."
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Resource-based pricing allows manual scaling. No automatic scale-out. Users upgrade instance size as needed."
+    },
+    "hot-spot-handling": {
+      "value": ["splitting", "manual"],
+      "source": ["https://vitess.io/docs/23.0/reference/features/sharding/"],
+      "comment": "PlanetScale/Vitess supports resharding via MoveTables and Reshard workflows. Operations are initiated manually but run with zero downtime."
+    },
+    "zero-downtime-upgrades": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/how-planetscale-makes-schema-changes"],
+      "comment": "PlanetScale handles upgrades as a managed service. Deploy requests enable zero-downtime schema changes."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/non-blocking-schema-changes", "https://planetscale.com/docs/onboarding/branching-and-deploy-requests"],
+      "comment": "Non-blocking schema changes via deploy requests. Uses shadow table approach (similar to gh-ost). No table locking during migrations."
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://planetscale.com/docs/postgres/backups/point-in-time-recovery"],
+      "comment": "PITR available with retention window (default 2 days). Uses WAL replay for Postgres; MySQL backup-based for Vitess."
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental", "continuous"],
+      "source": ["https://planetscale.com/docs/postgres/backups/point-in-time-recovery"],
+      "comment": "Automated daily backups on production branches. Continuous WAL archiving for PITR. On-demand manual backups available."
+    },
+    "kubernetes-operator": {
+      "value": true,
+      "source": ["https://github.com/planetscale/vitess-operator"],
+      "comment": "PlanetScale maintains the official Vitess Operator for Kubernetes. Used for PlanetScale Managed deployments and available for self-hosted Vitess."
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/planetscale/connection-examples"],
+      "comment": "Uses MySQL-compatible Rust drivers via MySQL wire protocol. Connection examples provided."
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/planetscale/planetscale-go"],
+      "comment": "Official Go client library for PlanetScale API. Standard MySQL Go drivers work for database connections."
+    },
+    "java-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/elide-dev/planetscale-java", "https://github.com/planetscale/connection-examples"],
+      "comment": "Community planetscale-java connector available. Standard MySQL JDBC drivers work via wire protocol."
+    },
+    "dotnet-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/planetscale/connection-examples"],
+      "comment": "Uses MySQL Connector/NET via MySQL wire protocol compatibility. Connection examples provided."
+    },
+    "python-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/planetscale/connection-examples"],
+      "comment": "Uses mysqlclient or other MySQL Python drivers via wire protocol. Connection examples for Django provided."
+    },
+    "ruby-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/planetscale/connection-examples"],
+      "comment": "Uses mysql2 gem via MySQL wire protocol. Rails integration well documented."
+    },
+    "c-cpp-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/planetscale/connection-examples"],
+      "comment": "Uses MySQL Connector/C via MySQL wire protocol compatibility."
+    },
+    "orm-support": {
+      "value": ["hibernate", "sqlalchemy", "prisma", "gorm", "sequelize", "activerecord"],
+      "source": ["https://www.prisma.io/docs/orm/overview/databases/planetscale", "https://github.com/planetscale/connection-examples"],
+      "comment": "Major MySQL-compatible ORMs work. Prisma has official PlanetScale documentation. Rails/ActiveRecord well supported."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://planetscale.com/"],
+      "comment": "PlanetScale is a proprietary managed service. Built on open-source Vitess (Apache 2.0), but platform code is not open source."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Free Hobby tier discontinued in 2024. Paid plans start at $15/month (PS-5) or $39/month (Metal). Postgres non-HA starts at $5/month."
+    },
+    "pricing-model": {
+      "value": ["per-vcpu", "per-storage", "per-node"],
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Resource-based pricing. Costs scale with vCPU, memory, storage, and number of nodes. Enterprise plans have custom pricing."
+    },
+    "cost-estimate-small": {
+      "value": "$15/month (PS-5: 3 nodes, 10GB storage)",
+      "source": ["https://planetscale.com/pricing"],
+      "comment": "Smallest HA config: PS-5 at $15/month includes 1/16 vCPU per node, 512MB memory, 10GB storage, 3 nodes with 99.99% SLA."
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/building-data-pipelines-with-vitess", "https://planetscale.com/docs/postgres/integrations/logical-cdc"],
+      "comment": "VStream API for Vitess-based CDC. PlanetScale Connect integrates with Airbyte/Fivetran. Postgres supports logical replication CDC."
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://planetscale.com/blog/building-data-pipelines-with-vitess"],
+      "comment": "VStream API allows subscribing to change events. Third-party tools provide webhook integration for real-time CDC streaming."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://vitess.io/docs/22.0/reference/compatibility/mysql-compatibility/"],
+      "comment": "MySQL triggers supported on underlying MySQL instances."
+    },
+    "event-streaming": {
+      "value": ["kafka", "custom"],
+      "source": ["https://planetscale.com/blog/building-data-pipelines-with-vitess"],
+      "comment": "Debezium Vitess Connector streams to Kafka. PlanetScale Connect for Airbyte/Fivetran. VStream API for custom integrations."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "PlanetScale is a managed service without a primary open-source repository. Vitess (underlying technology) has ~21,000 stars."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Limited Stack Overflow presence. Community support primarily via GitHub Discussions and Discord."
+    }
+  }
+}
