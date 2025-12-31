@@ -231,6 +231,24 @@
       "value": true,
       "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"],
       "comment": "DynamoDB Streams provides time-ordered sequence of item-level changes; also integrates with Kinesis Data Streams"
+    },
+    "watch-subscribe": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"],
+      "comment": "No direct client push subscriptions; changes must be consumed via DynamoDB Streams or Kinesis with Lambda/polling"
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html"],
+      "comment": "Lambda triggers automatically execute on item-level changes via DynamoDB Streams; supports batch processing and parallelization"
+    },
+    "event-streaming": {
+      "value": ["kinesis", "custom"],
+      "source": [
+        "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/kds.html",
+        "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"
+      ],
+      "comment": "Native Kinesis Data Streams integration; DynamoDB Streams is a proprietary CDC mechanism. Kafka available via third-party connectors (Confluent, MSK Connect) but not native"
     }
   }
 }
