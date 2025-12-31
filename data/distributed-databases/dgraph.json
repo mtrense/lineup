@@ -1,0 +1,248 @@
+{
+  "name": "Dgraph",
+  "description": "Horizontally scalable distributed GraphQL database with native graph backend, ACID transactions, and real-time subscriptions",
+  "icon": "https://dgraph.io/favicon.ico",
+  "url": "https://dgraph.io",
+  "values": {
+    "website": {
+      "value": "https://dgraph.io",
+      "source": ["https://dgraph.io/"]
+    },
+    "license": {
+      "value": "Apache-2.0",
+      "source": ["https://github.com/dgraph-io/dgraph"],
+      "comment": "Returned to Apache 2.0 in 2018 after temporary license changes. v25 releases all enterprise features under Apache 2.0."
+    },
+    "hosting-options": {
+      "value": ["self-hosted", "official-managed", "serverless"],
+      "source": ["https://dgraph.io/pricing", "https://hypermode.com/blog/the-future-of-dgraph-is-open-serverless-and-ai-ready"],
+      "comment": "Dgraph Cloud offers shared ($39.99/mo) and dedicated ($199/mo) plans. Serverless offering in private preview as of 2025."
+    },
+    "initial-release": {
+      "value": "2017",
+      "source": ["https://dbdb.io/db/dgraph"],
+      "comment": "v0.1 released December 2015; first production-ready v1.0.0 released December 2017"
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/dgraph-io/dgraph"]
+    },
+    "data-model": {
+      "value": ["graph"],
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/"],
+      "comment": "Native graph database with GraphQL-first design"
+    },
+    "topology": {
+      "value": ["leader-follower"],
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/"],
+      "comment": "Uses Raft consensus with leader election per Alpha group. Dgraph Zero orchestrates cluster membership."
+    },
+    "sharding": {
+      "value": ["automatic"],
+      "source": ["https://dgraph.io/blog/post/db-sharding/"],
+      "comment": "Data sharded by predicates (edge types) across Alpha groups. Zero automatically balances data across groups."
+    },
+    "replication-factor": {
+      "value": "3 (configurable)",
+      "source": ["https://docs.dgraph.io/installation/ha-cluster/ha-cluster-k8s-kind/"],
+      "comment": "HA setup uses --replicas 3 flag for Dgraph Zero"
+    },
+    "multi-region": {
+      "value": true,
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/"],
+      "comment": "Supports geo-distributed deployments across multiple data centers"
+    },
+    "cap-position": {
+      "value": ["cp"],
+      "source": ["https://dbdb.io/db/dgraph", "https://jepsen.io/analyses/dgraph-1.1.1"],
+      "comment": "Prioritizes consistency using Raft consensus. Provides linearizable reads and ACID transactions."
+    },
+    "consistency-model": {
+      "value": ["linearizable", "strong"],
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/", "https://jepsen.io/analyses/dgraph-1.1.1"],
+      "comment": "Provides linearizable reads and consistent replication via Raft. Single-key transactions imply linearizability."
+    },
+    "acid-transactions": {
+      "value": true,
+      "source": ["https://dgraph.io/docs/design-concepts/transactions-concept/"],
+      "comment": "Distributed ACID transactions with snapshot isolation, Jepsen tested"
+    },
+    "transaction-scope": {
+      "value": ["global"],
+      "source": ["https://dgraph.io/docs/design-concepts/transactions-concept/"],
+      "comment": "Cluster-wide distributed transactions, not limited to single keys or partitions"
+    },
+    "isolation-levels": {
+      "value": ["snapshot"],
+      "source": ["https://dbdb.io/db/dgraph", "https://github.com/dgraph-io/dgraph/issues/2049"],
+      "comment": "Snapshot isolation (not serializable). Conflicts detected by write-write conflicts only."
+    },
+    "distributed-transactions": {
+      "value": true,
+      "source": ["https://dgraph.io/docs/design-concepts/transactions-concept/"],
+      "comment": "Lockless distributed ACID transactions using MVCC and Raft consensus"
+    },
+    "query-language": {
+      "value": ["graphql"],
+      "source": ["https://dgraph.io/docs/dql/", "https://dgraph.io/docs/graphql-dql/"],
+      "comment": "Native GraphQL support plus DQL (Dgraph Query Language), an extended GraphQL variant"
+    },
+    "sql-compatibility": {
+      "value": ["none"],
+      "source": ["https://dgraph.io/docs/dql/"],
+      "comment": "No SQL interface; uses GraphQL and DQL"
+    },
+    "secondary-indexes": {
+      "value": true,
+      "source": ["https://dgraph.io/blog/post/indexing-in-dgraph/"],
+      "comment": "Supports multiple index types: term, exact, hash, fulltext, regexp, trigram, geo, datetime"
+    },
+    "joins": {
+      "value": ["distributed"],
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/"],
+      "comment": "Native graph traversals serve as distributed joins across predicates/nodes"
+    },
+    "aggregations": {
+      "value": true,
+      "source": ["https://dgraph.io/blog/post/indexing-in-dgraph/"],
+      "comment": "Supports aggregation operations via DQL"
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://dgraph.io/tour/search/6/"],
+      "comment": "Built-in full-text search using bleve, with support for multiple languages"
+    },
+    "max-cluster-size": {
+      "value": null,
+      "comment": "No specific max cluster size documented. Tested with 1.9 billion RDF triples (250GB)."
+    },
+    "write-throughput": {
+      "value": null,
+      "comment": "No standardized benchmark figures available. Performance varies significantly by predicate distribution."
+    },
+    "read-latency-p99": {
+      "value": null,
+      "comment": "No standardized p99 latency figures available"
+    },
+    "auto-scaling": {
+      "value": false,
+      "source": ["https://github.com/dgraph-io/dgraph/issues/4644"],
+      "comment": "Manual scaling; automatic data rebalancing when nodes join, but no auto-provisioning"
+    },
+    "hot-spot-handling": {
+      "value": ["automatic"],
+      "source": ["https://dgraph.io/blog/post/db-sharding/"],
+      "comment": "Dgraph Zero monitors data balance and moves predicates to groups with lower disk usage"
+    },
+    "zero-downtime-upgrades": {
+      "value": false,
+      "source": ["https://github.com/dgraph-io/dgraph/issues/4644"],
+      "comment": "Rolling upgrades are a feature request (accepted but not implemented). Currently requires blue-green deployment."
+    },
+    "online-schema-changes": {
+      "value": true,
+      "source": ["https://dgraph.io/docs/cloud/admin/schema/"],
+      "comment": "Schema can be updated via /admin endpoint without downtime"
+    },
+    "point-in-time-recovery": {
+      "value": true,
+      "source": ["https://dgraph.io/docs/enterprise-features/change-data-capture/"],
+      "comment": "Supports point-in-time recovery through backup and restore functionality"
+    },
+    "backup-strategy": {
+      "value": ["snapshot", "incremental"],
+      "source": ["https://docs.dgraph.io/v24.1/dgraph-overview/"],
+      "comment": "Supports full and incremental backups to local storage or cloud"
+    },
+    "kubernetes-operator": {
+      "value": false,
+      "source": ["https://github.com/dgraph-io/charts/"],
+      "comment": "Official Helm charts available but no dedicated Kubernetes operator"
+    },
+    "rust-driver": {
+      "value": ["community"],
+      "source": ["https://github.com/Swoorup/dgraph-rs"],
+      "comment": "Community Rust client (dgraph-rs) with ~99 GitHub stars"
+    },
+    "go-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/dgraph-io/dgo"],
+      "comment": "Official Go client (dgo) using gRPC"
+    },
+    "java-driver": {
+      "value": ["official"],
+      "source": ["https://github.com/dgraph-io/dgraph4j"],
+      "comment": "Official Java client (dgraph4j), requires JDK 11+ for v24.0.0"
+    },
+    "dotnet-driver": {
+      "value": ["official"],
+      "source": ["https://dgraph.io/docs/dql/clients/"],
+      "comment": "Official C# client available"
+    },
+    "python-driver": {
+      "value": ["official"],
+      "source": ["https://dgraph.io/docs/dql/clients/"],
+      "comment": "Official Python client (pydgraph) using gRPC"
+    },
+    "ruby-driver": {
+      "value": ["none"],
+      "comment": "No known Ruby driver"
+    },
+    "c-cpp-driver": {
+      "value": ["none"],
+      "comment": "No official C/C++ driver; gRPC interface available for custom integration"
+    },
+    "orm-support": {
+      "value": [],
+      "comment": "No traditional ORM support; uses native GraphQL/DQL query languages"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/dgraph-io/dgraph"],
+      "comment": "Apache 2.0 license. v25 releases all previously enterprise-only features as open source."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://dgraph.io/pricing"],
+      "comment": "Dgraph Cloud offers a free plan with limited features"
+    },
+    "pricing-model": {
+      "value": ["per-node", "per-storage"],
+      "source": ["https://dgraph.io/pricing"],
+      "comment": "Shared tier starts at $39.99/mo, Dedicated at $199/mo. Includes 5GB data transfer, $2/GB additional."
+    },
+    "cost-estimate-small": {
+      "value": "~$600/mo (3x Dedicated nodes)",
+      "source": ["https://dgraph.io/pricing"],
+      "comment": "Estimate based on dedicated tier pricing; actual costs vary by usage"
+    },
+    "change-data-capture": {
+      "value": true,
+      "source": ["https://dgraph.io/docs/enterprise-features/change-data-capture/"],
+      "comment": "Built-in CDC streaming to Kafka or local files. Now included in Apache-licensed v25."
+    },
+    "watch-subscribe": {
+      "value": true,
+      "source": ["https://docs.hypermode.com/dgraph/graphql/subscriptions"],
+      "comment": "GraphQL subscriptions via WebSocket using @withSubscription directive"
+    },
+    "triggers": {
+      "value": false,
+      "comment": "No native database-side triggers; use Lambda functions for custom logic"
+    },
+    "event-streaming": {
+      "value": ["kafka"],
+      "source": ["https://dgraph.io/docs/enterprise-features/change-data-capture/"],
+      "comment": "CDC supports Kafka as a sink (dgraph-cdc topic)"
+    },
+    "github-stars": {
+      "value": 21400,
+      "source": ["https://github.com/dgraph-io/dgraph"],
+      "comment": "As of December 2025"
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Unable to retrieve Stack Overflow tag count"
+    }
+  }
+}

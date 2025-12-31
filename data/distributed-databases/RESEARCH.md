@@ -228,7 +228,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] PlanetScale - Managed Vitess with branching workflows
 - [x] CrateDB - Distributed SQL for machine data
 - [x] RethinkDB - Real-time push architecture (consider if maintained)
-- [ ] Dgraph - Distributed graph database
+- [x] Dgraph - Distributed graph database
 
 ### Tier 3 (Nice to Have) - Specialized/Emerging
 - [ ] TiKV - Distributed key-value (from TiDB stack)
