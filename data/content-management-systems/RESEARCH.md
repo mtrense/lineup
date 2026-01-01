@@ -196,7 +196,7 @@ Major players with significant market share or mindshare:
 **Traditional / Hybrid (Self-hosted)**
 - [x] **WordPress** - Dominant CMS, powers ~40% of the web
 - [x] **Drupal** - Enterprise-grade, highly customizable
-- [ ] **Joomla** - Popular alternative to WordPress
+- [x] **Joomla** - Popular alternative to WordPress
 
 **Headless / API-first (Self-hosted)**
 - [ ] **Strapi** - Leading open-source headless CMS (Node.js)
