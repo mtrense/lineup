@@ -199,7 +199,7 @@ Major players with significant market share or mindshare:
 - [x] **Joomla** - Popular alternative to WordPress
 
 **Headless / API-first (Self-hosted)**
-- [ ] **Strapi** - Leading open-source headless CMS (Node.js)
+- [x] **Strapi** - Leading open-source headless CMS (Node.js)
 - [ ] **Directus** - Open-source data platform / headless CMS
 - [ ] **Payload CMS** - TypeScript-first headless CMS
 - [ ] **KeystoneJS** - GraphQL-native headless CMS
