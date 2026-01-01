@@ -1,0 +1,310 @@
+{
+  "name": "Drupal",
+  "description": "Enterprise-grade open source CMS with powerful content modeling and extensibility",
+  "icon": "drupal",
+  "url": "https://www.drupal.org",
+  "values": {
+    "description": {
+      "value": "Enterprise-grade open source CMS with flexible content architecture, robust permissions, and powerful API capabilities",
+      "source": ["https://www.drupal.org"]
+    },
+    "website": {
+      "value": "https://www.drupal.org"
+    },
+    "repository": {
+      "value": "https://github.com/drupal/drupal",
+      "comment": "Mirror of git.drupal.org; PRs not accepted on GitHub"
+    },
+    "license": {
+      "value": "GPL-2.0-or-later",
+      "source": ["https://www.drupal.org/about/licensing"]
+    },
+    "initial-release": {
+      "value": "2001",
+      "comment": "Drupal 1.0 released January 15, 2001 by Dries Buytaert",
+      "source": ["https://www.drupal.org/about/history"]
+    },
+    "latest-release": {
+      "value": "2025-12-17",
+      "comment": "Drupal 11.3.1",
+      "source": ["https://www.drupal.org/project/drupal/releases/11.3.1"]
+    },
+    "github-stars": {
+      "value": 4200,
+      "comment": "As of January 2026",
+      "source": ["https://github.com/drupal/drupal"]
+    },
+    "cms-type": {
+      "value": ["hybrid"],
+      "comment": "Traditional with Twig templates, plus headless via JSON:API (core) and GraphQL (contrib module)",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module", "https://www.drupal.org/project/graphql"]
+    },
+    "deployment-model": {
+      "value": ["self-hosted", "managed"],
+      "comment": "Self-hosted primary; managed options via Acquia, Pantheon, Platform.sh",
+      "source": ["https://www.drupal.org", "https://www.acquia.com"]
+    },
+    "primary-language": {
+      "value": "PHP"
+    },
+    "database-support": {
+      "value": ["postgresql", "mysql", "sqlite"],
+      "comment": "MySQL/MariaDB, PostgreSQL, SQLite supported; MySQL/MariaDB most common",
+      "source": ["https://www.drupal.org/docs/getting-started/system-requirements/database-server-requirements"]
+    },
+    "api-type": {
+      "value": ["rest", "graphql"],
+      "comment": "JSON:API in core (recommended for decoupled); REST and GraphQL via contrib modules",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module"]
+    },
+    "multi-tenancy": {
+      "value": true,
+      "comment": "Drupal Multisite allows multiple sites from single codebase; Domain Access module for virtual multisites",
+      "source": ["https://www.drupal.org/docs/multisite-drupal"]
+    },
+    "static-site-generation": {
+      "value": true,
+      "comment": "Via Tome module for static generation, or headless with Gatsby/Next.js",
+      "source": ["https://www.drupal.org/project/tome"]
+    },
+    "edge-deployment": {
+      "value": false,
+      "comment": "PHP-based; requires traditional server, though content can be served via CDN"
+    },
+    "content-types": {
+      "value": true,
+      "comment": "Core feature: define unlimited custom content types with UI or code",
+      "source": ["https://www.drupal.org/docs/administering-a-drupal-site/content-types"]
+    },
+    "custom-fields": {
+      "value": true,
+      "comment": "Field API allows adding any number of fields to any entity type",
+      "source": ["https://www.drupal.org/docs/drupal-apis/entity-api/fields"]
+    },
+    "field-types": {
+      "value": ["text", "richtext", "media", "reference", "json", "component", "repeater"],
+      "comment": "Extensive field types in core; Paragraphs module for components/repeaters",
+      "source": ["https://www.drupal.org/docs/drupal-apis/entity-api/fields"]
+    },
+    "content-relationships": {
+      "value": true,
+      "comment": "Entity Reference fields enable one-to-one, one-to-many, many-to-many relationships",
+      "source": ["https://www.drupal.org/docs/drupal-apis/entity-api"]
+    },
+    "nested-components": {
+      "value": true,
+      "comment": "Paragraphs module (contrib) provides reusable nested components; Layout Builder in core",
+      "source": ["https://www.drupal.org/project/paragraphs"]
+    },
+    "localization": {
+      "value": true,
+      "comment": "Multilingual in core: Language, Content Translation, Interface Translation, Configuration Translation modules",
+      "source": ["https://www.drupal.org/docs/multilingual-guide"]
+    },
+    "content-validation": {
+      "value": true,
+      "comment": "Field validation with constraints in core; enhanced via Field Validation contrib module",
+      "source": ["https://www.drupal.org/docs/drupal-apis/entity-api/entity-validation-api"]
+    },
+    "embedded-interactives": {
+      "value": true,
+      "comment": "Media embed, oEmbed support in core; custom blocks and paragraphs for interactive content",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/media-module"]
+    },
+    "content-versioning": {
+      "value": true,
+      "comment": "Content moderation and revisions in core",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/content-moderation-module"]
+    },
+    "draft-publish": {
+      "value": true,
+      "comment": "Workflows module in core with customizable draft/review/publish states",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/workflows-module"]
+    },
+    "scheduled-publishing": {
+      "value": true,
+      "comment": "Scheduler module (contrib) for scheduled publish/unpublish",
+      "source": ["https://www.drupal.org/project/scheduler"]
+    },
+    "approval-workflows": {
+      "value": true,
+      "comment": "Content Moderation + Workflows modules in core provide full editorial workflows",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/content-moderation-module"]
+    },
+    "content-locking": {
+      "value": true,
+      "comment": "Content Lock module (contrib) prevents concurrent editing",
+      "source": ["https://www.drupal.org/project/content_lock"]
+    },
+    "audit-logging": {
+      "value": true,
+      "comment": "Database Logging in core; enhanced via Admin Audit Trail contrib module",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/dblog-module"]
+    },
+    "media-library": {
+      "value": true,
+      "comment": "Media Library in core since Drupal 8.7",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/media-library-module"]
+    },
+    "image-transformations": {
+      "value": true,
+      "comment": "Image styles in core: resize, crop, scale, rotate, desaturate",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/image-module"]
+    },
+    "external-media-storage": {
+      "value": true,
+      "comment": "S3 File System module for AWS S3 storage",
+      "source": ["https://www.drupal.org/project/s3fs"]
+    },
+    "video-support": {
+      "value": true,
+      "comment": "Remote video (YouTube, Vimeo) in core; local video via contrib modules",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/media-module"]
+    },
+    "svg-support": {
+      "value": true,
+      "comment": "SVG Image module (contrib) enables SVG uploads",
+      "source": ["https://www.drupal.org/project/svg_image"]
+    },
+    "folder-organization": {
+      "value": true,
+      "comment": "Media folders via File Browser or Media Directories contrib modules",
+      "source": ["https://www.drupal.org/project/media_directories"]
+    },
+    "role-based-access": {
+      "value": true,
+      "comment": "Comprehensive role and permission system in core",
+      "source": ["https://www.drupal.org/docs/administering-a-drupal-site/user-accounts"]
+    },
+    "granular-permissions": {
+      "value": true,
+      "comment": "Field-level, content-type-level, and entity-level permissions available",
+      "source": ["https://www.drupal.org/docs/administering-a-drupal-site/user-accounts/managing-user-permissions"]
+    },
+    "sso-saml": {
+      "value": true,
+      "comment": "SAML Authentication module (contrib) for SSO integration",
+      "source": ["https://www.drupal.org/project/samlauth"]
+    },
+    "team-collaboration": {
+      "value": true,
+      "comment": "Content moderation workflows, user assignments; Workspaces module in core for staging environments",
+      "source": ["https://www.drupal.org/docs/core-modules-and-themes/core-modules/workspaces-module"]
+    },
+    "audience-restrictions": {
+      "value": true,
+      "comment": "Node access system in core; Group module for closed user groups",
+      "source": ["https://www.drupal.org/project/group"]
+    },
+    "typescript-sdk": {
+      "value": false,
+      "comment": "No official TypeScript SDK; community packages available for JSON:API consumption"
+    },
+    "content-type-sdk": {
+      "value": true,
+      "comment": "Configuration API and Recipes allow code-first content modeling; Config Sync for export/import",
+      "source": ["https://www.drupal.org/docs/configuration-management"]
+    },
+    "cli-tools": {
+      "value": true,
+      "comment": "Drush is the comprehensive CLI for Drupal (Swiss Army knife for developers)",
+      "source": ["https://www.drush.org/", "https://github.com/drush-ops/drush"]
+    },
+    "local-development": {
+      "value": true,
+      "comment": "DDEV, Lando, or Docker-based local environments; official DDEV recommendation",
+      "source": ["https://www.drupal.org/docs/develop/local-server-setup"]
+    },
+    "webhooks": {
+      "value": true,
+      "comment": "Webhooks module (contrib) for event-based HTTP notifications",
+      "source": ["https://www.drupal.org/project/webhooks"]
+    },
+    "plugin-system": {
+      "value": true,
+      "comment": "50,000+ contrib modules on drupal.org; Plugin API for extensibility",
+      "source": ["https://www.drupal.org/project/project_module"]
+    },
+    "admin-ui-customization": {
+      "value": true,
+      "comment": "Admin themes, custom admin pages, Gin admin theme popular for modern UX",
+      "source": ["https://www.drupal.org/project/gin"]
+    },
+    "documentation-quality": {
+      "value": 4,
+      "comment": "Good documentation with user guide, developer docs, API reference; can be overwhelming for beginners",
+      "source": ["https://www.drupal.org/docs"]
+    },
+    "frontend-frameworks": {
+      "value": ["nextjs", "nuxt", "gatsby"],
+      "comment": "Next.js for Drupal (official module), Druxt for Nuxt, Gatsby source plugin",
+      "source": ["https://next-drupal.org/", "https://www.drupal.org/project/next"]
+    },
+    "search-integration": {
+      "value": true,
+      "comment": "Search API in core; Elasticsearch, Solr, Algolia integrations via contrib",
+      "source": ["https://www.drupal.org/project/search_api"]
+    },
+    "preview-mode": {
+      "value": true,
+      "comment": "Draft preview in core; decoupled preview via Next.js for Drupal module",
+      "source": ["https://next-drupal.org/"]
+    },
+    "ecommerce-integration": {
+      "value": true,
+      "comment": "Drupal Commerce is a full-featured e-commerce framework",
+      "source": ["https://www.drupal.org/project/commerce"]
+    },
+    "analytics-integration": {
+      "value": true,
+      "comment": "Google Analytics, Matomo modules available; Statistics in core",
+      "source": ["https://www.drupal.org/project/google_analytics"]
+    },
+    "ai-features": {
+      "value": true,
+      "comment": "Drupal AI module with 48+ provider integrations; included in Drupal CMS distribution",
+      "source": ["https://www.drupal.org/project/ai"]
+    },
+    "cdn-included": {
+      "value": false,
+      "comment": "Self-hosted; CDN integration via hosting providers like Acquia, Pantheon"
+    },
+    "response-caching": {
+      "value": true,
+      "comment": "Internal Page Cache and Dynamic Page Cache in core; BigPipe for lazy-loading",
+      "source": ["https://www.drupal.org/docs/administering-a-drupal-site/internal-page-cache"]
+    },
+    "rate-limits": {
+      "value": "Unlimited (self-hosted)",
+      "comment": "Self-hosted has no limits; managed hosts may impose limits"
+    },
+    "global-regions": {
+      "value": false,
+      "comment": "Depends on hosting provider choice"
+    },
+    "free-tier": {
+      "value": true,
+      "comment": "Fully open source and free",
+      "source": ["https://www.drupal.org/about/licensing"]
+    },
+    "open-source": {
+      "value": true,
+      "comment": "GPL-2.0-or-later license",
+      "source": ["https://www.drupal.org/about/licensing"]
+    },
+    "pricing-model": {
+      "value": ["free"],
+      "comment": "Core software is free; paid hosting and enterprise support available"
+    },
+    "commercial-support": {
+      "value": true,
+      "comment": "Acquia, Pantheon, many agencies offer commercial Drupal support",
+      "source": ["https://www.acquia.com", "https://pantheon.io"]
+    },
+    "enterprise-features": {
+      "value": true,
+      "comment": "Acquia offers enterprise hosting with SSO, SLA, and dedicated support; Workspaces for staging",
+      "source": ["https://www.acquia.com"]
+    }
+  }
+}
