@@ -1,0 +1,550 @@
+{
+  "name": "Content Management Systems",
+  "description": "CMS platforms for building websites, blogs, and content-driven applications",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Info",
+      "icon": "info-circle",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the CMS's main value proposition"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "GitHub or GitLab repository URL"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": "text",
+          "description": "Software license (MIT, GPL-3.0, Apache-2.0, Proprietary, etc.)"
+        },
+        {
+          "id": "initial-release",
+          "name": "Initial Release",
+          "valueType": {
+            "type": "date",
+            "direction": "descending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent stable release"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of GitHub stars"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "icon": "server",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "cms-type",
+          "name": "CMS Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "traditional", "value": "Traditional", "color": "#3b82f6" },
+              { "id": "headless", "value": "Headless", "color": "#8b5cf6" },
+              { "id": "hybrid", "value": "Hybrid", "color": "#10b981" }
+            ]
+          },
+          "description": "Architecture type: traditional (coupled), headless (API-only), or hybrid"
+        },
+        {
+          "id": "deployment-model",
+          "name": "Deployment Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "self-hosted", "value": "Self-hosted", "color": "#f59e0b" },
+              { "id": "managed", "value": "Managed", "color": "#06b6d4" }
+            ]
+          },
+          "description": "Deployment options: self-hosted, managed (SaaS), or both"
+        },
+        {
+          "id": "primary-language",
+          "name": "Primary Language",
+          "valueType": "text",
+          "description": "Main programming language (PHP, Node.js, Python, Go, etc.)"
+        },
+        {
+          "id": "database-support",
+          "name": "Database Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "postgresql", "value": "PostgreSQL", "color": "#336791" },
+              { "id": "mysql", "value": "MySQL", "color": "#4479a1" },
+              { "id": "mongodb", "value": "MongoDB", "color": "#47a248" },
+              { "id": "sqlite", "value": "SQLite", "color": "#003b57" },
+              { "id": "dynamodb", "value": "DynamoDB", "color": "#4053d6" },
+              { "id": "proprietary", "value": "Proprietary", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Supported database systems"
+        },
+        {
+          "id": "api-type",
+          "name": "API Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "rest", "value": "REST", "color": "#3b82f6" },
+              { "id": "graphql", "value": "GraphQL", "color": "#e10098" },
+              { "id": "grpc", "value": "gRPC", "color": "#244c5a" }
+            ]
+          },
+          "description": "API protocols supported"
+        },
+        {
+          "id": "multi-tenancy",
+          "name": "Multi-tenancy",
+          "valueType": "boolean",
+          "description": "Built-in support for multiple sites/projects from single installation"
+        },
+        {
+          "id": "static-site-generation",
+          "name": "Static Site Generation",
+          "valueType": "boolean",
+          "description": "Can generate static HTML output (JAMstack compatible)"
+        },
+        {
+          "id": "edge-deployment",
+          "name": "Edge Deployment",
+          "valueType": "boolean",
+          "description": "Supports edge/CDN deployment for content delivery"
+        }
+      ]
+    },
+    {
+      "id": "content-modeling",
+      "name": "Content Modeling",
+      "icon": "cubes",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "content-types",
+          "name": "Content Types",
+          "valueType": "boolean",
+          "description": "Define custom content types/models (not just posts/pages)"
+        },
+        {
+          "id": "custom-fields",
+          "name": "Custom Fields",
+          "valueType": "boolean",
+          "description": "Add custom fields to content types"
+        },
+        {
+          "id": "field-types",
+          "name": "Field Types",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "text", "value": "Text", "color": "#6b7280" },
+              { "id": "richtext", "value": "Rich Text", "color": "#3b82f6" },
+              { "id": "media", "value": "Media", "color": "#8b5cf6" },
+              { "id": "reference", "value": "Reference", "color": "#10b981" },
+              { "id": "json", "value": "JSON", "color": "#f59e0b" },
+              { "id": "component", "value": "Component", "color": "#ec4899" },
+              { "id": "repeater", "value": "Repeater", "color": "#06b6d4" }
+            ]
+          },
+          "description": "Available field types for content modeling"
+        },
+        {
+          "id": "content-relationships",
+          "name": "Content Relationships",
+          "valueType": "boolean",
+          "description": "Link content items (one-to-one, one-to-many, many-to-many)"
+        },
+        {
+          "id": "nested-components",
+          "name": "Nested Components",
+          "valueType": "boolean",
+          "description": "Reusable content components/blocks within entries"
+        },
+        {
+          "id": "localization",
+          "name": "Localization",
+          "valueType": "boolean",
+          "description": "Multi-language content with locale management"
+        },
+        {
+          "id": "content-validation",
+          "name": "Content Validation",
+          "valueType": "boolean",
+          "description": "Define validation rules for fields"
+        },
+        {
+          "id": "embedded-interactives",
+          "name": "Embedded Interactives",
+          "valueType": "boolean",
+          "description": "Embed interactive snippets, widgets, or micro frontends within content"
+        }
+      ]
+    },
+    {
+      "id": "workflows",
+      "name": "Workflows & Processes",
+      "icon": "sitemap",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "content-versioning",
+          "name": "Content Versioning",
+          "valueType": "boolean",
+          "description": "Track and restore previous versions of content"
+        },
+        {
+          "id": "draft-publish",
+          "name": "Draft/Publish Workflow",
+          "valueType": "boolean",
+          "description": "Separate draft and published states"
+        },
+        {
+          "id": "scheduled-publishing",
+          "name": "Scheduled Publishing",
+          "valueType": "boolean",
+          "description": "Schedule content to publish/unpublish at specific times"
+        },
+        {
+          "id": "approval-workflows",
+          "name": "Approval Workflows",
+          "valueType": "boolean",
+          "description": "Multi-step approval processes (submit, review, approve, reject)"
+        },
+        {
+          "id": "content-locking",
+          "name": "Content Locking",
+          "valueType": "boolean",
+          "description": "Prevent concurrent editing conflicts"
+        },
+        {
+          "id": "audit-logging",
+          "name": "Audit Logging",
+          "valueType": "boolean",
+          "description": "Track who changed what and when"
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "name": "Media Management",
+      "icon": "image",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "media-library",
+          "name": "Media Library",
+          "valueType": "boolean",
+          "description": "Built-in media/asset management"
+        },
+        {
+          "id": "image-transformations",
+          "name": "Image Transformations",
+          "valueType": "boolean",
+          "description": "Resize, crop, optimize images on-the-fly"
+        },
+        {
+          "id": "external-media-storage",
+          "name": "External Media Storage",
+          "valueType": "boolean",
+          "description": "Store media in S3, Cloudinary, or other external services"
+        },
+        {
+          "id": "video-support",
+          "name": "Video Support",
+          "valueType": "boolean",
+          "description": "Native video upload and/or streaming integration"
+        },
+        {
+          "id": "svg-support",
+          "name": "SVG Support",
+          "valueType": "boolean",
+          "description": "Upload and serve SVG files"
+        },
+        {
+          "id": "folder-organization",
+          "name": "Folder Organization",
+          "valueType": "boolean",
+          "description": "Organize media in folders/collections"
+        }
+      ]
+    },
+    {
+      "id": "user-management",
+      "name": "User Management & Permissions",
+      "icon": "users",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "role-based-access",
+          "name": "Role-Based Access",
+          "valueType": "boolean",
+          "description": "Define roles with specific permissions"
+        },
+        {
+          "id": "granular-permissions",
+          "name": "Granular Permissions",
+          "valueType": "boolean",
+          "description": "Field-level or content-type-level permissions"
+        },
+        {
+          "id": "sso-saml",
+          "name": "SSO/SAML",
+          "valueType": "boolean",
+          "description": "Single sign-on integration (enterprise feature)"
+        },
+        {
+          "id": "team-collaboration",
+          "name": "Team Collaboration",
+          "valueType": "boolean",
+          "description": "Comments, assignments, notifications for content teams"
+        },
+        {
+          "id": "audience-restrictions",
+          "name": "Audience Restrictions",
+          "valueType": "boolean",
+          "description": "Restrict content access by user groups, membership, or audience segments"
+        }
+      ]
+    },
+    {
+      "id": "developer-experience",
+      "name": "Developer Experience",
+      "icon": "terminal",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "typescript-sdk",
+          "name": "TypeScript SDK",
+          "valueType": "boolean",
+          "description": "Official TypeScript/JavaScript SDK with types"
+        },
+        {
+          "id": "content-type-sdk",
+          "name": "Content Type SDK",
+          "valueType": "boolean",
+          "description": "Programmatically define content models (code-first approach)"
+        },
+        {
+          "id": "cli-tools",
+          "name": "CLI Tools",
+          "valueType": "boolean",
+          "description": "Command-line interface for management tasks"
+        },
+        {
+          "id": "local-development",
+          "name": "Local Development",
+          "valueType": "boolean",
+          "description": "Run locally for development; local preview for SaaS"
+        },
+        {
+          "id": "webhooks",
+          "name": "Webhooks",
+          "valueType": "boolean",
+          "description": "Trigger external services on content changes"
+        },
+        {
+          "id": "plugin-system",
+          "name": "Plugin/Extension System",
+          "valueType": "boolean",
+          "description": "Extend functionality with plugins or custom code"
+        },
+        {
+          "id": "admin-ui-customization",
+          "name": "Admin UI Customization",
+          "valueType": "boolean",
+          "description": "Customize the editorial interface"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "Quality of documentation (1=minimal, 5=excellent)"
+        }
+      ]
+    },
+    {
+      "id": "integrations",
+      "name": "Integrations & Ecosystem",
+      "icon": "plug",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "frontend-frameworks",
+          "name": "Frontend Frameworks",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "nextjs", "value": "Next.js", "color": "#000000" },
+              { "id": "nuxt", "value": "Nuxt", "color": "#00dc82" },
+              { "id": "gatsby", "value": "Gatsby", "color": "#663399" },
+              { "id": "astro", "value": "Astro", "color": "#ff5d01" },
+              { "id": "remix", "value": "Remix", "color": "#3992ff" },
+              { "id": "sveltekit", "value": "SvelteKit", "color": "#ff3e00" }
+            ]
+          },
+          "description": "Official frontend framework integrations"
+        },
+        {
+          "id": "search-integration",
+          "name": "Search Integration",
+          "valueType": "boolean",
+          "description": "Built-in search or integrations with Algolia, Elasticsearch, etc."
+        },
+        {
+          "id": "preview-mode",
+          "name": "Preview Mode",
+          "valueType": "boolean",
+          "description": "Live preview of draft content in frontend"
+        },
+        {
+          "id": "ecommerce-integration",
+          "name": "E-commerce Integration",
+          "valueType": "boolean",
+          "description": "Integrations with Stripe, Shopify, Snipcart, etc."
+        },
+        {
+          "id": "analytics-integration",
+          "name": "Analytics Integration",
+          "valueType": "boolean",
+          "description": "Built-in analytics or easy integration with GA, etc."
+        },
+        {
+          "id": "ai-features",
+          "name": "AI Features",
+          "valueType": "boolean",
+          "description": "AI-assisted content generation, translation, or optimization"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance & Scale",
+      "icon": "tachometer-alt",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "cdn-included",
+          "name": "CDN Included",
+          "valueType": "boolean",
+          "description": "Built-in CDN for content delivery (primarily for managed services)"
+        },
+        {
+          "id": "response-caching",
+          "name": "Response Caching",
+          "valueType": "boolean",
+          "description": "Built-in API response caching"
+        },
+        {
+          "id": "rate-limits",
+          "name": "Rate Limits",
+          "valueType": "text",
+          "description": "API rate limits; 'unlimited' for self-hosted"
+        },
+        {
+          "id": "global-regions",
+          "name": "Global Regions",
+          "valueType": "boolean",
+          "description": "Multi-region deployment available (for managed services)"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing & Business",
+      "icon": "dollar-sign",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "free-tier",
+          "name": "Free Tier",
+          "valueType": "boolean",
+          "description": "Free plan available (for managed) or fully open-source (for self-hosted)"
+        },
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Core product is open source"
+        },
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "free", "value": "Free", "color": "#10b981" },
+              { "id": "freemium", "value": "Freemium", "color": "#3b82f6" },
+              { "id": "per-seat", "value": "Per Seat", "color": "#f59e0b" },
+              { "id": "per-usage", "value": "Per Usage", "color": "#8b5cf6" },
+              { "id": "enterprise-only", "value": "Enterprise Only", "color": "#ef4444" }
+            ]
+          },
+          "description": "Pricing structure"
+        },
+        {
+          "id": "commercial-support",
+          "name": "Commercial Support",
+          "valueType": "boolean",
+          "description": "Paid support or enterprise tier available"
+        },
+        {
+          "id": "enterprise-features",
+          "name": "Enterprise Features",
+          "valueType": "boolean",
+          "description": "Enterprise-specific features (SSO, SLA, dedicated support)"
+        }
+      ]
+    }
+  ]
+}
