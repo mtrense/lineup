@@ -194,7 +194,7 @@ Users should be able to:
 Major players with significant market share or mindshare:
 
 **Traditional / Hybrid (Self-hosted)**
-- [ ] **WordPress** - Dominant CMS, powers ~40% of the web
+- [x] **WordPress** - Dominant CMS, powers ~40% of the web
 - [ ] **Drupal** - Enterprise-grade, highly customizable
 - [ ] **Joomla** - Popular alternative to WordPress
 
