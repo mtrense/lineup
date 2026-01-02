@@ -225,7 +225,7 @@ Notable alternatives and specialized options:
 - [x] **DatoCMS** - Developer-friendly headless CMS
 - [x] **Builder.io** - Visual headless CMS with drag-drop
 - [x] **Tina CMS** - Git-based, visual editing
-- [ ] **Decap CMS** (formerly Netlify CMS) - Git-based open-source
+- [x] **Decap CMS** (formerly Netlify CMS) - Git-based open-source
 
 **Platform / Hybrid**
 - [ ] **Webflow** - Visual builder with CMS capabilities
