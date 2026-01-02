@@ -238,7 +238,7 @@ Emerging or specialized options:
 **Self-hosted**
 - [x] **Cockpit CMS** - Lightweight headless CMS (PHP)
 - [x] **Apostrophe** - In-context editing CMS (Node.js)
-- [ ] **Publii** - Desktop-based static CMS
+- [x] **Publii** - Desktop-based static CMS
 - [ ] **Grav** - Flat-file CMS (no database)
 - [ ] **Statamic** - Laravel flat-file CMS (commercial)
 - [ ] **PocketBase** - Backend-as-a-Service with CMS features
