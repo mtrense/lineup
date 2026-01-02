@@ -202,7 +202,7 @@ Major players with significant market share or mindshare:
 - [x] **Strapi** - Leading open-source headless CMS (Node.js)
 - [x] **Directus** - Open-source data platform / headless CMS
 - [x] **Payload CMS** - TypeScript-first headless CMS
-- [ ] **KeystoneJS** - GraphQL-native headless CMS
+- [x] **KeystoneJS** - GraphQL-native headless CMS
 
 **Managed / SaaS**
 - [ ] **Contentful** - Enterprise headless CMS market leader
