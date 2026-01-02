@@ -217,7 +217,7 @@ Notable alternatives and specialized options:
 - [x] **Ghost** - Modern publishing platform (blogging focus)
 - [x] **Craft CMS** - Developer-friendly commercial CMS
 - [x] **TYPO3** - Enterprise CMS popular in Europe
-- [ ] **Wagtail** - Django-based CMS (Python)
+- [x] **Wagtail** - Django-based CMS (Python)
 - [ ] **October CMS** - Laravel-based CMS (PHP)
 
 **Headless**
