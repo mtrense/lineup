@@ -206,7 +206,7 @@ Major players with significant market share or mindshare:
 
 **Managed / SaaS**
 - [x] **Contentful** - Enterprise headless CMS market leader
-- [ ] **Sanity** - Real-time collaborative headless CMS
+- [x] **Sanity** - Real-time collaborative headless CMS
 - [ ] **Hygraph** (formerly GraphCMS) - GraphQL-native headless CMS
 - [ ] **Storyblok** - Visual editing headless CMS
 
