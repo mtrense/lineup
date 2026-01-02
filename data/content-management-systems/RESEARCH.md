@@ -221,7 +221,7 @@ Notable alternatives and specialized options:
 - [x] **October CMS** - Laravel-based CMS (PHP)
 
 **Headless**
-- [ ] **Prismic** - Headless CMS with slice-based editing
+- [x] **Prismic** - Headless CMS with slice-based editing
 - [ ] **DatoCMS** - Developer-friendly headless CMS
 - [ ] **Builder.io** - Visual headless CMS with drag-drop
 - [ ] **Tina CMS** - Git-based, visual editing
