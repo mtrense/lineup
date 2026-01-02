@@ -228,7 +228,7 @@ Notable alternatives and specialized options:
 - [x] **Decap CMS** (formerly Netlify CMS) - Git-based open-source
 
 **Platform / Hybrid**
-- [ ] **Webflow** - Visual builder with CMS capabilities
+- [x] **Webflow** - Visual builder with CMS capabilities
 - [ ] **Wix** - Website builder with structured content
 - [ ] **Squarespace** - Design-focused with CMS features
 
