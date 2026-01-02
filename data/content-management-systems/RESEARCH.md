@@ -223,7 +223,7 @@ Notable alternatives and specialized options:
 **Headless**
 - [x] **Prismic** - Headless CMS with slice-based editing
 - [x] **DatoCMS** - Developer-friendly headless CMS
-- [ ] **Builder.io** - Visual headless CMS with drag-drop
+- [x] **Builder.io** - Visual headless CMS with drag-drop
 - [ ] **Tina CMS** - Git-based, visual editing
 - [ ] **Decap CMS** (formerly Netlify CMS) - Git-based open-source
 
