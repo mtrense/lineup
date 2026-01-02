@@ -236,7 +236,7 @@ Notable alternatives and specialized options:
 Emerging or specialized options:
 
 **Self-hosted**
-- [ ] **Cockpit CMS** - Lightweight headless CMS (PHP)
+- [x] **Cockpit CMS** - Lightweight headless CMS (PHP)
 - [ ] **Apostrophe** - In-context editing CMS (Node.js)
 - [ ] **Publii** - Desktop-based static CMS
 - [ ] **Grav** - Flat-file CMS (no database)
