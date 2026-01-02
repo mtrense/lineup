@@ -214,7 +214,7 @@ Major players with significant market share or mindshare:
 Notable alternatives and specialized options:
 
 **Traditional / Hybrid**
-- [ ] **Ghost** - Modern publishing platform (blogging focus)
+- [x] **Ghost** - Modern publishing platform (blogging focus)
 - [ ] **Craft CMS** - Developer-friendly commercial CMS
 - [ ] **TYPO3** - Enterprise CMS popular in Europe
 - [ ] **Wagtail** - Django-based CMS (Python)
