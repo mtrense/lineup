@@ -229,7 +229,7 @@ Notable alternatives and specialized options:
 
 **Platform / Hybrid**
 - [x] **Webflow** - Visual builder with CMS capabilities
-- [ ] **Wix** - Website builder with structured content
+- [x] **Wix** - Website builder with structured content
 - [ ] **Squarespace** - Design-focused with CMS features
 
 ### Tier 3 (Nice to Have)
