@@ -218,7 +218,7 @@ Notable alternatives and specialized options:
 - [x] **Craft CMS** - Developer-friendly commercial CMS
 - [x] **TYPO3** - Enterprise CMS popular in Europe
 - [x] **Wagtail** - Django-based CMS (Python)
-- [ ] **October CMS** - Laravel-based CMS (PHP)
+- [x] **October CMS** - Laravel-based CMS (PHP)
 
 **Headless**
 - [ ] **Prismic** - Headless CMS with slice-based editing
