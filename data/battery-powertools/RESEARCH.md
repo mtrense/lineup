@@ -210,7 +210,7 @@ Users should be able to:
 ### Drill/Drivers
 
 **Premium / Professional**
-- [ ] Milwaukee M18 FUEL 2903-20
+- [x] Milwaukee M18 FUEL 2903-20
 - [ ] DeWalt DCD800 20V MAX XR
 - [ ] Makita XFD16 18V LXT
 - [ ] Festool T 18+3 (Metabo CAS)
