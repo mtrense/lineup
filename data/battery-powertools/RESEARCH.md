@@ -213,7 +213,7 @@ Users should be able to:
 - [x] Milwaukee M18 FUEL 2903-20
 - [x] DeWalt DCD800 20V MAX XR
 - [x] Makita XFD16 18V LXT
-- [ ] Festool T 18+3 (Metabo CAS)
+- [x] Festool T 18+3 (Proprietary - NOT CAS)
 - [ ] Metabo BS 18 LTX BL I (Metabo CAS)
 - [ ] Fein ABS 18 QC (Bosch AMPShare)
 - [ ] Hilti SF 6-22
