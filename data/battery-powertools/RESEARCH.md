@@ -188,7 +188,7 @@ Users should be able to:
 - [x] Milwaukee M18 FUEL 2953-20 (Gen 4)
 - [x] DeWalt DCF850 ATOMIC 20V MAX
 - [x] DeWalt DCF887 20V MAX XR
-- [ ] Makita XDT19 18V LXT
+- [x] Makita XDT19 18V LXT
 - [ ] Makita XGT TD002G 40V
 - [ ] Bosch GDR18V-1860 Freak (Bosch AMPShare)
 - [ ] Metabo HPT WH18DBDL2
