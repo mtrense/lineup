@@ -193,7 +193,7 @@ Users should be able to:
 - [x] Bosch GDR18V-1860CN (Bosch AMPShare)
 - [x] Metabo HPT WH18DBDL2
 - [x] Festool TID 18 (Metabo CAS)
-- [ ] Metabo SSD 18 LTX 400 BL (Metabo CAS)
+- [x] Metabo SSD 18 LTX 200 BL (Metabo CAS)
 - [ ] Hilti SID 6-22
 
 **Prosumer / DIY**
