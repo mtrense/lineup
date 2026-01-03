@@ -58,15 +58,14 @@ Users should be able to:
 | **Motor Type** | tags | "brushless", "brushed" |
 | **Max RPM** | integer | Maximum rotations per minute (no-load) |
 | **Max IPM** | integer | Maximum impacts per minute (for impact tools) |
-| **Max Torque (ft-lbs)** | integer | Maximum torque output in foot-pounds |
 | **Max Torque (Nm)** | integer | Maximum torque output in Newton-meters |
 | **No-Load Speed Settings** | integer | Number of speed/gear settings |
-| **Chuck Size** | text | Chuck capacity (e.g., "1/2 inch", "13mm") |
-| **Blade Capacity** | text | Maximum blade size for saws (e.g., "7-1/4 inch") |
-| **Cutting Depth (90°)** | decimal | Maximum cutting depth at 90° for saws (inches) |
-| **Cutting Depth (45°)** | decimal | Maximum cutting depth at 45° bevel for saws (inches) |
+| **Chuck Size** | text | Chuck capacity (e.g., "13mm", "10mm") |
+| **Blade Capacity** | text | Maximum blade size for saws (e.g., "185mm", "190mm") |
+| **Cutting Depth (90°)** | decimal | Maximum cutting depth at 90° for saws (mm) |
+| **Cutting Depth (45°)** | decimal | Maximum cutting depth at 45° bevel for saws (mm) |
 | **Disc Size** | text | Grinding/cutting disc diameter for grinders |
-| **Stroke Length** | decimal | Stroke length for reciprocating saws (inches) |
+| **Stroke Length** | decimal | Stroke length for reciprocating saws (mm) |
 | **OPM** | integer | Orbits per minute for sanders |
 | **BPM** | integer | Blows per minute for rotary hammers |
 
@@ -74,11 +73,11 @@ Users should be able to:
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
-| **Weight (bare tool)** | decimal | Weight without battery in pounds |
-| **Weight (with battery)** | decimal | Weight with standard/recommended battery in pounds |
-| **Length** | decimal | Overall length in inches |
-| **Height** | decimal | Overall height in inches |
-| **Head Length** | decimal | For drills/drivers: distance from chuck to back of motor housing |
+| **Weight (bare tool)** | decimal | Weight without battery in kg |
+| **Weight (with battery)** | decimal | Weight with standard/recommended battery in kg |
+| **Length** | decimal | Overall length in mm |
+| **Height** | decimal | Overall height in mm |
+| **Head Length** | decimal | For drills/drivers: distance from chuck to back of motor housing (mm) |
 | **Compact Design** | boolean | Marketed as compact/subcompact variant |
 
 ### 5. Features
