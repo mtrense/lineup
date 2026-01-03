@@ -1,0 +1,596 @@
+{
+  "name": "Battery-Operated Powertools",
+  "description": "Comparison of individual cordless power tools across brands and categories, covering performance, features, build quality, and value.",
+  "groups": [
+    {
+      "id": "product-identity",
+      "name": "Product Identity",
+      "description": "Basic product information and classification",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "brand",
+          "name": "Brand",
+          "valueType": "text",
+          "description": "Manufacturer name"
+        },
+        {
+          "id": "model-number",
+          "name": "Model Number",
+          "valueType": "text",
+          "description": "Official model/SKU number"
+        },
+        {
+          "id": "product-name",
+          "name": "Product Name",
+          "valueType": "text",
+          "description": "Marketing name if applicable"
+        },
+        {
+          "id": "tool-category",
+          "name": "Tool Category",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "drill-driver", "value": "Drill/Driver", "color": "#3b82f6" },
+              { "id": "impact-driver", "value": "Impact Driver", "color": "#8b5cf6" },
+              { "id": "hammer-drill", "value": "Hammer Drill", "color": "#6366f1" },
+              { "id": "circular-saw", "value": "Circular Saw", "color": "#ef4444" },
+              { "id": "reciprocating-saw", "value": "Reciprocating Saw", "color": "#f97316" },
+              { "id": "jigsaw", "value": "Jigsaw", "color": "#f59e0b" },
+              { "id": "miter-saw", "value": "Miter Saw", "color": "#dc2626" },
+              { "id": "angle-grinder", "value": "Angle Grinder", "color": "#eab308" },
+              { "id": "orbital-sander", "value": "Orbital Sander", "color": "#84cc16" },
+              { "id": "nailer", "value": "Nailer", "color": "#22c55e" },
+              { "id": "rotary-hammer", "value": "Rotary Hammer", "color": "#14b8a6" },
+              { "id": "oscillating-tool", "value": "Oscillating Tool", "color": "#06b6d4" },
+              { "id": "router", "value": "Router", "color": "#0ea5e9" },
+              { "id": "other", "value": "Other", "color": "#6b7280" }
+            ]
+          },
+          "description": "Primary tool category"
+        },
+        {
+          "id": "product-line",
+          "name": "Product Line",
+          "valueType": "text",
+          "description": "Sub-brand or line (e.g., FUEL, XR, LXT, ONE+ HP)"
+        },
+        {
+          "id": "markets",
+          "name": "Markets",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "global", "value": "Global", "color": "#22c55e" },
+              { "id": "north-america", "value": "North America", "color": "#3b82f6" },
+              { "id": "europe", "value": "Europe", "color": "#8b5cf6" },
+              { "id": "asia-pacific", "value": "Asia-Pacific", "color": "#f97316" },
+              { "id": "australia", "value": "Australia", "color": "#eab308" }
+            ]
+          },
+          "description": "Regions where the product is sold"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product page"
+        }
+      ]
+    },
+    {
+      "id": "battery-system",
+      "name": "Battery System",
+      "description": "Battery platform and compatibility information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "battery-platform",
+          "name": "Battery Platform",
+          "valueType": "text",
+          "description": "Platform name (e.g., M18, 20V MAX, 18V LXT, ONE+)"
+        },
+        {
+          "id": "multi-brand-system",
+          "name": "Multi-Brand System",
+          "valueType": "text",
+          "description": "Cross-brand compatibility system (e.g., CAS/AmpShare) or Proprietary"
+        },
+        {
+          "id": "nominal-voltage",
+          "name": "Nominal Voltage",
+          "valueType": {
+            "type": "integer",
+            "direction": "neutral"
+          },
+          "description": "Actual nominal voltage (not marketing voltage)"
+        },
+        {
+          "id": "max-voltage",
+          "name": "Max Voltage",
+          "valueType": {
+            "type": "integer",
+            "direction": "neutral"
+          },
+          "description": "Maximum voltage for FlexVolt/dual-battery tools"
+        },
+        {
+          "id": "recommended-battery-ah",
+          "name": "Recommended Battery (Ah)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "neutral"
+          },
+          "description": "Manufacturer-recommended battery capacity for optimal performance"
+        },
+        {
+          "id": "battery-included",
+          "name": "Battery Included",
+          "valueType": "boolean",
+          "description": "Whether the standard purchase includes a battery"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance Specifications",
+      "description": "Power, speed, and capacity specifications",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "motor-type",
+          "name": "Motor Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "brushless", "value": "Brushless", "color": "#22c55e" },
+              { "id": "brushed", "value": "Brushed", "color": "#f97316" }
+            ]
+          },
+          "description": "Motor technology"
+        },
+        {
+          "id": "max-rpm",
+          "name": "Max RPM",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Maximum rotations per minute (no-load)"
+        },
+        {
+          "id": "max-ipm",
+          "name": "Max IPM",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Maximum impacts per minute (for impact tools)"
+        },
+        {
+          "id": "max-torque-ft-lbs",
+          "name": "Max Torque (ft-lbs)",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Maximum torque output in foot-pounds"
+        },
+        {
+          "id": "max-torque-nm",
+          "name": "Max Torque (Nm)",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Maximum torque output in Newton-meters"
+        },
+        {
+          "id": "speed-settings",
+          "name": "Speed Settings",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of speed/gear settings"
+        },
+        {
+          "id": "chuck-size",
+          "name": "Chuck Size",
+          "valueType": "text",
+          "description": "Chuck capacity (e.g., 1/2 inch, 13mm)"
+        },
+        {
+          "id": "blade-capacity",
+          "name": "Blade Capacity",
+          "valueType": "text",
+          "description": "Maximum blade size for saws"
+        },
+        {
+          "id": "cutting-depth-90",
+          "name": "Cutting Depth (90°)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Maximum cutting depth at 90° for saws (inches)"
+        },
+        {
+          "id": "cutting-depth-45",
+          "name": "Cutting Depth (45°)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Maximum cutting depth at 45° bevel for saws (inches)"
+        },
+        {
+          "id": "disc-size",
+          "name": "Disc Size",
+          "valueType": "text",
+          "description": "Grinding/cutting disc diameter for grinders"
+        },
+        {
+          "id": "stroke-length",
+          "name": "Stroke Length",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Stroke length for reciprocating saws (inches)"
+        },
+        {
+          "id": "opm",
+          "name": "OPM",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Orbits per minute for sanders"
+        },
+        {
+          "id": "bpm",
+          "name": "BPM",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Blows per minute for rotary hammers"
+        }
+      ]
+    },
+    {
+      "id": "physical",
+      "name": "Physical Characteristics",
+      "description": "Size, weight, and form factor",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "weight-bare",
+          "name": "Weight (bare tool)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Weight without battery in pounds"
+        },
+        {
+          "id": "weight-with-battery",
+          "name": "Weight (with battery)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Weight with standard/recommended battery in pounds"
+        },
+        {
+          "id": "length",
+          "name": "Length",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Overall length in inches"
+        },
+        {
+          "id": "height",
+          "name": "Height",
+          "valueType": {
+            "type": "decimal",
+            "direction": "neutral"
+          },
+          "description": "Overall height in inches"
+        },
+        {
+          "id": "head-length",
+          "name": "Head Length",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "For drills/drivers: distance from chuck to back of motor housing"
+        },
+        {
+          "id": "compact-design",
+          "name": "Compact Design",
+          "valueType": "boolean",
+          "description": "Marketed as compact/subcompact variant"
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "name": "Features",
+      "description": "Tool features and capabilities",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "led-work-light",
+          "name": "LED Work Light",
+          "valueType": "boolean",
+          "description": "Integrated LED to illuminate work area"
+        },
+        {
+          "id": "led-light-modes",
+          "name": "LED Light Modes",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of light modes/settings (0 if no light)"
+        },
+        {
+          "id": "variable-speed-trigger",
+          "name": "Variable Speed Trigger",
+          "valueType": "boolean",
+          "description": "Speed controlled by trigger pressure"
+        },
+        {
+          "id": "electronic-brake",
+          "name": "Electronic Brake",
+          "valueType": "boolean",
+          "description": "Motor stops quickly when trigger released"
+        },
+        {
+          "id": "electric-clutch",
+          "name": "Electric Clutch",
+          "valueType": "boolean",
+          "description": "Electronic clutch for consistent torque settings"
+        },
+        {
+          "id": "clutch-settings",
+          "name": "Clutch Settings",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of clutch/torque settings"
+        },
+        {
+          "id": "kickback-control",
+          "name": "Kickback Control",
+          "valueType": "boolean",
+          "description": "Anti-kickback or reactive torque protection"
+        },
+        {
+          "id": "soft-start",
+          "name": "Soft Start",
+          "valueType": "boolean",
+          "description": "Gradual ramp-up to prevent jerking"
+        },
+        {
+          "id": "belt-clip",
+          "name": "Belt Clip",
+          "valueType": "boolean",
+          "description": "Includes or accepts a belt clip/hook"
+        },
+        {
+          "id": "bit-holder",
+          "name": "Bit Holder",
+          "valueType": "boolean",
+          "description": "Onboard storage for bits"
+        },
+        {
+          "id": "rafter-hook",
+          "name": "Rafter Hook",
+          "valueType": "boolean",
+          "description": "Hook for hanging tool (common on nailers, circular saws)"
+        },
+        {
+          "id": "dust-collection",
+          "name": "Dust Collection",
+          "valueType": "boolean",
+          "description": "Built-in dust collection or port for attachment"
+        },
+        {
+          "id": "tool-free-adjustment",
+          "name": "Tool-Free Adjustment",
+          "valueType": "boolean",
+          "description": "Key adjustments possible without tools (blade change, depth, etc.)"
+        },
+        {
+          "id": "smart-connectivity",
+          "name": "Smart Connectivity",
+          "valueType": "boolean",
+          "description": "Bluetooth/app connectivity (ONE-KEY, Tool Connect, etc.)"
+        },
+        {
+          "id": "auto-stop-mode",
+          "name": "Auto-Stop Mode",
+          "valueType": "boolean",
+          "description": "Can be programmed to stop after set rotations/time"
+        }
+      ]
+    },
+    {
+      "id": "build-quality",
+      "name": "Build Quality",
+      "description": "Construction and durability characteristics",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "housing-material",
+          "name": "Housing Material",
+          "valueType": "text",
+          "description": "Primary housing material (e.g., metal gearbox, polymer body)"
+        },
+        {
+          "id": "ip-rating",
+          "name": "IP Rating",
+          "valueType": "text",
+          "description": "Ingress protection rating if specified (e.g., IP56)"
+        },
+        {
+          "id": "all-metal-gearbox",
+          "name": "All-Metal Gearbox",
+          "valueType": "boolean",
+          "description": "Gearbox housing is metal (vs polymer)"
+        },
+        {
+          "id": "all-metal-chuck",
+          "name": "All-Metal Chuck",
+          "valueType": "boolean",
+          "description": "Chuck is all-metal construction (for drills)"
+        },
+        {
+          "id": "rubberized-grip",
+          "name": "Rubberized Grip",
+          "valueType": "boolean",
+          "description": "Overmolded rubber grip area"
+        },
+        {
+          "id": "made-in",
+          "name": "Made In",
+          "valueType": "text",
+          "description": "Country of manufacture"
+        }
+      ]
+    },
+    {
+      "id": "market-value",
+      "name": "Market & Value",
+      "description": "Pricing, warranty, and target market",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "target-user",
+          "name": "Target User",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "diy", "value": "DIY", "color": "#22c55e" },
+              { "id": "prosumer", "value": "Prosumer", "color": "#3b82f6" },
+              { "id": "professional", "value": "Professional", "color": "#f97316" },
+              { "id": "industrial", "value": "Industrial", "color": "#ef4444" }
+            ]
+          },
+          "description": "Intended user segment"
+        },
+        {
+          "id": "msrp-bare",
+          "name": "MSRP (Bare Tool)",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Manufacturer suggested retail price, bare tool (USD)"
+        },
+        {
+          "id": "msrp-kit",
+          "name": "MSRP (Kit)",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "MSRP for kit with battery/charger if available (USD)"
+        },
+        {
+          "id": "street-price-bare",
+          "name": "Street Price (Bare)",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Typical actual selling price, bare tool (USD)"
+        },
+        {
+          "id": "warranty",
+          "name": "Warranty",
+          "valueType": "text",
+          "description": "Warranty period and type"
+        },
+        {
+          "id": "release-year",
+          "name": "Release Year",
+          "valueType": {
+            "type": "date",
+            "direction": "descending",
+            "format": "year"
+          },
+          "description": "Year the tool was released/announced"
+        }
+      ]
+    },
+    {
+      "id": "ratings",
+      "name": "Ratings & Reviews",
+      "description": "Third-party ratings and reviews",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "pro-tool-reviews-rating",
+          "name": "Pro Tool Reviews Rating",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "half": "⯨",
+              "full": "★"
+            }
+          },
+          "description": "Rating from protoolreviews.com"
+        },
+        {
+          "id": "amazon-rating",
+          "name": "Amazon Rating",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "half": "⯨",
+              "full": "★"
+            }
+          },
+          "description": "Average Amazon customer rating"
+        },
+        {
+          "id": "home-depot-rating",
+          "name": "Home Depot Rating",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "half": "⯨",
+              "full": "★"
+            }
+          },
+          "description": "Average Home Depot customer rating"
+        }
+      ]
+    }
+  ]
+}
