@@ -1,0 +1,318 @@
+{
+  "name": "PocketBase",
+  "description": "Open source backend-as-a-service in a single file with embedded database, auth, and file storage",
+  "icon": "https://pocketbase.io/images/logo.svg",
+  "url": "https://pocketbase.io",
+  "values": {
+    "description": {
+      "value": "Open source backend-as-a-service in a single file with embedded database, auth, and file storage",
+      "source": ["https://pocketbase.io"]
+    },
+    "website": {
+      "value": "https://pocketbase.io",
+      "source": ["https://pocketbase.io"]
+    },
+    "repository": {
+      "value": "https://github.com/pocketbase/pocketbase",
+      "source": ["https://github.com/pocketbase/pocketbase"]
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://github.com/pocketbase/pocketbase"]
+    },
+    "initial-release": {
+      "value": "2022",
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "First release in July 2022"
+    },
+    "latest-release": {
+      "value": "2025-12-21",
+      "source": ["https://github.com/pocketbase/pocketbase/releases"],
+      "comment": "v0.35.0"
+    },
+    "github-stars": {
+      "value": 54800,
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "As of January 2026"
+    },
+    "cms-type": {
+      "value": ["headless"],
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "API-first backend with no built-in frontend rendering; primarily a Backend-as-a-Service with CMS-like capabilities"
+    },
+    "deployment-model": {
+      "value": ["self-hosted"],
+      "source": ["https://pocketbase.io"],
+      "comment": "Single executable binary; no official managed hosting"
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/pocketbase/pocketbase"]
+    },
+    "database-support": {
+      "value": ["sqlite"],
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Embedded SQLite database only; designed for single-server deployments"
+    },
+    "api-type": {
+      "value": ["rest"],
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "REST-ish API with real-time subscriptions via WebSocket"
+    },
+    "multi-tenancy": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Single database per instance; multi-tenancy requires separate instances"
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "API-only; can be used as a backend for SSG frameworks but doesn't generate static sites itself"
+    },
+    "edge-deployment": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "SQLite-based; designed for single-server deployment"
+    },
+    "content-types": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "Collections with custom schemas; three types: Base, View, and Auth"
+    },
+    "custom-fields": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "13 field types including text, number, bool, email, URL, select, files, relations, JSON, geopoint"
+    },
+    "field-types": {
+      "value": ["text", "richtext", "media", "reference", "json"],
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "Editor field for rich text; File field for media; Relation field for references; JSON field for arbitrary data"
+    },
+    "content-relationships": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "RelationField supports single and multiple references with back-relation lookups"
+    },
+    "nested-components": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "JSON fields can store structured data but no formal nested component/block system"
+    },
+    "localization": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in i18n; must implement manually via custom fields or separate collections"
+    },
+    "content-validation": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/collections/"],
+      "comment": "Field-type validation, API rules as filters, and custom validation via hooks"
+    },
+    "embedded-interactives": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No specialized interactive content embedding"
+    },
+    "content-versioning": {
+      "value": false,
+      "source": ["https://github.com/pocketbase/pocketbase/discussions/50"],
+      "comment": "No built-in versioning; would need to implement manually"
+    },
+    "draft-publish": {
+      "value": false,
+      "source": ["https://github.com/pocketbase/pocketbase/discussions/50"],
+      "comment": "No built-in draft/publish workflow; can implement via custom status field"
+    },
+    "scheduled-publishing": {
+      "value": false,
+      "source": ["https://github.com/pocketbase/pocketbase/issues/2591"],
+      "comment": "No built-in scheduled jobs; must use external cron or implement via Go framework"
+    },
+    "approval-workflows": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in approval workflows"
+    },
+    "content-locking": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in content locking mechanism"
+    },
+    "audit-logging": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Request logging exists but no content audit trail; can implement via hooks"
+    },
+    "media-library": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "File attachments per record; basic management via admin UI"
+    },
+    "image-transformations": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "On-demand thumbnail generation with crop modes (WxH, WxHt, WxHb, WxHf)"
+    },
+    "external-media-storage": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "S3-compatible storage support (AWS S3, MinIO, Wasabi, DigitalOcean Spaces, etc.)"
+    },
+    "video-support": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "File upload supports any file type including video"
+    },
+    "svg-support": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "Supports any file type upload"
+    },
+    "folder-organization": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/files-handling/"],
+      "comment": "Files are attached to records; no separate media library with folders"
+    },
+    "role-based-access": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/api-rules-and-filters/"],
+      "comment": "Flexible API rules support role-based patterns via custom fields"
+    },
+    "granular-permissions": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/api-rules-and-filters/"],
+      "comment": "Collection-level CRUD rules (list, view, create, update, delete); no native field-level rules"
+    },
+    "sso-saml": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/authentication/"],
+      "comment": "OAuth2 only (30+ providers); no native SAML support"
+    },
+    "team-collaboration": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in comments, assignments, or notifications"
+    },
+    "audience-restrictions": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/api-rules-and-filters/"],
+      "comment": "API rules can restrict content access based on auth state and custom fields"
+    },
+    "typescript-sdk": {
+      "value": true,
+      "source": ["https://pocketbase.io"],
+      "comment": "Official JavaScript SDK with TypeScript support"
+    },
+    "content-type-sdk": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/js-migrations/"],
+      "comment": "Migrations system allows programmatic collection/schema definition"
+    },
+    "cli-tools": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Binary includes serve, migrate, and admin commands"
+    },
+    "local-development": {
+      "value": true,
+      "source": ["https://pocketbase.io"],
+      "comment": "Single binary runs anywhere; extremely easy local setup"
+    },
+    "webhooks": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/js-event-hooks/"],
+      "comment": "Event hooks (Go/JS) can trigger external services; webhook plugin available"
+    },
+    "plugin-system": {
+      "value": true,
+      "source": ["https://pocketbase.io/docs/js-overview/"],
+      "comment": "Extensible via Go framework or JavaScript hooks (pb_hooks directory)"
+    },
+    "admin-ui-customization": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Admin UI is built-in but not customizable without modifying source"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Good documentation with examples; comprehensive API reference; active community"
+    },
+    "frontend-frameworks": {
+      "value": [],
+      "source": ["https://pocketbase.io"],
+      "comment": "No official framework integrations but works with any frontend via REST API; community examples for React, Vue, Svelte, Flutter"
+    },
+    "search-integration": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "Basic filtering via API rules; no full-text search integration"
+    },
+    "preview-mode": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No content preview system"
+    },
+    "ecommerce-integration": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in e-commerce integrations"
+    },
+    "analytics-integration": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in analytics"
+    },
+    "ai-features": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No AI features"
+    },
+    "cdn-included": {
+      "value": false,
+      "source": ["https://pocketbase.io"],
+      "comment": "Self-hosted only; no CDN included"
+    },
+    "response-caching": {
+      "value": false,
+      "source": ["https://pocketbase.io/docs/"],
+      "comment": "No built-in API response caching; thumbnail caching exists for images"
+    },
+    "rate-limits": {
+      "value": "Unlimited",
+      "source": ["https://pocketbase.io"],
+      "comment": "Self-hosted; no rate limits"
+    },
+    "global-regions": {
+      "value": false,
+      "source": ["https://pocketbase.io"],
+      "comment": "Self-hosted; single-instance design"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "Fully open source and free"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "MIT licensed"
+    },
+    "pricing-model": {
+      "value": ["free"],
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "Completely free and open source"
+    },
+    "commercial-support": {
+      "value": false,
+      "source": ["https://github.com/pocketbase/pocketbase"],
+      "comment": "Community support only; no official commercial support"
+    },
+    "enterprise-features": {
+      "value": false,
+      "source": ["https://pocketbase.io"],
+      "comment": "No enterprise tier or features"
+    }
+  }
+}

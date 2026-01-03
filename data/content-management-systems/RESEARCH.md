@@ -241,7 +241,7 @@ Emerging or specialized options:
 - [x] **Publii** - Desktop-based static CMS
 - [x] **Grav** - Flat-file CMS (no database)
 - [x] **Statamic** - Laravel flat-file CMS (commercial)
-- [ ] **PocketBase** - Backend-as-a-Service with CMS features
+- [x] **PocketBase** - Backend-as-a-Service with CMS features
 
 **Managed**
 - [ ] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
