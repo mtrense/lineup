@@ -202,7 +202,7 @@ Users should be able to:
 - [x] Bosch GSR 18V-60 FC (FlexiClick system)
 
 **Budget / Shared Platform**
-- [ ] Flex FX1371A-Z 24V (Stacked Lithium)
+- [x] Flex FX1371A-Z 24V (Stacked Lithium)
 - [ ] Parkside PSSA 20-Li A1 (Lidl, 20V/Team)
 - [ ] Einhell TE-CI 18 Li (Power X-Change)
 - [ ] Worx WX292 20V
