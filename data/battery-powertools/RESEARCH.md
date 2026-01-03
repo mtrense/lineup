@@ -186,7 +186,7 @@ Users should be able to:
 ### Impact Drivers (Priority Category)
 
 **Premium / Professional**
-- [ ] Milwaukee M18 FUEL 2953-20 (Gen 4)
+- [x] Milwaukee M18 FUEL 2953-20 (Gen 4)
 - [ ] DeWalt DCF850 ATOMIC 20V MAX
 - [ ] DeWalt DCF887 20V MAX XR
 - [ ] Makita XDT19 18V LXT
