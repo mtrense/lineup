@@ -355,3 +355,8 @@ When asked to research a candidate:
 - Data files use JSON format
 - Candidate filenames should be lowercase, hyphenated (e.g., `postgresql.json`)
 - All candidates in a comparison type must have values for all required attributes
+
+## Shell Command Guidelines
+- Prefer running individual commands separately rather than chaining with `&&` or `;`
+- This avoids permission prompts since individual commands (like `git add`, `git commit`) are allow-listed, but chained commands require approval
+- Exception: Use chaining when commands have true dependencies that require atomicity
