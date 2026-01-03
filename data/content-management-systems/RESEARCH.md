@@ -240,7 +240,7 @@ Emerging or specialized options:
 - [x] **Apostrophe** - In-context editing CMS (Node.js)
 - [x] **Publii** - Desktop-based static CMS
 - [x] **Grav** - Flat-file CMS (no database)
-- [ ] **Statamic** - Laravel flat-file CMS (commercial)
+- [x] **Statamic** - Laravel flat-file CMS (commercial)
 - [ ] **PocketBase** - Backend-as-a-Service with CMS features
 
 **Managed**
