@@ -199,7 +199,7 @@ Users should be able to:
 **Prosumer / DIY**
 - [x] Ryobi PBLID02 ONE+ HP
 - [x] Ridgid R872311 18V SubCompact
-- [ ] Bosch GSR 18V-60 FC (FlexiClick system)
+- [x] Bosch GSR 18V-60 FC (FlexiClick system)
 
 **Budget / Shared Platform**
 - [ ] Flex FX1371A-Z 24V (Stacked Lithium)
