@@ -198,7 +198,7 @@ Users should be able to:
 
 **Prosumer / DIY**
 - [x] Ryobi PBLID02 ONE+ HP
-- [ ] Ridgid R862311 18V SubCompact
+- [x] Ridgid R872311 18V SubCompact
 - [ ] Bosch GSR 18V-60 FC (FlexiClick system)
 
 **Budget / Shared Platform**
