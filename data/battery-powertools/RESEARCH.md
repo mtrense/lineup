@@ -189,7 +189,7 @@ Users should be able to:
 - [x] DeWalt DCF850 ATOMIC 20V MAX
 - [x] DeWalt DCF887 20V MAX XR
 - [x] Makita XDT19 18V LXT
-- [ ] Makita XGT TD002G 40V
+- [x] Makita XGT TD002G 40V
 - [ ] Bosch GDR18V-1860 Freak (Bosch AMPShare)
 - [ ] Metabo HPT WH18DBDL2
 - [ ] Festool TID 18 (Metabo CAS)
