@@ -194,7 +194,7 @@ Users should be able to:
 - [x] Metabo HPT WH18DBDL2
 - [x] Festool TID 18 (Metabo CAS)
 - [x] Metabo SSD 18 LTX 200 BL (Metabo CAS)
-- [ ] Hilti SID 6-22
+- [x] Hilti SID 6-22
 
 **Prosumer / DIY**
 - [ ] Ryobi PBLID02 ONE+ HP
