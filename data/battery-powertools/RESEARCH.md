@@ -192,7 +192,7 @@ Users should be able to:
 - [x] Makita XGT TD002G 40V
 - [x] Bosch GDR18V-1860CN (Bosch AMPShare)
 - [x] Metabo HPT WH18DBDL2
-- [ ] Festool TID 18 (Metabo CAS)
+- [x] Festool TID 18 (Metabo CAS)
 - [ ] Metabo SSD 18 LTX 400 BL (Metabo CAS)
 - [ ] Hilti SID 6-22
 
