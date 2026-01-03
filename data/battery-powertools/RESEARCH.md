@@ -197,7 +197,7 @@ Users should be able to:
 - [x] Hilti SID 6-22
 
 **Prosumer / DIY**
-- [ ] Ryobi PBLID02 ONE+ HP
+- [x] Ryobi PBLID02 ONE+ HP
 - [ ] Ridgid R862311 18V SubCompact
 - [ ] Bosch GSR 18V-60 FC (FlexiClick system)
 
