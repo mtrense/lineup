@@ -360,3 +360,12 @@ When asked to research a candidate:
 - Prefer running individual commands separately rather than chaining with `&&` or `;`
 - This avoids permission prompts since individual commands (like `git add`, `git commit`) are allow-listed, but chained commands require approval
 - Exception: Use chaining when commands have true dependencies that require atomicity
+
+## Git Commit Message Format
+- Use multiple `-m` flags for multi-line commit messages instead of HEREDOCs
+- First `-m` is the subject line, subsequent `-m` flags add paragraphs
+- Example:
+  ```bash
+  git commit -m "Subject line" -m "Body paragraph with details." -m "🤖 Generated with [Claude Code](https://claude.com/claude-code)" -m "Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+  ```
+- This format is allow-listed and avoids permission prompts
