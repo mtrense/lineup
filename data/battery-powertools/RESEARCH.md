@@ -155,14 +155,15 @@ Users should be able to:
 ## Assessment Guidelines
 
 - **Nominal Voltage**: Record actual nominal voltage. "20V MAX" = 18V nominal, "60V MAX" = 54V nominal.
-- **Multi-Brand Systems**:
-  - "CAS/AmpShare" - Metabo-originated alliance (Metabo, Festool, Mafell, Fein, Rothenberger, Collomix, Eisenblätter, Starmix, Eibenstock, Haaga, Steinel, Birchmeier, etc.)
-  - "Metabo HPT MultiVolt" - Works with both 18V and 36V
+- **Multi-Brand Systems** (note: these are **not cross-compatible** with each other):
+  - "Bosch AMPShare" - Bosch Professional 18V system with 35+ partner brands. Uses Bosch ProCORE18V batteries. Partners include: Fein, Rothenberger, Steinel, Ledlenser, Wagner, Fischer, Klauke, Leister, and many industrial specialists. Website: ampshare.com
+  - "Metabo CAS" - Cordless Alliance System, Metabo 18V LiHD platform. Separate from Bosch AMPShare despite similar concept. Partners include: Festool, Mafell, Metabo, Eibenstock, Collomix, Haaga, Starmix, Birchmeier. Uses Metabo LiHD batteries.
+  - "Metabo HPT MultiVolt" - Hikoki/Metabo HPT system, works with both 18V and 36V batteries. Note: Metabo HPT (formerly Hitachi, owned by KKR) is a completely different company from Metabo (German, CAS founder).
   - "Parkside 20V/Team" - Lidl house brand, compatible across Parkside tools
   - "Power X-Change" - Einhell platform, some third-party compatibility
-  - "Flex Stacked Lithium" - Flex 24V platform (note: Flex US is separate from Flex EU/CAS)
-  - "EGO Power+" - Outdoor focus but some crossover
-  - "Proprietary" - Single-brand only (Milwaukee, DeWalt, Makita, Ryobi, Hilti, Bosch Professional, etc.)
+  - "Flex 24V" - Flex (US) Stacked Lithium platform. Note: Flex US is separate from Flex EU which participates in other alliances.
+  - "EGO 56V" - Outdoor focus but expanding to power tools
+  - "Proprietary" - Single-brand only (Milwaukee, DeWalt, Makita, Ryobi, Hilti, etc.)
 - **Torque Values**: Prefer manufacturer specs. Note if value is from third-party testing.
 - **Weight**: Always specify bare tool weight. Include battery weight separately if available.
 - **Street Price**: Use typical non-sale pricing from major retailers. Note date of price check.
@@ -190,10 +191,10 @@ Users should be able to:
 - [ ] DeWalt DCF887 20V MAX XR
 - [ ] Makita XDT19 18V LXT
 - [ ] Makita XGT TD002G 40V
-- [ ] Bosch GDR18V-1860 Freak
+- [ ] Bosch GDR18V-1860 Freak (Bosch AMPShare)
 - [ ] Metabo HPT WH18DBDL2
-- [ ] Festool TID 18 (CAS/AmpShare)
-- [ ] Metabo SSD 18 LTX 400 BL (CAS/AmpShare)
+- [ ] Festool TID 18 (Metabo CAS)
+- [ ] Metabo SSD 18 LTX 400 BL (Metabo CAS)
 - [ ] Hilti SID 6-22
 
 **Prosumer / DIY**
@@ -213,14 +214,14 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2903-20
 - [ ] DeWalt DCD800 20V MAX XR
 - [ ] Makita XFD16 18V LXT
-- [ ] Festool T 18+3 (CAS/AmpShare)
-- [ ] Metabo BS 18 LTX BL I (CAS/AmpShare)
-- [ ] Fein ABS 18 QC (CAS/AmpShare)
+- [ ] Festool T 18+3 (Metabo CAS)
+- [ ] Metabo BS 18 LTX BL I (Metabo CAS)
+- [ ] Fein ABS 18 QC (Bosch AMPShare)
 - [ ] Hilti SF 6-22
 
 **Prosumer / DIY**
 - [ ] Ryobi PBLDD01 ONE+ HP
-- [ ] Bosch GSR 18V-90 C Professional
+- [ ] Bosch GSR 18V-90 C Professional (Bosch AMPShare)
 
 **Budget / Shared Platform**
 - [ ] Flex FX1151-Z 24V
@@ -233,12 +234,12 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2904-20
 - [ ] DeWalt DCD999 20V MAX XR FLEXVOLT Advantage
 - [ ] Makita XPH16 18V LXT
-- [ ] Festool TPC 18/4 (CAS/AmpShare)
-- [ ] Metabo SB 18 LTX BL I (CAS/AmpShare)
+- [ ] Festool TPC 18/4 (Metabo CAS)
+- [ ] Metabo SB 18 LTX BL I (Metabo CAS)
 - [ ] Hilti SF 6H-22
 
 **Prosumer / DIY**
-- [ ] Bosch GSB 18V-90 C Professional
+- [ ] Bosch GSB 18V-90 C Professional (Bosch AMPShare)
 - [ ] Ryobi PBLHM101 ONE+ HP
 
 **Budget / Shared Platform**
@@ -252,13 +253,13 @@ Users should be able to:
 - [ ] DeWalt DCS573 20V MAX (7-1/4")
 - [ ] Makita XSH06 X2 LXT (36V, 7-1/4")
 - [ ] Makita HS004G XGT 40V (190mm)
-- [ ] Festool HKC 55 (CAS/AmpShare)
-- [ ] Mafell K 55 18M bl (CAS/AmpShare)
-- [ ] Metabo KS 18 LTX 57 (CAS/AmpShare)
+- [ ] Festool HKC 55 (Metabo CAS)
+- [ ] Mafell K 55 18M bl (Metabo CAS)
+- [ ] Metabo KS 18 LTX 57 (Metabo CAS)
 
 **Prosumer / DIY**
 - [ ] Ryobi PBLCS300 ONE+ HP
-- [ ] Bosch GKS 18V-68 GC Professional
+- [ ] Bosch GKS 18V-68 GC Professional (Bosch AMPShare)
 
 **Budget / Shared Platform**
 - [ ] Flex FX2141-Z 24V (7-1/4")
@@ -271,11 +272,11 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2821-20 SAWZALL
 - [ ] DeWalt DCS369 ATOMIC 20V MAX
 - [ ] Makita XRJ07 18V LXT
-- [ ] Metabo SSE 18 LTX BL (CAS/AmpShare)
+- [ ] Metabo SSE 18 LTX BL (Metabo CAS)
 - [ ] Hilti SR 6-22
 
 **Prosumer / DIY**
-- [ ] Bosch GSA 18V-32 Professional
+- [ ] Bosch GSA 18V-32 Professional (Bosch AMPShare)
 - [ ] Ryobi RRS1801M ONE+
 
 **Budget / Shared Platform**
@@ -289,12 +290,12 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2880-20 (4-1/2"/5")
 - [ ] DeWalt DCG418 60V MAX FLEXVOLT (4-1/2"/6")
 - [ ] Makita XAG26 18V LXT (4-1/2"/5")
-- [ ] Metabo WB 18 LTX BL 125 Quick (CAS/AmpShare)
-- [ ] Festool AGC 18 (CAS/AmpShare)
+- [ ] Metabo WB 18 LTX BL 125 Quick (Metabo CAS)
+- [ ] Festool AGC 18 (Metabo CAS)
 - [ ] Hilti AG 6-22
 
 **Prosumer / DIY**
-- [ ] Bosch GWS 18V-15 SC Professional
+- [ ] Bosch GWS 18V-15 SC Professional (Bosch AMPShare)
 - [ ] Ryobi PBLAG01 ONE+ HP
 
 **Budget / Shared Platform**
@@ -308,8 +309,8 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2912-20 (1" SDS-Plus)
 - [ ] DeWalt DCH293 20V MAX XR (1-1/8" SDS-Plus)
 - [ ] Makita XRH12 18V LXT (11/16" SDS-Plus)
-- [ ] Bosch GBH18V-26 18V (1" SDS-Plus)
-- [ ] Metabo KHA 18 LTX BL 24 Quick (CAS/AmpShare)
+- [ ] Bosch GBH18V-26 18V (1" SDS-Plus, Bosch AMPShare)
+- [ ] Metabo KHA 18 LTX BL 24 Quick (Metabo CAS)
 - [ ] Hilti TE 6-22
 
 **Prosumer / DIY**
@@ -326,12 +327,12 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2836-20
 - [ ] DeWalt DCS354 ATOMIC 20V MAX
 - [ ] Makita XMT04 18V LXT
-- [ ] Festool OSC 18 (CAS/AmpShare)
-- [ ] Fein MultiMaster AMM 700 Max (CAS/AmpShare)
-- [ ] Metabo MT 18 LTX BL QSL (CAS/AmpShare)
+- [ ] Festool OSC 18 (Metabo CAS)
+- [ ] Fein MultiMaster AMM 700 Max (Bosch AMPShare)
+- [ ] Metabo MT 18 LTX BL QSL (Metabo CAS)
 
 **Prosumer / DIY**
-- [ ] Bosch GOP 18V-34 Professional
+- [ ] Bosch GOP 18V-34 Professional (Bosch AMPShare)
 - [ ] Ryobi PBLMT50 ONE+ HP
 
 **Budget / Shared Platform**
@@ -344,7 +345,7 @@ Users should be able to:
 - [ ] Milwaukee M18 FUEL 2746-20 (18GA Brad)
 - [ ] DeWalt DCN680 20V MAX (18GA Brad)
 - [ ] Makita XNB02 18V LXT (18GA Brad)
-- [ ] Metabo NFR 18 LTX 90 BL (CAS/AmpShare, Framing)
+- [ ] Metabo NFR 18 LTX 90 BL (Metabo CAS, Framing)
 
 **Prosumer / DIY**
 - [ ] Ryobi P325 ONE+ (16GA)
@@ -368,4 +369,7 @@ Users should be able to:
 
 7. **Spec Sheet Gaps**: Many manufacturers don't publish complete specs. Use `null` rather than guessing. Common gaps: IP ratings, head length, exact weights.
 
-8. **Multi-Brand Systems**: The CAS (Cordless Alliance System) / AmpShare ecosystem is growing. Always verify current membership as brands join/leave.
+8. **Multi-Brand Systems**: There are two major 18V multi-brand alliances in Europe:
+   - **Bosch AMPShare** (Bosch Professional 18V, uses ProCORE batteries)
+   - **Metabo CAS** (Metabo 18V LiHD batteries)
+   These are **not cross-compatible**. Always verify current membership as brands may join/leave. Note that Metabo HPT (formerly Hitachi) is unrelated to Metabo (German).
