@@ -245,7 +245,7 @@ Emerging or specialized options:
 
 **Managed**
 - [x] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
-- [ ] **Contentstack** - Enterprise headless CMS
+- [x] **Contentstack** - Enterprise headless CMS
 - [ ] **Agility CMS** - Hybrid headless with page management
 - [ ] **ButterCMS** - Developer-focused headless
 - [ ] **Cosmic** - Headless CMS with Bucket-based content
