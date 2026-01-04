@@ -244,7 +244,7 @@ Emerging or specialized options:
 - [x] **PocketBase** - Backend-as-a-Service with CMS features
 
 **Managed**
-- [ ] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
+- [x] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
 - [ ] **Contentstack** - Enterprise headless CMS
 - [ ] **Agility CMS** - Hybrid headless with page management
 - [ ] **ButterCMS** - Developer-focused headless
