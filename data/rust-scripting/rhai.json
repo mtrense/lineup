@@ -1,0 +1,301 @@
+{
+  "name": "Rhai",
+  "description": "An embedded scripting language and evaluation engine for Rust with JavaScript+Rust-like syntax",
+  "icon": "🦀",
+  "url": "https://rhai.rs/",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2.0"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Dual-licensed under MIT or Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/rhaiscript/rhai"]
+    },
+    "language-family": {
+      "value": ["javascript-like", "rust-like"],
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "Described as 'JavaScript+Rust' syntax with dynamic typing"
+    },
+    "repository": {
+      "value": "https://github.com/rhaiscript/rhai"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rhai"
+    },
+    "documentation": {
+      "value": "https://rhai.rs/book/"
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://docs.rs/crate/rhai/0.1.0"],
+      "comment": "First crates.io release (0.1.0) on 2016-03-14"
+    },
+    "latest-version": {
+      "value": "1.24.0",
+      "source": ["https://docs.rs/crate/rhai/latest"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://rhai.rs/book/about/features.html"]
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional"],
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "Supports imperative, functional (via closures/function pointers), and some OOP patterns"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "Dynamic dispatch via function pointers with currying"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "Closures that can capture shared variables"
+    },
+    "pattern-matching": {
+      "value": true,
+      "source": ["https://rhai.rs/book/language/switch.html"],
+      "comment": "Switch statements with pattern matching, ranges, conditions, and default cases"
+    },
+    "error-handling": {
+      "value": ["result-type"],
+      "source": ["https://docs.rs/rhai/latest/rhai/"],
+      "comment": "Rust integration returns Result<T, Box<EvalAltResult>>"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "No native async in scripts. Engine can be Send+Sync via 'sync' feature for use in async contexts"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://rhai.rs/book/"],
+      "comment": "Built-in iterator support with for loops and iteration methods"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://rhai.rs/book/language/modules/"]
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://rhai.rs/book/"],
+      "comment": "Built-in functions for strings, arrays, maps, math, etc. Disableable via feature flags"
+    },
+    "execution-strategy": {
+      "value": ["interpreted"],
+      "source": ["https://rhai.rs/book/engine/compile.html"],
+      "comment": "AST-walking interpreter, not bytecode"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://rhai.rs/book/engine/compile.html"],
+      "comment": "Can eval directly or precompile to AST for repeated execution"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://rhai.rs/book/"],
+      "comment": "Scripts can be recompiled and re-evaluated at runtime"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://lib.rs/crates/rhai"],
+      "comment": "REPL available via optional rustyline dependency"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://rhai.rs/book/start/features.html"],
+      "comment": "Debugging interface available via feature flag"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://rhai.rs/book/start/features.html"],
+      "comment": "Position tracking during parsing, can be disabled for performance"
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Minimal dependencies, no JIT warmup"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://rhai.rs/book/about/benchmarks.html"],
+      "comment": "AST-walking interpreter; claims '1M iterations in 0.14s' on single-core Linux VM"
+    },
+    "memory-overhead": {
+      "value": ["minimal"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Small footprint, designed for embedded use"
+    },
+    "garbage-collection": {
+      "value": ["reference-counting"],
+      "source": ["https://rhai.rs/book/"],
+      "comment": "Uses Rust's ownership semantics with clone-on-write and reference counting for shared values"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "No C/C++ dependencies. Dependencies: smallvec, thin-vec, num-traits, once_cell, ahash, bitflags, smartstring"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Don't Panic guarantee - any panic is considered a bug"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/rhai/latest/rhai/"],
+      "comment": "Good derive macros, builder patterns, Result types. Some verbosity for complex registrations"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://rhai.rs/book/start/features.html"],
+      "comment": "Optional 'serde' feature for serialization"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Scripts execute synchronously. 'sync' feature makes Engine Send+Sync for use in async contexts"
+    },
+    "function-registration": {
+      "value": ["macro-based", "builder-api"],
+      "source": ["https://docs.rs/rhai/latest/rhai/"],
+      "comment": "Derive macros, register_fn, and low-level register_raw_fn"
+    },
+    "type-mapping": {
+      "value": ["automatic", "serde-based"],
+      "source": ["https://docs.rs/rhai/latest/rhai/"],
+      "comment": "Automatic conversion for common types, serde for complex types"
+    },
+    "no-std-compatible": {
+      "value": true,
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "no_std builds supported with additional dependencies"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://rhai.rs/book/about/features.html"],
+      "comment": "WASM builds supported, pulls in web-time and other WASM-specific dependencies"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://rhai.rs/book/start/features.html"],
+      "comment": "Can disable all built-ins via feature flags: no_index, no_object, no_function, no_module, etc."
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "Operation count limits, execution time limits via progress callback"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "Configurable limits on string/array/map sizes"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "No built-in file/network I/O - all capabilities must be explicitly registered"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "Feature flags and selective registration control what scripts can access"
+    },
+    "default-deny": {
+      "value": true,
+      "source": ["https://rhai.rs/book/safety/"],
+      "comment": "Scripts can only access explicitly registered functions and types"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://rhai.rs/book/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://rhai.rs/book/"]
+    },
+    "share-data": {
+      "value": ["clone-only", "references"],
+      "source": ["https://rhai.rs/book/rust/register-raw.html"],
+      "comment": "Primarily clone-based, but references possible via read_lock/write_lock for first argument"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://rhai.rs/book/"]
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://github.com/rhaiscript/rhai"]
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Tight integration with native Rust functions and types, including getters/setters, methods and indexers"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://rhai.rs/book/rust/register-raw.html"],
+      "comment": "Scripts can pass function pointers for callbacks"
+    },
+    "github-stars": {
+      "value": 5100,
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 2500000,
+      "source": ["https://lib.rs/crates/rhai"],
+      "comment": "Estimated based on ~217k monthly downloads over project lifetime"
+    },
+    "last-release": {
+      "value": "2026-01-19",
+      "source": ["https://docs.rs/crate/rhai/latest"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No official package ecosystem, but extension crates exist (rhai-sci, rhai-rand, rhai-http)"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "VS Code extension available for syntax highlighting"
+    },
+    "example-projects": {
+      "value": ["games", "config", "plugins", "automation"],
+      "source": ["https://lib.rs/crates/rhai"],
+      "comment": "Used in 367 crates including game engines and configuration systems"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Regular releases, active issue resolution, version 1.24.0 released Jan 2026"
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://rhai.rs/book/"],
+      "comment": "Comprehensive book with tutorials, API reference, migration guides, and extensive examples"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "Primary maintainer plus multiple contributors"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/rhaiscript/rhai"],
+      "comment": "First released 2016, now at v1.24.0 with stable API"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "config-logic", "plugin-system", "rule-engine", "automation"],
+      "source": ["https://rhai.rs/book/"]
+    }
+  }
+}

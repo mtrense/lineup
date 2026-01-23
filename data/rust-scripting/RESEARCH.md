@@ -209,7 +209,7 @@ Based on available benchmarks and language design:
 ### Tier 1 (Must Have)
 Core options most Rust developers will evaluate:
 
-- [ ] **Rhai** - Popular pure-Rust scripting, simple syntax, good docs
+- [x] **Rhai** - Popular pure-Rust scripting, simple syntax, good docs
 - [ ] **mlua** - Lua 5.x/LuaJIT bindings, most mature Lua integration
 - [ ] **Rune** - Async-native, Rust-like syntax, promising design
 - [ ] **boa** - JavaScript engine in pure Rust, ES2023+ compliance
