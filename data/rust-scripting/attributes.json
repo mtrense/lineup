@@ -1,0 +1,710 @@
+{
+  "name": "Rust Embedded Scripting Languages",
+  "description": "Compare scripting languages and interpreters that can be embedded in Rust applications",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Information",
+      "description": "Basic information about the scripting language",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "#22c55e" },
+              { "id": "apache-2.0", "value": "Apache-2.0", "color": "#22c55e" },
+              { "id": "mpl-2.0", "value": "MPL-2.0", "color": "#eab308" },
+              { "id": "lgpl", "value": "LGPL", "color": "#f97316" },
+              { "id": "bsd", "value": "BSD", "color": "#22c55e" },
+              { "id": "unlicense", "value": "Unlicense", "color": "#22c55e" }
+            ]
+          },
+          "description": "Software license"
+        },
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "pure-rust", "value": "Pure Rust", "color": "#f97316" },
+              { "id": "rust-bindings", "value": "Rust Bindings", "color": "#3b82f6" },
+              { "id": "hybrid", "value": "Hybrid", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Whether pure Rust or bindings to native code"
+        },
+        {
+          "id": "language-family",
+          "name": "Language Family",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "custom", "value": "Custom", "color": "#6b7280" },
+              { "id": "lua-like", "value": "Lua-like", "color": "#3b82f6" },
+              { "id": "javascript-like", "value": "JavaScript-like", "color": "#eab308" },
+              { "id": "rust-like", "value": "Rust-like", "color": "#f97316" },
+              { "id": "lisp-like", "value": "Lisp-like", "color": "#22c55e" },
+              { "id": "python-like", "value": "Python-like", "color": "#3b82f6" },
+              { "id": "ruby-like", "value": "Ruby-like", "color": "#ef4444" },
+              { "id": "functional", "value": "Functional", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "Syntax inspiration and language family"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Link to crates.io package"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Link to documentation"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "neutral",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-version",
+          "name": "Latest Stable Version",
+          "valueType": "text",
+          "description": "Current stable version number"
+        }
+      ]
+    },
+    {
+      "id": "language-features",
+      "name": "Language Features",
+      "description": "Programming language capabilities",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "typing",
+          "name": "Typing Discipline",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "dynamic", "value": "Dynamic", "color": "#eab308" },
+              { "id": "static", "value": "Static", "color": "#22c55e" },
+              { "id": "gradual", "value": "Gradual", "color": "#3b82f6" },
+              { "id": "duck-typed", "value": "Duck-typed", "color": "#f97316" }
+            ]
+          },
+          "description": "Type system characteristics"
+        },
+        {
+          "id": "paradigm",
+          "name": "Paradigm",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "imperative", "value": "Imperative", "color": "#6b7280" },
+              { "id": "functional", "value": "Functional", "color": "#8b5cf6" },
+              { "id": "object-oriented", "value": "Object-Oriented", "color": "#3b82f6" },
+              { "id": "prototype-based", "value": "Prototype-based", "color": "#f97316" },
+              { "id": "multi-paradigm", "value": "Multi-paradigm", "color": "#22c55e" }
+            ]
+          },
+          "description": "Supported programming paradigms"
+        },
+        {
+          "id": "first-class-functions",
+          "name": "First-Class Functions",
+          "valueType": "boolean",
+          "description": "Functions can be passed as values"
+        },
+        {
+          "id": "closures",
+          "name": "Closures",
+          "valueType": "boolean",
+          "description": "Functions can capture variables from enclosing scope"
+        },
+        {
+          "id": "pattern-matching",
+          "name": "Pattern Matching",
+          "valueType": "boolean",
+          "description": "Has destructuring/pattern matching constructs"
+        },
+        {
+          "id": "error-handling",
+          "name": "Error Handling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "exceptions", "value": "Exceptions", "color": "#ef4444" },
+              { "id": "result-type", "value": "Result Type", "color": "#22c55e" },
+              { "id": "error-values", "value": "Error Values", "color": "#eab308" },
+              { "id": "panic-only", "value": "Panic Only", "color": "#ef4444" }
+            ]
+          },
+          "description": "How errors propagate"
+        },
+        {
+          "id": "async-await",
+          "name": "Async/Await",
+          "valueType": "boolean",
+          "description": "Native async/await syntax support"
+        },
+        {
+          "id": "iterators-generators",
+          "name": "Iterators/Generators",
+          "valueType": "boolean",
+          "description": "Iterator protocol or generator functions"
+        },
+        {
+          "id": "module-system",
+          "name": "Module System",
+          "valueType": "boolean",
+          "description": "Can organize code into reusable modules"
+        },
+        {
+          "id": "standard-library",
+          "name": "Standard Library",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "none", "value": "None", "color": "#ef4444" },
+              { "id": "minimal", "value": "Minimal", "color": "#f97316" },
+              { "id": "moderate", "value": "Moderate", "color": "#eab308" },
+              { "id": "comprehensive", "value": "Comprehensive", "color": "#22c55e" }
+            ]
+          },
+          "description": "Built-in standard library scope"
+        }
+      ]
+    },
+    {
+      "id": "execution",
+      "name": "Execution Model",
+      "description": "How scripts are compiled and executed",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "execution-strategy",
+          "name": "Execution Strategy",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "interpreted", "value": "Interpreted", "color": "#eab308" },
+              { "id": "bytecode", "value": "Bytecode", "color": "#3b82f6" },
+              { "id": "jit", "value": "JIT", "color": "#22c55e" },
+              { "id": "aot", "value": "AOT", "color": "#8b5cf6" }
+            ]
+          },
+          "description": "How scripts are executed"
+        },
+        {
+          "id": "compilation-model",
+          "name": "Compilation Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "runtime-eval", "value": "Runtime Eval", "color": "#eab308" },
+              { "id": "precompiled", "value": "Precompiled", "color": "#22c55e" },
+              { "id": "both", "value": "Both", "color": "#3b82f6" }
+            ]
+          },
+          "description": "When scripts are compiled"
+        },
+        {
+          "id": "hot-reloading",
+          "name": "Hot Reloading",
+          "valueType": "boolean",
+          "description": "Can reload scripts without restarting host"
+        },
+        {
+          "id": "repl-support",
+          "name": "REPL Support",
+          "valueType": "boolean",
+          "description": "Interactive read-eval-print-loop available"
+        },
+        {
+          "id": "debugging-support",
+          "name": "Debugging Support",
+          "valueType": "boolean",
+          "description": "Breakpoints, step-through, variable inspection"
+        },
+        {
+          "id": "source-maps",
+          "name": "Source Maps",
+          "valueType": "boolean",
+          "description": "Maps runtime errors to source locations"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Speed and resource usage characteristics",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "startup-time",
+          "name": "Startup Time",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "instant", "value": "Instant (<1ms)", "color": "#22c55e" },
+              { "id": "fast", "value": "Fast (1-10ms)", "color": "#84cc16" },
+              { "id": "moderate", "value": "Moderate (10-100ms)", "color": "#eab308" },
+              { "id": "slow", "value": "Slow (>100ms)", "color": "#ef4444" }
+            ]
+          },
+          "description": "Time to initialize interpreter"
+        },
+        {
+          "id": "execution-speed",
+          "name": "Execution Speed",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "near-native", "value": "Near-native", "color": "#22c55e" },
+              { "id": "fast", "value": "Fast", "color": "#84cc16" },
+              { "id": "moderate", "value": "Moderate", "color": "#eab308" },
+              { "id": "slow", "value": "Slow", "color": "#ef4444" }
+            ]
+          },
+          "description": "Script execution performance"
+        },
+        {
+          "id": "memory-overhead",
+          "name": "Memory Overhead",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "minimal", "value": "Minimal (<1MB)", "color": "#22c55e" },
+              { "id": "low", "value": "Low (1-10MB)", "color": "#84cc16" },
+              { "id": "moderate", "value": "Moderate (10-50MB)", "color": "#eab308" },
+              { "id": "high", "value": "High (>50MB)", "color": "#ef4444" }
+            ]
+          },
+          "description": "Base interpreter memory usage"
+        },
+        {
+          "id": "garbage-collection",
+          "name": "Garbage Collection",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "none", "value": "None/RAII", "color": "#8b5cf6" },
+              { "id": "reference-counting", "value": "Reference Counting", "color": "#3b82f6" },
+              { "id": "tracing-gc", "value": "Tracing GC", "color": "#eab308" },
+              { "id": "mark-sweep", "value": "Mark-Sweep", "color": "#f97316" },
+              { "id": "generational", "value": "Generational", "color": "#22c55e" }
+            ]
+          },
+          "description": "Memory management strategy"
+        }
+      ]
+    },
+    {
+      "id": "rust-integration",
+      "name": "Rust Integration",
+      "description": "Quality of integration with Rust",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "pure-rust",
+          "name": "Pure Rust",
+          "valueType": "boolean",
+          "description": "No C/C++ dependencies"
+        },
+        {
+          "id": "api-safety",
+          "name": "API Safety",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "fully-safe", "value": "Fully Safe", "color": "#22c55e" },
+              { "id": "minimal-unsafe", "value": "Minimal Unsafe", "color": "#84cc16" },
+              { "id": "unsafe-required", "value": "Unsafe Required", "color": "#f97316" },
+              { "id": "ffi-unsafe", "value": "FFI Unsafe", "color": "#ef4444" }
+            ]
+          },
+          "description": "Safety of the public API"
+        },
+        {
+          "id": "idiomatic-api",
+          "name": "Idiomatic API",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "How Rust-native the API feels"
+        },
+        {
+          "id": "serde-integration",
+          "name": "Serde Integration",
+          "valueType": "boolean",
+          "description": "Native serde support for data passing"
+        },
+        {
+          "id": "async-compatible",
+          "name": "Async Runtime Compatible",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "native-async", "value": "Native Async", "color": "#22c55e" },
+              { "id": "tokio-compatible", "value": "Tokio", "color": "#3b82f6" },
+              { "id": "async-std-compatible", "value": "async-std", "color": "#8b5cf6" },
+              { "id": "sync-only", "value": "Sync Only", "color": "#6b7280" }
+            ]
+          },
+          "description": "Async runtime compatibility"
+        },
+        {
+          "id": "function-registration",
+          "name": "Function Registration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "macro-based", "value": "Macro-based", "color": "#22c55e" },
+              { "id": "builder-api", "value": "Builder API", "color": "#3b82f6" },
+              { "id": "manual", "value": "Manual", "color": "#f97316" }
+            ]
+          },
+          "description": "How Rust functions are exposed to scripts"
+        },
+        {
+          "id": "type-mapping",
+          "name": "Type Mapping",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "automatic", "value": "Automatic", "color": "#22c55e" },
+              { "id": "serde-based", "value": "Serde-based", "color": "#3b82f6" },
+              { "id": "manual", "value": "Manual", "color": "#f97316" }
+            ]
+          },
+          "description": "How Rust types map to script types"
+        },
+        {
+          "id": "no-std-compatible",
+          "name": "no_std Compatible",
+          "valueType": "boolean",
+          "description": "Can compile without standard library"
+        },
+        {
+          "id": "wasm-compatible",
+          "name": "WASM Compatible",
+          "valueType": "boolean",
+          "description": "Works in WebAssembly"
+        }
+      ]
+    },
+    {
+      "id": "sandboxing",
+      "name": "Sandboxing & Security",
+      "description": "Script isolation and security features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "blank-slate-mode",
+          "name": "Blank Slate Mode",
+          "valueType": "boolean",
+          "description": "Can start with completely empty context"
+        },
+        {
+          "id": "memory-sandboxing",
+          "name": "Memory Sandboxing",
+          "valueType": "boolean",
+          "description": "Scripts cannot access arbitrary host memory"
+        },
+        {
+          "id": "cpu-limits",
+          "name": "CPU Limits",
+          "valueType": "boolean",
+          "description": "Can limit execution time/instruction count"
+        },
+        {
+          "id": "memory-limits",
+          "name": "Memory Limits",
+          "valueType": "boolean",
+          "description": "Can cap memory usage"
+        },
+        {
+          "id": "syscall-restrictions",
+          "name": "Syscall Restrictions",
+          "valueType": "boolean",
+          "description": "Can prevent file/network/system access"
+        },
+        {
+          "id": "capability-security",
+          "name": "Capability-Based Security",
+          "valueType": "boolean",
+          "description": "Fine-grained permissions for script access"
+        },
+        {
+          "id": "default-deny",
+          "name": "Default Deny",
+          "valueType": "boolean",
+          "description": "Scripts have no capabilities by default"
+        }
+      ]
+    },
+    {
+      "id": "interop",
+      "name": "Interoperability",
+      "description": "How scripts interact with Rust code",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "call-rust-from-script",
+          "name": "Call Rust from Script",
+          "valueType": "boolean",
+          "description": "Scripts can invoke registered Rust functions"
+        },
+        {
+          "id": "call-script-from-rust",
+          "name": "Call Script from Rust",
+          "valueType": "boolean",
+          "description": "Rust can call script-defined functions"
+        },
+        {
+          "id": "share-data",
+          "name": "Share Data",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "clone-only", "value": "Clone Only", "color": "#f97316" },
+              { "id": "references", "value": "References", "color": "#3b82f6" },
+              { "id": "zero-copy", "value": "Zero-copy", "color": "#22c55e" }
+            ]
+          },
+          "description": "How data is shared between Rust and scripts"
+        },
+        {
+          "id": "custom-types",
+          "name": "Custom Types",
+          "valueType": "boolean",
+          "description": "Can expose Rust structs/enums to scripts"
+        },
+        {
+          "id": "operator-overloading",
+          "name": "Operator Overloading",
+          "valueType": "boolean",
+          "description": "Custom types can define operators"
+        },
+        {
+          "id": "method-syntax",
+          "name": "Method Syntax",
+          "valueType": "boolean",
+          "description": "Custom types can have dot-notation methods"
+        },
+        {
+          "id": "callbacks-events",
+          "name": "Callbacks/Events",
+          "valueType": "boolean",
+          "description": "Scripts can register callbacks for host events"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem",
+      "name": "Ecosystem",
+      "description": "Community and tooling",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Repository star count"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "All-time downloads"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "descending",
+            "format": "full"
+          },
+          "description": "Date of most recent release"
+        },
+        {
+          "id": "package-manager",
+          "name": "Package Manager",
+          "valueType": "boolean",
+          "description": "Has ecosystem for distributing packages"
+        },
+        {
+          "id": "editor-support",
+          "name": "Editor Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "syntax-highlighting", "value": "Syntax Highlighting", "color": "#84cc16" },
+              { "id": "lsp", "value": "LSP", "color": "#22c55e" },
+              { "id": "formatter", "value": "Formatter", "color": "#3b82f6" },
+              { "id": "none", "value": "None", "color": "#ef4444" }
+            ]
+          },
+          "description": "IDE/editor tooling available"
+        },
+        {
+          "id": "example-projects",
+          "name": "Example Projects",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "games", "value": "Games", "color": "#ef4444" },
+              { "id": "cli-tools", "value": "CLI Tools", "color": "#3b82f6" },
+              { "id": "web-backends", "value": "Web Backends", "color": "#22c55e" },
+              { "id": "config", "value": "Config", "color": "#eab308" },
+              { "id": "plugins", "value": "Plugins", "color": "#8b5cf6" },
+              { "id": "automation", "value": "Automation", "color": "#f97316" }
+            ]
+          },
+          "description": "Known use case categories"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "name": "Community & Maintenance",
+      "description": "Project health and support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively Maintained", "color": "#22c55e" },
+              { "id": "passively-maintained", "value": "Passively Maintained", "color": "#eab308" },
+              { "id": "seeking-maintainer", "value": "Seeking Maintainer", "color": "#f97316" },
+              { "id": "archived", "value": "Archived", "color": "#ef4444" },
+              { "id": "abandoned", "value": "Abandoned", "color": "#ef4444" }
+            ]
+          },
+          "description": "Current maintenance state"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "Quality of documentation"
+        },
+        {
+          "id": "bus-factor",
+          "name": "Bus Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "solo", "value": "Solo", "color": "#ef4444" },
+              { "id": "small-team", "value": "Small Team", "color": "#eab308" },
+              { "id": "organization", "value": "Organization", "color": "#22c55e" }
+            ]
+          },
+          "description": "Number of maintainers"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "experimental", "value": "Experimental", "color": "#ef4444" },
+              { "id": "beta", "value": "Beta", "color": "#f97316" },
+              { "id": "stable", "value": "Stable", "color": "#22c55e" },
+              { "id": "mature", "value": "Mature", "color": "#22c55e" }
+            ]
+          },
+          "description": "Project maturity level"
+        }
+      ]
+    },
+    {
+      "id": "use-cases",
+      "name": "Use Cases",
+      "description": "Primary intended use cases",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "primary-use-cases",
+          "name": "Primary Use Cases",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "#6b7280",
+            "tags": [
+              { "id": "game-scripting", "value": "Game Scripting", "color": "#ef4444" },
+              { "id": "config-logic", "value": "Config Logic", "color": "#eab308" },
+              { "id": "plugin-system", "value": "Plugin System", "color": "#8b5cf6" },
+              { "id": "rule-engine", "value": "Rule Engine", "color": "#3b82f6" },
+              { "id": "automation", "value": "Automation", "color": "#f97316" },
+              { "id": "repl-shell", "value": "REPL Shell", "color": "#22c55e" },
+              { "id": "template-logic", "value": "Template Logic", "color": "#84cc16" },
+              { "id": "data-transformation", "value": "Data Transform", "color": "#06b6d4" },
+              { "id": "expression-eval", "value": "Expression Eval", "color": "#6b7280" }
+            ]
+          },
+          "description": "Recommended use cases"
+        }
+      ]
+    }
+  ]
+}
