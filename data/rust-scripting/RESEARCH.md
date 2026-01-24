@@ -230,7 +230,7 @@ Well-maintained alternatives and specialized options:
 Newer, specialized, or niche options:
 
 - [x] **Mun** - Hot reloading focused, static typing, game development target
-- [ ] **Starlark** - Google's Bazel config language, pure Rust implementation
+- [x] **Starlark** - Google's Bazel config language, pure Rust implementation
 - [ ] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
 - [ ] **wasm-bindgen** + interpreters - WASM-based scripting approach
 - [ ] **rhai-sci** / **rhai-rand** - Rhai ecosystem extensions

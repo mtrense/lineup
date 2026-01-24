@@ -1,0 +1,305 @@
+{
+  "name": "Starlark",
+  "description": "A Rust implementation of Starlark, a deterministic Python-inspired configuration language used by Bazel, Buck, and Buck2",
+  "icon": "⭐",
+  "url": "https://github.com/facebook/starlark-rust",
+  "values": {
+    "license": {
+      "value": ["apache-2.0"],
+      "source": ["https://crates.io/crates/starlark"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/facebook/starlark-rust"]
+    },
+    "language-family": {
+      "value": ["python-like"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Starlark is a deterministic language inspired by Python3"
+    },
+    "repository": {
+      "value": "https://github.com/facebook/starlark-rust"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/starlark"
+    },
+    "documentation": {
+      "value": "https://docs.rs/starlark"
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/crates/starlark"],
+      "comment": "First crates.io release on 2018-09-27"
+    },
+    "latest-version": {
+      "value": "0.13.0",
+      "source": ["https://crates.io/crates/starlark"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Dynamic typing with optional runtime-checked type annotations"
+    },
+    "paradigm": {
+      "value": ["imperative", "functional"],
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "Imperative with first-class functions; no user-defined types or OOP"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "First-class functions with lexical scope"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "Nested functions capture variables from enclosing scopes"
+    },
+    "pattern-matching": {
+      "value": false,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "No pattern matching constructs in the language"
+    },
+    "error-handling": {
+      "value": ["result-type"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Uses starlark::Result with anyhow integration for error propagation"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "No async/await support; language is designed for deterministic execution"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "Iteration via comprehensions, for loops, range(), enumerate(), zip(); no generators"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "Load statement for importing code from other modules"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "Built-in types (str, list, dict, set) and functions (len, range, sorted, min, max, etc.)"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Compiles to bytecode VM; heap-allocated values with garbage collection"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Runtime evaluation or precompilation to AST; FrozenModule for reusable compiled code"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Modules can be reloaded; mutable Module converts to FrozenModule"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://crates.io/crates/starlark-repl"],
+      "comment": "Separate starlark-repl crate provides interactive evaluation"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Debug module with DAP (Debug Adapter Protocol) support"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Error types include source location information"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Lightweight bytecode VM, no JIT warmup"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Bytecode VM optimized for configuration evaluation rather than compute-heavy workloads"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Efficient implementation designed for build systems with large dependency graphs"
+    },
+    "garbage-collection": {
+      "value": ["mark-sweep"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Heap-based allocation with freeze mechanism for immutable values"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Pure Rust implementation with no C/C++ dependencies"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Unsafe contained internally; public API is safe Rust"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Proc-macros (#[starlark_module], #[starlark_value]), builder patterns, good error types"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "serde/serde_json integration for JSON serialization; to_json() method available"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Synchronous execution; language designed for deterministic build configuration"
+    },
+    "function-registration": {
+      "value": ["macro-based"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "#[starlark_module] attribute macro for exposing Rust functions"
+    },
+    "type-mapping": {
+      "value": ["automatic"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "StarlarkValue trait with automatic conversions; unpack methods for type extraction"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Requires std; no no_std support documented"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "starlark_js_example directory suggests WASM experimentation; not primary target"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "GlobalsBuilder allows full control over what symbols are available"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Scripts cannot access arbitrary host memory; heap-isolated execution"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Evaluation can be interrupted; instruction counting possible"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Heap provides memory management boundaries"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://github.com/bazelbuild/starlark/blob/master/spec.md"],
+      "comment": "No built-in file/network I/O; deterministic by design"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "GlobalsBuilder controls exactly what functions are available to scripts"
+    },
+    "default-deny": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Scripts can only access explicitly registered functions via GlobalsBuilder"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"]
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Values are heap-allocated; data passed via cloning or Value wrappers"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "StarlarkValue trait for custom types; #[starlark_value] derive macro"
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Custom types can implement operators via StarlarkValue trait methods"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Dot notation for methods on custom types"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "Functions can be passed as values and called from Rust"
+    },
+    "github-stars": {
+      "value": 920,
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "As of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 1391578,
+      "source": ["https://crates.io/crates/starlark"],
+      "comment": "All-time downloads as of January 2026"
+    },
+    "last-release": {
+      "value": "2024-12-13",
+      "source": ["https://crates.io/crates/starlark"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem; designed for embedding in build systems"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://crates.io/crates/starlark_lsp"],
+      "comment": "starlark_lsp crate provides LSP server; syntax highlighting available"
+    },
+    "example-projects": {
+      "value": ["config", "cli-tools", "automation"],
+      "source": ["https://engineering.fb.com/2023/10/23/developer-tools/5-things-you-didnt-know-about-buck2/"],
+      "comment": "Primary use is Buck2 build system; also used for configuration and tooling"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Facebook/Meta backed; 75 contributors, regular releases, used in production for Buck2"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/starlark/latest/starlark/"],
+      "comment": "100% documented API with examples; lacks comprehensive tutorial/book"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Maintained by Facebook/Meta; 75 contributors, used in Buck2"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Production use in Buck2; first released 2018, version 0.13.0"
+    },
+    "primary-use-cases": {
+      "value": ["config-logic", "rule-engine", "automation"],
+      "source": ["https://github.com/facebook/starlark-rust"],
+      "comment": "Designed for build system configuration; deterministic execution for rules"
+    }
+  }
+}
