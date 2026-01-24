@@ -229,7 +229,7 @@ Well-maintained alternatives and specialized options:
 ### Tier 3 (Nice to Have)
 Newer, specialized, or niche options:
 
-- [ ] **Mun** - Hot reloading focused, static typing, game development target
+- [x] **Mun** - Hot reloading focused, static typing, game development target
 - [ ] **Starlark** - Google's Bazel config language, pure Rust implementation
 - [ ] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
 - [ ] **wasm-bindgen** + interpreters - WASM-based scripting approach

@@ -1,0 +1,310 @@
+{
+  "name": "Mun",
+  "description": "A programming language empowering creation through iteration, focused on hot reloading for game development",
+  "icon": "🔥",
+  "url": "https://mun-lang.org/",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2.0"],
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "Dual-licensed under MIT or Apache-2.0"
+    },
+    "implementation": {
+      "value": ["hybrid"],
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "Runtime is pure Rust, but compiler requires LLVM 14 (C++)"
+    },
+    "language-family": {
+      "value": ["rust-like"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Syntax heavily inspired by Rust with similar constructs"
+    },
+    "repository": {
+      "value": "https://github.com/mun-lang/mun"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/mun_runtime"
+    },
+    "documentation": {
+      "value": "https://docs.mun-lang.org/"
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://mun-lang.org/blog/2019/11/11/release-mun-v0-1-0/"],
+      "comment": "First release (v0.1.0) on November 11, 2019"
+    },
+    "latest-version": {
+      "value": "0.4.0",
+      "source": ["https://lib.rs/crates/mun_runtime"],
+      "comment": "Released December 12, 2022. v0.6.0 in progress (85% complete)"
+    },
+    "typing": {
+      "value": ["static"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Statically typed with type inference. Types resolved at compile time."
+    },
+    "paradigm": {
+      "value": ["imperative"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Primarily imperative. No closures or first-class functions yet."
+    },
+    "first-class-functions": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/ch02-02-functions.html"],
+      "comment": "Functions cannot be passed as values or stored in variables"
+    },
+    "closures": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Closures not yet supported"
+    },
+    "pattern-matching": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/ch02-03-control-flow.html"],
+      "comment": "No pattern matching constructs. Only if/else and loops."
+    },
+    "error-handling": {
+      "value": ["panic-only"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No Result type or exceptions in scripts. Runtime errors abort execution."
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No async/await support"
+    },
+    "iterators-generators": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No iterator protocol or generators. Arrays added in v0.4 but no iteration constructs."
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/ch02-05-use-keyword.html"],
+      "comment": "Multi-file projects supported with 'use' keyword for imports"
+    },
+    "standard-library": {
+      "value": ["none"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No standard library. Only primitive types and basic operators."
+    },
+    "execution-strategy": {
+      "value": ["aot"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Ahead-of-time compiled to native machine code via LLVM"
+    },
+    "compilation-model": {
+      "value": ["precompiled"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Must be compiled before execution. No runtime eval."
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/ch01-03-hello-hot-reloading.html"],
+      "comment": "First-class hot reloading - the core feature. Detects recompiled code and reloads automatically."
+    },
+    "repl-support": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "AOT-compiled language with no REPL support"
+    },
+    "debugging-support": {
+      "value": null,
+      "comment": "Debugging capabilities not documented"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/ch01-03-hello-hot-reloading.html"],
+      "comment": "Runtime errors logged with source location information"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Loads precompiled native libraries. No JIT warmup."
+    },
+    "execution-speed": {
+      "value": ["near-native"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "LLVM-compiled to native machine code for maximum performance"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://lib.rs/crates/mun_runtime"],
+      "comment": "Lightweight runtime for loading and hot-reloading compiled modules"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Garbage-collected heap allocation for struct types"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "Requires LLVM 14 for compilation. Runtime is Rust but compiler needs C++ LLVM."
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/mun_runtime/latest/mun_runtime/"],
+      "comment": "Runtime uses some unsafe internally for FFI with compiled modules"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://docs.rs/mun_runtime/latest/mun_runtime/"],
+      "comment": "Functional API but requires manual setup. Hot reloading needs explicit update() calls."
+    },
+    "serde-integration": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No serde integration documented"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Runtime runs synchronously. Update loop must be driven by host."
+    },
+    "function-registration": {
+      "value": ["manual"],
+      "source": ["https://docs.mun-lang.org/ch02-04-extern-functions.html"],
+      "comment": "Extern functions declared in Mun and linked at runtime"
+    },
+    "type-mapping": {
+      "value": ["manual"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Explicit marshaling between Rust and Mun types via ABI layer"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://lib.rs/crates/mun_runtime"],
+      "comment": "Depends on std for file system operations and dynamic library loading"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://mun-lang.org/"],
+      "comment": "WebAssembly modules listed as a target use case"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No standard library - scripts only see explicitly provided extern functions"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Scripts cannot access arbitrary host memory. All interaction via defined ABI."
+    },
+    "cpu-limits": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No instruction count or time limits - native code execution"
+    },
+    "memory-limits": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No memory usage caps documented"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No built-in file/network I/O. All capabilities via extern functions."
+    },
+    "capability-security": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No fine-grained capability system"
+    },
+    "default-deny": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Scripts can only access explicitly linked extern functions"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/ch02-04-extern-functions.html"],
+      "comment": "Extern functions allow calling Rust from Mun scripts"
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.mun-lang.org/ch01-03-hello-hot-reloading.html"],
+      "comment": "Runtime.invoke() calls Mun functions from Rust"
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Data marshaled between Rust and Mun via ABI. Structs support hot reloading."
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://mun-lang.org/blog/2020/05/16/release-mun-v0-2-0/"],
+      "comment": "Hot reloadable structs supported since v0.2.0"
+    },
+    "operator-overloading": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No operator overloading support"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://github.com/mun-lang/mun/commits/main"],
+      "comment": "Method calls and associated functions added in recent development"
+    },
+    "callbacks-events": {
+      "value": false,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "No callback/event registration mechanism"
+    },
+    "github-stars": {
+      "value": 2100,
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 1500,
+      "source": ["https://lib.rs/crates/mun_runtime"],
+      "comment": "~68 downloads/month, relatively niche project"
+    },
+    "last-release": {
+      "value": "2022-12-12",
+      "source": ["https://lib.rs/crates/mun_runtime"],
+      "comment": "v0.4.0 released Dec 12, 2022. Active development continues toward v0.6.0"
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "VS Code and Vim/Neovim extensions available. LSP support included."
+    },
+    "example-projects": {
+      "value": ["games"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Primary focus is game development with hot reloading. Born from Abbey Games' needs."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/mun-lang/mun/commits/main"],
+      "comment": "Active commits through May 2025. v0.6.0 milestone at 85% complete."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.mun-lang.org/"],
+      "comment": "Official book with getting-started guide, language reference, and examples"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/mun-lang/mun"],
+      "comment": "24+ contributors, organized as mun-lang project"
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Explicitly stated 'in the early stages of development and nowhere near production-ready'"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting"],
+      "source": ["https://mun-lang.org/"],
+      "comment": "Designed specifically for game development hot reloading. Console/mobile/XR targets."
+    }
+  }
+}
