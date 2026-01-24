@@ -219,7 +219,7 @@ Core options most Rust developers will evaluate:
 Well-maintained alternatives and specialized options:
 
 - [x] **Gluon** - Statically typed, functional, Haskell-inspired
-- [ ] **Dyon** - Game-focused, unique features (go-like coroutines, 4D vectors)
+- [x] **Dyon** - Game-focused, unique features (go-like coroutines, 4D vectors)
 - [ ] **RustPython** - Python interpreter in Rust
 - [ ] **Steel** - Scheme/Racket-inspired, embeddable Lisp
 - [ ] **Piccolo** - Lua implementation in pure Rust

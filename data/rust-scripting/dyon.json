@@ -1,0 +1,302 @@
+{
+  "name": "Dyon",
+  "description": "A rusty dynamically typed scripting language designed for game engines and interactive applications",
+  "icon": "D",
+  "url": "https://www.piston.rs/dyon-tutorial/",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2.0"],
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Dual-licensed under MIT OR Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "No C/C++ dependencies; 99.1% Rust codebase"
+    },
+    "language-family": {
+      "value": ["custom"],
+      "source": ["https://www.piston.rs/dyon-tutorial/"],
+      "comment": "Inspired by JavaScript, Go, and Rust; unique syntax with mathematical expressions and go-like coroutines"
+    },
+    "repository": {
+      "value": "https://github.com/PistonDevelopers/dyon"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/dyon"
+    },
+    "documentation": {
+      "value": "https://docs.rs/dyon/latest/dyon/"
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Sven Nilsen started the project in early 2016"
+    },
+    "latest-version": {
+      "value": "0.51.0",
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Released December 23, 2025"
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Dynamically typed with optional ad-hoc type annotations; runtime type checking on mutation"
+    },
+    "paradigm": {
+      "value": ["imperative", "multi-paradigm"],
+      "source": ["https://www.piston.rs/dyon-tutorial/"],
+      "comment": "Supports imperative style with functional elements; mathematical function expressions"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Functions can be passed as values; supports closures"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Closures with grab expressions for capturing variables"
+    },
+    "pattern-matching": {
+      "value": false,
+      "source": ["https://www.piston.rs/dyon-tutorial/"],
+      "comment": "No dedicated pattern matching syntax; uses if/else and type checking"
+    },
+    "error-handling": {
+      "value": ["result-type"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Result and Option types with ? operator for error propagation; unwrap() prints trace of propagated errors"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "No native async/await syntax; uses Go-like coroutines with 'go' keyword instead"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://www.piston.rs/dyon-tutorial/"],
+      "comment": "Various for loop styles including mathematical loops (sum, product, min, max), infer range"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Dynamic modules with runtime loading; optional namespaces with shared aliases"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://github.com/PistonDevelopers/dyon/blob/master/src/lib.dyon"],
+      "comment": "Includes file I/O, network (HTTP), threading, math, vector/matrix operations, type checking"
+    },
+    "execution-strategy": {
+      "value": ["interpreted"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Direct interpretation; lifetime checking eliminates need for garbage collector"
+    },
+    "compilation-model": {
+      "value": ["runtime-eval"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Scripts parsed and executed at runtime via load() function"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Dynamic module loading enables script reloading; piston-dyon_interactive crate for live coding"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Interactive REPL available"
+    },
+    "debugging-support": {
+      "value": false,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "debug_lookup feature flag available but no full debugger interface (breakpoints, step-through)"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Error traces include source locations; unwrap() prints propagation trace"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Pure Rust with no JIT warmup; designed for interactive game scripting"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "comment": "Interpreted without bytecode VM; designed for game scripting where simplicity matters more than raw speed"
+    },
+    "memory-overhead": {
+      "value": ["minimal"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "No garbage collector; uses lifetime checking for memory management"
+    },
+    "garbage-collection": {
+      "value": ["none"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Lifetime checker eliminates need for garbage collection; RAII-like semantics"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "99.1% Rust; no C/C++ dependencies"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Safe public API; dyon_fn! macro handles unsafe internally"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://www.boringcactus.com/2020/09/16/survey-of-rust-embeddable-scripting-languages.html"],
+      "comment": "Implementation straightforward but API took time to figure out; workable but not as intuitive as alternatives"
+    },
+    "serde-integration": {
+      "value": false,
+      "comment": "Uses custom data format (Dyon data); no native serde support"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Primary model is sync with Go-like coroutines; optional tokio feature available"
+    },
+    "function-registration": {
+      "value": ["macro-based"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "dyon_fn! macro for function registration; dyon_obj! for custom objects"
+    },
+    "type-mapping": {
+      "value": ["manual"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Variable enum for type handling; manual conversion between Rust and Dyon types"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Requires std for file I/O, networking, threading features"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Default features (rand, http/reqwest) marked 'not wasm'; would require significant feature disabling"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Feature flags (stdio, file, http, threading) allow removing capabilities at compile time"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Scripts cannot access arbitrary host memory; lifetime checking enforces boundaries"
+    },
+    "cpu-limits": {
+      "value": false,
+      "comment": "No documented instruction count or execution time limits"
+    },
+    "memory-limits": {
+      "value": false,
+      "comment": "No garbage collector means no configurable memory limits; relies on lifetime checking"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Feature flags control file I/O (file), stdio, networking (http), and threading access"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Compile-time feature flags control what capabilities scripts can access"
+    },
+    "default-deny": {
+      "value": false,
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Default features include rand and http; must explicitly disable for sandboxing"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/dyon/latest/dyon/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/dyon/latest/dyon/"]
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "Data passed via Variable enum; copy-on-write semantics for efficiency"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "dyon_obj! macro for exposing Rust objects to scripts"
+    },
+    "operator-overloading": {
+      "value": false,
+      "comment": "Built-in operators for vectors/matrices but no custom operator definition"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Dot notation for method calls on objects"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Functions are first-class; closures can be used as callbacks"
+    },
+    "github-stars": {
+      "value": 1900,
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Approximately 1.9k stars as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 138471,
+      "source": ["https://crates.io/crates/dyon"],
+      "comment": "All-time downloads as of January 2026"
+    },
+    "last-release": {
+      "value": "2025-12-23",
+      "source": ["https://lib.rs/crates/dyon"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem; modules loaded via load() function"
+    },
+    "editor-support": {
+      "value": ["none"],
+      "comment": "No documented editor extensions, LSP, or syntax highlighting packages"
+    },
+    "example-projects": {
+      "value": ["games"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Part of Piston game engine ecosystem; designed for game scripting"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://lib.rs/crates/dyon"],
+      "comment": "Recent release December 2025; 90 versions published; 14 contributors"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/dyon/latest/dyon/"],
+      "comment": "100% of crate documented; tutorial available at piston.rs; DYON-API documentation format"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "14 contributors; part of PistonDevelopers organization"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/PistonDevelopers/dyon"],
+      "comment": "Active since 2016; 90 versions; used in Piston game engine projects"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "automation"],
+      "source": ["https://www.piston.rs/dyon-tutorial/"],
+      "comment": "Designed specifically for game engines and interactive applications; 4D vectors/matrices for graphics"
+    }
+  }
+}
