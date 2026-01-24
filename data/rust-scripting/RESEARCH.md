@@ -212,7 +212,7 @@ Core options most Rust developers will evaluate:
 - [x] **Rhai** - Popular pure-Rust scripting, simple syntax, good docs
 - [x] **mlua** - Lua 5.x/LuaJIT bindings, most mature Lua integration
 - [x] **Rune** - Async-native, Rust-like syntax, promising design
-- [ ] **boa** - JavaScript engine in pure Rust, ES2023+ compliance
+- [x] **boa** - JavaScript engine in pure Rust, ES2023+ compliance
 - [ ] **rquickjs** - QuickJS bindings, fast JS with small footprint
 
 ### Tier 2 (Should Have)

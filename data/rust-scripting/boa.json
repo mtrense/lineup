@@ -1,0 +1,306 @@
+{
+  "name": "Boa",
+  "description": "An embeddable ECMAScript engine written in Rust with 94% Test262 conformance",
+  "icon": "JS",
+  "url": "https://boajs.dev/",
+  "values": {
+    "license": {
+      "value": ["mit", "unlicense"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Dual-licensed under MIT or Unlicense"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/boa-dev/boa"]
+    },
+    "language-family": {
+      "value": ["javascript-like"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Full ECMAScript implementation, aims for latest spec conformance"
+    },
+    "repository": {
+      "value": "https://github.com/boa-dev/boa"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/boa_engine"
+    },
+    "documentation": {
+      "value": "https://docs.rs/boa_engine/"
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Repository created August 2018; crates.io publishing as boa_engine started 2022"
+    },
+    "latest-version": {
+      "value": "0.21.0",
+      "source": ["https://crates.io/crates/boa_engine"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript is dynamically typed"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional", "object-oriented", "prototype-based"],
+      "source": ["https://boajs.dev/"],
+      "comment": "Supports all JavaScript paradigms including prototype-based OOP"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript functions are first-class objects"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript closures capture lexical scope"
+    },
+    "pattern-matching": {
+      "value": false,
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript has destructuring but no true pattern matching (TC39 proposal still Stage 1)"
+    },
+    "error-handling": {
+      "value": ["exceptions"],
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript uses try/catch/finally/throw for error handling"
+    },
+    "async-await": {
+      "value": true,
+      "source": ["https://boajs.dev/"],
+      "comment": "Full async/await support as per ECMAScript specification"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://boajs.dev/"],
+      "comment": "Supports ES6 iterators, generators, and for-of loops"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Supports both ES modules and CommonJS"
+    },
+    "standard-library": {
+      "value": ["comprehensive"],
+      "source": ["https://boajs.dev/"],
+      "comment": "Full ECMAScript built-ins: Object, Array, String, Number, Date, Math, JSON, Promise, etc."
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://en.wikipedia.org/wiki/Boa_(JavaScript_engine)"],
+      "comment": "Lexer, parser, compiler to bytecode, then bytecode interpreter"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Can evaluate source directly or parse to AST for repeated execution"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Scripts can be re-evaluated at runtime"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "CLI tool includes REPL functionality"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa/blob/main/core/engine/Cargo.toml"],
+      "comment": "trace and flowgraph features for VM instruction debugging"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Errors include source position information"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Bytecode interpreter with no JIT warmup overhead"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Bytecode VM without JIT; slower than V8/SpiderMonkey but optimized interpreter"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Lighter than full JIT engines like V8; designed for embedding"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Uses Trace and Finalize traits for garbage collection"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Entirely written in Rust with no C/C++ dependencies"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "GC requires Trace implementations; some unsafe internally but safe public API"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Good Context/JsValue API, derive macros for JsData, Result-based error handling"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa/blob/main/core/engine/Cargo.toml"],
+      "comment": "Optional 'deser' feature enables serde serialization"
+    },
+    "async-compatible": {
+      "value": ["tokio-compatible"],
+      "source": ["https://github.com/boa-dev/boa/blob/main/core/engine/Cargo.toml"],
+      "comment": "Uses tokio, futures-lite, and futures-concurrency for async job queues"
+    },
+    "function-registration": {
+      "value": ["builder-api"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "NativeFunction wrapper, IntoJsFunctionCopied and UnsafeIntoJsFunction traits"
+    },
+    "type-mapping": {
+      "value": ["manual", "serde-based"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "TryIntoJsResult trait for conversions; serde for complex types via deser feature"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://github.com/boa-dev/boa/blob/main/core/engine/Cargo.toml"],
+      "comment": "Most dependencies require std; not designed for no_std environments"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://boajs.dev/"],
+      "comment": "Has WASM playground; wasm-bindgen and web-time dependencies for browser support"
+    },
+    "blank-slate-mode": {
+      "value": false,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Starts with full ECMAScript standard library; cannot easily remove built-ins"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "JavaScript VM prevents direct host memory access"
+    },
+    "cpu-limits": {
+      "value": false,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "No built-in instruction counting or execution time limits found in documentation"
+    },
+    "memory-limits": {
+      "value": false,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "No built-in heap size limits found in documentation"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "No built-in file/network I/O; only what host exposes via native functions"
+    },
+    "capability-security": {
+      "value": false,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Standard JavaScript environment without fine-grained capability controls"
+    },
+    "default-deny": {
+      "value": false,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Full JavaScript standard library available by default"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"]
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Data converted through JsValue; no direct references between Rust and JS"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "NativeObject trait and JsData derive macro for exposing Rust types"
+    },
+    "operator-overloading": {
+      "value": false,
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript doesn't support operator overloading; only valueOf/Symbol.toPrimitive for coercion"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "JsObject supports method definition and dot-notation calls"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "JavaScript functions can be passed as callbacks"
+    },
+    "github-stars": {
+      "value": 6805,
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "As of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 1853411,
+      "source": ["https://crates.io/crates/boa_engine"],
+      "comment": "All-time downloads as of January 2026"
+    },
+    "last-release": {
+      "value": "2025-10-21",
+      "source": ["https://crates.io/crates/boa_engine"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No dedicated package ecosystem; can use ES modules or CommonJS"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://boajs.dev/"],
+      "comment": "Uses standard JavaScript tooling; VS Code extensions, ESLint LSP work with JS syntax"
+    },
+    "example-projects": {
+      "value": ["plugins", "web-backends", "automation"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "959 dependent projects on GitHub; Temporal_rs used in V8"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Regular releases, active development, 203 contributors"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/boa_engine/"],
+      "comment": "Good API docs with examples; could use more getting-started tutorials"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "boa-dev organization with 203 contributors"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/boa-dev/boa"],
+      "comment": "Self-described as 'experimental'; version 0.x but with 94% Test262 conformance"
+    },
+    "primary-use-cases": {
+      "value": ["plugin-system", "automation", "expression-eval", "config-logic"],
+      "source": ["https://boajs.dev/"],
+      "comment": "JavaScript embedding for Rust applications; Temporal_rs integrated into V8"
+    }
+  }
+}
