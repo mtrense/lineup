@@ -1,0 +1,291 @@
+{
+  "name": "rlua",
+  "description": "High-level Lua 5.x bindings for Rust (deprecated - now a thin wrapper around mlua)",
+  "icon": "🌙",
+  "url": "https://github.com/mlua-rs/rlua",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/mlua-rs/rlua"]
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Rust bindings to Lua C library via mlua; originally independent bindings before deprecation"
+    },
+    "language-family": {
+      "value": ["lua-like"],
+      "source": ["https://github.com/mlua-rs/rlua"]
+    },
+    "repository": {
+      "value": "https://github.com/mlua-rs/rlua"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rlua"
+    },
+    "documentation": {
+      "value": "https://docs.rs/rlua"
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://docs.rs/crate/rlua/0.1.0"],
+      "comment": "First crates.io release (0.1.0) on May 22, 2017"
+    },
+    "latest-version": {
+      "value": "0.20.1",
+      "source": ["https://lib.rs/crates/rlua"],
+      "comment": "Released July 20, 2024; now just re-exports mlua"
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Lua is dynamically typed"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional", "prototype-based"],
+      "source": ["https://www.lua.org/about.html"],
+      "comment": "Lua supports imperative, functional, and prototype-based OOP via metatables"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/6.html"]
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/6.1.html"],
+      "comment": "Lua functions are closures with proper lexical scoping"
+    },
+    "pattern-matching": {
+      "value": false,
+      "comment": "Lua lacks native pattern matching; relies on if/elseif chains"
+    },
+    "error-handling": {
+      "value": ["exceptions", "result-type"],
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Lua uses pcall/error for exceptions; rlua wraps these in Rust Result types"
+    },
+    "async-await": {
+      "value": false,
+      "comment": "No native async/await in Lua scripts; current versions delegate to mlua for async"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/7.html"],
+      "comment": "Generic for loop with iterator functions; coroutines can act as generators"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://www.lua.org/manual/5.4/manual.html#6.3"],
+      "comment": "require/module system with package.path"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Standard libs: string, table, math, io, os, debug, coroutine, utf8"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Standard Lua uses bytecode VM; rlua does not support LuaJIT (use mlua for JIT)"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Can load source at runtime or precompile to bytecode"
+    },
+    "hot-reloading": {
+      "value": true,
+      "comment": "Scripts can be reloaded via standard Lua mechanisms"
+    },
+    "repl-support": {
+      "value": true,
+      "comment": "Standard Lua includes REPL; rlua can evaluate strings interactively"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Hooks, stack inspection, tracebacks via debug library"
+    },
+    "source-maps": {
+      "value": true,
+      "comment": "Line number tracking and tracebacks available"
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "comment": "Standard Lua has minimal startup overhead"
+    },
+    "execution-speed": {
+      "value": ["fast"],
+      "source": ["https://www.lua.org/about.html"],
+      "comment": "Standard Lua is fast bytecode; no JIT option in rlua (use mlua for LuaJIT)"
+    },
+    "memory-overhead": {
+      "value": ["minimal"],
+      "source": ["https://www.lua.org/about.html"],
+      "comment": "Lua is designed for embedding with small footprint (~200KB core)"
+    },
+    "garbage-collection": {
+      "value": ["mark-sweep", "generational"],
+      "source": ["https://www.lua.org/manual/5.4/manual.html#2.5"],
+      "comment": "Lua 5.4 supports incremental and generational GC modes"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Bindings to Lua C library (vendored or system)"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Original rlua design focused on safety; now delegates to mlua's safe API"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Good Rust patterns with traits (ToLua/FromLua, UserData); slightly dated compared to mlua's IntoLua"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Via mlua's serde support in v0.20+"
+    },
+    "async-compatible": {
+      "value": ["native-async", "tokio-compatible", "async-std-compatible"],
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Via mlua dependency in v0.20+; original rlua was sync-only"
+    },
+    "function-registration": {
+      "value": ["macro-based", "builder-api"],
+      "source": ["https://docs.rs/rlua"],
+      "comment": "UserData trait, UserDataMethods builder, closure registration"
+    },
+    "type-mapping": {
+      "value": ["automatic", "serde-based"],
+      "source": ["https://docs.rs/rlua"],
+      "comment": "ToLua/FromLua traits (aliased to mlua's IntoLua/FromLua in v0.20+)"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "comment": "Requires std for Lua C integration"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Via mlua in v0.20+; supports wasm32-unknown-emscripten"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Can create Lua state without standard libraries via StdLib configuration"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Via hooks for instruction counting"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "Memory limits available via mlua in v0.20+"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "comment": "Can omit io/os libraries via StdLib flags"
+    },
+    "capability-security": {
+      "value": true,
+      "comment": "StdLib flags control which libraries are available"
+    },
+    "default-deny": {
+      "value": false,
+      "comment": "By default includes standard libraries; must explicitly restrict"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"]
+    },
+    "share-data": {
+      "value": ["clone-only", "references"],
+      "source": ["https://docs.rs/rlua"],
+      "comment": "UserData for references, regular conversion clones"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/rlua"]
+    },
+    "operator-overloading": {
+      "value": true,
+      "comment": "MetaMethod for __add, __sub, __index, etc. via Lua metatables"
+    },
+    "method-syntax": {
+      "value": true,
+      "comment": "UserDataMethods registers methods callable with colon syntax"
+    },
+    "callbacks-events": {
+      "value": true,
+      "comment": "Functions can be stored and called back from Rust"
+    },
+    "github-stars": {
+      "value": 1800,
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Approximate as of January 2026; repository is archived"
+    },
+    "crates-io-downloads": {
+      "value": 1500000,
+      "source": ["https://lib.rs/crates/rlua"],
+      "comment": "Historical downloads; ~3.6k monthly as of Jan 2026 due to deprecated status"
+    },
+    "last-release": {
+      "value": "2024-07-20",
+      "source": ["https://lib.rs/crates/rlua"]
+    },
+    "package-manager": {
+      "value": true,
+      "source": ["https://www.lua.org/"],
+      "comment": "Can work with LuaRocks ecosystem for Lua packages"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://lua-ls.github.io/"],
+      "comment": "Lua has mature tooling: lua-language-server LSP, VS Code extensions"
+    },
+    "example-projects": {
+      "value": ["games", "config", "plugins"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Was popular in Amethyst game engine ecosystem; most projects now use mlua"
+    },
+    "maintenance-status": {
+      "value": ["archived"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Repository archived September 2025; deprecated in favor of mlua"
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/rlua"],
+      "comment": "0% documented per docs.rs; relies on mlua docs now"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "23 contributors historically; project now archived"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Stable API but deprecated; users should migrate to mlua"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "config-logic", "plugin-system"],
+      "source": ["https://github.com/mlua-rs/rlua"],
+      "comment": "Same use cases as Lua; users should migrate to mlua for new projects"
+    }
+  }
+}
