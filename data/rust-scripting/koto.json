@@ -1,0 +1,304 @@
+{
+  "name": "Koto",
+  "description": "A simple, expressive, embeddable programming language with rich iterator support",
+  "icon": "🎵",
+  "url": "https://koto.dev/",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/koto-lang/koto"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "99.8% Rust, no C/C++ dependencies"
+    },
+    "language-family": {
+      "value": ["custom"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Influenced by Lua's minimalism and Rust's iterators, but with unique syntax"
+    },
+    "repository": {
+      "value": "https://github.com/koto-lang/koto"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/koto"
+    },
+    "documentation": {
+      "value": "https://koto.dev/docs/0.16/language/"
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://koto.dev/about/"],
+      "comment": "Started in 2020 with goal of ideal Rust embedding"
+    },
+    "latest-version": {
+      "value": "0.16.1",
+      "source": ["https://lib.rs/crates/koto"]
+    },
+    "typing": {
+      "value": ["dynamic", "gradual"],
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Primarily dynamic with optional type hints for parameters and return values"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional"],
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Supports imperative, functional via iterators/closures, and object-like patterns via metamaps"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Functions created with |args| body syntax, can be passed and stored"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Variables from outer scope captured by copying"
+    },
+    "pattern-matching": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Match expressions with destructuring, guards, list/tuple patterns with ..."
+    },
+    "error-handling": {
+      "value": ["exceptions"],
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Uses throw for errors; optional chaining with ? for null-safe access"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://koto.dev/about/"],
+      "comment": "Not implemented; support planned for future versions"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Major language focus; yield-based generators, rich adaptor/consumer library"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Prelude provides core modules; custom modules supported via import"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "Core library (iterator, string, list, map, io) plus optional json, yaml, toml, regex, geometry"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Compiled to bytecode for execution"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/koto/latest/koto/"],
+      "comment": "Supports compile() then run(), or combined evaluation"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://docs.rs/koto/0.16.1/koto/struct.KotoSettings.html"],
+      "comment": "Module imported callback enables dependency tracking for script reloading"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://lib.rs/crates/koto_cli"],
+      "comment": "CLI tool includes interactive REPL"
+    },
+    "debugging-support": {
+      "value": false,
+      "comment": "No built-in debugger with breakpoints/stepping"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/koto_runtime/latest/koto_runtime/"],
+      "comment": "Runtime errors include source positions for mapping back to original code"
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Minimal runtime, fast compilation prioritized"
+    },
+    "execution-speed": {
+      "value": ["fast"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Claims 1.5-2x faster than Rhai; efficient bytecode VM with zero-copy string sharing"
+    },
+    "memory-overhead": {
+      "value": ["minimal"],
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "~24K SLoC main crate, pure Rust with efficient data sharing"
+    },
+    "garbage-collection": {
+      "value": ["reference-counting"],
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "Uses Ptr types with configurable rc/arc features"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "Pure Rust implementation with no native dependencies"
+    },
+    "api-safety": {
+      "value": ["fully-safe"],
+      "source": ["https://github.com/koto-lang/koto"],
+      "comment": "Pure Rust with safe public API"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/koto/latest/koto/"],
+      "comment": "Good trait-based design (KotoObject), derive macros, builder patterns for settings"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "koto_serde crate included as default feature"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Single-threaded by default; arc feature enables thread-safe runtime with 5-10% overhead"
+    },
+    "function-registration": {
+      "value": ["macro-based", "builder-api"],
+      "source": ["https://docs.rs/koto_runtime/latest/koto_runtime/"],
+      "comment": "KotoObject trait with koto_derive macros, plus programmatic registration"
+    },
+    "type-mapping": {
+      "value": ["automatic", "serde-based"],
+      "source": ["https://docs.rs/koto/latest/koto/"],
+      "comment": "Native type sharing (Koto strings = Rust strings, lists = wrapped Vecs); serde for complex types"
+    },
+    "no-std-compatible": {
+      "value": true,
+      "source": ["https://github.com/koto-lang/koto/blob/main/Cargo.toml"],
+      "comment": "Workspace configured with default-features = false for no_std support"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/koto-lang/koto/blob/main/Cargo.toml"],
+      "comment": "Online playground runs on WASM; explicit wasm-bindgen dependencies"
+    },
+    "blank-slate-mode": {
+      "value": false,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Prelude automatically provides core library modules; no documented way to fully disable"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/koto-lang/koto"],
+      "comment": "Pure Rust implementation prevents arbitrary host memory access"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://docs.rs/koto_runtime/0.16.1/koto_runtime/struct.KotoVmSettings.html"],
+      "comment": "execution_limit setting with Duration-based timeout"
+    },
+    "memory-limits": {
+      "value": false,
+      "source": ["https://docs.rs/koto_runtime/0.16.1/koto_runtime/struct.KotoVmSettings.html"],
+      "comment": "No documented memory limit settings"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://docs.rs/koto/0.16.1/koto/struct.KotoSettings.html"],
+      "comment": "stdin/stdout/stderr can be configured; no built-in file/network I/O"
+    },
+    "capability-security": {
+      "value": false,
+      "comment": "No fine-grained capability system documented"
+    },
+    "default-deny": {
+      "value": false,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Prelude provides core capabilities by default"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/koto_runtime/latest/koto_runtime/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/koto/latest/koto/"]
+    },
+    "share-data": {
+      "value": ["zero-copy"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Koto shares same string representation as Rust; lists are wrapped Vecs - avoids Lua<->Rust conversion overhead"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/koto_runtime/latest/koto_runtime/"],
+      "comment": "KotoObject trait for implementing custom types with full integration"
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Metamap keys like @+, @-, @*, @/, @==, @<, @index, etc."
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "Self identifier provides instance access within object methods"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://koto.dev/docs/0.16/language/"],
+      "comment": "First-class functions can be stored and called as callbacks"
+    },
+    "github-stars": {
+      "value": 856,
+      "source": ["https://github.com/koto-lang/koto"],
+      "comment": "As of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 15000,
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "Estimated based on ~75 monthly downloads; smaller but growing ecosystem"
+    },
+    "last-release": {
+      "value": "2026-01-05",
+      "source": ["https://lib.rs/crates/koto"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No official package ecosystem"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp", "formatter"],
+      "source": ["https://github.com/koto-lang/koto-ls", "https://github.com/koto-lang/tree-sitter-koto"],
+      "comment": "Tree-sitter parser, Helix built-in support (since 25.01), LSP implementation, formatter crate"
+    },
+    "example-projects": {
+      "value": ["games", "cli-tools"],
+      "source": ["https://github.com/koto-lang/bevy_koto"],
+      "comment": "Bevy game engine integration, CLI tooling"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/koto-lang/koto"],
+      "comment": "Regular releases, 2811 commits, active development through January 2026"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://koto.dev/"],
+      "comment": "Good language guide at koto.dev, online playground, API docs; could use more tutorials"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/koto-lang/koto"],
+      "comment": "Primary maintainer Ian Hobson with 15 contributors"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://lib.rs/crates/koto"],
+      "comment": "Version 0.16.1; 23 releases with 15 breaking changes; actively evolving"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "plugin-system", "automation", "data-transformation", "repl-shell"],
+      "source": ["https://koto.dev/about/"],
+      "comment": "Designed for interactive systems like animation/game engines; strong iterator focus suits data transformation"
+    }
+  }
+}

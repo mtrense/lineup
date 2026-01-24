@@ -224,7 +224,7 @@ Well-maintained alternatives and specialized options:
 - [x] **Steel** - Scheme/Racket-inspired, embeddable Lisp
 - [x] **Piccolo** - Lua implementation in pure Rust
 - [x] **rlua** - Earlier Lua bindings (compare to mlua for completeness)
-- [ ] **koto** - Simple syntax, built-in iterators, pure Rust
+- [x] **koto** - Simple syntax, built-in iterators, pure Rust
 
 ### Tier 3 (Nice to Have)
 Newer, specialized, or niche options:
