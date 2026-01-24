@@ -221,7 +221,7 @@ Well-maintained alternatives and specialized options:
 - [x] **Gluon** - Statically typed, functional, Haskell-inspired
 - [x] **Dyon** - Game-focused, unique features (go-like coroutines, 4D vectors)
 - [x] **RustPython** - Python interpreter in Rust
-- [ ] **Steel** - Scheme/Racket-inspired, embeddable Lisp
+- [x] **Steel** - Scheme/Racket-inspired, embeddable Lisp
 - [ ] **Piccolo** - Lua implementation in pure Rust
 - [ ] **rlua** - Earlier Lua bindings (compare to mlua for completeness)
 - [ ] **koto** - Simple syntax, built-in iterators, pure Rust

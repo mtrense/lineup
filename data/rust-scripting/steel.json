@@ -1,0 +1,306 @@
+{
+  "name": "Steel",
+  "description": "An embeddable and extensible Scheme dialect built in Rust with R5RS compliance",
+  "icon": "λ",
+  "url": "https://github.com/mattwparas/steel",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2.0"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Dual-licensed under MIT and Apache-2.0"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "75.5% Rust, 21.5% Scheme, 2.9% Racket. No C/C++ dependencies"
+    },
+    "language-family": {
+      "value": ["lisp-like"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Scheme dialect with Racket-inspired module system (require/provide)"
+    },
+    "repository": {
+      "value": "https://github.com/mattwparas/steel"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/steel-core"
+    },
+    "documentation": {
+      "value": "https://mattwparas.github.io/steel/book/"
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://api.github.com/repos/mattwparas/steel"],
+      "comment": "GitHub repo created Feb 2020; first crates.io release (0.2.0) July 2023"
+    },
+    "latest-version": {
+      "value": "0.7.0",
+      "source": ["https://lib.rs/crates/steel-core"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Dynamic typing as is standard for Scheme"
+    },
+    "paradigm": {
+      "value": ["functional", "multi-paradigm"],
+      "source": ["https://mattwparas.github.io/steel/book/"],
+      "comment": "Functional at core like Scheme, but supports imperative style with set!"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Functions are first-class as in all Scheme dialects"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Full lexical scoping with closures"
+    },
+    "pattern-matching": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "syntax-rules and syntax-case macros provide pattern matching"
+    },
+    "error-handling": {
+      "value": ["exceptions"],
+      "source": ["https://mattwparas.github.io/steel/book/"],
+      "comment": "Scheme-style exceptions; Rust Result/Option auto-unwrap through VM"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://mattwparas.github.io/steel/book/start/embedded.html"],
+      "comment": "Engine is not Send or Sync; single-threaded execution"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://mattwparas.github.io/steel/book/builtins/steel_base.html"],
+      "comment": "Built-in list operations: map, filter, fold, etc."
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Racket-style modules with require and provide"
+    },
+    "standard-library": {
+      "value": ["comprehensive"],
+      "source": ["https://mattwparas.github.io/steel/book/builtins/steel_base.html"],
+      "comment": "Includes file I/O, process control, networking, math, string processing, data structures"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Bytecode virtual machine interpreter"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://mattwparas.github.io/steel/book/start/standalone.html"],
+      "comment": "Runtime eval and experimental precompilation (compile command)"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Modules can be reloaded; designed for embedding"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://mattwparas.github.io/steel/book/start/standalone.html"],
+      "comment": "Interactive REPL via steel-repl crate and CLI"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://mattwparas.github.io/steel/book/start/standalone.html"],
+      "comment": "AST and bytecode inspection via CLI commands"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Error messages include source locations"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Pure Rust bytecode VM; no JIT warmup"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Bytecode VM performance; R7RS benchmarks included but not published"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://lib.rs/crates/steel-core"],
+      "comment": "~12-31MB with dependencies; ~471K SLoC total"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Garbage collected with immutable data structures by default"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "No C/C++ dependencies"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/steel-core/latest/steel_core/"],
+      "comment": "Safe public API; unsafe contained internally"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://mattwparas.github.io/steel/book/engine/register_function.html"],
+      "comment": "RegisterFn trait for ergonomic function registration; automatic type conversions via FromSteelVal/IntoSteelVal"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://lib.rs/crates/steel-core"],
+      "comment": "serde dependency included for data serialization"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://mattwparas.github.io/steel/book/start/embedded.html"],
+      "comment": "Engine is not Send or Sync; bound to single thread"
+    },
+    "function-registration": {
+      "value": ["builder-api"],
+      "source": ["https://mattwparas.github.io/steel/book/engine/register_function.html"],
+      "comment": "RegisterFn trait and BuiltInModule for organizing functions"
+    },
+    "type-mapping": {
+      "value": ["automatic"],
+      "source": ["https://mattwparas.github.io/steel/book/engine/register_function.html"],
+      "comment": "Automatic via FromSteelVal/IntoSteelVal traits; Vec->list, HashMap->hashmap, Option->false, Result->unwrap"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://lib.rs/crates/steel-core"],
+      "comment": "Uses std for I/O, process control, and other features"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Online playground available at mattwparas.github.io demonstrating WASM support"
+    },
+    "blank-slate-mode": {
+      "value": false,
+      "source": ["https://mattwparas.github.io/steel/book/start/embedded.html"],
+      "comment": "Engine::new() includes standard primitives; no documented blank slate mode"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": false,
+      "comment": "No documented CPU/instruction count limits"
+    },
+    "memory-limits": {
+      "value": false,
+      "comment": "No documented memory limits"
+    },
+    "syscall-restrictions": {
+      "value": false,
+      "source": ["https://mattwparas.github.io/steel/book/builtins/steel_base.html"],
+      "comment": "Standard library includes file I/O and process spawning by default"
+    },
+    "capability-security": {
+      "value": false,
+      "comment": "No documented capability-based security system"
+    },
+    "default-deny": {
+      "value": false,
+      "source": ["https://mattwparas.github.io/steel/book/builtins/steel_base.html"],
+      "comment": "Comprehensive standard library available by default"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://mattwparas.github.io/steel/book/engine/register_function.html"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://mattwparas.github.io/steel/book/start/embedded.html"],
+      "comment": "Engine::run() executes Steel code and returns results"
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "source": ["https://mattwparas.github.io/steel/book/engine/register_function.html"],
+      "comment": "Data converted via FromSteelVal/IntoSteelVal traits"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Rust structs can be registered via BuiltInModule"
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Scheme operators are functions; custom implementations possible"
+    },
+    "method-syntax": {
+      "value": false,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Scheme uses prefix notation; no dot-notation methods"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "First-class functions can be stored and invoked as callbacks"
+    },
+    "github-stars": {
+      "value": 2170,
+      "source": ["https://api.github.com/repos/mattwparas/steel"],
+      "comment": "As of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 15000,
+      "source": ["https://lib.rs/crates/steel-core"],
+      "comment": "Estimated based on ~470/month and first release July 2023"
+    },
+    "last-release": {
+      "value": "2025-06-21",
+      "source": ["https://lib.rs/crates/steel-core"]
+    },
+    "package-manager": {
+      "value": true,
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Bundled 'forge' package manager"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://crates.io/crates/steel-language-server"],
+      "comment": "Language server available; used in Helix editor plugin system"
+    },
+    "example-projects": {
+      "value": ["plugins", "cli-tools"],
+      "source": ["https://github.com/helix-editor/helix/pull/8675"],
+      "comment": "Used as plugin system for Helix editor; steel-examples directory"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "Regular commits; last push January 2026"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://mattwparas.github.io/steel/book/"],
+      "comment": "Book available with embedding guide; API docs adequate but some gaps"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/mattwparas"],
+      "comment": "Matthew Paras is primary maintainer"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/mattwparas/steel"],
+      "comment": "API relatively stable but may change while pre-1.0; R5RS mostly compliant"
+    },
+    "primary-use-cases": {
+      "value": ["plugin-system", "repl-shell", "automation"],
+      "source": ["https://github.com/mattwparas/steel", "https://github.com/helix-editor/helix/pull/8675"],
+      "comment": "Designed for embedding; used as Helix editor plugin system"
+    }
+  }
+}
