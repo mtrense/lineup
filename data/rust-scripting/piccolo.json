@@ -1,0 +1,300 @@
+{
+  "name": "Piccolo",
+  "description": "Stackless Lua VM implemented in pure Rust with focus on safe sandboxing",
+  "icon": "🎻",
+  "url": "https://github.com/kyren/piccolo",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Dual-licensed under MIT or CC0 1.0 (public domain)"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/kyren/piccolo"]
+    },
+    "language-family": {
+      "value": ["lua-like"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Aims to emulate PUC-Rio Lua behavior"
+    },
+    "repository": {
+      "value": "https://github.com/kyren/piccolo"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/piccolo"
+    },
+    "documentation": {
+      "value": "https://docs.rs/piccolo"
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://github.com/kyren/piccolo/releases"],
+      "comment": "v0.2.0 released October 2023; project resumed after 4-year pause"
+    },
+    "latest-version": {
+      "value": "0.3.3",
+      "source": ["https://lib.rs/crates/piccolo"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Follows Lua's dynamic typing model"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional", "prototype-based"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Supports Lua's paradigms via metatables"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"]
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Real closures with proper upvalue handling"
+    },
+    "pattern-matching": {
+      "value": false,
+      "comment": "Lua lacks native pattern matching"
+    },
+    "error-handling": {
+      "value": ["exceptions", "result-type"],
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Lua pcall/error for exceptions; Rust API returns Result types"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "No native async/await in Lua scripts; has Rust-side async Sequence mechanism"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Coroutines including yielding transparent to Rust callbacks"
+    },
+    "module-system": {
+      "value": false,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Package library not implemented yet"
+    },
+    "standard-library": {
+      "value": ["minimal"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Most stdlib unimplemented: io, file, os, package, string, table, utf8 are missing or sparse"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Compiles to bytecode executed by stackless VM"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Can compile at runtime or use precompiled bytecode"
+    },
+    "hot-reloading": {
+      "value": true,
+      "comment": "Can load new scripts without restarting interpreter"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://docs.rs/crate/piccolo/latest/source/README.md"],
+      "comment": "Includes rustyline as dev dependency for REPL"
+    },
+    "debugging-support": {
+      "value": false,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Debug library not implemented"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Runtime errors map back to source locations"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Minimal initialization; no JIT warmup"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Goal is to not be fundamentally slower than PUC-Rio Lua; optimization incomplete"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Zero-cost Gc pointers (machine pointer sized); designed for embedding"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Cycle-detecting incremental garbage collector via gc-arena crate"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"]
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Zero-cost Gc pointers usable from safe Rust; unsafe contained internally"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Good Rust patterns (Executor, Context, traits) but only 10% documented; experimental API"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://lib.rs/crates/piccolo"],
+      "comment": "Via piccolo-util crate for Rust type to Lua table conversion"
+    },
+    "async-compatible": {
+      "value": ["native-async"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Advanced async Sequence mechanism with shadow stack for holding GC values across await points"
+    },
+    "function-registration": {
+      "value": ["builder-api", "manual"],
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Callback system for registering Rust functions; no derive macros"
+    },
+    "type-mapping": {
+      "value": ["manual", "serde-based"],
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Manual conversion needed; serde support via piccolo-util"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "comment": "Dependencies require std (gc-arena, etc.)"
+    },
+    "wasm-compatible": {
+      "value": null,
+      "comment": "Pure Rust but WASM compatibility not documented or verified"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Can start with empty context; host controls all available symbols"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Fuel-based execution control for bounding CPU usage"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Memory tracking and limits via gc-arena"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "No io/os/file libraries by default; host must explicitly provide capabilities"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Host explicitly grants capabilities; designed for DoS resilience"
+    },
+    "default-deny": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Scripts have no capabilities by default; designed to safely sandbox untrusted scripts"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/piccolo"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/piccolo"]
+    },
+    "share-data": {
+      "value": ["references"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Gc pointers for references; userdata participates in garbage collection"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Garbage collected userdata with safe downcasting"
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Metatables/metamethods implemented"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Lua colon syntax supported via metatables"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Robust callback system with sequencing callbacks"
+    },
+    "github-stars": {
+      "value": 1900,
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 22700,
+      "source": ["https://lib.rs/crates/piccolo"],
+      "comment": "All-time downloads as of January 2026"
+    },
+    "last-release": {
+      "value": "2024-06-16",
+      "source": ["https://github.com/kyren/piccolo/releases"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem; package library not implemented"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting"],
+      "source": ["https://lua-ls.github.io/"],
+      "comment": "Standard Lua editor tooling works for syntax"
+    },
+    "example-projects": {
+      "value": ["games", "plugins"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Designed for game scripting and plugin systems; sandboxing focus"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Recently unpaused after 4 years; active development through 2024"
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/piccolo"],
+      "comment": "Only 10% of crate documented; minimal examples but good README"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Primary maintainer: kyren"
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Pre-1.0; warns of frequent API breakage; most stdlib unimplemented"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "plugin-system", "config-logic"],
+      "source": ["https://github.com/kyren/piccolo"],
+      "comment": "Focus on safe sandboxing of untrusted scripts with DoS resilience"
+    }
+  }
+}
