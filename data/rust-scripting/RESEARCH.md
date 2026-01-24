@@ -235,7 +235,7 @@ Newer, specialized, or niche options:
 - [x] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
 - [ ] **wasm-bindgen** + interpreters - WASM-based scripting approach
 - [ ] **rhai-sci** / **rhai-rand** - Rhai ecosystem extensions
-- [ ] **goscript** - Go-like scripting (if actively maintained)
+- [x] **goscript** - Go-like scripting (if actively maintained)
 - [ ] **miri** - Rust interpreter (different use case but notable)
 
 ### Not Including (with reasons)

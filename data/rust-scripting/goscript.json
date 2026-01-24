@@ -1,0 +1,287 @@
+{
+  "name": "Goscript",
+  "description": "An alternative implementation of Go language specs written in Rust for embedding as a scripting language",
+  "icon": "🐹",
+  "url": "https://goscript.dev",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/oxfeeefeee/goscript"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "64.2% Rust, 35.8% Go (test files); no C/C++ dependencies"
+    },
+    "language-family": {
+      "value": ["custom"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go syntax - not in the predefined families but closest to imperative/C-family"
+    },
+    "repository": {
+      "value": "https://github.com/oxfeeefeee/goscript"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/goscript-engine"
+    },
+    "documentation": {
+      "value": "https://docs.rs/goscript-engine"
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://lib.rs/crates/goscript-engine"],
+      "comment": "First crates.io publish September 2021"
+    },
+    "latest-version": {
+      "value": "0.1.0",
+      "source": ["https://lib.rs/crates/goscript-engine"],
+      "comment": "Unstable alpha release; GitHub has newer unreleased code"
+    },
+    "typing": {
+      "value": ["static"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go's static type system with type inference"
+    },
+    "paradigm": {
+      "value": ["imperative", "multi-paradigm"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go-style: primarily imperative with some functional aspects (closures)"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go supports first-class functions"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go supports closures with variable capture"
+    },
+    "pattern-matching": {
+      "value": false,
+      "comment": "Go does not have pattern matching; uses type switches instead"
+    },
+    "error-handling": {
+      "value": ["error-values"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go-style error handling: multiple return values with error as last value"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Uses goroutines for concurrency, not async/await syntax"
+    },
+    "iterators-generators": {
+      "value": false,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go uses range loops but has no iterator protocol or generators"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go package system"
+    },
+    "standard-library": {
+      "value": ["minimal"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Partial stdlib port described as 'not fully working'; significant work remains"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "VM-based implementation without JIT"
+    },
+    "compilation-model": {
+      "value": ["runtime-eval"],
+      "source": ["https://github.com/oxfeeefeee/goscript"]
+    },
+    "hot-reloading": {
+      "value": false,
+      "comment": "Not documented or mentioned in repository"
+    },
+    "repl-support": {
+      "value": false,
+      "comment": "No REPL documented"
+    },
+    "debugging-support": {
+      "value": false,
+      "comment": "No debugging support documented"
+    },
+    "source-maps": {
+      "value": null,
+      "comment": "Unable to verify from available documentation"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "comment": "Pure Rust VM with no JIT warmup; lightweight initialization"
+    },
+    "execution-speed": {
+      "value": ["slow"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "README states 'you can only expect performance comparable to Python'"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://lib.rs/crates/goscript-engine"],
+      "comment": "285KB total package size with ~10K SLoC"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Implements Go's garbage collection model"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"]
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "comment": "Pure Rust implementation; unsafe likely contained internally"
+    },
+    "idiomatic-api": {
+      "value": 1,
+      "source": ["https://docs.rs/goscript-engine"],
+      "comment": "0% API documentation coverage; basic Config/Engine structs only"
+    },
+    "serde-integration": {
+      "value": false,
+      "comment": "No serde integration documented"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Goroutines are internal concurrency; no Rust async runtime integration"
+    },
+    "function-registration": {
+      "value": ["manual"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "FFI system requires manual setup; no derive macros documented"
+    },
+    "type-mapping": {
+      "value": ["manual"],
+      "comment": "No automatic type mapping documented; FFI requires explicit handling"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "comment": "Standard library dependencies; no no_std support documented"
+    },
+    "wasm-compatible": {
+      "value": null,
+      "comment": "Not documented; cross-platform targets mentioned but WASM unverified"
+    },
+    "blank-slate-mode": {
+      "value": null,
+      "comment": "Unable to verify from available documentation"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go semantics prevent arbitrary memory access; designed for embedding"
+    },
+    "cpu-limits": {
+      "value": null,
+      "comment": "Not documented"
+    },
+    "memory-limits": {
+      "value": null,
+      "comment": "Not documented"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Designed for sandboxed embedding; stdlib partially ported"
+    },
+    "capability-security": {
+      "value": null,
+      "comment": "Not documented"
+    },
+    "default-deny": {
+      "value": null,
+      "comment": "Not documented"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "FFI (Foreign Function Interface) support for calling Rust from scripts"
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Primary use case is embedding Go scripts in Rust applications"
+    },
+    "share-data": {
+      "value": ["clone-only"],
+      "comment": "Data sharing likely requires copying; zero-copy not documented"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "FFI allows exposing custom types to scripts"
+    },
+    "operator-overloading": {
+      "value": false,
+      "comment": "Go does not support operator overloading"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Go supports methods on types"
+    },
+    "callbacks-events": {
+      "value": null,
+      "comment": "Not documented"
+    },
+    "github-stars": {
+      "value": 1500,
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "comment": "Unable to retrieve from crates.io"
+    },
+    "last-release": {
+      "value": "2021-09-19",
+      "source": ["https://lib.rs/crates/goscript-engine"],
+      "comment": "Crates.io not updated since initial release; GitHub has newer unreleased code"
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem"
+    },
+    "editor-support": {
+      "value": ["none"],
+      "comment": "No editor tooling or IDE support documented"
+    },
+    "example-projects": {
+      "value": ["plugins", "games"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Positioned like Lua in Redis/WoW or Python in Sublime Text"
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Last commit September 2023; no crates.io updates since 2021; 814 commits total"
+    },
+    "documentation-quality": {
+      "value": 1,
+      "source": ["https://docs.rs/goscript-engine"],
+      "comment": "0% API documentation coverage; README is only substantial documentation"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "5 contributors but development dominated by single author"
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Self-described as alpha release; 'considered buggy'; standard library incomplete"
+    },
+    "primary-use-cases": {
+      "value": ["plugin-system", "game-scripting", "automation"],
+      "source": ["https://github.com/oxfeeefeee/goscript"],
+      "comment": "Designed for embedding Go scripts in Rust applications"
+    }
+  }
+}
