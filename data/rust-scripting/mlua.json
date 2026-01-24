@@ -1,0 +1,298 @@
+{
+  "name": "mlua",
+  "description": "High-level Lua bindings for Rust supporting Lua 5.1-5.5, LuaJIT, and Luau",
+  "icon": "🌙",
+  "url": "https://github.com/mlua-rs/mlua",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/mlua-rs/mlua"]
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Rust bindings to Lua C library; vendored compilation available"
+    },
+    "language-family": {
+      "value": ["lua-like"],
+      "source": ["https://github.com/mlua-rs/mlua"]
+    },
+    "repository": {
+      "value": "https://github.com/mlua-rs/mlua"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/mlua"
+    },
+    "documentation": {
+      "value": "https://docs.rs/mlua"
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://docs.rs/crate/mlua/0.1.0"],
+      "comment": "First crates.io release (0.1.0) on 2019-11-04"
+    },
+    "latest-version": {
+      "value": "0.11.5",
+      "source": ["https://lib.rs/crates/mlua"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Lua is dynamically typed; Luau adds optional type annotations"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional", "prototype-based"],
+      "source": ["https://www.lua.org/about.html"],
+      "comment": "Lua supports imperative, functional, and prototype-based OOP via metatables"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/6.html"]
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/6.1.html"],
+      "comment": "Lua functions are closures with proper lexical scoping"
+    },
+    "pattern-matching": {
+      "value": false,
+      "comment": "Lua lacks native pattern matching; relies on if/elseif chains"
+    },
+    "error-handling": {
+      "value": ["exceptions", "result-type"],
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Lua uses pcall/error for exceptions; mlua wraps these in Rust Result types"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "No native async/await in Lua scripts; mlua provides async via Rust integration"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://www.lua.org/pil/7.html"],
+      "comment": "Generic for loop with iterator functions; coroutines can act as generators"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://www.lua.org/manual/5.4/manual.html#6.3"],
+      "comment": "require/module system with package.path"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Standard libs: string, table, math, io, os, debug, coroutine, utf8"
+    },
+    "execution-strategy": {
+      "value": ["bytecode", "jit"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Standard Lua uses bytecode VM; LuaJIT option provides JIT compilation"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://www.lua.org/manual/5.4/"],
+      "comment": "Can load source at runtime or precompile to bytecode"
+    },
+    "hot-reloading": {
+      "value": true,
+      "comment": "Scripts can be reloaded via standard Lua mechanisms"
+    },
+    "repl-support": {
+      "value": true,
+      "comment": "Standard Lua includes REPL; mlua can evaluate strings interactively"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "Hooks, stack inspection, tracebacks via debug library and mlua APIs"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "Line number tracking and tracebacks available"
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "comment": "Standard Lua has minimal startup; LuaJIT slightly higher but still fast"
+    },
+    "execution-speed": {
+      "value": ["fast", "near-native"],
+      "source": ["https://luajit.org/performance.html"],
+      "comment": "Standard Lua is fast bytecode; LuaJIT achieves near-native with JIT"
+    },
+    "memory-overhead": {
+      "value": ["minimal"],
+      "source": ["https://www.lua.org/about.html"],
+      "comment": "Lua is designed for embedding with small footprint (~200KB core)"
+    },
+    "garbage-collection": {
+      "value": ["mark-sweep", "generational"],
+      "source": ["https://www.lua.org/manual/5.4/manual.html#2.5"],
+      "comment": "Lua 5.4 supports incremental and generational GC modes"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Bindings to Lua C library (vendored or system)"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "All Lua API errors protected by lua_pcall; unsafe contained internally but library admits 'huge amount of unsafe code'"
+    },
+    "idiomatic-api": {
+      "value": 5,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Excellent Rust patterns: traits (IntoLua, FromLua, UserData), Result types, async support, derive macros"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Optional 'serde' feature with LuaSerdeExt trait"
+    },
+    "async-compatible": {
+      "value": ["native-async", "tokio-compatible", "async-std-compatible"],
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Async feature with create_async_function, AsyncThread; works with any executor"
+    },
+    "function-registration": {
+      "value": ["macro-based", "builder-api"],
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "UserData derive macros, UserDataMethods builder API, closure registration"
+    },
+    "type-mapping": {
+      "value": ["automatic", "serde-based"],
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "IntoLua/FromLua traits with implementations for standard types; serde for complex types"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "comment": "Requires std for Lua C integration and memory management"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Supports wasm32-unknown-emscripten target; non-JIT Lua versions only"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Can create Lua state without standard libraries via Lua::new_with() specifying StdLib"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "set_hook with every_nth_instruction for execution limits; set_interrupt for Luau"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "set_memory_limit(bytes) triggers MemoryError when exceeded"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Can omit io/os libraries via StdLib flags; Luau sandbox mode restricts further"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/struct.Lua.html"],
+      "comment": "StdLib flags control which libraries are available; Luau sandbox mode"
+    },
+    "default-deny": {
+      "value": false,
+      "comment": "By default includes standard libraries; must explicitly restrict via Lua::new_with()"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"]
+    },
+    "share-data": {
+      "value": ["clone-only", "references", "zero-copy"],
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "UserData for references, BorrowedStr/BorrowedBytes for zero-copy, regular conversion clones"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/trait.UserData.html"]
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "MetaMethod enum for __add, __sub, __index, etc. via UserDataMetatable"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "UserDataMethods registers methods callable with colon syntax (obj:method())"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Functions can be stored and called back from Rust"
+    },
+    "github-stars": {
+      "value": 2500,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 5000000,
+      "source": ["https://lib.rs/crates/mlua"],
+      "comment": "Estimated based on ~150k monthly downloads; lib.rs shows 38k weekly"
+    },
+    "last-release": {
+      "value": "2025-11-23",
+      "source": ["https://lib.rs/crates/mlua"]
+    },
+    "package-manager": {
+      "value": true,
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Can create modules for LuaRocks ecosystem"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://lua-ls.github.io/"],
+      "comment": "Lua has mature tooling: lua-language-server LSP, VS Code extensions, formatters"
+    },
+    "example-projects": {
+      "value": ["games", "config", "plugins", "automation", "web-backends"],
+      "source": ["https://lib.rs/crates/mlua"],
+      "comment": "286 reverse dependencies; used in game engines, Neovim plugins, web frameworks"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "1,818 commits, 43 contributors, regular releases through 2025"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/mlua/latest/mlua/"],
+      "comment": "Good API docs with examples; no dedicated book but comprehensive docs.rs"
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "43 contributors, active maintainers"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "First released 2019, now at v0.11.5 with widespread production use"
+    },
+    "primary-use-cases": {
+      "value": ["game-scripting", "config-logic", "plugin-system", "automation"],
+      "source": ["https://github.com/mlua-rs/mlua"],
+      "comment": "Lua's traditional strengths: game scripting, config, extensibility"
+    }
+  }
+}
