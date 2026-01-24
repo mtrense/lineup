@@ -232,7 +232,7 @@ Newer, specialized, or niche options:
 - [x] **Mun** - Hot reloading focused, static typing, game development target
 - [x] **Starlark** - Google's Bazel config language, pure Rust implementation
 - [x] **KCL** - CNCF constraint-based configuration language with Rust SDK
-- [ ] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
+- [x] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
 - [ ] **wasm-bindgen** + interpreters - WASM-based scripting approach
 - [ ] **rhai-sci** / **rhai-rand** - Rhai ecosystem extensions
 - [ ] **goscript** - Go-like scripting (if actively maintained)

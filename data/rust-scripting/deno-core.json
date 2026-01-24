@@ -1,0 +1,303 @@
+{
+  "name": "deno_core",
+  "description": "V8-based JavaScript runtime engine that powers Deno, providing high-performance JS execution with Tokio async integration",
+  "icon": "JS",
+  "url": "https://github.com/denoland/deno_core",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/denoland/deno_core"]
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Rust bindings to the V8 JavaScript engine via rusty_v8"
+    },
+    "language-family": {
+      "value": ["javascript-like"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Full ECMAScript implementation via V8"
+    },
+    "repository": {
+      "value": "https://github.com/denoland/deno_core"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/deno_core"
+    },
+    "documentation": {
+      "value": "https://docs.rs/deno_core/"
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/crates/deno_core"],
+      "comment": "First published to crates.io September 2019; Deno project started 2018"
+    },
+    "latest-version": {
+      "value": "0.382.0",
+      "source": ["https://crates.io/crates/deno_core"]
+    },
+    "typing": {
+      "value": ["dynamic"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "JavaScript is dynamically typed; TypeScript requires transpilation"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "functional", "object-oriented", "prototype-based"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Supports all JavaScript paradigms via V8"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"]
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"]
+    },
+    "pattern-matching": {
+      "value": false,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "JavaScript has destructuring but no true pattern matching"
+    },
+    "error-handling": {
+      "value": ["exceptions"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "JavaScript uses try/catch/finally/throw"
+    },
+    "async-await": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Full async/await support via V8; integrated with Tokio event loop"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Supports ES6 iterators, generators, and for-of loops"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Supports ES modules; module resolution customizable via ModuleLoader trait"
+    },
+    "standard-library": {
+      "value": ["minimal"],
+      "source": ["https://docs.rs/deno_core/", "https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "Bare-bones V8 context; no console, fetch, or I/O by default. Must add via extensions."
+    },
+    "execution-strategy": {
+      "value": ["jit"],
+      "source": ["https://v8.dev/"],
+      "comment": "V8's TurboFan JIT compiler and Sparkplug baseline compiler"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Runtime eval and snapshot support for precompiled startup"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Scripts can be re-evaluated at runtime via execute_script"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Can evaluate code interactively; Deno CLI provides full REPL"
+    },
+    "debugging-support": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "V8 Inspector protocol support for Chrome DevTools debugging"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Source map integration documented"
+    },
+    "startup-time": {
+      "value": ["slow"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "V8 initialization is heavy (>100ms); snapshots can reduce cold start"
+    },
+    "execution-speed": {
+      "value": ["near-native"],
+      "source": ["https://v8.dev/"],
+      "comment": "V8 JIT compilation provides excellent runtime performance"
+    },
+    "memory-overhead": {
+      "value": ["high"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "V8 isolate requires significant memory (>50MB baseline)"
+    },
+    "garbage-collection": {
+      "value": ["generational"],
+      "source": ["https://v8.dev/blog/trash-talk"],
+      "comment": "V8 uses Orinoco generational garbage collector"
+    },
+    "pure-rust": {
+      "value": false,
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Depends on rusty_v8 which wraps V8 C++ engine"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Safe public API wrapping V8; unsafe contained in rusty_v8 bindings"
+    },
+    "idiomatic-api": {
+      "value": 4,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Good macro support (#[op2]), serde integration, Result-based errors, but steep learning curve"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "serde_v8 for serialization; FromV8/ToV8 derive macros"
+    },
+    "async-compatible": {
+      "value": ["native-async", "tokio-compatible"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Built on Tokio; async ops map JavaScript Promises to Rust Futures"
+    },
+    "function-registration": {
+      "value": ["macro-based"],
+      "source": ["https://docs.rs/deno_core/", "https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "#[op2] macro and extension! macro for registering Rust functions"
+    },
+    "type-mapping": {
+      "value": ["serde-based"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "FromV8 and ToV8 traits with derive macros; serde_v8 for conversions"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://github.com/denoland/deno_core/blob/main/core/Cargo.toml"],
+      "comment": "Requires std, tokio, and V8"
+    },
+    "wasm-compatible": {
+      "value": false,
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "V8 cannot run inside WebAssembly"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "Starts with minimal V8 context; no console, timers, or I/O by default"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "V8 isolates provide memory isolation between contexts"
+    },
+    "cpu-limits": {
+      "value": false,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "No built-in instruction counting; would need external timeout mechanism"
+    },
+    "memory-limits": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "V8 heap size limits can be configured via RuntimeOptions"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "No I/O capabilities by default; all access must be explicitly added via ops"
+    },
+    "capability-security": {
+      "value": false,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "deno_core itself has no capability system; Deno CLI adds permissions layer"
+    },
+    "default-deny": {
+      "value": true,
+      "source": ["https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "Minimal runtime with no I/O by default; must explicitly grant capabilities"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"]
+    },
+    "share-data": {
+      "value": ["zero-copy"],
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "serde_v8 supports zero-copy for buffers and strings where possible"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "Can expose Rust types via ops and serde_v8"
+    },
+    "operator-overloading": {
+      "value": false,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "JavaScript doesn't support operator overloading"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"]
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "JavaScript functions can be stored and called as callbacks"
+    },
+    "github-stars": {
+      "value": 465,
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "deno_core repo; main deno repo has 100k+ stars"
+    },
+    "crates-io-downloads": {
+      "value": 4351024,
+      "source": ["https://crates.io/crates/deno_core"],
+      "comment": "All-time downloads as of January 2026"
+    },
+    "last-release": {
+      "value": "2026-01-23",
+      "source": ["https://crates.io/crates/deno_core"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No built-in package manager; can integrate with npm/deno registries"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://deno.com/"],
+      "comment": "Uses standard JavaScript/TypeScript tooling; Deno LSP available"
+    },
+    "example-projects": {
+      "value": ["cli-tools", "web-backends", "plugins", "automation"],
+      "source": ["https://github.com/denoland/deno_core", "https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "Powers Deno CLI; used for custom JS/TS runtimes and plugin systems"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Very active development; 342 releases, updated daily"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/deno_core/"],
+      "comment": "30% documented on docs.rs; good official tutorials but thin API docs"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Deno Land Inc. with 55+ contributors"
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://github.com/denoland/deno_core"],
+      "comment": "Powers production Deno runtime; battle-tested at scale"
+    },
+    "primary-use-cases": {
+      "value": ["plugin-system", "automation", "repl-shell"],
+      "source": ["https://deno.com/blog/roll-your-own-javascript-runtime"],
+      "comment": "Custom JavaScript runtimes, plugin systems, automation tools"
+    }
+  }
+}
