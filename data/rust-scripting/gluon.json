@@ -1,0 +1,302 @@
+{
+  "name": "Gluon",
+  "description": "A static, type-inferred functional programming language designed for application embedding",
+  "icon": "λ",
+  "url": "https://gluon-lang.org/",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/gluon-lang/gluon"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "No C/C++ dependencies in the dependency tree"
+    },
+    "language-family": {
+      "value": ["functional"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Syntax inspired by F#, OCaml, and Haskell. Expression syntax from F#/OCaml, type syntax from Haskell"
+    },
+    "repository": {
+      "value": "https://github.com/gluon-lang/gluon"
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/gluon"
+    },
+    "documentation": {
+      "value": "https://gluon-lang.org/doc/crates_io/book/index.html"
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://docs.rs/crate/gluon/0.1.0"],
+      "comment": "First crates.io release (0.1.1) on 2016-06-29"
+    },
+    "latest-version": {
+      "value": "0.18.2",
+      "source": ["https://lib.rs/crates/gluon"]
+    },
+    "typing": {
+      "value": ["static"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Hindley-Milner based type system with extensions, allowing simple and general type inference"
+    },
+    "paradigm": {
+      "value": ["functional"],
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Functional language at heart, uses strict evaluation but has explicit lazy types"
+    },
+    "first-class-functions": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Functions are first-class, passed with whitespace-separated arguments"
+    },
+    "closures": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Lambda expressions: \\x y -> x + y - 10"
+    },
+    "pattern-matching": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Match expressions for unpacking variants and records, nested patterns supported"
+    },
+    "error-handling": {
+      "value": ["result-type"],
+      "source": ["https://gluon-lang.org/"],
+      "comment": "Uses Result types for error management with Ok/Err pattern matching"
+    },
+    "async-await": {
+      "value": false,
+      "source": ["https://github.com/gluon-lang/gluon/issues/537"],
+      "comment": "No native async/await syntax. Uses monadic do-expressions; Rust futures can be called from gluon"
+    },
+    "iterators-generators": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/crates_io/std/std.html"],
+      "comment": "Standard library includes iterator functions and array operations"
+    },
+    "module-system": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "import! macro for loading external files and modules"
+    },
+    "standard-library": {
+      "value": ["moderate"],
+      "source": ["https://gluon-lang.org/doc/crates_io/std/std.html"],
+      "comment": "Includes std.io, std.json, std.result, std.thread, and more"
+    },
+    "execution-strategy": {
+      "value": ["bytecode"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Stack-based bytecode VM"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "Can evaluate at runtime or precompile; modular architecture with separate parser, typechecker, VM"
+    },
+    "hot-reloading": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Scripts can be reloaded; separate module compilation"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://crates.io/crates/gluon_repl"],
+      "comment": "Dedicated gluon_repl crate available"
+    },
+    "debugging-support": {
+      "value": false,
+      "comment": "No documented debugging interface (breakpoints, step-through)"
+    },
+    "source-maps": {
+      "value": true,
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "Uses codespan for error reporting with source locations"
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Pure Rust, no JIT warmup, but type checking adds overhead"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://github.com/gluon-lang/gluon/issues/858"],
+      "comment": "~250-290x slower than native Rust for function calls; ~4-10x slower than Lua in factorial benchmarks"
+    },
+    "memory-overhead": {
+      "value": ["low"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Separate heaps per thread keeps individual heaps small"
+    },
+    "garbage-collection": {
+      "value": ["tracing-gc"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Garbage collected with separate heap per executing thread"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "No C/C++ dependencies. 54K SLoC pure Rust"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "Unsafe contained internally; public API is safe"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://www.boringcactus.com/2020/09/16/survey-of-rust-embeddable-scripting-languages.html"],
+      "comment": "Good type integration but requires duplicate type definitions in Rust and Gluon; API docs only 27% complete"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "serde support available with custom derive macros"
+    },
+    "async-compatible": {
+      "value": ["tokio-compatible"],
+      "source": ["https://github.com/gluon-lang/gluon/issues/537"],
+      "comment": "Tokio integration via feature flag; Rust functions returning futures automatically suspend gluon threads"
+    },
+    "function-registration": {
+      "value": ["macro-based", "builder-api"],
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "primitive! macro for function registration; VmBuilder for VM setup"
+    },
+    "type-mapping": {
+      "value": ["automatic", "serde-based"],
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "record! and record_type! macros for type mapping; serde for serialization"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "Uses std extensively for threading and I/O"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon/issues/418"],
+      "comment": "Interpreter can compile to WASM (~3.5MB) but with limitations; no native WASM backend for gluon code"
+    },
+    "blank-slate-mode": {
+      "value": false,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Base primitives are always available; sandboxing via IO monad rather than blank slate"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Scripts cannot access arbitrary host memory; separate heaps per thread"
+    },
+    "cpu-limits": {
+      "value": false,
+      "comment": "No documented CPU/instruction count limits"
+    },
+    "memory-limits": {
+      "value": false,
+      "comment": "No documented memory limits; relies on separate heaps per thread"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon/blob/master/CHANGELOG.md"],
+      "comment": "Channels and references require IO monad; side effects controlled via type system"
+    },
+    "capability-security": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "IO monad controls side effects; scripts must explicitly use IO for effectful operations"
+    },
+    "default-deny": {
+      "value": false,
+      "comment": "Standard library is available by default; sandboxing via IO monad rather than capability removal"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon"]
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://docs.rs/gluon/latest/gluon/"]
+    },
+    "share-data": {
+      "value": ["clone-only", "references"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Marshalling with minimal boilerplate; supports both cloning and references"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "Rust structs can be exposed via record macros"
+    },
+    "operator-overloading": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Operators are functions; custom operator definitions supported"
+    },
+    "method-syntax": {
+      "value": true,
+      "source": ["https://gluon-lang.org/doc/nightly/book/syntax-and-semantics.html"],
+      "comment": "Record field access with dot notation"
+    },
+    "callbacks-events": {
+      "value": true,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Functions are first-class; can be passed as callbacks"
+    },
+    "github-stars": {
+      "value": 3400,
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Approximate as of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 150000,
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "Estimated based on ~26/month current rate and project age since 2016"
+    },
+    "last-release": {
+      "value": "2023-09-19",
+      "source": ["https://lib.rs/crates/gluon"]
+    },
+    "package-manager": {
+      "value": false,
+      "comment": "No package ecosystem; modules loaded via import!"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp"],
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "Language server, VS Code extension, and Vim plugin available"
+    },
+    "example-projects": {
+      "value": ["config", "plugins"],
+      "source": ["https://lib.rs/crates/gluon"],
+      "comment": "Used in 9 crates; designed for application embedding and configuration"
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Last commit Dec 2022, last release Sep 2023; fixes for newer Rust versions but limited new features"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/gluon/latest/gluon/"],
+      "comment": "Book available with syntax guide; API docs only 27.38% complete"
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Marwes is primary maintainer"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Usable but still v0.x; some stability issues reported (e.g., stack overflow on complex types)"
+    },
+    "primary-use-cases": {
+      "value": ["config-logic", "plugin-system", "data-transformation"],
+      "source": ["https://github.com/gluon-lang/gluon"],
+      "comment": "Designed for application embedding; static typing good for safe interfaces"
+    }
+  }
+}

@@ -218,7 +218,7 @@ Core options most Rust developers will evaluate:
 ### Tier 2 (Should Have)
 Well-maintained alternatives and specialized options:
 
-- [ ] **Gluon** - Statically typed, functional, Haskell-inspired
+- [x] **Gluon** - Statically typed, functional, Haskell-inspired
 - [ ] **Dyon** - Game-focused, unique features (go-like coroutines, 4D vectors)
 - [ ] **RustPython** - Python interpreter in Rust
 - [ ] **Steel** - Scheme/Racket-inspired, embeddable Lisp
