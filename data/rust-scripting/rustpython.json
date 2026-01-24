@@ -1,0 +1,286 @@
+{
+  "name": "RustPython",
+  "description": "Python 3 interpreter written entirely in Rust, aiming for CPython 3.12+ compatibility",
+  "icon": "🐍",
+  "url": "https://rustpython.github.io/",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/RustPython/RustPython/blob/main/LICENSE"],
+      "comment": "MIT license for code, CC-BY-4.0 for logo"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Pure Rust implementation, no CPython bindings. Optional C dependencies only for SSL."
+    },
+    "language-family": {
+      "value": ["python-like"],
+      "comment": "Full Python 3 syntax and semantics"
+    },
+    "repository": {
+      "value": "https://github.com/RustPython/RustPython",
+      "source": ["https://github.com/RustPython/RustPython"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rustpython",
+      "source": ["https://crates.io/crates/rustpython"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/rustpython-vm/latest/rustpython_vm/",
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "rustpython-vm is the main embedding crate"
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Project started in 2018"
+    },
+    "latest-version": {
+      "value": "0.4.0",
+      "source": ["https://crates.io/crates/rustpython"],
+      "comment": "Released Aug 2024. Weekly pre-releases available on GitHub."
+    },
+    "typing": {
+      "value": ["dynamic", "duck-typed"],
+      "comment": "Python's dynamic duck typing; optional type hints available but not enforced at runtime"
+    },
+    "paradigm": {
+      "value": ["multi-paradigm", "imperative", "object-oriented", "functional"],
+      "comment": "Python supports multiple paradigms"
+    },
+    "first-class-functions": {
+      "value": true,
+      "comment": "Python has first-class functions"
+    },
+    "closures": {
+      "value": true,
+      "comment": "Python supports closures via nested functions"
+    },
+    "pattern-matching": {
+      "value": true,
+      "source": ["https://docs.python.org/3/whatsnew/3.10.html"],
+      "comment": "Python 3.10+ structural pattern matching (match/case)"
+    },
+    "error-handling": {
+      "value": ["exceptions"],
+      "comment": "Python uses try/except exception handling"
+    },
+    "async-await": {
+      "value": true,
+      "comment": "Python has native async/await syntax"
+    },
+    "iterators-generators": {
+      "value": true,
+      "comment": "Python has iterator protocol and generator functions"
+    },
+    "module-system": {
+      "value": true,
+      "comment": "Python has a comprehensive import/module system"
+    },
+    "standard-library": {
+      "value": ["comprehensive"],
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Aims to implement full Python stdlib; pip works with SSL feature"
+    },
+    "execution-strategy": {
+      "value": ["bytecode", "jit"],
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Compiles to bytecode; experimental JIT available via 'jit' feature flag"
+    },
+    "compilation-model": {
+      "value": ["both"],
+      "comment": "Runtime eval and can serialize bytecode (.pyc files)"
+    },
+    "hot-reloading": {
+      "value": true,
+      "comment": "Python's importlib supports module reloading"
+    },
+    "repl-support": {
+      "value": true,
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Full interactive REPL available"
+    },
+    "debugging-support": {
+      "value": true,
+      "comment": "Python has pdb debugger; integration level varies"
+    },
+    "source-maps": {
+      "value": true,
+      "comment": "Python tracebacks include file and line information"
+    },
+    "startup-time": {
+      "value": ["moderate"],
+      "comment": "Larger runtime than minimal interpreters; initialization overhead"
+    },
+    "execution-speed": {
+      "value": ["moderate"],
+      "source": ["https://rustpython.github.io/"],
+      "comment": "Bytecode interpreter; comparable to CPython in many benchmarks, JIT experimental"
+    },
+    "memory-overhead": {
+      "value": ["moderate"],
+      "comment": "Full Python runtime requires moderate memory; ~115K lines of code"
+    },
+    "garbage-collection": {
+      "value": ["reference-counting"],
+      "comment": "Uses reference counting like CPython, with cycle detection"
+    },
+    "pure-rust": {
+      "value": true,
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "Core is pure Rust; optional C deps only for SSL features"
+    },
+    "api-safety": {
+      "value": ["minimal-unsafe"],
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "Unsafe contained internally; public API uses safe Rust patterns"
+    },
+    "idiomatic-api": {
+      "value": 3,
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "Macro-based registration (#[pyfunction], #[pymodule]); 12.67% doc coverage indicates gaps"
+    },
+    "serde-integration": {
+      "value": true,
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "Optional serde support via feature flag"
+    },
+    "async-compatible": {
+      "value": ["sync-only"],
+      "comment": "Python async is internal to interpreter; Rust integration is synchronous"
+    },
+    "function-registration": {
+      "value": ["macro-based"],
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "Uses #[pyfunction], #[pymodule], #[pyclass] attribute macros"
+    },
+    "type-mapping": {
+      "value": ["automatic", "manual"],
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "TryFromObject/PyPayload traits provide automatic mapping; manual conversion also possible"
+    },
+    "no-std-compatible": {
+      "value": false,
+      "comment": "Requires std library features"
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://rustpython.github.io/", "https://rustpython.github.io/demo/"],
+      "comment": "Compiles to WebAssembly WASI; online demo available"
+    },
+    "blank-slate-mode": {
+      "value": true,
+      "source": ["https://github.com/RustPython/RustPython/blob/main/examples/hello_embed.rs"],
+      "comment": "Interpreter::without_stdlib() creates interpreter with no built-ins"
+    },
+    "memory-sandboxing": {
+      "value": true,
+      "comment": "Scripts cannot access arbitrary host memory"
+    },
+    "cpu-limits": {
+      "value": false,
+      "comment": "No built-in instruction count or execution time limits"
+    },
+    "memory-limits": {
+      "value": false,
+      "comment": "No built-in memory usage caps"
+    },
+    "syscall-restrictions": {
+      "value": true,
+      "comment": "Using without_stdlib removes file/network access; host controls what's available"
+    },
+    "capability-security": {
+      "value": false,
+      "comment": "No fine-grained capability system; all-or-nothing stdlib inclusion"
+    },
+    "default-deny": {
+      "value": true,
+      "comment": "Without stdlib, scripts have no I/O capabilities by default"
+    },
+    "call-rust-from-script": {
+      "value": true,
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "Register Rust functions via #[pyfunction] macro"
+    },
+    "call-script-from-rust": {
+      "value": true,
+      "source": ["https://github.com/RustPython/RustPython/blob/main/examples/hello_embed.rs"],
+      "comment": "vm.run_code_obj() and similar APIs for calling Python from Rust"
+    },
+    "share-data": {
+      "value": ["references", "clone-only"],
+      "comment": "PyRef types allow sharing references; primitives are cloned"
+    },
+    "custom-types": {
+      "value": true,
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "#[pyclass] and PyPayload derive for exposing Rust types"
+    },
+    "operator-overloading": {
+      "value": true,
+      "comment": "Python's __add__, __mul__, etc. protocols supported for custom types"
+    },
+    "method-syntax": {
+      "value": true,
+      "comment": "#[pymethod] attribute for defining methods on custom types"
+    },
+    "callbacks-events": {
+      "value": true,
+      "comment": "Python functions can be stored and called as callbacks"
+    },
+    "github-stars": {
+      "value": 21700,
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "As of January 2026"
+    },
+    "crates-io-downloads": {
+      "value": 25000,
+      "source": ["https://lib.rs/crates/rustpython"],
+      "comment": "Approximate; ~450 downloads/month reported"
+    },
+    "last-release": {
+      "value": "2024-08-07",
+      "source": ["https://crates.io/crates/rustpython"],
+      "comment": "v0.4.0; weekly pre-releases continue on GitHub"
+    },
+    "package-manager": {
+      "value": true,
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "pip works with SSL feature enabled"
+    },
+    "editor-support": {
+      "value": ["syntax-highlighting", "lsp", "formatter"],
+      "comment": "Uses standard Python syntax; existing Python tooling (pylsp, black, etc.) works"
+    },
+    "example-projects": {
+      "value": ["web-backends", "plugins", "automation"],
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "GreptimeDB uses RustPython for embedded scripting"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/RustPython/RustPython/releases"],
+      "comment": "Weekly pre-releases; 427+ contributors"
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/rustpython-vm"],
+      "comment": "12.67% docs.rs coverage; basic examples available but limited tutorials"
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/RustPython/RustPython"],
+      "comment": "427+ contributors under RustPython organization"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://rustpython.github.io/"],
+      "comment": "Explicitly states 'not production ready'; usable for WASM and embedding experiments"
+    },
+    "primary-use-cases": {
+      "value": ["plugin-system", "automation", "repl-shell", "data-transformation"],
+      "comment": "Best for Python scripting in Rust apps; GreptimeDB time-series DB uses it"
+    }
+  }
+}
