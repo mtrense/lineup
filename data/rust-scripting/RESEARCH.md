@@ -233,10 +233,7 @@ Newer, specialized, or niche options:
 - [x] **Starlark** - Google's Bazel config language, pure Rust implementation
 - [x] **KCL** - CNCF constraint-based configuration language with Rust SDK
 - [x] **deno_core** - V8-based, Deno's core runtime (heavy but powerful)
-- [ ] **wasm-bindgen** + interpreters - WASM-based scripting approach
-- [ ] **rhai-sci** / **rhai-rand** - Rhai ecosystem extensions
 - [x] **goscript** - Go-like scripting (if actively maintained)
-- [ ] **miri** - Rust interpreter (different use case but notable)
 
 ### Not Including (with reasons)
 - **Lua (C library directly)** - Use mlua/rlua bindings instead
@@ -244,6 +241,9 @@ Newer, specialized, or niche options:
 - **Full Python embedding** - RustPython covers this; cpython crate is FFI-heavy
 - **Nushell** - Shell, not embeddable scripting language
 - **WebAssembly runtimes** (wasmtime, wasmer) - Different abstraction layer
+- **wasm-bindgen + interpreters** - Architecture pattern using WASM runtimes, not a scripting language; WASM runtimes already excluded above
+- **rhai-sci / rhai-rand** - Rhai ecosystem extensions, not standalone scripting languages
+- **miri** - Rust interpreter for testing/debugging unsafe code, not embeddable scripting
 
 ## Notes for Researchers
 
