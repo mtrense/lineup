@@ -1,0 +1,325 @@
+{
+  "name": "Azure Static Web Apps",
+  "description": "Microsoft's fully managed static site and JAMstack hosting service with built-in GitHub/Azure DevOps CI/CD, integrated Azure Functions APIs, and authentication, backed by Azure's global CDN.",
+  "icon": "azure",
+  "url": "https://azure.microsoft.com/en-us/products/app-service/static",
+  "values": {
+    "description": {
+      "value": "Microsoft's fully managed static site and JAMstack hosting service with built-in GitHub/Azure DevOps CI/CD, integrated Azure Functions APIs, and authentication, backed by Azure's global CDN.",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://azure.microsoft.com/en-us/products/app-service/static"]
+    },
+    "website": {
+      "value": "https://azure.microsoft.com/en-us/products/app-service/static",
+      "source": ["https://azure.microsoft.com/en-us/products/app-service/static"]
+    },
+    "parent-company": {
+      "value": "Microsoft",
+      "source": ["https://azure.microsoft.com/en-us/products/app-service/static"]
+    },
+    "year-launched": {
+      "value": "2021",
+      "source": ["https://www.infoq.com/news/2021/05/azure-static-web-apps-ga/", "https://azure.microsoft.com/en-us/blog/develop-production-scale-modern-web-apps-quickly-with-azure-static-web-apps/"],
+      "comment": "Azure Static Web Apps reached general availability (GA) in May 2021. The service was first announced in public preview in May 2020."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/Azure/static-web-apps", "https://github.com/Azure/static-web-apps-cli"],
+      "comment": "The hosting platform itself is a proprietary Azure managed service. The SWA CLI and GitHub Actions deployment action are open source, but the core hosting infrastructure is not."
+    },
+    "primary-focus": {
+      "value": ["static-sites", "jamstack"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://azure.microsoft.com/en-us/products/app-service/static"],
+      "comment": "Primarily targets static sites and JAMstack apps with serverless API support. While it supports hybrid rendering frameworks like Next.js, it does not position itself as a full-stack platform like Vercel or Netlify."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://azure.microsoft.com/en-us/pricing/details/app-service/static/", "https://learn.microsoft.com/en-us/azure/static-web-apps/plans"],
+      "comment": "The Free plan is a permanent free tier (not a trial), suitable for hobby/personal projects. It includes 100 GB bandwidth per subscription, 2 custom domains, 3 staging environments, and 250 MB storage per app. No SLA is provided on the free tier."
+    },
+    "free-tier-bandwidth": {
+      "value": "100 GB/month per subscription",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/quotas", "https://azure.microsoft.com/en-us/pricing/details/app-service/static/"],
+      "comment": "100 GB bandwidth is shared across all Static Web Apps in the subscription. If exceeded on the free plan, the site stops being served."
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://azure.microsoft.com/en-us/pricing/details/app-service/static/"],
+      "comment": "Azure Static Web Apps does not meter or limit build minutes. Builds are handled via GitHub Actions or Azure DevOps Pipelines, which have their own separate build minute quotas (e.g., GitHub Actions free tier includes 2,000 min/month)."
+    },
+    "free-tier-sites": {
+      "value": "10 per subscription",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/quotas"],
+      "comment": "Free plan allows up to 10 Static Web Apps per Azure subscription. This limit cannot be increased. Standard plan allows up to 100 apps."
+    },
+    "paid-plan-starting-price": {
+      "value": "$9/month per app",
+      "source": ["https://azure.microsoft.com/en-us/pricing/details/app-service/static/", "https://learn.microsoft.com/en-us/azure/static-web-apps/plans"],
+      "comment": "The Standard plan costs $9/month per app and adds SLA, custom authentication, 5 custom domains, 10 staging environments, 500 MB storage, private endpoints, and IP access control. Enterprise-grade edge (Azure Front Door) is an additional paid add-on."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.20 per GB",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/quotas", "https://azure.microsoft.com/en-us/pricing/details/app-service/static/"],
+      "comment": "Standard plan charges $0.20 per GB over the included 100 GB/month per subscription. Free plan has no overage option -- the site is simply taken offline when the limit is exceeded."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://azure.microsoft.com/en-us/pricing/", "https://learn.microsoft.com/en-us/azure/static-web-apps/plans"],
+      "comment": "Azure offers Enterprise Agreements, volume licensing, and custom pricing through Microsoft sales. The Standard plan itself is straightforward at $9/app/month, but enterprise-level Azure contracts can include negotiated rates."
+    },
+    "git-integration": {
+      "value": ["github", "gitlab", "bitbucket", "azure-devops"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://learn.microsoft.com/en-us/azure/static-web-apps/gitlab", "https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-static-web-app-v0"],
+      "comment": "GitHub is the primary integration with first-class support via GitHub Actions. Azure DevOps has native support via Azure Pipelines. GitLab and Bitbucket are supported via their respective CI/CD pipelines using the SWA deployment action/token."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "Pushes to the watched branch automatically trigger builds and deployments via GitHub Actions or Azure Pipelines."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/static-web-apps-cli-deploy", "https://github.com/Azure/static-web-apps-cli"],
+      "comment": "The SWA CLI (npm package @azure/static-web-apps-cli) supports local development, building, and deploying to Azure Static Web Apps via 'swa deploy'. Deployment tokens enable CI/CD integration from any pipeline."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/build-configuration", "https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "Build pipeline is provided via GitHub Actions or Azure DevOps Pipelines, not a proprietary build system. Azure manages the build workflow configuration file generation and the deployment action (Azure/static-web-apps-deploy), but the CI/CD runs on GitHub or Azure DevOps infrastructure."
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "gatsby", "hugo", "jekyll", "angular", "vue", "eleventy", "vite", "other"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://learn.microsoft.com/en-us/azure/static-web-apps/deploy-nextjs-hybrid", "https://techcommunity.microsoft.com/blog/appsonazureblog/deploy-hybrid-rendering-frameworks-on-azure-static-web-apps-for-optimized-fronte/4094514"],
+      "comment": "Supports Angular, React, Vue, Svelte, and Blazor SPAs with auto-detection. Static site generators Hugo, Jekyll, Gatsby, Eleventy, and VuePress are supported. Hybrid rendering (SSR) support for Next.js and Nuxt. Vite-based projects work as SPAs. Astro and SvelteKit are not listed as first-party supported frameworks in the official docs."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/build-configuration"],
+      "comment": "Supports monorepos by specifying the app_location in the GitHub Actions or Azure Pipelines workflow file to point to a subdirectory. Each app in a monorepo gets its own workflow file."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/preview-environments", "https://learn.microsoft.com/en-us/azure/static-web-apps/review-publish-pull-requests"],
+      "comment": "Pull requests to the watched branch automatically create pre-production preview environments with unique URLs. Free plan supports 3 staging environments, Standard plan supports 10. The GitHub bot posts the preview URL as a PR comment. Preview environments are automatically torn down when the PR is closed."
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://github.com/Azure/static-web-apps/issues/813"],
+      "comment": "Azure Static Web Apps does not have native instant rollback functionality. There is no access to previously built artifacts or swap capabilities. Rollback requires re-running a previous GitHub Actions / Azure Pipelines workflow or reverting the Git commit, both of which trigger a full rebuild and redeploy."
+    },
+    "deploy-notifications": {
+      "value": ["github-status"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/review-publish-pull-requests"],
+      "comment": "The GitHub Actions integration posts deployment status checks and preview URL comments on pull requests. There are no built-in email, Slack, or webhook notification channels. Custom notifications can be configured via Azure Monitor, Logic Apps, or third-party integrations, but these are not first-party SWA features."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge"],
+      "comment": "Static content is globally distributed by default. The optional enterprise-grade edge feature (paid add-on, Standard plan only) adds Azure Front Door for enhanced CDN caching, DDoS protection, and 118+ edge locations."
+    },
+    "cdn-provider": {
+      "value": "Azure CDN / Azure Front Door (optional)",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge", "https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "By default, static content is served from Azure's globally distributed infrastructure. The enterprise-grade edge add-on uses Azure Front Door (Microsoft's CDN/edge platform) for enhanced performance with 118+ edge locations across 100+ metro cities."
+    },
+    "edge-locations": {
+      "value": "118+ (with enterprise edge)",
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge"],
+      "comment": "The enterprise-grade edge (Azure Front Door) provides 118+ edge locations across 100 metro cities. The default global distribution infrastructure's exact PoP count is not publicly documented, but content is globally distributed."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge"],
+      "comment": "HTTP/2 is natively supported. Confirmed as a feature of the enterprise-grade edge and the default serving infrastructure."
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/frontdoor/front-door-faq"],
+      "comment": "HTTP/3 (QUIC) is not documented as supported for Azure Static Web Apps. Azure Front Door supports HTTP/2 but not HTTP/3 as of the latest documentation. Azure Application Gateway has HTTP/3 in private preview, but this does not apply to Static Web Apps."
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "Custom response headers can be configured via the staticwebapp.config.json file, both globally (globalHeaders) and per-route (headers in route rules). Supports security headers, caching, CORS, and other custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "Azure Static Web Apps does not offer built-in image optimization or transformation. There is no first-party image resizing, format conversion, or lazy loading feature. Users need to handle image optimization at build time or through external services."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://github.com/Azure/static-web-apps/issues/316", "https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-compression"],
+      "comment": "Gzip compression is supported by default. Brotli compression support has been inconsistent based on community reports. With the enterprise-grade edge (Azure Front Door), both gzip and Brotli compression are available and optimized."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain"],
+      "comment": "Custom domains are supported. Free plan allows 2 custom domains per app, Standard plan allows up to 6 (documentation shows 5 in plans page, 6 in quotas page). Supports subdomains via CNAME and root domains via ALIAS/A records."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain"],
+      "comment": "Free SSL/TLS certificates are automatically created for the auto-generated domain name and any custom domains added. Certificates are automatically renewed."
+    },
+    "wildcard-ssl": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/answers/questions/687909/azure-static-web-app-no-limit-on-custom-subdomains"],
+      "comment": "Azure Static Web Apps does not support wildcard subdomains or wildcard SSL certificates. Each subdomain must be individually added as a custom domain. Wildcard support is possible via Azure Front Door placed in front of the static web app."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain"],
+      "comment": "HTTPS is enforced by default. HTTP requests are automatically redirected to HTTPS."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/preview-environments"],
+      "comment": "Preview environments use auto-generated URLs only. Custom domain aliases for preview deployments are not supported. Preview URLs follow the pattern: <branch-name>-<hash>.<region>.azurestaticapps.net."
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions", "https://learn.microsoft.com/en-us/azure/static-web-apps/add-api"],
+      "comment": "Built-in managed Azure Functions APIs are included. Free plan supports managed functions only (HTTP-triggered). Standard plan adds 'Bring Your Own Functions' for linking an existing Azure Functions app with any trigger type."
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "other"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/languages-runtimes"],
+      "comment": "Managed functions support Node.js (14-22), Python (3.8-3.11), and .NET/C# (6.0-9.0). The 'other' tag covers C#/.NET support. With 'Bring Your Own Functions' (Standard plan), any Azure Functions runtime is supported including Java, PowerShell, Go, and custom runtimes."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions"],
+      "comment": "Azure Static Web Apps managed functions run in a single region, not at the edge. There is no edge function capability. The enterprise-grade edge provides edge caching for static content but not edge compute for functions."
+    },
+    "scheduled-functions": {
+      "value": false,
+      "source": ["https://github.com/Azure/static-web-apps/issues/1133", "https://learn.microsoft.com/en-us/answers/questions/477619/static-web-apps-and-scheduled-functions"],
+      "comment": "Managed functions in Static Web Apps only support HTTP triggers. Timer/scheduled triggers are not supported natively. With 'Bring Your Own Functions' (Standard plan), you can link a separate Azure Functions app that supports timer triggers, but this is not a built-in SWA feature."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "No built-in form handling. Form submissions must be handled via custom Azure Functions API endpoints or external services."
+    },
+    "authentication": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization", "https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom"],
+      "comment": "Built-in authentication with pre-configured providers: Microsoft Entra ID (Azure AD), GitHub, and Twitter. The Standard plan adds custom authentication with OpenID Connect providers (Google, Facebook, Apple, Auth0, etc.). Role-based access control with built-in 'anonymous' and 'authenticated' roles plus custom roles."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview"],
+      "comment": "No built-in key-value or edge storage solution. Azure Key Vault can be used for storing secrets (authentication configuration), but this is not a KV data store for application use."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/database-overview", "https://learn.microsoft.com/en-us/azure/static-web-apps/database-azure-cosmos-db"],
+      "comment": "First-party database connections feature (preview) supports Azure Cosmos DB, Azure SQL, Azure Database for MySQL, and Azure Database for PostgreSQL. Provides auto-generated REST and GraphQL endpoints without custom backend code via the /data-api endpoint."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "URL redirects (301, 302) are configured in the routes array of staticwebapp.config.json using the 'redirect' property with a 'statusCode'."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "URL rewrites are configured in the routes array using the 'rewrite' property. Content from a different path is served without changing the URL. Mutually exclusive with 'redirect' on the same route."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "Custom 404 pages are configured via the responseOverrides section in staticwebapp.config.json. You can rewrite or redirect 404 (and 400, 401, 403) responses to custom pages."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "SPA fallback routing is supported via the navigationFallback section in staticwebapp.config.json. An 'exclude' filter allows static assets (images, CSS, JS) to be served normally while all other paths return the fallback (e.g., index.html)."
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "Custom response headers can be defined globally via globalHeaders and per-route via route-specific headers in staticwebapp.config.json. Supports security headers, CORS, cache control, and other custom headers."
+    },
+    "ab-testing": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/traffic-splitting", "https://github.com/Azure/static-web-apps/discussions/1310"],
+      "comment": "Traffic splitting feature (preview, Standard plan only) allows diverting a percentage of traffic between different branch environments. Can be used for A/B testing and gradual rollouts. Does not work with private endpoints or enterprise-grade edge."
+    },
+    "free-team-members": {
+      "value": "Azure RBAC (no limit)",
+      "source": ["https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/web-and-mobile"],
+      "comment": "Team access is managed through Azure Role-Based Access Control (RBAC), not a per-seat model. There is no inherent limit on team members. Access is controlled by the Azure subscription's IAM policies. No per-seat pricing."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/web-and-mobile", "https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization"],
+      "comment": "Two layers of RBAC: (1) Azure RBAC for managing who can configure the Static Web App resource, and (2) Application-level RBAC for controlling end-user access to routes/pages within the app itself using built-in and custom roles."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/role-based-access-control/change-history-report"],
+      "comment": "Azure Activity Log provides audit logging for all management operations on Static Web Apps resources (RBAC changes, configuration updates, deployments). Available via Azure Monitor."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "Environment variables (called Application Settings) can be configured per app via the Azure portal or CLI. Values are encrypted at rest and available to Azure Functions APIs at runtime. Build-time variables are set in the GitHub Actions or Azure Pipelines workflow."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/review-publish-pull-requests"],
+      "comment": "No built-in preview commenting or on-page annotation feature. The GitHub Actions bot posts the preview URL as a PR comment, but there is no visual annotation or feedback tool on the deployed preview itself."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge"],
+      "comment": "Basic DDoS protection is provided by Azure's infrastructure. The enterprise-grade edge add-on (Standard plan) provides proactive DDoS protection via Azure Front Door. Azure DDoS Protection Standard is available as a separate paid service for enhanced protection."
+    },
+    "waf": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/front-door-manual", "https://learn.microsoft.com/en-us/azure/static-web-apps/enterprise-edge"],
+      "comment": "Web Application Firewall (WAF) is available when Azure Front Door is configured manually in front of the Static Web App or through the enterprise-grade edge feature. Not included by default; requires Standard plan and additional Azure Front Door / WAF costs."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-soc-2"],
+      "comment": "Microsoft Azure holds SOC 2 Type II certification. Azure Static Web Apps runs on SOC 2 certified Azure infrastructure. Reports are based on a rolling 12-month audit window with new reports issued semi-annually."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/compliance/regulatory/gdpr-dpia-azure", "https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA"],
+      "comment": "Microsoft provides GDPR-compliant infrastructure with a Data Protection Addendum (DPA) covering all Azure services. The DPA commits Microsoft to GDPR Article 28 processor requirements."
+    },
+    "password-protection": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/password-protection"],
+      "comment": "Password protection is available on the Standard plan (preview feature). Can be applied to staging environments only or to all environments including production. Visitors must enter the password to view the app. Not available on the Free plan."
+    },
+    "ip-access-control": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/configuration"],
+      "comment": "IP-based access restrictions are available on the Standard plan only via the allowedIpRanges networking configuration in staticwebapp.config.json. Supports CIDR notation and Azure service tags (e.g., AzureFrontDoor.Backend). Up to 25 IP range rules. Not available on the Free plan."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/", "https://azure.github.io/static-web-apps-cli/"],
+      "comment": "Comprehensive documentation on Microsoft Learn with good coverage of features, configuration, tutorials, and quickstarts. Well-organized with searchable content, code samples, and video walkthroughs. Some features are documented as preview with unclear GA timelines. The SWA CLI has separate documentation. Deducted a point for the complexity of navigating between Azure portal docs, SWA CLI docs, and Azure Functions docs."
+    },
+    "integrations": {
+      "value": ["auth", "database", "monitoring"],
+      "source": ["https://learn.microsoft.com/en-us/azure/static-web-apps/overview", "https://learn.microsoft.com/en-us/azure/static-web-apps/database-overview"],
+      "comment": "Built-in authentication providers (auth), first-party database connections for Cosmos DB, Azure SQL, MySQL, PostgreSQL (database), and Azure Monitor integration (monitoring). No native CMS, analytics, commerce, or search integrations as first-party features."
+    },
+    "community": {
+      "value": ["github-discussions", "stackoverflow"],
+      "source": ["https://github.com/Azure/static-web-apps/discussions", "https://github.com/Azure/static-web-apps"],
+      "comment": "Active GitHub Discussions on the Azure/static-web-apps repository for community conversations and monthly feature highlights. Stack Overflow questions tagged 'azure-static-web-apps'. Microsoft Q&A forums also available. No official Discord or dedicated community forum."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://azure.status.microsoft/", "https://status.azure.com/"],
+      "comment": "Azure provides a public status page at azure.status.microsoft (also status.azure.com) covering all Azure services including Static Web Apps. Azure Service Health in the portal provides personalized status for your specific resources."
+    }
+  }
+}

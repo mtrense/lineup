@@ -1,0 +1,327 @@
+{
+  "name": "Render",
+  "description": "Modern cloud platform offering free static site hosting with a global CDN, alongside managed web services, databases, and cron jobs for full-stack applications",
+  "icon": "render",
+  "url": "https://render.com",
+  "values": {
+    "description": {
+      "value": "Modern cloud platform offering free static site hosting with a global CDN, alongside managed web services, databases, and cron jobs for full-stack applications",
+      "source": ["https://render.com/", "https://render.com/docs/static-sites"],
+      "comment": "Render positions itself as a developer-friendly alternative to AWS/Heroku. Static sites are one of several service types (web services, background workers, cron jobs, databases). Static site hosting is free and includes a global Cloudflare-backed CDN."
+    },
+    "website": {
+      "value": "https://render.com",
+      "source": ["https://render.com/"]
+    },
+    "parent-company": {
+      "value": "Render (independent)",
+      "source": ["https://render.com/about", "https://www.globenewswire.com/news-release/2019/04/25/1809862/0/en/Render-Launches-the-Easiest-Cloud-for-Hosting-Any-App-or-Website-With-Funding-From-General-Catalyst.html"],
+      "comment": "Privately held and independently operated. Founded by Anurag Goel (formerly an early Stripe engineer). Raised over $155M in total funding, including an $80M Series C in January 2025 led by Georgian."
+    },
+    "year-launched": {
+      "value": "2019",
+      "source": ["https://www.globenewswire.com/news-release/2019/04/25/1809862/0/en/Render-Launches-the-Easiest-Cloud-for-Hosting-Any-App-or-Website-With-Funding-From-General-Catalyst.html"],
+      "comment": "Publicly launched on April 25, 2019. The company was founded in 2018 (originally as Cove Studios)."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/renderinc", "https://github.com/render-oss"],
+      "comment": "The core platform is proprietary. Render open-sources its CLI (render-oss/cli), Terraform provider, MCP server, and SDK, but the hosting platform itself is not open source."
+    },
+    "primary-focus": {
+      "value": ["full-stack"],
+      "source": ["https://render.com/", "https://render.com/platform"],
+      "comment": "Render is a general-purpose cloud platform targeting full-stack application deployment. Static site hosting is offered as one service type alongside web services, background workers, cron jobs, and managed databases. It does not specifically market itself as a JAMstack or edge-first platform."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://render.com/pricing", "https://render.com/docs/free"],
+      "comment": "Static sites are free to deploy on the Hobby plan with no credit card required. The free tier includes 100 GB bandwidth and 500 build pipeline minutes per month across all services in the workspace."
+    },
+    "free-tier-bandwidth": {
+      "value": "100 GB/month",
+      "source": ["https://render.com/pricing", "https://render.com/docs/outbound-bandwidth"],
+      "comment": "100 GB of outbound bandwidth included on the Hobby plan. This is shared across all services in the workspace, not per static site. Services are suspended if exceeded and no payment method is on file."
+    },
+    "free-tier-build-minutes": {
+      "value": "500 min/month",
+      "source": ["https://render.com/pricing"],
+      "comment": "500 build pipeline minutes included on the Hobby plan. Shared across all services in the workspace."
+    },
+    "free-tier-sites": {
+      "value": "Unlimited",
+      "source": ["https://render.com/pricing", "https://render.com/docs/free"],
+      "comment": "No explicit limit on the number of static sites per workspace. However, the Hobby plan is limited to 1 project with 2 environments, and up to 2 custom domains."
+    },
+    "paid-plan-starting-price": {
+      "value": "$19/month per user",
+      "source": ["https://render.com/pricing"],
+      "comment": "Professional plan at $19/user/month. Includes 500 GB bandwidth, up to 10 team members, and chat support. Organization plan at $29/user/month adds 1 TB bandwidth, unlimited members, and SOC 2/ISO 27001 compliance documentation access."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$15 per 100 GB",
+      "source": ["https://render.com/docs/outbound-bandwidth", "https://render.com/blog/new-bandwidth-pricing-on-render"],
+      "comment": "Bandwidth overage is billed at $15 per 100 GB beyond the included monthly allowance. Requires a payment method on file; otherwise services are suspended. Pricing was lowered from $30 per 100 GB as of August 2025."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://render.com/pricing"],
+      "comment": "Enterprise plan with custom pricing includes SAML SSO, centralized team management, guaranteed uptime SLA, and a dedicated success engineer."
+    },
+    "git-integration": {
+      "value": ["github", "gitlab", "bitbucket"],
+      "source": ["https://render.com/docs/github", "https://render.com/docs/gitlab", "https://render.com/docs/bitbucket"],
+      "comment": "Supports GitHub, GitLab, and Bitbucket. Each Render account can connect one account from each Git provider. Does not support Azure DevOps or self-hosted Git servers."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://render.com/docs/deploys", "https://render.com/docs/static-sites"],
+      "comment": "Automatic deploys on every push to the connected branch by default. Can be disabled in favor of manual deploys."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://render.com/docs/cli", "https://github.com/render-oss/cli"],
+      "comment": "Official Render CLI supports triggering deploys, viewing logs, and managing services. Available via Homebrew, npm, PyPI, and crates.io. Does not support direct static asset upload; deploys are triggered from Git."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://render.com/docs/static-sites", "https://render.com/docs/deploys"],
+      "comment": "Built-in build pipeline with configurable build commands and publish directories. Automatically detects and installs dependencies. Supports custom build commands for any static site generator."
+    },
+    "supported-frameworks": {
+      "value": ["next", "gatsby", "astro", "hugo", "jekyll", "svelte-kit", "vue", "vite", "other"],
+      "source": ["https://render.com/docs", "https://render.com/docs/deploy-hugo", "https://render.com/docs/deploy-gatsby", "https://render.com/docs/deploy-jekyll", "https://render.com/docs/deploy-astro", "https://render.com/docs/deploy-sveltekit"],
+      "comment": "Render has dedicated quickstart guides for: Astro, Next.js, Create React App, Jekyll, Gatsby, Docusaurus, Hugo, Svelte, SvelteKit, and Vue.js. Any framework that outputs static files can be deployed by configuring the build command and publish directory manually."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://render.com/docs/monorepo-support", "https://render.com/blog/monorepos"],
+      "comment": "Root directory can be set to any subdirectory of the Git repository. Build filters ensure services are only redeployed when relevant files change."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://render.com/docs/service-previews", "https://render.com/docs/preview-environments"],
+      "comment": "Pull request previews automatically create temporary instances with unique onrender.com URLs. GitHub gets deploy status integration; GitLab and Bitbucket receive PR comments with preview links. Free for static sites."
+    },
+    "instant-rollbacks": {
+      "value": true,
+      "source": ["https://render.com/docs/rollbacks"],
+      "comment": "Rollbacks reuse build artifacts from recent deploys, completing much faster than rebuilding. Available from the Events page in the dashboard. The number of retained build artifacts depends on the workspace plan."
+    },
+    "deploy-notifications": {
+      "value": ["slack", "email", "webhook", "github-status"],
+      "source": ["https://render.com/docs/notifications", "https://render.com/docs/webhooks", "https://render.com/changelog/pull-request-previews-now-create-github-deploys"],
+      "comment": "Email and Slack notifications are available on all plans for deploy successes and failures. Webhooks require Professional plan or higher. GitHub deploy status is set for PR previews. Workspace-level defaults with per-service overrides."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://render.com/docs/static-sites", "https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/saas-customers/provider-guides/render/"],
+      "comment": "Static sites are served from a global CDN powered by Cloudflare. CDN caches are immediately invalidated on each successful deploy."
+    },
+    "cdn-provider": {
+      "value": "Cloudflare",
+      "source": ["https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/saas-customers/provider-guides/render/", "https://community.render.com/t/is-render-using-cloudflare/2147"],
+      "comment": "Render partners with Cloudflare for CDN, DDoS protection, and TLS certificate management. All Render static sites and web services are proxied through Cloudflare."
+    },
+    "edge-locations": {
+      "value": "330+ (via Cloudflare)",
+      "source": ["https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/saas-customers/provider-guides/render/", "https://www.cloudflare.com/network/"],
+      "comment": "Since Render uses Cloudflare as its CDN, static sites benefit from Cloudflare's 330+ data center locations worldwide. Render's own compute regions are more limited (US, EU, Asia)."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://render.com/docs/static-sites"],
+      "comment": "All Render sites and web services support HTTP/2 by default, providing multiplexing and compressed headers."
+    },
+    "http3": {
+      "value": null,
+      "source": ["https://render.com/docs/static-sites"],
+      "comment": "Render's documentation does not mention HTTP/3 (QUIC) support. Since Render uses Cloudflare, HTTP/3 may be available through Cloudflare's infrastructure, but this is not explicitly confirmed or documented by Render."
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://render.com/docs/static-site-headers"],
+      "comment": "Custom HTTP response headers can be configured from the Render Dashboard with path-level granularity using wildcard patterns. Supports security headers, caching headers, and other custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://render.com/docs/render-vs-vercel-comparison"],
+      "comment": "Render does not offer built-in image optimization. For Next.js image optimization, a custom image loader must be configured. Users must rely on external services or build-time optimization."
+    },
+    "asset-compression": {
+      "value": ["brotli"],
+      "source": ["https://render.com/docs/static-sites"],
+      "comment": "Render explicitly documents Brotli compression for static sites, described as better than gzip. Since Render uses Cloudflare, gzip fallback is likely available for clients that do not support Brotli, but only Brotli is officially documented."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://render.com/docs/custom-domains"],
+      "comment": "Custom domains can be added to static sites. Hobby plan limited to 2 custom domains; Professional and above have unlimited custom domains. Wildcard domains are also supported."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://render.com/docs/tls", "https://render.com/docs/static-sites"],
+      "comment": "Render automatically issues and renews TLS certificates via Let's Encrypt and Google Trust Services at no cost for all services and custom domains."
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://render.com/docs/custom-domains", "https://render.com/docs/tls"],
+      "comment": "Wildcard domains (e.g., *.example.org) are supported with automatic TLS certificate provisioning. CAA records with issuewild entries may need to be configured."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://render.com/docs/static-sites", "https://render.com/docs/custom-domains"],
+      "comment": "All HTTP traffic to custom domains is automatically redirected to HTTPS."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://render.com/docs/service-previews", "https://community.render.com/t/custom-domains-with-blueprints-and-pull-request-preview-environments/3286"],
+      "comment": "Preview deployments use auto-generated onrender.com URLs. Custom domains cannot be natively assigned to preview instances through the dashboard; workarounds using the API exist but are not officially supported."
+    },
+    "serverless-functions": {
+      "value": false,
+      "source": ["https://render.com/docs/service-types", "https://feedback.render.com/features/p/support-for-serverless-scripts"],
+      "comment": "Render does not offer serverless functions (like AWS Lambda or Vercel Functions). Backend logic runs as persistent web services, background workers, or cron jobs instead. This is a fundamentally different architecture from serverless."
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "go", "rust", "ruby", "other"],
+      "source": ["https://render.com/docs/service-types", "https://render.com/docs"],
+      "comment": "While Render does not have serverless functions, its web services and background workers support Node.js, Python, Go, Rust, Ruby, Elixir, Docker, and more. These are long-running services rather than on-demand functions."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://render.com/docs/service-types"],
+      "comment": "Render does not offer edge functions. Services run in specific regions (US, EU, Asia), not at the edge. Static site CDN caching is global, but compute is regional."
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://render.com/docs/cronjobs"],
+      "comment": "Render offers cron jobs as a dedicated service type with schedule-based execution using cron syntax. Jobs can run up to 12 hours and support all languages/Docker images. Available on all plans."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://community.render.com/t/feature-request-render-built-in-form-handling/214"],
+      "comment": "Render does not offer built-in form handling. This has been requested by the community but is not implemented. External form services must be used."
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://feedback.render.com/features/p/access-protection-for-static-sites", "https://community.render.com/t/basic-auth-on-a-static-website/2584"],
+      "comment": "Render does not provide built-in user authentication for hosted sites. No basic auth, identity service, or login functionality is offered for static sites. External auth providers (Auth0, etc.) must be integrated separately."
+    },
+    "kv-storage": {
+      "value": true,
+      "source": ["https://render.com/docs/key-value"],
+      "comment": "Render Key Value provides low-latency in-memory storage powered by Valkey (open-source Redis fork). Available on free and paid plans. Compatible with virtually all Redis clients."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://render.com/docs/postgresql", "https://render.com/docs/key-value"],
+      "comment": "Render offers first-party managed PostgreSQL databases with point-in-time recovery, read replicas, and high availability on paid plans. Also offers Render Key Value (Valkey/Redis-compatible) for in-memory storage. Free tier available for both with limitations."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://render.com/docs/redirects-rewrites"],
+      "comment": "301 redirect rules can be configured from the Render Dashboard using path patterns, wildcards, and named placeholders. Only 301 redirects are documented; 302 temporary redirects are not mentioned."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://render.com/docs/redirects-rewrites"],
+      "comment": "Rewrites serve content from a different path without changing the browser URL. Supports wildcards and placeholders. Useful for SPA routing and content proxying."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://community.render.com/t/custom-404-error-page/746"],
+      "comment": "Render serves a custom 404.html file if present in the publish directory. Standard convention for static site hosts."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://render.com/docs/redirects-rewrites"],
+      "comment": "SPA fallback routing is achieved via rewrite rules (e.g., rewriting /* to /index.html). Render's documentation explicitly mentions support for client-side routing frameworks like React Router and Vue Router."
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://render.com/docs/static-site-headers"],
+      "comment": "Custom response headers can be defined per-path or globally via the Render Dashboard using wildcard path patterns. Supports Cache-Control, security headers, and other custom headers."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://render.com/articles/best-practices-for-running-ai-output-a-b-test-in-production"],
+      "comment": "Render does not offer built-in traffic splitting or A/B testing for static sites. A/B testing must be implemented at the application level (e.g., within web services). No branch-based or CDN-level split testing is available."
+    },
+    "free-team-members": {
+      "value": "1 (no team members on Hobby)",
+      "source": ["https://render.com/docs/team-members", "https://render.com/pricing"],
+      "comment": "The Hobby plan does not allow additional team members. To invite team members, a Professional plan ($19/user/month) or higher is required."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://render.com/docs/team-members", "https://render.com/changelog/access-roles"],
+      "comment": "Five roles available: Admin, Developer, Contributor (Organization+), Viewer (Enterprise only), and Billing (Enterprise only). Each role has distinct permissions for resource creation, deployment, billing, and sensitive data access."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://render.com/docs/audit-logs"],
+      "comment": "Audit logs are available on Organization and Enterprise plans only. Admins can export logs of material events including member invitations, role changes, and other workspace activities."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://render.com/docs/configure-environment-variables", "https://render.com/docs/environment-variables"],
+      "comment": "Environment variables can be configured per-service through the dashboard or via render.yaml blueprints. Supports bulk import from .env files and secret management."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://render.com/docs/service-previews"],
+      "comment": "Render does not offer a built-in commenting system for deploy previews. PR previews integrate with GitHub deploys and GitLab/Bitbucket comments for links, but there is no collaborative visual feedback tool on the preview itself."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://render.com/docs/static-sites", "https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/saas-customers/provider-guides/render/"],
+      "comment": "Free DDoS protection included for all services, powered by Cloudflare's infrastructure."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://feedback.render.com/features/p/web-application-firewall", "https://community.render.com/t/does-render-use-the-cloudfalre-waf/11663"],
+      "comment": "Render does not offer a configurable WAF. While basic protection exists through Cloudflare, a user-configurable WAF is an open feature request. Users can set up their own Cloudflare proxy for additional WAF capabilities."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://render.com/docs/certifications-compliance", "https://rendercompliance.com/soc-2-faqs/"],
+      "comment": "SOC 2 Type II certified with annual third-party auditing. The detailed report is available to Organization and Enterprise workspaces. Also holds ISO 27001 certification."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://render.com/docs/certifications-compliance"],
+      "comment": "GDPR compliant with a Data Processing Agreement (DPA) available to all workspace types through the Document Center in the dashboard."
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://feedback.render.com/features/p/access-protection-for-static-sites", "https://render.com/blog/static-site-auth-pagecrypt"],
+      "comment": "Render does not offer built-in password protection for static sites. This is a popular feature request. The recommended workaround is PageCrypt, an open-source client-side encryption library, which has significant limitations."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://feedback.render.com/features/p/restrict-web-services-access-by-ip"],
+      "comment": "IP-based access control is not available for static sites or web services. IP access controls exist only for databases and Key Value instances via private networking. IP restriction for web services is an open feature request."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://render.com/docs"],
+      "comment": "Well-organized documentation with clear quickstart guides for multiple frameworks, detailed API reference, and searchable content. Covers most use cases with good examples. Minor gaps in advanced configuration topics and some features documented primarily through community forums rather than official docs."
+    },
+    "integrations": {
+      "value": ["monitoring", "database"],
+      "source": ["https://render.com/platform", "https://render.com/docs/postgresql", "https://render.com/docs/key-value", "https://render.com/docs/service-metrics"],
+      "comment": "Render offers first-party database (PostgreSQL, Key Value) and built-in service metrics/monitoring. Does not have a formal integration marketplace or official CMS, analytics, auth, commerce, or search integrations. Users deploy their own instances of tools like analytics or CMS on Render's platform."
+    },
+    "community": {
+      "value": ["discord", "forum", "stackoverflow"],
+      "source": ["https://community.render.com/", "https://discord.com/invite/YV5PphWDP6", "https://stackoverflow.com/questions/tagged/render"],
+      "comment": "Active community forum at community.render.com. Discord server ('Club Render') with ~6,000 members. Stack Overflow tag exists with moderate activity. No GitHub Discussions."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.render.com/"],
+      "comment": "Public status page at status.render.com tracking 52 components across 5 groups with uptime history over the past 90 days."
+    }
+  }
+}
