@@ -1,0 +1,326 @@
+{
+  "name": "GitHub Pages",
+  "description": "Free static website hosting service integrated with GitHub repositories, widely used for documentation, blogs, and open source project sites.",
+  "icon": "github",
+  "url": "https://pages.github.com",
+  "values": {
+    "description": {
+      "value": "Free static website hosting service integrated with GitHub repositories, widely used for documentation, blogs, and open source project sites.",
+      "source": ["https://pages.github.com"]
+    },
+    "website": {
+      "value": "https://pages.github.com",
+      "source": ["https://pages.github.com"]
+    },
+    "parent-company": {
+      "value": "Microsoft",
+      "source": ["https://en.wikipedia.org/wiki/GitHub"],
+      "comment": "GitHub was acquired by Microsoft in 2018 for $7.5 billion."
+    },
+    "year-launched": {
+      "value": "2008",
+      "source": ["https://github.blog/2008-12-18-github-pages/"],
+      "comment": "GitHub Pages was announced on December 18, 2008 by Tom Preston-Werner."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/github"],
+      "comment": "GitHub Pages is a proprietary service. While GitHub has open-sourced some tools (e.g., the gh CLI), the Pages infrastructure itself is not open source."
+    },
+    "primary-focus": {
+      "value": ["static-sites"],
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages is a straightforward static site hosting service. It does not offer serverless functions, SSR, or edge computing capabilities."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+      "comment": "GitHub Pages is free for public repositories on all GitHub plans. Private repository Pages sites require GitHub Pro, Team, or Enterprise."
+    },
+    "free-tier-bandwidth": {
+      "value": "100 GB/month",
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+      "comment": "Soft bandwidth limit of 100 GB per month."
+    },
+    "free-tier-build-minutes": {
+      "value": "10 builds/hour",
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+      "comment": "Soft limit of 10 builds per hour for the classic build pipeline. This limit does not apply when using custom GitHub Actions workflows, which have their own separate minute limits (2,000 min/month for free accounts)."
+    },
+    "free-tier-sites": {
+      "value": "Unlimited",
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+      "comment": "One user/organization site per account, but unlimited project sites (one per repository)."
+    },
+    "paid-plan-starting-price": {
+      "value": "$4/month per user (GitHub Team)",
+      "source": ["https://github.com/pricing"],
+      "comment": "GitHub Pages itself has no separate paid plan. Enhanced features come through GitHub's broader plans: Pro ($4/month), Team ($4/month per user), or Enterprise ($21/month per user). Pages for private repos requires at least GitHub Pro."
+    },
+    "bandwidth-overage-cost": {
+      "value": null,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+      "comment": "The 100 GB bandwidth limit is a soft limit. GitHub may contact you about excessive usage but does not charge overage fees."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://github.com/pricing"],
+      "comment": "GitHub Enterprise Cloud ($21/month per user) includes additional Pages features like private site visibility."
+    },
+    "git-integration": {
+      "value": ["github"],
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"],
+      "comment": "GitHub Pages only works with GitHub repositories. No support for GitLab, Bitbucket, or other Git providers."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"],
+      "comment": "Pushes to the configured branch automatically trigger a deployment. Can be configured via branch-based deployment or GitHub Actions workflows."
+    },
+    "cli-deployment": {
+      "value": false,
+      "source": ["https://www.npmjs.com/package/gh-pages"],
+      "comment": "GitHub Pages has no official CLI deployment tool. Third-party tools like the 'gh-pages' npm package exist but work by pushing to a branch, not via a dedicated deployment API."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-pages-now-uses-actions-by-default/"],
+      "comment": "GitHub Pages has a built-in Jekyll build pipeline and now defaults to GitHub Actions for builds, allowing custom build workflows for any static site generator."
+    },
+    "supported-frameworks": {
+      "value": ["jekyll"],
+      "source": ["https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll"],
+      "comment": "Jekyll is the only framework with first-party, zero-config built-in support. Other frameworks (Hugo, Astro, Next.js static export, etc.) can be used via custom GitHub Actions workflows, but require manual configuration."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"],
+      "comment": "You can publish from a /docs subfolder or use GitHub Actions to build from any subdirectory, enabling monorepo workflows."
+    },
+    "deploy-previews": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/7730"],
+      "comment": "GitHub Pages does not natively support deploy previews for pull requests. Third-party GitHub Actions exist (e.g., 'Deploy PR Preview') as workarounds, but this is not a built-in feature."
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/148771"],
+      "comment": "No built-in instant rollback feature. Rollbacks require reverting commits or redeploying a previous version via git operations."
+    },
+    "deploy-notifications": {
+      "value": ["github-status"],
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"],
+      "comment": "Deployment status is shown in the GitHub UI and via GitHub Actions status checks on commits/PRs. No built-in Slack, email, or webhook notifications specific to Pages deployments."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://www.fastly.com/customers/github"],
+      "comment": "GitHub Pages is served through Fastly's global CDN network."
+    },
+    "cdn-provider": {
+      "value": "Fastly",
+      "source": ["https://www.fastly.com/customers/github"],
+      "comment": "Fastly serves all GitHub Pages static assets and sits in front of GitHub's infrastructure."
+    },
+    "edge-locations": {
+      "value": "80+ locations",
+      "source": ["https://www.fastly.com/documentation/guides/getting-started/concepts/using-fastlys-global-pop-network/"],
+      "comment": "Fastly has PoPs in approximately 80+ locations across 6 continents. GitHub Pages benefits from Fastly's full network."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://github.com/isaacs/github/issues/1204"],
+      "comment": "GitHub Pages serves content over HTTP/2 via Fastly's CDN, which has supported HTTP/2 since 2016."
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/21655"],
+      "comment": "GitHub Pages does not currently support HTTP/3 (QUIC). While Fastly has HTTP/3 capabilities, it is not enabled for GitHub Pages."
+    },
+    "response-headers": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/54257"],
+      "comment": "GitHub Pages does not allow customization of HTTP response headers. You cannot set Content-Security-Policy, CORS headers, or any custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages has no built-in image optimization, resizing, or format conversion capabilities."
+    },
+    "asset-compression": {
+      "value": ["gzip"],
+      "source": ["https://github.com/orgs/community/discussions/21655"],
+      "comment": "GitHub Pages applies gzip compression on the fly. Brotli compression is not supported."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"],
+      "comment": "Custom apex domains and subdomains are supported via CNAME file or repository settings."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https"],
+      "comment": "GitHub Pages automatically provisions free SSL/TLS certificates via Let's Encrypt for both github.io subdomains and custom domains."
+    },
+    "wildcard-ssl": {
+      "value": false,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https"],
+      "comment": "GitHub Pages provisions individual certificates per custom domain, not wildcard certificates for user-configured domains."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https"],
+      "comment": "Enforce HTTPS option is available in repository settings to automatically redirect HTTP to HTTPS."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/7730"],
+      "comment": "GitHub Pages does not have deploy preview functionality, so custom domain per preview is not applicable."
+    },
+    "serverless-functions": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages is purely a static file hosting service with no serverless function support."
+    },
+    "functions-runtime": {
+      "value": [],
+      "source": ["https://pages.github.com"],
+      "comment": "No serverless functions are offered, so no function runtimes are available."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not support edge functions."
+    },
+    "scheduled-functions": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not support scheduled/cron functions."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not offer built-in form handling. External services like Formspree or Netlify Forms must be used."
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not provide built-in user authentication for site visitors."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not offer any key-value storage or edge storage."
+    },
+    "database-integration": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not offer any database integration."
+    },
+    "redirects": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/22407"],
+      "comment": "GitHub Pages does not support server-side HTTP redirects (301, 302). Redirects can only be achieved through client-side meta refresh or JavaScript, or via the jekyll-redirect-from plugin."
+    },
+    "rewrites": {
+      "value": false,
+      "source": ["https://lea.verou.me/blog/2016/11/url-rewriting-with-github-pages/"],
+      "comment": "GitHub Pages does not support URL rewrites or reverse proxying."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site"],
+      "comment": "You can create a custom 404.html file in the root of your site to display a custom not-found page."
+    },
+    "spa-fallback": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/64096"],
+      "comment": "GitHub Pages does not natively support SPA fallback routing. A common workaround is using a custom 404.html that redirects to index.html via JavaScript, but this is a hack, not a proper SPA fallback."
+    },
+    "headers-config": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/54257"],
+      "comment": "GitHub Pages does not support custom response headers configuration. All files are served with GitHub's default headers."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not offer A/B testing or traffic splitting features."
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://github.com/pricing"],
+      "comment": "GitHub free plan allows unlimited collaborators on public repositories. Any collaborator with push access can deploy to GitHub Pages."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"],
+      "comment": "GitHub's repository permission model (Read, Triage, Write, Maintain, Admin) controls who can deploy to Pages. This is inherited from GitHub's general RBAC, not a Pages-specific feature."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/accessing-compliance-reports-for-your-organization"],
+      "comment": "Audit logs are available for GitHub organizations and enterprise accounts, covering Pages deployment events. Not available on free personal accounts."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment"],
+      "comment": "Environment variables and secrets can be configured through GitHub Actions workflows and repository/environment secrets for use during the build process."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/7730"],
+      "comment": "GitHub Pages does not support deploy preview comments. Since there are no deploy previews, there is no commenting feature on them."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://www.fastly.com/customers/github"],
+      "comment": "GitHub Pages benefits from Fastly's CDN-level DDoS mitigation as part of GitHub's infrastructure."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not offer a configurable Web Application Firewall for individual sites."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/accessing-compliance-reports-for-your-organization"],
+      "comment": "GitHub (the platform) holds SOC 2 Type II certification. This covers GitHub Pages as part of the overall GitHub service."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://github.com/customer-terms/github-data-protection-agreement"],
+      "comment": "GitHub has a Data Protection Agreement with GDPR compliance measures, including Standard Contractual Clauses and EU-US Data Privacy Framework self-certification."
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://github.com/orgs/community/discussions/60689"],
+      "comment": "GitHub Pages does not natively support password protection. Private Pages visibility (restricting access to repository collaborators) is available only on GitHub Enterprise Cloud. Client-side encryption workarounds exist but are not real authentication."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages does not support IP-based access restrictions."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.github.com/en/pages"],
+      "comment": "GitHub's documentation for Pages is well-organized, comprehensive for basic use cases, and regularly updated. It covers setup, custom domains, Jekyll integration, and Actions workflows. However, it lacks advanced topic coverage since the feature set is intentionally limited."
+    },
+    "integrations": {
+      "value": [],
+      "source": ["https://pages.github.com"],
+      "comment": "GitHub Pages itself does not offer first-party integrations with analytics, CMS, monitoring, or other services. Integration is left entirely to the user via JavaScript embeds or third-party tools."
+    },
+    "community": {
+      "value": ["github-discussions", "stackoverflow"],
+      "source": ["https://github.com/orgs/community/discussions/", "https://stackoverflow.com/questions/tagged/github-pages"],
+      "comment": "GitHub Pages has an active presence in GitHub Community Discussions and a well-established Stack Overflow tag with thousands of questions."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://www.githubstatus.com/"],
+      "comment": "GitHub maintains a public status page at githubstatus.com that includes GitHub Pages as a tracked component."
+    }
+  }
+}
