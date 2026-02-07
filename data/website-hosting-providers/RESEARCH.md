@@ -190,6 +190,7 @@ Core platforms that dominate the static/JAMstack hosting space:
 - [ ] **Vercel** - Next.js creator's platform, strong edge/serverless capabilities
 - [ ] **Cloudflare Pages** - Backed by Cloudflare's massive edge network, aggressive free tier
 - [ ] **GitHub Pages** - Free static hosting integrated with GitHub, widely used for docs and OSS projects
+- [ ] **Surge** - Simple, single-command static site publishing for developers
 - [ ] **AWS Amplify Hosting** - Amazon's managed static/SSR hosting with full AWS ecosystem integration
 
 ### Tier 2 (Should Have)
@@ -197,7 +198,6 @@ Well-established alternatives with distinct positioning:
 - [ ] **Firebase Hosting** - Google's hosting platform, tight integration with Firebase services
 - [ ] **Azure Static Web Apps** - Microsoft's static hosting with Azure Functions integration
 - [ ] **Render** - Modern cloud platform with static site hosting among broader compute offerings
-- [ ] **Surge** - Simple, single-command static site publishing for developers
 - [ ] **DigitalOcean App Platform** - Static site hosting within DO's developer cloud
 
 ### Tier 3 (Nice to Have)
