@@ -1,0 +1,324 @@
+{
+  "name": "Cloudflare Pages",
+  "description": "Edge-first static site and full-stack hosting platform built on Cloudflare's global network with unlimited bandwidth and generous free tier",
+  "icon": "cloudflare",
+  "url": "https://pages.cloudflare.com",
+  "values": {
+    "description": {
+      "value": "A JAMstack and full-stack hosting platform that deploys static assets and serverless functions to Cloudflare's global edge network, offering unlimited bandwidth on all plans, built-in DDoS protection, and deep integration with Cloudflare's developer platform including Workers, KV, D1, and R2.",
+      "source": ["https://pages.cloudflare.com", "https://developers.cloudflare.com/pages/"]
+    },
+    "website": {
+      "value": "https://pages.cloudflare.com",
+      "source": ["https://pages.cloudflare.com"]
+    },
+    "parent-company": {
+      "value": "Cloudflare, Inc.",
+      "source": ["https://www.cloudflare.com/our-story/"]
+    },
+    "year-launched": {
+      "value": "2021",
+      "source": ["https://blog.cloudflare.com/cloudflare-pages-ga/"],
+      "comment": "Beta announced December 2020, General Availability in April 2021"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/cloudflare/workerd"],
+      "comment": "The Pages platform itself is proprietary, though the Workers runtime (workerd) is open source"
+    },
+    "primary-focus": {
+      "value": ["jamstack", "edge-first"],
+      "source": ["https://pages.cloudflare.com", "https://blog.cloudflare.com/cloudflare-pages-ga/"],
+      "comment": "Originally focused on JAMstack static sites, now strongly edge-first with Workers integration and full-stack framework support"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.cloudflare.com/plans/developer-platform/"]
+    },
+    "free-tier-bandwidth": {
+      "value": "Unlimited",
+      "source": ["https://www.cloudflare.com/plans/developer-platform/", "https://developers.cloudflare.com/pages/platform/limits/"],
+      "comment": "Cloudflare does not charge for bandwidth on any plan, including the free tier"
+    },
+    "free-tier-build-minutes": {
+      "value": "500 builds/month",
+      "source": ["https://developers.cloudflare.com/pages/platform/limits/"],
+      "comment": "Measured in number of builds rather than build minutes; 1 concurrent build on free plan; builds timeout after 20 minutes each"
+    },
+    "free-tier-sites": {
+      "value": "Unlimited (soft limit of 100 projects)",
+      "source": ["https://developers.cloudflare.com/pages/platform/limits/"],
+      "comment": "Unlimited sites with a soft limit of 100 projects per account to prevent abuse; can be raised by contacting support"
+    },
+    "paid-plan-starting-price": {
+      "value": "$5/month (Workers Paid plan)",
+      "source": ["https://www.cloudflare.com/plans/developer-platform/"],
+      "comment": "Workers Paid plan at $5/month includes 20,000 builds/month and 5 concurrent builds for Pages; separate from the $20/month Cloudflare Pro plan for other features"
+    },
+    "bandwidth-overage-cost": {
+      "value": "None (unlimited bandwidth)",
+      "source": ["https://www.cloudflare.com/plans/developer-platform/"],
+      "comment": "Cloudflare does not charge for bandwidth or data transfer on any plan"
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://www.cloudflare.com/plans/"],
+      "comment": "Cloudflare offers Enterprise plans with custom pricing, dedicated support, and SLAs"
+    },
+    "git-integration": {
+      "value": ["github", "gitlab"],
+      "source": ["https://developers.cloudflare.com/pages/configuration/git-integration/"],
+      "comment": "Native integration with GitHub and GitLab; Bitbucket and other providers supported via Direct Upload with Wrangler CLI in CI/CD pipelines"
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/git-integration/"],
+      "comment": "Pushes to connected branches automatically trigger deployments; can be disabled via branch deployment controls"
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/get-started/direct-upload/"],
+      "comment": "Wrangler CLI supports Direct Upload of pre-built assets via 'wrangler pages deploy'"
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/build-configuration/"],
+      "comment": "Built-in CI/CD build pipeline with configurable build commands, root directory, and environment variables"
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "gatsby", "astro", "hugo", "jekyll", "svelte-kit", "remix", "angular", "vue", "eleventy", "vite", "other"],
+      "source": ["https://developers.cloudflare.com/pages/framework-guides/"],
+      "comment": "Extensive framework support including Next.js (via @opennextjs/cloudflare), Nuxt, Gatsby, Astro, Hugo, Jekyll, SvelteKit, Remix, Angular, Vue, Eleventy, Vite, plus Qwik, SolidStart, Docusaurus, and more"
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/monorepos/"],
+      "comment": "Supports configurable root directory and build watch paths; works with Turborepo, Nx, and Lerna"
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/preview-deployments/"],
+      "comment": "Every commit gets a unique hash-based preview URL; branch aliases auto-update to latest commit (e.g., branch-name.project.pages.dev)"
+    },
+    "instant-rollbacks": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/rollbacks/", "https://blog.cloudflare.com/rollbacks-and-api-access-for-pages/"],
+      "comment": "Any previous successful production deployment can be promoted instantly without rebuilding; available via dashboard and API"
+    },
+    "deploy-notifications": {
+      "value": ["email", "webhook", "github-status"],
+      "source": ["https://developers.cloudflare.com/notifications/", "https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/"],
+      "comment": "Email notifications via Cloudflare Notifications; webhooks for external services (Slack, Google Chat, etc.); GitHub commit status checks on PRs; PagerDuty available on Business+ plans"
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://www.cloudflare.com/network/"],
+      "comment": "All static assets served from Cloudflare's global anycast network"
+    },
+    "cdn-provider": {
+      "value": "Cloudflare (own network)",
+      "source": ["https://www.cloudflare.com/network/"],
+      "comment": "Uses Cloudflare's own global anycast network, not a third-party CDN"
+    },
+    "edge-locations": {
+      "value": "330+ cities in 120+ countries",
+      "source": ["https://www.cloudflare.com/network/"],
+      "comment": "One of the largest edge networks globally; handles approximately 20% of all web traffic"
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/speed/optimization/"],
+      "comment": "HTTP/2 enabled by default with multiplexing and server push"
+    },
+    "http3": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/speed/optimization/"],
+      "comment": "HTTP/3 with QUIC protocol supported for reduced latency"
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/serving-pages/"],
+      "comment": "Custom response headers configurable via _headers file in the project output directory"
+    },
+    "image-optimization": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/images/", "https://developers.cloudflare.com/images/polish/"],
+      "comment": "Cloudflare Images and Polish available as add-ons; Polish compresses images automatically; 5,000 free image transformations/month included with all accounts; not built directly into Pages but available as a Cloudflare platform feature"
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://developers.cloudflare.com/speed/optimization/content/compression/"],
+      "comment": "Automatic content compression; Brotli available on Pro+ plans, Gzip and Zstandard on all plans"
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/custom-domains/"],
+      "comment": "Custom domains and subdomains supported; DNS records and SSL certificates provisioned automatically"
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/custom-domains/"],
+      "comment": "SSL certificates automatically provisioned for custom domains at no cost"
+    },
+    "wildcard-ssl": {
+      "value": false,
+      "source": ["https://community.cloudflare.com/t/support-for-wildcard-domain-name-and-wildcard-ssl/104494"],
+      "comment": "Wildcard custom domains are not supported on Cloudflare Pages; wildcard SSL with proxied records is an Enterprise feature on the broader Cloudflare platform"
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/"],
+      "comment": "Always Use HTTPS setting automatically redirects all HTTP requests to HTTPS"
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://community.cloudflare.com/t/custom-domains-for-for-cloudflare-pages-preview-build/262437"],
+      "comment": "Custom domains cannot be directly attached to preview deployments; only the default hash-based and branch-alias *.pages.dev URLs are provided. Workarounds exist using Workers as a proxy."
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/functions/"],
+      "comment": "Pages Functions provide file-system based routing for serverless functions that run on Cloudflare Workers"
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "rust", "other"],
+      "source": ["https://developers.cloudflare.com/workers/languages/"],
+      "comment": "Runs on the workerd runtime (V8 isolates); first-class support for JavaScript/TypeScript (Node.js compatible APIs), Python (via Pyodide/WASM, in beta), and Rust/C/C++/Go via WebAssembly. Not traditional Node.js but provides Node.js-compatible APIs."
+    },
+    "edge-functions": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/functions/"],
+      "comment": "All Pages Functions run at the edge by default on Cloudflare's global network; this is a core architectural advantage"
+    },
+    "scheduled-functions": {
+      "value": false,
+      "source": ["https://community.cloudflare.com/t/schedule-a-cloudflare-pages-function/615507"],
+      "comment": "Cron Triggers are a Cloudflare Workers feature and are not directly supported in Pages Functions; requires a separate Worker for scheduled tasks"
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://developers.cloudflare.com/pages/"],
+      "comment": "No built-in form handling like Netlify Forms; can be implemented manually via Pages Functions or third-party services"
+    },
+    "authentication": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/cloudflare-one/"],
+      "comment": "Cloudflare Access (part of Zero Trust) provides authentication and access control; free for up to 50 users; not built into Pages directly but integrates seamlessly"
+    },
+    "kv-storage": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/functions/bindings/", "https://www.cloudflare.com/developer-platform/products/workers-kv/"],
+      "comment": "Workers KV is available as a binding in Pages Functions; globally distributed key-value storage with free tier"
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/functions/bindings/"],
+      "comment": "D1 (serverless SQLite database), R2 (object storage), Durable Objects (stateful edge compute), and Hyperdrive (connection pooling for external Postgres/MySQL) all available as bindings"
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/redirects/"],
+      "comment": "Configurable via _redirects file; supports wildcards, splats, placeholders, query strings, and fragments; 301 and 302 status codes"
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/redirects/"],
+      "comment": "Proxying with 200 status code supported for relative URLs within the same site via _redirects file; external domain proxying not supported natively but achievable via Pages Functions or Workers"
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/serving-pages/"],
+      "comment": "A 404.html file in the output directory serves as the custom not-found page; note that having 404.html disables automatic SPA fallback routing"
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/serving-pages/"],
+      "comment": "If no 404.html is present, Pages automatically serves the root index.html for all unmatched paths, enabling SPA client-side routing"
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/configuration/serving-pages/"],
+      "comment": "Custom response headers configurable via _headers file with per-path rules; applies to static assets only (not Pages Functions responses)"
+    },
+    "ab-testing": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/pages/functions/examples/ab-testing/", "https://developers.cloudflare.com/pages/how-to/use-worker-for-ab-testing-in-pages/"],
+      "comment": "A/B testing implementable via Pages Functions middleware with cookie-based traffic splitting; not a built-in toggle but well-documented with official examples"
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://community.cloudflare.com/t/is-there-a-maximum-number-of-members-that-can-be-added-to-a-free-plan-account/609050"],
+      "comment": "No practical limit on team members for Cloudflare accounts on any plan including free"
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://blog.cloudflare.com/rbac-for-everyone/", "https://developers.cloudflare.com/fundamentals/manage-members/roles/"],
+      "comment": "Role-based access controls available on all plans including free; multiple roles can be assigned per user"
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/fundamentals/account/account-security/review-audit-logs/"],
+      "comment": "Audit logs available on all plan types, free of charge, always enabled; searchable by user email and domain with date range filtering"
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/workers/configuration/environment-variables/"],
+      "comment": "Environment variables and encrypted secrets supported per environment (production/preview); configurable via dashboard or Wrangler config"
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://community.cloudflare.com/t/preview-collaboration-tools-screenshots-screencast-comments-and-more/522210"],
+      "comment": "No built-in preview commenting feature like Vercel or Netlify; this has been requested by the community but is not yet available"
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/ddos-protection/", "https://www.cloudflare.com/application-services/products/ddos-for-web/"],
+      "comment": "Unmetered and unlimited DDoS protection at layers 3, 4, and 7 included on all plans; autonomous detection and mitigation, typically within 3 seconds"
+    },
+    "waf": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/waf/"],
+      "comment": "Cloudflare WAF available; managed rulesets included on Pro+ plans; free plan includes basic security rules"
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://www.cloudflare.com/trust-hub/compliance-resources/", "https://blog.cloudflare.com/security-compliance-at-cloudflare/"],
+      "comment": "Cloudflare maintains SOC 2 Type II certification covering security, confidentiality, and availability trust service criteria"
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://www.cloudflare.com/trust-hub/gdpr/"],
+      "comment": "GDPR compliant; ISO 27701 certified as both data processor and controller; Data Processing Addendum available"
+    },
+    "password-protection": {
+      "value": true,
+      "source": ["https://dev.to/charca/password-protection-for-cloudflare-pages-8ma"],
+      "comment": "Not a native one-click feature; achievable via Cloudflare Access (free for up to 50 users) or via Pages Functions implementing HTTP Basic Auth; requires additional configuration"
+    },
+    "ip-access-control": {
+      "value": true,
+      "source": ["https://developers.cloudflare.com/cloudflare-one/"],
+      "comment": "IP-based access control available via Cloudflare Access policies; can restrict access by IP address, email, or SSO identity"
+    },
+    "documentation-quality": {
+      "value": 4.5,
+      "source": ["https://developers.cloudflare.com/pages/"],
+      "comment": "Comprehensive developer documentation with framework guides, API references, tutorials, and examples; well-organized and regularly updated; minor gaps around some newer integrations"
+    },
+    "integrations": {
+      "value": ["analytics", "cms", "monitoring", "auth", "database"],
+      "source": ["https://www.cloudflare.com/integrations/", "https://blog.cloudflare.com/cloudflare-pages-headless-cms-partnerships/"],
+      "comment": "Analytics via Cloudflare Web Analytics (free); CMS partnerships with Sanity, Strapi, Contentful, WordPress; monitoring via Logpush to Datadog, Splunk, etc.; auth via Cloudflare Access; database via D1, Hyperdrive, and bindings"
+    },
+    "community": {
+      "value": ["discord", "forum", "stackoverflow"],
+      "source": ["https://discord.com/invite/cloudflaredev", "https://community.cloudflare.com/"],
+      "comment": "Active Discord server (85,000+ members), Cloudflare Community forum, Stack Overflow presence; no GitHub Discussions for Pages specifically"
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://www.cloudflarestatus.com"],
+      "comment": "Public status page at cloudflarestatus.com with incident history, scheduled maintenance, and subscription options"
+    }
+  }
+}
