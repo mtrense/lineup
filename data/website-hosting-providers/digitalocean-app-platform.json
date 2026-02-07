@@ -1,0 +1,327 @@
+{
+  "name": "DigitalOcean App Platform",
+  "description": "A fully managed PaaS for deploying static sites, web apps, APIs, and serverless functions from Git repositories or container images, with built-in CI/CD and global CDN",
+  "icon": "digitalocean",
+  "url": "https://www.digitalocean.com/products/app-platform",
+  "values": {
+    "description": {
+      "value": "A fully managed Platform-as-a-Service (PaaS) that deploys static sites, web applications, APIs, and serverless functions from Git repositories or container images, featuring built-in CI/CD, a Cloudflare-powered global CDN for static assets, automatic SSL, DDoS mitigation, and deep integration with DigitalOcean's managed databases and infrastructure.",
+      "source": ["https://www.digitalocean.com/products/app-platform", "https://docs.digitalocean.com/products/app-platform/"],
+      "comment": "App Platform is a broader PaaS offering, not exclusively a static site host. Static sites are one of several component types alongside services, workers, jobs, and functions."
+    },
+    "website": {
+      "value": "https://www.digitalocean.com/products/app-platform",
+      "source": ["https://www.digitalocean.com/products/app-platform"]
+    },
+    "parent-company": {
+      "value": "DigitalOcean Holdings, Inc.",
+      "source": ["https://en.wikipedia.org/wiki/DigitalOcean", "https://investors.digitalocean.com/"],
+      "comment": "DigitalOcean went public on the NYSE in March 2021 (ticker: DOCN). Founded in 2011."
+    },
+    "year-launched": {
+      "value": "2020",
+      "source": ["https://www.digitalocean.com/blog/introducing-digitalocean-app-platform-reimagining-paas-to-make-it-simpler-for-you-to-build-deploy-and-scale-apps"],
+      "comment": "App Platform was announced and made generally available on October 6, 2020. It launched directly into GA, not a beta."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.digitalocean.com/open-source", "https://docs.digitalocean.com/reference/opensource/"],
+      "comment": "App Platform itself is a proprietary managed service. However, it is built on open standards (Kubernetes, Cloud Native Buildpacks) and DigitalOcean publishes open-source CLI tools (doctl) and GitHub Actions."
+    },
+    "primary-focus": {
+      "value": ["full-stack"],
+      "source": ["https://www.digitalocean.com/products/app-platform", "https://www.digitalocean.com/blog/introducing-digitalocean-app-platform-reimagining-paas-to-make-it-simpler-for-you-to-build-deploy-and-scale-apps"],
+      "comment": "App Platform is a general-purpose PaaS that supports static sites, dynamic web apps, APIs, workers, jobs, and serverless functions. It is not specifically focused on static sites or JAMstack, but rather positions itself as a full-stack application platform."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/pricing/app-platform", "https://docs.digitalocean.com/products/app-platform/details/pricing/"],
+      "comment": "Free tier allows up to 3 static-site-only apps at no cost. This is a permanent free tier, not a trial."
+    },
+    "free-tier-bandwidth": {
+      "value": "1 GiB/month per app",
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/pricing/", "https://www.digitalocean.com/pricing/app-platform"],
+      "comment": "Each free static site app includes 1 GiB of outbound data transfer per month. Overage is billed at $0.02/GiB. This is notably low compared to competitors."
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/limits/"],
+      "comment": "DigitalOcean does not document a monthly build minutes quota for the free tier. Individual builds timeout after 1 hour. There is no stated limit on the number of builds per month for free static sites."
+    },
+    "free-tier-sites": {
+      "value": "3",
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/pricing/", "https://www.digitalocean.com/pricing/app-platform"],
+      "comment": "Up to 3 apps with static-site-only components are free. Additional static-site-only apps cost $3/month each."
+    },
+    "paid-plan-starting-price": {
+      "value": "$3/month (additional static site) or $5/month (container)",
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/pricing/", "https://www.digitalocean.com/pricing/app-platform"],
+      "comment": "Additional static-site-only apps beyond the 3 free ones cost $3/month. The lowest container-based plan starts at $5/month with 1 shared vCPU and 512 MiB RAM. DigitalOcean simplified pricing in 2023, removing the Basic/Professional tiers."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.02/GiB",
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/pricing/"],
+      "comment": "Bandwidth overage is $0.02 per GiB across all apps, calculated at the team level."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/pricing", "https://www.spendflo.com/blog/digitalocean-pricing-guide"],
+      "comment": "DigitalOcean offers custom pricing for large-scale deployments and prepayment arrangements through their sales team."
+    },
+    "git-integration": {
+      "value": ["github", "gitlab", "bitbucket"],
+      "source": ["https://www.digitalocean.com/blog/introducing-bitbucket-integration-for-app-platform", "https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "GitHub and GitLab have been supported since launch. Bitbucket support was added later and launched into early availability. Azure DevOps and self-hosted Git are not supported."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/", "https://www.digitalocean.com/products/app-platform"],
+      "comment": "Pushes to the connected branch automatically trigger builds and deployments. Auto-deploy can be toggled on/off per component."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/", "https://docs.digitalocean.com/products/app-platform/how-to/create-apps/"],
+      "comment": "The doctl CLI supports creating and updating apps via app spec YAML files. Apps can also be deployed via the DigitalOcean API and GitHub Actions."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/", "https://docs.digitalocean.com/products/app-platform/details/limits/"],
+      "comment": "Built-in CI/CD build pipeline using Cloud Native Buildpacks with automatic framework detection. Builds get 4 CPU cores, 10 GiB memory, and 24 GiB disk space with a 1-hour timeout."
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "gatsby", "hugo", "jekyll", "other"],
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/", "https://www.digitalocean.com/products/app-platform"],
+      "comment": "Auto-detected frameworks include Node.js (Next.js, Nuxt), Hugo, Jekyll, Gatsby, and Hexo. Also supports Python, Go, Ruby, PHP apps. For static sites specifically, it auto-detects output directories (_static, dist, public, build). Does not have explicit first-party auto-detection for Astro, SvelteKit, Remix, Angular, Eleventy, or Vite, though these can be built with custom build commands."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-monorepo/", "https://github.com/digitalocean/sample-monorepo"],
+      "comment": "Supports monorepos via the source_dir field in the app spec, allowing each component to build from a subdirectory. DigitalOcean provides a sample monorepo template."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://github.com/digitalocean/app_action", "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-github-actions/"],
+      "comment": "Deploy previews are available via the official GitHub Action with deploy_pr_preview mode, which creates a unique app for each pull request. When the PR is merged or closed, the preview app is deleted. This is not a built-in platform feature like Netlify/Vercel but requires GitHub Actions setup."
+    },
+    "instant-rollbacks": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-deployments/", "https://www.digitalocean.com/products/app-platform"],
+      "comment": "Supports one-click rollback to previous deployments via the Activity tab. The last 10 successful deployments are kept. Rollbacks restore code, configuration, and app spec but not database data. Automatic rollback also occurs if a deployment fails health checks."
+    },
+    "deploy-notifications": {
+      "value": ["slack", "email"],
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/create-alerts/"],
+      "comment": "Alert notifications can be delivered via email and Slack. Alerts can be configured for deployment status, CPU usage, memory usage, and restart events. Native webhook support for deploy notifications is not available."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/products/app-platform", "https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "Static sites are served via a global CDN powered by Cloudflare. The CDN caches assets for 24 hours on edge servers and 10 seconds in browsers by default."
+    },
+    "cdn-provider": {
+      "value": "Cloudflare (via partnership)",
+      "source": ["https://medium.com/@blazingcdn/digitalocean-cdn-spaces-and-app-platform-performance-review-c341dfdafe02", "https://docs.digitalocean.com/products/app-platform/how-to/configure-edge-settings/"],
+      "comment": "App Platform's global CDN is powered by Cloudflare, automatically enabled for static sites. Edge settings like cache control, email obfuscation, and enhanced threat control are configurable via the Cloudflare-backed edge layer."
+    },
+    "edge-locations": {
+      "value": "330+ cities (via Cloudflare)",
+      "source": ["https://www.cloudflare.com/network/", "https://docs.digitalocean.com/products/app-platform/how-to/configure-edge-settings/"],
+      "comment": "Since App Platform uses Cloudflare's CDN for static sites, content is served from Cloudflare's network of 330+ cities in 120+ countries. DigitalOcean's own data centers are in fewer locations (about 15 regions)."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "HTTP/2 and gRPC are supported at App Platform's edge servers. Note that connections are downgraded to HTTP/1.1 between edge and app containers."
+    },
+    "http3": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "HTTP/3 (QUIC) is supported at edge servers. Like HTTP/2, it is negotiated with supported clients at the edge but downgraded to HTTP/1.1 when relayed to app containers."
+    },
+    "response-headers": {
+      "value": false,
+      "source": ["https://ideas.digitalocean.com/app-platform/p/add-response-headers-to-static-site", "https://www.digitalocean.com/community/questions/how-do-i-add-custom-http-headers-to-a-hosted-static-site"],
+      "comment": "Custom HTTP response headers are NOT supported for static site components. This is a frequently requested feature on the DigitalOcean ideas board. CORS policies can be configured via the app spec, but arbitrary custom headers (e.g., security headers) cannot be set for static sites. Service components can set custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "App Platform does not offer built-in image optimization or transformation. Users must handle image optimization in their build pipeline or use external services."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://www.digitalocean.com/community/questions/gzip-brotli-support-for-app-platform"],
+      "comment": "Since App Platform uses Cloudflare for its CDN edge, Brotli and Gzip compression are automatically applied when supported by the client browser. This is handled at the Cloudflare edge layer."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-domains/", "https://www.digitalocean.com/community/tutorials/how-to-configure-custom-domains-ssl-cdn"],
+      "comment": "Custom domains and subdomains are supported. Each app supports up to 500 domains. Wildcard domains (*.example.com) are also supported."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-domains/", "https://www.digitalocean.com/products/app-platform"],
+      "comment": "SSL/TLS certificates are automatically created, managed, and renewed via Let's Encrypt at no additional cost for all custom domains."
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-domains/"],
+      "comment": "Wildcard domains (*.example.com) are supported with SSL certificates validated via TXT DNS records. Both the wildcard and the root domain should be added to the app's domain settings."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/products/app-platform", "https://www.digitalocean.com/community/tutorials/how-to-configure-custom-domains-ssl-cdn"],
+      "comment": "All HTTP requests are automatically redirected to HTTPS. This is enabled by default and cannot be disabled."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://github.com/digitalocean/app_action"],
+      "comment": "Preview apps created via GitHub Actions get auto-generated URLs, not custom domain aliases. There is no mechanism to attach custom domains to preview deployments."
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/products/functions", "https://docs.digitalocean.com/products/functions/"],
+      "comment": "DigitalOcean Functions can be added as components within App Platform apps, providing serverless API capabilities alongside static sites and services."
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "go", "other"],
+      "source": ["https://docs.digitalocean.com/products/functions/reference/runtimes/"],
+      "comment": "DigitalOcean Functions supports 8 runtimes across 4 languages: Node.js (14, 18), Python (3.9, 3.11), Go (1.17, 1.20), and PHP (8.0, 8.2). Custom runtimes can also be used via the CLI."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/functions/", "https://www.digitalocean.com/products/functions"],
+      "comment": "DigitalOcean Functions run in a single region, not at the edge. There is no equivalent to Cloudflare Workers or Vercel Edge Functions. Functions execute in the same data center region as the app."
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-jobs/", "https://docs.digitalocean.com/products/functions/how-to/schedule-functions/"],
+      "comment": "Scheduled jobs are supported in App Platform with cron expressions (minimum interval of 15 minutes). DigitalOcean Functions can also be scheduled via triggers. Note: scheduled triggers are not yet available for function components deployed through App Platform specifically, but standalone Functions and App Platform jobs support scheduling."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/app-platform/"],
+      "comment": "No built-in form handling service like Netlify Forms. Form submissions must be handled by application code or external services."
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://www.digitalocean.com/community/questions/app-platform-basic-auth"],
+      "comment": "No built-in authentication or identity management service. Users must implement authentication in their application code or integrate third-party services like Auth0 or Firebase Auth."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/store-data/"],
+      "comment": "No built-in key-value or edge storage solution like Cloudflare KV or Vercel KV. DigitalOcean offers Managed Caching for Valkey (Redis-compatible) as a separate product that can be connected to App Platform apps, but it is not an integrated edge KV store."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-databases/", "https://www.digitalocean.com/blog/new-in-digitalocean-app-platform-enhanced-security-insights-and-dbaas-integration"],
+      "comment": "First-party integration with DigitalOcean Managed Databases (PostgreSQL, MySQL, MongoDB, Redis, Kafka). Development databases can be created directly within App Platform. Trusted sources feature provides secure private connections between apps and databases."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/url-rewrites/"],
+      "comment": "URL redirects can be configured in the app spec to redirect traffic from an existing path to any URL. However, wildcard redirects are not supported; each route must be specified individually."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/url-rewrites/"],
+      "comment": "URL rewrites allow mapping a new path to an existing component path without visible URL changes. Useful for simplifying API paths. Wildcard rewrites are not supported."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/"],
+      "comment": "Static sites support a custom error document configuration. You can specify a custom page name in the Error Document field to serve when pages are not found."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/"],
+      "comment": "For SPAs with client-side routing, you can specify index.html as the catch-all document so that all unmatched paths serve the SPA entry point."
+    },
+    "headers-config": {
+      "value": false,
+      "source": ["https://ideas.digitalocean.com/app-platform/p/static-site-headers-and-routing", "https://www.digitalocean.com/community/questions/basic-auth-and-other-headers-on-static-site-component"],
+      "comment": "Custom response headers cannot be configured for static site components. This is a frequently requested feature. CORS policies can be configured via the app spec, but arbitrary per-path headers are not available for static sites. Service components can set custom headers in their application code."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-deployments/"],
+      "comment": "App Platform does not have built-in A/B testing or traffic splitting capabilities for static sites. While marketing materials mention A/B testing support, this refers to Kubernetes-based approaches using Istio or Flagger, not a native App Platform feature."
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/"],
+      "comment": "DigitalOcean teams support unlimited members on all plans. Team management is at the DigitalOcean account level, not specific to App Platform."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/blog/introducing-new-predefined-roles-for-rbac", "https://www.digitalocean.com/blog/introducing-custom-roles", "https://docs.digitalocean.com/platform/teams/roles/"],
+      "comment": "DigitalOcean offers 6 predefined roles (Owner, Member, Biller, Modifier, Resource Viewer, Billing Viewer) plus custom roles with granular permissions. RBAC applies across all DigitalOcean products including App Platform."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/products/identity-access-management"],
+      "comment": "DigitalOcean provides a security audit log detailing activity on shared resources, team settings, and configurations, with fields for action, user, IP address, and timestamp."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/", "https://docs.digitalocean.com/products/app-platform/reference/app-spec/"],
+      "comment": "Environment variables are supported at both the app level and component level. Variables can be marked as encrypted for sensitive values. Available during build time for static sites."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://docs.digitalocean.com/products/app-platform/"],
+      "comment": "No built-in preview commenting feature. PR preview deployments post a GitHub comment with the live URL, but there is no in-app collaboration or visual feedback tool for reviewing previews."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/products/app-platform", "https://docs.digitalocean.com/products/app-platform/how-to/configure-edge-settings/"],
+      "comment": "DDoS mitigation is included by default. Enhanced Layer 7 DDoS protection can be enabled via edge settings (requires a custom domain). The Cloudflare-powered edge layer provides additional protection."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://ideas.digitalocean.com/network/p/web-application-firewall-waf"],
+      "comment": "DigitalOcean does not offer a native WAF for App Platform. WAF is a community-requested feature. Third-party WAF solutions (like Haltdos) are available in the DigitalOcean Marketplace but apply to Droplets, not App Platform. Users can place Cloudflare or another WAF in front of their App Platform apps."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/trust/certification-reports", "https://investors.digitalocean.com/news/news-details/2021/DigitalOcean-Achieves-SOC-2-Type-II-Certification-and-Cloud-Security-Alliance-STAR-Level-1/default.aspx"],
+      "comment": "DigitalOcean holds SOC 2 Type II and SOC 3 Type II certifications, audited by Schellman & Company LLC. Also holds CSA STAR Level 1 certification."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://www.digitalocean.com/trust", "https://www.digitalocean.com/security"],
+      "comment": "DigitalOcean is GDPR compliant with a Data Processing Agreement (DPA) available. Also complies with CCPA and holds APEC CBPR PRP certification."
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://www.digitalocean.com/community/questions/app-platform-basic-auth", "https://www.digitalocean.com/community/questions/password-protected-apps"],
+      "comment": "App Platform does not have built-in password protection or HTTP basic auth for static sites. This has been a community-requested feature since 2021 but has not been implemented. Workarounds include implementing auth in application code or using a proxy."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://www.digitalocean.com/community/questions/limit-app-access"],
+      "comment": "App Platform does not support IP-based access restrictions. IP allowlisting and access control must be implemented at the application level. DigitalOcean Cloud Firewalls apply to Droplets, not App Platform."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.digitalocean.com/products/app-platform/"],
+      "comment": "Comprehensive official documentation with how-to guides, reference material, limits documentation, and tutorials. The DigitalOcean Community also provides extensive tutorials and Q&A. Minor gaps around newer features (e.g., Bitbucket integration, edge settings) and some advanced configuration details. Well-organized and regularly updated."
+    },
+    "integrations": {
+      "value": ["monitoring", "database"],
+      "source": ["https://docs.digitalocean.com/products/app-platform/details/features/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-databases/"],
+      "comment": "Monitoring via built-in app metrics and log forwarding to Papertrail, Datadog, or OpenSearch. First-party database integration with DigitalOcean Managed Databases (PostgreSQL, MySQL, MongoDB, Redis, Kafka). No official first-party integrations for analytics, CMS, auth, commerce, or search categories."
+    },
+    "community": {
+      "value": ["discord", "forum", "stackoverflow"],
+      "source": ["https://www.digitalocean.com/community", "https://discord.com/invite/digitalocean", "https://status.digitalocean.com/"],
+      "comment": "Active Discord server (22,000+ members, community-run but endorsed by DigitalOcean). DigitalOcean Community forum with Q&A and tutorials is highly active. Stack Overflow presence via the 'digitalocean' tag. No GitHub Discussions for App Platform specifically."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.digitalocean.com/"],
+      "comment": "Public status page at status.digitalocean.com with 205 components across 16 groups, showing up/warn/down/maintenance statuses."
+    }
+  }
+}
