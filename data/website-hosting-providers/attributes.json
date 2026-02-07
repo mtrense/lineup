@@ -1,0 +1,570 @@
+{
+  "name": "Static Website Hosting Providers",
+  "description": "Platforms for hosting static websites and JAMstack applications, comparing pricing, performance, features, and developer experience",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Information",
+      "description": "Basic information about the hosting provider",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the platform and primary use case"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website URL"
+        },
+        {
+          "id": "parent-company",
+          "name": "Parent Company",
+          "valueType": "text",
+          "description": "Company that owns/operates the service"
+        },
+        {
+          "id": "year-launched",
+          "name": "Year Launched",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year the service became publicly available"
+        },
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Whether the core platform is open source (not just CLI/SDK)"
+        },
+        {
+          "id": "primary-focus",
+          "name": "Primary Focus",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "static-sites", "value": "Static Sites", "color": "blue" },
+              { "id": "jamstack", "value": "JAMstack", "color": "green" },
+              { "id": "full-stack", "value": "Full-Stack", "color": "purple" },
+              { "id": "edge-first", "value": "Edge-First", "color": "orange" }
+            ]
+          },
+          "description": "What the platform primarily targets"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing & Limits",
+      "description": "Free tier availability, pricing, and resource limits",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "free-tier",
+          "name": "Free Tier",
+          "valueType": "boolean",
+          "description": "Whether a meaningful free tier exists (not just a trial)"
+        },
+        {
+          "id": "free-tier-bandwidth",
+          "name": "Free Tier Bandwidth",
+          "valueType": "text",
+          "description": "Monthly bandwidth included in free tier"
+        },
+        {
+          "id": "free-tier-build-minutes",
+          "name": "Free Tier Build Minutes",
+          "valueType": "text",
+          "description": "Monthly build minutes included in free tier"
+        },
+        {
+          "id": "free-tier-sites",
+          "name": "Free Tier Sites",
+          "valueType": "text",
+          "description": "Number of sites/projects allowed on the free tier"
+        },
+        {
+          "id": "paid-plan-starting-price",
+          "name": "Paid Plan Starting Price",
+          "valueType": "text",
+          "description": "Lowest paid plan monthly cost"
+        },
+        {
+          "id": "bandwidth-overage-cost",
+          "name": "Bandwidth Overage Cost",
+          "valueType": "text",
+          "description": "Cost for exceeding bandwidth limits"
+        },
+        {
+          "id": "enterprise-pricing",
+          "name": "Custom / Enterprise Pricing",
+          "valueType": "boolean",
+          "description": "Whether custom enterprise pricing is available"
+        }
+      ]
+    },
+    {
+      "id": "deployment",
+      "name": "Deployment & Build",
+      "description": "Build pipeline, deployment options, and workflow features",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "git-integration",
+          "name": "Git Integration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "github", "value": "GitHub", "color": "purple" },
+              { "id": "gitlab", "value": "GitLab", "color": "orange" },
+              { "id": "bitbucket", "value": "Bitbucket", "color": "blue" },
+              { "id": "azure-devops", "value": "Azure DevOps", "color": "cyan" },
+              { "id": "self-hosted-git", "value": "Self-Hosted Git", "color": "gray" }
+            ]
+          },
+          "description": "Supported Git providers for automatic deployments"
+        },
+        {
+          "id": "auto-deploy",
+          "name": "Auto Deploy on Push",
+          "valueType": "boolean",
+          "description": "Whether pushes to a connected branch automatically trigger deployments"
+        },
+        {
+          "id": "cli-deployment",
+          "name": "CLI Deployment",
+          "valueType": "boolean",
+          "description": "Whether a CLI tool exists for manual/scripted deployments"
+        },
+        {
+          "id": "build-system",
+          "name": "Build System",
+          "valueType": "boolean",
+          "description": "Whether the platform has a built-in CI/CD build pipeline"
+        },
+        {
+          "id": "supported-frameworks",
+          "name": "Supported Frameworks",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "next", "value": "Next.js", "color": "purple" },
+              { "id": "nuxt", "value": "Nuxt", "color": "green" },
+              { "id": "gatsby", "value": "Gatsby", "color": "purple" },
+              { "id": "astro", "value": "Astro", "color": "orange" },
+              { "id": "hugo", "value": "Hugo", "color": "pink" },
+              { "id": "jekyll", "value": "Jekyll", "color": "red" },
+              { "id": "svelte-kit", "value": "SvelteKit", "color": "orange" },
+              { "id": "remix", "value": "Remix", "color": "blue" },
+              { "id": "angular", "value": "Angular", "color": "red" },
+              { "id": "vue", "value": "Vue", "color": "green" },
+              { "id": "eleventy", "value": "Eleventy", "color": "gray" },
+              { "id": "vite", "value": "Vite", "color": "purple" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Frameworks with official support or auto-detection"
+        },
+        {
+          "id": "monorepo-support",
+          "name": "Monorepo Support",
+          "valueType": "boolean",
+          "description": "Whether the platform can build from a subdirectory of a monorepo"
+        },
+        {
+          "id": "deploy-previews",
+          "name": "Deploy Previews",
+          "valueType": "boolean",
+          "description": "Whether preview deployments are created for pull/merge requests"
+        },
+        {
+          "id": "instant-rollbacks",
+          "name": "Instant Rollbacks",
+          "valueType": "boolean",
+          "description": "Whether previous deployments can be promoted without rebuilding"
+        },
+        {
+          "id": "deploy-notifications",
+          "name": "Deploy Notifications",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "slack", "value": "Slack", "color": "purple" },
+              { "id": "email", "value": "Email", "color": "blue" },
+              { "id": "webhook", "value": "Webhook", "color": "green" },
+              { "id": "github-status", "value": "GitHub Status", "color": "gray" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Notification channels for deploy status"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance & Infrastructure",
+      "description": "CDN, edge network, and performance features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "global-cdn",
+          "name": "Global CDN",
+          "valueType": "boolean",
+          "description": "Whether assets are served from a globally distributed CDN"
+        },
+        {
+          "id": "cdn-provider",
+          "name": "CDN Provider / Network",
+          "valueType": "text",
+          "description": "Underlying CDN or edge network"
+        },
+        {
+          "id": "edge-locations",
+          "name": "Edge Locations",
+          "valueType": "text",
+          "description": "Approximate number of edge/PoP locations"
+        },
+        {
+          "id": "http2",
+          "name": "HTTP/2 Support",
+          "valueType": "boolean",
+          "description": "Whether HTTP/2 is supported by default"
+        },
+        {
+          "id": "http3",
+          "name": "HTTP/3 Support",
+          "valueType": "boolean",
+          "description": "Whether HTTP/3 (QUIC) is supported"
+        },
+        {
+          "id": "response-headers",
+          "name": "Response Headers Customization",
+          "valueType": "boolean",
+          "description": "Whether custom HTTP response headers can be configured"
+        },
+        {
+          "id": "image-optimization",
+          "name": "Image Optimization",
+          "valueType": "boolean",
+          "description": "Whether built-in image optimization/transformation is offered"
+        },
+        {
+          "id": "asset-compression",
+          "name": "Asset Compression",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "gzip", "value": "Gzip", "color": "blue" },
+              { "id": "brotli", "value": "Brotli", "color": "green" }
+            ]
+          },
+          "description": "Supported automatic compression methods"
+        }
+      ]
+    },
+    {
+      "id": "domains-ssl",
+      "name": "Domains & SSL",
+      "description": "Custom domain and SSL certificate support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "custom-domains",
+          "name": "Custom Domains",
+          "valueType": "boolean",
+          "description": "Whether custom domains can be attached to deployments"
+        },
+        {
+          "id": "free-ssl",
+          "name": "Free SSL/TLS",
+          "valueType": "boolean",
+          "description": "Whether SSL certificates are provisioned automatically at no cost"
+        },
+        {
+          "id": "wildcard-ssl",
+          "name": "Wildcard SSL",
+          "valueType": "boolean",
+          "description": "Whether wildcard SSL certificates are supported"
+        },
+        {
+          "id": "auto-https-redirect",
+          "name": "Automatic HTTPS Redirect",
+          "valueType": "boolean",
+          "description": "Whether HTTP-to-HTTPS redirect is handled automatically"
+        },
+        {
+          "id": "custom-domain-preview",
+          "name": "Custom Domain per Preview",
+          "valueType": "boolean",
+          "description": "Whether preview deployments can have custom domain aliases"
+        }
+      ]
+    },
+    {
+      "id": "serverless",
+      "name": "Serverless & Backend Features",
+      "description": "Server-side capabilities offered alongside static hosting",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "serverless-functions",
+          "name": "Serverless Functions",
+          "valueType": "boolean",
+          "description": "Whether the platform offers serverless functions as a built-in feature"
+        },
+        {
+          "id": "functions-runtime",
+          "name": "Functions Runtime",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "node", "value": "Node.js", "color": "green" },
+              { "id": "deno", "value": "Deno", "color": "blue" },
+              { "id": "python", "value": "Python", "color": "yellow" },
+              { "id": "go", "value": "Go", "color": "cyan" },
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "ruby", "value": "Ruby", "color": "red" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Supported function runtimes"
+        },
+        {
+          "id": "edge-functions",
+          "name": "Edge Functions",
+          "valueType": "boolean",
+          "description": "Whether functions can run at the edge (low-latency, close to users)"
+        },
+        {
+          "id": "scheduled-functions",
+          "name": "Scheduled Functions (Cron)",
+          "valueType": "boolean",
+          "description": "Whether functions can be triggered on a schedule"
+        },
+        {
+          "id": "form-handling",
+          "name": "Form Handling",
+          "valueType": "boolean",
+          "description": "Whether built-in form submission handling is available"
+        },
+        {
+          "id": "authentication",
+          "name": "Authentication",
+          "valueType": "boolean",
+          "description": "Whether built-in user authentication is provided"
+        },
+        {
+          "id": "kv-storage",
+          "name": "Key-Value Storage",
+          "valueType": "boolean",
+          "description": "Whether a built-in key-value or edge storage solution is available"
+        },
+        {
+          "id": "database-integration",
+          "name": "Database Integration",
+          "valueType": "boolean",
+          "description": "Whether an integrated database or first-party database addon is offered"
+        }
+      ]
+    },
+    {
+      "id": "routing",
+      "name": "Routing & Configuration",
+      "description": "URL routing, redirects, and request handling configuration",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "redirects",
+          "name": "Redirects",
+          "valueType": "boolean",
+          "description": "Whether URL redirects can be configured (301, 302, etc.)"
+        },
+        {
+          "id": "rewrites",
+          "name": "Rewrites / Proxying",
+          "valueType": "boolean",
+          "description": "Whether URL rewrites or reverse proxying can be configured"
+        },
+        {
+          "id": "custom-404",
+          "name": "Custom 404 Pages",
+          "valueType": "boolean",
+          "description": "Whether custom not-found pages can be defined"
+        },
+        {
+          "id": "spa-fallback",
+          "name": "SPA Fallback Routing",
+          "valueType": "boolean",
+          "description": "Whether single-page application routing is supported"
+        },
+        {
+          "id": "headers-config",
+          "name": "Headers Configuration",
+          "valueType": "boolean",
+          "description": "Whether custom response headers can be defined per-path or globally"
+        },
+        {
+          "id": "ab-testing",
+          "name": "A/B Testing / Split Traffic",
+          "valueType": "boolean",
+          "description": "Whether traffic can be split between deployments for A/B testing"
+        }
+      ]
+    },
+    {
+      "id": "collaboration",
+      "name": "Collaboration & Workflow",
+      "description": "Team features and development workflow support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "free-team-members",
+          "name": "Team Members (Free)",
+          "valueType": "text",
+          "description": "Number of team members allowed on the free tier"
+        },
+        {
+          "id": "rbac",
+          "name": "Role-Based Access Control",
+          "valueType": "boolean",
+          "description": "Whether different permission levels can be assigned to team members"
+        },
+        {
+          "id": "audit-logs",
+          "name": "Audit Logs",
+          "valueType": "boolean",
+          "description": "Whether an audit trail of actions is available"
+        },
+        {
+          "id": "environment-variables",
+          "name": "Environment Variables",
+          "valueType": "boolean",
+          "description": "Whether environment variables can be configured for builds"
+        },
+        {
+          "id": "preview-comments",
+          "name": "Preview Comments",
+          "valueType": "boolean",
+          "description": "Whether team members can comment on deploy previews"
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Compliance & Security",
+      "description": "Security features and compliance certifications",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "ddos-protection",
+          "name": "DDoS Protection",
+          "valueType": "boolean",
+          "description": "Whether DDoS mitigation is included"
+        },
+        {
+          "id": "waf",
+          "name": "WAF",
+          "valueType": "boolean",
+          "description": "Whether a Web Application Firewall is available"
+        },
+        {
+          "id": "soc2",
+          "name": "SOC 2 Certified",
+          "valueType": "boolean",
+          "description": "Whether the provider has SOC 2 Type II certification"
+        },
+        {
+          "id": "gdpr",
+          "name": "GDPR Compliant",
+          "valueType": "boolean",
+          "description": "Whether documented GDPR compliance measures exist"
+        },
+        {
+          "id": "password-protection",
+          "name": "Password Protection",
+          "valueType": "boolean",
+          "description": "Whether deployed sites can be password-protected"
+        },
+        {
+          "id": "ip-access-control",
+          "name": "IP Access Control",
+          "valueType": "boolean",
+          "description": "Whether access can be restricted by IP address"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem",
+      "name": "Community & Ecosystem",
+      "description": "Documentation, integrations, and community support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "Quality of documentation: completeness, clarity, examples, and currency"
+        },
+        {
+          "id": "integrations",
+          "name": "Plugin / Integration Ecosystem",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "analytics", "value": "Analytics", "color": "blue" },
+              { "id": "cms", "value": "CMS", "color": "green" },
+              { "id": "monitoring", "value": "Monitoring", "color": "orange" },
+              { "id": "auth", "value": "Auth", "color": "purple" },
+              { "id": "database", "value": "Database", "color": "cyan" },
+              { "id": "commerce", "value": "Commerce", "color": "pink" },
+              { "id": "search", "value": "Search", "color": "yellow" }
+            ]
+          },
+          "description": "Major integration categories with official or first-party support"
+        },
+        {
+          "id": "community",
+          "name": "Community Presence",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "discord", "value": "Discord", "color": "purple" },
+              { "id": "forum", "value": "Forum", "color": "blue" },
+              { "id": "github-discussions", "value": "GitHub Discussions", "color": "gray" },
+              { "id": "stackoverflow", "value": "Stack Overflow", "color": "orange" }
+            ]
+          },
+          "description": "Active community channels"
+        },
+        {
+          "id": "status-page",
+          "name": "Status Page",
+          "valueType": "boolean",
+          "description": "Whether a public status/uptime page exists"
+        }
+      ]
+    }
+  ]
+}
