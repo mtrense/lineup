@@ -1,0 +1,327 @@
+{
+  "name": "Fly.io",
+  "description": "Edge application platform that deploys full-stack apps as micro-VMs close to users worldwide, capable of serving static sites via containerized web servers like nginx",
+  "icon": "fly-io",
+  "url": "https://fly.io",
+  "values": {
+    "description": {
+      "value": "Edge application platform that deploys full-stack apps as micro-VMs close to users worldwide, capable of serving static sites via containerized web servers like nginx",
+      "source": ["https://fly.io/", "https://fly.io/docs/languages-and-frameworks/static/"],
+      "comment": "Fly.io is NOT a traditional static hosting platform. It runs Firecracker micro-VMs (containers) in 18 regions worldwide. Static sites are deployed by packaging files into a Docker image with a web server like nginx, then deploying that container. This is fundamentally different from platforms like Netlify or Vercel that are purpose-built for static hosting."
+    },
+    "website": {
+      "value": "https://fly.io",
+      "source": ["https://fly.io/"]
+    },
+    "parent-company": {
+      "value": "Fly.io (independent)",
+      "source": ["https://fly.io/about/", "https://www.crunchbase.com/organization/fly-io"],
+      "comment": "Privately held and independently operated. Founded in 2016 by Kurt Mackey, Thomas Ptacek, Jerome Gravel-Niquet, and Michael Dwan. Based in Chicago, IL. Raised approximately $111M in total funding through Series C, backed by investors including EQT Ventures, A16Z, and others."
+    },
+    "year-launched": {
+      "value": "2017",
+      "source": ["https://fly.io/about/", "https://www.crunchbase.com/organization/fly-io"],
+      "comment": "Company was founded/incorporated in 2016. The platform became publicly available in 2017. The about page states they have 'been hammering on this thing since 2017'. The current container/micro-VM platform architecture evolved significantly from the original edge proxy product."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/superfly", "https://github.com/superfly/flyctl"],
+      "comment": "The core platform (Fly Proxy, orchestrator, hardware infrastructure) is proprietary. The CLI tool flyctl is open source (Apache-2.0 license, github.com/superfly/flyctl). Various example apps and GitHub Actions are also open source. The platform runs on open-source Firecracker micro-VMs but is not itself open source."
+    },
+    "primary-focus": {
+      "value": ["full-stack", "edge-first"],
+      "source": ["https://fly.io/", "https://fly.io/docs/"],
+      "comment": "Fly.io's primary focus is running full-stack applications close to users via micro-VMs. It positions itself as an edge-first platform where apps run in multiple regions simultaneously. Static site hosting is a secondary use case achieved by running a web server container. Not a static-sites or JAMstack-focused platform."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://fly.io/docs/about/pricing/", "https://community.fly.io/t/free-tier-is-dead/20651", "https://community.fly.io/t/free-plan-clarification/18661"],
+      "comment": "Fly.io no longer offers a meaningful free tier for new organizations. There is a free trial with non-expiring credits for the default personal organization, but it is not a production-ready free tier. Legacy plans (Hobby, Launch, Scale) that included free allowances are deprecated and no longer available to new customers. The current model is purely pay-as-you-go."
+    },
+    "free-tier-bandwidth": {
+      "value": null,
+      "source": ["https://fly.io/docs/about/pricing/"],
+      "comment": "No free tier bandwidth since there is no meaningful free tier for new customers. Legacy grandfathered plans included 100 GB outbound in North America/Europe. Current pay-as-you-go pricing charges $0.02/GB in North America/Europe, $0.04/GB in Asia Pacific, and $0.12/GB in Africa/India."
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://fly.io/docs/about/pricing/"],
+      "comment": "Fly.io does not have a concept of 'build minutes' in the traditional static hosting sense. Builds either happen locally, via Docker, or on Fly's remote builders. Remote builder usage is billed as compute time for the builder machine. There is no free build minutes allocation."
+    },
+    "free-tier-sites": {
+      "value": null,
+      "source": ["https://fly.io/docs/about/pricing/"],
+      "comment": "No free tier. On pay-as-you-go, there is no inherent limit on the number of apps (sites), but each app incurs compute costs for the running VM(s). Legacy free tier allowed up to 3 shared-cpu-1x 256MB VMs."
+    },
+    "paid-plan-starting-price": {
+      "value": "Usage-based (no fixed plans)",
+      "source": ["https://fly.io/pricing/", "https://fly.io/docs/about/pricing/"],
+      "comment": "Fly.io uses purely usage-based pricing with no fixed monthly plans. A minimal static site using a single shared-cpu-1x VM with 256MB RAM costs approximately $2-3/month. Compute starts at $0.0028/hour for the smallest shared CPU. Dedicated IPv4 is $2/month extra. There are no traditional 'starter' or 'pro' plan tiers—you pay for what you use."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.02/GB (North America/Europe)",
+      "source": ["https://fly.io/docs/about/pricing/"],
+      "comment": "All bandwidth is usage-based: $0.02/GB for North America and Europe, $0.04/GB for Asia Pacific/Oceania/South America, $0.12/GB for Africa and India. Inbound data transfer is free. There is no 'included' bandwidth on the current pay-as-you-go plan."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://fly.io/enterprise", "https://fly.io/pricing/"],
+      "comment": "Enterprise plan available with custom pricing, including guaranteed support response times, uptime SLA, dedicated support teams, and compliance features (SOC2, HIPAA BAA). Enterprise support starts at $2,500/month."
+    },
+    "git-integration": {
+      "value": ["github"],
+      "source": ["https://fly.io/docs/launch/continuous-deployment-with-github-actions/", "https://community.fly.io/t/auto-deploy-on-push-to-github/22306"],
+      "comment": "Fly.io has a built-in GitHub integration via the Launch UI (launched October 2024) that enables auto-deploy on push. Additionally, GitHub Actions can be used with the superfly/flyctl-actions action. The enterprise page mentions GitLab deployment support, but GitLab, Bitbucket, Azure DevOps, and self-hosted Git are not supported as first-party integrations in the same way. Users must configure CI/CD manually for non-GitHub providers."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://community.fly.io/t/auto-deploy-on-push-to-github/22306", "https://fly.io/docs/launch/continuous-deployment-with-github-actions/"],
+      "comment": "Auto-deploy on push to GitHub is available via the Launch UI (built-in) or through GitHub Actions. The built-in feature was launched in October 2024 and is described as 'very much in progress'. GitHub Actions provide a more mature continuous deployment path."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://fly.io/docs/getting-started/launch/", "https://github.com/superfly/flyctl"],
+      "comment": "flyctl (the Fly CLI) is the primary deployment tool. 'fly deploy' builds a Docker image and deploys it. 'fly launch' creates a new app. The CLI is open source (Go, Apache-2.0) and available via Homebrew, curl script, npm, and other package managers."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://fly.io/docs/reference/builders/", "https://fly.io/docs/languages-and-frameworks/static/"],
+      "comment": "Fly.io builds Docker images using either local Docker, remote builders (Fly's build servers), or Depot (a third-party builder). This is a container-based build system, not a traditional static site build pipeline. You must provide a Dockerfile. Fly Launch can auto-detect some frameworks and generate Dockerfiles, but there is no built-in framework-aware build pipeline like Netlify or Vercel."
+    },
+    "supported-frameworks": {
+      "value": ["other"],
+      "source": ["https://fly.io/docs/languages-and-frameworks/", "https://fly.io/docs/getting-started/get-started-by-framework/"],
+      "comment": "Fly.io is framework-agnostic—any framework that can be containerized via Docker works. It has dedicated documentation for Elixir/Phoenix, Rails, Laravel, Django, Node.js/Express, and static sites (via nginx). Fly Launch auto-detects Astro, Deno, Django, FastAPI, Flask, Go, and Rails. However, it does NOT have framework-specific zero-config static site support like Vercel has for Next.js. Static sites require a Dockerfile with a web server."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://fly.io/docs/launch/monorepo/"],
+      "comment": "Fly.io supports monorepo deployments. Multiple fly.toml files can exist in subdirectories, and 'fly deploy' accepts paths to specific directories or Dockerfiles. Docker build context can be configured independently from the fly.toml location."
+    },
+    "deploy-previews": {
+      "value": false,
+      "source": ["https://fly.io/docs/blueprints/review-apps-guide/", "https://community.fly.io/t/pull-request-previews-and-preview-environments/4120"],
+      "comment": "Fly.io does NOT have built-in deploy previews. Preview environments for pull requests can be set up manually using the superfly/fly-pr-review-apps GitHub Action, which creates ephemeral Fly apps for each PR. This requires manual configuration and is not a native platform feature like Netlify's or Vercel's deploy previews."
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://fly.io/docs/blueprints/rollback-guide/", "https://community.fly.io/t/how-to-ideas-rollbacks/12517"],
+      "comment": "Fly.io does not have a dedicated rollback command or instant rollback feature. Rollbacks are performed by redeploying a previous container image using 'fly deploy --image <previous-image>'. This requires knowing the previous image reference from 'fly releases --image'. It is faster than rebuilding but not 'instant' in the way that platforms with immutable deployment artifacts handle it."
+    },
+    "deploy-notifications": {
+      "value": ["webhook"],
+      "source": ["https://fly.io/docs/reference/configuration/", "https://fly.io/docs/launch/continuous-deployment-with-github-actions/"],
+      "comment": "Fly.io does not have built-in Slack or email deploy notifications. When using GitHub Actions for deployment, GitHub's built-in notification system (email, status checks) applies. Webhooks can be configured through GitHub Actions or external monitoring. Fly.io's monitoring integration with Sentry provides error tracking but not deploy notifications per se."
+    },
+    "global-cdn": {
+      "value": false,
+      "source": ["https://fly.io/docs/reference/regions/", "https://community.fly.io/t/does-fly-serve-cache-control-origin-responses-off-of-its-edge-cdn/5009"],
+      "comment": "Fly.io is NOT a CDN. It runs your application as micro-VMs in specific regions you choose. While you can deploy to multiple regions for geographic distribution, there is no traditional CDN layer with edge caching for static assets. The Fly Proxy routes requests to the nearest running VM via Anycast, but it does not cache responses at the edge like a CDN would. Static assets are served directly from the running container, not from cached edge locations."
+    },
+    "cdn-provider": {
+      "value": "Proprietary (Anycast network)",
+      "source": ["https://fly.io/docs/networking/services/", "https://fly.io/docs/reference/regions/"],
+      "comment": "Fly.io operates its own proprietary network infrastructure using BGP Anycast routing. It is not backed by a third-party CDN like Cloudflare, Fastly, or CloudFront. The Fly Proxy terminates TLS at the nearest edge point and routes to the closest running VM. For true CDN caching, users can place Cloudflare or another CDN in front of their Fly app."
+    },
+    "edge-locations": {
+      "value": "18 regions",
+      "source": ["https://fly.io/docs/reference/regions/"],
+      "comment": "Fly.io operates in 18 regions across 6 continents: Amsterdam, Stockholm, Mumbai, Paris, Dallas, Secaucus (NJ), Frankfurt, Sao Paulo, Ashburn (VA), Johannesburg, Los Angeles, London, Tokyo, Chicago, Singapore, San Jose, Sydney, and Toronto. This is far fewer locations than a traditional CDN (Cloudflare has 330+), but apps run as full VMs, not just cached assets."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://fly.io/docs/networking/services/"],
+      "comment": "HTTP/2 is supported. The Fly Proxy can communicate with backend apps over HTTP/2 via the h2_backend option. TLS termination at the proxy supports HTTP/2 through ALPN negotiation."
+    },
+    "http3": {
+      "value": null,
+      "source": ["https://fly.io/docs/networking/services/"],
+      "comment": "Fly.io's documentation does not mention HTTP/3 (QUIC) support. There is no evidence in official documentation or community discussions that HTTP/3 is currently supported by the Fly Proxy."
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://fly.io/docs/reference/configuration/"],
+      "comment": "Custom HTTP response headers can be configured in fly.toml via [http_service.http_options.response.headers]. Headers can be added (string or multi-value array) or removed (set to false). This is configured at the Fly Proxy level, in addition to any headers set by the application itself."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://fly.io/docs/languages-and-frameworks/static/", "https://community.fly.io/t/first-look-static-asset-caching/1375"],
+      "comment": "Fly.io does not offer built-in image optimization. Users can deploy image processing services like imgproxy as separate Fly apps, but there is no integrated image transformation, resizing, or format conversion feature."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://fly.io/docs/reference/content-encoding/"],
+      "comment": "The Fly Proxy automatically compresses responses using the best algorithm supported by the client. Supported algorithms in order of preference: Zstandard (zstd), Brotli, gzip, deflate. Compression only applies if the app does not already set a Content-Encoding header. Apps can disable proxy compression by setting Content-Encoding: none."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://fly.io/docs/networking/custom-domain/"],
+      "comment": "Custom domains are fully supported. Add domains via 'fly certs add example.com'. DNS can be configured via A/AAAA records, CNAME, or DNS-01 challenge. Wildcard domains are also supported (e.g., *.example.com)."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://fly.io/docs/networking/custom-domain/", "https://fly.io/docs/about/pricing/"],
+      "comment": "First 10 single hostname SSL certificates per organization are free. Certificates are automatically provisioned and renewed via Let's Encrypt. Additional certificates cost $0.10/month per single hostname or $1/month for wildcard certificates."
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://fly.io/docs/networking/custom-domain/", "https://fly.io/docs/about/pricing/"],
+      "comment": "Wildcard SSL certificates are supported (e.g., *.example.com). Requires DNS-01 challenge validation via an _acme-challenge CNAME record. Wildcard certificates cost $1/month each."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://fly.io/docs/reference/configuration/", "https://community.fly.io/t/new-feature-automatic-https-redirects/4442"],
+      "comment": "HTTP-to-HTTPS redirects can be enabled via the force_https = true setting in fly.toml. When enabled, HTTP requests receive a 301 redirect to the HTTPS equivalent. This must be explicitly configured; it is not automatic by default."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://fly.io/docs/blueprints/review-apps-guide/"],
+      "comment": "Deploy previews are not a built-in feature, so custom domains per preview are not applicable. When using the fly-pr-review-apps GitHub Action, preview apps get auto-generated fly.dev URLs. Custom domains could theoretically be added to these ephemeral apps, but this is not a supported workflow."
+    },
+    "serverless-functions": {
+      "value": false,
+      "source": ["https://fly.io/blog/the-serverless-server/", "https://fly.io/docs/"],
+      "comment": "Fly.io does not offer traditional serverless functions (like AWS Lambda or Vercel Functions). Instead, it provides Fly Machines—micro-VMs that can be started and stopped via API, booting in ~300ms. These can behave similarly to serverless functions but are fundamentally different: they are full VMs, not ephemeral function invocations. There is no built-in function-as-a-service offering."
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "go", "rust", "ruby", "other"],
+      "source": ["https://fly.io/docs/languages-and-frameworks/"],
+      "comment": "Since Fly.io runs Docker containers, virtually any runtime is supported. Official documentation covers Node.js, Python (Django, Flask, FastAPI), Go, Rust, Ruby (Rails), Elixir (Phoenix), Laravel (PHP), .NET, and more. However, these are full application runtimes in containers, not serverless function runtimes."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://fly.io/docs/"],
+      "comment": "Fly.io does not have edge functions in the Cloudflare Workers / Vercel Edge Functions sense. Applications can be deployed to multiple regions and run as VMs close to users, which achieves a similar goal, but the mechanism is different—it's running full application instances, not lightweight edge function handlers."
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://fly.io/docs/blueprints/task-scheduling/"],
+      "comment": "Fly Machines support built-in scheduling: machines can be configured to start hourly, daily, weekly, or monthly. Additionally, Cron Manager is Fly's recommended solution for running scheduled jobs—it spins up temporary Machines per job and tears them down afterward. This is different from traditional cron-as-a-service but achieves the same goal."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://fly.io/docs/"],
+      "comment": "Fly.io does not offer built-in form handling. Being a general-purpose compute platform, form processing must be handled by the deployed application itself or through external services."
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://fly.io/docs/"],
+      "comment": "Fly.io does not provide a built-in user authentication or identity management service. Authentication must be implemented at the application level or through third-party services."
+    },
+    "kv-storage": {
+      "value": true,
+      "source": ["https://fly.io/docs/upstash/redis/"],
+      "comment": "Fly.io offers Upstash for Redis as a managed extension—a Redis-compatible key-value store hosted on Fly infrastructure. This is a third-party managed service (by Upstash) provisioned through the Fly CLI and billed through Fly.io. Additionally, Tigris object storage can function as a globally-synced key-value store for objects under 128KB."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://fly.io/docs/database-storage-guides/", "https://fly.io/docs/mpg/"],
+      "comment": "Fly.io offers Managed Postgres as a first-party database service with high availability, automatic failover, and monitoring. Additionally, unmanaged Fly Postgres (self-managed), Supabase Postgres (via extension), Upstash Redis, Tigris object storage, and LiteFS (distributed SQLite) are available. Users can also run any database as a Fly app."
+    },
+    "redirects": {
+      "value": false,
+      "source": ["https://fly.io/docs/reference/configuration/", "https://community.fly.io/t/config-based-redirects/1955"],
+      "comment": "Fly.io does not support URL redirects at the proxy/platform level (aside from HTTP-to-HTTPS via force_https). Path-based redirects (301, 302) must be handled by the application itself (e.g., configured in nginx for static sites). There is no fly.toml-level redirect configuration."
+    },
+    "rewrites": {
+      "value": false,
+      "source": ["https://fly.io/docs/reference/configuration/"],
+      "comment": "Fly.io does not offer URL rewrites or reverse proxying at the platform level. Rewrites must be handled by the application's web server (e.g., nginx configuration). The Fly Proxy routes requests to machines but does not transform URLs."
+    },
+    "custom-404": {
+      "value": false,
+      "source": ["https://fly.io/docs/languages-and-frameworks/static/"],
+      "comment": "Fly.io does not have a platform-level custom 404 page feature. For static sites served via nginx, custom 404 pages can be configured in the nginx configuration within the Docker container. This is an application-level concern, not a platform feature."
+    },
+    "spa-fallback": {
+      "value": false,
+      "source": ["https://fly.io/docs/languages-and-frameworks/static/", "https://community.fly.io/t/how-to-fix-404-error-when-accessing-a-specific-url-for-create-react-apps-client-side-routing/7229"],
+      "comment": "Fly.io does not have a platform-level SPA fallback routing feature. For static sites, SPA routing (serving index.html for all paths) must be configured in the web server (nginx) configuration within the Docker container. This is achievable but requires manual configuration."
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://fly.io/docs/reference/configuration/"],
+      "comment": "Custom response headers can be defined in fly.toml at the Fly Proxy level via [http_service.http_options.response.headers]. Headers can be added or removed globally. Per-path header configuration is not supported at the proxy level but can be done in the application's web server."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://fly.io/docs/reference/configuration/"],
+      "comment": "Fly.io does not offer built-in A/B testing or traffic splitting between deployments. Blue/green deployments can be achieved manually by running multiple app versions, but there is no native split-traffic feature."
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://fly.io/docs/security/org-roles-permissions/"],
+      "comment": "Organizations are free to create with no technical limit. There is no explicit limit on the number of members per organization. Members can be Admins or Members. However, since there is no free tier, all organizations require a payment method."
+    },
+    "rbac": {
+      "value": false,
+      "source": ["https://fly.io/docs/security/org-roles-permissions/"],
+      "comment": "Fly.io has only two roles: Admin and Member. This is intentionally minimal and does not constitute full RBAC. The recommended approach for granular access control is creating separate organizations (e.g., dev vs production) rather than fine-grained roles. Read-only tokens are available for observability-only access."
+    },
+    "audit-logs": {
+      "value": null,
+      "source": ["https://fly.io/docs/monitoring/", "https://fly.io/enterprise"],
+      "comment": "Fly.io's documentation does not mention organization-level audit logs (tracking member actions, configuration changes, etc.). Application logs and metrics are available, but there is no documented audit trail feature for organizational activities."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://fly.io/docs/reference/configuration/"],
+      "comment": "Environment variables (secrets) can be configured via 'fly secrets set' and are encrypted at rest. Build-time arguments can be set in fly.toml. Environment variables are injected into the running VM and are available to the application process."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://fly.io/docs/blueprints/review-apps-guide/"],
+      "comment": "Fly.io does not offer a built-in commenting system for deploy previews. Preview environments require manual setup via GitHub Actions and do not include collaborative feedback tools."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://fly.io/docs/security/security-at-fly-io/"],
+      "comment": "Fly.io works with upstream traffic providers to perform automated and manual DDoS mitigation. This is basic DDoS protection, not a comprehensive WAF-level solution. The platform uses Anycast networking which inherently provides some DDoS resilience through traffic distribution."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://community.fly.io/t/ids-ips-wafs-and-fly-io/19864", "https://fly.io/docs/security/security-at-fly-io/"],
+      "comment": "Fly.io does not have a built-in Web Application Firewall. Their documentation explicitly states they do not have IDS/IPS or WAFs deployed. However, Wafris (a third-party WAF) is available as a Fly extension. Users can also place Cloudflare or another WAF provider in front of their Fly app."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://fly.io/compliance", "https://fly.io/docs/security/security-at-fly-io/"],
+      "comment": "Fly.io is SOC 2 Type II certified. The compliance page also mentions HIPAA BAA readiness and routine third-party penetration tests."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://fly.io/compliance"],
+      "comment": "Fly.io provides a pre-signed Data Processing Agreement (DPA) for GDPR compliance. The DPA becomes active when the customer signs it. European regions (Amsterdam, Stockholm, Paris, Frankfurt, London) are available for data residency requirements."
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://fly.io/docs/"],
+      "comment": "Fly.io does not offer built-in password protection for deployed sites. Password protection (HTTP basic auth or similar) must be implemented at the application level, e.g., within the nginx configuration for static sites."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://fly.io/docs/networking/"],
+      "comment": "Fly.io does not offer IP-based access control at the platform level. Private networking between Fly apps uses WireGuard, but there is no built-in IP allowlist/denylist for public-facing services. IP-based restrictions must be implemented at the application level."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://fly.io/docs/"],
+      "comment": "Fly.io has well-organized, comprehensive documentation covering getting started, language/framework guides, networking, security, and reference material. The docs are searchable and regularly updated. Dedicated blog posts provide deep technical content. Some areas (like the static site hosting guide) are relatively brief compared to the depth given to full-stack frameworks. The community forum (Discourse) supplements the docs well. Deducting from 5 for the static hosting use case being an afterthought in documentation."
+    },
+    "integrations": {
+      "value": ["monitoring", "database"],
+      "source": ["https://fly.io/docs/monitoring/sentry/", "https://fly.io/docs/database-storage-guides/", "https://fly.io/docs/flyctl/extensions/"],
+      "comment": "Fly.io offers first-party extensions for: Sentry (monitoring/error tracking), Managed Postgres and Supabase Postgres (database), Upstash Redis (key-value), Tigris (object storage), Arcjet (security), and Wafris (WAF). These are provisioned via the CLI and billed through Fly.io. There is no formal integration marketplace for analytics, CMS, auth, commerce, or search categories."
+    },
+    "community": {
+      "value": ["forum", "stackoverflow"],
+      "source": ["https://community.fly.io/", "https://community.fly.io/t/fly-io-community-discord-server/17647"],
+      "comment": "Active community forum at community.fly.io (Discourse-powered) where the Fly.io team regularly participates. Stack Overflow has a 'fly' tag with modest activity. A community-run Discord server exists but it is not an official Fly.io channel. No GitHub Discussions."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.flyio.net", "https://community.fly.io/t/we-ve-simplified-our-public-status-page/20948"],
+      "comment": "Public status page at status.flyio.net. Covers global incidents and platform-wide issues. Does not include routine hardware failures or isolated infrastructure events with limited impact."
+    }
+  }
+}
