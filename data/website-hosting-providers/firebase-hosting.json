@@ -1,0 +1,327 @@
+{
+  "name": "Firebase Hosting",
+  "description": "Google's production-grade static and single-page web app hosting with global CDN, automatic SSL, and deep integration with the Firebase platform ecosystem",
+  "icon": "firebase",
+  "url": "https://firebase.google.com/products/hosting",
+  "values": {
+    "description": {
+      "value": "Google's production-grade static and single-page web app hosting with global CDN, automatic SSL, and deep integration with the Firebase platform ecosystem",
+      "source": ["https://firebase.google.com/products/hosting", "https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase Hosting is optimized for static and SPA hosting but can serve dynamic content via Cloud Functions or Cloud Run integration. Firebase also offers App Hosting (separate product) for full-stack Angular/Next.js apps."
+    },
+    "website": {
+      "value": "https://firebase.google.com/products/hosting",
+      "source": ["https://firebase.google.com/products/hosting"]
+    },
+    "parent-company": {
+      "value": "Google (Alphabet Inc.)",
+      "source": ["https://en.wikipedia.org/wiki/Firebase", "https://firebase.google.com/"],
+      "comment": "Firebase was originally founded as an independent company in 2011, launched publicly in April 2012, and was acquired by Google in October 2014. It is now part of the Google Cloud Platform."
+    },
+    "year-launched": {
+      "value": "2014",
+      "source": ["https://firebase.blog/posts/2014/05/introducing-firebase-hosting/", "https://firebase.googleblog.com/2014/05/introducing-firebase-hosting.html"],
+      "comment": "Firebase Hosting was introduced in May 2014. In October 2015, Google acquired Divshot (an HTML5 web hosting platform) and merged its team into Firebase to strengthen hosting capabilities."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://firebaseopensource.com/", "https://github.com/firebase"],
+      "comment": "The Firebase platform itself is proprietary and exclusively runs on Google Cloud. However, Firebase open-sources many SDKs, CLI tools, and client libraries on GitHub. The hosting infrastructure is entirely proprietary."
+    },
+    "primary-focus": {
+      "value": ["static-sites", "full-stack"],
+      "source": ["https://firebase.google.com/products/hosting", "https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase Hosting is primarily a static site host, but with Cloud Functions and Cloud Run integration it supports dynamic content. The broader Firebase platform (Auth, Firestore, Cloud Functions) makes it a full-stack ecosystem. Firebase App Hosting (separate product) adds SSR framework support."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://firebase.google.com/pricing", "https://firebase.google.com/docs/hosting/usage-quotas-pricing"],
+      "comment": "The Spark plan (free) includes 10 GB storage and 10 GB/month data transfer for Hosting at no cost, with no credit card required. Sites are disabled for the remainder of the month if bandwidth limit is exceeded."
+    },
+    "free-tier-bandwidth": {
+      "value": "10 GB/month",
+      "source": ["https://firebase.google.com/docs/hosting/usage-quotas-pricing", "https://firebase.google.com/pricing"],
+      "comment": "On the Spark (free) plan, data transfer is limited to 10 GB/month. If exceeded, sites are disabled until the next billing cycle. Significantly lower than competitors like Netlify (100 GB) or Cloudflare Pages (unlimited)."
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase Hosting does not have a built-in CI/CD build pipeline and therefore does not track or limit build minutes. Deployments are done via CLI or GitHub Actions. Firebase App Hosting (a separate product) does have a build system."
+    },
+    "free-tier-sites": {
+      "value": "36 per project",
+      "source": ["https://firebase.google.com/docs/hosting/multisites"],
+      "comment": "Each Firebase project can host up to 36 sites via the multisite feature. On the Spark plan, users can create a limited number of projects (typically around 5-10). All sites in a project share the same storage and bandwidth quotas."
+    },
+    "paid-plan-starting-price": {
+      "value": "Pay-as-you-go (no minimum)",
+      "source": ["https://firebase.google.com/pricing", "https://firebase.google.com/docs/hosting/usage-quotas-pricing"],
+      "comment": "The Blaze plan is purely pay-as-you-go with no monthly minimum. You only pay for usage beyond the free tier quotas. Hosting overage: $0.026/GB storage and $0.15/GB data transfer. There is no fixed monthly fee for the Blaze plan itself."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.15/GB",
+      "source": ["https://firebase.google.com/docs/hosting/usage-quotas-pricing"],
+      "comment": "On the Blaze plan, after the first 10 GB/month of free data transfer, additional transfer costs $0.15/GB for cached bandwidth. Starting August 2025, uncached outgoing bandwidth costs $0.20/GiB after the first 10 GiB/month."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://firebase.google.com/pricing", "https://cloud.google.com/contact"],
+      "comment": "Firebase is part of Google Cloud, which offers custom enterprise pricing through its sales team. Enterprise-level support and custom agreements are available through Google Cloud support plans."
+    },
+    "git-integration": {
+      "value": ["github"],
+      "source": ["https://firebase.google.com/docs/hosting/github-integration", "https://github.com/FirebaseExtended/action-hosting-deploy"],
+      "comment": "Firebase Hosting has first-party GitHub integration via a GitHub Action for preview and production deploys. GitLab and Bitbucket deployments are possible through their respective CI/CD pipelines using the Firebase CLI token, but these are not first-party integrations built into Firebase."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/github-integration"],
+      "comment": "Via the GitHub Action integration, pushes to a connected branch can automatically trigger deployments. Merging a PR can optionally deploy to the live channel. Requires GitHub Actions setup, not a built-in toggle in the Firebase console."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/test-preview-deploy", "https://firebase.google.com/docs/cli"],
+      "comment": "The Firebase CLI (firebase-tools) provides 'firebase deploy --only hosting' for deploying static assets. Also supports preview channels via 'firebase hosting:channel:deploy' for temporary preview URLs."
+    },
+    "build-system": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting", "https://firebase.blog/posts/2024/05/app-hosting-vs-hosting/"],
+      "comment": "Firebase Hosting does not include a built-in CI/CD build pipeline. You build locally or in your own CI system and deploy the built output via CLI or GitHub Actions. Firebase App Hosting (a separate, newer product) does include a build system for Angular and Next.js."
+    },
+    "supported-frameworks": {
+      "value": ["angular", "next", "nuxt", "astro", "svelte-kit", "other"],
+      "source": ["https://firebase.google.com/docs/hosting/frameworks/frameworks-overview", "https://firebase.blog/posts/2025/06/app-hosting-frameworks/"],
+      "comment": "Firebase Hosting's experimental web framework integration supports Angular, Next.js, Nuxt, Astro, SvelteKit, and other frameworks that produce static output. Any framework that generates static files can be deployed. Firebase App Hosting (separate product) has first-class support for Angular and Next.js with auto-detection."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/app-hosting/monorepos", "https://firebase.google.com/docs/hosting/multisites"],
+      "comment": "Firebase Hosting supports specifying a public directory from any path in your project. Firebase App Hosting has explicit monorepo support with Nx integration. The Firebase CLI can deploy from subdirectories of a larger repository."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/test-preview-deploy", "https://firebase.blog/posts/2020/10/preview-channels-firebase-hosting/"],
+      "comment": "Preview channels create temporary, shareable preview URLs with a configurable expiry (default 7 days). The GitHub Action automatically creates preview URLs on PRs and posts a comment with the link. Preview channels are a major feature launched in October 2020."
+    },
+    "instant-rollbacks": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/manage-hosting-resources", "https://www.geeksforgeeks.org/firebase/what-is-rollback-in-firebase-hosting/"],
+      "comment": "Previous releases can be rolled back to from the Firebase console's Release History table without rebuilding. Via CLI, use 'firebase hosting:clone' to promote a previous version to the live channel."
+    },
+    "deploy-notifications": {
+      "value": ["github-status"],
+      "source": ["https://firebase.google.com/docs/hosting/github-integration", "https://github.com/FirebaseExtended/action-hosting-deploy"],
+      "comment": "The GitHub Action posts a comment on PRs with the preview URL and status. Firebase does not have built-in Slack, email, or webhook deploy notifications for Hosting. Crashlytics has Slack integration, but not Hosting deploys. Custom notifications can be built via Cloud Functions."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://firebase.google.com/products/hosting", "https://firebase.google.com/docs/hosting"],
+      "comment": "All content is served over SSL from the closest edge server on Google's global CDN. Static assets are automatically cached and distributed worldwide."
+    },
+    "cdn-provider": {
+      "value": "Google Cloud CDN / Google global edge network",
+      "source": ["https://firebase.google.com/docs/hosting", "https://cloud.google.com/cdn/docs/locations"],
+      "comment": "Firebase Hosting is built on Google's global infrastructure. Content is served from Google's edge network, which includes the same infrastructure as Google Cloud CDN."
+    },
+    "edge-locations": {
+      "value": "100+ locations",
+      "source": ["https://cloud.google.com/cdn/docs/locations"],
+      "comment": "Google Cloud CDN operates caches at 100+ locations worldwide, with content handed off to 134+ network edge locations. Firebase Hosting uses this same Google edge infrastructure. Exact Firebase-specific PoP count is not separately documented."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://firebase.blog/posts/2016/09/http2-comes-to-firebase-hosting/"],
+      "comment": "HTTP/2 has been supported since September 2016 for all *.firebaseapp.com domains and custom domains. Includes multiplexed streams and header compression."
+    },
+    "http3": {
+      "value": true,
+      "source": ["https://cloud.google.com/blog/products/networking/cloud-cdn-and-load-balancing-support-http3"],
+      "comment": "Google Cloud CDN supports HTTP/3 (QUIC). Since Firebase Hosting is served through Google's edge infrastructure which supports HTTP/3, Firebase Hosting traffic benefits from HTTP/3 support. Firebase does not explicitly document HTTP/3 for Hosting separately."
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config"],
+      "comment": "Custom response headers can be configured in firebase.json using the 'headers' attribute with glob pattern matching for paths. Supports security headers, caching headers, CORS, and other custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting", "https://firebase.google.com/docs/app-hosting/optimize-image-loading"],
+      "comment": "Firebase Hosting does not provide built-in image optimization. Images are served as-is (and are not even gzipped since compression offers minimal benefit for images). Firebase App Hosting supports Next.js image optimization via the Image Processing Extension, but this is a separate product."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://firebase.blog/posts/2020/08/firebase-hosting-new-features"],
+      "comment": "Firebase Hosting automatically compresses assets with Brotli encoding (added August 2020) and serves the best-compressed version based on the client's Accept-Encoding header. Falls back to gzip for clients that don't support Brotli."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/custom-domain"],
+      "comment": "Custom domains can be connected via DNS TXT verification and A/CNAME records. Each apex domain can have up to 20 subdomains due to SSL certificate minting limits."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/custom-domain", "https://firebase.google.com/products/hosting"],
+      "comment": "Firebase automatically provisions and renews SSL certificates for custom domains at no cost. Certificates are provisioned within hours of DNS verification, though it can take up to 24 hours."
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/custom-domain"],
+      "comment": "When you add a custom domain, Firebase requests a certificate for both yourdomain.com and *.yourdomain.com. However, each apex domain is limited to 20 subdomains due to SSL certificate minting limits."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://firebase.google.com/products/hosting", "https://firebase.google.com/docs/hosting"],
+      "comment": "All content is served over SSL connections. Firebase Hosting automatically handles HTTPS by default."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting/test-preview-deploy"],
+      "comment": "Preview channels use auto-generated URLs in the format PROJECT_ID--CHANNEL_ID-RANDOM_HASH.web.app. Custom domains cannot be assigned to preview channels; only the live channel supports custom domains."
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/functions", "https://firebase.google.com/docs/hosting/functions"],
+      "comment": "Cloud Functions for Firebase is a first-party serverless offering tightly integrated with Hosting via rewrites. Functions can serve dynamic content through Hosting URLs. Now on 2nd generation (based on Cloud Run)."
+    },
+    "functions-runtime": {
+      "value": ["node", "python"],
+      "source": ["https://firebase.google.com/docs/functions/get-started", "https://firebase.blog/posts/2023/07/cloud-functions-firebase-ga-and-python"],
+      "comment": "Cloud Functions for Firebase supports Node.js (JavaScript/TypeScript) and Python. The broader Google Cloud Functions platform also supports Go, Java, Ruby, PHP, and .NET, but the Firebase SDK specifically supports Node.js and Python."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/functions"],
+      "comment": "Cloud Functions for Firebase run in specific Google Cloud regions, not at the edge. Firebase does not offer an edge functions product comparable to Cloudflare Workers or Netlify Edge Functions. Functions are regional, not globally distributed."
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/functions/schedule-functions"],
+      "comment": "Cloud Functions supports scheduled execution via the onSchedule handler, powered by Google Cloud Scheduler. Supports Unix Crontab and App Engine cron syntax. Each Cloud Scheduler job costs $0.10/month with 3 free jobs per Google account."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase does not offer built-in form handling like Netlify Forms. Form submissions must be handled through custom Cloud Functions or by writing directly to Firestore/Realtime Database using client-side Firebase SDKs."
+    },
+    "authentication": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/auth", "https://firebase.google.com/products/auth"],
+      "comment": "Firebase Authentication is a comprehensive first-party identity service supporting email/password, phone, Google, Facebook, Apple, and other OAuth providers. Upgraded Identity Platform adds MFA, SAML, multi-tenancy, and audit logging."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase does not offer a dedicated key-value edge storage product like Cloudflare Workers KV or Netlify Blobs. Firebase Realtime Database can function as a key-value store but is a full database service, not an edge KV store."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/firestore", "https://firebase.google.com/docs/database", "https://firebase.google.com/docs/data-connect"],
+      "comment": "Firebase offers three first-party database options: Cloud Firestore (document database), Realtime Database (JSON-based real-time sync), and Data Connect (PostgreSQL-based, GA since April 2025). All are deeply integrated with the Firebase platform."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config"],
+      "comment": "URL redirects are configured in firebase.json using the 'redirects' attribute with glob or regex patterns. Supports 301 (permanent) and 302 (temporary) status codes."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config", "https://firebase.google.com/docs/hosting/functions"],
+      "comment": "Rewrites are configured in firebase.json and can route to local files, Cloud Functions, or Cloud Run services. Also supports i18n rewrites for serving locale-specific content."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config"],
+      "comment": "Adding a 404.html file to the public directory will automatically serve it for non-existent paths. Custom cache headers can be configured for the 404 page."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config"],
+      "comment": "SPA routing is achieved via a rewrite rule in firebase.json: {\"source\": \"**\", \"destination\": \"/index.html\"}. This serves index.html for all unmatched paths, enabling client-side routing."
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/hosting/full-config"],
+      "comment": "Custom response headers are configured in firebase.json using the 'headers' attribute with glob pattern matching. URL pattern matching for headers is applied before any rewrite rules."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/ab-testing", "https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase A/B Testing exists as a product but is designed for mobile app experiments using Remote Config and FCM, not for splitting web traffic between different Hosting deployments. Firebase Hosting does not support traffic splitting between deployments like Netlify's split testing."
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://firebase.google.com/docs/projects/iam/overview", "https://support.google.com/firebase/answer/7000272"],
+      "comment": "Firebase uses Google Cloud IAM for access control. There is no documented limit on the number of project members that can be added, even on the free Spark plan. Team members include individual users, groups, domains, and service accounts."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/projects/iam/roles", "https://firebase.google.com/docs/projects/iam/roles-predefined-product"],
+      "comment": "Firebase uses Google Cloud IAM with basic roles (Owner, Editor, Viewer), Firebase-specific predefined roles (Firebase Admin, Firebase Viewer), and product-level roles. Custom roles can also be created via the Google Cloud Console."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://firebase.google.com/support/guides/cloud-audit-logging/firebase-management"],
+      "comment": "Firebase writes Cloud Audit Logs as part of the connected Google Cloud project. Admin Activity logs are always enabled. Data Access audit logs are available but disabled by default and must be explicitly enabled."
+    },
+    "environment-variables": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase Hosting itself does not have a built-in environment variable configuration for builds since it has no build system. Environment variables must be managed in your own CI/CD pipeline (e.g., GitHub Actions secrets). Firebase App Hosting (separate product) supports environment variables via apphosting.yaml."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting/github-integration"],
+      "comment": "Firebase Hosting does not have a built-in visual commenting or annotation system for previews. The GitHub Action posts a comment on PRs with the preview URL, but there is no in-browser collaboration tool for reviewing previews."
+    },
+    "ddos-protection": {
+      "value": false,
+      "source": ["https://firebase.google.com/support/guides/security-checklist", "https://www.ayrshare.com/why-you-should-put-a-cdn-like-cloudflare-in-front-of-firebase/"],
+      "comment": "Firebase Hosting does not offer built-in DDoS prevention or rate limiting. Google's infrastructure provides some inherent resilience, but Firebase recommends monitoring for abusive traffic. Many developers place Cloudflare in front of Firebase for DDoS protection. Google Cloud Armor is available separately."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://firebase.google.com/support/guides/security-checklist", "https://cloud.google.com/security/products/armor"],
+      "comment": "Firebase Hosting does not include a Web Application Firewall. Google Cloud Armor (a separate Google Cloud product) provides WAF and DDoS protection but is not integrated with Firebase Hosting out of the box."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://firebase.google.com/support/privacy", "https://cloud.google.com/security/compliance/soc-2"],
+      "comment": "All Firebase services (except App Indexing) have completed SOC 1, SOC 2, and SOC 3 evaluation. Firebase is part of Google Cloud which maintains SOC 2 Type II certification with annual third-party auditing."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://firebase.google.com/support/privacy", "https://firebase.google.com/terms/data-processing-terms"],
+      "comment": "Firebase provides GDPR-compliant Data Processing and Security Terms. Acts as a processor under GDPR with international transfer safeguards including SCCs and Data Privacy Framework. Also holds ISO 27001/27017/27018 certifications. Some data may be stored in the US by default, requiring careful configuration."
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase Hosting does not offer built-in password protection (HTTP basic auth) for sites. Access restriction requires implementing Firebase Authentication with Cloud Functions as a proxy, which is significantly more complex than competitors' built-in password protection."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/hosting/use-cases"],
+      "comment": "Firebase Hosting does not have built-in IP access control. IP-based restrictions can be implemented using Express.js middleware in Cloud Functions, but this is not a native Hosting feature."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase documentation is comprehensive, well-organized, and searchable, with guides for multiple platforms (web, Android, iOS, Flutter). Hosting-specific docs are clear with code samples. Marked 4 instead of 5 because Hosting docs can sometimes be confusing when mixed with App Hosting (newer product), and some advanced topics lack depth."
+    },
+    "integrations": {
+      "value": ["analytics", "auth", "database", "monitoring"],
+      "source": ["https://firebase.google.com/products/", "https://firebase.google.com/docs/hosting"],
+      "comment": "Firebase's strength is its integrated platform: Google Analytics, Firebase Authentication, Firestore/Realtime Database/Data Connect, and Cloud Logging/Monitoring are all first-party. The ecosystem is Google-centric rather than having a broad third-party integration marketplace like Netlify or Vercel."
+    },
+    "community": {
+      "value": ["forum", "stackoverflow"],
+      "source": ["https://firebase.google.com/community", "https://firebase.google.com/support"],
+      "comment": "Firebase has an active Google Group (firebase-talk), strong Stack Overflow presence, a community Slack (firebase.community, not official), and Reddit community. No official Discord or GitHub Discussions. Google Developer forums also serve as a community channel."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.firebase.google.com/"],
+      "comment": "Public status dashboard at status.firebase.google.com covering all Firebase services including Hosting. Shows current status, incident history, and component-level reporting across 23+ components."
+    }
+  }
+}

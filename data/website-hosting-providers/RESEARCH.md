@@ -197,7 +197,7 @@ Core platforms that dominate the static/JAMstack hosting space:
 Well-established alternatives with distinct positioning:
 - [x] **Firebase Hosting** - Google's hosting platform, tight integration with Firebase services
 - [x] **Azure Static Web Apps** - Microsoft's static hosting with Azure Functions integration
-- [ ] **Render** - Modern cloud platform with static site hosting among broader compute offerings
+- [x] **Render** - Modern cloud platform with static site hosting among broader compute offerings
 - [x] **DigitalOcean App Platform** - Static site hosting within DO's developer cloud
 
 ### Tier 3 (Nice to Have)
