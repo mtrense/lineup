@@ -1,0 +1,327 @@
+{
+  "name": "Surge",
+  "description": "Simple, single-command static site publishing for front-end developers via CLI",
+  "icon": "surge",
+  "url": "https://surge.sh",
+  "values": {
+    "description": {
+      "value": "Simple, single-command static site publishing for front-end developers via CLI",
+      "source": ["https://surge.sh/"],
+      "comment": "Surge focuses on zero-configuration CLI deployment of static HTML/CSS/JS to its own CDN"
+    },
+    "website": {
+      "value": "https://surge.sh",
+      "source": ["https://surge.sh/"]
+    },
+    "parent-company": {
+      "value": "Chloi Inc.",
+      "source": ["https://opengovca.com/corporation/8039461", "https://www.crunchbase.com/organization/chloi"],
+      "comment": "Founded by Brock Whitten and Rob Ellis in Vancouver, Canada. They also co-created Apache Cordova/PhoneGap"
+    },
+    "year-launched": {
+      "value": "2014",
+      "source": ["https://github.com/sintaxi/surge", "https://scamminder.com/websites/surge.sh/"],
+      "comment": "GitHub repository created July 26, 2014; domain registered July 25, 2014"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/sintaxi/surge"],
+      "comment": "The CLI tool is open source (ISC license) but the core platform/CDN infrastructure is proprietary"
+    },
+    "primary-focus": {
+      "value": ["static-sites"],
+      "source": ["https://surge.sh/"],
+      "comment": "Surge is purely focused on static site publishing with no JAMstack build pipeline or server-side features"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://surge.sh/pricing"],
+      "comment": "Free tier includes unlimited publishing, custom domains, and basic SSL on surge.sh subdomains"
+    },
+    "free-tier-bandwidth": {
+      "value": "Unlimited",
+      "source": ["https://surge.sh/pricing", "https://surge.sh/help/why-is-surge-free"],
+      "comment": "No stated bandwidth limit on the free tier. Surge has said everything free today will remain free"
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://surge.sh/pricing"],
+      "comment": "Surge has no build system; it only uploads pre-built static files"
+    },
+    "free-tier-sites": {
+      "value": "Unlimited",
+      "source": ["https://surge.sh/pricing"],
+      "comment": "Unlimited publishing and custom domains on the free tier"
+    },
+    "paid-plan-starting-price": {
+      "value": "$30/month",
+      "source": ["https://surge.sh/pricing", "https://surge.sh/plus/"],
+      "comment": "Surge Professional at $30/month adds custom SSL, HTTPS redirect, CORS, custom redirects, and password protection"
+    },
+    "bandwidth-overage-cost": {
+      "value": null,
+      "source": ["https://surge.sh/pricing"],
+      "comment": "No stated bandwidth limits or overage charges"
+    },
+    "enterprise-pricing": {
+      "value": false,
+      "source": ["https://surge.sh/pricing"],
+      "comment": "Surge only offers Free and Professional ($30/month) plans; no enterprise tier is listed"
+    },
+    "git-integration": {
+      "value": [],
+      "source": ["https://surge.sh/help/deploying-continuously-using-git-hooks"],
+      "comment": "Surge has no built-in Git provider integration. Deployment is done via CLI only. However, users can set up Git hooks or use third-party GitHub Actions for CI/CD"
+    },
+    "auto-deploy": {
+      "value": false,
+      "source": ["https://surge.sh/help/deploying-continuously-using-git-hooks"],
+      "comment": "No native auto-deploy on push. Users can configure Git hooks or CI services (GitHub Actions, Travis CI, CircleCI) to trigger surge CLI deploys"
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://surge.sh/help/getting-started-with-surge", "https://www.npmjs.com/package/surge"],
+      "comment": "CLI deployment is Surge's primary and defining feature: run 'surge' in your project directory to publish"
+    },
+    "build-system": {
+      "value": false,
+      "source": ["https://surge.sh/help/getting-started-with-surge"],
+      "comment": "Surge has no build pipeline; it uploads pre-built static files only. Users must build locally or in CI before deploying"
+    },
+    "supported-frameworks": {
+      "value": ["other"],
+      "source": ["https://surge.sh/help/getting-started-with-surge"],
+      "comment": "Surge serves any static HTML/CSS/JS output. No framework auto-detection or special framework support; works with any static site generator's output"
+    },
+    "monorepo-support": {
+      "value": false,
+      "source": ["https://surge.sh/help/getting-started-with-surge"],
+      "comment": "No build system means no monorepo configuration. Users can point the CLI to any subdirectory manually"
+    },
+    "deploy-previews": {
+      "value": false,
+      "source": ["https://github.com/marketplace/actions/surge-pr-preview"],
+      "comment": "No built-in deploy preview feature. Third-party GitHub Actions exist (e.g., surge-pr-preview) that deploy to unique surge.sh subdomains per PR"
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No rollback feature. To revert, users must re-deploy a previous build via the CLI"
+    },
+    "deploy-notifications": {
+      "value": [],
+      "source": ["https://surge.sh/help/"],
+      "comment": "No built-in deploy notification system"
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://surge.sh/help/about-the-surge-cdn", "https://github.com/sintaxi/surge"],
+      "comment": "Surge operates its own CDN with 8 regions globally and geo-aware DNS routing via geo.surge.world"
+    },
+    "cdn-provider": {
+      "value": "Proprietary (Surge CDN)",
+      "source": ["https://surge.sh/help/about-the-surge-cdn"],
+      "comment": "Surge built its own CDN rather than using an existing provider. Uses distributed edge nodes with geo-routing"
+    },
+    "edge-locations": {
+      "value": "8 regions",
+      "source": ["https://github.com/sintaxi/surge", "https://surge.sh/help/about-the-surge-cdn"],
+      "comment": "8 regions globally, including endpoints like sgp (Singapore) and na-west1 (North America West). Expanding over time"
+    },
+    "http2": {
+      "value": false,
+      "source": ["https://github.com/sintaxi/surge/issues/212"],
+      "comment": "HTTP/2 has been requested since 2016 but remains unimplemented as of 2026. The GitHub issue is still open with no resolution"
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://github.com/sintaxi/surge/issues/212"],
+      "comment": "HTTP/3 is not supported; HTTP/2 is not even implemented yet"
+    },
+    "response-headers": {
+      "value": false,
+      "source": ["https://github.com/sintaxi/surge/issues/165"],
+      "comment": "No support for custom response headers. CORS is configured via a CORS file (Pro only), but arbitrary headers (e.g., HSTS) are not supported"
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No built-in image optimization or transformation features"
+    },
+    "asset-compression": {
+      "value": ["gzip"],
+      "source": ["https://surge.sh/help/about-the-surge-cdn"],
+      "comment": "Automatic Gzip compression is applied by the Surge CDN. No Brotli support documented"
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://surge.sh/help/adding-a-custom-domain", "https://surge.sh/pricing"],
+      "comment": "Custom domains are supported on the free tier via CNAME records"
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://surge.sh/pricing", "https://surge.sh/help/securing-your-custom-domain-with-ssl"],
+      "comment": "Basic SSL is free for surge.sh subdomains. Custom domain SSL requires Surge Professional ($30/month)"
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://surge.sh/help/securing-your-custom-domain-with-ssl"],
+      "comment": "Wildcard SSL certificates are supported on Surge Professional; users upload their own certificate (e.g., *.example.com)"
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://surge.sh/help/using-https-by-default", "https://surge.sh/plus/"],
+      "comment": "Requires Surge Professional. Force HTTP to HTTPS redirect is a paid feature"
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No built-in preview deployment system, so no custom domain per preview"
+    },
+    "serverless-functions": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "Surge is purely a static file hosting service with no server-side execution capabilities"
+    },
+    "functions-runtime": {
+      "value": [],
+      "source": ["https://surge.sh/help/"],
+      "comment": "No serverless functions offered"
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No edge function support"
+    },
+    "scheduled-functions": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No scheduled function or cron support"
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No built-in form handling"
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No built-in user authentication service. Password protection (HTTP basic auth) exists but is for site-level access, not user identity management"
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No key-value storage offering"
+    },
+    "database-integration": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No database integration"
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://surge.sh/help/adding-redirects"],
+      "comment": "Requires Surge Professional. Configured via a ROUTER file supporting 301 and 307 redirects with pattern matching"
+    },
+    "rewrites": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "Surge supports redirects via ROUTER file but not transparent URL rewrites or reverse proxying"
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://surge.sh/help/adding-a-custom-404-not-found-page"],
+      "comment": "Place a 404.html file in your project root. Available on all plans including free"
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://surge.sh/help/adding-a-200-page-for-client-side-routing"],
+      "comment": "Place a 200.html file in the project root to serve as a fallback for client-side routing. Available on all plans"
+    },
+    "headers-config": {
+      "value": false,
+      "source": ["https://github.com/sintaxi/surge/issues/165"],
+      "comment": "No support for configuring custom response headers per-path or globally. CORS is handled separately via a CORS file (Pro only)"
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No A/B testing or traffic splitting features"
+    },
+    "free-team-members": {
+      "value": "Unlimited",
+      "source": ["https://surge.sh/help/adding-collaborators"],
+      "comment": "Collaborators can be added via CLI with no documented limit. Each collaborator gets publish access to the domain"
+    },
+    "rbac": {
+      "value": false,
+      "source": ["https://surge.sh/help/adding-collaborators"],
+      "comment": "Collaborators all get the same publish access. No differentiated roles or permission levels"
+    },
+    "audit-logs": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No audit log feature"
+    },
+    "environment-variables": {
+      "value": false,
+      "source": ["https://forum.freecodecamp.org/t/is-it-possible-to-use-environment-variables-in-surge/74604"],
+      "comment": "Surge has no build system and does not support environment variables for builds. SURGE_LOGIN and SURGE_TOKEN are used for CI authentication only"
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No preview comment feature (no preview deployment system exists)"
+    },
+    "ddos-protection": {
+      "value": null,
+      "source": ["https://surge.sh/privacy"],
+      "comment": "Surge's privacy policy mentions IP-based mitigation for DDoS and abuse, but no specific DDoS protection feature is documented or marketed"
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No Web Application Firewall feature"
+    },
+    "soc2": {
+      "value": false,
+      "source": ["https://surge.sh/"],
+      "comment": "No SOC 2 certification documented or claimed"
+    },
+    "gdpr": {
+      "value": null,
+      "source": ["https://surge.sh/privacy"],
+      "comment": "Surge has a privacy policy but no documented GDPR compliance measures or certification"
+    },
+    "password-protection": {
+      "value": true,
+      "source": ["https://surge.sh/help/adding-password-protection-to-a-project", "https://surge.sh/plus/"],
+      "comment": "Requires Surge Professional. Configured via an AUTH file with HTTP Basic Authentication. Supports multiple username/password pairs"
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://surge.sh/help/"],
+      "comment": "No user-configurable IP-based access control"
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://surge.sh/help/"],
+      "comment": "Documentation covers basics (getting started, custom domains, 404/200 pages) but is sparse, with short pages, no search, limited advanced topics, and some content appears outdated"
+    },
+    "integrations": {
+      "value": [],
+      "source": ["https://surge.sh/help/"],
+      "comment": "No official first-party integrations with analytics, CMS, monitoring, or other services"
+    },
+    "community": {
+      "value": ["github-discussions", "stackoverflow"],
+      "source": ["https://github.com/sintaxi/surge", "https://stackoverflow.com/questions/tagged/surge.sh"],
+      "comment": "GitHub issues/discussions are the primary community channel. Some Stack Overflow presence. No Discord or forum"
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://surge.statuspage.io/"],
+      "comment": "Public status page at surge.statuspage.io with uptime history and incident notifications"
+    }
+  }
+}
