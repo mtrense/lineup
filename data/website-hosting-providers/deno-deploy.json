@@ -1,0 +1,327 @@
+{
+  "name": "Deno Deploy",
+  "description": "Edge-first serverless platform from the Deno runtime creators for deploying JavaScript and TypeScript applications on globally distributed V8 isolates with built-in KV storage and Postgres integration",
+  "icon": "deno",
+  "url": "https://deno.com/deploy",
+  "values": {
+    "description": {
+      "value": "A serverless edge computing platform for running JavaScript and TypeScript applications on lightweight V8 isolates, built by the creators of Deno. Features automatic framework detection, built-in Deno KV storage, managed Postgres databases, OpenTelemetry-based observability, and GitHub-based continuous deployment with preview environments.",
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "Originally focused on edge computing, now supports full-stack frameworks including Next.js, Astro, and SvelteKit with zero-config deployment"
+    },
+    "website": {
+      "value": "https://deno.com/deploy",
+      "source": ["https://deno.com/deploy"]
+    },
+    "parent-company": {
+      "value": "Deno Land Inc.",
+      "source": ["https://deno.com/company", "https://www.crunchbase.com/organization/deno-b57a"],
+      "comment": "Founded by Ryan Dahl (creator of Node.js) and Bert Belder. Raised $26M total including a $21M Series A led by Sequoia Capital in 2022"
+    },
+    "year-launched": {
+      "value": "2021",
+      "source": ["https://deno.com/blog/deploy-beta1", "https://deno.com/blog/deno-deploy-is-ga"],
+      "comment": "Beta 1 launched March 2021. General availability announced February 3, 2026 after an extended beta period"
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/denoland/deno", "https://deno.com/blog/open-source"],
+      "comment": "The Deno runtime itself is open source (MIT license), but the Deno Deploy platform/infrastructure is proprietary. The CLI tool (deployctl) is open source"
+    },
+    "primary-focus": {
+      "value": ["edge-first", "full-stack"],
+      "source": ["https://deno.com/deploy", "https://deno.com/blog/deno-deploy-is-ga"],
+      "comment": "Core identity is edge-first serverless computing on V8 isolates; has expanded to full-stack with framework support for Next.js, Astro, SvelteKit, and integrated databases"
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Free tier includes 1M requests/month, 100 GB bandwidth, 15 CPU hours, 1 GiB KV storage. No credit card required, never expires, commercial use allowed"
+    },
+    "free-tier-bandwidth": {
+      "value": "100 GB/month",
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Free organizations that exceed bandwidth limits have applications paused until next billing cycle"
+    },
+    "free-tier-build-minutes": {
+      "value": null,
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Deno Deploy does not publish build minute limits; the free tier is constrained by requests (1M/month) and CPU time (15 hours/month) rather than build minutes"
+    },
+    "free-tier-sites": {
+      "value": null,
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Deno Deploy pricing is structured around organizations and applications rather than a fixed site count. Exact project limits for the free tier are not explicitly published"
+    },
+    "paid-plan-starting-price": {
+      "value": "$20/month (Pro plan)",
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Pro plan includes 5M requests/month, 200 GB bandwidth, 40 CPU hours, 5 GB KV storage, 10 team members, and email support"
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.50/GB",
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Overage pricing on Pro plan: $0.50/GB bandwidth, $2/million requests, $0.05/CPU hour. Free tier applications are paused on exceeding limits rather than charged"
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Enterprise plan with custom pricing, unlimited custom domains, dedicated IP addresses, 99.95% SLA, SOC 2 Type 1, and DPA compliance"
+    },
+    "git-integration": {
+      "value": ["github"],
+      "source": ["https://docs.deno.com/deploy/getting_started/", "https://deno.com/deploy"],
+      "comment": "Native GitHub integration only. GitLab, Bitbucket, and other providers are not natively supported but can be used via CLI deployment in CI/CD pipelines"
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://deno.com/blog/deno-deploy-is-ga", "https://deno.com/deploy"],
+      "comment": "Connects to GitHub repo for zero-config continuous delivery; pushes automatically trigger builds and deployments"
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://docs.deno.com/runtime/reference/cli/deploy/"],
+      "comment": "The 'deno deploy' CLI command (and legacy 'deployctl') supports deploying from the command line, useful for CI/CD pipelines and non-GitHub workflows"
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://deno.com/blog/deno-deploy-is-ga", "https://deno.com/blog/deno-deploy-highlights"],
+      "comment": "Built-in build pipeline with automatic framework detection, live-streamed build logs, and built-in caching. Frameworks are auto-detected and build commands run automatically"
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "astro", "svelte-kit", "remix", "vite", "other"],
+      "source": ["https://docs.deno.com/deploy/reference/frameworks/", "https://deno.com/deploy"],
+      "comment": "Auto-detected frameworks: Next.js, Astro, Nuxt, SolidStart, SvelteKit, Fresh, Lume. Remix is experimental/in progress. Also works with Vue, Hono, Express, Docusaurus, Vite, and others with manual configuration"
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://docs.deno.com/runtime/fundamentals/workspaces/", "https://deno.com/blog/v1.45"],
+      "comment": "Deno supports workspaces and monorepos natively since v1.45. Deno Deploy can be configured to build from subdirectories within a monorepo"
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://deno.com/blog/deno-deploy-is-ga", "https://deno.com/deploy"],
+      "comment": "Every deployment gets a preview URL in the format {project}-{deployment_id}.deno.dev. Pull requests automatically receive preview domains with isolated databases"
+    },
+    "instant-rollbacks": {
+      "value": true,
+      "source": ["https://deno.com/blog/deno-deploy-highlights", "https://docs.deno.com/deploy/classic/deployments/"],
+      "comment": "Previous deployments can be promoted to production via UI or CLI ('deployctl deployments redeploy'). Deployments are immutable, so promotion is instant without rebuilding"
+    },
+    "deploy-notifications": {
+      "value": ["github-status"],
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/getting_started/"],
+      "comment": "GitHub integration provides commit status checks. No native Slack, email, or webhook notification features for deployments found in documentation"
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/classic/regions/", "https://deno.com/deploy"],
+      "comment": "Code is deployed to all regions and served from the region closest to the end user. However, the number of regions has been significantly reduced from 35 to 6 as of early 2025"
+    },
+    "cdn-provider": {
+      "value": "Google Cloud Platform (own infrastructure)",
+      "source": ["https://github.com/denoland/deno/discussions/22003", "https://docs.deno.com/deploy/classic/regions/"],
+      "comment": "Runs on GCP infrastructure with region identifiers matching GCP region names (e.g., us-east4, europe-west2). Uses V8 isolates rather than traditional CDN edge caching"
+    },
+    "edge-locations": {
+      "value": "6 regions",
+      "source": ["https://docs.deno.com/deploy/classic/regions/", "https://deno.com/deploy/pricing"],
+      "comment": "Currently 6 regions: Singapore, London, Frankfurt, Sao Paulo, North Virginia, California. Reduced from 35 regions initially, then 12, then 7. Free tier limited to 6 regions"
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://docs.deno.com/runtime/manual/runtime/http_server_apis/"],
+      "comment": "Deno.serve API supports HTTP/1.1 and HTTP/2 automatically. HTTP/2 is handled seamlessly without additional configuration"
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://github.com/denoland/deno/issues/3995", "https://github.com/denoland/deno/issues/1558"],
+      "comment": "HTTP/3 and QUIC are not supported on Deno Deploy. Deno 2.2 added experimental WebTransport/QUIC APIs for the local runtime, but these are unstable and not available on Deploy"
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/tutorials/tutorial-http-server/"],
+      "comment": "Custom response headers can be set programmatically in request handlers via the Response API. No declarative configuration file like _headers"
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No built-in image optimization service. Sharp is supported for Next.js next/image. Image processing can be done in application code but there is no platform-level optimization feature"
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://docs.deno.com/deploy/api/compression/"],
+      "comment": "Automatic compression when response Content-Type is compressible and body exceeds 20 bytes. Respects Accept-Encoding quality values. Skipped if Content-Encoding, Content-Range, or Cache-Control: no-transform is already set"
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/reference/domains/", "https://deno.com/deploy/pricing"],
+      "comment": "Custom base domains and wildcard domains supported. Free tier allows 50 custom domains per org, Pro allows 100, Enterprise unlimited"
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/reference/domains/"],
+      "comment": "Free TLS certificates automatically provisioned via Let's Encrypt. Certificates are automatically renewed near expiration. Users can also bring their own certificates in PEM format"
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/reference/domains/", "https://deno.com/deploy/pricing"],
+      "comment": "Wildcard subdomains supported on Pro plan and above. Wildcard domains (*.example.com) can be assigned entirely to one app or partially to different apps"
+    },
+    "auto-https-redirect": {
+      "value": null,
+      "source": ["https://github.com/denoland/deploy_feedback/issues/526"],
+      "comment": "No clear documentation on automatic HTTP-to-HTTPS redirect. Deno Deploy serves over HTTPS by default on .deno.dev domains, but automatic redirect behavior for custom domains is not explicitly documented"
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://docs.deno.com/deploy/reference/domains/"],
+      "comment": "Custom domains are attached at the application level, not per deployment. Preview deployments use auto-generated URLs in the format {project}-{deployment_id}.deno.dev"
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "Deno Deploy is fundamentally a serverless function platform. All code runs as serverless functions on V8 isolates with fast cold starts"
+    },
+    "functions-runtime": {
+      "value": ["deno", "node"],
+      "source": ["https://docs.deno.com/deploy/", "https://deno.com/blog/deno-deploy-is-ga"],
+      "comment": "Native Deno runtime (JavaScript/TypeScript) with full Node.js compatibility. Runs on V8 isolates, not traditional Node.js or Deno processes. WebAssembly is also supported"
+    },
+    "edge-functions": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/classic/regions/", "https://deno.com/deploy"],
+      "comment": "All functions run at the edge by default, deployed to all available regions and served from the region closest to the user. However, the edge network has been reduced to 6 regions"
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/classic/cron/", "https://deno.com/blog/cron"],
+      "comment": "Deno.cron() is built into the runtime and works with zero configuration on Deno Deploy. Supports Unix cron format, automatic retry with backoff, and guarantees at-least-once execution. Available only on production deployments"
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No built-in form handling service. Form submissions must be handled programmatically in application code"
+    },
+    "authentication": {
+      "value": false,
+      "source": ["https://docs.deno.com/deploy/reference/oidc/", "https://github.com/denoland/deno_kv_oauth"],
+      "comment": "No built-in user authentication service. Deno Deploy provides OIDC tokens for service-to-service auth, and deno_kv_oauth library enables OAuth 2.0 flows, but there is no managed auth service like Netlify Identity or Firebase Auth"
+    },
+    "kv-storage": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/kv/", "https://deno.com/kv"],
+      "comment": "Deno KV is a globally distributed key-value store backed by FoundationDB on Deploy. Includes transactions, secondary indexes, key expiration, and backup capabilities. Free tier: 1 GiB storage, 450K read units, 300K write units per month"
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/reference/databases/", "https://deno.com/blog/deno-deploy-is-ga"],
+      "comment": "Supports Deno KV and managed Postgres (hosted by Prisma, provisionable from the dashboard). Each timeline (production, branches, previews) gets isolated database schemas. MySQL coming soon"
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/tutorials/tutorial-http-server/"],
+      "comment": "Redirects must be implemented programmatically in request handlers using Response.redirect() or custom status codes. No declarative _redirects file support"
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/tutorials/tutorial-http-server/"],
+      "comment": "URL rewrites and proxying can be implemented programmatically in request handlers. No declarative configuration file; requires writing handler code"
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/tutorials/tutorial-http-server/"],
+      "comment": "Custom 404 responses can be returned programmatically from request handlers. Frameworks like Fresh and Next.js provide their own 404 page mechanisms"
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://medium.com/@issa.ali.ca/how-to-deploy-an-spa-with-client-side-routing-react-router-or-tanstack-router-and-redirects-to-d9da8954efbc"],
+      "comment": "SPA fallback routing requires a custom server handler that serves index.html for unmatched routes. Not automatic; must be implemented in code using serveDir() with fallback logic"
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/tutorials/tutorial-http-server/"],
+      "comment": "Custom response headers set programmatically via the Response API in request handlers. No declarative _headers file support; all header configuration is done in code"
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No built-in A/B testing or traffic splitting feature. Could be implemented programmatically in request handlers but no platform-level support"
+    },
+    "free-team-members": {
+      "value": "5",
+      "source": ["https://deno.com/deploy/pricing"],
+      "comment": "Free tier includes 5 team members per organization. Pro plan includes 10 members with additional at $20/member"
+    },
+    "rbac": {
+      "value": false,
+      "source": ["https://docs.deno.com/deploy/reference/organizations/"],
+      "comment": "Currently all organization members have owner permissions. There is no role-based access control; all members can invite others, create/delete apps, and manage domains"
+    },
+    "audit-logs": {
+      "value": false,
+      "source": ["https://docs.deno.com/deploy/reference/organizations/"],
+      "comment": "No audit logging feature documented. Application logs (console output, HTTP traffic, traces) are available but there is no organizational audit trail of administrative actions"
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://docs.deno.com/deploy/early-access/reference/env-vars-and-contexts/", "https://deno.com/blog/deno-deploy-highlights"],
+      "comment": "Environment variables can be scoped to contexts: Production, Preview, Local, and Build. Can import from .env files, share secrets without revealing values, and pull centrally managed vars for local development via --tunnel flag"
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No built-in preview commenting feature found in documentation"
+    },
+    "ddos-protection": {
+      "value": null,
+      "source": ["https://deno.com/deploy"],
+      "comment": "No explicit documentation on DDoS protection. Running on GCP infrastructure provides some baseline protection, but Deno Deploy does not document or advertise DDoS mitigation as a feature"
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No Web Application Firewall feature documented or advertised"
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://deno.com/blog/announcing-soc2-compliance", "https://deno.com/deploy/pricing"],
+      "comment": "Deno achieved SOC 2 compliance in June 2023 covering security, availability, and confidentiality. Enterprise pricing page references SOC 2 Type 1"
+    },
+    "gdpr": {
+      "value": null,
+      "source": ["https://github.com/denoland/deploy_feedback/issues/272", "https://docs.deno.com/deploy/manual/privacy-policy/"],
+      "comment": "No explicit GDPR compliance documentation. Community has raised concerns about inability to control data center regions for EU compliance. Enterprise plan mentions DPA (Data Processing Addendum) availability"
+    },
+    "password-protection": {
+      "value": false,
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/"],
+      "comment": "No built-in password protection feature. Would need to be implemented in application code via HTTP Basic Auth or similar"
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://github.com/denoland/deploy_feedback/issues/814"],
+      "comment": "No built-in IP allowlist/blocklist feature. Users have requested this feature but it is not available. Workaround requires proxying through services like Cloudflare"
+    },
+    "documentation-quality": {
+      "value": 3.5,
+      "source": ["https://docs.deno.com/deploy/"],
+      "comment": "Documentation covers getting started, framework guides, and API reference adequately. Recently reorganized with the GA launch. Some gaps in advanced configuration topics, and the platform is still maturing with some features moving from 'classic' to new architecture"
+    },
+    "integrations": {
+      "value": ["database", "monitoring"],
+      "source": ["https://deno.com/deploy", "https://docs.deno.com/deploy/reference/databases/"],
+      "comment": "Database: Deno KV and managed Postgres (via Prisma). Monitoring: built-in OpenTelemetry-based observability. Cloud connections to AWS and GCP. No formal integration marketplace for CMS, analytics, auth, commerce, or search"
+    },
+    "community": {
+      "value": ["discord", "github-discussions", "stackoverflow"],
+      "source": ["https://docs.deno.com/runtime/help/", "https://github.com/denoland/deno/discussions"],
+      "comment": "Active Discord community with #help channel and office hours. GitHub Discussions on denoland/deno repo. Stack Overflow presence for code-level questions. Community is shared with the broader Deno runtime ecosystem"
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://denostatus.com", "https://deno.instatus.com/"],
+      "comment": "Public status page at denostatus.com tracking Deno Deploy, Deploy Classic, Module Registry, and Websites with component-level status reporting"
+    }
+  }
+}

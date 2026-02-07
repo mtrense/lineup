@@ -1,0 +1,326 @@
+{
+  "name": "GitLab Pages",
+  "description": "Static website hosting integrated with GitLab CI/CD, supporting custom domains, SSL, and any static site generator deployed through pipeline configuration.",
+  "icon": "gitlab",
+  "url": "https://docs.gitlab.com/user/project/pages/",
+  "values": {
+    "description": {
+      "value": "Static website hosting integrated with GitLab CI/CD, supporting custom domains, SSL, and any static site generator deployed through pipeline configuration.",
+      "source": ["https://docs.gitlab.com/user/project/pages/"]
+    },
+    "website": {
+      "value": "https://docs.gitlab.com/user/project/pages/",
+      "source": ["https://docs.gitlab.com/user/project/pages/"]
+    },
+    "parent-company": {
+      "value": "GitLab Inc.",
+      "source": ["https://en.wikipedia.org/wiki/GitLab_Inc."],
+      "comment": "GitLab Inc. is a publicly traded company (NASDAQ: GTLB). GitLab Pages is part of the GitLab DevSecOps platform."
+    },
+    "year-launched": {
+      "value": "2016",
+      "source": ["https://about.gitlab.com/releases/2015/12/22/gitlab-8-3-released/", "https://about.gitlab.com/releases/2016/12/24/were-bringing-gitlab-pages-to-community-edition/"],
+      "comment": "GitLab Pages was introduced in GitLab EE 8.3 (December 2015) for Enterprise Edition only. It became available on GitLab.com in April 2016 and was brought to the free Community Edition in December 2016 (GitLab 8.17). Using 2016 as the GA year for public availability on GitLab.com."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://gitlab.com/gitlab-org/gitlab-pages", "https://gitlab.com/gitlab-org/gitlab/-/blob/master/LICENSE"],
+      "comment": "The GitLab Pages daemon (gitlab-pages) is open source. GitLab's core platform is published under the MIT license (Community Edition). The broader GitLab platform uses an open-core model where EE features are source-available but not fully open source."
+    },
+    "primary-focus": {
+      "value": ["static-sites"],
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages is strictly a static site hosting service. It does not offer serverless functions, SSR, or edge computing. Dynamic server-side processing (PHP, ASP, etc.) is explicitly not supported."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://about.gitlab.com/pricing/", "https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages is available on all GitLab tiers including the Free tier. The Free tier supports up to 5 users with 400 compute minutes/month and 10 GiB storage."
+    },
+    "free-tier-bandwidth": {
+      "value": "Not publicly specified",
+      "source": ["https://docs.gitlab.com/user/gitlab_com/"],
+      "comment": "GitLab does not publish a specific bandwidth limit for Pages. Rate limits exist (1,000 requests per 50 seconds per IP, 5,000 requests per 10 seconds per domain) but no monthly bandwidth cap is documented. The maximum site size is 1 GB."
+    },
+    "free-tier-build-minutes": {
+      "value": "400 min/month",
+      "source": ["https://about.gitlab.com/pricing/"],
+      "comment": "The Free tier includes 400 compute minutes per month for GitLab CI/CD, which is shared across all CI/CD jobs including Pages builds."
+    },
+    "free-tier-sites": {
+      "value": "Unlimited",
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "Any GitLab project can have a Pages site. The Free tier is limited to 5 users, but there is no explicit limit on the number of Pages sites per account."
+    },
+    "paid-plan-starting-price": {
+      "value": "$29/month per user (Premium)",
+      "source": ["https://about.gitlab.com/pricing/"],
+      "comment": "GitLab Premium costs $29/user/month billed annually and includes 10,000 compute minutes/month. GitLab Pages itself has no separate paid plan; enhanced features come through GitLab's platform tiers."
+    },
+    "bandwidth-overage-cost": {
+      "value": null,
+      "source": ["https://about.gitlab.com/pricing/", "https://docs.gitlab.com/user/gitlab_com/"],
+      "comment": "No documented bandwidth overage pricing exists because no explicit bandwidth limit for Pages is published. Additional compute minutes can be purchased separately."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://about.gitlab.com/pricing/"],
+      "comment": "GitLab Ultimate tier is available with custom/enterprise pricing, including 50,000 compute minutes/month and advanced security features."
+    },
+    "git-integration": {
+      "value": ["gitlab", "self-hosted-git"],
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages works only with GitLab repositories. However, since GitLab itself can be self-hosted, this effectively supports self-hosted Git. External Git providers (GitHub, Bitbucket) are not supported for Pages."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "Pushes to a branch configured in .gitlab-ci.yml automatically trigger the CI/CD pipeline, which builds and deploys the Pages site."
+    },
+    "cli-deployment": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not have a dedicated CLI deployment tool. Deployment is done exclusively through GitLab CI/CD pipelines triggered by git pushes or manual pipeline runs. You can trigger a pipeline via the GitLab CLI (glab), but there is no direct Pages deploy command."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/", "https://docs.gitlab.com/user/project/pages/getting_started/pages_ci_cd_template/"],
+      "comment": "GitLab Pages uses GitLab CI/CD as its build system. Build configuration is done via .gitlab-ci.yml files. This is a full-featured CI/CD system, not a simplified Pages-specific build pipeline."
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "astro", "hugo", "jekyll", "other"],
+      "source": ["https://docs.gitlab.com/user/project/pages/getting_started/pages_new_project_template/", "https://gitlab.com/pages"],
+      "comment": "GitLab maintains official project templates for Hugo, Jekyll, Astro, Next.js, Nuxt, Docusaurus, and plain HTML. Templates for Gatsby, Hexo, Middleman, Bridgetown, and Pelican were removed in GitLab 18.0. Any static site generator can be used via CI/CD configuration."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/introduction/"],
+      "comment": "The publishing folder can be customized from the default 'public' directory, and the CI/CD pipeline can be configured to build from any subdirectory, enabling monorepo workflows."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://about.gitlab.com/blog/gitlab-pages-features-review-apps-and-multiple-website-deployment/"],
+      "comment": "Since GitLab 17.4, Parallel Deployments allow previewing changes for merge requests using pages.path_prefix. Each MR can get its own unique URL path. Requires Premium or Ultimate tier. Earlier versions did not support Pages deploy previews."
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/ci/environments/deployments/"],
+      "comment": "GitLab CI/CD has a general environment rollback feature that re-runs a deployment job for a previous commit. However, this is not an instant rollback -- it re-runs the pipeline rather than immediately serving a cached previous version. Pages artifacts are not preserved for instant promotion."
+    },
+    "deploy-notifications": {
+      "value": ["slack", "email", "webhook", "other"],
+      "source": ["https://docs.gitlab.com/user/project/integrations/gitlab_slack_application/", "https://docs.gitlab.com/user/project/integrations/slack/"],
+      "comment": "GitLab CI/CD pipelines support notifications via the GitLab for Slack app, email notifications, and webhooks. These are general CI/CD notification features, not Pages-specific, but they cover Pages deployments as part of pipeline events. 'other' includes Microsoft Teams and Mattermost integrations."
+    },
+    "global-cdn": {
+      "value": false,
+      "source": ["https://gitlab.com/gitlab-org/gitlab/-/issues/1018", "https://gitlab.com/gitlab-org/gitlab/-/issues/287700"],
+      "comment": "GitLab Pages on GitLab.com does not serve content through a global CDN. Content is served from GitLab's infrastructure (GCP us-east1 region). There are open feature requests to add CDN support for Pages. Users can add their own CDN (e.g., Cloudflare) in front of Pages."
+    },
+    "cdn-provider": {
+      "value": "None (single region)",
+      "source": ["https://gitlab.com/gitlab-org/gitlab/-/issues/1018"],
+      "comment": "GitLab Pages on GitLab.com is served from a single region without a CDN. The IP address 35.185.44.232 resolves to GCP infrastructure. Self-hosted GitLab instances can be placed behind any CDN."
+    },
+    "edge-locations": {
+      "value": "1 (single region)",
+      "source": ["https://docs.gitlab.com/user/gitlab_com/", "https://gitlab.com/gitlab-org/gitlab/-/issues/1018"],
+      "comment": "GitLab.com Pages are served from a single GCP region. There is no edge network distribution. Open issues exist requesting CDN support for Pages."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/gitlab_com/"],
+      "comment": "GitLab.com supports HTTP/2 for its services including Pages, as it runs on modern Google Cloud infrastructure with HTTP/2 enabled."
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/gitlab_com/"],
+      "comment": "There is no documented HTTP/3 (QUIC) support for GitLab Pages."
+    },
+    "response-headers": {
+      "value": false,
+      "source": ["https://gitlab.com/gitlab-org/gitlab-pages/-/issues/50"],
+      "comment": "GitLab Pages does not support custom response headers. This has been a long-standing feature request (issue #50 on the gitlab-pages project). Users cannot configure Content-Security-Policy, CORS, or other custom headers."
+    },
+    "image-optimization": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages has no built-in image optimization, resizing, or format conversion capabilities. It serves files as-is."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://docs.gitlab.com/user/project/pages/introduction/", "https://blog.ideotec.es/support-compression-gitlab-pages/"],
+      "comment": "GitLab Pages supports serving pre-compressed files. If .gz (gzip) and .br (brotli) versions of files exist alongside the original, Pages will serve the compressed version to compatible browsers. Compression is not applied automatically -- you must generate the compressed files during your CI/CD build."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/custom_domains_ssl_tls_certification/"],
+      "comment": "Custom domains are supported with up to 150 custom domains per Pages site on GitLab.com. Both apex domains and subdomains are supported via DNS configuration."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/custom_domains_ssl_tls_certification/lets_encrypt_integration/"],
+      "comment": "GitLab Pages provides automatic SSL certificate provisioning via Let's Encrypt for custom domains. Certificates are automatically renewed. The default .gitlab.io domain also has HTTPS enabled."
+    },
+    "wildcard-ssl": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/custom_domains_ssl_tls_certification/lets_encrypt_integration/"],
+      "comment": "Let's Encrypt integration on GitLab Pages provisions individual certificates per custom domain, not wildcard certificates. Wildcard certificates for Pages daemon are a separate self-managed admin feature."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/custom_domains_ssl_tls_certification/"],
+      "comment": "GitLab Pages can enforce HTTPS by automatically redirecting HTTP requests to HTTPS with a 301 redirect. This works for both the default gitlab.io domain and custom domains with valid certificates."
+    },
+    "custom-domain-preview": {
+      "value": false,
+      "source": ["https://about.gitlab.com/blog/gitlab-pages-features-review-apps-and-multiple-website-deployment/"],
+      "comment": "Deploy previews (Parallel Deployments) use path-prefixed URLs under the main Pages domain, not custom domains. Custom domain aliases for preview deployments are not supported."
+    },
+    "serverless-functions": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages is a purely static file hosting service. Dynamic server-side processing is explicitly not supported. No serverless function capability is offered."
+    },
+    "functions-runtime": {
+      "value": [],
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "No serverless functions are offered, so no function runtimes are available."
+    },
+    "edge-functions": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not support edge functions."
+    },
+    "scheduled-functions": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not support scheduled/cron functions. GitLab CI/CD has scheduled pipelines, but these are for CI/CD jobs, not serverless functions."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not offer built-in form handling. External services must be used for form submissions."
+    },
+    "authentication": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/pages_access_control/"],
+      "comment": "GitLab Pages has built-in access control that restricts site access to authenticated GitLab project members (at least Guest role). This is not end-user authentication for site visitors, but project-membership-based access control. Available on GitLab.com and self-managed instances."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not offer key-value storage or any edge storage solution."
+    },
+    "database-integration": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not offer database integration. It serves only static files."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/redirects/"],
+      "comment": "GitLab Pages supports Netlify-style _redirects file placed in the public/ directory. Supports 301 (permanent) and 302 (temporary) redirects, splats, and placeholders. Domain-level redirects available since GitLab 17.4."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/redirects/"],
+      "comment": "GitLab Pages supports rewrites using status code 200 in the _redirects file. Content is served from a different path without changing the browser URL. Does not support proxying to external URLs."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/introduction/"],
+      "comment": "GitLab Pages serves a custom 404.html file from the root of the site when a requested file is not found. Custom 403 error pages are also supported."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/redirects/"],
+      "comment": "SPA fallback is supported using the _redirects file with the rule '/* /index.html 200', which rewrites all non-file requests to index.html for client-side routing."
+    },
+    "headers-config": {
+      "value": false,
+      "source": ["https://gitlab.com/gitlab-org/gitlab-pages/-/issues/50"],
+      "comment": "GitLab Pages does not support custom response headers configuration. This is a long-standing feature request. Users cannot set per-path or global custom headers."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://gitlab.com/gitlab-org/gitlab/-/issues/14122"],
+      "comment": "GitLab Pages does not offer A/B testing or traffic splitting. There is an open feature request for A/B testing of branches with GitLab Pages, but it has not been implemented."
+    },
+    "free-team-members": {
+      "value": "5",
+      "source": ["https://about.gitlab.com/pricing/", "https://docs.gitlab.com/user/free_user_limit/"],
+      "comment": "GitLab Free tier allows up to 5 users in a top-level group. All members with access to the project can trigger Pages deployments through CI/CD."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/permissions/"],
+      "comment": "GitLab has a comprehensive role-based permission system with roles: Guest, Reporter, Developer, Maintainer, and Owner. These control who can deploy to Pages, manage CI/CD pipelines, and configure project settings."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/compliance/audit_events/"],
+      "comment": "Audit events are available but vary by tier. The Free tier only records successful sign-in events. Comprehensive audit logging for deployment events and project changes requires Premium or Ultimate."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab CI/CD supports project-level, group-level, and instance-level CI/CD variables. These can be used in the .gitlab-ci.yml build configuration for Pages deployments, including masked and protected variables."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages does not have a built-in feature for leaving comments directly on deploy previews. Merge request comments can reference the preview URL, but there is no visual commenting overlay on the deployed preview."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/gitlab_com/", "https://docs.gitlab.com/subscriptions/gitlab_dedicated/"],
+      "comment": "GitLab.com has rate limiting for Pages (1,000 requests per 50 seconds per IP) which provides basic protection. GitLab Dedicated uses Cloudflare WAF for DDoS protection. Self-managed instances depend on their own infrastructure."
+    },
+    "waf": {
+      "value": false,
+      "source": ["https://gitlab.com/gitlab-org/gitlab/-/issues/271276"],
+      "comment": "GitLab deprecated its built-in WAF (ModSecurity-based) for Kubernetes deployments. GitLab Pages on GitLab.com does not have a user-configurable WAF. GitLab Dedicated uses Cloudflare WAF but it is managed by GitLab SRE, not user-configurable."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/certifications/", "https://trust.gitlab.com/"],
+      "comment": "GitLab holds SOC 2 Type II certification for GitLab.com and GitLab Dedicated. Reports are available through the GitLab Trust Center."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://about.gitlab.com/security/", "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/certifications/"],
+      "comment": "GitLab is GDPR compliant and also holds ISO/IEC 27001, ISO/IEC 27017, ISO/IEC 27018, PCI DSS, and other certifications."
+    },
+    "password-protection": {
+      "value": true,
+      "source": ["https://docs.gitlab.com/user/project/pages/pages_access_control/"],
+      "comment": "GitLab Pages Access Control restricts site access to authenticated GitLab project members. This is not traditional HTTP Basic Auth password protection, but membership-based authentication requiring a GitLab account. Visitors must be logged into GitLab and have at least Guest access to the project."
+    },
+    "ip-access-control": {
+      "value": false,
+      "source": ["https://forum.gitlab.com/t/restrict-access-to-only-specific-ip-addresses-for-public-domain/786"],
+      "comment": "GitLab Pages does not support IP-based access control for individual sites. Group-level IP restrictions exist in GitLab but do not apply specifically to Pages site access for visitors."
+    },
+    "documentation-quality": {
+      "value": 3.5,
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab's Pages documentation covers setup, custom domains, SSL, redirects, and CI/CD templates. The docs are well-organized and searchable. However, some information about infrastructure details (CDN, bandwidth limits, compression) is scattered or missing. The CI/CD-centric approach means Pages documentation is spread across multiple documentation areas."
+    },
+    "integrations": {
+      "value": ["monitoring"],
+      "source": ["https://docs.gitlab.com/user/project/pages/"],
+      "comment": "GitLab Pages itself does not have a dedicated integration ecosystem. However, GitLab's broader platform includes built-in monitoring (Prometheus, Grafana), and the CI/CD pipeline can integrate with various services. Pages-specific first-party integrations for analytics, CMS, or commerce do not exist."
+    },
+    "community": {
+      "value": ["forum", "stackoverflow"],
+      "source": ["https://forum.gitlab.com/", "https://stackoverflow.com/questions/tagged/gitlab-pages"],
+      "comment": "GitLab has an active community forum (forum.gitlab.com) and a well-established Stack Overflow tag for gitlab-pages. GitLab also uses its own GitLab.com instance for issue tracking and community contributions."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.gitlab.com/"],
+      "comment": "GitLab maintains a public status page at status.gitlab.com that tracks GitLab.com service health including Pages-related components."
+    }
+  }
+}

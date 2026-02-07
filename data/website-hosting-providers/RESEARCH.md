@@ -202,11 +202,11 @@ Well-established alternatives with distinct positioning:
 
 ### Tier 3 (Nice to Have)
 Niche or newer entrants with interesting differentiators:
-- [ ] **Deno Deploy** - Edge-first platform from the Deno runtime creators
+- [x] **Deno Deploy** - Edge-first platform from the Deno runtime creators
 - [ ] **Fly.io** - Edge application platform that can serve static sites
 - [ ] **Kinsta** - Managed hosting provider with a static site hosting offering
 - [ ] **Hostinger** - Budget hosting with a static site option
-- [ ] **GitLab Pages** - Static hosting integrated with GitLab CI/CD
+- [x] **GitLab Pages** - Static hosting integrated with GitLab CI/CD
 
 ## Notes for Researchers
 
