@@ -1,0 +1,324 @@
+{
+  "name": "AWS Amplify Hosting",
+  "description": "Amazon's fully managed hosting service for static and server-rendered web apps with Git-based CI/CD, powered by CloudFront CDN and integrated with the broader AWS ecosystem.",
+  "icon": "aws",
+  "url": "https://aws.amazon.com/amplify/hosting/",
+  "values": {
+    "description": {
+      "value": "Amazon's fully managed hosting service for static and server-rendered web apps with Git-based CI/CD, powered by CloudFront CDN and integrated with the broader AWS ecosystem.",
+      "source": ["https://aws.amazon.com/amplify/hosting/"]
+    },
+    "website": {
+      "value": "https://aws.amazon.com/amplify/hosting/",
+      "source": ["https://aws.amazon.com/amplify/hosting/"]
+    },
+    "parent-company": {
+      "value": "Amazon Web Services (Amazon)",
+      "source": ["https://aws.amazon.com/amplify/"]
+    },
+    "year-launched": {
+      "value": "2018",
+      "source": ["https://dev.to/aws-builders/aws-amplify-evolution-timeline-2017-to-2025-d83"],
+      "comment": "AWS Amplify Console (now Amplify Hosting) launched on November 26, 2018. The broader Amplify framework launched in 2017."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/aws-amplify/amplify-hosting"],
+      "comment": "The hosting platform itself is a proprietary AWS managed service. The Amplify CLI, JS libraries, and framework adapters are open source, but the core hosting infrastructure is not."
+    },
+    "primary-focus": {
+      "value": ["jamstack", "full-stack"],
+      "source": ["https://aws.amazon.com/amplify/hosting/", "https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html"],
+      "comment": "Amplify Hosting supports both static/JAMstack sites and SSR full-stack applications with serverless backend integration."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://aws.amazon.com/amplify/pricing/"],
+      "comment": "12-month free tier for new AWS customers. Pay-as-you-go after that with no minimum fees, so very low traffic sites may still cost effectively $0."
+    },
+    "free-tier-bandwidth": {
+      "value": "15 GB/month",
+      "source": ["https://aws.amazon.com/amplify/pricing/"],
+      "comment": "15 GB served per month for 12 months for new AWS customers."
+    },
+    "free-tier-build-minutes": {
+      "value": "1,000 min/month",
+      "source": ["https://aws.amazon.com/amplify/pricing/"],
+      "comment": "1,000 build minutes per month for 12 months for new AWS customers."
+    },
+    "free-tier-sites": {
+      "value": "25 per region",
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/quotas-chapter.html"],
+      "comment": "Default quota is 25 apps per region per account. New accounts may start with a lower quota that increases based on usage. No separate site limit on the free tier."
+    },
+    "paid-plan-starting-price": {
+      "value": "Pay-as-you-go (no fixed plan)",
+      "source": ["https://aws.amazon.com/amplify/pricing/"],
+      "comment": "No fixed monthly plans. After free tier: $0.01/build minute, $0.023/GB storage/month, $0.15/GB served. Costs scale with usage."
+    },
+    "bandwidth-overage-cost": {
+      "value": "$0.15 per GB",
+      "source": ["https://aws.amazon.com/amplify/pricing/"],
+      "comment": "After the 12-month free tier expires, all data transfer is charged at $0.15/GB served."
+    },
+    "enterprise-pricing": {
+      "value": true,
+      "source": ["https://aws.amazon.com/pricing/"],
+      "comment": "AWS offers Enterprise Support plans and custom pricing through AWS Organizations and Enterprise Discount Programs."
+    },
+    "git-integration": {
+      "value": ["github", "gitlab", "bitbucket"],
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html", "https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html"],
+      "comment": "Supports GitHub, GitLab, Bitbucket, and AWS CodeCommit. CodeCommit is not listed as a tag option but is supported."
+    },
+    "auto-deploy": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/multi-environments.html"],
+      "comment": "Pushes to connected branches automatically trigger builds and deployments."
+    },
+    "cli-deployment": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/manual-deploys.html", "https://docs.aws.amazon.com/amplify/latest/userguide/aws-cli-support-chapter.html"],
+      "comment": "Supports manual deployments via the Amplify CLI (amplify publish) and AWS CLI (create-deployment / start-deployment). Also supports drag-and-drop uploads without a Git repo."
+    },
+    "build-system": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html"],
+      "comment": "Built-in CI/CD build pipeline with configurable build settings via amplify.yml."
+    },
+    "supported-frameworks": {
+      "value": ["next", "nuxt", "gatsby", "astro", "hugo", "jekyll", "svelte-kit", "angular", "vue", "eleventy", "vite", "other"],
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html", "https://docs.aws.amazon.com/amplify/latest/userguide/server-side-rendering-amplify.html"],
+      "comment": "First-party SSR support for Next.js (zero-config), Nuxt (preset adapter). Community adapters for Astro, SvelteKit. Static support for Gatsby, Hugo, Jekyll, Eleventy, VuePress. Also supports React, Angular, Vue, Ionic, Ember as SPAs. Vite-based projects work as SPAs."
+    },
+    "monorepo-support": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/monorepo-configuration.html"],
+      "comment": "Supports npm workspaces, pnpm workspaces, Yarn workspaces, Nx, and Turborepo monorepos with automatic build tool detection."
+    },
+    "deploy-previews": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/pr-previews.html"],
+      "comment": "Web previews deploy every pull request to a unique preview URL. For GitHub repos, the Amplify bot comments the preview URL on the PR."
+    },
+    "instant-rollbacks": {
+      "value": false,
+      "source": ["https://github.com/aws-amplify/amplify-hosting/issues/542"],
+      "comment": "Amplify has a 'Redeploy this version' button that triggers a rebuild from a previous commit, but it is not an instant rollback (requires going through the full build/deploy process, taking 5-10 minutes). True instant rollback is not available."
+    },
+    "deploy-notifications": {
+      "value": ["email", "webhook"],
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/notifications.html"],
+      "comment": "Built-in email notifications via Amazon SNS. Webhook support for incoming webhooks. Slack notifications require manual setup via SNS + Lambda. GitHub status checks are posted via the Amplify GitHub App."
+    },
+    "global-cdn": {
+      "value": true,
+      "source": ["https://aws.amazon.com/amplify/hosting/", "https://aws.amazon.com/blogs/mobile/cdn-caching-improvements-for-better-app-performance-with-aws-amplify-hosting/"],
+      "comment": "Assets are served from the Amazon CloudFront global CDN."
+    },
+    "cdn-provider": {
+      "value": "Amazon CloudFront",
+      "source": ["https://aws.amazon.com/amplify/hosting/"]
+    },
+    "edge-locations": {
+      "value": "600+ PoPs globally",
+      "source": ["https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/LocationsOfEdgeServers.html"],
+      "comment": "CloudFront operates 600+ Points of Presence in 100+ cities across 50+ countries. The exact number available to Amplify Hosting is the full CloudFront network."
+    },
+    "http2": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/aws/new-http-3-support-for-amazon-cloudfront/"],
+      "comment": "CloudFront serves content over HTTP/2 by default, even if the origin doesn't support it."
+    },
+    "http3": {
+      "value": false,
+      "source": ["https://github.com/aws-amplify/amplify-hosting/issues/3767"],
+      "comment": "CloudFront supports HTTP/3, but Amplify Hosting uses a managed CloudFront distribution where HTTP/3 is not automatically enabled and cannot be configured by the user. There is an open feature request for this."
+    },
+    "response-headers": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/custom-headers.html"],
+      "comment": "Custom HTTP response headers can be configured via the Amplify console or a customHttp.yml file in the project root."
+    },
+    "image-optimization": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/integrate-image-optimization-framework.html"],
+      "comment": "Built-in image optimization for SSR (WEB_COMPUTE) apps, with CDN caching of optimized images. Available as an integration point for framework authors."
+    },
+    "asset-compression": {
+      "value": ["gzip", "brotli"],
+      "source": ["https://aws.amazon.com/blogs/mobile/cdn-caching-improvements-for-better-app-performance-with-aws-amplify-hosting/"],
+      "comment": "Both gzip and Brotli compression are enabled by default on Amplify Hosting apps via CloudFront managed cache policies."
+    },
+    "custom-domains": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html"],
+      "comment": "Custom domains can be connected via Amazon Route 53 or third-party DNS providers."
+    },
+    "free-ssl": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/using-certificates.html"],
+      "comment": "Amplify automatically provisions free SSL/TLS certificates via AWS Certificate Manager (ACM). Certificates are valid for 13 months and renew automatically."
+    },
+    "wildcard-ssl": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/wildcard-subdomain-support.html", "https://aws.amazon.com/blogs/mobile/wildcard-subdomains-for-multi-tenant-apps-on-aws-amplify-hosting/"],
+      "comment": "Wildcard SSL certificates are supported for wildcard subdomains (*.example.com)."
+    },
+    "auto-https-redirect": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/using-certificates.html"],
+      "comment": "All traffic is secured through HTTPS by default. HTTP requests are automatically redirected to HTTPS."
+    },
+    "custom-domain-preview": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/to-set-up-automatic-subdomains-for-a-Route-53-custom-domain.html"],
+      "comment": "Preview deployments can use custom subdomains when using Amazon Route 53 for DNS. Automatic subdomain creation assigns subdomains like pr-123.example.com to preview deployments. Only available with Route 53 managed domains."
+    },
+    "serverless-functions": {
+      "value": true,
+      "source": ["https://docs.amplify.aws/react/build-a-backend/functions/"],
+      "comment": "Amplify Functions are powered by AWS Lambda and can be defined as part of the Amplify project. Supports both API-triggered and event-driven functions."
+    },
+    "functions-runtime": {
+      "value": ["node", "python", "go", "other"],
+      "source": ["https://docs.amplify.aws/react/build-a-backend/functions/", "https://aws.amazon.com/blogs/mobile/amplify-functions-create-serverless-functions-using-typescript-powered-by-aws-lambda/"],
+      "comment": "Primary development experience is TypeScript/Node.js. Supports any AWS Lambda runtime including Python, Go, Ruby, Java, .NET, and custom runtimes. Amplify Gen 2 focuses on TypeScript but allows configuring alternative runtimes."
+    },
+    "edge-functions": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/server-side-rendering-amplify.html"],
+      "comment": "Amplify uses Lambda@Edge behind the scenes for SSR applications. Edge functions run at CloudFront edge locations for low-latency responses."
+    },
+    "scheduled-functions": {
+      "value": true,
+      "source": ["https://docs.amplify.aws/react/build-a-backend/functions/scheduling-functions/", "https://aws.amazon.com/blogs/mobile/new-features-for-amplify-functions-scheduling-and-log-streaming/"],
+      "comment": "Functions can be scheduled using natural language or cron expressions, powered by Amazon EventBridge Rules."
+    },
+    "form-handling": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html"],
+      "comment": "No built-in form handling. Form submissions require custom backend implementation using Lambda functions, API Gateway, or third-party services."
+    },
+    "authentication": {
+      "value": true,
+      "source": ["https://docs.amplify.aws/react/build-a-backend/auth/", "https://docs.amplify.aws/react/build-a-backend/auth/set-up-auth/"],
+      "comment": "Built-in authentication via Amazon Cognito, with pre-built UI components (Authenticator) for React, Vue, Angular, and more. Supports email/password, social sign-in, MFA, and OIDC/SAML providers."
+    },
+    "kv-storage": {
+      "value": false,
+      "source": ["https://docs.amplify.aws/react/build-a-backend/"],
+      "comment": "No built-in key-value or edge storage solution within Amplify Hosting. S3 and DynamoDB can be integrated but are separate AWS services, not a first-party KV store in the hosting platform."
+    },
+    "database-integration": {
+      "value": true,
+      "source": ["https://docs.amplify.aws/react/build-a-backend/data/set-up-data/", "https://aws.amazon.com/blogs/mobile/new-in-aws-amplify-integrate-with-sql-databases-oidc-saml-providers-and-the-aws-cdk/"],
+      "comment": "First-party database integration via Amplify Data (powered by AWS AppSync + DynamoDB). Also supports connecting to external DynamoDB tables and SQL databases (MySQL, PostgreSQL)."
+    },
+    "redirects": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html"],
+      "comment": "Supports 301, 302, and other redirect types. Configurable via the Amplify console or JSON configuration."
+    },
+    "rewrites": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html"],
+      "comment": "200 rewrites are supported, allowing content from a different path to be served without changing the URL. Configured alongside redirects."
+    },
+    "custom-404": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/redirect-rewrite-examples.html"],
+      "comment": "Custom 404 pages can be configured via redirect/rewrite rules."
+    },
+    "spa-fallback": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/redirect-rewrite-examples.html"],
+      "comment": "SPA fallback routing is supported via a 200 rewrite rule that serves index.html for all paths except static file extensions."
+    },
+    "headers-config": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/custom-headers.html"],
+      "comment": "Custom response headers can be defined globally or per-path via the Amplify console or customHttp.yml file."
+    },
+    "ab-testing": {
+      "value": false,
+      "source": ["https://github.com/aws-amplify/amplify-hosting/issues/331"],
+      "comment": "No native A/B testing or traffic splitting feature. Users can manually achieve similar results using branch-based deployments with different subdomains, but automatic traffic splitting is not available. Open feature request since 2019."
+    },
+    "free-team-members": {
+      "value": "IAM-based (no limit)",
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/security-iam.html"],
+      "comment": "Team access is managed through AWS IAM users and roles, not a per-seat model. No inherent limit on team members, but access is controlled by the AWS account's IAM policies."
+    },
+    "rbac": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/security_iam_service-with-iam.html", "https://docs.aws.amazon.com/amplify/latest/userguide/security-iam-awsmanpol.html"],
+      "comment": "Fine-grained access control via AWS IAM policies. AWS provides managed policies like AdministratorAccess-Amplify and custom policies can be created for granular permissions."
+    },
+    "audit-logs": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/security.html"],
+      "comment": "AWS CloudTrail provides audit logging for all Amplify API calls. CloudWatch Logs captures build and SSR runtime logs."
+    },
+    "environment-variables": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/environment-variables.html"],
+      "comment": "Environment variables can be configured per-app or per-branch. All variables are encrypted at rest."
+    },
+    "preview-comments": {
+      "value": false,
+      "source": ["https://github.com/aws-amplify/amplify-hosting/issues/3921"],
+      "comment": "No built-in preview commenting or annotation feature. The Amplify GitHub bot posts the preview URL as a PR comment, but there is no on-page annotation capability. This is an open feature request."
+    },
+    "ddos-protection": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/WAF-integration.html"],
+      "comment": "Basic DDoS protection is provided via CloudFront (AWS Shield Standard is included at no additional cost). Enhanced protection available through AWS WAF integration."
+    },
+    "waf": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/WAF-integration.html", "https://aws.amazon.com/about-aws/whats-new/2025/03/aws-amplify-hosting-web-application-firewall-protection/"],
+      "comment": "AWS WAF integration available with one-click setup in the Amplify console. Adds $15/month per app plus standard AWS WAF pricing. Includes managed rules for SQL injection, XSS, and bot protection."
+    },
+    "soc2": {
+      "value": true,
+      "source": ["https://aws.amazon.com/compliance/soc-faqs/"],
+      "comment": "AWS as a whole holds SOC 2 Type II certification. AWS Amplify runs on SOC 2 certified infrastructure."
+    },
+    "gdpr": {
+      "value": true,
+      "source": ["https://aws.amazon.com/compliance/programs/"],
+      "comment": "AWS provides GDPR-compliant infrastructure with a Data Processing Addendum (DPA) in AWS Service Terms. All AWS services can be used in compliance with GDPR."
+    },
+    "password-protection": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/access-control.html"],
+      "comment": "Branch-level password protection via username/password basic auth. Can be applied globally or per-branch. Amplify throttles failed login attempts to protect against dictionary attacks."
+    },
+    "ip-access-control": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/WAF-integration.html"],
+      "comment": "IP-based access control is available through AWS WAF integration (not built-in natively). WAF allows creating rules to allow or block requests from specified IP ranges. Requires WAF addon ($15/month + WAF costs)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html", "https://docs.amplify.aws/"],
+      "comment": "Comprehensive documentation split between AWS Amplify Hosting docs and Amplify Gen 2 docs. Good coverage of features, examples, and troubleshooting. The split between Gen 1 and Gen 2 documentation can be confusing. Searchable and regularly updated."
+    },
+    "integrations": {
+      "value": ["analytics", "auth", "database", "monitoring"],
+      "source": ["https://docs.amplify.aws/react/build-a-backend/"],
+      "comment": "Integrates with AWS ecosystem: Amazon Pinpoint (analytics), Amazon Cognito (auth), DynamoDB/AppSync (database), CloudWatch (monitoring). No native CMS, commerce, or search integrations as first-party features."
+    },
+    "community": {
+      "value": ["discord", "github-discussions", "stackoverflow"],
+      "source": ["https://github.com/aws-amplify/discord-bot", "https://github.com/aws-amplify/docs/discussions"],
+      "comment": "Active Discord community (~20,000 members) with an official 'Hey, Amplify!' bot. GitHub Discussions on the amplify-docs repo. Questions tagged 'aws-amplify' on Stack Overflow. AWS re:Post also available for support."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://health.aws.amazon.com/"],
+      "comment": "AWS Health Dashboard provides public service health status for all AWS services including Amplify at health.aws.amazon.com. No Amplify-specific status page."
+    }
+  }
+}
