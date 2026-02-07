@@ -205,7 +205,7 @@ Niche or newer entrants with interesting differentiators:
 - [x] **Deno Deploy** - Edge-first platform from the Deno runtime creators
 - [x] **Fly.io** - Edge application platform that can serve static sites
 - [x] **Kinsta** - Managed hosting provider with a static site hosting offering
-- [ ] **Hostinger** - Budget hosting with a static site option
+- [x] **Hostinger** - Budget hosting with a static site option
 - [x] **GitLab Pages** - Static hosting integrated with GitLab CI/CD
 
 ## Notes for Researchers
