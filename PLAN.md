@@ -32,7 +32,7 @@
   - No new test file needed for this task — behavior is covered by task 2.
 - **Commit Message:** `feat(types): add optional lastVerified field to CandidateFile`
 
-[ ] 2. Render a "Last Verified" row as the first row of the first attribute group
+[x] 2. Render a "Last Verified" row as the first row of the first attribute group
 - **Files:** `app/src/components/ComparisonView.tsx`, `app/src/components/ComparisonView.lastVerified.test.tsx` (new)
 - **Description:** In `ComparisonView.tsx`, when rendering the first `AttributeGroup` (the General Information group by convention — gated on it being the first group in `attributes.groups`, not on a hardcoded `id === "general"`), emit one extra `TableRow` immediately after the section-header row and before the first `AttributeRow`. The row has:
   - A sticky left cell reading "Last Verified" (same sticky/background treatment as `AttributeRow`'s first `TableCell`, no sort control, no expand chevron — mirror the non-expandable/non-sortable branch so visual alignment with other rows is preserved).

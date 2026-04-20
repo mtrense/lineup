@@ -1,4 +1,5 @@
 import { useState, useMemo, Fragment, useEffect, useCallback } from "react";
+import { format, parseISO } from "date-fns";
 import {
   ChevronLeft,
   ChevronDown,
@@ -29,6 +30,14 @@ import {
   findBestIndices,
 } from "@/lib/compare";
 import type { AttributesFile, CandidateFile, Attribute, CandidateEntry } from "@/types";
+
+function formatLastVerified(dateStr: string): string | null {
+  try {
+    return format(parseISO(dateStr), "MMM d, yyyy");
+  } catch {
+    return null;
+  }
+}
 
 export interface SortState {
   attributeId: string;
@@ -373,8 +382,9 @@ export function ComparisonView({
             <div className="overflow-x-auto rounded-lg border border-border">
               <Table className="w-full">
                 <TableBody>
-                  {attributes.groups.map((group) => {
+                  {attributes.groups.map((group, groupIndex) => {
                     const isExpanded = expandedGroups.has(group.id);
+                    const isFirstGroup = groupIndex === 0;
                     return (
                       <Fragment key={group.id}>
                         {/* Group Header Row */}
@@ -421,6 +431,44 @@ export function ComparisonView({
                                 {candidate.name}
                               </TableCell>
                             ))}
+                          </TableRow>
+                        )}
+
+                        {/* Last Verified Row - first group only */}
+                        {isExpanded && isFirstGroup && (
+                          <TableRow className="border-b border-border/50">
+                            <TableCell
+                              className="sticky left-0 z-10 w-40 min-w-[160px] bg-background font-medium"
+                              aria-label="Last verified date"
+                            >
+                              <div className="flex items-center gap-1">
+                                <span className="w-3.5 flex-shrink-0" aria-hidden="true" />
+                                <span>Last Verified</span>
+                              </div>
+                            </TableCell>
+                            {visibleCandidates.map((candidate) => {
+                              const formatted = candidate.lastVerified
+                                ? formatLastVerified(candidate.lastVerified)
+                                : null;
+                              return (
+                                <TableCell
+                                  key={candidate.name}
+                                  className="text-center align-middle"
+                                >
+                                  {formatted !== null ? (
+                                    formatted
+                                  ) : (
+                                    <span
+                                      className="text-muted-foreground/50 italic"
+                                      title="No data available"
+                                      aria-label="No data available"
+                                    >
+                                      —
+                                    </span>
+                                  )}
+                                </TableCell>
+                              );
+                            })}
                           </TableRow>
                         )}
 
