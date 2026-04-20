@@ -329,6 +329,38 @@ This milestone was implemented as part of Milestone 5 work. The candidate select
 
 ---
 
+## Milestone 15: Candidate Data Freshness Timestamp
+
+**Status:** open
+
+### Value / Impact
+Users comparing candidates currently have no way to tell how fresh the data is. Attribute values drift over time (version numbers, prices, feature flags, maintenance status), and a stale comparison can mislead a decision. Surfacing when each candidate was last verified lets readers weigh the data appropriately and helps maintainers spot candidates that need a refresh pass.
+
+### Outcome
+- Each candidate JSON file carries a top-level `lastVerified` field (ISO 8601 date, day precision, e.g. `"2026-04-20"`).
+- The `gather-data` skill stamps/updates `lastVerified` whenever it writes a candidate file, in both `initial` and `refresh` modes.
+- The comparison table renders a dedicated "Last Verified" row inside the **General Information** group, showing the date per candidate.
+- Candidates without a `lastVerified` value (pre-existing data) render as `—` in that row, with no forced migration.
+
+### Success Criteria
+- [ ] `CandidateFile` TypeScript interface extended with optional `lastVerified?: string` (ISO 8601 date).
+- [ ] `.claude/skills/gather-data/SKILL.md` updated so the skill writes/refreshes a top-level `lastVerified` (current date) whenever it saves a candidate file, in both `initial` and `refresh` modes — including any relevant cheatsheets, Phase 3 instructions, and rules sections.
+- [ ] `.claude/skills/add-candidate/SKILL.md` reviewed and, if it writes candidate JSON, updated to explicitly *omit* `lastVerified` on scaffold (so the row renders `—` until first research pass).
+- [ ] Comparison UI shows a "Last Verified" row as the first row of the General Information group, rendering the date per candidate.
+- [ ] Candidates with a missing/undefined `lastVerified` display `—` (em dash) in that row.
+- [ ] Existing candidate JSON files are **not** retroactively backfilled — they display `—` until their next gather-data pass.
+- [ ] CLAUDE.md updated to document the `lastVerified` field in the candidate file schema.
+- [ ] Existing UI behavior unaffected (sorting, filtering, highlighting continue to work on real attributes only — the new row is purely informational).
+
+### Notes
+- **No migration.** The field is explicitly undefined for pre-existing candidates, per the user's decision that these dates can't be added retrospectively without fabricating them. `—` is the honest representation.
+- **Purely informational.** The row does not participate in sorting, filtering, highlighting, or freshness-based ranking in this milestone. Treating it as a ranked `date` attribute is deferred as a potential follow-up.
+- **Granularity.** Timestamp is candidate-level (one per file), not per-attribute. Per-attribute freshness is out of scope.
+- **Placement inside General Information group.** The row lives inside the existing group rather than as a separate table-level header, to reuse current rendering/collapsing machinery without a new layout concept.
+- **Scope of updates.** Only `gather-data` touches `lastVerified`. `add-candidate` does not set it (a scaffolded candidate hasn't been researched yet).
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
