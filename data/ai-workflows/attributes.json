@@ -1,0 +1,624 @@
+{
+  "name": "AI-Assisted Development Workflows",
+  "description": "Frameworks and toolchains that structure AI coding agents through software development work, from spec-driven methodologies to multi-agent orchestration",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Information",
+      "description": "Basic information about the framework",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "Brief description of the framework and its positioning"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official website or landing page"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository"
+        },
+        {
+          "id": "creator",
+          "name": "Creator / Org",
+          "valueType": "text",
+          "description": "Person, company, or organization behind the project"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year the project became publicly available"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "Month and year of the most recent tagged release"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "blue" },
+              { "id": "apache-2", "value": "Apache 2.0", "color": "blue" },
+              { "id": "gpl", "value": "GPL", "color": "red" },
+              { "id": "bsd", "value": "BSD", "color": "cyan" },
+              { "id": "mpl", "value": "MPL", "color": "orange" },
+              { "id": "proprietary", "value": "Proprietary", "color": "gray" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Distribution license"
+        },
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "free-oss", "value": "Free / OSS", "color": "green" },
+              { "id": "freemium", "value": "Freemium", "color": "blue" },
+              { "id": "paid-saas", "value": "Paid SaaS", "color": "purple" },
+              { "id": "paid-self-hosted", "value": "Paid Self-Hosted", "color": "orange" }
+            ]
+          },
+          "description": "Commercial model"
+        },
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Whether the core methodology and tooling is OSI-open-source"
+        }
+      ]
+    },
+    {
+      "id": "methodology",
+      "name": "Methodology & Phases",
+      "description": "The workflow's prescribed phases, style, and process weight",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "covered-phases",
+          "name": "Covered Phases",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "discovery", "value": "Discovery", "color": "cyan" },
+              { "id": "spec", "value": "Spec", "color": "blue" },
+              { "id": "architecture", "value": "Architecture", "color": "purple" },
+              { "id": "planning", "value": "Planning", "color": "blue" },
+              { "id": "tasks", "value": "Tasks", "color": "green" },
+              { "id": "implementation", "value": "Implementation", "color": "green" },
+              { "id": "review", "value": "Review", "color": "orange" },
+              { "id": "testing", "value": "Testing", "color": "yellow" },
+              { "id": "deployment", "value": "Deployment", "color": "red" },
+              { "id": "retrospective", "value": "Retrospective", "color": "gray" }
+            ]
+          },
+          "description": "Phases the workflow prescribes"
+        },
+        {
+          "id": "methodology-style",
+          "name": "Methodology Style",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "spec-centric", "value": "Spec-Centric", "color": "blue" },
+              { "id": "process-centric", "value": "Process-Centric", "color": "purple" },
+              { "id": "harness-centric", "value": "Harness-Centric", "color": "orange" },
+              { "id": "strict-tdd", "value": "Strict TDD", "color": "red" },
+              { "id": "bdd", "value": "BDD", "color": "red" },
+              { "id": "agent-agile", "value": "Agent-Agile", "color": "green" },
+              { "id": "multi-agent", "value": "Multi-Agent", "color": "cyan" },
+              { "id": "plan-and-execute", "value": "Plan-and-Execute", "color": "blue" },
+              { "id": "spec-driven", "value": "Spec-Driven", "color": "blue" }
+            ]
+          },
+          "description": "Conceptual character of the methodology"
+        },
+        {
+          "id": "opinionated",
+          "name": "Opinionated",
+          "valueType": "boolean",
+          "description": "Whether the framework prescribes a strict workflow with limited deviation"
+        },
+        {
+          "id": "ceremony-level",
+          "name": "Ceremony Level",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "low", "value": "Low", "color": "green" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "high", "value": "High", "color": "orange" },
+              { "id": "very-high", "value": "Very High", "color": "red" }
+            ]
+          },
+          "description": "Process weight from lightweight rituals to heavy documentation and review gates"
+        },
+        {
+          "id": "mechanization-level",
+          "name": "Mechanization Level",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "low", "value": "Low", "color": "gray" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "high", "value": "High", "color": "green" },
+              { "id": "very-high", "value": "Very High", "color": "purple" }
+            ]
+          },
+          "description": "Automation degree from manual prompt copy-paste to managed end-to-end pipeline"
+        }
+      ]
+    },
+    {
+      "id": "autonomy",
+      "name": "Autonomy",
+      "description": "How much human oversight is built in, and how autonomously the workflow can run",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "hitl-checkpoints",
+          "name": "Human-in-the-Loop Checkpoints",
+          "valueType": "boolean",
+          "description": "Whether the workflow defines explicit review or approval points"
+        },
+        {
+          "id": "approval-gates",
+          "name": "Approval Gates per Phase",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "spec", "value": "Spec", "color": "blue" },
+              { "id": "plan", "value": "Plan", "color": "blue" },
+              { "id": "tasks", "value": "Tasks", "color": "green" },
+              { "id": "implementation", "value": "Implementation", "color": "green" },
+              { "id": "deploy", "value": "Deploy", "color": "red" }
+            ]
+          },
+          "description": "Phases that require human approval in the default configuration"
+        },
+        {
+          "id": "autonomous-e2e",
+          "name": "Autonomous End-to-End Execution",
+          "valueType": "boolean",
+          "description": "Whether the tool can be configured to run idea to merged code without human intervention"
+        },
+        {
+          "id": "autonomy-level",
+          "name": "Autonomy Level",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "1 = every step confirmed; 3 = phase-level approvals; 5 = fully autonomous"
+        },
+        {
+          "id": "rollback-support",
+          "name": "Rollback / Undo Support",
+          "valueType": "boolean",
+          "description": "Built-in mechanisms to revert generated artifacts or code changes"
+        }
+      ]
+    },
+    {
+      "id": "integration",
+      "name": "Agent & Editor Integration",
+      "description": "Compatibility with AI agents, editors, and protocols",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "supported-agents",
+          "name": "Supported AI Agents",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "claude-code", "value": "Claude Code", "color": "orange" },
+              { "id": "cursor", "value": "Cursor", "color": "blue" },
+              { "id": "codex", "value": "Codex", "color": "cyan" },
+              { "id": "windsurf", "value": "Windsurf", "color": "purple" },
+              { "id": "aider", "value": "Aider", "color": "green" },
+              { "id": "cline", "value": "Cline", "color": "blue" },
+              { "id": "copilot-chat", "value": "Copilot Chat", "color": "gray" },
+              { "id": "roo", "value": "Roo", "color": "pink" },
+              { "id": "opencode", "value": "opencode", "color": "yellow" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Agents with documented or first-party support"
+        },
+        {
+          "id": "editor-integrations",
+          "name": "Editor Integrations",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "vscode", "value": "VS Code", "color": "blue" },
+              { "id": "jetbrains", "value": "JetBrains", "color": "purple" },
+              { "id": "neovim", "value": "Neovim", "color": "green" },
+              { "id": "terminal-only", "value": "Terminal Only", "color": "gray" },
+              { "id": "web", "value": "Web", "color": "cyan" }
+            ]
+          },
+          "description": "Editor or environment integrations"
+        },
+        {
+          "id": "model-agnostic",
+          "name": "Model-Agnostic",
+          "valueType": "boolean",
+          "description": "Whether the framework works with any LLM or is locked to a vendor"
+        },
+        {
+          "id": "mcp-support",
+          "name": "MCP Support",
+          "valueType": "boolean",
+          "description": "Whether the framework exposes or integrates via Model Context Protocol"
+        }
+      ]
+    },
+    {
+      "id": "artifacts",
+      "name": "Artifacts & Project Layout",
+      "description": "What the workflow produces and how it lives in the project",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "artifact-formats",
+          "name": "Output Artifact Formats",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "markdown", "value": "Markdown", "color": "blue" },
+              { "id": "yaml", "value": "YAML", "color": "red" },
+              { "id": "toml", "value": "TOML", "color": "orange" },
+              { "id": "json", "value": "JSON", "color": "yellow" },
+              { "id": "xml", "value": "XML", "color": "purple" },
+              { "id": "code-only", "value": "Code Only", "color": "gray" }
+            ]
+          },
+          "description": "Formats used for non-code artifacts"
+        },
+        {
+          "id": "artifacts-covered",
+          "name": "Artifacts Covered",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "user-docs", "value": "User Docs", "color": "blue" },
+              { "id": "architecture", "value": "Architecture", "color": "purple" },
+              { "id": "roadmap", "value": "Roadmap", "color": "cyan" },
+              { "id": "change-logs", "value": "Change Logs", "color": "yellow" },
+              { "id": "decisions", "value": "Decisions (ADRs)", "color": "orange" },
+              { "id": "specs", "value": "Specs", "color": "blue" },
+              { "id": "plans", "value": "Plans", "color": "green" },
+              { "id": "tasks", "value": "Tasks", "color": "green" },
+              { "id": "test-plans", "value": "Test Plans", "color": "red" },
+              { "id": "release-notes", "value": "Release Notes", "color": "pink" }
+            ]
+          },
+          "description": "Artifact kinds the workflow produces or maintains"
+        },
+        {
+          "id": "project-layout",
+          "name": "Project Layout Convention",
+          "valueType": "text",
+          "description": "On-disk layout the framework expects"
+        },
+        {
+          "id": "artifacts-in-git",
+          "name": "Artifacts Versioned in Git",
+          "valueType": "boolean",
+          "description": "Whether artifacts are tracked alongside source code in git"
+        },
+        {
+          "id": "language-agnostic",
+          "name": "Language-Agnostic",
+          "valueType": "boolean",
+          "description": "Whether the framework works across programming languages"
+        }
+      ]
+    },
+    {
+      "id": "quality-gates",
+      "name": "Quality Gates & Enforcement",
+      "description": "How the framework enforces process discipline and artifact quality",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "enforcement-mechanisms",
+          "name": "Enforcement Mechanisms",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "instructional", "value": "Instructional", "color": "gray" },
+              { "id": "hooks", "value": "Hooks", "color": "orange" },
+              { "id": "linters", "value": "Linters", "color": "yellow" },
+              { "id": "test-gates", "value": "Test Gates", "color": "red" },
+              { "id": "agent-review", "value": "Agent Review", "color": "purple" },
+              { "id": "ci-checks", "value": "CI Checks", "color": "blue" },
+              { "id": "manual-approval", "value": "Manual Approval", "color": "green" }
+            ]
+          },
+          "description": "How the framework enforces its process"
+        },
+        {
+          "id": "strict-phase-ordering",
+          "name": "Strict Phase Ordering",
+          "valueType": "boolean",
+          "description": "Whether the framework refuses to advance phases out of order"
+        },
+        {
+          "id": "artifact-validation",
+          "name": "Artifact Validation",
+          "valueType": "boolean",
+          "description": "Whether produced artifacts are validated against a schema or structure"
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "name": "Memory & Context",
+      "description": "Persistent context storage and cross-session continuity",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "memory-implementation",
+          "name": "Memory Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "session-only", "value": "Session Only", "color": "yellow" },
+              { "id": "markdown-files", "value": "Markdown Files", "color": "blue" },
+              { "id": "vector-db", "value": "Vector DB", "color": "purple" },
+              { "id": "knowledge-graph", "value": "Knowledge Graph", "color": "cyan" },
+              { "id": "kv-store", "value": "KV Store", "color": "orange" },
+              { "id": "hybrid", "value": "Hybrid", "color": "green" }
+            ]
+          },
+          "description": "How persistent context is stored"
+        },
+        {
+          "id": "persistent-memory",
+          "name": "Persistent Across Sessions",
+          "valueType": "boolean",
+          "description": "Whether context survives between separate sessions without manual handoff"
+        },
+        {
+          "id": "project-context-files",
+          "name": "Project Context Files",
+          "valueType": "boolean",
+          "description": "Whether project-scoped context files are used or produced (e.g., CLAUDE.md, AGENTS.md)"
+        }
+      ]
+    },
+    {
+      "id": "observability",
+      "name": "Observability & Cost",
+      "description": "Visibility into runs and control over token spend",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "cost-tracking",
+          "name": "Token / Cost Tracking",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "basic-logs", "value": "Basic Logs", "color": "yellow" },
+              { "id": "per-run", "value": "Per Run", "color": "blue" },
+              { "id": "per-phase", "value": "Per Phase", "color": "green" },
+              { "id": "budget-limits", "value": "Budget Limits", "color": "red" }
+            ]
+          },
+          "description": "Granularity of token and cost tracking"
+        },
+        {
+          "id": "run-history",
+          "name": "Run History / Traces",
+          "valueType": "boolean",
+          "description": "Whether structured run history or traces are stored for later review"
+        },
+        {
+          "id": "telemetry-opt",
+          "name": "Telemetry Opt-In/Out",
+          "valueType": "boolean",
+          "description": "Whether telemetry is clearly disclosed and user-controllable"
+        }
+      ]
+    },
+    {
+      "id": "extensibility",
+      "name": "Customization & Extensibility",
+      "description": "How much the framework can be adapted to team-specific needs",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "custom-templates",
+          "name": "Custom Templates",
+          "valueType": "boolean",
+          "description": "Whether users can define their own artifact or prompt templates"
+        },
+        {
+          "id": "hooks",
+          "name": "Hooks / Lifecycle Events",
+          "valueType": "boolean",
+          "description": "Whether user code can run at lifecycle events"
+        },
+        {
+          "id": "sub-agents",
+          "name": "Sub-Agents / Skills / Personas",
+          "valueType": "boolean",
+          "description": "Whether users can define their own roles, personas, or reusable skills"
+        },
+        {
+          "id": "marketplace",
+          "name": "Marketplace or Shared Templates",
+          "valueType": "boolean",
+          "description": "Whether a public marketplace or community template repository exists"
+        }
+      ]
+    },
+    {
+      "id": "distribution",
+      "name": "Distribution & Setup",
+      "description": "How the framework is installed and set up",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "install-mechanism",
+          "name": "Install Mechanism",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "npm", "value": "npm", "color": "red" },
+              { "id": "pip", "value": "pip", "color": "yellow" },
+              { "id": "cargo", "value": "cargo", "color": "orange" },
+              { "id": "shell-script", "value": "Shell Script", "color": "gray" },
+              { "id": "manual-copy", "value": "Manual Copy", "color": "gray" },
+              { "id": "editor-extension", "value": "Editor Extension", "color": "blue" },
+              { "id": "binary", "value": "Binary", "color": "purple" },
+              { "id": "web-platform", "value": "Web Platform", "color": "cyan" }
+            ]
+          },
+          "description": "Primary ways to install"
+        },
+        {
+          "id": "setup-time",
+          "name": "Setup Time",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "under-5min", "value": "< 5 min", "color": "green" },
+              { "id": "5-30min", "value": "5-30 min", "color": "blue" },
+              { "id": "over-30min", "value": "> 30 min", "color": "orange" },
+              { "id": "managed-platform", "value": "Managed Platform", "color": "purple" }
+            ]
+          },
+          "description": "First-run setup from scratch"
+        },
+        {
+          "id": "self-hosted",
+          "name": "Self-Hosted",
+          "valueType": "boolean",
+          "description": "Whether the tool runs entirely on user infrastructure"
+        },
+        {
+          "id": "requires-account",
+          "name": "Requires Cloud Account / Login",
+          "valueType": "boolean",
+          "description": "Whether a vendor account is required to use the core workflow"
+        },
+        {
+          "id": "git-worktree-support",
+          "name": "Git Worktree Support",
+          "valueType": "boolean",
+          "description": "Whether the framework uses or explicitly supports git worktrees"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem",
+      "name": "Community & Ecosystem",
+      "description": "Documentation, maintenance, and community signals",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "○",
+              "full": "●"
+            }
+          },
+          "description": "Quality of documentation: completeness, clarity, examples, currency"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "neutral"
+          },
+          "description": "Star count at time of research (stales quickly; record date in comment)"
+        },
+        {
+          "id": "active-maintenance",
+          "name": "Active Maintenance",
+          "valueType": "boolean",
+          "description": "Commit or release within the last 90 days of research"
+        },
+        {
+          "id": "example-projects",
+          "name": "Example Projects / Case Studies",
+          "valueType": "boolean",
+          "description": "Whether example repos or documented case studies exist"
+        },
+        {
+          "id": "community-channel",
+          "name": "Community Channel",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "discord", "value": "Discord", "color": "purple" },
+              { "id": "slack", "value": "Slack", "color": "purple" },
+              { "id": "github-discussions", "value": "GitHub Discussions", "color": "gray" },
+              { "id": "forum", "value": "Forum", "color": "blue" },
+              { "id": "reddit", "value": "Reddit", "color": "orange" }
+            ]
+          },
+          "description": "Active community channels"
+        }
+      ]
+    }
+  ]
+}
