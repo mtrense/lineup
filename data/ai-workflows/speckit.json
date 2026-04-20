@@ -1,5 +1,255 @@
 {
   "name": "SpecKit",
   "description": "GitHub's spec-driven development toolkit for AI-assisted development workflows",
-  "values": {}
+  "url": "https://github.github.com/spec-kit/",
+  "lastVerified": "2026-04-20",
+  "values": {
+    "description": {
+      "value": "GitHub's open-source toolkit for spec-driven development that drives AI coding agents through a structured Constitution → Specify → Plan → Tasks → Implement workflow.",
+      "source": ["https://github.com/github/spec-kit", "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"]
+    },
+    "website": {
+      "value": "https://github.github.com/spec-kit/",
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "repository": {
+      "value": "https://github.com/github/spec-kit",
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "creator": {
+      "value": "GitHub",
+      "source": ["https://github.com/github/spec-kit", "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"],
+      "comment": "Publicly announced 2025-09-02 on the GitHub blog; repo created 2025-08-21."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/github/spec-kit/releases"],
+      "comment": "v0.7.3 published 2026-04-17 (verified via gh API on 2026-04-20)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "covered-phases": {
+      "value": ["spec", "architecture", "planning", "tasks", "implementation", "review"],
+      "source": ["https://github.com/github/spec-kit", "https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Maps to slash commands: /speckit.constitution (architecture), /speckit.specify (spec), /speckit.clarify & /speckit.plan (planning), /speckit.tasks (tasks), /speckit.implement (implementation), /speckit.analyze (review). No distinct testing phase — TDD is prescribed via the constitution but not a separate step."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "spec-centric", "plan-and-execute"],
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "The spec is the central, executable artifact that generates code; plan-and-execute fits the phase progression."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Phases are ordered; /speckit.tasks requires plan.md; constitution enforces architectural principles across generation."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://github.com/github/spec-kit", "https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Multiple mandated artifacts per feature (constitution, spec, plan, tasks, contracts, data-model, research) plus review gates push beyond 'medium'."
+    },
+    "mechanization-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Specify CLI plus slash commands wrap each phase, but the user drives progression manually command-by-command rather than a single end-to-end run."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "SDD doc mandates team review of specs and explicit test approval before implementation."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks"],
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Default workflow surfaces each artifact for human review before advancing; implementation runs after tasks are approved."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Default configuration mandates human review at multiple phases; not pitched as a hands-off pipeline."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Phase-level approvals on spec / plan / tasks; each slash command runs end-to-end within its phase."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No built-in revert mechanism documented; users rely on git branches."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "copilot-chat", "codex", "cursor", "other"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "README advertises 30+ agents including GitHub Copilot, Claude Code, Gemini CLI, Cursor CLI, Codex CLI, Qwen, Mistral Vibe, Tabnine, Kiro; 'other' covers the rest that don't have a dedicated tag."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "SpecKit itself is CLI/slash-command based; editor integrations come from the underlying agent, not from SpecKit."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Works with any supported agent, which in turn runs against any backing model."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit/issues/99"],
+      "comment": "MCP server proposed in issue #99 but marked stale and unimplemented as of 2026-04-20."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "spec.md, plan.md, tasks.md, constitution.md, research.md, data-model.md are all markdown."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks", "architecture"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Constitution covers architecture/principles; data-model and contracts are architecture-adjacent. No built-in release-notes, changelog, or roadmap artifacts."
+    },
+    "project-layout": {
+      "value": ".specify/ with memory/constitution.md, specs/<FEATURE-ID>/{spec,plan,tasks,data-model,research}.md and contracts/, plus templates/, extensions/, presets/, scripts/",
+      "source": ["https://github.com/github/spec-kit"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Everything lives under .specify/ in the repo."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No language-specific assumptions; tech stack is chosen in the plan phase."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional"],
+      "source": ["https://github.com/github/spec-kit", "https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Core enforcement is prompt/constitution text instructing the agent. CI gates (e.g. 'CI Guard') exist as community extensions but are not part of the default workflow."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "/speckit.tasks requires plan.md (required); phases are sequentially dependent."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Artifacts are markdown templates; no schema validation on structure or content."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Constitution and spec artifacts are kept under .specify/memory/ and .specify/specs/ as markdown."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Artifacts are committed to the repo and consulted across sessions."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "constitution.md plus per-agent context files (e.g. AGENTS.md, CLAUDE.md) are produced during init."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No built-in token or cost telemetry; the host agent handles any such reporting."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No framework-level run history beyond git history of the generated artifacts."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No telemetry collection disclosed or referenced; attribute is not meaningfully applicable to a set of slash commands and CLI scaffolder."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Three-tier template resolution: project overrides, presets, extensions, plus defaults."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "No first-class pre/post-phase hook system in core. Some community extensions (e.g. CI Guard) add gating behavior, but that is not a general lifecycle-hook mechanism."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit", "https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Extensions and presets function as reusable personas/workflows; --ai-skills flag registers SpecKit commands as agent skills."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Community extensions and presets catalog at speckit-community.github.io/extensions/."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Primary install is `uv tool install specify-cli` / `uvx` from the git repo (Python-packaged CLI). Air-gapped flows use `pip download`."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "One `uvx` command scaffolds a project via `specify init`."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Runs locally; no SpecKit-hosted service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "SpecKit itself requires no login; the backing AI agent may have its own auth."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Community extensions 'Worktrees' and 'Worktree Isolation' are advertised for parallel feature work; not mandatory."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.github.com/spec-kit/", "https://github.com/github/spec-kit", "https://github.com/github/spec-kit/blob/main/spec-driven.md"],
+      "comment": "Dedicated doc site, long-form spec-driven.md manifesto, blog launch post, extensive CLI help, extension catalog; gaps around telemetry/rollback."
+    },
+    "github-stars": {
+      "value": 89634,
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Captured via gh API on 2026-04-20."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/github/spec-kit", "https://github.com/github/spec-kit/releases"],
+      "comment": "Latest push 2026-04-20 and v0.7.3 released 2026-04-17 — well within 90 days."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/LinkedInLearning/spec-driven-development-with-github-spec-kit-4641001", "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"],
+      "comment": "LinkedIn Learning course repo and blog walkthroughs; community extensions directory also serves as usage examples."
+    },
+    "community-channel": {
+      "value": ["github-discussions"],
+      "source": ["https://github.com/github/spec-kit"],
+      "comment": "Routes to GitHub Community Discussions; no dedicated Discord/Slack mentioned."
+    }
+  }
 }

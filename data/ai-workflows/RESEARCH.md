@@ -158,7 +158,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 
 ## Initial Candidates
 
-- [ ] **SpecKit** - GitHub's spec-driven development toolkit, high-profile reference point in the space
+- [x] **SpecKit** - GitHub's spec-driven development toolkit, high-profile reference point in the space
 - [ ] **BMAD-METHOD** - "Breakthrough Method for Agile AI-Driven Development", established multi-agent agile framework with a large following
 - [ ] **OpenSpec** - OSS spec-driven framework, frequently referenced as the open alternative
 - [ ] **nWave** - https://github.com/nWave-ai/nWave
