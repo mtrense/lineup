@@ -25,6 +25,17 @@ export interface PercentageType {
   direction: "ascending" | "descending";
 }
 
+export interface DateType {
+  type: "date";
+  direction: "ascending" | "descending";
+  format?: "year" | "month-year" | "full";
+}
+
+export interface DateTimeType {
+  type: "datetime";
+  direction: "ascending" | "descending";
+}
+
 export interface RatingType {
   type: "rating";
   lower: number;
@@ -66,6 +77,8 @@ export type ValueType =
   | FilesizeType
   | DurationType
   | PercentageType
+  | DateType
+  | DateTimeType
   | "text"
   | "boolean"
   | RatingType

@@ -45,7 +45,7 @@ Easy, mechanical fixes. Just remove the unused symbols.
 
 ## Bucket 3 — `ValueType` union missing `date` / `datetime` members (TS2322, ×8)
 
-- **State:** todo
+- **State:** done (TS2322 errors on date/datetime literals cleared; `pnpm --dir app build` green, 181 tests pass)
 - **File with errors:** `app/src/lib/range-utils.test.ts` (lines 34, 35, 61, 62, 63, 64, 122, 447)
 - **Root cause:** `app/src/types/attributes.ts` defines the `ValueType` union (L63–74) without any `DateType` or `DateTimeType` members, yet:
   - `CLAUDE.md` documents both as first-class value types.
@@ -88,10 +88,10 @@ Easy, mechanical fixes. Just remove the unused symbols.
 
 ## Bucket 4 — Verification
 
-**State:** todo
+**State:** done
 
-1. Re-run `pnpm --dir app build` — expect clean `tsc -b` + successful `vite build`.
-2. Re-run `pnpm --dir app test` to make sure no behavior regressed when `ValueType` widened (the new date/datetime members might unmask missing cases elsewhere).
+1. `pnpm --dir app build` — clean `tsc -b` + successful `vite build`.
+2. `pnpm --dir app test` — 8 test files, 181 tests pass. No regressions; the `default` branches in `compare.ts` and the outer fallback in `ValueRenderer.tsx` absorbed the widened `ValueType` without exhaustiveness errors.
 
 ---
 
