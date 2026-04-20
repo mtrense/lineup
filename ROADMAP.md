@@ -344,14 +344,14 @@ Users comparing candidates currently have no way to tell how fresh the data is. 
 - Candidates without a `lastVerified` value (pre-existing data) render as `—` in that row, with no forced migration.
 
 ### Success Criteria
-- [ ] `CandidateFile` TypeScript interface extended with optional `lastVerified?: string` (ISO 8601 date).
-- [ ] `.claude/skills/gather-data/SKILL.md` updated so the skill writes/refreshes a top-level `lastVerified` (current date) whenever it saves a candidate file, in both `initial` and `refresh` modes — including any relevant cheatsheets, Phase 3 instructions, and rules sections.
-- [ ] `.claude/skills/add-candidate/SKILL.md` reviewed and, if it writes candidate JSON, updated to explicitly *omit* `lastVerified` on scaffold (so the row renders `—` until first research pass).
-- [ ] Comparison UI shows a "Last Verified" row as the first row of the General Information group, rendering the date per candidate.
-- [ ] Candidates with a missing/undefined `lastVerified` display `—` (em dash) in that row.
-- [ ] Existing candidate JSON files are **not** retroactively backfilled — they display `—` until their next gather-data pass.
-- [ ] CLAUDE.md updated to document the `lastVerified` field in the candidate file schema.
-- [ ] Existing UI behavior unaffected (sorting, filtering, highlighting continue to work on real attributes only — the new row is purely informational).
+- [x] `CandidateFile` TypeScript interface extended with optional `lastVerified?: string` (ISO 8601 date).
+- [x] `.claude/skills/gather-data/SKILL.md` updated so the skill writes/refreshes a top-level `lastVerified` (current date) whenever it saves a candidate file, in both `initial` and `refresh` modes — including any relevant cheatsheets, Phase 3 instructions, and rules sections.
+- [x] `.claude/skills/add-candidate/SKILL.md` reviewed and, if it writes candidate JSON, updated to explicitly *omit* `lastVerified` on scaffold (so the row renders `—` until first research pass).
+- [x] Comparison UI shows a "Last Verified" row as the first row of the General Information group, rendering the date per candidate.
+- [x] Candidates with a missing/undefined `lastVerified` display `—` (em dash) in that row.
+- [x] Existing candidate JSON files are **not** retroactively backfilled — they display `—` until their next gather-data pass.
+- [x] CLAUDE.md updated to document the `lastVerified` field in the candidate file schema.
+- [x] Existing UI behavior unaffected (sorting, filtering, highlighting continue to work on real attributes only — the new row is purely informational).
 
 ### Notes
 - **No migration.** The field is explicitly undefined for pre-existing candidates, per the user's decision that these dates can't be added retrospectively without fabricating them. `—` is the honest representation.
