@@ -1,5 +1,5 @@
 ---
-name: comparison-add-candidate
+name: add-candidate
 description: "Add a candidate stub to a Lineup comparison type: create data/<type>/<candidate>.json with empty values and register it in data/<type>/index.json. Use when declaring a new item to compare (e.g. adding PostgreSQL to databases) without researching its attribute values yet. Arguments: comparison type id (required), optional candidate id (auto-picked from RESEARCH.md when omitted), optional display name."
 disable-model-invocation: true
 model: sonnet
@@ -9,7 +9,7 @@ argument-hint: "<comparison-type> [candidate-id] [display-name]"
 
 # Comparison: Add Candidate
 
-You are adding a new candidate to an existing Lineup comparison type. This skill creates only the scaffold — attribute values are populated later via `/comparison-gather-data`. The separation keeps the commit boundary clean: declaring a candidate is a single small commit; researching its data is another.
+You are adding a new candidate to an existing Lineup comparison type. This skill creates only the scaffold — attribute values are populated later via `/gather-data`. The separation keeps the commit boundary clean: declaring a candidate is a single small commit; researching its data is another.
 
 ## Argument Parsing
 
@@ -24,11 +24,11 @@ If the comparison type id is missing, ask for it before proceeding. If only the 
 ## Prerequisites
 
 1. Read the project root `CLAUDE.md` to confirm this is a Lineup project.
-2. Confirm `data/<type>/` exists. If not, abort and suggest `/comparison-new-type`.
+2. Confirm `data/<type>/` exists. If not, abort and suggest `/new-type`.
 3. Read `data/<type>/RESEARCH.md` — in particular the **Scope** and **Initial Candidates** sections (needed for auto-pick AND for scope-fit checks under explicit mode).
 4. Read `data/<type>/attributes.json` — you need the full attribute id list for the scaffold.
 5. Read `data/<type>/index.json` — needed to detect already-scaffolded candidates.
-6. Under explicit mode only: confirm `data/<type>/<candidate>.json` does NOT already exist. If it does, abort and suggest `/comparison-gather-data <type> <candidate>` for a refresh instead.
+6. Under explicit mode only: confirm `data/<type>/<candidate>.json` does NOT already exist. If it does, abort and suggest `/gather-data <type> <candidate>` for a refresh instead.
 
 ## Auto-Pick (when candidate id is omitted)
 
@@ -69,7 +69,7 @@ Create the scaffold:
 }
 ```
 
-- `values` is intentionally empty. `/comparison-gather-data` fills it.
+- `values` is intentionally empty. `/gather-data` fills it.
 - Omit `icon` and `url` entirely (don't include as empty strings) if not provided.
 - Filename MUST match the candidate id exactly: `<candidate-id>.json`, lowercase, hyphens only.
 
@@ -85,7 +85,7 @@ Do NOT reorder existing entries.
 
 ### Update RESEARCH.md
 
-- **If the candidate is already listed** under **Initial Candidates** (e.g. `- [ ] PostgreSQL — reference open-source RDBMS`): leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/comparison-gather-data` when data is actually gathered, not here.
+- **If the candidate is already listed** under **Initial Candidates** (e.g. `- [ ] PostgreSQL — reference open-source RDBMS`): leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/gather-data` when data is actually gathered, not here.
 - **If the candidate is NOT listed** (explicit mode, scope-fit confirmed): append a new entry to the end of the **Initial Candidates** list using the format:
 
   ```
@@ -100,12 +100,12 @@ Present:
 - Path of the scaffold file created.
 - The new entry added to `data/<type>/index.json`.
 - RESEARCH.md status: either "already listed (untouched)" or "appended to Initial Candidates with `(added <date>)` suffix".
-- **Next step**: `/comparison-gather-data <type> <candidate-id>` to research and fill in attribute values.
+- **Next step**: `/gather-data <type> <candidate-id>` to research and fill in attribute values.
 
 No commit is created by this skill. Suggest the commit pattern the user should run after gathering data, so that declaration and initial research land in one commit:
 
 ```bash
-# After running /comparison-gather-data, commit with:
+# After running /gather-data, commit with:
 data(<type>): CANDIDATE initial <YYYY-MM-DD HH:MM>
 ```
 
@@ -117,9 +117,9 @@ Do NOT commit.
 
 ## Rules
 
-- Do NOT populate any `values` — that's `/comparison-gather-data`.
+- Do NOT populate any `values` — that's `/gather-data`.
 - Do NOT reorder entries in `data/<type>/index.json`; append only.
 - Do NOT modify `attributes.json`.
-- Do NOT tick an existing RESEARCH.md checkbox (`- [ ]` → `- [x]`); that's `/comparison-gather-data`'s job. The only RESEARCH.md edit this skill performs is appending a new `- [ ]` line for candidates not yet listed.
+- Do NOT tick an existing RESEARCH.md checkbox (`- [ ]` → `- [x]`); that's `/gather-data`'s job. The only RESEARCH.md edit this skill performs is appending a new `- [ ]` line for candidates not yet listed.
 - Filenames: lowercase, hyphens, no spaces, no underscores, no numeric prefixes.
 - If the JSON you write would break the project's build, abort and report which file is malformed before overwriting anything.

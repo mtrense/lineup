@@ -1,5 +1,5 @@
 ---
-name: comparison-gather-data
+name: gather-data
 description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
 disable-model-invocation: true
 model: opus
@@ -28,7 +28,7 @@ Select the next candidate that needs research from `data/<type>/index.json`, in 
 1. **Primary signal**: the candidate's `data/<type>/<id>.json` has an empty `values` object, OR is missing values for most attributes defined in `attributes.json` (rough threshold: fewer than half the attributes populated). These are the initial-mode candidates.
 2. **Secondary signal** (only when no primary candidates remain): RESEARCH.md has a `- [ ] <Name>` entry matching the candidate's display name or id, meaning the checkbox was never flipped. Treat as initial-mode.
 3. **Announce the pick** to the user: `"Auto-picked <candidate-id> — <N>/<M> attributes populated"`. Proceed in initial mode without further Socratic exchange (the user can interrupt if the pick is wrong).
-4. **Nothing to pick**: if every registered candidate has substantially complete values, report "all candidates appear fully researched" and stop. Suggest the user pass a candidate id explicitly to force a refresh, or scaffold a new candidate via `/comparison-add-candidate`.
+4. **Nothing to pick**: if every registered candidate has substantially complete values, report "all candidates appear fully researched" and stop. Suggest the user pass a candidate id explicitly to force a refresh, or scaffold a new candidate via `/add-candidate`.
 
 Refresh of an already-researched candidate always requires an explicit candidate id — auto-pick never runs refresh mode, to avoid churning fresh data.
 

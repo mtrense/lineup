@@ -1,6 +1,6 @@
 ---
-name: comparison-scaffold-type
-description: "Generate schema files for a Lineup comparison type from its existing RESEARCH.md: data/<type>/attributes.json, an empty data/<type>/index.json, and an entry in the top-level data/index.json. Run after /comparison-new-type once the user is satisfied with RESEARCH.md. Arguments: comparison type id (kebab-case, required)."
+name: scaffold-type
+description: "Generate schema files for a Lineup comparison type from its existing RESEARCH.md: data/<type>/attributes.json, an empty data/<type>/index.json, and an entry in the top-level data/index.json. Run after /new-type once the user is satisfied with RESEARCH.md. Arguments: comparison type id (kebab-case, required)."
 disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit
@@ -9,7 +9,7 @@ argument-hint: "<comparison-type-id>"
 
 # Comparison: Scaffold Type
 
-You are generating the machine-readable schema files for a Lineup comparison type based on its existing `RESEARCH.md`. This is the second step after `/comparison-new-type`, which drafts the research guide and leaves it for human review.
+You are generating the machine-readable schema files for a Lineup comparison type based on its existing `RESEARCH.md`. This is the second step after `/new-type`, which drafts the research guide and leaves it for human review.
 
 ## Argument Parsing
 
@@ -21,7 +21,7 @@ If the id is missing, not kebab-case, or the directory doesn't exist, abort and 
 ## Prerequisites
 
 1. Read `CLAUDE.md` at the project root to confirm this is a Lineup project and pick up local conventions (commit format, etc.).
-2. Confirm `data/<type>/RESEARCH.md` exists. If not, abort and suggest `/comparison-new-type <type>`.
+2. Confirm `data/<type>/RESEARCH.md` exists. If not, abort and suggest `/new-type <type>`.
 3. Confirm `data/<type>/attributes.json` does NOT already exist. If it does, abort — the user should edit it directly rather than have the skill overwrite. Do not overwrite.
 4. Read `data/index.json` — you will append one entry at the end, preserving existing entries and whitespace.
 5. Read `data/<type>/RESEARCH.md` end-to-end. Focus on:
@@ -107,7 +107,7 @@ Create as:
 }
 ```
 
-Empty — candidates are added via `/comparison-add-candidate`.
+Empty — candidates are added via `/add-candidate`.
 
 ### Update `data/index.json`
 
@@ -139,7 +139,7 @@ git commit -m "data(<type>): SCHEMA" \
 
 If RESEARCH.md has not been committed yet, remind the user to include it (either folded into this commit or as a prior `data(<type>): RESEARCH` commit, their preference).
 
-Remind the user that the next step is `/comparison-add-candidate <type> <candidate-id>` for each initial candidate they want to track.
+Remind the user that the next step is `/add-candidate <type> <candidate-id>` for each initial candidate they want to track.
 
 ## Git
 
@@ -149,7 +149,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 
 - Do NOT modify `RESEARCH.md` — it is the source of truth for this skill.
 - Do NOT invent attributes, groups, or tag values not present in RESEARCH.md.
-- Do NOT create candidate JSON files — that's `/comparison-add-candidate`.
+- Do NOT create candidate JSON files — that's `/add-candidate`.
 - JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files.
 - kebab-case for all `id` fields (comparison type, group, attribute, tag).
 - Match existing project style: indentation, attribute ordering within groups (generic → specific).

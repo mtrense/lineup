@@ -1,5 +1,5 @@
 ---
-name: comparison-new-type
+name: new-type
 description: "Draft data/<type>/RESEARCH.md for a new Lineup comparison type through Socratic scoping. Writes only the research guide so the user can iterate on scope, attributes, and sources before schema files are generated. Use when adding a new side-by-side comparison (databases, hosting providers, etc.) to a Lineup project. Arguments: comparison type id (kebab-case, required), optional free-text seed."
 disable-model-invocation: true
 model: opus
@@ -11,7 +11,7 @@ argument-hint: "<comparison-type-id> [free-text seed]"
 
 You are drafting the research guide for a new comparison type in a Lineup project. A comparison type lives under `data/<type>/`; this skill produces only the authoritative `RESEARCH.md` (scope, attributes, sources, assessment, initial candidates) so you and the user can collaborate on it before the structural JSON files are generated.
 
-Once RESEARCH.md is in a shape the user is happy with, they run `/comparison-scaffold-type <type>` to derive `attributes.json`, create the empty `index.json`, and register the type in the top-level `data/index.json`. Candidates are added later via `/comparison-add-candidate` and researched via `/comparison-gather-data`.
+Once RESEARCH.md is in a shape the user is happy with, they run `/scaffold-type <type>` to derive `attributes.json`, create the empty `index.json`, and register the type in the top-level `data/index.json`. Candidates are added later via `/add-candidate` and researched via `/gather-data`.
 
 ## Argument Parsing
 
@@ -25,7 +25,7 @@ If the id is missing or not kebab-case, ask the user to provide one before proce
 
 1. Read `CLAUDE.md` at the project root to confirm this is a Lineup project and to pick up local conventions (commit format, etc.).
 2. Read `data/index.json` to see existing comparison types and their shapes.
-3. Confirm `data/<type>/` does NOT already exist — if it does, abort and point the user to `/comparison-scaffold-type` (if RESEARCH.md exists but schema doesn't), `/comparison-add-candidate`, or direct editing.
+3. Confirm `data/<type>/` does NOT already exist — if it does, abort and point the user to `/scaffold-type` (if RESEARCH.md exists but schema doesn't), `/add-candidate`, or direct editing.
 4. Skim 1–2 existing `data/*/RESEARCH.md` files to internalize the in-project tone and depth before drafting a new one.
 
 ## Phase 1: Socratic Scoping (Interactive)
@@ -46,7 +46,7 @@ Cover these dimensions:
 
 ### Attribute Type Cheatsheet (for RESEARCH.md tables)
 
-Human labels to use in the `Type` column of the attribute tables. The `/comparison-scaffold-type` skill translates these into the machine schema; you don't need to write JSON here.
+Human labels to use in the `Type` column of the attribute tables. The `/scaffold-type` skill translates these into the machine schema; you don't need to write JSON here.
 
 | Label                        | Use for                                        |
 |------------------------------|------------------------------------------------|
@@ -77,7 +77,7 @@ Ask: "Ready to generate RESEARCH.md?" Only proceed on explicit confirmation.
 
 ## Phase 2: File Generation
 
-Generate **only** `data/<type>/RESEARCH.md`. Do NOT create `attributes.json`, do NOT create `index.json`, and do NOT touch the top-level `data/index.json` — those belong to `/comparison-scaffold-type` and should wait until RESEARCH.md is finalized.
+Generate **only** `data/<type>/RESEARCH.md`. Do NOT create `attributes.json`, do NOT create `index.json`, and do NOT touch the top-level `data/index.json` — those belong to `/scaffold-type` and should wait until RESEARCH.md is finalized.
 
 ### `data/<type>/RESEARCH.md`
 
@@ -98,9 +98,9 @@ Match the tone and depth of existing `data/*/RESEARCH.md` files in the project.
 Present:
 - Path of the created file: `data/<type>/RESEARCH.md`.
 - A compact recap of the scope (included / excluded), attribute groups, and initial candidates so the user can eyeball the draft without re-reading the whole file.
-- **Next step**: collaborate with the user to refine RESEARCH.md as needed. Once it reads well, run `/comparison-scaffold-type <type>` to generate `attributes.json`, the empty `index.json`, and the entry in `data/index.json`.
+- **Next step**: collaborate with the user to refine RESEARCH.md as needed. Once it reads well, run `/scaffold-type <type>` to generate `attributes.json`, the empty `index.json`, and the entry in `data/index.json`.
 
-Do NOT print a commit command here — the type is not yet usable (no schema, not registered in `data/index.json`). The commit pattern is `/comparison-scaffold-type`'s concern.
+Do NOT print a commit command here — the type is not yet usable (no schema, not registered in `data/index.json`). The commit pattern is `/scaffold-type`'s concern.
 
 ## Git
 
@@ -108,7 +108,7 @@ Do NOT commit.
 
 ## Rules
 
-- Do NOT create `attributes.json`, `index.json`, or modify the top-level `data/index.json` — those belong to `/comparison-scaffold-type`.
+- Do NOT create `attributes.json`, `index.json`, or modify the top-level `data/index.json` — those belong to `/scaffold-type`.
 - Do NOT invent candidates the user didn't discuss; keep the initial list aligned with Phase 1.
 - kebab-case for the comparison type id.
 - Match existing project style: tone and depth in RESEARCH.md.
