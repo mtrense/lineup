@@ -102,7 +102,7 @@ Create as:
 }
 ```
 
-Empty — candidates are added via `/add-candidate`.
+Empty — candidates are added via `/add-candidates`.
 
 ### Update `data/index.json`
 
@@ -139,7 +139,7 @@ git commit -m "data(<type>): SCHEMA" \
 
 If RESEARCH.md has not been committed yet, remind the user to include it (either folded into this commit or as a prior `data(<type>): RESEARCH` commit, their preference).
 
-Remind the user that the next step is `/add-candidate <type> <candidate-id>` for each initial candidate they want to track.
+Remind the user that the next step is `/add-candidates <type> <candidate-id>` for each initial candidate they want to track.
 
 ## Git
 
@@ -150,7 +150,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT ask the user clarifying questions. Resolve every field from RESEARCH.md plus the defaults in Phase 1; surface judgment calls in the Phase 3 summary so the user can edit the files directly. The only exceptions are the hard precondition failures listed below (missing id, missing directory, missing RESEARCH.md, existing `attributes.json`, malformed Attribute Groups section).
 - Do NOT modify `RESEARCH.md` — it is the source of truth for this skill.
 - Do NOT invent attributes, groups, or tag values not present in RESEARCH.md.
-- Do NOT create candidate JSON files — that's `/add-candidate`.
+- Do NOT create candidate JSON files — that's `/add-candidates`.
 - JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files.
 - kebab-case for all `id` fields (comparison type, group, attribute, tag).
 - Match existing project style: indentation, attribute ordering within groups (generic → specific).
