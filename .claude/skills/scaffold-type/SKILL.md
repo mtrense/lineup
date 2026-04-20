@@ -11,6 +11,8 @@ argument-hint: "<comparison-type-id>"
 
 You are generating the machine-readable schema files for a Lineup comparison type based on its existing `RESEARCH.md`. This is the second step after `/new-type`, which drafts the research guide and leaves it for human review.
 
+This skill is **non-interactive**: it translates RESEARCH.md into the schema files using defensible defaults and writes them directly. Anything that required a judgment call (ambiguous direction, empty tag set, unrecognized type label) is surfaced in the Phase 3 summary so the user can edit the files in place. The only conditions that stop execution mid-flight are hard precondition failures (missing `data/<type>/`, missing RESEARCH.md, malformed Attribute Groups section, `attributes.json` already exists).
+
 ## Argument Parsing
 
 `$ARGUMENTS` format:
@@ -36,7 +38,7 @@ Walk every attribute table in RESEARCH.md and translate each row:
 
 1. **Group**: the `### <N>. Group Name` heading becomes a `{ id, name, expandedByDefault, attributes }` entry. `id` is kebab-case derived from the group name. First 1–2 groups get `expandedByDefault: true`; deeper groups default to `false`.
 2. **Attribute**: each table row becomes `{ id, name, valueType, description? }`. `id` is kebab-case derived from the attribute name.
-3. **ValueType**: translate the human label in RESEARCH.md's `Type` column into the machine form using the cheatsheet below. For ranked types (integer, decimal, percentage, filesize, duration, date, datetime, rating), infer `direction` from the research note (e.g. "higher is better" → `"ascending"`, "lower is better" → `"descending"`, "neutral" → `"neutral"`). If the note is ambiguous, flag the attribute to the user at the convergence checkpoint and ask which direction applies.
+3. **ValueType**: translate the human label in RESEARCH.md's `Type` column into the machine form using the cheatsheet below. For ranked types (integer, decimal, percentage, filesize, duration, date, datetime, rating), infer `direction` from the research note (e.g. "higher is better" → `"ascending"`, "lower is better" → `"descending"`, "neutral" → `"neutral"`). If the note is ambiguous, default to `"ascending"` for `integer`/`decimal`/`percentage`/`rating`/`date`/`datetime` and `"descending"` for `filesize`/`duration` (smaller/faster is the more common preference), and surface the attribute in the Phase 3 summary so the user can flip it.
 4. **Tag sets**: when a tag attribute's research note lists the expected tags (e.g. "tags: MIT, Apache-2.0, GPL-3.0"), seed them as `{ id: "...", value: "...", color: "..." }`. `id` is kebab-case, `value` is the display label, and colors are reasonable picks from `blue`, `green`, `red`, `orange`, `purple`, `gray`. Set `defaultColor: "gray"`. If no tags are listed, seed `tags: []` and note this in the Phase 3 summary so the user can add tags.
 5. **Rating ranges**: default to `{ "lower": 1, "upper": 5, "direction": "ascending", "symbols": { "empty": "☆", "full": "★" } }` unless RESEARCH.md specifies otherwise.
 
@@ -62,14 +64,7 @@ Walk every attribute table in RESEARCH.md and translate each row:
 
 Rating `symbols.half` is optional for half-stars. Tag IDs are kebab-case; the `value` is the display label.
 
-### Convergence Checkpoint
-
-Before writing files, present a compact preview:
-- Comparison type id + display name + one-line description (derived from RESEARCH.md)
-- For each group: id, name, `expandedByDefault`, list of attribute ids → resolved `valueType`
-- Any attributes that needed judgment calls (ambiguous direction, tag set seeded from notes, missing tags)
-
-Ask: "Ready to generate the files?" Only proceed on explicit confirmation.
+Track every judgment call you make (defaulted direction, empty tag set, fallback group/attribute id, unrecognized type label coerced to `"text"`) in a running list — it becomes the **Defaults to review** section of the Phase 3 summary. Do NOT pause to ask the user; proceed straight to Phase 2.
 
 ## Phase 2: File Generation
 
@@ -123,10 +118,15 @@ Append a single entry at the end of the `comparisons` (or top-level) array, pres
 
 ## Phase 3: Summary
 
-Present:
-- Tree of created files under `data/<type>/`.
+Present (concise — the user did not participate in the decisions, so the summary is their first view of the result):
+
+- Tree of created files under `data/<type>/`, plus the resolved comparison `name` and `description` inline (so the user sees the chosen wording without opening the file).
 - Confirmation that `data/index.json` was updated.
-- Any attributes where tag sets were left empty or direction needed a user call.
+- **Defaults to review** — only when defaults actually applied. Examples (omit the section entirely if none apply):
+  - Direction defaulted because the research note was ambiguous (list each `<group-id>.<attribute-id>` and the chosen direction).
+  - Tag set seeded as empty `[]` (list each `<group-id>.<attribute-id>`).
+  - Group/attribute id was derived from a heading or label that produced an awkward kebab-case (e.g. unicode characters dropped).
+  - Type label in RESEARCH.md was unrecognized and fell back to `"text"` (list each occurrence).
 - The expected commit command, multi-`-m` format (per the project's CLAUDE.md):
 
 ```bash
@@ -147,6 +147,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 
 ## Rules
 
+- Do NOT ask the user clarifying questions. Resolve every field from RESEARCH.md plus the defaults in Phase 1; surface judgment calls in the Phase 3 summary so the user can edit the files directly. The only exceptions are the hard precondition failures listed below (missing id, missing directory, missing RESEARCH.md, existing `attributes.json`, malformed Attribute Groups section).
 - Do NOT modify `RESEARCH.md` — it is the source of truth for this skill.
 - Do NOT invent attributes, groups, or tag values not present in RESEARCH.md.
 - Do NOT create candidate JSON files — that's `/add-candidate`.
