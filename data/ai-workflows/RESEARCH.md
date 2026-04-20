@@ -162,7 +162,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **BMAD-METHOD** - "Breakthrough Method for Agile AI-Driven Development", established multi-agent agile framework with a large following
 - [x] **OpenSpec** - OSS spec-driven framework, frequently referenced as the open alternative
 - [x] **nWave** - https://github.com/nWave-ai/nWave
-- [ ] **Tessl** - commercial spec-first AI development platform
+- [x] **Tessl** - commercial spec-first AI development platform
 - [ ] **Agent-OS** - structured multi-agent workflow framework
 - [ ] **Kiro** - AWS's spec-driven dev assistant
 - [ ] **CrewAI** - popular multi-agent orchestration, commonly applied to dev workflows

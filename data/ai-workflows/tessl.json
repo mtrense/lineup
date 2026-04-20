@@ -1,5 +1,279 @@
 {
   "name": "Tessl",
   "description": "commercial spec-first AI development platform",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Agent enablement platform that pairs a spec-driven framework with a community registry of reusable skills and context tiles for AI coding agents.",
+      "source": ["https://tessl.io/", "https://docs.tessl.io"]
+    },
+    "website": {
+      "value": "https://tessl.io/",
+      "source": ["https://tessl.io/"]
+    },
+    "repository": {
+      "value": "https://github.com/tesslio",
+      "source": ["https://github.com/tesslio"],
+      "comment": "GitHub org; the core CLI (tesslio/cli) ships under a proprietary license, while individual tiles such as tesslio/spec-driven-development-tile are MIT-licensed."
+    },
+    "creator": {
+      "value": "Tessl (UK-based startup founded by Guy Podjarny, Snyk founder)",
+      "source": [
+        "https://tessl.io/blog/announcing-tessl-the-ai-native-development-startup/",
+        "https://techcrunch.com/2024/11/14/tessl-raises-125m-at-at-500m-valuation-to-build-ai-that-writes-and-maintains-code/"
+      ]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": [
+        "https://tessl.io/blog/tessl-launches-spec-driven-framework-and-registry/",
+        "https://github.com/tesslio/cli"
+      ],
+      "comment": "Company announced July 2024; public products (Spec Registry open beta and Framework closed beta) launched 2025-09-23. CLI repo created 2025-09-12."
+    },
+    "latest-release": {
+      "value": "2026-03",
+      "source": [
+        "https://github.com/tesslio/cli",
+        "https://github.com/tesslio/spec-driven-development-tile"
+      ],
+      "comment": "No tagged releases on CLI; latest push to tesslio/cli 2026-03-05, latest push to spec-driven-development-tile 2026-03-30. Verified 2026-04-21."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": [
+        "https://raw.githubusercontent.com/tesslio/cli/main/LICENSE.md",
+        "https://github.com/tesslio/spec-driven-development-tile/blob/main/LICENSE"
+      ],
+      "comment": "Core Tessl CLI is proprietary (\"Copyright 2025 Tessl. All rights reserved\"). The Framework is closed-beta proprietary. Individual tiles such as the spec-driven-development-tile are published under MIT, but the platform itself is proprietary."
+    },
+    "pricing-model": {
+      "value": ["freemium"],
+      "source": ["https://tessl.io/", "https://tessl.io/blog/tessl-launches-spec-driven-framework-and-registry/"],
+      "comment": "Landing page advertises \"Get started for free\". Spec Registry is in open beta (free); Framework is in closed beta (signup required). No public paid tier pricing published as of 2026-04-21."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tesslio/cli/main/LICENSE.md"],
+      "comment": "Core CLI and Framework are proprietary. Some methodology tiles are OSS (MIT) but the platform as a whole is not OSI-open-source."
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "planning", "implementation", "testing", "review"],
+      "source": [
+        "https://github.com/tesslio/spec-driven-development-tile",
+        "https://tessl.io/blog/how-tessls-products-pioneer-spec-driven-development/"
+      ],
+      "comment": "spec-driven-development tile documents four phases (Requirement Gathering, Stakeholder Approval, Implementation, Review). Blog describes the Framework as guiding agents through planning, specification, and implementation with testing. Combined, the workflow covers discovery/requirement gathering, spec authoring, planning, implementation with linked tests, and review."
+    },
+    "methodology-style": {
+      "value": ["spec-centric", "spec-driven"],
+      "source": [
+        "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+        "https://tessl.io/blog/how-tessls-products-pioneer-spec-driven-development/"
+      ],
+      "comment": "Martin Fowler's SDD survey describes Tessl as the only one of the three tools (Kiro, Spec-Kit, Tessl) that aspires to spec-anchored and spec-as-source approaches; specs are the primary artifact and guide both agents and code generation."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Rules like spec-before-code and one-question-at-a-time are set to \"Always Apply\"; the workflow prescribes a strict order with explicit stakeholder approval before implementation."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"],
+      "comment": "Structured phases and explicit approval gate, but fewer artifact types than BMAD or Agent-OS. Martin Fowler's article positions Tessl as lighter-weight than spec-kit in file count."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://docs.tessl.io"],
+      "comment": "CLI plus MCP server automates tile installation, spec validation scripts, and context delivery to agents; users invoke via natural-language prompt rather than copy-pasting."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Explicit Stakeholder Approval phase between spec authoring and implementation."
+    },
+    "approval-gates": {
+      "value": ["spec"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Rule \"spec-before-code\": \"Never begin implementation without an approved spec.\" No mandatory plan/tasks/deploy approval is documented."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://tessl.io/blog/how-tessls-products-pioneer-spec-driven-development/"],
+      "comment": "Stakeholder approval on specs is required by default; described as a human-in-the-loop system."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Phase-level approval on the spec; within a phase the agent runs autonomously. Mandatory spec approval pushes below the midpoint of 3."
+    },
+    "rollback-support": {
+      "value": null,
+      "source": [],
+      "comment": "No built-in rollback/undo mechanism documented in the CLI, framework, or spec-driven-development tile. Not set explicitly by the platform as of research date."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "cursor", "codex", "copilot-chat", "other"],
+      "source": ["https://docs.tessl.io", "https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "docs.tessl.io lists Claude Code, Cursor, Gemini, Codex, Copilot CLI, and Copilot in VS Code. Tessl positions itself as agent-agnostic via MCP; \"other\" captures Gemini which lacks a dedicated tag."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only"],
+      "source": ["https://docs.tessl.io", "https://github.com/tesslio/cli"],
+      "comment": "CLI-first; VS Code integration via Copilot-in-VSCode. No dedicated JetBrains/Neovim extension documented."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://docs.tessl.io", "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"],
+      "comment": "Works with any MCP-compatible agent; no model lock-in."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"],
+      "comment": "CLI doubles as an MCP server; tile files are consumed by the agent's MCP client."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml", "json"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Specs are .spec.md (Markdown with YAML frontmatter); tile metadata and tessl.json configuration are JSON."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks", "test-plans"],
+      "source": [
+        "https://github.com/tesslio/spec-driven-development-tile",
+        "https://tessl.io/blog/how-tessls-products-pioneer-spec-driven-development/"
+      ],
+      "comment": "Core artifacts are specs (.spec.md) with linked tests ([@test]); the Framework also produces a plan that users review before execution. Tasks are derived from the plan/spec."
+    },
+    "project-layout": {
+      "value": ".tessl/ holds installed tile files and rules (auto-aggregated into RULES.md); specs/ holds .spec.md files with YAML frontmatter and [@test] links; tessl.json is the project config.",
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://github.com/cameronsjo/spec-compare"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Specs live alongside source code in the repository and serve as \"long-term memory.\""
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "README shows Python and TypeScript examples; targets use glob patterns to any file type."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "linters", "test-gates", "manual-approval", "ci-checks"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Rules phrased as instructions to the agent; validate-specs.sh and check-spec-links.sh act as linters; [@test] links tie specs to test gates; stakeholder approval is manual; GitHub Actions workflows (tesslio/setup-tessl) run lint/skill-review/version-check on PRs."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Rule \"spec-before-code\" with Always Apply = Yes explicitly refuses to advance to implementation without an approved spec."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "scripts/validate-specs.sh validates required YAML frontmatter and structure; scripts/check-spec-links.sh validates that [@test] targets exist."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://docs.tessl.io"],
+      "comment": "Specs and tile rules live as Markdown (and an auto-aggregated RULES.md) in the repo; no vector DB or knowledge graph in the core workflow."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Specs and tile context persist in the repo across sessions and agents."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": ".tessl/ directory, tessl.json, and auto-generated RULES.md serve as project-scoped context files."
+    },
+    "cost-tracking": {
+      "value": null,
+      "source": [],
+      "comment": "No token/cost tracking is documented for the CLI or Framework as of research date."
+    },
+    "run-history": {
+      "value": null,
+      "source": [],
+      "comment": "No structured run-history or trace feature documented in public materials. Framework is in closed beta, so internal observability may exist but is not publicly confirmed."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": [],
+      "comment": "Telemetry disclosure and opt-out controls not documented in the public docs reviewed."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://tessl.io/registry"],
+      "comment": "Users can author their own tiles (skills, rules, docs) and publish to the registry or keep them local; specs are user-authored templates by design."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "No documented lifecycle-event hook API. Rules can be conditionally applied (Always Apply: No) but that is not a user-code hook."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Tiles explicitly define reusable Skills (requirement-gathering, spec-writer, spec-verification, work-review) and users can create their own via the tile-creator tile."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://tessl.io/registry", "https://tessl.io/blog/tessl-launches-spec-driven-framework-and-registry/"],
+      "comment": "Tessl Spec Registry is a public package manager hosting 10,000+ versioned skills and usage specs."
+    },
+    "install-mechanism": {
+      "value": ["npm", "shell-script"],
+      "source": ["https://tessl.io/", "https://github.com/tesslio/cli", "https://github.com/tesslio/homebrew-tap"],
+      "comment": "Primary install: curl -fsSL https://get.tessl.io | sh, or npx @tessl/cli. A Homebrew tap (tesslio/homebrew-tap) also exists."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "First-run is `tessl init` then `tessl install tessl-labs/spec-driven-development`; completes in under 5 minutes."
+    },
+    "self-hosted": {
+      "value": false,
+      "source": ["https://tessl.io/registry", "https://docs.tessl.io"],
+      "comment": "CLI runs locally but depends on the hosted Tessl Spec Registry for tile installation. No self-hosted registry option documented."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Installing tiles via the CLI does not document an account requirement; open-beta registry appears to allow anonymous reads. The Framework is in closed beta and requires a signup (Typeform) for access, but the core registry/CLI workflow does not."
+    },
+    "git-worktree-support": {
+      "value": null,
+      "source": [],
+      "comment": "No documented git worktree integration in CLI or framework materials reviewed."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.tessl.io", "https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Dedicated docs site, detailed tile READMEs with workflow diagrams, nine eval scenarios, and a public registry with 10k+ specs. Framework itself is closed beta so public docs are thinner there."
+    },
+    "github-stars": {
+      "value": 60,
+      "source": ["https://github.com/tesslio/cli"],
+      "comment": "Star count on the primary repository tesslio/cli as of 2026-04-21. The spec-driven-development-tile has 22 additional stars; other tiles/skills are in the low single digits."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/tesslio/cli", "https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Latest push to tesslio/cli 2026-03-05; tesslio/spec-driven-development-tile 2026-03-30; tesslio/good-oss-citizen 2026-04-19. All within 90 days of 2026-04-21."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/tesslio/spec-driven-development-tile", "https://tessl.io/registry"],
+      "comment": "Nine eval scenarios in the spec-driven-development tile; README demonstrates combining methodology tile with library tiles (Quarkus). Registry holds 10k+ usage examples."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://github.com/tesslio/spec-driven-development-tile"],
+      "comment": "Tessl Discord linked from the tile README: https://discord.com/invite/jbb2vHnHZQ"
+    }
+  }
 }
