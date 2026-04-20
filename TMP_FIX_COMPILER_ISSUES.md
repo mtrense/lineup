@@ -37,25 +37,9 @@ Easy, mechanical fixes. Just remove the unused symbols.
 
 ## Bucket 2 — `vi.fn()` inferred as untyped `Mock` in `FilterPanel.test.tsx` (TS2322, ×18)
 
-- **State:** todo
+- **State:** done (TS2322 errors on `mockOnFilterChange` cleared; `pnpm --dir app build` now fails only on Bucket 3; 181 tests pass)
 - **File:** `app/src/components/FilterPanel.test.tsx`
-- **Lines:** 97, 132, 165, 190, 212, 246, 275, 318, 363, 395, 425, 452, 475, 511, 590, 629 (all instances where `mockOnFilterChange` is passed as `onFilterChange`)
-- **Root cause:** L14 declares
-  ```ts
-  let mockOnFilterChange: ReturnType<typeof vi.fn>;
-  ```
-  With current vitest type definitions, `ReturnType<typeof vi.fn>` resolves to `Mock<Procedure | Constructable>`, which TS refuses to assign to the typed prop `onFilterChange: (state: FilterState) => void` (`FilterPanel.tsx:64`).
-- **Fix (preferred):** Parameterize the mock with the expected call signature so the declared type matches the prop.
-  ```ts
-  let mockOnFilterChange: Mock<(state: FilterState) => void>;
-  ```
-  (Import `Mock` from `vitest`.) Assignment at L82 stays `mockOnFilterChange = vi.fn();` — `vi.fn()` will infer `Mock<() => void>` which is assignable to the broader parameterized type, but if TS complains, use `vi.fn<(state: FilterState) => void>()` to pin the signature.
-- **Alternative fix:** Change the declaration to the raw callback type and drop the `ReturnType<…>` wrapper entirely:
-  ```ts
-  let mockOnFilterChange: (state: FilterState) => void;
-  ```
-  This loses mock-introspection helpers (`.mock.calls`, etc.). Only choose this if those helpers are never used in the file — grep before deciding.
-- **Scope note:** Only `mockOnFilterChange` needs the change; the other locally-typed mocks in the file already compile.
+- **Fix applied:** Added `type Mock` to the `vitest` import and changed the declaration from `ReturnType<typeof vi.fn>` to `Mock<(state: FilterState) => void>`. Assignment `mockOnFilterChange = vi.fn();` infers fine against the parameterized type.
 
 ---
 

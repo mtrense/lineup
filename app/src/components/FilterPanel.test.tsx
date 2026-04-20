@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
@@ -11,7 +11,7 @@ import {
 import type { AttributesFile, CandidateFile } from "@/types";
 
 describe("FilterPanel - Range Filter State Management", () => {
-  let mockOnFilterChange: ReturnType<typeof vi.fn>;
+  let mockOnFilterChange: Mock<(state: FilterState) => void>;
 
   const mockAttributes: AttributesFile = {
     name: "Test Comparison",
