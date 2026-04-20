@@ -1,5 +1,256 @@
 {
   "name": "Agent-OS",
-  "description": "structured multi-agent workflow framework",
-  "values": {}
+  "description": "Standards-injection framework that captures codebase conventions and enhances spec-driven AI development",
+  "url": "https://buildermethods.com/agent-os",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Lightweight system that discovers, documents, and injects codebase standards into AI coding agents, and enhances spec-driven workflows by shaping plan-mode prompts; v3 deliberately defers spec writing, task breakdown, and orchestration to the host agent.",
+      "source": ["https://github.com/buildermethods/agent-os", "https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"]
+    },
+    "website": {
+      "value": "https://buildermethods.com/agent-os",
+      "source": ["https://github.com/buildermethods/agent-os"]
+    },
+    "repository": {
+      "value": "https://github.com/buildermethods/agent-os",
+      "source": ["https://github.com/buildermethods/agent-os"]
+    },
+    "creator": {
+      "value": "Brian Casel (Builder Methods)",
+      "source": ["https://github.com/buildermethods/agent-os"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://github.com/buildermethods/agent-os/releases"],
+      "comment": "v1.1 tagged 2025-07-29; CHANGELOG references 'original release in mid-2025'."
+    },
+    "latest-release": {
+      "value": "2026-01",
+      "source": ["https://github.com/buildermethods/agent-os/releases"],
+      "comment": "v3.0.0 published 2026-01-20 (verified via gh API on 2026-04-21)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/buildermethods/agent-os"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/buildermethods/agent-os", "https://buildermethods.com/agent-os"],
+      "comment": "Framework is free/OSS. Builder Methods Pro is a paid community/support membership but is not required to use Agent OS."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"]
+    },
+    "covered-phases": {
+      "value": ["architecture", "planning", "spec"],
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "v3 commands: plan-product (mission/roadmap/tech-stack ≈ architecture), shape-spec (planning + saves spec to agent-os/specs/), plus discover/inject/index-standards. Implementation, orchestration, and explicit testing phases were retired in v3 and are deferred to the host agent."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "harness-centric"],
+      "source": ["https://github.com/buildermethods/agent-os", "https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Self-described as enhancing spec-driven development; in practice v3 is a thin harness of slash commands and shell scripts that inject standards into the host agent's plan mode."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "v2.1 changelog explicitly states 'use as much or as little of it as you want' as a core principle; phases are independently invokable."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "v3 deliberately stripped down — verifications, per-task documentation, and the Roles system were removed; standards files plus optional spec/plan are the primary artifacts."
+    },
+    "mechanization-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Shell install scripts plus slash commands wrap each phase, but the user invokes commands one at a time; no end-to-end runner."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "shape-spec uses AskUserQuestion-style clarifying loops; phases run on user invocation, so review naturally happens between commands."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan"],
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "shape-spec → write-spec progression surfaces requirements/spec for user review; not enforced as hard gates, but the workflow expects user to read before advancing."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "v3 explicitly retired implementation/orchestration phases; no end-to-end pipeline."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "User runs each phase command and reviews the output; the agent does the work within a phase but the user drives transitions."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No documented revert mechanism; users rely on git."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "cursor", "other"],
+      "source": ["https://github.com/buildermethods/agent-os", "https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "README lists 'Claude Code, Cursor, Antigravity, and other AI tools'. Claude Code has the deepest integration (Skills + subagents config). 'other' covers Antigravity and any plan-mode-capable agent."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Distributed via shell scripts and slash commands; editor integrations come from the underlying agent."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Works with any agent that exposes plan mode and slash commands; not bound to a model."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "No MCP server or client integration referenced in v3 changelog or README."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml"],
+      "source": ["https://github.com/buildermethods/agent-os", "https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Standards, specs, and plans are markdown; config.yml and v3 index.yml are YAML."
+    },
+    "artifacts-covered": {
+      "value": ["architecture", "roadmap", "specs", "plans"],
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "plan-product produces mission/tech-stack/roadmap; shape-spec produces requirements/plan saved into the spec folder. Standards files don't map cleanly to any tag — they are the framework's distinguishing artifact but not in the enum."
+    },
+    "project-layout": {
+      "value": "Base install at ~/agent-os/ (profiles, commands, scripts, config.yml). Per-project install creates agent-os/ at repo root with standards, commands, config.yml, and specs/<feature>/ for shaped specs.",
+      "source": ["https://github.com/buildermethods/agent-os", "https://buildermethods.com/agent-os/installation"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Per-project agent-os/ folder is intended to be committed alongside source code."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "README: 'Any language, any framework'. Profiles such as 'rails' are optional flavors."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional"],
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Standards are injected into the agent's context as prompt text; no schema validation, hooks, or CI gates ship with the framework."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Explicit design principle is that phases are independently usable in any order or skipped entirely."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "v2.1 retired the spec-verifier subagent from the default flow; markdown and YAML artifacts are not schema-validated."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Standards, specs, and plans live as markdown under the project's agent-os/ directory."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Files are committed to the repo and re-injected on each session."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Standards files function as project-scoped context; v3 /inject-standards can also bake them into Claude Code Skills/subagent prompts."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No token or cost telemetry; the host agent handles any such reporting."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No structured run log beyond git history of artifacts and the host agent's own transcripts."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No telemetry collection mentioned in repo or docs; attribute is not meaningfully applicable to a set of shell scripts and prompt files."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Standards and profiles are entirely user-defined; the sync-to-profile script promotes per-project standards back to a base profile."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No pre/post-phase lifecycle hook system documented."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "v2.1 retired the Roles system and v3 retired the orchestration phase entirely. The framework integrates with Claude Code Skills/subagents (via /inject-standards) but does not define its own personas."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No public marketplace or shared template repository; profiles are local to a base install."
+    },
+    "install-mechanism": {
+      "value": ["shell-script"],
+      "source": ["https://buildermethods.com/agent-os/installation", "https://github.com/buildermethods/agent-os"],
+      "comment": "Base install: git clone the repo to ~/agent-os/. Per-project: run ~/agent-os/scripts/project-install.sh from the project root."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://buildermethods.com/agent-os/installation"],
+      "comment": "Two commands (clone + project-install.sh) get a project initialized."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Runs entirely on the user's machine; no Agent-OS-hosted service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No vendor account required; the underlying AI agent may have its own auth."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "No worktree-specific tooling or documentation found in the repo or docs."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://buildermethods.com/agent-os", "https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md"],
+      "comment": "Dedicated docs site with installation guide, video walkthroughs from the author, and an unusually detailed changelog explaining design intent across major versions; gaps around hooks/telemetry/MCP are minor because those features genuinely don't exist."
+    },
+    "github-stars": {
+      "value": 4347,
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "Captured via gh API on 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://github.com/buildermethods/agent-os/commits/main"],
+      "comment": "Latest commit 2026-01-20 (v3 release); 91 days before the 2026-04-21 research date — just outside the 90-day threshold. Borderline; project may resume activity at any time."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://buildermethods.com/agent-os", "https://youtube.com/@briancasel"],
+      "comment": "Author publishes video walkthroughs on YouTube and detailed usage guides on buildermethods.com; community forks (e.g. Mugiwara555343/cursor-coding-agent-os) demonstrate concrete adoption."
+    },
+    "community-channel": {
+      "value": ["github-discussions"],
+      "source": ["https://github.com/buildermethods/agent-os"],
+      "comment": "GitHub Discussions enabled on the repo. Builder Methods Pro is a paid community membership rather than an open public channel."
+    }
+  }
 }
