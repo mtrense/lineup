@@ -57,7 +57,7 @@
   - Only the first group gets the row: when a test fixture has two groups, the second group does not emit a "Last Verified" row.
 - **Commit Message:** `feat(ui): show Last Verified row inside the General Information group`
 
-[ ] 3. Teach `/gather-data` to stamp `lastVerified` on every candidate write
+[x] 3. Teach `/gather-data` to stamp `lastVerified` on every candidate write
 - **Files:** `.claude/skills/gather-data/SKILL.md`
 - **Description:** Update the `gather-data` skill so that every time it writes `data/<type>/<candidate>.json`, it also sets the top-level `lastVerified` field to today's date in `YYYY-MM-DD` form. This applies to both `initial` and `refresh` modes. Concretely:
   - In **Phase 3: Write the Candidate File**, add a step (before or after the "Preserve top-level metadata" bullet) instructing the skill to fetch today's date via `Bash` (`date +%Y-%m-%d`) and write it as `lastVerified` at the top level of the JSON, next to `name`/`description`/`icon`/`url` — explicitly above the `values` object for readability.

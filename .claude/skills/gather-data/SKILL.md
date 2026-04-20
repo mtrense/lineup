@@ -88,9 +88,25 @@ For each in-scope attribute, in the order declared by `attributes.json`:
 
 Write the full updated `data/<type>/<candidate>.json`:
 
+- Fetch today's date via `Bash` (`date +%Y-%m-%d`) and set `lastVerified` at the top level (alongside `name`/`description`/`icon`/`url`, above `values`). Do this in both `initial` and `refresh` modes.
 - Preserve top-level metadata (`name`, `description`, `icon`, `url`) unchanged unless the user explicitly asked for a refresh of those too.
 - Order entries inside `values` to match the attribute order in `attributes.json` (improves diffs and readability).
 - Keep JSON strictly valid: double quotes, no trailing commas, no comments.
+
+### Top-level candidate file shape (for reference)
+
+```json
+{
+  "name": "...",
+  "description": "...",
+  "icon": "...",
+  "url": "...",
+  "lastVerified": "YYYY-MM-DD",
+  "values": { ... }
+}
+```
+
+`lastVerified` is written by this skill on every pass. `description`, `icon`, and `url` are optional.
 
 ### RESEARCH.md checkbox (initial mode only)
 
@@ -101,6 +117,7 @@ If the candidate appears in `RESEARCH.md`'s **Initial Candidates** section with 
 Present to the user:
 
 - Mode used (`initial` / `refresh`).
+- `lastVerified: <date>` — confirm the date stamp that was written.
 - Count of attributes populated vs. set to `null` (with a short rationale for each `null`).
 - Any `comment`s worth the user's attention (contested values, tag gaps, time-sensitive notes).
 - The exact commit command, using the project's multi-`-m` format (per CLAUDE.md) and Lineup's candidate commit convention:
@@ -131,3 +148,4 @@ Do NOT commit. The user will review and run the commit command.
 - Respect RESEARCH.md's Assessment Guidelines literally. When a guideline says "mark `true` only if X", do not round up.
 - When refreshing, never silently drop a previously-recorded value. If you can't verify it, keep it and add a `comment` noting the verification failure, or replace with the new value and note the change.
 - Stop and ask if a Primary Source contradicts itself or another Primary Source — surface it to the user instead of picking a side arbitrarily.
+- Always set `lastVerified` to today's date (day precision, `YYYY-MM-DD`) when writing the candidate file — in both `initial` and `refresh` modes. Never copy the old timestamp forward unchanged; the point of the stamp is to record that *this* pass verified the data.
