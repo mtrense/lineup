@@ -278,9 +278,8 @@ Each comparison type should have a `RESEARCH.md` file that serves as the authori
    - Specify when to use `null` vs a value
 
 6. **Initial Candidates**
-   - Prioritized list of candidates to research
+   - List of candidates to research
    - Use checkboxes to track completion: `- [x] Done` / `- [ ] Pending`
-   - Organize into tiers (Must Have, Should Have, Nice to Have)
 
 7. **Notes for Researchers**
    - General principles (verify before recording, cite sources, admit uncertainty)
@@ -322,12 +321,9 @@ Each comparison type should have a `RESEARCH.md` file that serves as the authori
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
 - [ ] Candidate A - reason for inclusion
 - [ ] Candidate B - reason for inclusion
-
-### Tier 2 (Should Have)
-- [ ] Candidate C
+- [ ] Candidate C - reason for inclusion
 
 ## Notes for Researchers
 1. Always verify claims from multiple sources

@@ -158,15 +158,10 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Leading projects in spec-driven AI development:
 - [ ] **SpecKit** - GitHub's spec-driven development toolkit, high-profile reference point in the space
 - [ ] **BMAD-METHOD** - "Breakthrough Method for Agile AI-Driven Development", established multi-agent agile framework with a large following
 - [ ] **OpenSpec** - OSS spec-driven framework, frequently referenced as the open alternative
 - [ ] **nWave** - https://github.com/nWave-ai/nWave
-
-### Tier 2 (Should Have)
-Commercial platforms, notable OSS alternatives, and multi-agent orchestration frameworks commonly applied to dev workflows:
 - [ ] **Tessl** - commercial spec-first AI development platform
 - [ ] **Agent-OS** - structured multi-agent workflow framework
 - [ ] **Kiro** - AWS's spec-driven dev assistant
@@ -174,9 +169,6 @@ Commercial platforms, notable OSS alternatives, and multi-agent orchestration fr
 - [ ] **LangGraph** - graph-based agent orchestration framework
 - [ ] **AutoGen** - Microsoft's multi-agent conversation framework
 - [ ] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
-
-### Tier 3 (Nice to Have)
-Newer, niche, or agent-specific workflow packs:
 - [ ] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
 - [ ] **GSD** - *pending user clarification on upstream project / URL*
 - [ ] **Devika** - AI software engineer agent (activity has slowed; include for historical context)

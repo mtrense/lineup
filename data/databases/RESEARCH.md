@@ -98,23 +98,16 @@ This document provides guidelines for researching and assessing database systems
 
 ## Initial Candidates
 
-Priority order for research:
-
-### Tier 1 (Must Have)
 - [x] PostgreSQL - Most popular open-source RDBMS
 - [x] MySQL - Widely deployed RDBMS
 - [x] SQLite - Embedded database standard
 - [x] MongoDB - Leading document database
 - [x] Redis - Dominant key-value store
-
-### Tier 2 (Should Have)
 - [ ] MariaDB - MySQL fork with growing adoption
 - [ ] Microsoft SQL Server - Enterprise RDBMS
 - [ ] Oracle Database - Enterprise RDBMS standard
 - [ ] Cassandra - Wide-column distributed database
 - [ ] Neo4j - Leading graph database
-
-### Tier 3 (Nice to Have)
 - [ ] CockroachDB - Distributed SQL
 - [ ] DynamoDB - AWS key-value/document
 - [ ] Firestore - Google document database

@@ -42,10 +42,7 @@ Cover these dimensions:
    - for ranked types: direction (ascending = higher is better, descending = lower is better, neutral = no ranking)
    - for tag types: expected tag set
    - a one-line research note: how to find this value
-4. **Initial candidates** — Propose a seed list organized into tiers:
-   - **Tier 1 (Must Have)** — undisputed leaders / reference points
-   - **Tier 2 (Should Have)** — important contenders
-   - **Tier 3 (Nice to Have)** — niche or emerging
+4. **Initial candidates** — Propose a seed list of items to research. Order roughly by salience (undisputed leaders first, niche/emerging last) but do not split into tiers.
 
 ### Attribute Type Cheatsheet (for RESEARCH.md tables)
 
@@ -74,7 +71,7 @@ For ranked types, state direction in the research note (e.g. "higher is better",
 Before generating the file, present a compact summary:
 - Comparison type id + display name + one-line description
 - Attribute groups with attributes and value types (bulleted, not the full table)
-- Initial candidates by tier
+- Initial candidates list
 
 Ask: "Ready to generate RESEARCH.md?" Only proceed on explicit confirmation.
 
@@ -91,7 +88,7 @@ Include ALL seven required sections:
 3. **Attribute Groups** — one `### <N>. Group Name` per group, each followed by a markdown table with columns `Attribute | Type | Research Notes`. Type column uses human labels from the cheatsheet above.
 4. **Research Sources** — two subsections: `### Primary Sources (Preferred)` and `### Secondary Sources`. Numbered lists, each entry naming the source and what it's useful for.
 5. **Assessment Guidelines** — bullet list, one per ambiguous attribute or threshold (`**Attribute Name**: specific criteria`). Explicitly state when `null` is preferable to a guessed value.
-6. **Initial Candidates** — `### Tier 1 (Must Have)`, `### Tier 2 (Should Have)`, `### Tier 3 (Nice to Have)`. Each candidate as `- [ ] <Name> — <reason for inclusion>`. Checkboxes get ticked later when data is gathered.
+6. **Initial Candidates** — a single flat list (no tier subheadings). Each candidate as `- [ ] <Name> — <reason for inclusion>`. Checkboxes get ticked later when data is gathered.
 7. **Notes for Researchers** — numbered list of general principles: verify sources, cite with URLs, use `null` with comment when uncertain, note version/date of time-sensitive facts.
 
 Match the tone and depth of existing `data/*/RESEARCH.md` files in the project.

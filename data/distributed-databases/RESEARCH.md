@@ -209,7 +209,6 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 
 ## Initial Candidates
 
-### Tier 1 (Must Have) - Industry leaders
 - [x] CockroachDB - Leading open-source NewSQL, strong consistency
 - [x] TiDB - MySQL-compatible distributed SQL from PingCAP
 - [x] YugabyteDB - PostgreSQL-compatible distributed SQL
@@ -219,8 +218,6 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] Google Cloud Spanner - Google's globally-distributed SQL
 - [x] MongoDB (Sharded) - Document DB with native sharding
 - [x] Vitess - MySQL sharding middleware (YouTube origin)
-
-### Tier 2 (Should Have) - Significant players
 - [x] FoundationDB - Apple's ordered key-value store, unique architecture
 - [x] Couchbase - Document DB with strong mobile sync story
 - [x] ArangoDB - Multi-model (document, graph, key-value)
@@ -229,8 +226,6 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 - [x] CrateDB - Distributed SQL for machine data
 - [x] RethinkDB - Real-time push architecture (consider if maintained)
 - [x] Dgraph - Distributed graph database
-
-### Tier 3 (Nice to Have) - Specialized/Emerging
 - [x] TiKV - Distributed key-value (from TiDB stack)
 - [x] etcd - Distributed key-value for config/coordination
 - [x] ClickHouse (Clustered) - If including analytical

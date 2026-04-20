@@ -246,28 +246,29 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-The dominant frameworks with the largest ecosystems:
+Includes JavaScript/TypeScript frameworks alongside frameworks using WebAssembly or compiled from non-JS languages (Rust, Go, C#/.NET, and other compiled languages).
 
+**JavaScript / TypeScript**
 - [x] **React** - Meta's declarative UI library, industry standard
 - [x] **Vue** - Progressive framework, strong in Asia and growing globally
 - [x] **Angular** - Google's opinionated platform, enterprise standard
 - [x] **Svelte** - Compiler-based, no virtual DOM, rising popularity
 - [x] **Solid** - Fine-grained reactivity, React-like syntax, performance-focused
 - [x] **Preact** - Lightweight React alternative, same API
-
-### Tier 2 (Should Have)
-Notable alternatives with specific niches:
-
 - [x] **Qwik** - Resumability-focused, O(1) loading performance
 - [x] **Lit** - Google's web components library
 - [x] **Alpine.js** - Lightweight, sprinkle interactivity on HTML
 - [x] **HTMX** - HTML-centric, minimal JavaScript approach
 - [x] **Ember.js** - Convention over configuration, batteries included
 - [x] **Inferno** - Extremely fast React alternative
-
-### Tier 2.5 (WASM/Compiled Languages)
-Frameworks using WebAssembly or compiled from non-JS languages:
+- [x] **Marko** - eBay's streaming-focused framework
+- [x] **Stencil** - Web components compiler from Ionic
+- [x] **Mithril** - Lightweight, hyperscript-based
+- [x] **Riot.js** - Simple, elegant component library
+- [x] **Hyperapp** - 1KB framework for building web interfaces
+- [x] **Aurelia** - Convention-based, standards-focused
+- [x] **Backbone.js** - Legacy but still in maintenance mode
+- [x] **Knockout.js** - MVVM pattern, legacy but maintained
 
 **Rust**
 - [x] **Leptos** - Full-stack Rust framework with fine-grained reactivity
@@ -291,18 +292,6 @@ Frameworks using WebAssembly or compiled from non-JS languages:
 - [x] **Dart (Flutter Web)** - Flutter's web target using Dart
 - [x] **Scala.js** - Scala compiling to JavaScript
 - [x] **ClojureScript** - Clojure for the browser (often with Reagent/Re-frame)
-
-### Tier 3 (Nice to Have)
-Emerging, specialized, or declining options:
-
-- [x] **Marko** - eBay's streaming-focused framework
-- [x] **Stencil** - Web components compiler from Ionic
-- [x] **Mithril** - Lightweight, hyperscript-based
-- [x] **Riot.js** - Simple, elegant component library
-- [x] **Hyperapp** - 1KB framework for building web interfaces
-- [x] **Aurelia** - Convention-based, standards-focused
-- [x] **Backbone.js** - Legacy but still in maintenance mode
-- [x] **Knockout.js** - MVVM pattern, legacy but maintained
 
 ## Notes for Researchers
 

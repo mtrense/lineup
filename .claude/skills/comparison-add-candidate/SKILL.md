@@ -16,7 +16,7 @@ You are adding a new candidate to an existing Lineup comparison type. This skill
 `$ARGUMENTS` format (positional, whitespace-delimited):
 
 1. **comparison type id** — kebab-case, must match an existing `data/<type>/` directory.
-2. **candidate id** (optional) — kebab-case file stem; becomes `<candidate>.json`. When omitted, auto-pick the next unscaffolded Tier entry from `RESEARCH.md` (see **Auto-Pick** below).
+2. **candidate id** (optional) — kebab-case file stem; becomes `<candidate>.json`. When omitted, auto-pick the next unscaffolded entry from `RESEARCH.md`'s Initial Candidates list (see **Auto-Pick** below).
 3. **display name** (optional, remainder of the line) — if omitted, infer or ask. Ignored under auto-pick (the display name comes from RESEARCH.md).
 
 If the comparison type id is missing, ask for it before proceeding. If only the comparison type is provided, run auto-pick.
@@ -32,13 +32,13 @@ If the comparison type id is missing, ask for it before proceeding. If only the 
 
 ## Auto-Pick (when candidate id is omitted)
 
-Scan `RESEARCH.md`'s `### Tier N` lists for the first `- [ ] <Name> — …` entry whose derived candidate id is NOT already present in `data/<type>/index.json` and has no `data/<type>/<id>.json` file. Priority order: Tier 1 → Tier 2 → Tier 3, preserving in-tier order.
+Scan `RESEARCH.md`'s **Initial Candidates** section for the first `- [ ] <Name> — …` entry whose derived candidate id is NOT already present in `data/<type>/index.json` and has no `data/<type>/<id>.json` file. Preserve the listed order.
 
 - **Deriving the candidate id**: kebab-case of the display name — lowercase, ASCII, spaces and punctuation → hyphens, collapse runs, trim leading/trailing hyphens. `PostgreSQL` → `postgresql`; `Amazon RDS` → `amazon-rds`; `MySQL / MariaDB` → choose ONE and surface the ambiguity to the user.
-- **Presenting the pick**: show the Tier, display name, derived id, and the line's rationale. Then ask the user to confirm (or override the id). Do not proceed without confirmation — the id becomes the filename and is expensive to change later.
-- **Nothing to pick**: if every Tier entry in RESEARCH.md is already scaffolded (or the Tier lists are empty), report the state and stop. Suggest the user either add a new Tier entry to RESEARCH.md or pass an explicit candidate id.
+- **Presenting the pick**: show the display name, derived id, and the line's rationale. Then ask the user to confirm (or override the id). Do not proceed without confirmation — the id becomes the filename and is expensive to change later.
+- **Nothing to pick**: if every Initial Candidates entry in RESEARCH.md is already scaffolded (or the list is empty), report the state and stop. Suggest the user either add a new entry to RESEARCH.md or pass an explicit candidate id.
 
-Once the user confirms the pick, continue as if it had been passed explicitly. Skip scope-fit confirmation in Phase 1 (the Tier listing already asserts scope fit).
+Once the user confirms the pick, continue as if it had been passed explicitly. Skip scope-fit confirmation in Phase 1 (the Initial Candidates listing already asserts scope fit).
 
 ## Phase 1: Quick Scoping (Interactive, Minimal)
 
@@ -51,8 +51,6 @@ Do NOT run a full Socratic dialogue — the comparison scope is already defined.
    - **URL** — Official website or primary repository.
    - **Icon** — Optional. Either an existing icon id used elsewhere in the project, a Font Awesome name, or omit.
    - **Shown by default?** — Default `true`. Set `false` for niche entries that shouldn't clutter the initial view.
-3. **Tier assignment** (explicit mode only, and only when the candidate is NOT already listed in RESEARCH.md) — Propose a tier (1/2/3) and ask the user to confirm. Default to Tier 3 (Nice to Have) unless the candidate is clearly a reference point (→ Tier 1) or a well-known contender (→ Tier 2). Under auto-pick, skip this step — the candidate's tier comes from its existing RESEARCH.md entry.
-
 If the user provided enough via `$ARGUMENTS` and RESEARCH.md mentions the candidate by name, propose all of the above in one shot and ask for confirmation — don't drag out the exchange.
 
 ## Phase 2: File Generation
@@ -87,8 +85,8 @@ Do NOT reorder existing entries.
 
 ### Update RESEARCH.md
 
-- **If the candidate is already listed** under any `### Tier N` list (e.g. `- [ ] PostgreSQL — reference open-source RDBMS`): leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/comparison-gather-data` when data is actually gathered, not here.
-- **If the candidate is NOT listed** (explicit mode, scope-fit confirmed, tier assigned in Phase 1): append a new entry to the end of the selected `### Tier N` list using the format:
+- **If the candidate is already listed** under **Initial Candidates** (e.g. `- [ ] PostgreSQL — reference open-source RDBMS`): leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/comparison-gather-data` when data is actually gathered, not here.
+- **If the candidate is NOT listed** (explicit mode, scope-fit confirmed): append a new entry to the end of the **Initial Candidates** list using the format:
 
   ```
   - [ ] <Display Name> — <one-sentence description> (added <YYYY-MM-DD>)
@@ -101,7 +99,7 @@ Do NOT reorder existing entries.
 Present:
 - Path of the scaffold file created.
 - The new entry added to `data/<type>/index.json`.
-- RESEARCH.md status: either "already listed under Tier N (untouched)" or "appended to Tier N with `(added <date>)` suffix".
+- RESEARCH.md status: either "already listed (untouched)" or "appended to Initial Candidates with `(added <date>)` suffix".
 - **Next step**: `/comparison-gather-data <type> <candidate-id>` to research and fill in attribute values.
 
 No commit is created by this skill. Suggest the commit pattern the user should run after gathering data, so that declaration and initial research land in one commit:

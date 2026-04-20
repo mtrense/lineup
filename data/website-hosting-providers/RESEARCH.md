@@ -184,24 +184,16 @@ This comparison evaluates platforms for hosting static websites and JAMstack app
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Core platforms that dominate the static/JAMstack hosting space:
 - [x] **Netlify** - Pioneer of JAMstack hosting, feature-rich platform with generous free tier
 - [x] **Vercel** - Next.js creator's platform, strong edge/serverless capabilities
 - [x] **Cloudflare Pages** - Backed by Cloudflare's massive edge network, aggressive free tier
 - [x] **GitHub Pages** - Free static hosting integrated with GitHub, widely used for docs and OSS projects
 - [x] **Surge** - Simple, single-command static site publishing for developers
 - [x] **AWS Amplify Hosting** - Amazon's managed static/SSR hosting with full AWS ecosystem integration
-
-### Tier 2 (Should Have)
-Well-established alternatives with distinct positioning:
 - [x] **Firebase Hosting** - Google's hosting platform, tight integration with Firebase services
 - [x] **Azure Static Web Apps** - Microsoft's static hosting with Azure Functions integration
 - [x] **Render** - Modern cloud platform with static site hosting among broader compute offerings
 - [x] **DigitalOcean App Platform** - Static site hosting within DO's developer cloud
-
-### Tier 3 (Nice to Have)
-Niche or newer entrants with interesting differentiators:
 - [x] **Deno Deploy** - Edge-first platform from the Deno runtime creators
 - [x] **Fly.io** - Edge application platform that can serve static sites
 - [x] **Kinsta** - Managed hosting provider with a static site hosting offering

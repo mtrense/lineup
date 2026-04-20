@@ -206,18 +206,11 @@ Based on available benchmarks and language design:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Core options most Rust developers will evaluate:
-
 - [x] **Rhai** - Popular pure-Rust scripting, simple syntax, good docs
 - [x] **mlua** - Lua 5.x/LuaJIT bindings, most mature Lua integration
 - [x] **Rune** - Async-native, Rust-like syntax, promising design
 - [x] **boa** - JavaScript engine in pure Rust, ES2023+ compliance
 - [x] **rquickjs** - QuickJS bindings, fast JS with small footprint
-
-### Tier 2 (Should Have)
-Well-maintained alternatives and specialized options:
-
 - [x] **Gluon** - Statically typed, functional, Haskell-inspired
 - [x] **Dyon** - Game-focused, unique features (go-like coroutines, 4D vectors)
 - [x] **RustPython** - Python interpreter in Rust
@@ -225,10 +218,6 @@ Well-maintained alternatives and specialized options:
 - [x] **Piccolo** - Lua implementation in pure Rust
 - [x] **rlua** - Earlier Lua bindings (compare to mlua for completeness)
 - [x] **koto** - Simple syntax, built-in iterators, pure Rust
-
-### Tier 3 (Nice to Have)
-Newer, specialized, or niche options:
-
 - [x] **Mun** - Hot reloading focused, static typing, game development target
 - [x] **Starlark** - Google's Bazel config language, pure Rust implementation
 - [x] **KCL** - CNCF constraint-based configuration language with Rust SDK

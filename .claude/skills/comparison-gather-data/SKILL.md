@@ -94,7 +94,7 @@ Write the full updated `data/<type>/<candidate>.json`:
 
 ### RESEARCH.md checkbox (initial mode only)
 
-If the candidate appears in any `### Tier N` list in `RESEARCH.md` with an unchecked box (`- [ ] <Name>` or `- [ ] <candidate-id>`), switch it to `- [x]` now that real data exists. Match on the display name OR the candidate id; do not touch unrelated lines.
+If the candidate appears in `RESEARCH.md`'s **Initial Candidates** section with an unchecked box (`- [ ] <Name>` or `- [ ] <candidate-id>`), switch it to `- [x]` now that real data exists. Match on the display name OR the candidate id; do not touch unrelated lines.
 
 ## Phase 4: Summary
 

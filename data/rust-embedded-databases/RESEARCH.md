@@ -192,18 +192,11 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Core databases that most Rust developers will consider:
-
 - [x] **sled** - Popular pure-Rust embedded database, modern API
 - [x] **redb** - Pure Rust, LMDB-inspired, simple and fast
 - [x] **rocksdb** (rust-rocksdb) - Facebook's LSM-tree, industry standard
 - [x] **rusqlite** - SQLite bindings, most common embedded SQL choice
 - [x] **heed** - LMDB bindings, type-safe wrapper
-
-### Tier 2 (Should Have)
-Well-maintained alternatives and specialized options:
-
 - [x] **fjall** - LSM-based, pure Rust, key-value + blob storage
 - [x] **lmdb-rkv** (rkv) - Mozilla's LMDB wrapper
 - [x] **persy** - Pure Rust, ACID, unique design
@@ -211,10 +204,6 @@ Well-maintained alternatives and specialized options:
 - [ ] **sqlite (rusqlite bundled)** - SQLite with bundled build
 - [x] **duckdb-rs** - DuckDB bindings, analytical queries
 - [x] **polodb** - MongoDB-like API, embedded document store
-
-### Tier 3 (Nice to Have)
-Newer, more specialized, or niche options:
-
 - [x] **surrealdb embedded** - Multi-model database with true embedded mode (RocksDB, in-memory, etc.)
 - [x] **nebari** - From BonsaiDb project, ACID-compliant append-only B-tree
 - [x] **native_db** - Pure Rust with secondary indexes, built on redb

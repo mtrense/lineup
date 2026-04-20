@@ -208,9 +208,6 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Major players with significant market share or developer mindshare:
-
 **Managed Platforms**
 - [ ] **Heroku** - Pioneer of PaaS, git-push deployment model
 - [ ] **Vercel** - Frontend/fullstack focus, Next.js creators
@@ -219,17 +216,6 @@ Major players with significant market share or developer mindshare:
 - [ ] **Railway** - Developer-focused, fast deployment
 - [ ] **Fly.io** - Edge deployment, runs containers globally
 - [ ] **DigitalOcean App Platform** - Simple PaaS from DO
-
-**Self-Hosted Solutions**
-- [ ] **Dokku** - The original "mini-Heroku", single-server
-- [ ] **Coolify** - Self-hostable Heroku/Vercel alternative
-- [ ] **CapRover** - Docker-based PaaS with web UI
-- [ ] **Dokploy** - Modern Vercel/Netlify alternative, self-hosted
-
-### Tier 2 (Should Have)
-Notable alternatives and specialized options:
-
-**Managed Platforms**
 - [ ] **Platform.sh** - Git-driven, multi-environment
 - [ ] **Google Cloud Run** - Serverless containers on GCP
 - [ ] **AWS App Runner** - AWS's simple container PaaS
@@ -239,18 +225,6 @@ Notable alternatives and specialized options:
 - [ ] **Deta** - Simple deployment for Python/Node
 - [ ] **Cyclic** - Serverless full-stack apps
 - [ ] **Coherence** - Full-stack cloud platform
-
-**Self-Hosted Solutions**
-- [ ] **Portainer** - Docker/K8s management with app templates
-- [ ] **Rancher** - Kubernetes management platform
-- [ ] **Piku** - Minimal PaaS inspired by Dokku
-- [ ] **Kamal** - Deploy web apps anywhere (by 37signals)
-- [ ] **Tsuru** - Open-source PaaS by Globo.com
-
-### Tier 3 (Nice to Have)
-Emerging or specialized options:
-
-**Managed**
 - [ ] **Zeabur** - Modern deployment platform
 - [ ] **Porter** - Kubernetes PaaS layer
 - [ ] **Qovery** - Infrastructure automation on your cloud
@@ -258,7 +232,16 @@ Emerging or specialized options:
 - [ ] **Back4App** - Parse-based backend platform
 - [ ] **Gigalixir** - Elixir-specialized PaaS
 
-**Self-Hosted**
+**Self-Hosted Solutions**
+- [ ] **Dokku** - The original "mini-Heroku", single-server
+- [ ] **Coolify** - Self-hostable Heroku/Vercel alternative
+- [ ] **CapRover** - Docker-based PaaS with web UI
+- [ ] **Dokploy** - Modern Vercel/Netlify alternative, self-hosted
+- [ ] **Portainer** - Docker/K8s management with app templates
+- [ ] **Rancher** - Kubernetes management platform
+- [ ] **Piku** - Minimal PaaS inspired by Dokku
+- [ ] **Kamal** - Deploy web apps anywhere (by 37signals)
+- [ ] **Tsuru** - Open-source PaaS by Globo.com
 - [ ] **Kubero** - GitOps PaaS on Kubernetes
 - [ ] **OpenFaaS** - Serverless functions on Docker/K8s
 - [ ] **Sablier** - On-demand container scaling

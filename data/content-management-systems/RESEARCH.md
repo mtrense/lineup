@@ -190,52 +190,45 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Major players with significant market share or mindshare:
-
 **Traditional / Hybrid (Self-hosted)**
 - [x] **WordPress** - Dominant CMS, powers ~40% of the web
 - [x] **Drupal** - Enterprise-grade, highly customizable
 - [x] **Joomla** - Popular alternative to WordPress
-
-**Headless / API-first (Self-hosted)**
-- [x] **Strapi** - Leading open-source headless CMS (Node.js)
-- [x] **Directus** - Open-source data platform / headless CMS
-- [x] **Payload CMS** - TypeScript-first headless CMS
-- [x] **KeystoneJS** - GraphQL-native headless CMS
-
-**Managed / SaaS**
-- [x] **Contentful** - Enterprise headless CMS market leader
-- [x] **Sanity** - Real-time collaborative headless CMS
-- [x] **Hygraph** (formerly GraphCMS) - GraphQL-native headless CMS
-- [x] **Storyblok** - Visual editing headless CMS
-
-### Tier 2 (Should Have)
-Notable alternatives and specialized options:
-
-**Traditional / Hybrid**
 - [x] **Ghost** - Modern publishing platform (blogging focus)
 - [x] **Craft CMS** - Developer-friendly commercial CMS
 - [x] **TYPO3** - Enterprise CMS popular in Europe
 - [x] **Wagtail** - Django-based CMS (Python)
 - [x] **October CMS** - Laravel-based CMS (PHP)
 
-**Headless**
-- [x] **Prismic** - Headless CMS with slice-based editing
-- [x] **DatoCMS** - Developer-friendly headless CMS
-- [x] **Builder.io** - Visual headless CMS with drag-drop
+**Headless / API-first (Self-hosted)**
+- [x] **Strapi** - Leading open-source headless CMS (Node.js)
+- [x] **Directus** - Open-source data platform / headless CMS
+- [x] **Payload CMS** - TypeScript-first headless CMS
+- [x] **KeystoneJS** - GraphQL-native headless CMS
 - [x] **Tina CMS** - Git-based, visual editing
 - [x] **Decap CMS** (formerly Netlify CMS) - Git-based open-source
 
-**Platform / Hybrid**
+**Managed / SaaS**
+- [x] **Contentful** - Enterprise headless CMS market leader
+- [x] **Sanity** - Real-time collaborative headless CMS
+- [x] **Hygraph** (formerly GraphCMS) - GraphQL-native headless CMS
+- [x] **Storyblok** - Visual editing headless CMS
+- [x] **Prismic** - Headless CMS with slice-based editing
+- [x] **DatoCMS** - Developer-friendly headless CMS
+- [x] **Builder.io** - Visual headless CMS with drag-drop
+- [x] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
+- [x] **Contentstack** - Enterprise headless CMS
+- [ ] **Agility CMS** - Hybrid headless with page management
+- [ ] **ButterCMS** - Developer-focused headless
+- [ ] **Cosmic** - Headless CMS with Bucket-based content
+- [ ] **Payload Cloud** - Managed Payload CMS
+
+**Platform / Hybrid (Visual builders)**
 - [x] **Webflow** - Visual builder with CMS capabilities
 - [x] **Wix** - Website builder with structured content
 - [x] **Squarespace** - Design-focused with CMS features
 
-### Tier 3 (Nice to Have)
-Emerging or specialized options:
-
-**Self-hosted**
+**Lightweight / Static**
 - [x] **Cockpit CMS** - Lightweight headless CMS (PHP)
 - [x] **Apostrophe** - In-context editing CMS (Node.js)
 - [x] **Publii** - Desktop-based static CMS
@@ -243,15 +236,7 @@ Emerging or specialized options:
 - [x] **Statamic** - Laravel flat-file CMS (commercial)
 - [x] **PocketBase** - Backend-as-a-Service with CMS features
 
-**Managed**
-- [x] **Kontent.ai** (formerly Kentico Kontent) - Enterprise headless
-- [x] **Contentstack** - Enterprise headless CMS
-- [ ] **Agility CMS** - Hybrid headless with page management
-- [ ] **ButterCMS** - Developer-focused headless
-- [ ] **Cosmic** - Headless CMS with Bucket-based content
-
 **Emerging / Specialized**
-- [ ] **Payload Cloud** - Managed Payload CMS
 - [ ] **Outstatic** - Static CMS for Next.js
 - [ ] **Keystatic** - Git-based CMS by Thinkmill
 

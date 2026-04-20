@@ -146,8 +146,6 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-Core editors that are widely used or foundational:
 - [x] **ProseMirror** - Foundation for many modern editors
 - [x] **Tiptap** - Popular ProseMirror wrapper with excellent DX
 - [x] **Slate** - Highly customizable React editor framework
@@ -155,9 +153,6 @@ Core editors that are widely used or foundational:
 - [x] **Quill** - Long-standing, widely adopted editor
 - [x] **CKEditor 5** - Enterprise-grade, feature-rich
 - [x] **TinyMCE** - Classic WYSIWYG, widely deployed
-
-### Tier 2 (Should Have)
-Notable alternatives and specialized editors:
 - [x] **Draft.js** - Meta's legacy editor (archived, still widely used)
 - [x] **Yoopta Editor** - Block-based Notion-like editor (https://github.com/yoopta-editor/Yoopta-Editor)
 - [x] **Novel** - Notion-style editor with AI features (https://novel.sh/)
@@ -166,9 +161,6 @@ Notable alternatives and specialized editors:
 - [x] **Editor.js** - Block-based, outputting clean JSON
 - [x] **Milkdown** - Markdown-first, plugin-driven
 - [x] **Toast UI Editor** - Markdown + WYSIWYG hybrid
-
-### Tier 3 (Nice to Have)
-Specialized or emerging options:
 - [x] **Remirror** - React ProseMirror toolkit (https://remirror.io/)
 - [x] **BlockNote** - Block-based Notion-like (https://www.blocknotejs.org/)
 - [x] **Plate** - Headless Slate plugins (https://platejs.org/)

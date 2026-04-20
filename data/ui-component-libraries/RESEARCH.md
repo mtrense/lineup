@@ -277,9 +277,6 @@ Users should be able to:
 
 ## Initial Candidates
 
-### Tier 1 (Must Have)
-High-adoption libraries across major frameworks:
-
 **React**
 - [x] **MUI (Material-UI)** - Most popular React component library
 - [x] **Ant Design** - Enterprise-focused, comprehensive
@@ -290,24 +287,6 @@ High-adoption libraries across major frameworks:
 - [x] **Headless UI** - Tailwind Labs' unstyled components
 - [x] **Mantine** - Full-featured library with hooks
 - [x] **PrimeReact** - Enterprise React component suite from PrimeTek
-
-**Vue**
-- [x] **Vuetify** - Material Design for Vue
-- [x] **Quasar** - Full framework with components
-- [x] **PrimeVue** - Enterprise component suite
-- [x] **Naive UI** - TypeScript-first Vue 3 library
-- [x] **Element Plus** - Vue 3 successor to Element UI
-- [x] **Radix Vue** - Radix primitives for Vue
-
-**Multi-Framework**
-- [x] **Shoelace** - Web Components, framework-agnostic
-- [x] **daisyUI** - Tailwind component classes
-- [x] **Web Awesome** - Shoelace successor with Font Awesome integration
-
-### Tier 2 (Should Have)
-Notable alternatives and specialized options:
-
-**React**
 - [x] **Blueprint** - Palantir's data-dense UI toolkit
 - [x] **Evergreen** - Segment's design system
 - [x] **Geist UI** - Vercel-inspired minimal design
@@ -317,8 +296,19 @@ Notable alternatives and specialized options:
 - [x] **Ark UI** - Chakra team's headless primitives
 - [x] **React Bootstrap** - Bootstrap for React
 - [x] **Reactstrap** - Bootstrap 5 React components
+- [x] **Semantic UI React** - Natural language principles
+- [x] **Grommet** - HPE's responsive components
+- [x] **Rebass** - Primitive styled components (no longer actively maintained; last release Oct 2019)
+- [x] **Theme UI** - Themeable design systems
+- [x] **Reakit/Ariakit** - Accessibility toolkit (Reakit renamed to Ariakit)
 
 **Vue**
+- [x] **Vuetify** - Material Design for Vue
+- [x] **Quasar** - Full framework with components
+- [x] **PrimeVue** - Enterprise component suite
+- [x] **Naive UI** - TypeScript-first Vue 3 library
+- [x] **Element Plus** - Vue 3 successor to Element UI
+- [x] **Radix Vue** - Radix primitives for Vue
 - [x] **Vuestic UI** - Vue 3 with Tailwind
 - [x] **Oruga** - Lightweight Vue 3 UI
 - [x] **Anu** - SKIPPED: No longer maintained (recommends shadcn-vue or Nuxt UI instead)
@@ -341,13 +331,10 @@ Notable alternatives and specialized options:
 - [x] **Kobalte** - Headless Solid primitives
 - [x] **Hope UI** - SKIPPED: No longer maintained (succeeded by Pigment from Kobalte team)
 
-### Tier 3 (Nice to Have)
-Specialized, emerging, or legacy options:
-- [x] **Semantic UI React** - Natural language principles
-- [x] **Grommet** - HPE's responsive components
-- [x] **Rebass** - Primitive styled components (no longer actively maintained; last release Oct 2019)
-- [x] **Theme UI** - Themeable design systems
-- [x] **Reakit/Ariakit** - Accessibility toolkit (Reakit renamed to Ariakit)
+**Multi-Framework**
+- [x] **Shoelace** - Web Components, framework-agnostic
+- [x] **daisyUI** - Tailwind component classes
+- [x] **Web Awesome** - Shoelace successor with Font Awesome integration
 - [x] **Fluent UI** - Microsoft's design system
 - [x] **Carbon** - IBM's design system
 
