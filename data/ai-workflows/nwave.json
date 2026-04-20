@@ -1,4 +1,417 @@
 {
   "name": "nWave",
-  "values": {}
+  "description": "Agentic AI framework that guides developers from idea to working code through seven sequential waves with human gates and strict TDD enforcement inside Claude Code",
+  "url": "https://nwave.ai/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Deterministic seven-wave agentic framework running inside Claude Code (or OpenCode), orchestrated by a 40-agent team with a Distributed Enforcement System (DES) that monitors every tool invocation and enforces TDD discipline.",
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://nwave.ai/"
+      ]
+    },
+    "website": {
+      "value": "https://nwave.ai/",
+      "source": [
+        "https://nwave.ai/"
+      ]
+    },
+    "repository": {
+      "value": "https://github.com/nWave-ai/nWave",
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ]
+    },
+    "creator": {
+      "value": "nWave-ai (maintained by Michele Brissoni)",
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://pypi.org/project/nwave-ai/"
+      ],
+      "comment": "nWave-ai is the GitHub organization; the PyPI package is maintained by Michele Brissoni."
+    },
+    "first-release": {
+      "value": "2026",
+      "source": [
+        "https://pypi.org/project/nwave-ai/"
+      ],
+      "comment": "Earliest PyPI release visible is v1.1.0 on 2026-02-13; no earlier public release found."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://github.com/nWave-ai/nWave/releases"
+      ],
+      "comment": "v3.11.0 released 2026-04-16 (verified 2026-04-21)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://pypi.org/project/nwave-ai/"
+      ],
+      "comment": "MIT-licensed OSS; no paid tier advertised on nwave.ai or the repo. The underlying Claude Code runtime is separate and paid."
+    },
+    "open-source": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ]
+    },
+    "covered-phases": {
+      "value": [
+        "discovery",
+        "spec",
+        "architecture",
+        "planning",
+        "implementation",
+        "review",
+        "testing",
+        "deployment"
+      ],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Seven waves map as: DISCOVER+DIVERGE=discovery, DISCUSS=spec, DESIGN=architecture (+planning via wave-decisions/recommendation/roadmap artifacts), DEVOPS=deployment, DISTILL=testing (BDD acceptance tests), DELIVER=implementation. Review is explicit via 14 peer-reviewer agents and mandatory reviewer approval before commit. No retrospective phase."
+    },
+    "methodology-style": {
+      "value": [
+        "spec-centric",
+        "process-centric",
+        "strict-tdd",
+        "bdd",
+        "multi-agent",
+        "agent-agile"
+      ],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "SSOT docs are the central artifact (spec-centric); the seven-wave ordering is core (process-centric); DES enforces Outside-In TDD and refuses commits with failing tests (strict-tdd); DISTILL wave produces Given-When-Then acceptance tests (bdd); 40 distinct agents with specialized roles (multi-agent); organized around agile feature delivery (agent-agile)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "DES enforces phase ordering, TDD red/green/refactor, and eleven quality gates before any commit. Rigor profiles adjust depth but not the wave sequence."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Seven waves, 40 agents, mandatory reviewer approvals, eleven quality gates, multiple artifact types (vision, JTBD, journeys, ADRs, user stories, acceptance tests, roadmap). Rigor profiles can lower but not remove this."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Slash commands (/nw-discover, /nw-deliver, etc.) drive each wave end-to-end with DES hooks mechanically enforcing rules; not a fully managed platform, so not very-high."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "Explicit human review between every wave; \"no code ships without reviewer approval.\""
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks", "implementation"],
+      "source": [
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/",
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "Human approval between DISCUSS (spec), DESIGN (plan/architecture), DISTILL (tasks/acceptance tests), and DELIVER (implementation); no gate at deploy."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "Framework is explicitly positioned as human-in-the-loop; DES refuses to advance without approvals."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "Default configuration requires explicit human approval between each of seven waves; DES enforces TDD red/green mechanically. Closer to phase-level-plus approvals than fully autonomous."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md"
+      ],
+      "comment": "No dedicated rollback command found. Artifacts live in git and can be reverted via normal git operations; DES logs commits but does not provide a first-class undo."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "opencode"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Claude Code is primary; OpenCode IDE is documented alternative at ~67% feature parity. No other agent runtimes officially supported."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Runs inside Claude Code (terminal) or OpenCode (terminal IDE). No dedicated VS Code/JetBrains/Neovim extensions."
+    },
+    "model-agnostic": {
+      "value": false,
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "Primarily targets Claude models (haiku/sonnet/opus) via Claude Code; OpenCode path uses OpenAI models but is explicitly a degraded preview."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/README.md"
+      ],
+      "comment": "No mention of Model Context Protocol integration in README, install guide, or reference docs as of 2026-04-21."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml", "json"],
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Vision/briefs/ADRs in Markdown; jobs/journeys/kpi-contracts in YAML; roadmap.json and DES audit logs in JSON/JSONL. Acceptance tests use .feature (Gherkin) which isn't in the schema tag set."
+    },
+    "artifacts-covered": {
+      "value": [
+        "user-docs",
+        "architecture",
+        "roadmap",
+        "decisions",
+        "specs",
+        "plans",
+        "test-plans"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "docs/product/ includes vision (user-docs), architecture/brief+ADRs (architecture, decisions), jobs+journeys (specs). docs/features/{id}/ adds feature-brief+user-stories (specs), wave-decisions+recommendation (plans), roadmap.json (roadmap), acceptance-tests.feature (test-plans)."
+    },
+    "project-layout": {
+      "value": "docs/product/ (SSOT: vision, jobs, journeys, architecture, ADRs, KPIs) + docs/features/{id}/ (per-feature deltas) + tests/acceptance/{feature-id}/ (BDD .feature files); DES config in .nwave/des-config.json and logs in .nwave/des/logs/",
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "All artifacts live under docs/ and tests/ in the project repo."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Framework itself is language-neutral. Example fixtures show Python (conftest.py) but BDD .feature files and the wave ordering apply to any stack."
+    },
+    "enforcement-mechanisms": {
+      "value": [
+        "instructional",
+        "hooks",
+        "test-gates",
+        "agent-review",
+        "manual-approval"
+      ],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "Agent prompts (instructional); DES match/case hooks via OpenCode's tool.execute.before (hooks); TDD red/green refuses commits with failing tests (test-gates); 14 peer-reviewer agents (agent-review); mandatory human sign-off between waves (manual-approval)."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/"
+      ],
+      "comment": "DES blocks out-of-order progression; Vera orchestrator refuses implementation without approved acceptance criteria."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": [
+        "https://swcraftsmanshipdojo.com/blog/claude-code-nwave/",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md"
+      ],
+      "comment": "Eleven quality gates include architectural boundary enforcement, test budgets, business language verification, and static analysis before any commit; DES also validates file-scope and TDD phase markers."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "SSOT under docs/product/ (markdown+YAML) plus Claude Code's CLAUDE.md convention. No vector DB or knowledge graph; treating the markdown+YAML combination under the markdown-files tag since the schema lacks a combined markdown+yaml option."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Artifacts are git-tracked, so context survives across sessions without manual handoff."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/wave-directory-structure/README.md"
+      ],
+      "comment": "Uses docs/product/vision.md and related SSOT files, plus Claude Code's CLAUDE.md through the host runtime."
+    },
+    "cost-tracking": {
+      "value": ["basic-logs", "budget-limits"],
+      "source": [
+        "https://github.com/nWave-ai/nWave",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md"
+      ],
+      "comment": "DES audit trail logs tool invocations (basic-logs). /nw-rigor profiles (lean/standard/thorough/exhaustive/custom) bound the depth of work per wave, functioning as soft budget limits; not per-run token counters."
+    },
+    "run-history": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md"
+      ],
+      "comment": "DES writes JSONL audit logs (.nwave/des/logs/audit-YYYY-MM-DD.log) of task invocations, TDD phase lifecycle, file-scope violations, and git commits, with daily rotation."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Version-check frequency is configurable in des-config.json (daily/weekly/every_session/never). No external analytics telemetry documented."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave/blob/main/docs/reference/index.md"
+      ],
+      "comment": "Reference lists 9 templates; /nw-forge workflow lets users define new agent templates with persona/principles/skills."
+    },
+    "hooks": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/des-audit-trail-guide/README.md",
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "DES hooks fire on tool invocations via OpenCode's tool.execute.before; configurable in .nwave/des-config.json. Primarily for enforcement rather than arbitrary user scripts."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/plugin-use-cases/README.md",
+        "https://github.com/nWave-ai/nWave/blob/main/docs/reference/index.md"
+      ],
+      "comment": "/nw-forge builds specialized agents from scratch; reference documents 42 agents and 195 skills that users can extend."
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "A Claude Code plugin marketplace distribution exists, though it is described as a degraded preview because it lacks DES enforcement hooks."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": [
+        "https://pypi.org/project/nwave-ai/",
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Distributed on PyPI; installed via pipx or uv tool (both pip-based). Also available via Claude Code plugin marketplace as a secondary path."
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "pipx/uv install + nwave-ai install + Claude Code restart; no explicit duration quoted but installation guide covers multiple steps, putting it in the 5-30 min band."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "Installed locally to ~/.claude/ with per-project .nwave/des-config.json; no nWave-operated cloud service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/nWave-ai/nWave/main/docs/guides/installation-guide/README.md"
+      ],
+      "comment": "nWave itself has no account system. The host runtime (Claude Code / OpenCode) requires its own vendor account, but that is separate from the framework."
+    },
+    "git-worktree-support": {
+      "value": null,
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "No documented integration with git worktrees found in README, install guide, or reference material as of 2026-04-21."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://github.com/nWave-ai/nWave/tree/main/docs",
+        "https://github.com/nWave-ai/nWave/blob/main/docs/reference/index.md"
+      ],
+      "comment": "30+ guides split into tutorials/how-to/reference; auto-generated reference for 42 agents, 27 commands, 195 skills, 9 templates. Comprehensive and current (v3.11.0), docked slightly for opacity around MCP/worktree/token-cost topics."
+    },
+    "github-stars": {
+      "value": 364,
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "Star count captured on 2026-04-21; stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave/releases"
+      ],
+      "comment": "v3.11.0 released 2026-04-16, with 70+ releases since February 2026 — well within the 90-day window."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/nWave-ai/nWave/tree/main/docs/guides",
+        "https://www.createwith.com/event/montreal-from-spaghetti-to-ravioli-ai-guided-refactoring-with-nwave-mar-2026"
+      ],
+      "comment": "Tutorial series includes first-feature/first-delivery/delivery-pipeline walkthroughs; conference talk 'From Spaghetti to Ravioli' (March 2026) documents real refactoring use. No standalone sample repo linked from README."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": [
+        "https://github.com/nWave-ai/nWave"
+      ],
+      "comment": "README links a Discord server as the primary community channel."
+    }
+  }
 }
