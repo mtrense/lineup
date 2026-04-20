@@ -206,6 +206,7 @@ interface CandidateFile {
   description?: string;               // Short description
   icon?: string;                      // Icon for the candidate
   url?: string;                       // Official website or repository
+  lastVerified?: string;              // ISO 8601 date (YYYY-MM-DD); written by gather-data, rendered as the "Last Verified" row
   values: {
     [attributeId: string]: AttributeValue;  // Key matches Attribute.id
   };

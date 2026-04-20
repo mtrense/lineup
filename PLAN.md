@@ -16,7 +16,7 @@
 
 ## Tasks
 
-[ ] 1. Extend `CandidateFile` with `lastVerified` and document the schema
+[x] 1. Extend `CandidateFile` with `lastVerified` and document the schema
 - **Files:** `app/src/types/candidate.ts`, `CLAUDE.md`
 - **Description:** Add an optional `lastVerified?: string` field to the `CandidateFile` interface (ISO 8601 date, day precision, e.g. `"2026-04-20"`). Update the schema block inside `CLAUDE.md` (under `### <candidate>.json`) so the documented interface matches the code. No runtime behavior changes; no consumers yet read the field. This task exists as its own commit so the type addition is visible and reviewable before any UI or skill work lands on top of it.
 - **Architecture & Decisions:**
