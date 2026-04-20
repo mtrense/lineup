@@ -70,6 +70,7 @@ Create the scaffold:
 ```
 
 - `values` is intentionally empty. `/gather-data` fills it.
+- Do NOT include `lastVerified` — it's written by `/gather-data` on the first research pass.
 - Omit `icon` and `url` entirely (don't include as empty strings) if not provided.
 - Filename MUST match the candidate id exactly: `<candidate-id>.json`, lowercase, hyphens only.
 
@@ -118,6 +119,7 @@ Do NOT commit.
 ## Rules
 
 - Do NOT populate any `values` — that's `/gather-data`.
+- Do NOT write `lastVerified`. A scaffolded candidate has not been researched; the missing field is what makes the 'Last Verified' row render `—` honestly.
 - Do NOT reorder entries in `data/<type>/index.json`; append only.
 - Do NOT modify `attributes.json`.
 - Do NOT tick an existing RESEARCH.md checkbox (`- [ ]` → `- [x]`); that's `/gather-data`'s job. The only RESEARCH.md edit this skill performs is appending a new `- [ ]` line for candidates not yet listed.

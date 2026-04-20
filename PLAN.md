@@ -78,7 +78,7 @@
   - Static check: reading the updated `SKILL.md` shows `lastVerified` in Phase 3, the cheatsheet/schema area, Phase 4 summary guidance, and the Rules section — a reviewer can confirm the rule is unmissable.
 - **Commit Message:** `skill(gather-data): stamp lastVerified on every candidate write`
 
-[ ] 4. Explicitly prevent `/add-candidate` from setting `lastVerified`
+[x] 4. Explicitly prevent `/add-candidate` from setting `lastVerified`
 - **Files:** `.claude/skills/add-candidate/SKILL.md`
 - **Description:** Update the `add-candidate` skill to make clear the scaffolded JSON **must not** include `lastVerified`. A freshly-scaffolded candidate hasn't been researched yet, so the honest representation is "no stamp → renders as `—`". Concretely:
   - In **Phase 2: File Generation → `data/<type>/<candidate>.json`**, update the scaffold JSON block to remain unchanged (no `lastVerified` key) and add a one-line note below the block: "Do NOT include `lastVerified` — it's written by `/gather-data` on the first research pass."
