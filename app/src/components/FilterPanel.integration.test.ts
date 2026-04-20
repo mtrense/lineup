@@ -4,9 +4,6 @@ import {
   getActiveFilterCount,
   emptyFilterState,
   type FilterState,
-  type RangeFilter,
-  type TagFilter,
-  type BooleanFilter,
 } from "./FilterPanel";
 import type { CandidateFile } from "@/types";
 

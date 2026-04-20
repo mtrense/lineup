@@ -10,28 +10,28 @@ When resuming a session, update the `State:` line on each task and, if `done`, a
 
 ## Bucket 1 — Unused imports/bindings (TS6133)
 
-**State:** todo
+**State:** done (TS6133 errors cleared; verified via `pnpm --dir app build`)
 
 Easy, mechanical fixes. Just remove the unused symbols.
 
 ### Task 1.1 — `ComparisonView.lastVerified.test.tsx`
-- **State:** todo
+- **State:** done
 - **File:** `app/src/components/ComparisonView.lastVerified.test.tsx`
 - **Errors:**
   - L2: `'within'` imported from `@testing-library/react` but never used.
   - L53: `const threeEntries: CandidateEntry[]` declared but never read (the `renderView` helper at L64 rebuilds entries from `candidates`, so the top-level constant is dead).
-- **Fix:**
-  - Remove `within` from the import list at L2.
-  - Remove the `threeEntries` declaration (L53–57). Also remove the now-unused `CandidateEntry` type import if it has no other consumers in this file (check L6).
+- **Fix applied:**
+  - Dropped `within` from the `@testing-library/react` import.
+  - Removed the top-level `threeEntries` constant. Kept the `CandidateEntry` type import — still used by the `entries` local inside `renderView`.
 
 ### Task 1.2 — `FilterPanel.integration.test.ts`
-- **State:** todo
+- **State:** done
 - **File:** `app/src/components/FilterPanel.integration.test.ts`
 - **Errors:**
   - L7: `RangeFilter` type imported but unused.
   - L8: `TagFilter` type imported but unused.
   - L9: `BooleanFilter` type imported but unused.
-- **Fix:** Drop these three type re-imports from the `import {…}` block at L2–10. The runtime helpers (`candidatePassesFilters`, `getActiveFilterCount`, `emptyFilterState`) plus `FilterState` are all that's actually referenced.
+- **Fix applied:** Removed the three unused `type RangeFilter`, `type TagFilter`, `type BooleanFilter` re-imports from `./FilterPanel`.
 
 ---
 

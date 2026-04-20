@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { format, parseISO } from "date-fns";
 import { ComparisonView } from "./ComparisonView";
@@ -49,12 +49,6 @@ const gamma: CandidateFile = {
   name: "Gamma",
   values: { score: { value: 7 }, note: { value: "c" } },
 };
-
-const threeEntries: CandidateEntry[] = [
-  { id: "alpha", shownByDefault: true },
-  { id: "beta", shownByDefault: true },
-  { id: "gamma", shownByDefault: true },
-];
 
 function renderView(
   candidates: CandidateFile[] = [alpha, beta, gamma],
