@@ -1,5 +1,256 @@
 {
   "name": "OpenSpec",
   "description": "OSS spec-driven framework, frequently referenced as the open alternative",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "A lightweight spec-driven framework that aligns humans and AI coding assistants on specs before any code is written, with specs living in the repository alongside code.",
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec"]
+    },
+    "website": {
+      "value": "https://openspec.dev/",
+      "source": ["https://openspec.dev/"]
+    },
+    "repository": {
+      "value": "https://github.com/Fission-AI/OpenSpec",
+      "source": ["https://github.com/Fission-AI/OpenSpec"]
+    },
+    "creator": {
+      "value": "Fission-AI",
+      "source": ["https://github.com/Fission-AI/OpenSpec"]
+    },
+    "first-release": {
+      "value": "2026",
+      "source": ["https://github.com/Fission-AI/OpenSpec/releases.atom"],
+      "comment": "First tagged release was v0.21.0 on 2026-01-19. Repository was created 2025-08-05 but public releases started in January 2026."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/Fission-AI/OpenSpec/releases.atom"],
+      "comment": "v1.3.0 released 2026-04-11. Verified on 2026-04-21."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/Fission-AI/OpenSpec"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec"],
+      "comment": "Free and open source; a 'Workspaces' team tier is listed as in development but has not shipped."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://api.github.com/repos/Fission-AI/OpenSpec"],
+      "comment": "MIT license."
+    },
+    "covered-phases": {
+      "value": ["spec", "architecture", "tasks", "implementation", "review"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md", "https://github.com/Fission-AI/OpenSpec/blob/main/README.md"],
+      "comment": "Per change: proposal.md + specs/ (spec), design.md (architecture), tasks.md (tasks), /opsx:apply (implementation), /opsx:verify (review). No distinct discovery, testing, deployment, or retrospective phases."
+    },
+    "methodology-style": {
+      "value": ["spec-centric", "spec-driven"],
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec"],
+      "comment": "The spec is the central artifact; code is generated/changed from it."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "Project explicitly markets itself as 'fluid not rigid' and uses an 'actions, not phases' philosophy; phases can be reordered."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/README.md", "https://openspec.dev/"],
+      "comment": "Four artifacts per change (proposal, specs, design, tasks) but framing emphasizes minimal process; lands between low and high."
+    },
+    "mechanization-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md", "https://github.com/Fission-AI/OpenSpec/blob/main/README.md"],
+      "comment": "CLI + slash commands per phase; agent executes each step, but the user/agent invokes commands individually rather than a single end-to-end run."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "Archive prompts if specs are not synced; verification surfaces issues before archive. Human judgment remains central."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "No hard approval gates per phase — transitions are advisory, not blocking. Verify is documented as non-blocking."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "Workflow is built around human-invoked slash commands per phase; not intended or configured for fully autonomous end-to-end execution."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "Phase-level approvals: user/agent triggers each command; agent does the work within a phase."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "No dedicated rollback/undo mechanism documented; users rely on git."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "cursor", "codex", "windsurf", "cline", "copilot-chat", "roo", "opencode", "other"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md"],
+      "comment": "Docs list 31 supported tools including Claude Code, Cursor, Codex, Windsurf, Cline, GitHub Copilot, RooCode, OpenCode. Aider is not on the list. 'other' covers Amazon Q, Gemini CLI, Kiro, Junie, Continue, and ~16 more niche assistants."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "OpenSpec itself is a Node CLI; editor experience is whatever the underlying AI agent provides (VS Code, JetBrains, etc.). No OpenSpec-branded editor extension."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md"],
+      "comment": "Works with any of 30+ supported AI assistants; no API keys required by OpenSpec itself."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md", "https://github.com/Fission-AI/OpenSpec"],
+      "comment": "No MCP server or client documented; integration is via slash commands and on-disk artifacts."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md", "https://github.com/Fission-AI/OpenSpec/blob/main/README.md"],
+      "comment": "Artifacts (proposal, specs, design, tasks) are markdown. Configuration (openspec/config.yaml) is YAML."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks", "decisions"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/README.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "specs/ = specs; design.md serves as plan; tasks.md = tasks; proposal.md functions as an ADR-like decision record. No dedicated release notes, change logs, user docs, roadmap, or test plans."
+    },
+    "project-layout": {
+      "value": "openspec/specs/<capability>/spec.md plus openspec/changes/<change-id>/ containing proposal.md, design.md, tasks.md, and specs/ deltas; optional openspec/config.yaml and openspec/schemas/ for customization.",
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://openspec.dev/", "https://github.com/Fission-AI/OpenSpec"],
+      "comment": "Core premise is that specs and changes live in the repo; teams collaborate via standard git/PR workflow."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/tree/main/docs"],
+      "comment": "Dedicated multi-language.md documentation indicates language-agnostic design."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "linters", "manual-approval"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "`openspec validate` acts as a linter against schemas; archive prompts enable manual approval; otherwise enforcement is via prompt instructions to the agent. No hooks, CI checks, test gates, or agent-review features documented."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "Explicit 'actions, not phases' model; phases can be reordered and revisited."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md"],
+      "comment": "`openspec validate` checks changes and specs against structural schemas; `--all` and `--json` modes supported; schemas are user-customizable."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/README.md", "https://openspec.dev/"],
+      "comment": "Persistent context is the markdown specs/changes in the repo; no vector DB or knowledge graph."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://openspec.dev/"],
+      "comment": "Specs and archived changes remain in the repository across sessions and team members."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md"],
+      "comment": "openspec/config.yaml injects project-wide context/rules; installation emits agent-specific skill/command files (e.g., .claude/skills/, .github/prompts/)."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "No token or cost tracking documented; cost is borne by the underlying agent."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "Completed changes are archived as artifacts, but there is no structured execution trace or run log."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/README.md"],
+      "comment": "Anonymous command/version telemetry with documented opt-out via OPENSPEC_TELEMETRY=0 or DO_NOT_TRACK=1."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md"],
+      "comment": "Custom schemas with user-defined templates in openspec/schemas/<name>/templates/ guide AI artifact generation."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "No pre/post-phase lifecycle hooks documented."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md"],
+      "comment": "No sub-agent, persona, or role system. OpenSpec installs skill files into the underlying agent, but there is no OpenSpec-level persona abstraction."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md"],
+      "comment": "No public marketplace or community template registry documented."
+    },
+    "install-mechanism": {
+      "value": ["npm"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md", "https://github.com/Fission-AI/OpenSpec"],
+      "comment": "Primary: `npm install -g @fission-ai/openspec`. pnpm, yarn, bun, and nix are also supported (all Node-ecosystem variants of the same npm package)."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md"],
+      "comment": "Single npm global install plus `openspec init` in the target repo."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md"],
+      "comment": "Entirely a local CLI; no hosted service required."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://openspec.dev/"],
+      "comment": "No OpenSpec vendor account; the underlying AI agent may require one, but that is out of scope."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md"],
+      "comment": "Git worktrees are not referenced in the CLI or workflow docs."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.com/Fission-AI/OpenSpec/tree/main/docs", "https://openspec.dev/"],
+      "comment": "Dedicated docs site plus 11 topic files (installation, CLI, commands, concepts, customization, workflows, multi-language, schemas, migration, supported tools). Coverage is broad and current; some advanced edges (worktrees, hooks, rollback) are only clarified by absence."
+    },
+    "github-stars": {
+      "value": 41531,
+      "source": ["https://api.github.com/repos/Fission-AI/OpenSpec"],
+      "comment": "41,531 stars on 2026-04-21 (via GitHub API). Rapid growth — first release only ~3 months prior."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/releases.atom", "https://api.github.com/repos/Fission-AI/OpenSpec"],
+      "comment": "Latest release v1.3.0 on 2026-04-11; pushed_at 2026-04-20. Well within the 90-day window."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/Fission-AI/OpenSpec/blob/main/README.md", "https://github.com/Fission-AI/OpenSpec/blob/main/docs/workflows.md"],
+      "comment": "README walks through a dark mode feature example; workflows doc includes concrete scenarios."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://github.com/Fission-AI/OpenSpec"],
+      "comment": "Discord server at discord.gg/YctCnvvshC. No documented Slack/forum/Reddit presence; Twitter updates via @0xTab."
+    }
+  }
 }
