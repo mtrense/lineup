@@ -1,5 +1,405 @@
 {
   "name": "Aider architect/editor workflow",
   "description": "two-phase workflow built into Aider",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Two-phase workflow inside Aider where an 'architect' model proposes how to solve a coding request and a separate 'editor' model turns the proposal into specific file-editing instructions.",
+      "source": [
+        "https://aider.chat/docs/usage/modes.html",
+        "https://aider.chat/2024/09/26/architect.html"
+      ]
+    },
+    "website": {
+      "value": "https://aider.chat/docs/usage/modes.html",
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ]
+    },
+    "repository": {
+      "value": "https://github.com/Aider-AI/aider",
+      "source": [
+        "https://github.com/Aider-AI/aider"
+      ]
+    },
+    "creator": {
+      "value": "Paul Gauthier / Aider-AI",
+      "source": [
+        "https://github.com/Aider-AI/aider"
+      ]
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://aider.chat/2024/09/26/architect.html"
+      ],
+      "comment": "The architect/editor workflow was introduced on 2024-09-26. Aider itself predates it (project started in 2023)."
+    },
+    "latest-release": {
+      "value": "2025-08",
+      "source": [
+        "https://github.com/Aider-AI/aider/releases",
+        "https://github.com/Aider-AI/aider/commits/main"
+      ],
+      "comment": "Most recent tagged release is v0.86.0 (2025-08-09). Main branch is still actively committed to — last commit observed 2026-04-09."
+    },
+    "license": {
+      "value": [
+        "apache-2"
+      ],
+      "source": [
+        "https://github.com/Aider-AI/aider"
+      ]
+    },
+    "pricing-model": {
+      "value": [
+        "free-oss"
+      ],
+      "source": [
+        "https://github.com/Aider-AI/aider",
+        "https://aider.chat/docs/"
+      ],
+      "comment": "Aider itself is free/OSS; users pay their chosen LLM provider directly."
+    },
+    "open-source": {
+      "value": true,
+      "source": [
+        "https://github.com/Aider-AI/aider"
+      ]
+    },
+    "covered-phases": {
+      "value": [
+        "planning",
+        "implementation"
+      ],
+      "source": [
+        "https://aider.chat/2024/09/26/architect.html",
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "The workflow is narrow: the architect phase amounts to solution planning, and the editor phase carries out the implementation. No explicit spec, review, test, or deployment phases."
+    },
+    "methodology-style": {
+      "value": [
+        "plan-and-execute"
+      ],
+      "source": [
+        "https://aider.chat/2024/09/26/architect.html"
+      ],
+      "comment": "Plan-and-execute split across two models: the architect plans, the editor executes. Not spec-centric and not multi-agent in the conventional sense (both roles are LLM calls, not persistent agents)."
+    },
+    "opinionated": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "Architect mode is one of several chat modes (code, ask, help, architect); users can freely switch with /code, /ask, /help, /architect. Not a prescribed end-to-end process."
+    },
+    "ceremony-level": {
+      "value": [
+        "low"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "Two-phase flow with no non-code artifacts, no review gates, no ordered rituals beyond architect-then-editor."
+    },
+    "mechanization-level": {
+      "value": [
+        "high"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html",
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "A single `--architect` flag or `/architect` command routes a request through both models; aider then applies edits and commits automatically."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/config/options.html",
+        "https://github.com/Aider-AI/aider/issues/2329"
+      ],
+      "comment": "A between-phase checkpoint exists via `--no-auto-accept-architect`, which pauses for user confirmation after the architect proposal before invoking the editor. Default (`auto-accept-architect: true`) skips the checkpoint."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": [
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "No approval gates in the default configuration (auto-accept-architect defaults to true). Users can opt into a plan/implementation gate manually."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/config/options.html",
+        "https://aider.chat/docs/git.html"
+      ],
+      "comment": "With `--yes-always` and default `auto-accept-architect`, aider can run architect→editor→auto-commit without human prompts, given input prompts via stdin or a script."
+    },
+    "autonomy-level": {
+      "value": 4,
+      "source": [
+        "https://aider.chat/docs/config/options.html",
+        "https://aider.chat/docs/git.html"
+      ],
+      "comment": "In default config the architect proposal flows straight into the editor and code is auto-committed. User still drives each turn with a prompt; hence 4 rather than 5."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/git.html",
+        "https://aider.chat/docs/usage/commands.html"
+      ],
+      "comment": "`/undo` reverts aider's last commit; auto-commit makes every AI change reversible via git."
+    },
+    "supported-agents": {
+      "value": [
+        "aider"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "Architect/editor mode is built into Aider and only runs there. The underlying architect and editor roles can be any LLM Aider supports."
+    },
+    "editor-integrations": {
+      "value": [
+        "terminal-only"
+      ],
+      "source": [
+        "https://aider.chat/docs/",
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "Aider is a terminal tool. A `--watch` mode lets it respond to AI comments added from any editor, but there is no dedicated VS Code / JetBrains plugin maintained upstream."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/"
+      ],
+      "comment": "Works with OpenAI, Anthropic, Gemini, GROQ, Ollama, Azure and many others. Architect and editor models can be mixed across providers."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": [
+        "https://github.com/aider-ai/aider/issues/4506",
+        "https://github.com/disler/aider-mcp-server"
+      ],
+      "comment": "No native MCP support upstream as of 2026-04-21. Third-party MCP servers (e.g. disler/aider-mcp-server) expose Aider to other MCP clients, and AiderDesk ships MCP, but the CLI workflow itself does not."
+    },
+    "artifact-formats": {
+      "value": [
+        "code-only"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "The architect prose is shown in the chat and logged to `.aider.chat.history.md`, but the workflow produces no specs, plans, or design documents as persistent artifacts — only code edits."
+    },
+    "artifacts-covered": {
+      "value": [],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "The workflow produces no non-code artifacts. Architect prose is ephemeral chat context."
+    },
+    "project-layout": {
+      "value": "No prescribed layout. Optional `.aider.conf.yml` for config and `CONVENTIONS.md` for coding guidelines live at repo root; chat history is written to `.aider.chat.history.md`.",
+      "source": [
+        "https://aider.chat/docs/config/aider_conf.html",
+        "https://aider.chat/docs/usage/conventions.html"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/git.html"
+      ],
+      "comment": "Code changes are auto-committed to git; `.aider.conf.yml` and `CONVENTIONS.md` are typically committed too."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/"
+      ],
+      "comment": "Works across languages supported by tree-sitter; architect/editor mode is language-neutral."
+    },
+    "enforcement-mechanisms": {
+      "value": [
+        "instructional"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "The architect→editor split is mechanically routed by aider, but the process itself (what the architect says, what the editor does) is governed by prompt instructions. No linters, CI checks, or test gates enforce workflow quality."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "In architect mode the order is always architect-then-editor. Users cannot invoke the editor directly on a user prompt within architect mode."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "No schema validation of architect output; the editor consumes free-form prose."
+    },
+    "memory-implementation": {
+      "value": [
+        "markdown-files"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/conventions.html",
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "`CONVENTIONS.md` carries project conventions; `.aider.chat.history.md` logs prior chats. No vector DB or knowledge graph."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "`--restore-chat-history` reloads prior chat into a new session; conventions in `.aider.conf.yml`'s `read:` list are loaded every session."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/usage/conventions.html"
+      ],
+      "comment": "`CONVENTIONS.md` is the canonical project-scoped context file."
+    },
+    "cost-tracking": {
+      "value": [
+        "basic-logs"
+      ],
+      "source": [
+        "https://aider.chat/docs/usage/commands.html",
+        "https://aider.chat/docs/usage/caching.html"
+      ],
+      "comment": "Aider prints token counts and per-message cost estimates based on advertised provider pricing; `/tokens` reports context-window usage. No budget-halt feature."
+    },
+    "run-history": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "`.aider.chat.history.md` stores chat history; `--llm-history-file` can log raw LLM traffic."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/more/analytics.html"
+      ],
+      "comment": "Analytics are opt-in on first run and can be permanently disabled via the `analytics-disable` option. Scope is disclosed."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "The architect and editor prompts are not user-templatable; editor edit format is selectable (`editor-diff`, `editor-whole`) but the prompts themselves are fixed."
+    },
+    "hooks": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/config/options.html"
+      ],
+      "comment": "No documented lifecycle hooks around architect/editor phases."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/usage/modes.html"
+      ],
+      "comment": "No user-defined personas or skills. The architect/editor split is the only role abstraction and it is fixed."
+    },
+    "marketplace": {
+      "value": false,
+      "source": [
+        "https://github.com/Aider-AI/conventions"
+      ],
+      "comment": "A community `Aider-AI/conventions` repo exists for shared CONVENTIONS.md files, but there is no marketplace of workflow templates or skills for the architect/editor flow itself."
+    },
+    "install-mechanism": {
+      "value": [
+        "pip",
+        "shell-script"
+      ],
+      "source": [
+        "https://aider.chat/docs/install.html"
+      ],
+      "comment": "Recommended install paths are `aider-install`, `uv`, `pipx`, or `pip`; one-liner shell/Powershell installers are also documented."
+    },
+    "setup-time": {
+      "value": [
+        "under-5min"
+      ],
+      "source": [
+        "https://aider.chat/docs/install.html"
+      ],
+      "comment": "`aider-install` or `pipx install aider-chat` gets the CLI running in a few minutes; the architect/editor mode is then a flag away."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://aider.chat/docs/"
+      ],
+      "comment": "Aider runs locally; only outbound calls to the chosen LLM provider leave the machine (and even that is optional with local models like Ollama)."
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/install.html"
+      ],
+      "comment": "No Aider account. An LLM provider API key (or local model) is required to actually run the workflow, but there is no vendor login for Aider itself."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": [
+        "https://aider.chat/docs/git.html"
+      ],
+      "comment": "No documented first-party support for git worktrees in the architect/editor flow. Aider operates on the repo it is launched in."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://aider.chat/docs/",
+        "https://aider.chat/2024/09/26/architect.html"
+      ],
+      "comment": "Aider's docs site is comprehensive, current, and has a dedicated page plus a blog post explaining the architect/editor mode with benchmark results. Some config options (e.g. auto-accept-architect) are documented via options reference rather than a workflow guide."
+    },
+    "github-stars": {
+      "value": 43600,
+      "source": [
+        "https://github.com/Aider-AI/aider"
+      ],
+      "comment": "Approximate star count for the parent Aider repo as of 2026-04-21 (the architect/editor workflow does not have its own repo). Stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://github.com/Aider-AI/aider/commits/main"
+      ],
+      "comment": "Most recent commit on main observed 2026-04-09, well within the 90-day window from 2026-04-21."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://aider.chat/2024/09/26/architect.html",
+        "https://aider.chat/docs/usage/tutorials.html"
+      ],
+      "comment": "The launch blog post documents benchmark results, and Aider ships tutorial videos and a conventions repo that demonstrate architect/editor usage."
+    },
+    "community-channel": {
+      "value": [
+        "discord"
+      ],
+      "source": [
+        "https://aider.chat/docs/"
+      ],
+      "comment": "Official Discord is linked from the docs site. GitHub Issues are active but there is no dedicated forum or Slack."
+    }
+  }
 }
