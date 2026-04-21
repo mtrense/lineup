@@ -3,7 +3,7 @@ name: extend-comparison
 description: "Add one or more new attributes to an existing Lineup comparison type. Updates `data/<type>/RESEARCH.md` (a new row in an Attribute Groups table, plus Assessment Guidelines if applicable) and `data/<type>/attributes.json` (appends to an existing `groups[]` entry or creates a new group) in a single pass. Use when the comparison type has already been scaffolded (both files exist) and you want to extend the attribute set. Does not touch candidate files — existing candidates render `—` for the new attribute until `/gather-data` fills values. Arguments: comparison type id (required), free-text description of the new attribute(s) (required)."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*)
 argument-hint: "<comparison-type> <attribute description>"
 ---
 
