@@ -1,5 +1,344 @@
 {
   "name": "LangGraph",
-  "description": "graph-based agent orchestration framework",
-  "values": {}
+  "description": "Low-level graph-based orchestration framework for building stateful, long-running agents with durable execution, human-in-the-loop workflows, and persistent memory",
+  "url": "https://www.langchain.com/langgraph",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Low-level graph-based orchestration framework for building stateful, long-running agents with durable execution, human-in-the-loop workflows, and persistent memory",
+      "source": [
+        "https://github.com/langchain-ai/langgraph",
+        "https://www.langchain.com/langgraph"
+      ]
+    },
+    "website": {
+      "value": "https://www.langchain.com/langgraph",
+      "source": ["https://www.langchain.com/langgraph"]
+    },
+    "repository": {
+      "value": "https://github.com/langchain-ai/langgraph",
+      "source": ["https://github.com/langchain-ai/langgraph"]
+    },
+    "creator": {
+      "value": "LangChain Inc (langchain-ai)",
+      "source": ["https://github.com/langchain-ai/langgraph"]
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://changelog.langchain.com/announcements/week-of-1-22-24-langchain-release-notes"
+      ],
+      "comment": "Announced and released on 2024-01-22 as part of LangChain's Week of Jan 22 2024 release notes"
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://github.com/langchain-ai/langgraph/releases",
+        "https://pypi.org/project/langgraph/"
+      ],
+      "comment": "langgraph v1.1.8 released 2026-04-17; weekly release cadence"
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/langchain-ai/langgraph"]
+    },
+    "pricing-model": {
+      "value": ["free-oss", "freemium", "paid-saas", "paid-self-hosted"],
+      "source": [
+        "https://www.langchain.com/langgraph",
+        "https://www.langchain.com/pricing-langgraph-platform"
+      ],
+      "comment": "Core library is MIT-licensed free OSS; LangSmith has a free tier; LangGraph Platform offers paid cloud (Plus) and enterprise self-hosted / hybrid deployments"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/langchain-ai/langgraph"]
+    },
+    "covered-phases": {
+      "value": [],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/overview"
+      ],
+      "comment": "LangGraph is a low-level general-purpose agent orchestration framework and does not prescribe SDLC phases; users define what their graphs cover"
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "plan-and-execute", "harness-centric"],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/overview",
+        "https://github.com/langchain-ai/langgraph-supervisor-py",
+        "https://reference.langchain.com/python/langgraph-supervisor"
+      ],
+      "comment": "First-party langgraph-supervisor and langgraph-swarm packages implement multi-agent hierarchies; plan-and-execute is a documented common pattern; core value is the harness/runtime rather than a prescribed methodology"
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "Explicitly positioned as a low-level orchestration framework that does not abstract prompts or architecture; users define node/edge topology freely"
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://docs.langchain.com/langgraph-platform/langgraph-cli"],
+      "comment": "Minimal scaffolding: a langgraph.json config plus graph modules; no mandatory review gates, specs, or phase rituals"
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/overview",
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ],
+      "comment": "A compiled graph runs end-to-end via a single invoke()/stream() call; langgraph CLI runs the Agent Server locally"
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/human-in-the-loop"
+      ],
+      "comment": "interrupt() function pauses execution at user-defined checkpoints and awaits Command(resume=...); opt-in rather than prescribed"
+    },
+    "approval-gates": {
+      "value": [],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/human-in-the-loop"
+      ],
+      "comment": "No prescribed approval gates in the default configuration; any interrupt() gates are user-defined"
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"]
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/overview",
+        "https://docs.langchain.com/oss/python/langgraph/human-in-the-loop"
+      ],
+      "comment": "Default graph execution is fully autonomous from invoke to completion; any human checkpoints are opt-in via interrupt()"
+    },
+    "rollback-support": {
+      "value": false,
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/use-time-travel"
+      ],
+      "comment": "Time-travel via checkpoints supports rewinding/branching graph state, but there is no built-in mechanism to revert generated code, files, or other external side effects"
+    },
+    "supported-agents": {
+      "value": [],
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "LangGraph is itself an agent runtime rather than a workflow driven by an external coding agent; the supported-agents concept does not meaningfully apply"
+    },
+    "editor-integrations": {
+      "value": ["web"],
+      "source": [
+        "https://blog.langchain.com/langgraph-studio-the-first-agent-ide/",
+        "https://docs.langchain.com/langsmith/studio"
+      ],
+      "comment": "LangGraph Studio (now LangSmith Studio) is a web IDE for visualizing, interrupting, and debugging graphs; no first-party VS Code or JetBrains extension. langgraph CLI also available"
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "Works with any LLM provider via LangChain chat-model integrations (OpenAI, Anthropic, Google, AWS Bedrock, Azure, Ollama, etc.); does not require LangChain"
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://github.com/langchain-ai/langchain-mcp-adapters",
+        "https://changelog.langchain.com/announcements/mcp-adapters-for-langchain-and-langgraph"
+      ],
+      "comment": "First-party langchain-mcp-adapters package wraps MCP servers as LangChain/LangGraph tools via MultiServerMCPClient (stdio, HTTP, SSE, WebSocket)"
+    },
+    "artifact-formats": {
+      "value": ["json", "code-only"],
+      "source": [
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ],
+      "comment": "Primary non-code artifact is langgraph.json (config for dependencies, graphs, env, checkpointer, store, http); the actual workflow is code (Python/TS)"
+    },
+    "artifacts-covered": {
+      "value": [],
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "Does not produce or maintain SDLC artifacts (specs, plans, ADRs, release notes); the framework's artifacts are graph code and the langgraph.json config"
+    },
+    "project-layout": {
+      "value": "Minimal: `langgraph.json` at project root declares graphs, dependencies, env, checkpointer, and store config; graph modules are referenced from the config (e.g., `./my_graph.py:graph`). No prescribed directory structure.",
+      "source": [
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ],
+      "comment": "langgraph.json and graph code live in the repo; only checkpointer state (SQLite/Postgres) and traces (LangSmith) live outside git"
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/langchain-ai/langgraph",
+        "https://www.npmjs.com/package/@langchain/mcp-adapters"
+      ],
+      "comment": "Framework itself is available in Python and JavaScript/TypeScript (LangGraph.js); agents built on it can target any target-language codebase via tools"
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks"],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/overview",
+        "https://docs.langchain.com/oss/python/langgraph/human-in-the-loop"
+      ],
+      "comment": "Primary enforcement is instructional via node functions and edges; mechanical hooks via interrupt(), pre/post-model hooks, and MCP interceptors"
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "Node and edge topology is user-defined; the framework does not prescribe phases or enforce ordering beyond the user's graph"
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ],
+      "comment": "langgraph.json is validated against a schema by the CLI; State schemas (TypedDict / Pydantic) are validated at runtime"
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ],
+      "comment": "Checkpointer persists per-thread state to InMemory/SQLite/Postgres/CosmosDB; Store interface provides cross-thread KV plus optional vector semantic search"
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ],
+      "comment": "Checkpointers persist graph state between sessions by thread_id; Store persists shared memory across threads"
+    },
+    "project-context-files": {
+      "value": false,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "Does not use or produce CLAUDE.md / AGENTS.md / .cursorrules style project context files; agent behavior lives in code and prompts"
+    },
+    "cost-tracking": {
+      "value": ["basic-logs", "per-run"],
+      "source": [
+        "https://docs.langchain.com/langsmith/cost-tracking",
+        "https://docs.langchain.com/langsmith/trace-with-langgraph"
+      ],
+      "comment": "LangSmith (optional integration) aggregates prompt/completion token counts and costs per trace and per child run; no built-in hard budget limits"
+    },
+    "run-history": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/langsmith/trace-with-langgraph"
+      ],
+      "comment": "LangSmith stores structured traces with per-node timing, I/O, and token usage when LANGSMITH_TRACING=true"
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/langsmith/trace-with-langgraph"
+      ],
+      "comment": "Tracing is opt-in via LANGSMITH_TRACING and LANGSMITH_API_KEY environment variables; nothing is uploaded unless explicitly configured"
+    },
+    "custom-templates": {
+      "value": true,
+      "source": [
+        "https://blog.langchain.com/launching-langgraph-templates/",
+        "https://langchain-ai.github.io/langgraphjs/concepts/template_applications/"
+      ],
+      "comment": "LangGraph Templates (ReAct, RAG, Memory Agent, Data Enrichment, etc.) are user-forkable; users can also author their own graphs and state schemas freely"
+    },
+    "hooks": {
+      "value": true,
+      "source": [
+        "https://docs.langchain.com/oss/python/langgraph/human-in-the-loop",
+        "https://github.com/langchain-ai/langchain-mcp-adapters"
+      ],
+      "comment": "interrupt() pauses execution; pre/post-model hooks and middleware patterns exist; MCP adapters expose interceptors for modifying tool calls"
+    },
+    "sub-agents": {
+      "value": true,
+      "source": [
+        "https://github.com/langchain-ai/langgraph-supervisor-py",
+        "https://reference.langchain.com/python/langgraph-supervisor"
+      ],
+      "comment": "First-party langgraph-supervisor and langgraph-swarm packages support role-based multi-agent composition; users define agent roles, tools, and handoff logic"
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://blog.langchain.com/launching-langgraph-templates/",
+        "https://github.com/von-development/awesome-LangGraph"
+      ],
+      "comment": "Official LangGraph Templates gallery (Python + JS) accessible via LangGraph Studio and GitHub; community-maintained awesome-LangGraph index; no paid third-party marketplace"
+    },
+    "install-mechanism": {
+      "value": ["pip", "npm"],
+      "source": [
+        "https://pypi.org/project/langgraph/",
+        "https://docs.langchain.com/langgraph-platform/langgraph-cli"
+      ],
+      "comment": "`pip install langgraph` for Python; `npm install @langchain/langgraph` for JS/TS; langgraph-cli available via pip or npx"
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://docs.langchain.com/oss/python/langgraph/overview"],
+      "comment": "`pip install langgraph` plus a small graph module runs a hello-world in minutes; LangGraph Platform deploys take longer"
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://www.langchain.com/langgraph",
+        "https://www.langchain.com/pricing-langgraph-platform"
+      ],
+      "comment": "Core library runs entirely on user infrastructure; LangGraph Platform also offers self-hosted and hybrid enterprise deployments"
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://www.langchain.com/langgraph",
+        "https://docs.langchain.com/langsmith/trace-with-langgraph"
+      ],
+      "comment": "Not required for the core OSS library; a LangSmith account is needed only for tracing, Studio, and LangGraph Platform"
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/langchain-ai/langgraph"],
+      "comment": "No documented git-worktree integration"
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://docs.langchain.com/oss/python/langgraph/"],
+      "comment": "Comprehensive docs at docs.langchain.com covering concepts (graphs, state, persistence, HITL, streaming), platform/deploy, CLI, templates, and API reference; parallel Python and JS documentation"
+    },
+    "github-stars": {
+      "value": 29800,
+      "source": ["https://github.com/langchain-ai/langgraph"],
+      "comment": "29.8k stars observed 2026-04-21 on github.com/langchain-ai/langgraph"
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/langchain-ai/langgraph/releases"],
+      "comment": "v1.1.8 released 2026-04-17 (within 4 days of research on 2026-04-21); weekly release cadence"
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://blog.langchain.com/launching-langgraph-templates/",
+        "https://langchain-ai.github.io/langgraphjs/concepts/template_applications/",
+        "https://github.com/von-development/awesome-LangGraph"
+      ],
+      "comment": "Official templates (ReAct, RAG Research Agent, Memory Agent, Data Enrichment, Retrieval Agent, Full-stack Chatbot) in Python and JS; broad community examples via awesome-LangGraph"
+    },
+    "community-channel": {
+      "value": ["forum", "slack", "github-discussions"],
+      "source": [
+        "https://forum.langchain.com/",
+        "https://www.langchain.com/join-community",
+        "https://github.com/langchain-ai/langgraph/discussions"
+      ],
+      "comment": "LangChain Forum (primary Q&A), LangChain Community Slack, and GitHub Discussions on the langgraph repo"
+    }
+  }
 }
