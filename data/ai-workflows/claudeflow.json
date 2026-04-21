@@ -1,5 +1,297 @@
 {
   "name": "ClaudeFlow",
   "description": "Claude Code-focused workflow pack",
-  "values": {}
+  "url": "https://github.com/ruvnet/claude-flow",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Multi-agent orchestration platform for Claude Code with swarm topologies, hooks-based enforcement, persistent memory, and MCP tooling",
+      "source": [
+        "https://github.com/ruvnet/ruflo",
+        "https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"
+      ],
+      "comment": "Positioned as the leading agent orchestration platform for Claude; v3.5 series. The project repo was renamed from claude-flow to ruflo but is still distributed primarily as the `claude-flow` npm package."
+    },
+    "website": {
+      "value": "https://claude-flow.ruv.io/",
+      "source": ["https://claude-flow.ruv.io/"]
+    },
+    "repository": {
+      "value": "https://github.com/ruvnet/claude-flow",
+      "source": ["https://github.com/ruvnet/ruflo"],
+      "comment": "Repository was renamed to ruvnet/ruflo; the claude-flow URL still resolves via redirect."
+    },
+    "creator": {
+      "value": "Reuven Cohen (ruvnet)",
+      "source": ["https://github.com/ruvnet/ruflo"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": [
+        "https://www.pulsemcp.com/servers/ruvnet-claude-flow"
+      ],
+      "comment": "PulseMCP lists first release June 2, 2025; alpha v2.0.0-alpha.3 in July 2025 introduced MCP auto-setup."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/ruvnet/ruflo/releases"],
+      "comment": "v3.5.80 released April 11, 2026; checked 2026-04-21."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/ruvnet/ruflo"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "MIT-licensed OSS; users supply their own LLM provider API keys."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/ruvnet/ruflo"]
+    },
+    "covered-phases": {
+      "value": [
+        "discovery",
+        "spec",
+        "architecture",
+        "planning",
+        "tasks",
+        "implementation",
+        "testing",
+        "review"
+      ],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "CLAUDE.md enforces a Research → Design → Implementation → Testing → Review loop with TDD-London and ADR-driven architecture; the SONA/RJDCR loop (Retrieve → Judge → Distill → Consolidate → Route) covers discovery and consolidation."
+    },
+    "methodology-style": {
+      "value": [
+        "spec-driven",
+        "multi-agent",
+        "harness-centric",
+        "strict-tdd",
+        "plan-and-execute"
+      ],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Spec-driven with strict phase ordering; multi-agent swarm (queen-led hierarchy, 60+ agent types); primarily a harness around Claude Code; TDD London School is mandated for new code."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Enforces strict phase ordering, TDD-first, file size limits (<500 lines), and 'do what is asked; nothing more' behavioral rules."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Specs, ADRs, tests, hooks, multi-agent coordination and checkpoint gates add substantial process; not as prescribed-heavy as BMAD but well above lightweight."
+    },
+    "mechanization-level": {
+      "value": ["very-high"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Single CLI orchestrates 100+ agents, 17+ hooks, and 12 daemon workers; `npx ruflo@latest init` + `claude mcp add ruflo` wires an end-to-end managed pipeline."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Post-task hooks require explicit approval; checkpoint verification gates; plan permission mode exists alongside acceptEdits/bypassPermissions."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "implementation"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Spec-driven gates before implementation, plan mode gates edits, post-task hooks gate artifact release. Deploy gating not explicitly prescribed."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "bypassPermissions mode plus 12 background daemon workers allow unattended end-to-end runs; daemon workers audit/optimize/consolidate/predict."
+    },
+    "autonomy-level": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Default configuration still enforces phase gates and post-task approvals, but the framework ships with explicit autonomous modes and background daemons; sits between phase-level (3) and fully autonomous (5)."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "`migrate` command supports V2→V3 rollback with full recovery; session-restore preserves state mid-workflow."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex"],
+      "source": [
+        "https://github.com/ruvnet/ruflo",
+        "https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"
+      ],
+      "comment": "First-party support for Claude Code (CLAUDE.md) and OpenAI Codex (AGENTS.md); dual-mode orchestration runs both in parallel with shared memory."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only", "vscode", "jetbrains"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Primary surface is the CLI. MCP server works with Claude Desktop, VS Code, Cursor, Windsurf, ChatGPT, and JetBrains IDEs as clients."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "3-tier routing across Anthropic, OpenAI, Google, Cohere, and Ollama via agentic-flow integration."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Native MCP server exposing 313 tools across 31 modules; `claude mcp add ruflo -- npx ruflo@latest mcp start`."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "json"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Specs and ADRs in markdown; settings and plugin manifests in JSON; memory persisted to SQLite (not a user-facing artifact format)."
+    },
+    "artifacts-covered": {
+      "value": [
+        "specs",
+        "plans",
+        "tasks",
+        "architecture",
+        "decisions",
+        "test-plans"
+      ],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Specs → /docs, code → /src, tests → /tests, config → /config; ADRs tracked (70+ referenced). Release notes and user docs are not first-class pipeline outputs."
+    },
+    "project-layout": {
+      "value": ".claude/ (skills, helpers, hooks, settings) and/or .agents/ for Codex; CLAUDE.md / AGENTS.md at repo root; /docs, /src, /tests, /config directories",
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Specs, ADRs, and config live in the repo alongside source code; AgentDB memory is local state but not the primary artifact store."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "No stack-specific assumptions; TDD and phase rules apply generally. Vitest is referenced but not required."
+    },
+    "enforcement-mechanisms": {
+      "value": [
+        "hooks",
+        "test-gates",
+        "agent-review",
+        "manual-approval",
+        "instructional"
+      ],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "17+ pre/post lifecycle hooks, TDD-first test gates, reviewer/security-auditor agents, and post-task approval checkpoints; rules themselves are also prompt-level instructions."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Explicitly enforces Research → Design → Implementation → Testing → Review; hooks block implementations that violate architectural decisions."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Hooks enforce file-size limits, typed interfaces for public APIs, and ADR-compliance checks before merges; not a JSON-schema validation layer but structural rules are machine-enforced."
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "AgentDB v3 hierarchical memory (working/episodic/semantic) + HNSW vector search + PostgreSQL RuVector + SQLite WAL + markdown (CLAUDE.md/AGENTS.md). Spans vector-db, kv-store, and markdown-files — tagged hybrid."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Session-restore reloads state across runs; AgentDB embeds prior markdown memory on session start."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Uses CLAUDE.md and AGENTS.md; produces .claude/ skills and hooks."
+    },
+    "cost-tracking": {
+      "value": ["per-run", "basic-logs"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "@claude-flow/integration tracks token deltas per run (ReasoningBank -32%, Agent Booster -15%, cache -10%); no documented hard budget limits surfaced."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "AgentDB records trajectories for reinforcement learning; daemon workers log to audit/document workers."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Analytics described as opt-in, configured via environment variables."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Pre-built collaboration pipelines (feature, security, refactor, bugfix) are customizable; Plugin SDK allows user-defined templates."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "17 lifecycle hooks (pre-edit, post-edit, post-task, intelligence, route, pretrain, teammate-idle, task-completed, etc.) plus 12 daemon workers."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "60+ agent types in default registry; Plugin SDK for custom workers/providers; Agent Teams feature spawns teammates with run_in_background."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "20+ plugins distributed via IPFS/Pinata registry, installable with `npx claude-flow@v3alpha plugins install <name>`."
+    },
+    "install-mechanism": {
+      "value": ["npm", "shell-script"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "`npx ruflo@latest init` (published as claude-flow, @claude-flow/cli, ruflo) or curl install.sh from cdn.jsdelivr.net."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Single `npx` init auto-configures hooks, MCP, and project files."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "Runs entirely locally; cloud Flow Nexus integration is optional."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md"],
+      "comment": "No ruflo/Claude-Flow account required; only LLM provider API keys (which every comparable tool also needs)."
+    },
+    "git-worktree-support": {
+      "value": null,
+      "comment": "No explicit git-worktree integration found in README/CLAUDE.md; parallel execution is via in-process agent swarms and shared memory rather than worktrees. Marked null pending clearer documentation."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://github.com/ruvnet/ruflo",
+        "https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md",
+        "https://claude-flow.ruv.io/"
+      ],
+      "comment": "Extensive README, CLAUDE.md playbook, wiki, and marketing site; coverage is broad but the rapid release cadence and rename (claude-flow → ruflo) create some drift between docs and current behavior."
+    },
+    "github-stars": {
+      "value": 32600,
+      "source": ["https://github.com/ruvnet/ruflo"],
+      "comment": "32.6k stars as listed on the repo page on 2026-04-21; changes rapidly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/ruvnet/ruflo/releases"],
+      "comment": "v3.5.80 released 2026-04-11 (10 days before verification); 6,067 commits on main."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ruvnet/ruflo/main/CLAUDE.md"],
+      "comment": "Ships pre-built collaboration pipelines (feature, security, refactor, bugfix) and wiki quickstart guides; domain plugins (Healthcare/Financial/Legal) are documented use cases."
+    },
+    "community-channel": {
+      "value": ["discord", "github-discussions"],
+      "source": ["https://github.com/ruvnet/ruflo/issues/549"],
+      "comment": "Active Discord (discord.com/invite/dfxmpwkG2D); GitHub issues/wiki used for ongoing discussion."
+    }
+  }
 }
