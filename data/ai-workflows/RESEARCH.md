@@ -167,7 +167,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Kiro** - AWS's spec-driven dev assistant
 - [x] **CrewAI** - popular multi-agent orchestration, commonly applied to dev workflows
 - [x] **LangGraph** - graph-based agent orchestration framework
-- [ ] **AutoGen** - Microsoft's multi-agent conversation framework
+- [x] **AutoGen** - Microsoft's multi-agent conversation framework
 - [ ] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
 - [ ] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
 - [ ] **GSD** - *pending user clarification on upstream project / URL*

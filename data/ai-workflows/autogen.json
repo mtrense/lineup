@@ -1,5 +1,254 @@
 {
   "name": "AutoGen",
   "description": "Microsoft's multi-agent conversation framework",
-  "values": {}
+  "url": "https://microsoft.github.io/autogen/stable/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Event-driven Python framework for building multi-agent AI applications with layered Core/AgentChat/Extensions APIs and a Studio GUI",
+      "source": ["https://github.com/microsoft/autogen", "https://microsoft.github.io/autogen/stable/index.html"]
+    },
+    "website": {
+      "value": "https://microsoft.github.io/autogen/stable/",
+      "source": ["https://github.com/microsoft/autogen"]
+    },
+    "repository": {
+      "value": "https://github.com/microsoft/autogen",
+      "source": ["https://github.com/microsoft/autogen"]
+    },
+    "creator": {
+      "value": "Microsoft",
+      "source": ["https://github.com/microsoft/autogen"]
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://www.microsoft.com/en-us/research/articles/autogen-v0-4-reimagining-the-foundation-of-agentic-ai-for-scale-extensibility-and-robustness/"],
+      "comment": "Initial public release September/October 2023; v0.4 architectural redesign released January 2025."
+    },
+    "latest-release": {
+      "value": "2025-09",
+      "source": ["https://github.com/microsoft/autogen/releases/tag/python-v0.7.5", "https://github.com/microsoft/autogen/commits/main"],
+      "comment": "Last tagged release python-v0.7.5 on 2025-09-30. Repo is in stated maintenance mode but still receives patches; most recent commit 2026-04-06."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/microsoft/autogen/blob/main/LICENSE-CODE"],
+      "comment": "Code under MIT; documentation content under CC-BY-4.0."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/microsoft/autogen"]
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/microsoft/autogen/blob/main/LICENSE-CODE"]
+    },
+    "covered-phases": {
+      "value": [],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"],
+      "comment": "AutoGen provides orchestration primitives (teams, termination conditions, handoffs) but prescribes no spec/plan/implementation phases."
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "harness-centric"],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"],
+      "comment": "Framework for building multi-agent systems; value is in the runtime and orchestration harness, not a prescribed methodology."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"],
+      "comment": "Teams, roles, and termination are user-defined; no mandatory workflow."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "No required artifacts, reviews, or phase gates."
+    },
+    "mechanization-level": {
+      "value": ["medium"],
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "Users write Python code against the API; AutoGen Studio offers a no-code GUI for prototyping but production flows require code."
+    },
+    "hitl-checkpoints": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"],
+      "comment": "HITL is optional via UserProxyAgent; not built into the default team lifecycle."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"],
+      "comment": "No phase-level approval gates in the default configuration."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"],
+      "comment": "Teams can run to termination without any human interaction when UserProxyAgent is not included."
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"],
+      "comment": "Default configuration runs fully autonomously; human feedback is opt-in."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "No built-in rollback; any undo mechanism is the user's responsibility."
+    },
+    "supported-agents": {
+      "value": [],
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "AutoGen is itself an agent runtime; it does not plug into Claude Code / Cursor / Codex. It integrates with LLM providers (OpenAI, Anthropic, Azure, Bedrock, Gemini, Ollama) rather than coding agents."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only", "web"],
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "Primary interface is Python in a terminal/IDE; AutoGen Studio provides a web UI for prototyping."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "Extensions include clients for OpenAI, Azure OpenAI, Anthropic, Bedrock, Gemini, Ollama, and others."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/components/workbench.html", "https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.tools.mcp.html"],
+      "comment": "McpWorkbench class integrates MCP servers via stdio, SSE, and HTTP."
+    },
+    "artifact-formats": {
+      "value": ["code-only"],
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "AutoGen produces agent conversations and code; it does not generate spec/plan/task documents."
+    },
+    "artifacts-covered": {
+      "value": [],
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "No formal workflow artifacts produced by the framework itself."
+    },
+    "project-layout": {
+      "value": "No prescribed layout; imported as Python packages (autogen-agentchat, autogen-core, autogen-ext).",
+      "source": ["https://github.com/microsoft/autogen"]
+    },
+    "artifacts-in-git": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "No framework artifacts to track; user code is versioned normally."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "Primary Python implementation; a .NET implementation exists but AgentChat is Python-first."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional"],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"],
+      "comment": "Agent behavior is shaped by system prompts and termination conditions; no hooks, linters, or CI gates built in."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"]
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"]
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/memory.html"],
+      "comment": "Memory protocol with ListMemory (in-process), ChromaDBVectorMemory, RedisMemory, and Mem0Memory backends — spans session-only, vector-db, and external options."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/memory.html"],
+      "comment": "Persistence supported when using ChromaDB persistent config, Redis, or Mem0; ListMemory is in-process only."
+    },
+    "project-context-files": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/memory.html"],
+      "comment": "No CLAUDE.md / AGENTS.md convention. System messages and memory are configured in code."
+    },
+    "cost-tracking": {
+      "value": ["basic-logs"],
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/framework/telemetry.html"],
+      "comment": "OpenTelemetry spans record LLM call metadata including tokens; no built-in budget limits or per-phase roll-ups."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tracing.html", "https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/cookbook/instrumenting.html"],
+      "comment": "Built-in OpenTelemetry tracing follows GenAI semantic conventions; works with any OTel backend."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/framework/telemetry.html"],
+      "comment": "Telemetry is opt-in — users provide their own tracer provider; nothing is sent by default."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "No artifact templating system; system prompts are configured per agent in code."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html"],
+      "comment": "No formal pre/post-phase lifecycle hooks. Message handlers and termination conditions are the extension points."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html"],
+      "comment": "Users define custom agents by subclassing BaseChatAgent or configuring AssistantAgent with distinct system prompts and tools."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "No first-party marketplace. Extensions API enables third-party packages distributed via PyPI."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://pypi.org/project/autogen/", "https://github.com/microsoft/autogen"],
+      "comment": "pip install autogen-agentchat autogen-ext[openai]; autogenstudio for the GUI."
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "pip install plus configuring an LLM provider API key; first multi-agent example runs quickly."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "Runs entirely on user infrastructure; hosted LLM provider is required but no AutoGen service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "No AutoGen account required. An LLM provider API key is needed to actually call models."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "No explicit worktree integration; AutoGen is agent-framework level, not VCS-aware."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "Comprehensive API reference, tutorials, and cookbook with runnable examples; some fragmentation across v0.2/v0.4 eras and ecosystem forks (AG2)."
+    },
+    "github-stars": {
+      "value": 57300,
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "~57.3k stars as of 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/microsoft/autogen/commits/main"],
+      "comment": "Most recent commit 2026-04-06 (maintenance-mode banner update); security fix 2026-03-26. Stated as maintenance mode with Microsoft Agent Framework as successor, but patches continue."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/microsoft/autogen", "https://microsoft.github.io/autogen/stable/index.html"],
+      "comment": "Cookbook, sample notebooks, and Magentic-One reference implementation are all public."
+    },
+    "community-channel": {
+      "value": ["discord", "github-discussions"],
+      "source": ["https://github.com/microsoft/autogen"],
+      "comment": "Discord via aka.ms/autogen-discord plus GitHub Discussions."
+    }
+  }
 }
