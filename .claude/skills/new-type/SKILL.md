@@ -11,7 +11,7 @@ argument-hint: "<comparison-type-id> [free-text seed]"
 
 You are drafting the research guide for a new comparison type in a Lineup project. A comparison type lives under `data/<type>/`; this skill produces only the authoritative `RESEARCH.md` (scope, attributes, sources, assessment, initial candidates) so you and the user can collaborate on it before the structural JSON files are generated.
 
-Once RESEARCH.md is in a shape the user is happy with, they run `/scaffold-type <type>` to derive `attributes.json`, create the empty `index.json`, and register the type in the top-level `data/index.json`. Candidates are added later via `/add-candidates` and researched via `/gather-data`.
+Once RESEARCH.md is in a shape the user is happy with, they run `/scaffold-type <type>` to derive `attributes.json`, register the type in the top-level `data/index.json`, and scaffold stubs for the Initial Candidates into `data/<type>/index.json`. Candidate attribute values are researched later via `/gather-data`. `/scaffold-type` also handles adding further candidate stubs to an already-scaffolded type.
 
 ## Argument Parsing
 
@@ -25,7 +25,7 @@ If the id is missing or not kebab-case, ask the user to provide one before proce
 
 1. Read `CLAUDE.md` at the project root to confirm this is a Lineup project and to pick up local conventions (commit format, etc.).
 2. Read `data/index.json` to see existing comparison types and their shapes.
-3. Confirm `data/<type>/` does NOT already exist — if it does, abort and point the user to `/scaffold-type` (if RESEARCH.md exists but schema doesn't), `/add-candidates`, or direct editing.
+3. Confirm `data/<type>/` does NOT already exist — if it does, abort and point the user to `/scaffold-type` (to finish schema generation, add more candidate stubs to an existing type) or direct editing.
 4. Skim 1–2 existing `data/*/RESEARCH.md` files to internalize the in-project tone and depth before drafting a new one.
 
 ## Phase 1: Socratic Scoping (Interactive)
