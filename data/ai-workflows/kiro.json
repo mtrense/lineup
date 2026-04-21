@@ -1,5 +1,260 @@
 {
   "name": "Kiro",
   "description": "AWS's spec-driven dev assistant",
-  "values": {}
+  "url": "https://kiro.dev/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "AWS's agentic, spec-driven IDE (and companion CLI) that turns prompts into requirements, design, and task markdown files before generating code.",
+      "source": ["https://kiro.dev/", "https://kiro.dev/blog/introducing-kiro/"]
+    },
+    "website": {
+      "value": "https://kiro.dev/",
+      "source": ["https://kiro.dev/"]
+    },
+    "repository": {
+      "value": "https://github.com/kirodotdev/Kiro",
+      "source": ["https://github.com/kirodotdev/Kiro"],
+      "comment": "The public GitHub repo is an issue tracker and docs hub; the IDE and CLI source are not open-sourced there."
+    },
+    "creator": {
+      "value": "Amazon Web Services (AWS)",
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://github.com/kirodotdev/Kiro"],
+      "comment": "Introduced by AWS in July 2025 (product leads Nikhil Swaminathan and Deepak Singh, VP DevEx & Agents); copyright ©2026 Amazon.com, Inc."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Publicly announced July 14, 2025 (\"Introducing Kiro\")."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://kiro.dev/changelog/ide/"],
+      "comment": "IDE v0.11.132 patch released April 17, 2026 (v0.11 major on March 11, 2026). Checked 2026-04-21."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://kiro.dev/", "https://github.com/kirodotdev/Kiro"],
+      "comment": "Kiro IDE/CLI is proprietary AWS software. The IDE is based on Code OSS (VS Code's open-source core) but Kiro itself has no public LICENSE and source is not distributed."
+    },
+    "pricing-model": {
+      "value": ["freemium", "paid-saas"],
+      "source": ["https://kiro.dev/pricing/"],
+      "comment": "Free tier with 50 credits/month, then Pro $20, Pro+ $40, Power $200 per month. All paid plans are hosted SaaS with pay-per-use overage at $0.04/credit."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/kirodotdev/Kiro", "https://kiro.dev/"],
+      "comment": "Based on Code OSS and supports Open VSX plugins, but Kiro's own IDE/CLI code is not OSI-licensed or published."
+    },
+    "covered-phases": {
+      "value": ["spec", "architecture", "planning", "tasks", "implementation"],
+      "source": ["https://kiro.dev/docs/specs/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Spec workflow produces requirements.md (spec), design.md (architecture + data flow/schemas), tasks.md (plans + discrete tasks), then agent implementation."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "spec-centric"],
+      "source": ["https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Positioned explicitly as \"spec-driven development\"; the three spec files are the central artifact from which code is generated."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "The default flow prescribes the requirements → design → tasks sequence with fixed filenames. Ad-hoc chat is available but the spec-driven path is the framework's core."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "Three prescribed markdown artifacts per feature plus steering files — more ceremony than pure chat, lighter than full BDD/ADR stacks."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://kiro.dev/", "https://kiro.dev/docs/hooks/"],
+      "comment": "Standalone IDE and CLI execute the full workflow; event-driven hooks automate file-save/PR/tool-use actions end-to-end."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/specs/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Users review and edit requirements.md, design.md, and tasks.md before each next step; tasks are executed one at a time with status tracking."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks"],
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "Each of the three spec artifacts is produced as a reviewable checkpoint before the next phase; implementation tasks are opt-in per task."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "Default spec workflow requires user review at each phase. Hooks and headless CLI enable unattended runs for narrow tasks but not idea-to-merge by default."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://kiro.dev/docs/specs/", "https://kiro.dev/docs/hooks/"],
+      "comment": "Default configuration has phase-level human approvals between the three spec artifacts and per-task execution."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "No built-in revert mechanism for generated artifacts or code changes documented; relies on underlying git for rollback."
+    },
+    "supported-agents": {
+      "value": ["other"],
+      "source": ["https://kiro.dev/", "https://kiro.dev/faq/"],
+      "comment": "Kiro ships its own first-party agent runtime; it does not layer on top of Claude Code, Cursor, Codex, etc. Uses Anthropic Claude models (Sonnet 4/4.5, Haiku 4.5, Opus 4.5/4.6/4.7) via its Auto agent."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only"],
+      "source": ["https://kiro.dev/", "https://kiro.dev/changelog/ide/"],
+      "comment": "Standalone IDE is a Code OSS fork (inherits the VS Code extension UX and Open VSX marketplace, but is not a VS Code extension). CLI added in v0.6 (November 2025) and expanded to headless CI/CD in CLI 2.0."
+    },
+    "model-agnostic": {
+      "value": false,
+      "source": ["https://kiro.dev/faq/"],
+      "comment": "Model picker is restricted to Anthropic Claude variants (Sonnet 4, Sonnet 4.5, Haiku 4.5, Opus 4.5/4.6/4.7) plus an Auto mode that mixes them; no other vendors are exposed."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/mcp/", "https://kiro.dev/changelog/ide/"],
+      "comment": "Built-in MCP server support in both IDE and CLI; v0.11 added an MCP Registry Governance feature for org-wide allowlists."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "json", "yaml"],
+      "source": ["https://kiro.dev/docs/specs/", "https://kiro.dev/docs/steering/", "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"],
+      "comment": "Specs and steering are markdown (steering allows optional YAML frontmatter); custom agent definitions are JSON files in .kiro/agents/."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "architecture", "plans", "tasks"],
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "requirements.md → specs, design.md → architecture, tasks.md → plans + tasks. No first-class ADR, changelog, or release-notes artifact."
+    },
+    "project-layout": {
+      "value": ".kiro/ folder at workspace root, containing specs/ (requirements.md, design.md, tasks.md per feature), steering/ (product.md, tech.md, structure.md, plus user additions), agents/ (JSON agent configs), and hooks. Global equivalents live in ~/.kiro/.",
+      "source": ["https://kiro.dev/docs/steering/", "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/steering/", "https://kiro.dev/docs/specs/"],
+      "comment": "All spec, steering, and agent files live in the workspace .kiro/ directory and are intended to be committed alongside source."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Workflow prescribes artifacts, not a language; spec examples include TypeScript interfaces and API schemas but the tool targets any stack."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks", "manual-approval"],
+      "source": ["https://kiro.dev/docs/hooks/", "https://kiro.dev/docs/steering/", "https://kiro.dev/docs/specs/"],
+      "comment": "Steering files are instructional; agent hooks fire on file events and pre/post tool use; each spec phase is a manual-approval checkpoint."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "Workflow encourages requirements → design → tasks but users can edit any spec file directly at any time; there is no hard refusal to skip ahead."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/specs/"],
+      "comment": "Spec files are free-form markdown with suggested structure; no schema validation or structural rule enforcement."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Steering files (.kiro/steering/*.md and ~/.kiro/steering/*.md) plus AGENTS.md compatibility provide the persistent context layer."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Steering files persist across sessions and are auto-included; spec folders also persist per feature without manual handoff."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Uses .kiro/steering/product.md, tech.md, structure.md by default and also honors AGENTS.md."
+    },
+    "cost-tracking": {
+      "value": ["per-run", "budget-limits"],
+      "source": ["https://kiro.dev/pricing/", "https://kiro.dev/"],
+      "comment": "Credits per prompt are displayed in real time; monthly credit quotas effectively cap spend, with pay-per-use overage at $0.04/credit."
+    },
+    "run-history": {
+      "value": null,
+      "source": ["https://kiro.dev/changelog/ide/"],
+      "comment": "Could not confirm whether Kiro stores structured run history/traces beyond the live chat; public docs do not describe a run-history/trace store. Checked 2026-04-21."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://kiro.dev/faq/"],
+      "comment": "Telemetry is disclosed in the FAQ and opt-out is available for Free and individual subscribers; enterprise (IAM Identity Center) accounts have telemetry disabled by default."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Users can add custom steering files to direct the agent; custom agents with their own prompts are also supported."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/hooks/"],
+      "comment": "Agent Hooks fire on file save/create/delete, user prompt submission, agent-turn completion, pre/post tool use, and pre/post spec-task execution; hooks can run shell commands or agent prompts."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/cli/custom-agents/configuration-reference/"],
+      "comment": "Custom agents defined as JSON in .kiro/agents/ (workspace) or ~/.kiro/agents/ (global) with name, prompt, tools, mcpServers, allowedTools, etc."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://kiro.dev/", "https://kiro.dev/changelog/ide/"],
+      "comment": "No public marketplace for Kiro steering/agent/hook templates found as of 2026-04-21. Open VSX marketplace is inherited for generic VS Code extensions; MCP Registry is org-internal."
+    },
+    "install-mechanism": {
+      "value": ["binary", "shell-script"],
+      "source": ["https://kiro.dev/", "https://kiro.dev/changelog/ide/"],
+      "comment": "IDE is a downloadable installer for macOS/Windows/Linux; CLI installs via `curl -fsSL https://cli.kiro.dev/install | bash`."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://kiro.dev/"],
+      "comment": "Download installer or run the CLI install script, then log in with GitHub/Google/AWS Builder ID/IAM Identity Center."
+    },
+    "self-hosted": {
+      "value": false,
+      "source": ["https://kiro.dev/faq/", "https://kiro.dev/pricing/"],
+      "comment": "Inference and account/billing backend are AWS-hosted; the IDE/CLI are local but cannot be used without the managed service."
+    },
+    "requires-account": {
+      "value": true,
+      "source": ["https://kiro.dev/faq/"],
+      "comment": "Login with GitHub, Google, AWS Builder ID, or AWS IAM Identity Center is required to use Kiro."
+    },
+    "git-worktree-support": {
+      "value": null,
+      "source": ["https://kiro.dev/docs/"],
+      "comment": "No documented first-party git worktree integration. Kiro operates on the open workspace folder; whether multiple worktrees work in parallel is unverified. Checked 2026-04-21."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://kiro.dev/docs/", "https://kiro.dev/changelog/ide/"],
+      "comment": "Well-structured docs site covering IDE and CLI with guides, reference, changelogs, and \"Learn by playing\" tutorials; some feature internals (hook storage format, run history) are thin."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://github.com/kirodotdev/Kiro"],
+      "comment": "The kirodotdev/Kiro repo (issues+docs only, ~3.5k stars on 2026-04-21) is not the product's source code. Per RESEARCH.md, stars are recorded as null for closed-source platforms."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://kiro.dev/changelog/ide/"],
+      "comment": "IDE patch v0.11.132 shipped 2026-04-17, four days before this research; well within the 90-day threshold."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://kiro.dev/docs/"],
+      "comment": "\"Learn by playing\" tutorial series and launch-blog walkthroughs demonstrate the full spec workflow on sample projects."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://github.com/kirodotdev/Kiro"],
+      "comment": "Official Discord at discord.gg/kirodotdev linked from the GitHub README."
+    }
+  }
 }
