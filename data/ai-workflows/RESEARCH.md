@@ -185,6 +185,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **MetaGPT** — Multi-agent framework simulating a software company (PM, architect, engineer roles) from a single natural-language requirement (added 2026-04-21)
 - [x] **Paperclip** — AI-workforce control plane (org structure, agent budgets, goal alignment, governance) applicable to fleets of coding agents; added after broadening Scope to cover this category (added 2026-04-21)
 - [ ] **Ouroboros** — spec-driven, multi-agent workflow toolkit ("Stop prompting. Start specifying.") with Claude Code, Codex CLI, and MCP integrations (added 2026-04-21)
+- [ ] **Intent** — Augment Code's commercial spec-driven workspace with a Coordinator agent that delegates to parallel specialist agents around living specs (added 2026-04-21)
 
 ## Notes for Researchers
 
