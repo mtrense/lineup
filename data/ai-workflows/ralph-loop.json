@@ -2,5 +2,258 @@
   "name": "Ralph Loop",
   "description": "Autonomous stateless-loop methodology (Geoffrey Huntley) in which an AI coding agent re-reads specs and iterates one task per cycle with fresh context, typically driven by a minimal bash loop.",
   "url": "https://github.com/ghuntley/how-to-ralph-wiggum",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Stateless agent-loop pattern (`while :; do cat PROMPT.md | claude ; done`) in which a fresh agent context picks one task per iteration from on-disk state (specs, plan, AGENTS.md) until the spec is satisfied.",
+      "source": ["https://ghuntley.com/ralph/", "https://github.com/ghuntley/how-to-ralph-wiggum"]
+    },
+    "website": {
+      "value": "https://ghuntley.com/ralph/",
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Canonical write-up is Huntley's July 2025 blog post; the GitHub repo is the companion playbook."
+    },
+    "repository": {
+      "value": "https://github.com/ghuntley/how-to-ralph-wiggum",
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"]
+    },
+    "creator": {
+      "value": "Geoffrey Huntley",
+      "source": ["https://ghuntley.com/ralph/"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Methodology introduced in Huntley's blog post dated 2025-07-14; companion repo published shortly after."
+    },
+    "latest-release": {
+      "value": "2026-01",
+      "source": ["https://api.github.com/repos/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No tagged releases; latest commit pushed 2026-01-11. Verified 2026-04-21."
+    },
+    "license": {
+      "value": ["other"],
+      "source": ["https://api.github.com/repos/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Repository has no LICENSE file; GitHub API reports no license. Strictly all-rights-reserved by default, though the README content is widely shared and adapted."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Free to read and adopt; no commercial offering. Note license ambiguity above — treated as a free pattern in practice."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://api.github.com/repos/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Public repo but no OSI-approved license declared, so does not meet the OSI definition of open source despite being freely available."
+    },
+    "covered-phases": {
+      "value": ["spec", "planning", "tasks", "implementation", "testing"],
+      "source": ["https://ghuntley.com/ralph/", "https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Specs in specs/*.md (spec); PROMPT_plan produces IMPLEMENTATION_PLAN.md (planning + tasks); PROMPT_build picks tasks and implements (implementation); 'backpressure' phase runs tests/builds (testing). Self-evaluation/loop-back is a step but produces no distinct artifact, so not tagged as review."
+    },
+    "methodology-style": {
+      "value": ["process-centric", "plan-and-execute", "spec-driven"],
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Value lives in the loop+phase discipline (process-centric); planning prompt and building prompt are explicitly separate (plan-and-execute); specs/ folder is the source of truth code is generated from (spec-driven). Not tagged multi-agent — Ralph runs one agent per loop iteration; subagent fan-out is a Claude Code feature, not a multi-agent role split."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Prescribes one-task-per-loop, deterministic file set per iteration, fresh context every cycle, no placeholder code, ripgrep-before-implement — a tight set of rules."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Four files plus a bash one-liner; no ADRs, change logs, release notes, or formal review gates."
+    },
+    "mechanization-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "loop.sh runs the agent end-to-end without human stepping, but the methodology requires the user to author PROMPT.md, AGENTS.md, and specs by hand and to tune the prompts as failures emerge — not a turnkey pipeline."
+    },
+    "hitl-checkpoints": {
+      "value": false,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Default loop runs without checkpoints; Huntley caveats that experienced operator oversight is needed in practice but the methodology defines no explicit gates."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "No phase-level approval gates by design."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Entire premise: the loop runs to completion (or budget exhaustion) without intervention."
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Default configuration is fully autonomous — the bash loop only stops on Ctrl-C or completion."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No built-in rollback; relies on the user reverting via git after the fact."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex", "opencode", "other"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "All worked examples and prompt files target Claude Code (`claude --dangerously-skip-permissions`). README explicitly notes the same approach 'can be used with other CLIs; e.g. amp, codex, opencode' but provides no working examples for them."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Methodology is a shell loop driving an agent CLI; no editor plugin."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "The loop pattern is independent of any specific model — any agent CLI that accepts a prompt over stdin works. Huntley's worked examples use Claude (Sonnet/Opus) but he names Gemini as a fallback for large error sets."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No MCP integration; Ralph predates and ignores MCP. Underlying agent (e.g., Claude Code) may use MCP independently."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "All non-code artifacts (PROMPT.md, AGENTS.md, IMPLEMENTATION_PLAN.md, specs/*.md) are Markdown."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "specs/*.md (specs), IMPLEMENTATION_PLAN.md doubles as plan + prioritized task list. AGENTS.md is operator guidance, not classified as one of the listed artifact kinds."
+    },
+    "project-layout": {
+      "value": "Repo root holds PROMPT.md (or PROMPT_plan.md / PROMPT_build.md), AGENTS.md, IMPLEMENTATION_PLAN.md, loop.sh, plus specs/*.md and src/ for the application code.",
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "All state files live in the repo and are committed alongside source code; that on-disk persistence is the entire point."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Methodology has no language assumption; Huntley's flagship example built a Rust+LLVM compiler, and community ports cover other stacks."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates"],
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Process discipline is enforced through PROMPT.md and AGENTS.md instructions only (instructional). The 'backpressure' phase requires the agent to run tests/builds and self-correct on failure (test-gates)."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "User chooses between PROMPT_plan.md and PROMPT_build.md by swapping which file the loop pipes; no mechanism prevents running build before plan."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No schema or validator for the markdown artifacts."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Persistent state is exclusively in markdown files (IMPLEMENTATION_PLAN.md, AGENTS.md, specs/) plus git history; no vector DB or knowledge graph."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "On-disk files are the entire point — they survive between agent invocations and are how the loop preserves progress across fresh contexts."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "AGENTS.md is described as the 'single, canonical heart of the loop' — a project-scoped operator/build guide for the agent."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No built-in token or cost tracking in the methodology; any tracking comes from the underlying agent CLI."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No structured trace store; per-iteration commits to git are the only durable record."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "The loop itself collects no telemetry — there is nothing to opt out of. Underlying agent CLIs may have their own telemetry policies."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "The user authors PROMPT.md and AGENTS.md from scratch; the entire methodology IS user-supplied templates."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No lifecycle hook system; the bash loop is the only extension point."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Methodology explicitly advocates fanning out to many parallel subagents (up to ~500 Sonnet workers) for search/analysis. Subagent definition reuses the underlying agent's mechanism (Claude Code's Task tool)."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No central template marketplace, though many community forks and adaptations exist (e.g. ralph-orchestrator, ralph-playbook, awesome-ralph)."
+    },
+    "install-mechanism": {
+      "value": ["manual-copy", "shell-script"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Clone the repo or copy the files manually; the loop itself is a one-line shell script (loop.sh)."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Mechanically: clone, chmod +x loop.sh, run. Authoring useful PROMPT.md/AGENTS.md/specs for a real project takes far longer, but the methodology's setup is trivial."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Runs entirely on the user's machine; no hosted Ralph service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "The methodology itself requires no account. Underlying agent (e.g., Claude Code) requires its own vendor account, but that's the agent runtime, treated as out of scope per RESEARCH.md."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No mention of git worktrees in the README or blog; the methodology assumes a single working tree."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://ghuntley.com/ralph/", "https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Authoritative blog post plus a single README with worked example files. Adequate for the small surface area but no formal docs site or reference material; tone is conversational rather than reference-grade."
+    },
+    "github-stars": {
+      "value": 1593,
+      "source": ["https://api.github.com/repos/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Captured from GitHub API on 2026-04-21. Stars stale quickly."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://api.github.com/repos/ghuntley/how-to-ralph-wiggum"],
+      "comment": "Latest commit 2026-01-11, ~100 days before research date 2026-04-21 — just past the 90-day RESEARCH.md threshold. The methodology is stable rather than abandoned; community ports remain active."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://ghuntley.com/ralph/"],
+      "comment": "Huntley's CURSED self-hosting language compiler is the flagship documented case study; the playbook repo itself is also a worked example."
+    },
+    "community-channel": {
+      "value": [],
+      "source": ["https://github.com/ghuntley/how-to-ralph-wiggum"],
+      "comment": "No official Discord/Slack/forum. Discussion happens informally on X/Twitter and across community forks; nothing first-party."
+    }
+  }
 }
