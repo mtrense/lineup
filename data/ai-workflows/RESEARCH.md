@@ -174,7 +174,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Devika** - AI software engineer agent (activity has slowed; include for historical context)
 - [x] **Aider architect/editor workflow** - two-phase workflow built into Aider
 - [x] **Cursor Rules / Plans** - Cursor's native spec+plan patterns
-- [ ] **RooCode workflows** - role-based agent flows for Roo
+- [x] **RooCode workflows** - role-based agent flows for Roo
 - [ ] **ClaudeFlow** - Claude Code-focused workflow pack
 
 ## Notes for Researchers

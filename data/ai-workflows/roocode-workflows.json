@@ -1,5 +1,257 @@
 {
-  "name": "RooCode workflows",
-  "description": "role-based agent flows for Roo",
-  "values": {}
+  "name": "Roo Code (Modes & Orchestrator)",
+  "description": "Role-based agent workflow built into the Roo Code VS Code extension: specialized modes (Code, Architect, Ask, Debug) delegated by an Orchestrator via Boomerang Tasks",
+  "url": "https://roocode.com",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Roo Code's built-in workflow layer: five role-based modes (Code, Architect, Ask, Debug, Orchestrator) plus Boomerang subtask delegation, customizable via YAML/JSON mode definitions and markdown skill files.",
+      "source": ["https://docs.roocode.com/basic-usage/using-modes", "https://docs.roocode.com/features/boomerang-tasks", "https://github.com/RooCodeInc/Roo-Code"]
+    },
+    "website": {
+      "value": "https://roocode.com",
+      "source": ["https://github.com/RooCodeInc/Roo-Code"]
+    },
+    "repository": {
+      "value": "https://github.com/RooCodeInc/Roo-Code",
+      "source": ["https://github.com/RooCodeInc/Roo-Code"]
+    },
+    "creator": {
+      "value": "Roo Code, Inc.",
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://roocode.com"],
+      "comment": "Originally 'Roo Cline', a 2024 fork of Cline (née Claude Dev); rebranded to Roo Code."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": ["https://api.github.com/repos/RooCodeInc/Roo-Code"],
+      "comment": "GitHub repo created 2024-10-31 (as Roo Cline fork of Cline); public VS Code Marketplace listing followed shortly after."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/RooCodeInc/Roo-Code/releases/tag/v3.52.1"],
+      "comment": "v3.52.1 published 2026-04-13 (verified via gh API on 2026-04-21)."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/faq"],
+      "comment": "The extension and the workflow layer (modes, orchestrator, skills) are free and open source; Roo Code Cloud is a separate paid offering but not required for the workflow."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "architecture", "planning", "implementation"],
+      "source": ["https://docs.roocode.com/basic-usage/using-modes", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "Default modes map to: Ask → discovery / Q&A, Architect → architecture & planning (markdown-only edits), Code → implementation, Debug → troubleshooting within implementation. No distinct built-in review, testing, or deployment phase — those require custom modes."
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "plan-and-execute", "harness-centric"],
+      "source": ["https://docs.roocode.com/features/boomerang-tasks", "https://docs.roocode.com/basic-usage/using-modes", "https://xebia.com/blog/multi-agent-workflow-with-roo-code/"],
+      "comment": "Multi-agent via distinct mode personas with separate contexts; plan-and-execute via Orchestrator → specialized subtask → summary back; harness-centric because the workflow value is delivered primarily through the extension's mode/skill/subtask machinery rather than a prescribed artifact set."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://docs.roocode.com/basic-usage/using-modes"],
+      "comment": "Modes can be invoked in any order, switched mid-task, or replaced with custom modes; no mandated phase sequence."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://docs.roocode.com/basic-usage/using-modes", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "No mandated artifact set, no required phase documents; the only 'ritual' is switching modes and approving tool uses."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "A single VS Code extension executes modes, delegates subtasks, runs tools, and manages checkpoints end-to-end. Not 'very-high' because it is not a managed cloud pipeline."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/boomerang-tasks", "https://docs.roocode.com/features/checkpoints"],
+      "comment": "By default each tool invocation requires user approval; Boomerang subtask creation and completion also require approval unless Auto-Approving Actions are enabled."
+    },
+    "approval-gates": {
+      "value": ["implementation"],
+      "source": ["https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "Approval gating is centered on tool use during implementation (file edits, commands). There are no spec/plan/tasks/deploy gate concepts in the default workflow."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "With Auto-Approving Actions enabled, Orchestrator + subtasks can run end-to-end without prompts. Not the default configuration."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": ["https://docs.roocode.com/features/boomerang-tasks", "https://docs.roocode.com/features/checkpoints"],
+      "comment": "Default is per-tool-call confirmation plus subtask approvals — closer to 2 than 3, since approvals are per-action rather than per-phase. Can be raised to 5 via auto-approve."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/checkpoints"],
+      "comment": "Shadow-git checkpoint system: automatic snapshots per user message and before file edits; 'Restore Files' and 'Restore Files & Task' options."
+    },
+    "supported-agents": {
+      "value": ["roo"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "The workflow layer is built into the Roo Code agent itself; it is not portable to other agent runtimes."
+    },
+    "editor-integrations": {
+      "value": ["vscode"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Primarily a VS Code extension (also installable in Cursor, Windsurf, VSCodium via VSIX because they are VS Code forks); no first-party JetBrains or Neovim integration."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://roocode.com", "https://docs.roocode.com/"],
+      "comment": "Supports dozens of providers (Anthropic, OpenAI, OpenRouter, Gemini, local Ollama, etc.)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/"],
+      "comment": "MCP servers are a first-class capability; modes can include 'mcp' in their tool groups."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml", "json"],
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/skills"],
+      "comment": "Custom modes use YAML (preferred) or JSON in .roomodes; skills use Markdown with YAML frontmatter; rules/AGENTS.md are markdown. The workflow itself emits code rather than spec/plan artifacts."
+    },
+    "artifacts-covered": {
+      "value": [],
+      "source": ["https://docs.roocode.com/basic-usage/using-modes"],
+      "comment": "The built-in workflow does not mandate or produce spec/plan/tasks/ADR/changelog artifacts. Users can build those via custom modes, but out of the box Roo emits code and chat messages only."
+    },
+    "project-layout": {
+      "value": ".roo/ directory (rules-<mode>/, skills/), .roomodes file, AGENTS.md (or AGENT.md fallback) in workspace root; global equivalents under ~/.roo/",
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/skills"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/skills"],
+      "comment": ".roo/, .roomodes, AGENTS.md all live in the workspace and are intended to be committed for team sharing."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "No language-specific assumptions; works across any codebase VS Code can open."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "manual-approval"],
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "Mode roleDefinition and rules enforce behavior via prompt text; per-tool-call and per-subtask manual approval is the mechanical gate. Tool-group restrictions (e.g. fileRegex on edit) give modes a lightly mechanical boundary, but most enforcement is instructional."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://docs.roocode.com/basic-usage/using-modes"],
+      "comment": "Users (or the Orchestrator) can switch modes freely at any time."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://docs.roocode.com/features/custom-modes"],
+      "comment": "Mode YAML/JSON files have a schema, but the framework does not validate downstream artifacts (there are no mandated artifacts beyond config)."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://docs.roocode.com/features/custom-instructions", "https://docs.roocode.com/features/skills"],
+      "comment": "Persistent context lives in AGENTS.md, .roo/rules*/ markdown, and .roo/skills SKILL.md files loaded on demand. Mode definitions in YAML/JSON are config rather than memory."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-instructions"],
+      "comment": "AGENTS.md and .roo/rules are loaded into every new session automatically."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-instructions", "https://github.com/RooCodeInc/Roo-Code/issues/5966"],
+      "comment": "AGENTS.md is auto-loaded from the workspace root; .roo/rules is the legacy equivalent."
+    },
+    "cost-tracking": {
+      "value": ["per-run"],
+      "source": ["https://docs.roocode.com/advanced-usage/rate-limits-costs"],
+      "comment": "Estimated per-request token and cost is shown inline in the chat history for every API call; no per-phase or budget-limit enforcement."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/checkpoints", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "Task history with conversation, tool calls, checkpoints, and subtask tree is preserved and browsable."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code/blob/main/PRIVACY.md"],
+      "comment": "PostHog telemetry disclosed in PRIVACY.md; opt-out toggle in settings. A February 2026 bug report (#11602) noted cloud telemetry bypassing the setting — disclosure and control are present, quality of enforcement has been challenged."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/skills"],
+      "comment": "Custom modes (YAML/JSON), custom skills (markdown + frontmatter), custom instructions — all user-authorable."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/boomerang-tasks"],
+      "comment": "No documented pre/post-phase or lifecycle hook system. Custom modes can restrict tool access but cannot run arbitrary user code at lifecycle events."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-modes", "https://docs.roocode.com/features/skills"],
+      "comment": "Custom modes act as sub-agents/personas; skills are reusable task-scoped instruction packs loaded on demand."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/custom-modes"],
+      "comment": "Roo Code Marketplace features community-contributed modes (and skills) with single-click install."
+    },
+    "install-mechanism": {
+      "value": ["editor-extension"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Primary install is via the VS Code / Open VSX marketplace; VSIX downloads from GitHub releases are available for manual install."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/faq"],
+      "comment": "Install extension, paste an API key from any supported provider, start chatting."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://docs.roocode.com/faq"],
+      "comment": "The extension and workflow run entirely locally; no Roo-hosted service is required (Roo Code Cloud is a separate, optional product)."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://docs.roocode.com/faq"],
+      "comment": "No Roo Code account needed to use modes / orchestrator. An LLM provider API key is required for the underlying model — standard for any agent."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://docs.roocode.com/features/worktrees"],
+      "comment": "Built-in Worktrees feature opens each worktree in its own VS Code window with Roo, with .worktreeinclude for selectively copying untracked files."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.roocode.com/", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Dedicated doc site with feature guides, update notes, FAQs, privacy doc; good coverage of modes, boomerang, skills, worktrees. Gaps around hook/lifecycle semantics and end-to-end workflow examples."
+    },
+    "github-stars": {
+      "value": 23246,
+      "source": ["https://api.github.com/repos/RooCodeInc/Roo-Code"],
+      "comment": "Captured via gh API on 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://github.com/RooCodeInc/Roo-Code/releases/tag/v3.52.1"],
+      "comment": "Last push 2026-04-20 and v3.52.1 released 2026-04-13 — well within 90 days."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://www.datacamp.com/tutorial/roo-code", "https://xebia.com/blog/multi-agent-workflow-with-roo-code/", "https://github.com/jezweb/roo-commander"],
+      "comment": "DataCamp tutorial with seven practical examples, Xebia multi-agent workflow walkthrough, community Roo Commander template repository."
+    },
+    "community-channel": {
+      "value": ["discord", "reddit"],
+      "source": ["https://roocode.com", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Official Discord server and r/RooCode subreddit; GitHub Discussions is not enabled on the repo."
+    }
+  }
 }
