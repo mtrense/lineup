@@ -66,13 +66,36 @@ lineup/
 
 ## Adding Comparison Data
 
-### Creating a New Comparison Type
+Lineup ships with Claude Code skills under `.claude/skills/` that handle each step of creating and maintaining comparison data. The skills are invoked as slash commands inside Claude Code.
 
-1. Create a directory under `data/` (e.g., `data/databases/`)
-2. Add the comparison type to `data/index.json`
-3. Create `attributes.json` defining the attributes to compare
-4. Create `index.json` listing the candidates
-5. Add individual `<candidate>.json` files for each item
+### Skills
+
+| Skill | Purpose |
+|-------|---------|
+| `/new-type <type> [seed]` | Draft `data/<type>/RESEARCH.md` for a brand-new comparison type through a short Socratic scoping conversation (purpose, scope, attribute groups, initial candidates). Writes only the research guide so you can iterate on it before any schema files are generated. |
+| `/scaffold-type <type> [candidate-id …]` | Translate RESEARCH.md into `data/<type>/attributes.json`, register the type in the top-level `data/index.json`, and scaffold empty-`values` stubs for each Initial Candidate into `data/<type>/index.json`. Re-run later (with or without explicit ids) to scaffold additional candidates. |
+| `/add-candidate <type> <name> [url / description / reason]` | Add a single candidate after a scope-fit check against RESEARCH.md's Scope section. Creates the stub, appends to `index.json`, and appends a `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Initial Candidates list. |
+| `/discover-candidates <type> [hint]` | Search the web for candidates that fit the type's scope, filter and deduplicate against the existing roster, present the picks for selection, and scaffold the chosen ones the same way `/add-candidate` does. |
+| `/extend-comparison <type> <description>` | Append one or more new attributes (or a whole new attribute group) to an already-scaffolded type. Updates RESEARCH.md's Attribute Groups tables and `attributes.json` in lockstep. Existing candidates render `—` for the new attribute until filled in. |
+| `/gather-data <type> [candidate] [attribute-or-group]` | Research and populate attribute values for a candidate via web sources. Records `{value, source, comment}` per attribute, stamps `lastVerified`, and ticks the RESEARCH.md checkbox on first research. |
+
+### Typical Workflow
+
+Creating a new comparison type end-to-end:
+
+1. **Scope the type.** `/new-type <type> <optional seed>` — iterate on the generated `RESEARCH.md` until purpose, scope, attribute groups, and initial candidates read well.
+2. **Scaffold schema and stubs.** `/scaffold-type <type>` — generates `attributes.json`, registers the type in `data/index.json`, and creates empty stubs for each Initial Candidate.
+3. **Research each candidate.** `/gather-data <type>` — auto-picks the next under-researched candidate, searches primary sources, and populates the `values` block. Repeat until every candidate is covered.
+
+### Growing an Existing Comparison
+
+- **Add a candidate you have in mind.** `/add-candidate <type> <name> <optional url/description/reason>`, then `/gather-data <type> <candidate-id>` to research it.
+- **Discover candidates to consider.** `/discover-candidates <type> [hint]` surfaces a vetted picklist from the web; picks are scaffolded automatically.
+- **Add a new attribute.** `/extend-comparison <type> <description>`, then `/gather-data <type> <candidate> <new-attribute-id>` per existing candidate to fill the column.
+
+### Manual Alternative
+
+The underlying layout is plain JSON and markdown — see [Project Structure](#project-structure) and the data schema in `CLAUDE.md`. The skills exist for convenience, not as a gate; direct edits work fine.
 
 ### Attribute Types
 
