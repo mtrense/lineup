@@ -1,5 +1,259 @@
 {
   "name": "Ouroboros",
+  "description": "Specification-first workflow engine that turns a vague idea into a verified codebase through an evolutionary loop: interview, seed, execute, evaluate, evolve.",
   "url": "https://github.com/Q00/ouroboros",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Specification-first workflow engine for AI coding agents. Sits between the user and the agent runtime (Claude Code, Codex CLI, Hermes, OpenCode), replacing ad-hoc prompting with a Socratic interview, an immutable seed spec, multi-stage evaluation, and an evolutionary loop that runs until ontology converges.",
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Tagline: \"Stop prompting. Start specifying.\""
+    },
+    "website": {
+      "value": "https://github.com/Q00/ouroboros",
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "No dedicated marketing site; the GitHub README is the canonical landing page. PyPI mirror at https://pypi.org/project/ouroboros-ai/."
+    },
+    "repository": {
+      "value": "https://github.com/Q00/ouroboros",
+      "source": ["https://github.com/Q00/ouroboros"]
+    },
+    "creator": {
+      "value": "Q00",
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Single-user GitHub account (owner.type = User), not an organization."
+    },
+    "first-release": {
+      "value": "2026",
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Repository created 2026-01-14."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/Q00/ouroboros/releases/tag/v0.29.1"],
+      "comment": "v0.29.1 published 2026-04-21 (research date)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/Q00/ouroboros/blob/main/LICENSE"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "MIT-licensed, install via pip or curl shell script; no paid tier."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/blob/main/LICENSE"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "architecture", "planning", "implementation", "review", "testing", "retrospective"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Interview = discovery, Seed = spec, Double Diamond Discover/Define = architecture (ontology), Design = planning, Deliver = implementation, Evaluate's Mechanical/Semantic stages = testing, Multi-Model Consensus = review, Reflect/Evolve includes auto-retrospective."
+    },
+    "methodology-style": {
+      "value": ["spec-centric", "spec-driven", "multi-agent", "plan-and-execute"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Spec-centric (immutable Seed is the central artifact). Multi-agent because of the Nine Minds personas (Socratic Interviewer, Ontologist, Seed Architect, Evaluator, Contrarian, Hacker, Simplifier, Researcher, Architect). Double Diamond = plan-and-execute pattern."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Mathematical gates (Ambiguity <= 0.2 to leave interview, Similarity >= 0.95 to converge) refuse out-of-order progression."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Socratic interview, immutable seed, three-stage evaluation gate, evolutionary loop with convergence detection."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "End-to-end CLI/MCP execution; `ooo ralph` runs the loop persistently across sessions until convergence. Not 'very-high' because it is self-hosted, not a managed cloud platform."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Socratic interview is interactive by default; the Ambiguity gate forces the user to clarify before a Seed is generated."
+    },
+    "approval-gates": {
+      "value": ["spec"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "The interview/Seed phase requires reaching Ambiguity <= 0.2 before the workflow advances. Implementation, evaluation, and evolution then proceed without further mandatory human approval (Ralph runs unattended)."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "`ooo ralph` runs the evolutionary loop persistently across session boundaries until convergence is reached."
+    },
+    "autonomy-level": {
+      "value": 4,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Default workflow has an interactive interview phase but, once seeded, executes and evaluates autonomously through Ralph mode."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Event sourcing (SQLAlchemy + aiosqlite) with checkpoints; per-task git worktrees isolate mutating workflows."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex", "opencode", "other"],
+      "source": ["https://github.com/Q00/ouroboros", "https://github.com/Q00/ouroboros/tree/main/docs/runtime-guides"],
+      "comment": "First-party runtime guides for Claude Code, Codex CLI, Hermes, and OpenCode. Hermes is mapped to `other` (no dedicated tag)."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Distributed as a Python CLI plus an MCP server; no IDE plugin. The optional Textual TUI dashboard still runs in the terminal."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Uses a LiteLLM adapter (100+ providers) with a 3-tier PAL Router (Frugal/Standard/Frontier) that auto-escalates and downgrades."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Ships an MCP server registered automatically by the installer; several skills (`evaluate`, `evolve`, `unstuck`, `ralph`) are exposed as MCP tools."
+    },
+    "artifact-formats": {
+      "value": ["yaml", "markdown"],
+      "source": ["https://github.com/Q00/ouroboros", "https://github.com/Q00/ouroboros/blob/main/docs/guides/seed-authoring.md"],
+      "comment": "Seeds and configs are YAML (e.g. `seed.yaml`, `mcp-config.yaml`); skill/agent definitions and runtime guides are Markdown."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks", "test-plans", "architecture"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Seed = spec; Double Diamond Design = plan; AC decomposition = tasks; evaluation pipeline produces test-plan-style verification; ontology schema doubles as a lightweight architecture artifact. PM mode also generates PRDs."
+    },
+    "project-layout": {
+      "value": "Project-level seed.yaml plus a local SQLite event store; mutating runs go into per-task git worktrees under a configurable worktree root.",
+      "source": ["https://github.com/Q00/ouroboros", "https://github.com/Q00/ouroboros/blob/main/docs/architecture.md"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Seeds (`seed.yaml`) are intended to live in the repo; the SQLite event store is local-state and typically not committed."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Ouroboros itself is Python, but the workflow targets any codebase; the brownfield explorer auto-detects configs across multiple language ecosystems."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates", "agent-review"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Three-stage Evaluator: Mechanical (free, lint/test style) -> Semantic (LLM review) -> Multi-Model Consensus (agent-review). Ambiguity and convergence thresholds are enforced in code, not just in prompts."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Ambiguity > 0.2 blocks Seed generation; evolution loop refuses to stop until ontology similarity >= 0.95 (or hits the 30-generation hard cap)."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/blob/main/src/ouroboros/core/seed.py"],
+      "comment": "Seed has a typed, immutable schema; ontology has its own OntologySchema; events have a versioned payload schema."
+    },
+    "memory-implementation": {
+      "value": ["kv-store"],
+      "source": ["https://github.com/Q00/ouroboros", "https://github.com/Q00/ouroboros/blob/main/docs/events.md"],
+      "comment": "Event sourcing on SQLite (SQLAlchemy + aiosqlite) with checkpoints; closest tag is `kv-store`. Not vector-db or knowledge-graph; the YAML seed alone does not warrant `markdown-files`."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Quoted: \"the EventStore reconstructs the full lineage, so even if your machine restarts, the serpent picks up where it left off.\""
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "`seed.yaml` is a project-scoped context file checked into the repo and consumed by the runtime."
+    },
+    "cost-tracking": {
+      "value": ["per-run", "budget-limits"],
+      "source": ["https://github.com/Q00/ouroboros/blob/main/src/ouroboros/tui/components/token_tracker.py", "https://github.com/Q00/ouroboros/blob/main/src/ouroboros/orchestrator/rate_limit.py"],
+      "comment": "TUI token tracker emits warnings at 50/80/95% of a configured budget; orchestrator has a sliding-window shared-budget rate limiter across runtime backends."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/blob/main/docs/events.md"],
+      "comment": "Event sourcing means every step is recorded and inspectable; events have a stable payload schema."
+    },
+    "telemetry-opt": {
+      "value": false,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "No external telemetry collection appears to be implemented (the only `telemetry` references in the codebase are in unit-test fixtures), so there is no disclosed opt-in/opt-out control."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Plugin system auto-discovers user-defined skills and agents; skill markdown files and seed YAMLs can be edited or replaced."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Pluggable runtime backends (`orchestrator.runtime_backend`) and a plugin system that hooks user-supplied skills/agents into the loop's lifecycle."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Nine Minds personas (Socratic Interviewer, Ontologist, Seed Architect, Evaluator, Contrarian, Hacker, Simplifier, Researcher, Architect) plus a plugin system for user-defined agents/skills."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Distributed via the Claude Code plugin marketplace (`claude plugin marketplace add Q00/ouroboros`)."
+    },
+    "install-mechanism": {
+      "value": ["pip", "shell-script"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Primary install is a curl|bash script; pip/uv/pipx are documented alternatives, plus the Claude Code plugin marketplace path."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Single curl install command auto-detects Claude Code, Codex CLI, and Hermes and registers the MCP server."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Runs entirely locally; no Ouroboros-side cloud component."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "No Ouroboros account; the user still needs an upstream LLM provider account (e.g. Anthropic, OpenAI), but that is the runtime, not the workflow."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/blob/main/src/ouroboros/core/worktree.py"],
+      "comment": "Dedicated `core/worktree.py` provisions per-task git worktrees; configurable via `use_worktrees`, `worktree_root`, `worktree_cleanup`, and `worktree_lock_stale_after_minutes`."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.com/Q00/ouroboros/tree/main/docs"],
+      "comment": "Extensive docs tree: architecture, CLI reference, config reference, events schema, per-runtime guides (Claude Code, Codex, Hermes, OpenCode), and topical guides (seed authoring, evaluation pipeline, evolution loop). README is rich. Not 5 because some skills lack direct CLI equivalents and some flows are documented only inline."
+    },
+    "github-stars": {
+      "value": 2575,
+      "source": ["https://github.com/Q00/ouroboros"],
+      "comment": "Stargazer count as of 2026-04-21 (research date)."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/releases/tag/v0.29.1"],
+      "comment": "Latest release v0.29.1 and most recent push both on 2026-04-21 (the research date itself)."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/Q00/ouroboros/tree/main/docs/examples", "https://github.com/Q00/ouroboros/blob/main/docs/getting-started.md"],
+      "comment": "`docs/examples/` ships an mcp-config.yaml; getting-started walks through a task-CLI build; an interactive `ooo tutorial` is included."
+    },
+    "community-channel": {
+      "value": ["github-discussions"],
+      "source": ["https://github.com/Q00/ouroboros/discussions"],
+      "comment": "GitHub Discussions enabled; no public Discord/Slack/forum advertised."
+    }
+  }
 }
