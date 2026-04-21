@@ -3,7 +3,7 @@ name: add-candidate
 description: "Add a single new candidate to an existing Lineup comparison type, with a scope-fit check against the comparison's RESEARCH.md before anything is written. Creates the `data/<type>/<candidate>.json` stub, appends the entry to `data/<type>/index.json`, and appends a new `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Initial Candidates list. Use when the user has a specific candidate in mind (often with URL / description / reasoning provided inline) and wants it vetted against scope before it lands. For bulk scaffolding of candidates already listed in RESEARCH.md, use `/scaffold-type` instead. Arguments: comparison type id (required), candidate name (required), optional free-text context (URL, description, reasoning)."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash
+allowed-tools: Read, Glob, Write, Edit, Bash, WebFetch, WebSearch
 argument-hint: "<comparison-type> <candidate-name> [url / description / reasoning]"
 ---
 
@@ -81,6 +81,14 @@ Compare the proposed candidate against RESEARCH.md's **Scope** section.
 - **Ambiguous** (candidate plausibly fits, but it's a judgment call — e.g. adjacent category, borderline maturity, depends on interpretation of a Scope bullet): surface the ambiguity to the user with your best read, and ask whether to proceed. Do not invent a confidence.
 
 User context from the arguments (the reasoning free-text) feeds this judgment — if the user wrote `"...because it ships a spec-first workflow on top of Claude Code"`, weigh that against the Scope bullets explicitly.
+
+If the arguments don't give you enough to judge scope confidently (no description, no reasoning, unfamiliar name), a **lightweight** web check is permitted — strictly to answer "does this belong in this comparison?":
+
+- Prefer `WebFetch` on the user-provided URL, or the candidate's landing page / one linked docs page if the URL is obvious. One fetch is usually enough; two is the cap.
+- Use `WebSearch` only if no URL was given and you need to locate the official site. One query.
+- Read just enough to map the candidate onto the Scope bullets — the product's one-line positioning, its category, whether it hits any Excluded bullet.
+- Do NOT harvest attribute values, pricing, version numbers, feature matrices, or other metadata that belongs to `/gather-data`. Do NOT expand the stub's `description` or `url` from web findings beyond what the user gave you.
+- If a quick check doesn't resolve the ambiguity, stop and ask the user rather than digging deeper.
 
 The goal of this phase is to catch scope drift before files are written, not to be a gatekeeper. When in doubt, ask once and proceed on confirmation.
 
@@ -173,7 +181,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 
 ## Rules
 
-- Resolve the candidate from arguments alone. Do NOT go research the candidate on the web to flesh out its metadata — that is `/gather-data`'s job, not this skill's.
+- Resolve the candidate's identity (name, id, stub contents) from arguments alone. A lightweight web check is permitted in Phase 2.3 **only** to judge scope fit when the arguments are too thin — see that phase for the caps (one or two fetches, or one search). Do NOT use the web to flesh out metadata (description, url, attribute values, version numbers, features) — that is `/gather-data`'s job.
 - Do NOT populate any `values` inside the candidate file. That is `/gather-data`'s responsibility.
 - Do NOT write `lastVerified`. The missing field signals "not yet researched" honestly.
 - Do NOT modify `attributes.json`, Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections of RESEARCH.md. This skill only appends to the Initial Candidates list.
