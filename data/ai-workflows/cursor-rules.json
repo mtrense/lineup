@@ -1,5 +1,314 @@
 {
   "name": "Cursor Rules / Plans",
-  "description": "Cursor's native spec+plan patterns",
-  "values": {}
+  "description": "Cursor's built-in workflow layer: project Rules for persistent agent context and Plan Mode for research-then-build feature development inside the Cursor IDE",
+  "website": "https://cursor.com",
+  "url": "https://cursor.com",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Cursor's built-in workflow layer: project Rules (`.cursor/rules/*.mdc` files) for persistent agent context, Plan Mode for research→plan→review→build feature development, and native hooks/worktrees for agent-loop extension and parallel execution inside the Cursor IDE.",
+      "source": [
+        "https://cursor.com/docs/context/rules",
+        "https://cursor.com/docs/agent/plan-mode",
+        "https://cursor.com/blog/plan-mode"
+      ]
+    },
+    "website": {
+      "value": "https://cursor.com",
+      "source": ["https://cursor.com"]
+    },
+    "repository": {
+      "value": null,
+      "source": ["https://cursor.com"],
+      "comment": "Cursor is a proprietary, closed-source editor. A github.com/cursor/cursor repository hosts releases and issues but not source code. The rules/plans/hooks features are not distributed as a separate open-source project."
+    },
+    "creator": {
+      "value": "Anysphere",
+      "source": ["https://cursor.com", "https://cursor.com/pricing"],
+      "comment": "Anysphere is the company behind Cursor."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://cursor.com/docs/context/rules",
+        "https://lellansin.github.io/2026/01/27/Why-Cursor-Rules-Failed-and-Claude-Skill-Succeeded/"
+      ],
+      "comment": "`.cursorrules` files emerged in 2024 and evolved into the current `.cursor/rules/*.mdc` structure during 2025. Plan Mode was announced 2025-10-07; hooks shipped in Cursor 1.7 (Oct 2025). Earliest component of the workflow layer is the 2024 `.cursorrules` file; 2023 references exist in community writeups but aren't confirmed in Cursor's own docs."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://cursor.com/changelog/3-0",
+        "https://cursor.com/blog/cursor-3",
+        "https://forum.cursor.com/t/cursor-3-worktrees-best-of-n/156507"
+      ],
+      "comment": "Cursor 3.0 released 2026-04-02 introducing the new multi-pane Agents Window, Design Mode, and reworked /worktree and /best-of-n commands."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://cursor.com/pricing", "https://cursor.com/privacy"],
+      "comment": "Cursor IDE is proprietary. The `.cursorrules` / `.mdc` file format and AGENTS.md convention are open, but the editor and runtime are closed-source."
+    },
+    "pricing-model": {
+      "value": ["freemium", "paid-saas"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Hobby tier is free (limited completions and 50 slow requests/month). Paid tiers: Pro $20/mo, Pro+ $60/mo, Ultra $200/mo, Teams $40/user/mo, Enterprise custom. Rules and Plan Mode are available across tiers but usage burns the credit pool."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://cursor.com/privacy"],
+      "comment": "The core methodology is embedded in a proprietary editor."
+    },
+    "covered-phases": {
+      "value": ["discovery", "planning", "implementation"],
+      "source": [
+        "https://cursor.com/docs/agent/plan-mode",
+        "https://cursor.com/docs/agent/planning",
+        "https://cursor.com/docs/context/rules"
+      ],
+      "comment": "Plan Mode's flow (clarifying questions → codebase research → plan generation → review/edit → build) covers discovery, planning, and implementation. Rules add persistent context but don't constitute distinct phases. No explicit review, testing, deployment, or retrospective phases."
+    },
+    "methodology-style": {
+      "value": ["plan-and-execute", "harness-centric"],
+      "source": [
+        "https://cursor.com/blog/plan-mode",
+        "https://cursor.com/docs/context/rules"
+      ],
+      "comment": "Plan-and-execute via Plan Mode's explicit plan-then-build loop. Harness-centric because the value is the editor's built-in tooling (rules loader, plan UI, hooks runtime, worktree manager) layered around the Cursor agent. Not spec-centric — rules are context, not authoritative specs; plans are working documents, not contracts."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/docs/context/rules"],
+      "comment": "Plan Mode is one of several agent modes (Ask, Agent, Plan) and is optional. Rules are entirely user-defined with no prescribed structure. Users can freely bypass planning and jump straight to agent execution."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/docs/context/rules"],
+      "comment": "Minimal ceremony: drop rule files in `.cursor/rules/` or press Shift+Tab to enter Plan Mode. No mandatory artifacts, review gates, or phase transitions beyond the single plan-review step in Plan Mode."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/docs/hooks"],
+      "comment": "Plan Mode is one keystroke (Shift+Tab) and runs codebase research → plan → build end-to-end. Rules are auto-applied based on globs/alwaysApply without user intervention. Hooks, worktrees, and MCP are all first-class and mechanically enforced. Not very-high because execution still happens inside an interactive editor rather than a managed pipeline."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/blog/plan-mode"],
+      "comment": "Plan Mode inserts an explicit review step — the generated markdown plan must be accepted or edited before Cursor clicks 'build the plan'. Agent mode without Plan is less checkpointed but users typically review diffs per turn."
+    },
+    "approval-gates": {
+      "value": ["plan"],
+      "source": ["https://cursor.com/docs/agent/plan-mode"],
+      "comment": "Plan Mode gates at plan approval. No required spec, tasks, implementation, or deploy gates in the default flow."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/blog/cursor-3"],
+      "comment": "Auto Mode runs agent tasks without per-turn confirmation; Cursor 3.0 Agents Window supports parallel autonomous agents in worktrees. Plan Mode is optional, so end-to-end execution without human intervention is supported (though rarely the default for non-trivial work)."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://cursor.com/docs/agent/plan-mode", "https://cursor.com/blog/agent-best-practices"],
+      "comment": "Default UX is phase-level: Plan Mode prompts clarifying questions and waits for plan approval, then builds. Auto Mode reduces per-turn friction. Cursor's own 'best practices' blog recommends planning before building."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://cursor.com/blog/cursor-3", "https://cursor.com/docs/configuration/worktrees"],
+      "comment": "Cursor provides per-agent checkpoint/undo of file edits within a session, and worktrees isolate agent work so the main branch is untouched until changes are applied. Git is the ultimate rollback."
+    },
+    "supported-agents": {
+      "value": ["cursor"],
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "The workflow is built into Cursor and tied to it. Rules/Plans/Hooks/Worktrees are Cursor-only features. Cursor itself uses multiple underlying LLMs (Claude, GPT, Gemini, Auto) but the agent harness is Cursor."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only"],
+      "source": ["https://cursor.com/docs/cli/using", "https://cursor.com/docs/cli/mcp"],
+      "comment": "Cursor is a standalone VS Code fork (inherits VS Code extension UX, is not a VS Code extension). Cursor CLI provides a terminal interface (`/plan`, `--mode=plan`) for headless use. No JetBrains or Neovim integration."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://cursor.com/pricing", "https://cursor.com/docs/agent/plan-mode"],
+      "comment": "Cursor supports multiple frontier models (Claude Sonnet/Opus, GPT-4o/5, Gemini, etc.) and Auto Mode routes across them. Not locked to a single vendor, though models are accessed through Cursor's gateway rather than user-supplied API keys for most tiers."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/mcp", "https://cursor.com/docs/cli/mcp"],
+      "comment": "Native MCP client: install servers, configure auth, integrate databases/APIs via stdio or SSE. Supports up to 40 tools per MCP server. Resources not yet supported."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml"],
+      "source": ["https://cursor.com/docs/context/rules", "https://cursor.com/docs/agent/plan-mode"],
+      "comment": "Rules are `.mdc` (markdown with YAML frontmatter for `description`, `globs`, `alwaysApply`). Plans are plain markdown. Hooks config is `.cursor/hooks.json` (JSON) but that's configuration, not a produced artifact."
+    },
+    "artifacts-covered": {
+      "value": ["plans", "tasks"],
+      "source": ["https://cursor.com/docs/agent/plan-mode"],
+      "comment": "Plan Mode produces an implementation plan with a to-do list (plans + tasks). Rules are persistent context, not a produced artifact kind. No built-in roadmap, change-logs, ADRs, release notes, or test plans."
+    },
+    "project-layout": {
+      "value": "`.cursor/rules/*.mdc` for project rules (nested folders supported); `.cursor/hooks.json` for lifecycle hooks; `.cursor/worktrees.json` for worktree init scripts; `AGENTS.md` at project root and nested subdirectories for generic agent context. Plans default to the user's home directory but can be moved into the workspace.",
+      "source": [
+        "https://cursor.com/docs/context/rules",
+        "https://cursor.com/docs/hooks",
+        "https://cursor.com/docs/configuration/worktrees",
+        "https://cursor.com/docs/agent/plan-mode"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/rules", "https://cursor.com/docs/hooks"],
+      "comment": "Project rules, hooks config, worktree config, and AGENTS.md are designed for version control and team sharing. Plans default to the home directory (not in git) but users can move them into the workspace. User Rules live in settings and are not versioned."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Rules and Plan Mode are language-neutral; glob patterns scope rules to file types but any language is supported."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks", "manual-approval"],
+      "source": [
+        "https://cursor.com/docs/context/rules",
+        "https://cursor.com/docs/hooks",
+        "https://cursor.com/docs/agent/plan-mode"
+      ],
+      "comment": "Rules are injected as system-prompt context (instructional). Cursor 1.7+ ships a first-class hook system (beforeShellExecution, beforeMCPExecution, beforeReadFile, afterFileEdit, stop, etc.) that can block or modify agent actions. Plan Mode requires manual approval of the plan before build. No first-party test-gates or CI-checks integration beyond what hooks enable."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://cursor.com/docs/agent/plan-mode"],
+      "comment": "Plan Mode is optional and can be entered/exited freely; Agent mode skips planning entirely. Nothing prevents out-of-order progression."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://cursor.com/docs/context/rules", "https://cursor.com/docs/agent/plan-mode"],
+      "comment": "MDC frontmatter has a defined set of fields (description, globs, alwaysApply) but no schema enforcement beyond the UI dropdown. Plans are free-form markdown."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Project rules in `.cursor/rules/*.mdc`, user rules in settings, AGENTS.md are all markdown/MDC files providing persistent context. No vector DB, knowledge graph, or KV store in Cursor's built-in workflow layer."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Rules survive sessions by virtue of being checked into the repo or stored in user settings. Plans persist as files. Chat history is also retained per-agent."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "`.cursor/rules/*.mdc` and `AGENTS.md` are the project-scoped context files Cursor reads."
+    },
+    "cost-tracking": {
+      "value": ["per-run", "budget-limits"],
+      "source": ["https://cursor.com/pricing", "https://dev.to/rahulxsingh/cursor-pricing-in-2026-hobby-pro-pro-ultra-teams-and-enterprise-plans-explained-4b89"],
+      "comment": "Paid plans have a monthly credit pool equal to the plan price ($20 Pro, $60 Pro+, $200 Ultra). Usage is tracked per request against the pool, and Cursor halts or prompts for overages when the pool is exhausted — a soft budget limit. Auto mode doesn't burn credits."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://cursor.com/blog/cursor-3"],
+      "comment": "Cursor 3.0 Agents Window retains multi-agent chat history side-by-side. Plans are saved as markdown files by default. No structured trace export comparable to LangSmith, but session history is persisted and viewable."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://cursor.com/docs/account/privacy",
+        "https://cursor.com/data-use",
+        "https://cursor.com/privacy"
+      ],
+      "comment": "Privacy Mode, Privacy Mode with Storage, Full Privacy Mode, and Ghost Mode all provide explicit user-controllable telemetry tiers disclosed in Settings → Privacy. Telemetry/crash reports toggled independently in Settings → Telemetry. Business plans default to privacy-on."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Users author their own MDC rules (the primary template mechanism). Custom slash commands and AGENTS.md content are also user-defined. Cursor ships `/create-rule` to scaffold rules."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://cursor.com/docs/hooks", "https://www.infoq.com/news/2025/10/cursor-hooks/"],
+      "comment": "First-class hook system shipped in Cursor 1.7 (Oct 2025). Lifecycle events: sessionStart, beforeSubmitPrompt, beforeReadFile, beforeShellExecution, beforeMCPExecution, afterFileEdit, stop. Project hooks live in `.cursor/hooks.json` and are shared via git."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": [
+        "https://cursor.com/docs/context/rules",
+        "https://cursor.com/blog/cursor-3"
+      ],
+      "comment": "Personas are authored as scoped rules (intelligent apply / glob-scoped / manual @-mention). Custom slash commands via `~/.cursor/commands/`. Not as structured as Claude Code skills (no folder bundles with scripts/assets), but the mechanism exists. Parallel agents in Cursor 3.0 can run with distinct rule subsets."
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://cursor.directory/",
+        "https://github.com/PatrickJS/awesome-cursorrules",
+        "https://cursorrules.org/"
+      ],
+      "comment": "Community-run marketplaces — cursor.directory (official-ish hub), awesome-cursorrules (8k+ community rules), cursorrules.org, dotcursorrules.com — host shared rules. Cursor Settings supports remote import from GitHub repos. No first-party commercial marketplace."
+    },
+    "install-mechanism": {
+      "value": ["binary", "editor-extension"],
+      "source": ["https://cursor.com", "https://cursor.com/docs/cli/using"],
+      "comment": "Primary distribution: Cursor IDE as a downloadable native binary (macOS, Windows, Linux). Cursor CLI also available as a binary/script install. Rules themselves are authored in-editor; no separate package to install. `editor-extension` tagged because the rules/plans feature set lives inside an editor distribution."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://cursor.com", "https://cursor.com/docs/context/rules"],
+      "comment": "Download Cursor binary, sign in, open a project, `/create-rule` to scaffold a rule file or press Shift+Tab for Plan Mode. Under 5 minutes end-to-end."
+    },
+    "self-hosted": {
+      "value": false,
+      "source": ["https://cursor.com/data-use", "https://cursor.com/docs/account/privacy"],
+      "comment": "Cursor routes AI requests through its own backend by default. Ghost Mode disables backend communication but also disables most AI features (intercepts and discards locally). Practical use requires the Cursor cloud service."
+    },
+    "requires-account": {
+      "value": true,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "A Cursor account is required to use AI features, including Rules and Plan Mode. Hobby tier is free but still requires signup."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": [
+        "https://cursor.com/docs/configuration/worktrees",
+        "https://cursor.com/changelog/3-0",
+        "https://cursor.com/blog/cursor-3"
+      ],
+      "comment": "Native /worktree and /best-of-n commands in Cursor 3.0 create isolated git worktrees for agent runs. `.cursor/worktrees.json` configures per-worktree setup scripts. Parallel Agents use worktrees under the hood."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://cursor.com/docs", "https://cursor.com/changelog"],
+      "comment": "Comprehensive docs at cursor.com/docs covering rules, plan mode, agent modes, MCP, hooks, worktrees, CLI, and privacy. Regular changelog at cursor.com/changelog. Community-authored guides are abundant. Examples and best-practices blog posts are current."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://cursor.com"],
+      "comment": "Not applicable — Cursor IDE is closed-source. The cursor/cursor GitHub repo hosts releases/issues only, and its star count reflects the editor overall, not the rules/plans workflow layer."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://cursor.com/changelog",
+        "https://cursor.com/changelog/3-0",
+        "https://cursor.com/blog/cursor-3"
+      ],
+      "comment": "Cursor 3.0 released 2026-04-02 (19 days before research date). Rapid release cadence — multiple point releases per quarter."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://cursor.com/community",
+        "https://cursor.com/blog/agent-best-practices"
+      ],
+      "comment": "cursor.com/community showcases community projects. Cursor blog hosts best-practices posts and customer case studies. Community marketplaces (cursor.directory, awesome-cursorrules) double as example repos."
+    },
+    "community-channel": {
+      "value": ["discord", "forum", "reddit"],
+      "source": [
+        "https://discord.com/invite/cursor",
+        "https://forum.cursor.com/",
+        "https://forum.cursor.com/t/discord-community/14619"
+      ],
+      "comment": "Official forum at forum.cursor.com, community Discord ~35k members, active r/cursor subreddit. No Slack."
+    }
+  }
 }
