@@ -171,7 +171,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
 - [x] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
 - [ ] **GSD** - *pending user clarification on upstream project / URL*
-- [ ] **Devika** - AI software engineer agent (activity has slowed; include for historical context)
+- [x] **Devika** - AI software engineer agent (activity has slowed; include for historical context)
 - [ ] **Aider architect/editor workflow** - two-phase workflow built into Aider
 - [ ] **Cursor Rules / Plans** - Cursor's native spec+plan patterns
 - [ ] **RooCode workflows** - role-based agent flows for Roo

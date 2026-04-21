@@ -1,5 +1,282 @@
 {
   "name": "Devika",
-  "description": "AI software engineer agent (activity has slowed; include for historical context)",
-  "values": {}
+  "description": "Open-source agentic AI software engineer from Stition.AI; takes a high-level objective and runs a multi-agent loop (planning, research, coding, execution, reporting) through a local Flask + Svelte web UI.",
+  "url": "https://github.com/stitionai/devika",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Open-source agentic AI software engineer that breaks down a high-level objective into steps, researches the web, generates code, and reports results via a local Flask + Svelte web UI. Initially positioned as an OSS alternative to Cognition's Devin.",
+      "source": [
+        "https://github.com/stitionai/devika",
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ]
+    },
+    "website": {
+      "value": null,
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "Repo README states explicitly: \"DEVIKA DOES NOT HAVE AN OFFICIAL WEBSITE\". Several look-alike sites exist (devikaai.org, devikaai.co) but are unaffiliated."
+    },
+    "repository": {
+      "value": "https://github.com/stitionai/devika",
+      "source": ["https://github.com/stitionai/devika"]
+    },
+    "creator": {
+      "value": "Stition.AI (Mufeed VH)",
+      "source": [
+        "https://github.com/stitionai/devika",
+        "https://analyticsindiamag.com/ai-features/meet-the-21-year-old-creator-of-devika-the-indian-open-source-devin-alternative/"
+      ],
+      "comment": "Created by Mufeed VH, founder of Stition.AI."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://github.com/stitionai/devika",
+        "https://www.analyticsvidhya.com/blog/2024/03/devika-ai-an-open-source-alternative-to-devin-ai/"
+      ],
+      "comment": "Project went public in March 2024 (around 2024-03-21) following Devin's announcement."
+    },
+    "latest-release": {
+      "value": null,
+      "source": ["https://github.com/stitionai/devika/releases"],
+      "comment": "Repo has no tagged releases (\"There aren't any releases here\"). Most recent commit on main was 2025-09-25 (a README update); the project README points users to a successor called \"Opcode\"."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/stitionai/devika"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "OSS only; no hosted SaaS or paid tier. Users supply their own LLM API keys."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "planning", "implementation"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md",
+        "https://github.com/stitionai/devika/blob/main/README.md"
+      ],
+      "comment": "Documented loop: prompt \u2192 Planner step list \u2192 Researcher web browsing (discovery) \u2192 Coder \u2192 Runner \u2192 Reporter. No distinct spec, architecture, review, testing, deployment, or retrospective phase."
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "plan-and-execute", "harness-centric"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Architecture defines distinct sub-agent roles (Planner, Researcher, Coder, Action, Runner, Feature, Patcher, Reporter, Decision) orchestrated by an Agent Core; the value is in the runtime/harness rather than a prescriptive spec methodology."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Workflow is fixed in code but not enforced as a methodology the user must follow; the user's interaction is just a chat objective with iterative refinement."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No ADRs, specs, or formal review gates; the user issues an objective and reviews the result."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "After setup, a single `python devika.py` plus the Svelte UI runs the entire planning-to-coding loop end-to-end without per-step CLI invocation."
+    },
+    "hitl-checkpoints": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No formal per-phase approval gate; the user can chat to redirect the agent but the loop does not pause for explicit approvals between Planner / Researcher / Coder."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No documented mandatory approval gates."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Default loop runs prompt \u2192 plan \u2192 research \u2192 code \u2192 execution \u2192 report autonomously."
+    },
+    "autonomy-level": {
+      "value": 4,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Default config runs the full loop autonomously; user intervention is via chat, not enforced approval gates. Not 5 because the user is expected to iterate via the chat UI."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No first-class undo/rollback for generated artifacts; reverts rely on git in the user's project directory."
+    },
+    "supported-agents": {
+      "value": ["other"],
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "Devika ships its own agent runtime; it is not a workflow layered on Claude Code, Cursor, etc. Underlying LLMs are pluggable (Claude, GPT-4, Gemini, Mistral, Groq, Ollama)."
+    },
+    "editor-integrations": {
+      "value": ["web"],
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "Local Svelte web UI on http://127.0.0.1:3001; no VS Code, JetBrains, Neovim, or pure CLI mode."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "Pluggable LLM layer supports Claude 3, GPT-4, Gemini, Mistral, Groq, and local models via Ollama / LM Studio."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "No MCP integration documented in README, ARCHITECTURE.md, or repo."
+    },
+    "artifact-formats": {
+      "value": ["code-only"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Primary outputs are source code files; the Reporter can produce a PDF report and conversation history is stored in SQLite. No structured markdown spec/plan artifacts are produced for git."
+    },
+    "artifacts-covered": {
+      "value": ["plans", "user-docs"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Planner generates step-by-step plans (held in agent state, not committed); Reporter generates project documentation (PDF). No specs, ADRs, roadmap, change logs, test plans, or release notes."
+    },
+    "project-layout": {
+      "value": "Fixed Devika repo layout: `db/` (SQLite), `data/` and `projects/` (generated code per project), `config.toml` (auto-generated, holds API keys and endpoints), `src/agents/` (sub-agent prompt templates in Jinja). No convention is imposed on the user's own project tree.",
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"]
+    },
+    "artifacts-in-git": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Plans, agent state, and conversation history live in a local SQLite database under `db/`, not in the user's git repo. Generated code can of course be checked in, but workflow artifacts are not."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "The Coder agent is described as multi-language; no fixed target stack is enforced."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Process discipline is encoded in agent prompts only; no hooks, linters, test gates, agent-review, CI checks, or manual-approval gates ship as part of the workflow."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Agent loop is internally sequenced but there is no mechanism that refuses ad-hoc user re-prompting or out-of-order interaction."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No schema or structural validation of agent outputs; plans and reports are free-form."
+    },
+    "memory-implementation": {
+      "value": ["kv-store"],
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Persistent state stored in a local SQLite database via SQLModel: `Projects` table (per-project conversation history as JSON) and `AgentStateModel` table (per-project agent thoughts, interactions, token usage)."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Project state and conversation history persist across sessions in the local SQLite DB."
+    },
+    "project-context-files": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "No CLAUDE.md / AGENTS.md style project-context file is consumed or produced; configuration lives in `config.toml`."
+    },
+    "cost-tracking": {
+      "value": ["per-run"],
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/devika.py"
+      ],
+      "comment": "Per-conversation token usage is tracked in `AgentStateModel` and exposed via the `/api/token-usage` and `/api/calculate-tokens` endpoints. No budget-limit halt feature."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Conversations and agent state sequences are recorded per project in SQLite; the UI also surfaces browser snapshots."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "comment": "No explicit telemetry policy or opt-in/opt-out toggle found in the README, ARCHITECTURE.md, or config; the project runs locally and there is no obvious telemetry collection, but this is not stated."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Sub-agent prompt templates (Jinja) live in the repo and could be edited by forking, but no first-class user-facing template customization API is documented."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No documented pre/post-phase hook API."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "Internal sub-agents (Planner, Researcher, Coder, etc.) are hardcoded in the architecture; users cannot define their own personas/roles/skills via configuration."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "No marketplace, plugin registry, or shared template repository."
+    },
+    "install-mechanism": {
+      "value": ["manual-copy", "pip"],
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "Install path is `git clone` + Python venv (3.10\u20133.12) + `uv pip install -r requirements.txt` + Playwright browsers + `bun install` for the Svelte UI. No published package on PyPI/npm."
+    },
+    "setup-time": {
+      "value": ["over-30min"],
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "Multiple prerequisites (Python 3.10\u20133.12, uv, Playwright with browser download, bun, Node, plus configuring API keys for at least one LLM and a search provider) push first-run setup past 30 minutes for most users."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "Runs entirely on the user's machine; no hosted version exists."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "No vendor account; users supply their own LLM and search-provider API keys via `config.toml`."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"],
+      "comment": "No documented use of or support for git worktrees; project isolation is per-folder under `projects/`."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": [
+        "https://github.com/stitionai/devika/blob/main/README.md",
+        "https://github.com/stitionai/devika/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "README + ARCHITECTURE.md cover the core workflow and install steps but the project self-describes as \"very early development/experimental stage\"; no separate docs site, API reference, or how-to guides."
+    },
+    "github-stars": {
+      "value": 19500,
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "19.5k stars as displayed on the repo on 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/commits/main"],
+      "comment": "Most recent commit on main is 2025-09-25 (a README update pointing users to a successor project, \"Opcode\"); previous code commits date to August 2024. Outside the 90-day window from 2026-04-21."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://github.com/stitionai/devika/blob/main/README.md"],
+      "comment": "No official example repos or documented case studies in the project; third-party blog posts exist but are not first-party."
+    },
+    "community-channel": {
+      "value": ["discord", "github-discussions"],
+      "source": ["https://github.com/stitionai/devika"],
+      "comment": "Repo links a Discord server and has GitHub Discussions enabled."
+    }
+  }
 }
