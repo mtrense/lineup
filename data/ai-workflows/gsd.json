@@ -1,4 +1,258 @@
 {
   "name": "GSD",
-  "values": {}
+  "description": "A lightweight meta-prompting, context-engineering and spec-driven development system that wraps Claude Code and 14+ other AI coding runtimes with a discuss → plan → execute → verify workflow.",
+  "url": "https://github.com/gsd-build/get-shit-done",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Lightweight meta-prompting, context-engineering and spec-driven development system for Claude Code and other AI coding runtimes, built around a discuss → plan → execute → verify loop with parallel agent orchestration.",
+      "source": ["https://github.com/gsd-build/get-shit-done", "https://www.npmjs.com/package/get-shit-done-cc"]
+    },
+    "website": {
+      "value": "https://github.com/gsd-build/get-shit-done",
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "No dedicated marketing site; README's `homepage` in package.json points to the GitHub repo."
+    },
+    "repository": {
+      "value": "https://github.com/gsd-build/get-shit-done",
+      "source": ["https://github.com/gsd-build/get-shit-done"]
+    },
+    "creator": {
+      "value": "TÂCHES",
+      "source": ["https://github.com/gsd-build/get-shit-done", "https://www.npmjs.com/package/get-shit-done-cc"],
+      "comment": "Signed README author; package.json `author` field. Solo-developer branded project."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Repository created 2025-12-14 (gh repo metadata)."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/gsd-build/get-shit-done/releases"],
+      "comment": "v1.38.1 hotfix published 2026-04-19; v1.38.0 released 2026-04-19."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/gsd-build/get-shit-done/blob/main/LICENSE"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "MIT OSS. No paid tier for the workflow itself; underlying AI runtimes have their own pricing."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done/blob/main/LICENSE"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "architecture", "planning", "tasks", "implementation", "review", "testing", "retrospective"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Discovery via /gsd-map-codebase, spec via /gsd-new-project questions → REQUIREMENTS.md, architecture via research agents, planning via /gsd-plan-phase + ROADMAP.md, atomic task plans, /gsd-execute-phase for implementation, /gsd-review + code-reviewer agent, /gsd-verify-work UAT for testing, /gsd-milestone-summary + /gsd-forensics for retrospective. No deployment phase — /gsd-ship only creates PRs."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "plan-and-execute", "multi-agent", "harness-centric"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Self-described as spec-driven development system; plan-and-execute via discuss→plan→execute; multi-agent because the orchestrator spawns specialized subagents (researchers, planner, checker, executors, verifier, debuggers); harness-centric since the value is a curated set of commands, agents, hooks and prompts layered over an existing AI runtime."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Prescribes a fixed workflow (discuss → plan → execute → verify → ship) with phase-boundary hook enforcement and strict artifact layout under .planning/."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Self-described as lightweight (\"no enterprise roleplay bullshit\") — fewer artifacts than BMAD or Agent-OS, but still enforces multiple mandatory files per phase (PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, CONTEXT.md, RESEARCH.md, PLAN.md, SUMMARY.md, UAT.md, VERIFICATION.md) so not low."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Single slash-command invokes full end-to-end pipelines (e.g. /gsd-execute-phase runs parallel waves with atomic commits). /gsd-next auto-detects next step; --auto and --chain flags chain phases without stopping. Not very-high because user invokes each phase boundary command by default."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Default `mode: interactive` confirms at each step; explicit user approvals for roadmap, discuss decisions, plans, and UAT."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "implementation"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "User approves the roadmap/requirements after /gsd-new-project (spec gate), approves plans before /gsd-execute-phase (plan gate), and performs UAT via /gsd-verify-work after execution (implementation gate)."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "`mode: yolo`, `--auto`, `--chain`, `workflow.auto_advance`, and /gsd-autonomous enable end-to-end runs without pausing. README recommends running Claude Code with --dangerously-skip-permissions for frictionless automation."
+    },
+    "autonomy-level": {
+      "value": 4,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Default is phase-level interactive approvals (≈3), but autonomous switches (yolo mode, --chain, auto_advance) are first-class and the README encourages frictionless automation, pushing the overall default-experience rating toward 4."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Atomic per-task commits are an explicit design goal (\"Each task independently revertable\") so `git revert` on any task commit is the built-in rollback. No bespoke undo command beyond git."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "opencode", "codex", "cursor", "windsurf", "cline", "copilot-chat", "other"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Installer supports Claude Code, OpenCode, Gemini CLI, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline. Gemini/Kilo/Antigravity/Augment/Trae/Qwen/CodeBuddy map to `other` since no dedicated tag exists. No Aider support documented."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "VS Code family via Copilot Chat, Cursor, Windsurf, Cline, Augment, Trae, CodeBuddy. Terminal CLIs: Claude Code, OpenCode, Gemini CLI, Codex, Qwen Code. No JetBrains or Neovim-specific integration documented."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Supports 14+ runtimes with different underlying models. `inherit` model profile explicitly delegates model choice to the runtime, usable with OpenRouter/local models. Default profiles assume Claude (Opus/Sonnet/Haiku) but are configurable."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done/blob/main/agents/gsd-project-researcher.md", "https://github.com/gsd-build/get-shit-done/blob/main/agents/gsd-ui-researcher.md", "https://github.com/gsd-build/get-shit-done/blob/main/agents/gsd-ui-auditor.md"],
+      "comment": "Research and UI agents declare MCP tools in frontmatter (mcp__context7__*, mcp__firecrawl__*, mcp__exa__*, Playwright-MCP). GSD consumes MCP for docs lookup, web crawling, and browser automation; it does not itself expose an MCP server."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "xml", "json"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Markdown for all human-readable artifacts (PROJECT.md, ROADMAP.md, PLAN.md, etc.). Plans embed XML-structured task blocks. JSON for `.planning/config.json`, `HANDOFF.json`, `INVENTORY-MANIFEST.json`."
+    },
+    "artifacts-covered": {
+      "value": ["user-docs", "architecture", "roadmap", "specs", "plans", "tasks", "release-notes"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "user-docs via /gsd-docs-update; architecture via project/phase researchers + .planning/research/; ROADMAP.md; REQUIREMENTS.md + CONTEXT.md as specs; PLAN.md; atomic task blocks inside plans; milestone summaries and tagged releases cover release-notes. Decisions/ADRs not a first-class artifact; test-plans covered only informally via verifier, not a distinct artifact type."
+    },
+    "project-layout": {
+      "value": ".planning/ directory at repo root holding PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, config.json, plus per-phase subdirs with CONTEXT.md, RESEARCH.md, PLAN.md, SUMMARY.md, UAT.md, VERIFICATION.md; commands/agents/hooks install under runtime-specific roots (.claude/, .codex/, .opencode/, etc.).",
+      "source": ["https://github.com/gsd-build/get-shit-done"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "`planning.commit_docs` defaults to true; atomic commits per task explicitly include .planning/ changes. /gsd-pr-branch filters planning commits when creating clean PR branches."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Meta-prompting layer with no language-specific tooling; research and planner agents adapt to any stack. GSD itself is packaged as npm (Node ≥22) but operates on any project language."
+    },
+    "enforcement-mechanisms": {
+      "value": ["hooks", "instructional", "agent-review", "manual-approval", "ci-checks"],
+      "source": ["https://github.com/gsd-build/get-shit-done/tree/main/hooks"],
+      "comment": "Hooks directory ships phase-boundary, workflow-guard, prompt-guard, validate-commit, context-monitor, read-guard, injection-scanner. Agent-review via plan-checker, verifier, code-reviewer, security-auditor subagents. Manual approval at phase transitions. CI runs prompt-injection-scan and agent size-budget checks. Instructional since commands/agents are markdown prompts."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "`gsd-phase-boundary.sh` hook enforces phase transitions; /gsd-health and workflow-guard detect out-of-order state. Phases follow discuss → plan → execute → verify."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "/gsd-health validates .planning/ integrity with --repair; plan-checker verifies plans against requirements; prompt-injection-scan.test.cjs validates agent/command files; XML task structure enforced by planner/executor prompts."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Persistent context stored as STATE.md (decisions/blockers/position), PROJECT.md (vision), threads/ (cross-session), seeds/ (forward-looking), todos/, .planning/research/."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "STATE.md explicitly \"memory across sessions\"; /gsd-pause-work writes HANDOFF.json, /gsd-resume-work restores; threads persist cross-session knowledge."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "PROJECT.md is the always-loaded project context file. Runtime-specific context files also produced (.clinerules for Cline, etc.)."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "No token or dollar-cost tracking. gsd-context-monitor hook shows context-window usage warnings (not token cost). Model profiles (quality/balanced/budget) are the only spend control."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Per-task SUMMARY.md, per-phase VERIFICATION.md and UAT.md, HANDOFF.json handoffs, /gsd-session-report, /gsd-forensics post-mortem all contribute structured history in .planning/."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://github.com/gsd-build/get-shit-done", "https://github.com/gsd-build/get-shit-done/blob/main/sdk/README.md"],
+      "comment": "No telemetry collected back to GSD — it is entirely local. SDK README mentions \"event-stream telemetry\" but that is in-process observability for agents, not usage reporting. Attribute treated as not applicable."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "agent_skills.<agent_type> in config.json injects project-specific skill directories into subagents at spawn. /gsd-spike-wrap-up and /gsd-sketch-wrap-up package findings into project-local skills. Agent prompts themselves are markdown files users can override post-install."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done/tree/main/hooks"],
+      "comment": "Hooks dir ships PreToolUse/PostToolUse-style hooks (gsd-prompt-guard, gsd-workflow-guard, gsd-validate-commit, gsd-phase-boundary, gsd-context-monitor, gsd-read-guard, gsd-read-injection-scanner, gsd-statusline). Users can extend via the underlying runtime's hook system (e.g. Claude Code settings.json) since GSD hooks are regular scripts."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done/tree/main/agents"],
+      "comment": "30+ built-in specialized agents (gsd-planner, gsd-executor, gsd-verifier, gsd-debugger, gsd-security-auditor, gsd-ui-auditor, etc.). Users inject custom skills via agent_skills config and package project-local skills via /gsd-spike-wrap-up."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "No official template or skill marketplace. Community ports (gsd-opencode, gsd-gemini) exist but are adaptations, not a template registry."
+    },
+    "install-mechanism": {
+      "value": ["npm"],
+      "source": ["https://www.npmjs.com/package/get-shit-done-cc"],
+      "comment": "Distributed as `get-shit-done-cc` on npm; primary install is `npx get-shit-done-cc@latest` which runs an interactive installer. Source install from the cloned repo is documented but secondary."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "Single `npx get-shit-done-cc@latest` command with interactive prompts for runtime and location; non-interactive flags available for Docker/CI."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "All execution is local; no GSD-hosted service. Underlying AI runtime (Claude API, OpenAI, etc.) is external, but GSD itself runs entirely on the user's machine."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "No GSD account. Requires a working AI runtime (which itself may need a vendor account) but that is separate from the workflow."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "`workflow.use_worktrees` defaults true for execution isolation. /gsd-new-workspace creates isolated workspaces via worktrees (or clones as fallback). Workstreams use worktrees for parallel milestone work."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://github.com/gsd-build/get-shit-done/tree/main/docs"],
+      "comment": "Extensive README, dedicated USER-GUIDE.md, AGENTS.md, ARCHITECTURE.md, COMMANDS.md, CONFIGURATION.md, FEATURES.md, CLI-TOOLS.md, INVENTORY.md, workflow-discuss-mode.md, manual-update.md; README translated into pt-BR, zh-CN, ja-JP, ko-KR; per-agent markdown files document responsibilities. Documentation is thorough, current, and example-rich."
+    },
+    "github-stars": {
+      "value": 55600,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "55.6k stars captured 2026-04-21 via `gh repo view`. Stars rose rapidly from repo creation on 2025-12-14; number stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/gsd-build/get-shit-done", "https://github.com/gsd-build/get-shit-done/releases"],
+      "comment": "Last push 2026-04-21 (today); v1.38.1 released 2026-04-19; weekly release cadence. Well within the 90-day threshold."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://github.com/gsd-build/get-shit-done"],
+      "comment": "README cites testimonials (\"Trusted by engineers at Amazon, Google, Shopify, Webflow\") but no linked example repositories or documented case studies. Community ports exist but are ports, not usage examples."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://discord.gg/mYgfVNfA2r"],
+      "comment": "Official Discord server linked prominently in README (invite https://discord.gg/mYgfVNfA2r). X/Twitter account @gsd_foundation exists for announcements but is not a community discussion channel."
+    }
+  }
 }

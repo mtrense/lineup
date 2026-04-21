@@ -170,7 +170,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **AutoGen** - Microsoft's multi-agent conversation framework
 - [x] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
 - [x] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
-- [ ] **GSD** - *pending user clarification on upstream project / URL*
+- [x] **GSD** - https://github.com/gsd-build/get-shit-done
 - [x] **Devika** - AI software engineer agent (activity has slowed; include for historical context)
 - [x] **Aider architect/editor workflow** - two-phase workflow built into Aider
 - [ ] **Cursor Rules / Plans** - Cursor's native spec+plan patterns
