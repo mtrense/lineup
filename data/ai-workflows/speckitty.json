@@ -1,4 +1,257 @@
 {
   "name": "SpecKitty",
-  "values": {}
+  "description": "Open-source CLI workflow for spec-driven development with AI coding agents, with parallel work-package execution via git worktrees and a live kanban dashboard",
+  "url": "https://docs.spec-kitty.ai/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Spec-driven development CLI that drives AI coding agents through spec → plan → tasks → implement → review → merge, with swim-lane git worktrees and a real-time kanban dashboard.",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "website": {
+      "value": "https://docs.spec-kitty.ai/",
+      "source": ["https://docs.spec-kitty.ai/"],
+      "comment": "GitHub Pages homepage at priivacy-ai.github.io/spec-kitty/ 301-redirects to docs.spec-kitty.ai."
+    },
+    "repository": {
+      "value": "https://github.com/Priivacy-ai/spec-kitty",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "creator": {
+      "value": "Priivacy-ai",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Repository created 2025-10-09."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty/releases/tag/v3.1.6"],
+      "comment": "v3.1.6 published 2026-04-20; v3.1.5 was the prior stable. Verified 2026-04-21."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://docs.spec-kitty.ai/how-to/install-and-upgrade.html"],
+      "comment": "Core CLI is MIT and free via PyPI. README and docs mention 'hosted auth and SaaS sync are first-class' with a browser-based `spec-kitty auth login`, but no paid tier or pricing page is published as of 2026-04-21."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "architecture", "planning", "tasks", "implementation", "review"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Charter (project principles, one-time) maps to discovery; spec.md → spec; plan.md (with optional data-model.md and contracts/) → planning + architecture; tasks.md / WP##.md → tasks; spec-kitty next → implementation; lane-based review cycles → review. Merge is a git step, not a deployment phase."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "spec-centric", "multi-agent", "plan-and-execute"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Spec is the central artifact and code is generated from it (spec-centric); supports orchestrating multiple distinct AI agents per role across 13 integrations (multi-agent); explicit plan precedes execution loop (plan-and-execute)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Phases are strictly ordered (tasks require plan, plan requires spec) and the lifecycle FSM enforces lane transitions."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Charter, spec, plan, optional research, tasks, per-WP files, persisted review-cycle artifacts, and acceptance gates make the default workflow heavy on artifacts and review steps."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "CLI commands (spec-kitty init/next/implement/review/accept/merge) plus auto-managed worktrees and dashboard cover the workflow end-to-end. Not 'very-high' because it remains a local CLI rather than a managed platform."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "FSM lanes for_review → in_review → approved require a reviewer claim by default; acceptance gate (`/spec-kitty.accept`) validates readiness before merge."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks", "implementation"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Spec/plan/tasks artifacts are produced and reviewed by humans before the implementation loop; per-WP implementations pass through review cycles before approval. Direct-approval flow can bypass review on a per-WP basis."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Direct-approval flow (in_progress → approved) and the external orchestrator API (`spec-kitty orchestrator-api`) allow unattended execution when policy permits."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Default config has phase-level approval gates (spec, plan, tasks, per-WP review). Can be made more autonomous via direct-approval bypass and orchestrator policy."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "merge --resume, implement --recover, stale-claim diagnostics via `spec-kitty doctor`, and worktree isolation provide recovery and revert paths."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "cursor", "codex", "windsurf", "copilot-chat", "opencode", "roo", "other"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "13 integrations documented: Claude Code, GitHub Copilot, Gemini CLI, Cursor, Qwen Code, opencode, Windsurf, Kilo Code, Auggie CLI, Roo Code, Codex CLI, Kiro CLI, Mistral Vibe (Agent Skills). 'other' covers Gemini, Qwen, Kilo, Auggie, Kiro, Mistral which have no dedicated tag."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only", "web"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Slash commands are emitted into agent-specific dirs (.claude/commands/, .cursor/, etc.) but the framework itself is a CLI. Local kanban dashboard runs in the browser on auto-selected port 3000-5000."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Charter guidance is language-neutral by default; works with any of the 13 supported agents and their underlying models."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty", "https://docs.spec-kitty.ai/"],
+      "comment": "No mention of Model Context Protocol in README or docs as of 2026-04-21."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml", "json"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Markdown for spec/plan/tasks/research/review-cycle docs; YAML for wps.yaml and metadata.yaml; JSON for meta.json mission identity."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks", "decisions", "architecture"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "spec.md (specs), plan.md (plans), tasks.md + WP##.md (tasks), charter.md (project principles → decisions), data-model.md and contracts/ (architecture). Acceptance gates are validation checks rather than dedicated test-plan artifacts."
+    },
+    "project-layout": {
+      "value": ".kittify/ for memory/missions/templates/metadata, kitty-specs/<feature>/ for spec.md/plan.md/tasks.md/WP##/research/contracts, .worktrees/ for swim-lane worktrees, plus per-agent dirs (.claude/commands, .gemini, .cursor, etc.)",
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Spec, plan, tasks, charter, and review-cycle artifacts are all committed to the repo. Per-agent dirs (.claude/, .gemini/) are local-only by design."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "v3.1.x explicitly removed pytest/junit bias; charter guidance is language-neutral by default."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates", "agent-review", "manual-approval"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Slash commands prompt the agent (instructional); `/spec-kitty.accept --test <cmd>` runs validation (test-gates); persisted review-cycle artifacts and reviewer claims (agent-review); FSM lane transitions and direct-approval require explicit human/orchestrator action (manual-approval). Internal git hooks for encoding validation are not user-defined lifecycle hooks."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Tasks generation requires plan; plan requires spec; merge/implement preflights fail closed on missing artifacts or sparse-checkout violations."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "`spec-kitty charter bundle validate` checks the charter contract; wps.yaml has a canonical schema; safe_commit rejects out-of-scope staging."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Persistent context lives in .kittify/memory/charter.md (shared) and AGENTS.md / .claudeignore in .kittify/. Worktrees symlink charter so all lanes share one source."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Charter, spec, plan, tasks, and review-cycle artifacts persist in the repo across sessions and worktrees."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "AGENTS.md and .claudeignore generated under .kittify/; per-agent dirs (.claude/commands/, .gemini/, .cursor/, etc.) hold slash commands."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty", "https://docs.spec-kitty.ai/"],
+      "comment": "No token or cost tracking surfaced in README or docs as of 2026-04-21."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Persisted review-cycle-N.md artifacts, FSM lane history, and the dashboard's real-time state tracking provide structured run history."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://docs.spec-kitty.ai/"],
+      "comment": "No explicit telemetry policy or opt-in/out documented as of 2026-04-21. Hosted auth/SaaS sync exists but its data-collection scope is not detailed in the public docs."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Mission-specific templates live under .kittify/missions/<mission>/templates/; users can point to a local checkout to seed templates/scripts/memory."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Only internal git hooks for encoding validation are installed during upgrade; no user-definable pre/post-phase hook system documented."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Mission types ('software-dev', 'research') are extensible blueprints; the framework generates per-agent slash commands and supports multi-agent role assignment via the orchestrator API."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty", "https://docs.spec-kitty.ai/"],
+      "comment": "No public marketplace or community template registry documented; only built-in mission types ship with the package."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://docs.spec-kitty.ai/how-to/install-and-upgrade.html"],
+      "comment": "`pip install spec-kitty-cli` from PyPI is primary; `uv tool install spec-kitty-cli` and `pipx run spec-kitty-cli` are also supported."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Quick-start is `pip install spec-kitty-cli && spec-kitty init my-project --ai claude` plus an optional `verify-setup`."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "CLI and dashboard run entirely on the user's machine; hosted SaaS sync is optional."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://docs.spec-kitty.ai/how-to/install-and-upgrade.html"],
+      "comment": "Core workflow runs without login; `spec-kitty auth login` is only needed for optional hosted auth/SaaS sync."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Worktrees are a first-class feature: every mission executes through swim-lane worktrees under .worktrees/, with one worktree per computed lane."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.spec-kitty.ai/", "https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "Dedicated docs site organized by Divio (tutorials/how-to/reference/explanation), comprehensive README with mermaid diagrams, four worked examples in /examples, and per-audience entry pages. Some deep-link URLs returned 404 during verification on 2026-04-21."
+    },
+    "github-stars": {
+      "value": 1099,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "1099 stars as of 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty/releases/tag/v3.1.6"],
+      "comment": "Latest push 2026-04-21; v3.1.6 released 2026-04-20."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "/examples directory documents Multi-Agent Feature Development, Parallel Implementation Tracking, Dashboard-Driven Development, and Claude + Cursor Collaboration."
+    },
+    "community-channel": {
+      "value": [],
+      "source": ["https://github.com/Priivacy-ai/spec-kitty"],
+      "comment": "GitHub Issues and Pull Requests only; GitHub Discussions is disabled (has_discussions=false) and no Discord, Slack, or forum is referenced from primary sources as of 2026-04-21."
+    }
+  }
 }

@@ -169,7 +169,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **LangGraph** - graph-based agent orchestration framework
 - [x] **AutoGen** - Microsoft's multi-agent conversation framework
 - [x] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
-- [ ] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
+- [x] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
 - [ ] **GSD** - *pending user clarification on upstream project / URL*
 - [ ] **Devika** - AI software engineer agent (activity has slowed; include for historical context)
 - [ ] **Aider architect/editor workflow** - two-phase workflow built into Aider
