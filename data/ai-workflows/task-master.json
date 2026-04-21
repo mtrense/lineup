@@ -2,5 +2,373 @@
   "name": "Task Master",
   "description": "AI-powered task-management system that parses PRDs into a dependency-aware task graph and plugs into Cursor, Claude Code, Windsurf, Roo, VS Code, and Lovable via MCP.",
   "url": "https://github.com/eyaltoledano/claude-task-master",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "PRD-to-task-graph planning layer that drops into AI coding agents via MCP, with an optional TDD autopilot that enforces a RED/GREEN/COMMIT cycle.",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master",
+        "https://docs.task-master.dev/tdd-workflow/quickstart.md"
+      ]
+    },
+    "website": {
+      "value": "https://task-master.dev",
+      "source": [
+        "https://docs.task-master.dev"
+      ],
+      "comment": "docs.task-master.dev is the canonical public entry point; repo homepage field points to tryhamster.com (company site)"
+    },
+    "repository": {
+      "value": "https://github.com/eyaltoledano/claude-task-master",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ]
+    },
+    "creator": {
+      "value": "Eyal Toledano & Ralph Khreish",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "LICENSE credits Eyal Toledano and Ralph Khreish; Jason Zhou frequently credited as an early co-author in community write-ups"
+    },
+    "first-release": {
+      "value": "2025",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Repo created 2025-03-04; npm package launched in March 2025"
+    },
+    "latest-release": {
+      "value": "2026-03",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "v0.43.1 tagged 2026-03-31 (checked 2026-04-21)"
+    },
+    "license": {
+      "value": ["mit", "other"],
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "MIT license with an added Commons Clause that prohibits reselling the software or offering it as a hosted service"
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Free to install and use; users pay for their own model API keys. No paid tier from the project itself."
+    },
+    "open-source": {
+      "value": false,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Source is public and free to use, but the Commons Clause restriction on reselling disqualifies the license from OSI-approved open source"
+    },
+    "covered-phases": {
+      "value": ["spec", "planning", "tasks", "implementation", "testing"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md",
+        "https://docs.task-master.dev/tdd-workflow/quickstart.md"
+      ],
+      "comment": "PRD parsing (spec) → task generation (planning/tasks) → implementation via task status transitions; testing is a distinct RED phase in the TDD autopilot"
+    },
+    "methodology-style": {
+      "value": ["plan-and-execute", "spec-driven", "strict-tdd"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md",
+        "https://docs.task-master.dev/tdd-workflow/quickstart.md"
+      ],
+      "comment": "Core loop is plan-from-PRD then execute tasks; strict-tdd applies only when the optional autopilot TDD workflow is used"
+    },
+    "opinionated": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "Tasks, subtasks, dependencies, and tags can be freely added/reordered; the default flow does not force a strict sequence"
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": "Requires a PRD and produces a structured task graph but skips heavier artifacts like ADRs, architecture docs, or review gates"
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/mcp.md",
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "36-tool MCP surface plus a full CLI; PRD parsing, task expansion, dependency validation, and status transitions are single-command"
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "User drives task selection via `next`, reviews expansions, and transitions status per subtask"
+    },
+    "approval-gates": {
+      "value": ["implementation"],
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "Default workflow expects human review between subtasks; autopilot still validates RED/GREEN phase transitions but does not require spec/plan approval"
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "The autopilot PREFLIGHT → BRANCH_SETUP → SUBTASK_LOOP → FINALIZE pipeline can run a full TDD cycle without human steps when driven by an agent"
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md",
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "Default configuration has phase-level human approvals; autopilot can push this to 4 when left to run unattended"
+    },
+    "rollback-support": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "autopilot_abort cleans workflow state but preserves the branch and code; there is no built-in artifact/code rollback command"
+    },
+    "supported-agents": {
+      "value": ["claude-code", "cursor", "windsurf", "roo", "other"],
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "README lists Cursor, Windsurf, VS Code, Lovable, Roo Code, Q Developer CLI, and Claude Code as first-party integrations; Lovable/Q Developer captured under `other`"
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only", "web"],
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "VS Code and the CLI are first-party; Lovable is the web integration. No documented JetBrains or Neovim integration."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Configurable per-role providers: Anthropic, OpenAI, Google, Perplexity, xAI, OpenRouter, Mistral, Groq, Azure OpenAI, Ollama"
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/capabilities/mcp.md"
+      ],
+      "comment": "Ships an MCP server exposing 36 tools; configurable core/standard/all tool bundles"
+    },
+    "artifact-formats": {
+      "value": ["json", "markdown"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": "tasks.json is the authoritative store; individual task files can be generated as markdown with metadata headers"
+    },
+    "artifacts-covered": {
+      "value": ["specs", "tasks", "plans"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md",
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "PRDs (specs) are the input, tasks/subtasks are the primary output, and a complexity report acts as a lightweight plan"
+    },
+    "project-layout": {
+      "value": ".taskmaster/ directory at project root containing config.json, state.json, tasks/, reports/, templates/, and docs/",
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master",
+        "https://docs.task-master.dev/getting-started/quick-start/configuration-quick.md"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": ".taskmaster/ lives inside the repo; autopilot creates task-{id} branches and commits per GREEN phase"
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Task definitions are prose; no language-specific tooling or codegen"
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates"],
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/quickstart.md",
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": "Default enforcement is instructional via .cursor/rules and CLAUDE.md; autopilot adds a hard test-must-fail/test-must-pass gate"
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/capabilities/cli-root-commands.md"
+      ],
+      "comment": "Non-autopilot workflow allows ad-hoc jumping between tasks and statuses; autopilot does enforce RED→GREEN→COMMIT ordering when engaged"
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": "Schema compliance, dependency validity, and circular-dependency checks are built in; `validate_dependencies` and `fix_dependencies` are dedicated tools"
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md",
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Structured state lives in tasks.json (kv/JSON store); long-form context lives in CLAUDE.md and .cursor/rules (markdown files)"
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://docs.task-master.dev/capabilities/task-structure.md"
+      ],
+      "comment": "tasks.json, state.json, and reports/ persist across sessions; tags partition task lists for parallel workstreams"
+    },
+    "project-context-files": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Init generates CLAUDE.md and .cursor/rules; repo also ships .kiro/ and .claude-plugin/ configurations"
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": [
+        "https://docs.task-master.dev/capabilities/mcp.md",
+        "https://docs.task-master.dev/best-practices/advanced-tasks.md"
+      ],
+      "comment": "No token or cost tracking surfaced in docs (checked 2026-04-21); costs accrue against whichever model provider the user configures"
+    },
+    "run-history": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "No structured run history or trace store documented; autopilot tracks current workflow state only"
+    },
+    "telemetry-opt": {
+      "value": null,
+      "comment": "Telemetry is not mentioned in the documentation or README as of 2026-04-21; could not determine whether any exists",
+      "source": [
+        "https://docs.task-master.dev"
+      ]
+    },
+    "custom-templates": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Init creates .taskmaster/templates/example_prd.txt; users can add their own PRD templates under that directory"
+    },
+    "hooks": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/best-practices/advanced-tasks.md"
+      ],
+      "comment": "No user-defined lifecycle hooks documented"
+    },
+    "sub-agents": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "No persona or sub-agent system; the research/main/fallback model roles are model slots, not user-defined personas"
+    },
+    "marketplace": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev"
+      ],
+      "comment": "No public marketplace or shared template registry as of 2026-04-21"
+    },
+    "install-mechanism": {
+      "value": ["npm"],
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Primary install is `npm i -g task-master-ai`; MCP configs point editors at the same package"
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "source": [
+        "https://docs.task-master.dev/getting-started/quick-start/configuration-quick.md"
+      ],
+      "comment": "npm install is quick but MCP wiring, model API keys, and first PRD parse push first-run past 5 minutes in practice"
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Runs fully locally; only outbound calls are to the user's chosen model provider"
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "No Task Master account. Users do need their own API keys for whichever model provider they configure."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": [
+        "https://docs.task-master.dev/tdd-workflow/ai-agent-integration.md"
+      ],
+      "comment": "Autopilot creates task-{id} branches but does not use or document git worktrees"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.task-master.dev",
+        "https://docs.task-master.dev/llms.txt"
+      ],
+      "comment": "Dedicated docs site with Getting Started, Capabilities, Best Practices, TDD Workflow, and provider sections; marked v1 with ongoing weekly updates"
+    },
+    "github-stars": {
+      "value": 26635,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Count as of 2026-04-21"
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master"
+      ],
+      "comment": "Last release v0.43.1 on 2026-03-31 and last push 2026-03-31, both within 90 days of the 2026-04-21 research date"
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/eyaltoledano/claude-task-master",
+        "https://docs.task-master.dev/getting-started/quick-start/prd-quick.md"
+      ],
+      "comment": "Ships example_prd.txt template; docs site includes PRD creation walkthroughs"
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": [
+        "https://docs.task-master.dev"
+      ],
+      "comment": "Discord invite linked from the docs landing page"
+    }
+  }
 }
