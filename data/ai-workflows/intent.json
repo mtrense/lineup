@@ -1,5 +1,271 @@
 {
   "name": "Intent",
+  "description": "Augment Code's spec-driven multi-agent desktop workspace where a Coordinator agent drafts a living spec and delegates parallel work to specialist agents in isolated git worktrees",
   "url": "https://www.augmentcode.com/product/intent",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Commercial macOS desktop workspace that coordinates multi-agent coding via a living spec: a Coordinator drafts and maintains the spec, specialist agents (Investigate, Implement, Verify, Critique, Debug, Code Review) run in parallel in isolated git worktrees, and all work flows through human approval gates.",
+      "source": [
+        "https://www.augmentcode.com/product/intent",
+        "https://docs.augmentcode.com/intent/overview",
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"
+      ]
+    },
+    "website": {
+      "value": "https://www.augmentcode.com/product/intent",
+      "source": ["https://www.augmentcode.com/product/intent"]
+    },
+    "repository": {
+      "value": null,
+      "comment": "Closed-source commercial product; no public source repository. Distributed as a signed macOS .dmg."
+    },
+    "creator": {
+      "value": "Augment Code",
+      "source": ["https://www.augmentcode.com/product/intent"]
+    },
+    "first-release": {
+      "value": "2026",
+      "source": [
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration",
+        "https://dev.to/events/augment-code-intent/february-26-2026"
+      ],
+      "comment": "Public beta launched February 10, 2026. A private beta preceded it (changelog references v0.1.66)."
+    },
+    "latest-release": {
+      "value": "2026-02",
+      "source": ["https://www.augmentcode.com/changelog/version-0-2-6-is-live"],
+      "comment": "Version 0.2.6 released 2026-02-19 (most recent version observed at time of research)."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://www.augmentcode.com/pricing"],
+      "comment": "Proprietary commercial product; no public license for the Intent application itself."
+    },
+    "pricing-model": {
+      "value": ["freemium", "paid-saas"],
+      "source": [
+        "https://www.augmentcode.com/pricing",
+        "https://www.augmentcode.com/blog/our-new-credit-based-plans-are-now-live",
+        "https://theaiagentindex.com/agents/intent"
+      ],
+      "comment": "Community tier is free (50 user messages/month). Paid plans start at $20/month (Indie), then Standard $60, Max $200. Intent consumes credits from the same Augment pool as the CLI/IDE extension."
+    },
+    "open-source": {
+      "value": false,
+      "comment": "Commercial closed-source product from Augment Code."
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "tasks", "implementation", "review", "testing"],
+      "source": [
+        "https://docs.augmentcode.com/intent/overview",
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"
+      ],
+      "comment": "Documented phases: Analysis (discovery), Spec Creation (spec), Task Generation (tasks), Parallel Execution (implementation), Review & Merge (review). The Verify specialist plus a dedicated Verifier agent validate results against the spec, tagged as testing."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "spec-centric", "multi-agent", "plan-and-execute"],
+      "source": [
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration",
+        "https://docs.augmentcode.com/intent/overview"
+      ],
+      "comment": "The living spec is the central artifact driving work, coordinated across multiple specialist agents running in parallel."
+    },
+    "opinionated": {
+      "value": true,
+      "comment": "Default workflow prescribes Coordinator -> specialists -> Verifier with built-in approval gates; users can customize specialists but the phase model is fixed."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "comment": "Structured phase workflow with a spec artifact and approval gates, but the platform automates most transitions; not as heavyweight as BMAD-style multi-document agile methodologies."
+    },
+    "mechanization-level": {
+      "value": ["very-high"],
+      "comment": "Fully managed desktop app that orchestrates agents, worktrees, browser preview, git staging, and PR generation in one UI — 'prompt to commit to PR to merged without leaving the app'.",
+      "source": ["https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"]
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://awesomeagents.ai/reviews/review-augment-code-intent/"],
+      "comment": "Three explicit approval gates: spec approval, task decomposition review, and final diff review before merge."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks", "implementation"],
+      "source": [
+        "https://awesomeagents.ai/reviews/review-augment-code-intent/",
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"
+      ],
+      "comment": "Developer approves the coordinator's plan/spec before execution, reviews task decomposition, and reviews the final diff; 'nothing merges without human approval'."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "comment": "Default workflow requires human approval at multiple gates; no documented 'fully autonomous' mode from idea to merged code."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "comment": "Phase-level approvals with parallel agents executing autonomously between gates."
+    },
+    "rollback-support": {
+      "value": true,
+      "comment": "Each workspace is an isolated git worktree; users inspect diffs and can reject or selectively stage changes before merging.",
+      "source": ["https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"]
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex", "opencode", "other"],
+      "source": [
+        "https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration",
+        "https://awesomeagents.ai/reviews/review-augment-code-intent/"
+      ],
+      "comment": "BYOA (bring your own agent) for Claude Code, Codex, and OpenCode subscriptions. Primary first-party agent is Augment's own Auggie ('other')."
+    },
+    "editor-integrations": {
+      "value": [],
+      "comment": "Intent is itself a standalone macOS desktop workspace with a built-in code editor, terminal, Chrome browser, and git client; it does not integrate as a plugin into VS Code, JetBrains, or Neovim. (Augment Code the company ships a separate VS Code/JetBrains extension, but that is distinct from Intent.)"
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "Supports multiple models (Opus 4.5, Sonnet 4.5, GPT 5.2, Haiku) and BYOA integration with third-party agents; not locked to a single vendor, though the Context Engine requires an Augment subscription for full functionality."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "'Full Model Context Protocol support' for connecting external tools, databases, docs, and APIs. Augment also ships a Context Engine MCP server."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "comment": "Living specs are markdown-style documents viewed and edited in the app. Non-spec outputs are code."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks"],
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "Living spec plus task assignments generated from it; no documented production of architecture docs, ADRs, release notes, or changelogs as first-class artifacts."
+    },
+    "project-layout": {
+      "value": "Each workspace ('Space') is backed by an isolated git worktree of the target repo; specs and session state are managed inside the Intent app per workspace rather than via a fixed on-disk convention in the user's repo.",
+      "source": ["https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"]
+    },
+    "artifacts-in-git": {
+      "value": false,
+      "comment": "Code changes are committed to git worktrees, but living specs and workspace state live inside the Intent app's workspace storage, not as files checked into the repo. If the user writes spec content into the repo they can commit it manually, but Intent does not enforce this."
+    },
+    "language-agnostic": {
+      "value": true,
+      "comment": "General-purpose coding workspace with no language-specific workflow; Context Engine works across mainstream stacks."
+    },
+    "enforcement-mechanisms": {
+      "value": ["manual-approval", "agent-review"],
+      "source": [
+        "https://awesomeagents.ai/reviews/review-augment-code-intent/",
+        "https://docs.augmentcode.com/intent/overview"
+      ],
+      "comment": "Human approval gates at spec, task, and diff stages. Built-in Verify, Critique, and Code Review specialist agents perform second-agent review. No documented hooks, linters, or CI-check integration that blocks phase advancement."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "comment": "Workflow proceeds Coordinator analysis -> spec -> tasks -> parallel execution -> verification -> review. The Coordinator manages handoffs and the spec gates the next phase."
+    },
+    "artifact-validation": {
+      "value": null,
+      "comment": "Specs are free-form living markdown; no documented schema validation. The Verify specialist checks implementation against the spec but that is outcome verification rather than spec-structure validation."
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "Combines the living spec (document), Augment's Context Engine (semantic dependency graph of the codebase), and persistent workspace session state."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "Resumable sessions: workspace state (specs, agent history, unfinished work) is preserved across app close/reopen."
+    },
+    "project-context-files": {
+      "value": false,
+      "comment": "Intent does not prescribe CLAUDE.md / AGENTS.md / .cursorrules-style project context files; project context comes from the Context Engine and the per-workspace living spec. BYOA agents may still read their own context files independently."
+    },
+    "cost-tracking": {
+      "value": ["per-run", "budget-limits"],
+      "source": [
+        "https://docs.augmentcode.com/models/credit-based-pricing",
+        "https://www.augmentcode.com/pricing"
+      ],
+      "comment": "Credit-based metering per task (e.g., simple task ~300 credits, complex multi-service feature ~4,300 credits). Plans cap monthly credits and usage halts when exhausted, functioning as a budget limit."
+    },
+    "run-history": {
+      "value": true,
+      "comment": "Workspace sessions retain agent history, diffs, and spec evolution; users can revisit prior agent runs within a workspace."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "comment": "Could not find explicit public telemetry documentation for Intent. SOC 2 Type II and ISO/IEC 42001 certifications are documented, but user-facing telemetry opt-out controls were not verified from primary sources."
+    },
+    "custom-templates": {
+      "value": null,
+      "comment": "No documentation found confirming or denying user-defined spec or prompt templates."
+    },
+    "hooks": {
+      "value": null,
+      "comment": "No documentation found for pre/post-phase lifecycle hooks or user-script execution points."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/intent/overview"],
+      "comment": "Users can create custom specialist agents in Settings to extend the default 6 (Investigate, Implement, Verify, Critique, Debug, Code Review)."
+    },
+    "marketplace": {
+      "value": false,
+      "comment": "No public marketplace or shared community template/specialist repository documented at time of research."
+    },
+    "install-mechanism": {
+      "value": ["binary"],
+      "source": ["https://www.augmentcode.com/product/intent"],
+      "comment": "Signed macOS .dmg download (Apple Silicon and Intel builds). Windows on waitlist, Linux not on roadmap."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "comment": "Download .dmg, install, sign in with an Augment account. BYOA configuration for Claude Code/Codex/OpenCode is additional but still quick."
+    },
+    "self-hosted": {
+      "value": false,
+      "comment": "App runs on the user's Mac but the core workflow depends on Augment's cloud services (account, credit system, Context Engine); cannot be run air-gapped."
+    },
+    "requires-account": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/pricing"],
+      "comment": "An Augment account is required to sign in to Intent, even when using the free Community tier or BYOA agents."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/blog/intent-a-workspace-for-agent-orchestration"],
+      "comment": "Each workspace is an isolated git worktree — worktrees are a first-class primitive, not optional."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "comment": "Product page and blog provide clear positioning and a single overview page at docs.augmentcode.com/intent/overview. Detailed reference for hooks, telemetry, extensibility is thin; most depth comes from release notes and third-party reviews. Adequate for public beta.",
+      "source": [
+        "https://docs.augmentcode.com/intent/overview",
+        "https://docs.augmentcode.com/llms.txt"
+      ]
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source commercial product; no public GitHub repository to star."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://www.augmentcode.com/changelog/version-0-2-6-is-live",
+        "https://www.augmentcode.com/changelog/p-day-0-2-5-release-notes"
+      ],
+      "comment": "Version 0.2.6 shipped 2026-02-19, v0.2.5 earlier in February 2026; within the 90-day active-maintenance window relative to the 2026-04-21 research date."
+    },
+    "example-projects": {
+      "value": null,
+      "comment": "No official example repositories or documented case studies were found at time of research; demos shown in launch videos and a marketing landing page but not a linkable sample-projects index."
+    },
+    "community-channel": {
+      "value": [],
+      "comment": "Primary support surfaces documented are intentfeedback@augmentcode.com and status.augmentcode.com. No public Discord, Slack, forum, or GitHub Discussions channel specific to Intent was visible from primary sources."
+    }
+  }
 }
