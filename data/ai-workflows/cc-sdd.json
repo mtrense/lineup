@@ -1,6 +1,257 @@
 {
   "name": "cc-sdd",
-  "description": "Kiro-style spec-driven development toolkit with 17 skills (requirements \u2192 design \u2192 tasks \u2192 implementation) that installs into Claude Code, Codex, Cursor, Copilot, Windsurf, OpenCode, Gemini CLI, and Antigravity.",
+  "description": "Kiro-style spec-driven development toolkit with 17 skills (requirements → design → tasks → implementation) that installs into Claude Code, Codex, Cursor, Copilot, Windsurf, OpenCode, Gemini CLI, and Antigravity.",
   "url": "https://github.com/gotalab/cc-sdd",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Kiro-style spec-driven development toolkit that installs 17 skills enforcing a requirements → design → tasks → implementation workflow across eight AI coding agents.",
+      "source": ["https://github.com/gotalab/cc-sdd"]
+    },
+    "website": {
+      "value": "https://github.com/gotalab/cc-sdd",
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No dedicated marketing site; the GitHub repo serves as the landing page."
+    },
+    "repository": {
+      "value": "https://github.com/gotalab/cc-sdd",
+      "source": ["https://github.com/gotalab/cc-sdd"]
+    },
+    "creator": {
+      "value": "gotalab",
+      "source": ["https://github.com/gotalab/cc-sdd"]
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://github.com/gotalab/cc-sdd/releases"],
+      "comment": "Earliest tagged release v2.0.1 on 2025-11-10; the project may have predated this tag (numbering starts at 2.x), but no earlier public releases are listed."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": ["https://github.com/gotalab/cc-sdd/releases"],
+      "comment": "v3.0.2 tagged 2026-04-13, with v3.0.0 on 2026-04-09. Verified 2026-04-21."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/gotalab/cc-sdd", "https://api.github.com/repos/gotalab/cc-sdd"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/gotalab/cc-sdd"]
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "MIT-licensed; OSI-approved."
+    },
+    "covered-phases": {
+      "value": ["discovery", "spec", "architecture", "planning", "tasks", "implementation", "testing", "review"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Skills map to phases: /kiro-discovery (discovery → brief.md), /kiro-spec-init + /kiro-spec-requirements (spec), /kiro-spec-design (architecture, with Mermaid diagrams), /kiro-spec-tasks (planning/tasks), /kiro-impl (implementation with per-task TDD = testing, plus an independent reviewer = review)."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "spec-centric", "strict-tdd", "harness-centric"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Self-described as Kiro-style spec-driven; spec is the central artifact (spec-centric); /kiro-impl performs per-task TDD (RED → GREEN) as a hard rule (strict-tdd); ships as a slash-command/skill harness installed into the agent of choice (harness-centric)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Enforces a fixed requirements → design → tasks → implementation pipeline with per-phase artifacts; deviation requires bypassing skills."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Multiple distinct artifacts (brief, requirements, design, tasks), explicit phase gates with human approval, mandatory TDD and reviewer pass per task."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Single npx command installs the workflow; phases run via dedicated slash commands inside the agent. Below very-high because there is no managed end-to-end pipeline outside the host agent."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Documented as 'humans approve the contract at phase gates' between requirements, design, and tasks."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Approval gates between requirements (spec), design (plan/architecture), and tasks; implementation runs autonomously after the tasks contract is approved."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Implementation phase (/kiro-impl) is autonomous per task, but the upstream phase gates expect human approval; not configured for true idea-to-merge autonomy by default."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Phase-level approvals (spec/design/tasks); within an approved task /kiro-impl is autonomous including TDD loop and auto-debug, matching the rubric's '3 = phase-level approvals'."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No built-in revert mechanism documented; TDD and per-task scoping reduce blast radius but do not provide undo."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex", "cursor", "copilot-chat", "windsurf", "opencode", "other"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Eight first-party targets: Claude Code, Codex, Cursor, GitHub Copilot, Windsurf, OpenCode, Gemini CLI, and Antigravity. Gemini CLI and Antigravity tagged as 'other' because they have no dedicated tag in attributes.json."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "The skills run wherever the host agent runs: VS Code (Copilot, Cursor as a VS Code fork), and terminal CLIs (Claude Code, Codex, Gemini CLI). Windsurf and Antigravity are standalone editors not represented by a dedicated tag."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Skills are prompts/markdown executed by whichever model the host agent is configured to use; no model is hardcoded."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No mention of Model Context Protocol in the README, package, or release notes as of 2026-04-21."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "All produced artifacts (brief.md, roadmap.md, requirements.md, design.md, tasks.md) are markdown."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "architecture", "plans", "tasks", "roadmap"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "brief.md (discovery), roadmap.md (multi-spec initiatives), requirements.md (EARS-format specs), design.md (architecture with Mermaid + file structure plan), tasks.md (plans/tasks with dependencies)."
+    },
+    "project-layout": {
+      "value": ".kiro/specs/, .kiro/steering/, and .kiro/settings/ shared across agents; skills land in per-agent dirs such as .claude/skills/, .agents/skills/ (Codex), .cursor/skills/, .github/skills/ (Copilot), .windsurf/skills/, .opencode/skills/, .gemini/skills/, and .agent/skills/ (Antigravity); also writes a top-level CLAUDE.md or AGENTS.md per agent.",
+      "source": ["https://github.com/gotalab/cc-sdd", "https://github.com/gotalab/cc-sdd/tree/main/tools/cc-sdd"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "All artifacts and steering files are written into the repo tree under .kiro/ and committed alongside source."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Workflow is prompt/markdown driven and ships no language-specific tooling; works for any stack the host agent can edit."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates", "agent-review", "manual-approval"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Skills enforce process via prompt instructions (instructional); /kiro-impl mandates per-task TDD with RED → GREEN (test-gates); each task is verified by an independent reviewer agent (agent-review); phase contracts require human sign-off (manual-approval). No CI integration shipped by default."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Kiro-style spec → design → tasks → implementation is enforced; each later skill expects the upstream artifact to exist."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Artifacts use templates and conventions (e.g., EARS-format requirements) but no schema validator is shipped; /kiro-validate-gap exists for content gap-checks but is optional and prompt-based."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Persistent context lives in CLAUDE.md / AGENTS.md and the .kiro/steering/ markdown files maintained by /kiro-steering."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Steering files and the .kiro/specs/ tree persist between sessions and are shared by every command."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd", "https://github.com/gotalab/cc-sdd/tree/main/tools/cc-sdd"],
+      "comment": "Generates a CLAUDE.md or AGENTS.md alongside .kiro/steering/ guidelines."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No token/cost tracking is shipped by cc-sdd itself; tracking is delegated to the host agent."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No structured run history beyond the artifacts the workflow writes to disk."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No telemetry collection is documented; the package is a local file generator with no reporting endpoint, so users are effectively opted out by default."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd/blob/main/docs/guides/customization-guide.md"],
+      "comment": "Templates and rules are user-editable under .kiro/settings/templates/ and .kiro/settings/rules/."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No documented pre/post-phase hook mechanism."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Skills themselves are user-editable, and /kiro-impl spawns role-specific sub-agents (fresh implementer, independent reviewer, auto-debug) that users can customize via the rules/templates."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No public marketplace or shared template directory exists; customization is per-project."
+    },
+    "install-mechanism": {
+      "value": ["npm"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Distributed as the cc-sdd npm package, run via `npx cc-sdd@latest`."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Single `npx cc-sdd@latest` invocation produces a working skill set per chosen agent."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "Pure local file generator; no hosted service involved."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No vendor account required for cc-sdd itself; the host agent may require its own."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No documented worktree integration; per-task batching does not branch automatically."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.com/gotalab/cc-sdd", "https://github.com/gotalab/cc-sdd/blob/main/docs/guides/command-reference.md", "https://github.com/gotalab/cc-sdd/blob/main/docs/guides/customization-guide.md"],
+      "comment": "Comprehensive Skill Reference, Command Reference, and Customization Guide; READMEs in 13 languages. Held back from 5 by lack of dedicated tutorial walkthroughs and case studies."
+    },
+    "github-stars": {
+      "value": 3155,
+      "source": ["https://api.github.com/repos/gotalab/cc-sdd"],
+      "comment": "Captured 2026-04-21 via the GitHub API."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/gotalab/cc-sdd/releases"],
+      "comment": "v3.0.2 released 2026-04-13, eight days before research; pushed_at 2026-04-14."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No example repositories or documented case studies of real-world use found in the README or docs."
+    },
+    "community-channel": {
+      "value": [],
+      "source": ["https://github.com/gotalab/cc-sdd"],
+      "comment": "No Discord, Slack, forum, or GitHub Discussions presence advertised; community engagement appears limited to GitHub issues and Japanese Zenn articles."
+    }
+  }
 }
