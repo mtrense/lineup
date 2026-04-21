@@ -12,6 +12,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - Autonomous coding agent platforms (agent + harness + workflow distributed together)
 - Multi-agent orchestration frameworks when they are commonly applied to software development workflows
 - Commercial platforms built around spec-first or agentic AI development
+- AI workforce / agent control-plane platforms — governance, org-structure, budgeting, and oversight layers applicable to fleets of coding agents
 
 **Excluded:**
 - AI coding agents used only as runtimes (Claude Code, Cursor, Codex CLI, Windsurf, Aider) -- these are the *runtime*, not the workflow. Workflows built *on top of* them are in scope
