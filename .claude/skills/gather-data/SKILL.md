@@ -3,7 +3,7 @@ name: gather-data
 description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*)
+allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *)
 argument-hint: "<comparison-type> [candidate] [attribute-id-or-group]"
 ---
 
