@@ -1,5 +1,309 @@
 {
   "name": "CrewAI",
-  "description": "popular multi-agent orchestration, commonly applied to dev workflows",
-  "values": {}
+  "description": "Framework for orchestrating role-playing, autonomous AI agents in role-based Crews or event-driven Flows",
+  "url": "https://crewai.com/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Python framework for orchestrating role-playing, autonomous AI agents that collaborate in role-based Crews or event-driven Flows to tackle complex tasks",
+      "source": [
+        "https://github.com/crewAIInc/crewAI",
+        "https://docs.crewai.com/introduction"
+      ]
+    },
+    "website": {
+      "value": "https://crewai.com/",
+      "source": ["https://crewai.com/"]
+    },
+    "repository": {
+      "value": "https://github.com/crewAIInc/crewAI",
+      "source": ["https://github.com/crewAIInc/crewAI"]
+    },
+    "creator": {
+      "value": "CrewAI Inc (founded by João Moura)",
+      "source": [
+        "https://github.com/crewAIInc/crewAI",
+        "https://www.insightpartners.com/ideas/crewai-scaleup-ai-story/"
+      ]
+    },
+    "first-release": {
+      "value": "2023",
+      "source": [
+        "https://www.insightpartners.com/ideas/crewai-scaleup-ai-story/"
+      ],
+      "comment": "Framework completed October 2023 and published as open source on GitHub in November 2023; CrewAI Inc officially launched January 2024"
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://github.com/crewAIInc/crewAI/releases",
+        "https://github.com/crewAIInc/crewAI"
+      ],
+      "comment": "v1.14.2 released 2026-04-17"
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/crewAIInc/crewAI"]
+    },
+    "pricing-model": {
+      "value": ["free-oss", "freemium", "paid-saas", "paid-self-hosted"],
+      "source": [
+        "https://crewai.com/pricing",
+        "https://crewai.com/open-source"
+      ],
+      "comment": "Core framework is MIT-licensed free OSS; CrewAI AMP Basic is free (50 executions/mo); CrewAI AMP Cloud is paid SaaS; CrewAI AMP Factory / Enterprise is paid self-hosted"
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/crewAIInc/crewAI"]
+    },
+    "covered-phases": {
+      "value": [],
+      "source": ["https://docs.crewai.com/introduction"],
+      "comment": "CrewAI is a general-purpose agent orchestration framework and does not prescribe SDLC phases; users define what their Crews or Flows cover"
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "plan-and-execute", "harness-centric"],
+      "source": [
+        "https://docs.crewai.com/introduction",
+        "https://docs.crewai.com/concepts/flows"
+      ],
+      "comment": "Multi-agent role-playing is the core abstraction; Flows provide event-driven plan-and-execute patterns; value is primarily the orchestration harness"
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://docs.crewai.com/concepts/agents"],
+      "comment": "Users define all agents, tasks, and flow control; no prescribed workflow template"
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Scaffolding produces minimal YAML config plus a small crew.py entrypoint; no mandatory review gates or artifact ceremony"
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://docs.crewai.com/concepts/cli",
+        "https://docs.crewai.com/concepts/flows"
+      ],
+      "comment": "Single `crewai run` or `kickoff()` call executes a crew or flow end-to-end"
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://docs.crewai.com/concepts/flows"],
+      "comment": "@human_feedback decorator on Flows pauses execution for approval/rejection/revision; checkpoints are opt-in rather than prescribed"
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://docs.crewai.com/concepts/flows"],
+      "comment": "No prescribed approval gates in the default configuration; @human_feedback gates are user-defined"
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": [
+        "https://docs.crewai.com/introduction",
+        "https://docs.crewai.com/concepts/flows"
+      ]
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": ["https://docs.crewai.com/concepts/flows"],
+      "comment": "Default Crews and Flows run fully autonomously from kickoff to completion; any human checkpoints are opt-in"
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://docs.crewai.com/concepts/flows"],
+      "comment": "Flow @persist saves state for replay/resume but there is no built-in rollback of generated code or external side effects; the CLI `replay` resumes from a task rather than reverting"
+    },
+    "supported-agents": {
+      "value": ["claude-code"],
+      "source": ["https://github.com/crewAIInc/skills"],
+      "comment": "crewAIInc/skills is a first-party Claude Code plugin/marketplace distributing CrewAI skills. CrewAI itself is the agent runtime (not driven by external coding agents), so other tags do not apply in the RESEARCH.md sense"
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Python library invoked via the `crewai` CLI; no first-party editor extension"
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://docs.crewai.com/concepts/llms"],
+      "comment": "Native SDK integrations for OpenAI, Anthropic, Google, Azure, AWS Bedrock; 15+ additional providers via LiteLLM (Ollama, Groq, Mistral, Hugging Face, Vertex, SageMaker, etc.)"
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://docs.crewai.com/en/mcp/overview"
+      ],
+      "comment": "Agents consume MCP servers as tools via the `mcps=[]` field / MCPServerAdapter; supports stdio, SSE, and Streamable HTTP transports"
+    },
+    "artifact-formats": {
+      "value": ["yaml", "markdown"],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Primary non-code artifacts are YAML (agents.yaml, tasks.yaml); scaffold also produces Markdown README and knowledge/ files"
+    },
+    "artifacts-covered": {
+      "value": [],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Does not maintain SDLC artifacts (specs, plans, ADRs, release notes); the framework's own artifacts are agent and task configuration rather than software-lifecycle documents"
+    },
+    "project-layout": {
+      "value": "Scaffolded via `crewai create crew <name>`: `src/<project>/config/{agents,tasks}.yaml`, `src/<project>/crew.py`, `src/<project>/main.py`, `src/<project>/tools/`, top-level `knowledge/`, `.env`, `pyproject.toml`",
+      "source": ["https://docs.crewai.com/installation"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "agents.yaml, tasks.yaml, crew.py, tools/, knowledge/ all live in the project repo by default"
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://docs.crewai.com/introduction"],
+      "comment": "Framework itself is Python, but workflows can target any domain or target-language codebase via tools"
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks"],
+      "source": [
+        "https://docs.crewai.com/concepts/agents",
+        "https://docs.crewai.com/concepts/flows"
+      ],
+      "comment": "Primary enforcement is instructional via agent roles/goals/backstories; lifecycle callbacks (task_callback, step_callback) and Flow decorators allow mechanical checks"
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://docs.crewai.com/concepts/flows"],
+      "comment": "Flows enforce user-defined event ordering via @start/@listen/@router, but the framework itself does not prescribe phases"
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://docs.crewai.com/concepts/agents"],
+      "comment": "agents.yaml and tasks.yaml are validated against Pydantic schemas at load time"
+    },
+    "memory-implementation": {
+      "value": ["hybrid"],
+      "source": ["https://docs.crewai.com/concepts/memory"],
+      "comment": "Unified Memory API combines vector similarity (LanceDB default) with file-based storage under `.crewai/memory/`; custom StorageBackend protocol supported"
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.crewai.com/concepts/memory"],
+      "comment": "Memory and Flow state persist to disk across sessions; Flows use SQLiteFlowPersistence by default"
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Scaffolds project-scoped config files (agents.yaml, tasks.yaml) plus a knowledge/ folder; does not use or produce CLAUDE.md / AGENTS.md style general instruction files"
+    },
+    "cost-tracking": {
+      "value": ["basic-logs", "per-run"],
+      "source": [
+        "https://community.crewai.com/t/crew-ai-token-usage/5128",
+        "https://docs.crewai.com/en/observability/tracing"
+      ],
+      "comment": "Crew/Task outputs expose token_usage (prompt/completion/total); CrewAI AMP tracing aggregates per-run cost and token metrics in the cloud; no built-in budget limits"
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://docs.crewai.com/en/observability/tracing"],
+      "comment": "CrewAI AMP tracing stores structured run traces in the cloud (requires free account); core framework also logs task outputs via `crewai log-tasks-outputs` and Flow state persistence"
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://docs.crewai.com/en/telemetry",
+        "https://github.com/crewAIInc/crewAI/pull/2537"
+      ],
+      "comment": "Anonymous telemetry is documented; can be disabled via CREWAI_DISABLE_TELEMETRY=true (added in PR #2537) or OTEL_SDK_DISABLED=true"
+    },
+    "custom-templates": {
+      "value": true,
+      "source": [
+        "https://docs.crewai.com/installation",
+        "https://docs.crewai.com/concepts/agents"
+      ],
+      "comment": "Users freely define agent roles, goals, backstories and task descriptions in YAML; `crewai create` scaffolds an editable template"
+    },
+    "hooks": {
+      "value": true,
+      "source": [
+        "https://docs.crewai.com/concepts/agents",
+        "https://docs.crewai.com/concepts/flows"
+      ],
+      "comment": "Crew and Agent expose task_callback and step_callback lifecycle hooks; Flows use @start / @listen / @router / @persist / @human_feedback decorators"
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://docs.crewai.com/concepts/agents"],
+      "comment": "Core framework primitive: user-defined role-playing Agents with optional delegation (allow_delegation=true) and custom tools"
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://github.com/crewAIInc/skills",
+        "https://github.com/crewAIInc/crewAI-examples",
+        "https://github.com/crewAIInc/awesome-crewai"
+      ],
+      "comment": "Public repositories of shared templates and skills exist (crewAI-skills Claude Code marketplace, crewAI-examples, community-curated awesome-crewai); no formal third-party marketplace"
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "Recommended: `uv tool install crewai` or `uv pip install crewai`; plain `pip install crewai` also works; requires Python 3.10-3.13"
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://docs.crewai.com/installation"],
+      "comment": "uv install + `crewai create crew <name>` completes in minutes; longer if configuring LLM credentials or AMP account"
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://crewai.com/open-source"],
+      "comment": "Core OSS framework runs entirely on user infrastructure; AMP cloud features are optional"
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://crewai.com/open-source",
+        "https://docs.crewai.com/en/observability/tracing"
+      ],
+      "comment": "Not required for the core framework or local execution; a free CrewAI account is needed for AMP tracing and `crewai deploy`"
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://docs.crewai.com/introduction"],
+      "comment": "No documented git-worktree integration"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.crewai.com/introduction"],
+      "comment": "Extensive docs at docs.crewai.com covering concepts (Agents, Tasks, Crews, Flows, Memory, LLMs), CLI, MCP, observability, deployment, and tools; plentiful examples via crewAI-examples"
+    },
+    "github-stars": {
+      "value": 49400,
+      "source": ["https://github.com/crewAIInc/crewAI"],
+      "comment": "49.4k stars observed 2026-04-21 on github.com/crewAIInc/crewAI"
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/crewAIInc/crewAI/releases"],
+      "comment": "Release 1.14.2 on 2026-04-17 (within 4 days of research on 2026-04-21); weekly release cadence"
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/crewAIInc/crewAI-examples",
+        "https://github.com/crewAIInc/crewAI-quickstarts"
+      ],
+      "comment": "crewAI-examples contains trip planner, landing page, stock analysis, job posting, and more; crewAI-quickstarts provides feature demos"
+    },
+    "community-channel": {
+      "value": ["discord", "forum", "github-discussions"],
+      "source": [
+        "https://discord.com/invite/X4JWnZnxPb",
+        "https://community.crewai.com/",
+        "https://github.com/crewAIInc/crewAI/discussions"
+      ],
+      "comment": "Discord (~9k members), community.crewai.com forum, and GitHub Discussions"
+    }
+  }
 }

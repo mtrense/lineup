@@ -165,7 +165,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Tessl** - commercial spec-first AI development platform
 - [x] **Agent-OS** - structured multi-agent workflow framework
 - [x] **Kiro** - AWS's spec-driven dev assistant
-- [ ] **CrewAI** - popular multi-agent orchestration, commonly applied to dev workflows
+- [x] **CrewAI** - popular multi-agent orchestration, commonly applied to dev workflows
 - [ ] **LangGraph** - graph-based agent orchestration framework
 - [ ] **AutoGen** - Microsoft's multi-agent conversation framework
 - [ ] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
