@@ -2,5 +2,256 @@
   "name": "MetaGPT",
   "description": "Multi-agent framework that assigns AI roles (product manager, architect, project manager, engineer) to collaborate on full software deliverables from a single natural-language requirement.",
   "url": "https://github.com/FoundationAgents/MetaGPT",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Multi-agent SOP framework that simulates a software company by assigning LLM roles (PM, architect, project manager, engineer) to collaborate end-to-end from a one-line requirement to a generated repo.",
+      "source": ["https://github.com/FoundationAgents/MetaGPT", "https://docs.deepwisdom.ai/main/en/"]
+    },
+    "website": {
+      "value": "https://docs.deepwisdom.ai/main/en/",
+      "source": ["https://docs.deepwisdom.ai/main/en/"]
+    },
+    "repository": {
+      "value": "https://github.com/FoundationAgents/MetaGPT",
+      "source": ["https://github.com/FoundationAgents/MetaGPT"]
+    },
+    "creator": {
+      "value": "DeepWisdom (Alexander Wu) / FoundationAgents organization",
+      "source": ["https://github.com/FoundationAgents/MetaGPT", "https://docs.deepwisdom.ai/main/en/"],
+      "comment": "Originally published under the geekan/MetaGPT repo by Alexander Wu; later moved to the FoundationAgents GitHub org. DeepWisdom is the affiliated company."
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "MetaGPT paper and initial public release in 2023; v0.1 tagged that year."
+    },
+    "latest-release": {
+      "value": "2025-03",
+      "source": ["https://github.com/FoundationAgents/MetaGPT/releases"],
+      "comment": "v0.8.2 published 2025-03-09 (verified via gh API). No tagged release since then; main branch has continued to receive merged PRs."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/FoundationAgents/MetaGPT"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "Framework itself is free OSS. DeepWisdom operates a separate commercial product (MGX/MetaGPT X) at mgx.dev, but it is not the OSS workflow being evaluated here."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"]
+    },
+    "covered-phases": {
+      "value": ["spec", "architecture", "tasks", "implementation"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html", "https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md"],
+      "comment": "SOP runs PM (PRD/spec) → Architect (system design) → Project Manager (task breakdown) → Engineer (code). Outputs include user stories, requirements, data structures, APIs, and documents."
+    },
+    "methodology-style": {
+      "value": ["multi-agent", "process-centric", "spec-driven"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/concepts.html", "https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "Distinct LLM-driven roles per phase (true multi-agent), built around a fixed SOP (process-centric), starting from a written specification (spec-driven)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html"],
+      "comment": "Prescribes a fixed SOP with role pipeline; deviation requires writing custom Roles/Actions in code."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html"],
+      "comment": "Default workflow produces multiple distinct artifacts (PRD, design, task list, code) across formal role handoffs."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "Single CLI command (e.g. `metagpt \"write a cli blackjack game\"`) runs the entire SOP end-to-end."
+    },
+    "hitl-checkpoints": {
+      "value": false,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "Default workflow runs autonomously through phases; no built-in per-phase approval gates documented."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"]
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html", "https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md"],
+      "comment": "A single CLI invocation produces a generated repo in ./workspace without further human input."
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "Default configuration runs all phases without human approval; iteration count is bounded by --n-round (default 5)."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT/releases/tag/v0.6.0"],
+      "comment": "v0.6.0 introduced breakpoint recovery / serialization for resuming paused runs, but no explicit revert/undo of generated artifacts."
+    },
+    "supported-agents": {
+      "value": [],
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "MetaGPT is its own agent runtime, not a workflow layered on top of an existing coding agent. Empty per RESEARCH.md guideline."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "Primary interface is a Python CLI / library; no first-party editor extensions."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md", "https://github.com/FoundationAgents/MetaGPT/releases/tag/v0.8.0"],
+      "comment": "Supports OpenAI, Azure, Ollama, Groq, Anthropic Claude, Gemini, QianFan, DashScope, Yi, and other providers via configurable LLMType."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "No MCP references found in the repo (gh code search returned 0 results) or in any release notes through v0.8.2 (2025-03)."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": ["https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md"],
+      "comment": "PRDs, designs, and user-facing docs are produced as markdown. Some intermediate task representations are JSON, but markdown is the primary user-readable artifact format."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "architecture", "tasks", "user-docs"],
+      "source": ["https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md", "https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html"],
+      "comment": "README lists user stories, competitive analysis, requirements, data structures, APIs, and documents as outputs."
+    },
+    "project-layout": {
+      "value": "Generated outputs are written to ./workspace/<project-name>/, containing the PRD, system design, task list, and generated source code.",
+      "source": ["https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md"],
+      "comment": "README explicitly states 'this will create a repo in ./workspace'. The --project-name flag controls the subdirectory name."
+    },
+    "artifacts-in-git": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/FoundationAgents/MetaGPT/main/README.md"],
+      "comment": "Outputs go to ./workspace/ as a generated repo rather than being interleaved with an existing project's git history; users may commit them but it is not the framework's design."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "Generated code language is driven by the requirement; defaults and examples lean Python but other languages can be requested."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/concepts.html"],
+      "comment": "Process discipline is enforced through SOP prompts and role/message contracts in code; no built-in CI checks, hooks, or test gates."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html"],
+      "comment": "The SOP fixes role/phase ordering (PM → Architect → PjM → Engineer); changing it requires editing the team composition in code."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html"],
+      "comment": "No documented schema validation of produced artifacts; outputs are LLM-generated markdown/code."
+    },
+    "memory-implementation": {
+      "value": ["session-only"],
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/concepts.html", "https://github.com/FoundationAgents/MetaGPT/releases/tag/v0.6.0"],
+      "comment": "Per-agent Memory plus shared Environment messages within a run. v0.6.0 added serialization for breakpoint recovery, but cross-session memory is not the default model."
+    },
+    "persistent-memory": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT/releases/tag/v0.6.0"],
+      "comment": "Serialization/breakpoint recovery exists for resuming an interrupted run, but there is no general persistent memory shared across separate user sessions."
+    },
+    "project-context-files": {
+      "value": false,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/concepts.html"],
+      "comment": "Does not use or produce CLAUDE.md / AGENTS.md style project-scoped context files; configuration lives in YAML config files instead."
+    },
+    "cost-tracking": {
+      "value": ["basic-logs", "budget-limits"],
+      "source": ["https://github.com/geekan/MetaGPT/issues/1031", "https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "CLI exposes --investment as a max-budget cap (default $3) handled by an internal cost manager that tracks token spend per run."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/concepts.html"],
+      "comment": "No built-in structured run history or trace database; only standard logs and the generated workspace artifacts."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "No documented telemetry collection by the OSS framework itself; could not confirm one way or the other from public docs."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/agent_101.html"],
+      "comment": "Users define custom Action subclasses with their own prompt templates and run() logic."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/agent_101.html"],
+      "comment": "No documented pre/post-phase hook system. The closest analog is overriding _act() inside a custom Role, which is application code rather than a lifecycle hook."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://docs.deepwisdom.ai/main/en/guide/tutorials/agent_101.html"],
+      "comment": "Users can define custom Roles (with profile/name/actions) and assemble them into a Team — this is the canonical extension point."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "No public marketplace or shared-templates registry; community examples live in the repo's examples/ directory."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "Primary install is `pip install --upgrade metagpt`; a Dockerfile is also provided in the repo."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/FoundationAgents/MetaGPT", "https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html"],
+      "comment": "pip install plus an LLM API key in a YAML config; the quickstart fits comfortably under 5 minutes if an API key is on hand."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "Runs entirely as a local Python process; LLM API calls are the only external dependency."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "No DeepWisdom/MetaGPT account is required. An LLM provider API key is needed (e.g., OpenAI), but that is a separate concern from the framework itself."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "No documented git worktree integration. Outputs are written to ./workspace/ regardless of git state."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.deepwisdom.ai/main/en/"],
+      "comment": "docs.deepwisdom.ai provides English and Chinese docs covering quickstart, concepts, agent tutorials, and use cases. Coverage is broad but some sections (workspace layout, telemetry, lifecycle) are thin."
+    },
+    "github-stars": {
+      "value": 67317,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "67,317 stars at 2026-04-21 (per gh API). One of the highest-starred multi-agent frameworks."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/FoundationAgents/MetaGPT/commits/main"],
+      "comment": "Most recent commit on main is 2026-01-21 (Windows Terminal support PR). That sits exactly at the 90-day boundary from the 2026-04-21 research date — borderline. No tagged release since v0.8.2 (2025-03)."
+    },
+    "example-projects": {
+      "value": true,
+      "source": ["https://github.com/FoundationAgents/MetaGPT"],
+      "comment": "Repo includes an examples/ directory with multiple worked scenarios; quickstart docs include several end-to-end demos."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://github.com/FoundationAgents/MetaGPT", "https://docs.deepwisdom.ai/main/en/"],
+      "comment": "Official Discord server linked from the README and docs. No other first-party channel observed."
+    }
+  }
 }
