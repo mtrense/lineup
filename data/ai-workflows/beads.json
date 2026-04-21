@@ -2,5 +2,407 @@
   "name": "Beads",
   "description": "Git-native graph issue tracker that provides persistent, dependency-aware memory and ready-queue task scheduling for long-horizon AI coding agents.",
   "url": "https://github.com/steveyegge/beads",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Dolt-powered graph issue tracker that gives AI coding agents persistent, dependency-aware memory and a ready-queue of unblocked tasks for long-horizon work.",
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://gastownhall.github.io/beads/"
+      ],
+      "comment": "Tagline in the README is 'Beads - A memory upgrade for your coding agent'; first sentence frames it as a persistent structured memory that replaces markdown plans with a dependency graph."
+    },
+    "website": {
+      "value": "https://gastownhall.github.io/beads/",
+      "source": ["https://github.com/gastownhall/beads"],
+      "comment": "Official docs site linked from README as the canonical documentation home."
+    },
+    "repository": {
+      "value": "https://github.com/gastownhall/beads",
+      "source": ["https://github.com/gastownhall/beads"],
+      "comment": "Repo moved from steveyegge/beads to gastownhall/beads; the old URL still redirects. Candidate top-level url left as-is."
+    },
+    "creator": {
+      "value": "Steve Yegge (gastownhall org)",
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/AGENT_INSTRUCTIONS.md"
+      ],
+      "comment": "Project is authored by Steve Yegge and hosted under the gastownhall GitHub org; AGENT_INSTRUCTIONS notes Beads is a dependency of Gas City."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": [
+        "https://github.com/gastownhall/beads/releases"
+      ],
+      "comment": "Earliest tagged release in the release history is v0.9.1 on 2025-10-14; repo was created 2025-10-12."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://github.com/gastownhall/beads/releases"
+      ],
+      "comment": "v1.0.2 published 2026-04-15 (verified 2026-04-21); preceded by v1.0.1 / v1.0.0 earlier in April 2026."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/LICENSE"
+      ]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/LICENSE"
+      ],
+      "comment": "MIT-licensed OSS CLI with no paid tier; no hosted SaaS. Sync targets include user-controlled Dolt remotes (DoltHub, S3, GCS, filesystem) but those are not Beads' commercial offerings."
+    },
+    "open-source": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/LICENSE"
+      ]
+    },
+    "covered-phases": {
+      "value": ["planning", "tasks"],
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Beads is an issue/task graph, not a phase model; it covers task tracking and produces a dependency graph that serves as a lightweight plan (epics + parent/child + blocks). No spec, architecture, review, testing, or deployment phases are prescribed."
+    },
+    "methodology-style": {
+      "value": ["plan-and-execute", "agent-agile"],
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Fits neither spec-centric nor harness-centric cleanly. Closest is plan-and-execute (typed-dependency graph of tasks + ready queue), with agent-agile overtones (priorities, claim-atomic, kanban-like status transitions). Supports multi-agent coordination but is not itself a multi-agent orchestration framework."
+    },
+    "opinionated": {
+      "value": false,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Prescribes a minimal ready→claim→work→close loop but otherwise stays out of how the agent works. No mandated phases, artifacts, or review gates; agents can use bd however they want."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Core workflow is five commands (ready, create, update --claim, close, dolt push); no documentation gates or review ceremony required."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md"
+      ],
+      "comment": "Full CLI with --json on every command, MCP server, git hooks for auto-sync, SessionStart/PreCompact hooks for Claude/Gemini, and bd setup recipes that auto-install integration into AGENTS.md/CLAUDE.md/.cursor/rules. End-to-end execution is possible; not a managed platform."
+    },
+    "hitl-checkpoints": {
+      "value": false,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "The workflow does not define explicit human approval points. Agents can claim, work, and close tasks autonomously; any human review happens outside bd (e.g., code review on the PR)."
+    },
+    "approval-gates": {
+      "value": [],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "No phase-level approval gates built into bd itself."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/PLUGIN.md"
+      ],
+      "comment": "Workflow is designed for agents to pull ready work autonomously; the Claude Code plugin ships an @task-agent that 'autonomously finds and completes ready tasks'. Final merge to main is typically PR-based per project policy, not a Beads requirement."
+    },
+    "autonomy-level": {
+      "value": 5,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/PLUGIN.md"
+      ],
+      "comment": "Default posture is fully autonomous: bd ready → bd update --claim → work → bd close, all without human checkpoints. Humans interact only if they choose to."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/ARCHITECTURE.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/DOLT.md"
+      ],
+      "comment": "Rollback applies to issue/task state, not code. Dolt is a version-controlled SQL backend with automatic commits on every write and native branch/merge, so the task graph itself can be reverted or diffed. Code changes are not managed by bd."
+    },
+    "supported-agents": {
+      "value": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "windsurf",
+        "aider",
+        "copilot-chat",
+        "opencode",
+        "other"
+      ],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/COPILOT_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/CLAUDE_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/AIDER_INTEGRATION.md"
+      ],
+      "comment": "bd setup ships first-party recipes for cursor, windsurf, claude, gemini (mapped to 'other'), factory, codex, mux, aider, kilocode, cody. Copilot Chat supported via MCP. opencode has a community plugin listed in COMMUNITY_TOOLS.md."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "jetbrains", "neovim", "terminal-only"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/COPILOT_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/COMMUNITY_TOOLS.md"
+      ],
+      "comment": "Core tool is terminal CLI. Official MCP integration for VS Code (via Copilot). Community-maintained extensions for VS Code (vscode-beads, Lista Beads), JetBrains (beads-manager), and Neovim (nvim-beads)."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/CLAUDE_INTEGRATION.md"
+      ],
+      "comment": "bd is a CLI tool that makes no LLM calls itself; any agent using any model can drive it via CLI or MCP."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://pypi.org/project/beads-mcp/",
+        "https://github.com/gastownhall/beads/blob/main/docs/COPILOT_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/PLUGIN.md"
+      ],
+      "comment": "Official beads-mcp Python package exposes init/create/list/ready/show/update/close/dep/blocked/stats as MCP tools. Installable via uv/pip/pipx."
+    },
+    "artifact-formats": {
+      "value": ["json", "markdown"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/JSON_SCHEMA.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md"
+      ],
+      "comment": "Primary output is JSON (every command has --json; documented schema_version contract). Secondary: markdown agent-instruction snippets written to AGENTS.md/CLAUDE.md/.cursor/rules/*.mdc by bd setup. Storage backend is a Dolt SQL database, not a text format."
+    },
+    "artifacts-covered": {
+      "value": ["tasks", "roadmap"],
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/AGENT_INSTRUCTIONS.md"
+      ],
+      "comment": "Core artifact is tasks (typed: bug, feature, task, epic, chore) with dependency graph edges (blocks, related, parent-child, discovered-from). Epics + hierarchical IDs (bd-a3f8.1.1) give a lightweight roadmap. No specs, plans-as-documents, ADRs, test plans, or release notes are produced by bd itself."
+    },
+    "project-layout": {
+      "value": ".beads/ directory holding the Dolt database (embedded mode) or pointer to external dolt sql-server (server mode); agent instructions written to AGENTS.md, CLAUDE.md, or editor-specific rules files via bd setup.",
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/WORKTREES.md"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/GIT_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/README.md"
+      ],
+      "comment": "The .beads/ database lives in the project tree and is versioned via Dolt (data stored under refs/dolt/data, separate from standard git refs). Default setup commits agent-instruction markdown alongside source. --stealth mode opts out of committing bd state."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads"
+      ],
+      "comment": "bd itself is written in Go but tracks issues for any project regardless of language."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/GIT_INTEGRATION.md"
+      ],
+      "comment": "Enforcement is via (1) instruction text injected into AGENTS.md/CLAUDE.md that tells agents to use bd for all task tracking, and (2) git hooks (pre-commit, post-merge) plus Claude SessionStart/PreCompact hooks that auto-sync and auto-prime context. No linters, test gates, CI checks, or manual-approval gates are part of bd's core workflow."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Beads doesn't have phases to order; it's a task graph with free-form status transitions. Dependencies (blocks) gate ready work, but that's data-driven, not phase-ordering."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/JSON_SCHEMA.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/CONFIG.md"
+      ],
+      "comment": "Issues have a documented JSON schema (schema_version contract). Optional template validation on create and on sync can be set to warn or error via validation.on-create / validation.on-sync config."
+    },
+    "memory-implementation": {
+      "value": ["knowledge-graph"],
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/docs/ARCHITECTURE.md"
+      ],
+      "comment": "Persistent memory is an explicit dependency graph (typed edges: blocks, related, parent-child, discovered-from, relates_to, duplicates, supersedes, replies_to) stored in a version-controlled Dolt SQL DB. Also writes markdown instruction files, but those are static onboarding context, not the memory substrate."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads",
+        "https://github.com/gastownhall/beads/blob/main/docs/ARCHITECTURE.md"
+      ],
+      "comment": "Whole premise of the project: graph database persists across sessions. 'bd prime' at SessionStart replays relevant context; 'compaction' summarizes closed tasks to save context window."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md",
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "bd setup writes into AGENTS.md / CLAUDE.md / GEMINI.md / .cursor/rules/beads.mdc / .windsurf/rules/beads.md / .aider.conf.yml depending on the target tool."
+    },
+    "cost-tracking": {
+      "value": ["basic-logs", "per-run"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/OBSERVABILITY.md"
+      ],
+      "comment": "Opt-in OpenTelemetry metrics expose bd_ai_input_tokens_total / bd_ai_output_tokens_total / bd_ai_request_duration_ms (labeled by model) and can be pushed to VictoriaMetrics or dumped to stderr. No budget-limit enforcement. Disabled by default."
+    },
+    "run-history": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/ARCHITECTURE.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/OBSERVABILITY.md"
+      ],
+      "comment": "Every write produces a Dolt commit, giving a complete audit trail of issue changes. OTEL spans can additionally be captured when telemetry is enabled."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/OBSERVABILITY.md"
+      ],
+      "comment": "OTEL export is disabled by default — zero overhead unless BD_OTEL_METRICS_URL or BD_OTEL_STDOUT is set. Clearly documented."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/CONFIG.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md"
+      ],
+      "comment": "Template validation is configurable (validation.on-create). bd setup supports custom recipes beyond the built-in set, so integration templates are user-definable."
+    },
+    "hooks": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/GIT_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/SETUP.md"
+      ],
+      "comment": "Provides bd-managed git hooks (pre-commit, post-merge) and installs Claude SessionStart/PreCompact and Gemini SessionStart/PreCompress hooks via bd setup. Users can extend through standard git hook mechanisms."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/CLAUDE_INTEGRATION.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/PLUGIN.md"
+      ],
+      "comment": "bd core does not ship a persona/skill system; the CLAUDE_INTEGRATION design doc explicitly decides against requiring Claude Skills. The optional Claude Code plugin ships a single @task-agent, but that's plugin-specific and not a user-definable persona framework."
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/PLUGIN.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/COMMUNITY_TOOLS.md"
+      ],
+      "comment": "Distributed as a Claude Code plugin via Claude Code's /plugin marketplace (/plugin marketplace add steveyegge/beads). A curated COMMUNITY_TOOLS.md lists 15+ community-built UIs, extensions, and integrations, though there is no dedicated first-party marketplace site."
+    },
+    "install-mechanism": {
+      "value": ["binary", "npm", "shell-script", "pip"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/INSTALLING.md",
+        "https://pypi.org/project/beads-mcp/",
+        "https://www.npmjs.com/package/@beads/bd"
+      ],
+      "comment": "Primary: brew install beads (binary). Secondary: npm install -g @beads/bd, curl install.sh (shell-script), mise, go install, Arch AUR. The MCP server is distributed via pip/uv (beads-mcp). cargo is not a supported path."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/QUICKSTART.md",
+        "https://github.com/gastownhall/beads/blob/main/README.md"
+      ],
+      "comment": "README quick start: brew install beads && bd init; ~3 commands to first ready task. MCP setup adds a few minutes."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/README.md"
+      ],
+      "comment": "Runs entirely locally. Embedded Dolt mode needs no external server; server mode connects to a user-run dolt sql-server. No hosted service required."
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/README.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/QUICKSTART.md"
+      ],
+      "comment": "No vendor account needed. Optional Dolt remotes (DoltHub, S3, GCS) need their own credentials, but the core workflow is accountless."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/blob/main/docs/WORKTREES.md",
+        "https://github.com/gastownhall/beads/blob/main/docs/GIT_INTEGRATION.md"
+      ],
+      "comment": "Dedicated WORKTREES.md: shared-database architecture lets all worktrees for a repo share one .beads database, with worktree-aware discovery. Hash-based IDs (bd-a1b2) are specifically designed to prevent collisions in multi-branch/multi-worktree workflows."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://gastownhall.github.io/beads/",
+        "https://github.com/gastownhall/beads/tree/main/docs"
+      ],
+      "comment": "Published versioned docs site plus 40+ in-repo docs covering architecture, internals, every integration (Aider, Claude, Copilot, Cursor, Windsurf, Gemini, Codex, Factory, OpenCode), observability, federation, protected branches, and FAQ. Actively maintained and unusually thorough for an OSS project of this age."
+    },
+    "github-stars": {
+      "value": 20995,
+      "source": [
+        "https://github.com/gastownhall/beads"
+      ],
+      "comment": "Star count as of 2026-04-21 via gh api repos/gastownhall/beads. Project is ~6 months old; star growth has been rapid."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/releases",
+        "https://github.com/gastownhall/beads/commits/main"
+      ],
+      "comment": "Latest push 2026-04-21; v1.0.2 released 2026-04-15; 88 tagged releases in the last 6 months."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/gastownhall/beads/tree/main/examples",
+        "https://github.com/gastownhall/beads/blob/main/docs/COMMUNITY_TOOLS.md",
+        "https://github.com/gastownhall/beads/blob/main/AGENTS.md"
+      ],
+      "comment": "Ships an examples/ directory in the repo; COMMUNITY_TOOLS.md curates 15+ real-world integrations and downstream tools; the project dogfoods bd for its own development."
+    },
+    "community-channel": {
+      "value": ["github-discussions"],
+      "source": [
+        "https://github.com/gastownhall/beads/discussions"
+      ],
+      "comment": "GitHub Discussions is enabled on the repo (has_discussions=true). No Discord/Slack/forum/Reddit is promoted in the README or docs."
+    }
+  }
 }
