@@ -168,7 +168,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **CrewAI** - popular multi-agent orchestration, commonly applied to dev workflows
 - [x] **LangGraph** - graph-based agent orchestration framework
 - [x] **AutoGen** - Microsoft's multi-agent conversation framework
-- [ ] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
+- [x] **OpenHands** - formerly OpenDevin, autonomous coding agent platform
 - [ ] **SpecKitty** - https://github.com/Priivacy-ai/spec-kitty
 - [ ] **GSD** - *pending user clarification on upstream project / URL*
 - [ ] **Devika** - AI software engineer agent (activity has slowed; include for historical context)

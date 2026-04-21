@@ -1,5 +1,296 @@
 {
   "name": "OpenHands",
-  "description": "formerly OpenDevin, autonomous coding agent platform",
-  "values": {}
+  "description": "Open-source autonomous coding agent platform (formerly OpenDevin) from All Hands AI, distributed as CLI, SDK, local GUI, and cloud.",
+  "icon": "",
+  "url": "https://openhands.dev/",
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Open-source autonomous coding agent platform (formerly OpenDevin) that plans, edits, and executes code inside a sandboxed runtime; distributed as CLI, Python SDK, local GUI, and cloud.",
+      "source": [
+        "https://openhands.dev/",
+        "https://github.com/All-Hands-AI/OpenHands"
+      ]
+    },
+    "website": {
+      "value": "https://openhands.dev/",
+      "source": ["https://openhands.dev/"]
+    },
+    "repository": {
+      "value": "https://github.com/All-Hands-AI/OpenHands",
+      "source": ["https://github.com/All-Hands-AI/OpenHands"]
+    },
+    "creator": {
+      "value": "All Hands AI",
+      "source": [
+        "https://openhands.dev/blog/one-year-of-openhands-a-journey-of-open-source-ai-development"
+      ],
+      "comment": "Founded by Robert Brennan, Xingyao Wang, and Graham Neubig; project originated from the OpenDevin community (Binyuan Hui, Junyang Lin) and was rebranded under All Hands AI in late 2024."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://openhands.dev/blog/one-year-of-openhands-a-journey-of-open-source-ai-development"
+      ],
+      "comment": "Project began March 12, 2024 as OpenDevin."
+    },
+    "latest-release": {
+      "value": "2026-03",
+      "source": ["https://github.com/All-Hands-AI/OpenHands/releases"],
+      "comment": "Version 1.6.0 released 2026-03-30 (verified 2026-04-21)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/All-Hands-AI/OpenHands"],
+      "comment": "Core openhands and agent-server are MIT; the enterprise/ directory ships under a separate commercial license."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "freemium", "paid-saas"],
+      "source": ["https://openhands.dev/pricing"],
+      "comment": "Free OSS self-hosted tier, free Individual SaaS tier (10 conversations/day), paid Enterprise tier with SaaS or VPC self-hosted options."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/All-Hands-AI/OpenHands"]
+    },
+    "covered-phases": {
+      "value": ["planning", "implementation"],
+      "source": [
+        "https://openhands.dev/",
+        "https://docs.openhands.dev/"
+      ],
+      "comment": "Planning Mode (beta) produces an explicit plan that the user approves before code changes; the agent then executes. The workflow does not prescribe distinct spec, review, or deployment phases."
+    },
+    "methodology-style": {
+      "value": ["harness-centric", "plan-and-execute"],
+      "source": [
+        "https://openhands.dev/",
+        "https://arxiv.org/abs/2407.16741"
+      ],
+      "comment": "OpenHands is primarily an agent + runtime platform; the workflow value is in the harness (sandbox, event stream, CLI/SDK/GUI), not a prescriptive spec-driven methodology."
+    },
+    "opinionated": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/"],
+      "comment": "The agent is free-form; there is no enforced phase ordering or mandatory artifact set."
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "source": ["https://docs.openhands.dev/"],
+      "comment": "No formal review gates, ADRs, or multi-artifact ceremony required; planning is optional."
+    },
+    "mechanization-level": {
+      "value": ["very-high"],
+      "source": [
+        "https://docs.openhands.dev/openhands/usage/cli/installation",
+        "https://openhands.dev/"
+      ],
+      "comment": "End-to-end managed pipeline: one command launches an agent that plans, edits, runs tests, and opens PRs against a repo/issue."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/how-to/cli-mode"],
+      "comment": "Default CLI confirmation mode asks for confirmation on actions; --always-approve disables it."
+    },
+    "approval-gates": {
+      "value": ["implementation"],
+      "source": ["https://docs.openhands.dev/usage/how-to/cli-mode"],
+      "comment": "Per-action confirmation on implementation steps in default mode. Planning Mode adds an optional plan-approval gate when enabled."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/how-to/cli-mode"],
+      "comment": "With --always-approve (or --llm-approve LLM-based security analyzer), the agent runs from issue to PR without human intervention."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": ["https://docs.openhands.dev/usage/how-to/cli-mode"],
+      "comment": "Default configuration asks for confirmation on individual actions; rated against default, not the opt-in autonomous mode."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/sdk/guides/agent-server/docker-sandbox"],
+      "comment": "Isolation is provided via Docker sandboxing, but there is no first-class artifact/code rollback command in the workflow; reverts rely on git."
+    },
+    "supported-agents": {
+      "value": ["other"],
+      "source": ["https://openhands.dev/"],
+      "comment": "OpenHands is its own agent runtime rather than a workflow wrapped around Claude Code / Cursor / etc.; any LLM (Claude, GPT, MiniMax, etc.) can power it."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "terminal-only", "web"],
+      "source": [
+        "https://github.com/OpenHands/OpenHands/actions/workflows/vscode-extension-build.yml",
+        "https://docs.openhands.dev/usage/how-to/gui-mode",
+        "https://docs.openhands.dev/openhands/usage/cli/installation"
+      ],
+      "comment": "VS Code extension is built and released from the repo; CLI for terminal-only use; Local GUI and Cloud are web-based. No official JetBrains plugin found."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://openhands.dev/", "https://openhands.dev/pricing"],
+      "comment": "Works with Claude, GPT, MiniMax, and any LLM; users bring their own key for self-hosted."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://docs.openhands.dev/overview/model-context-protocol",
+        "https://docs.openhands.dev/openhands/usage/cli/mcp-servers"
+      ],
+      "comment": "First-party MCP client across CLI, SDK, Local GUI, and Cloud; MCP servers configurable via ~/.openhands/mcp.json."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "code-only"],
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Context files (AGENTS.md, CLAUDE.md) and skills are markdown; the agent's output is primarily code changes."
+    },
+    "artifacts-covered": {
+      "value": ["plans"],
+      "source": ["https://openhands.dev/"],
+      "comment": "Planning Mode produces a plan artifact. No first-class spec, ADR, roadmap, or release-notes generation in the default workflow."
+    },
+    "project-layout": {
+      "value": ".agents/skills/ (current) or .openhands/skills/ / .openhands/microagents/ (deprecated); root-level AGENTS.md (or CLAUDE.md/GEMINI.md) for always-on context.",
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Skills and context files live inside the repository alongside source code."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://openhands.dev/"],
+      "comment": "Agent interacts via shell, Python/Jupyter, and browser; not tied to any specific programming language."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "manual-approval"],
+      "source": [
+        "https://docs.openhands.dev/usage/how-to/cli-mode",
+        "https://docs.openhands.dev/usage/prompting/microagents-overview"
+      ],
+      "comment": "Skills/AGENTS.md inject instructional context; the default confirmation mode provides manual approval on each action. No structural hooks or CI gates ship as part of the workflow itself."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/"],
+      "comment": "Agent loop is free-form; there is no mechanism that refuses to advance out of order."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Skills and context files are free-form markdown; no schema validation beyond optional frontmatter for keyword triggers."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Persistent context lives in markdown skill files and AGENTS.md/CLAUDE.md, loaded into the system prompt at conversation start."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://docs.openhands.dev/usage/prompting/microagents-overview",
+        "https://docs.openhands.dev/usage/how-to/cli-mode"
+      ],
+      "comment": "Skills and AGENTS.md persist across sessions via files in the repo/home; CLI --resume also reloads prior conversations."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Automatically loads AGENTS.md (and CLAUDE.md / GEMINI.md variants) from the project root."
+    },
+    "cost-tracking": {
+      "value": ["per-run"],
+      "source": [
+        "https://docs.openhands.dev/usage/how-to/cli-mode",
+        "https://openhands.dev/pricing"
+      ],
+      "comment": "Token/cost accounting is surfaced per conversation/run in the CLI and Cloud UI; no explicit budget-limit halt feature documented for the OSS workflow."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/how-to/cli-mode"],
+      "comment": "Conversations are stored; --resume can list recent sessions and replay the most recent. Event-stream architecture records typed events."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "comment": "Could not find a clear disclosed telemetry opt-in/opt-out policy in the documentation reviewed; self-hosted deployments appear to run locally without mandatory telemetry but no explicit toggle was documented."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Users author their own skills (markdown + optional frontmatter) at repo and user scope."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/"],
+      "comment": "No user-facing pre/post-phase hook API documented; customization flows through skills and SDK code, not lifecycle hooks."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
+      "comment": "Skills (formerly microagents) are user-defined roles/behaviors that the agent invokes; SDK also supports delegating to sub-agents."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://github.com/OpenHands/extensions"],
+      "comment": "Official global skill registry at github.com/OpenHands/extensions for community-shared skills."
+    },
+    "install-mechanism": {
+      "value": ["pip", "shell-script", "binary", "editor-extension"],
+      "source": [
+        "https://docs.openhands.dev/openhands/usage/cli/installation",
+        "https://github.com/OpenHands/OpenHands/actions/workflows/vscode-extension-build.yml"
+      ],
+      "comment": "Recommended: `uv tool install openhands --python 3.12` (Python/pip ecosystem). Also: curl install.sh shell script, Docker image (binary), and a VS Code extension."
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "source": ["https://docs.openhands.dev/openhands/usage/cli/installation"],
+      "comment": "First run requires Python 3.12 + uv (or Docker), plus an interactive LLM setup saved to ~/.openhands/settings.json; comfortably under 30 minutes on a prepared workstation."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://openhands.dev/pricing"],
+      "comment": "OSS tier runs fully locally via CLI, GUI, or SDK with user-supplied LLM key."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://openhands.dev/pricing"],
+      "comment": "No account is needed for self-hosted OSS; OpenHands Cloud is optional and requires a GitHub/GitLab login."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/sdk/guides/agent-server/docker-sandbox"],
+      "comment": "Parallel/isolated workstreams use Docker sandboxes rather than git worktrees; no first-party worktree feature documented."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.openhands.dev/"],
+      "comment": "Broad coverage across CLI, SDK, GUI, Cloud, skills, and MCP with code examples; some pages (e.g. planning mode, hooks, telemetry) are thin or missing."
+    },
+    "github-stars": {
+      "value": 71600,
+      "source": ["https://github.com/All-Hands-AI/OpenHands"],
+      "comment": "71.6k stars as shown on the repo page on 2026-04-21."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/All-Hands-AI/OpenHands/releases"],
+      "comment": "Version 1.6.0 released 2026-03-30, well within 90 days of 2026-04-21."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/OpenHands/extensions",
+        "https://arxiv.org/abs/2407.16741"
+      ],
+      "comment": "Skill registry repo provides example skills; published paper includes benchmark case studies."
+    },
+    "community-channel": {
+      "value": ["slack"],
+      "source": ["https://github.com/All-Hands-AI/OpenHands"],
+      "comment": "Primary community channel is Slack (invite link at dub.sh/openhands); also @OpenHandsDev on X."
+    }
+  }
 }
