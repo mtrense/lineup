@@ -2,5 +2,334 @@
   "name": "Conductor",
   "description": "macOS desktop app for running parallel Claude Code and Codex agents in isolated git worktrees, with a unified dashboard for reviewing and merging their changes.",
   "url": "https://www.conductor.build/",
-  "values": {}
+  "lastVerified": "2026-04-21",
+  "values": {
+    "description": {
+      "value": "Mac desktop harness that runs multiple Claude Code / Codex agents in parallel across isolated git worktrees with a unified diff-review and merge UI.",
+      "source": [
+        "https://www.conductor.build/",
+        "https://docs.conductor.build/"
+      ]
+    },
+    "website": {
+      "value": "https://www.conductor.build/",
+      "source": ["https://www.conductor.build/"]
+    },
+    "repository": {
+      "value": null,
+      "comment": "Closed-source proprietary app; no public source repository."
+    },
+    "creator": {
+      "value": "Melty Labs",
+      "source": [
+        "https://www.ycombinator.com/companies/conductor",
+        "https://www.conductor.build/"
+      ],
+      "comment": "YC-backed startup; raised a reported $22M Series A."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://news.ycombinator.com/item?id=44594584"],
+      "comment": "Show HN launch on 2025-08-04."
+    },
+    "latest-release": {
+      "value": "2026-04",
+      "source": [
+        "https://www.conductor.build/changelog",
+        "https://formulae.brew.sh/cask/conductor"
+      ],
+      "comment": "v0.48.5 released 2026-04-18 per changelog; Homebrew cask at same version as of research date."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://news.ycombinator.com/item?id=44594584"],
+      "comment": "Proprietary macOS binary; no source available."
+    },
+    "pricing-model": {
+      "value": ["freemium"],
+      "source": [
+        "https://www.conductor.build/",
+        "https://checkthat.ai/brands/conductor/pricing"
+      ],
+      "comment": "App itself is free to download and use as of 2026-04; users bring their own Claude/OpenAI credentials and pay underlying API/subscription costs. No paid Conductor tier exists yet, but the company is commercial (Series A) — closest existing tag is freemium."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://news.ycombinator.com/item?id=44594584"]
+    },
+    "covered-phases": {
+      "value": ["tasks", "implementation", "review"],
+      "source": [
+        "https://docs.conductor.build/",
+        "https://www.conductor.build/changelog/0.28.4-todos",
+        "https://docs.conductor.build/core/checkpoints"
+      ],
+      "comment": "Todos feature gates merge (tasks); agents execute work (implementation); diff viewer + PR-style comments cover review. No dedicated spec, architecture, planning, test, or deploy phases in the workflow."
+    },
+    "methodology-style": {
+      "value": ["harness-centric", "multi-agent"],
+      "source": [
+        "https://www.conductor.build/",
+        "https://docs.conductor.build/"
+      ],
+      "comment": "Value is primarily the tooling that runs and isolates multiple concurrent agents; no prescriptive phase model."
+    },
+    "opinionated": {
+      "value": false,
+      "comment": "No mandated phase flow — the tool provides workspaces, checkpoints, and review UI but lets the user drive the workflow.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "ceremony-level": {
+      "value": ["low"],
+      "comment": "Minimal process: pick a repo, spawn agents, review diffs, merge. No required artifacts beyond optional todos.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "comment": "App orchestrates worktree creation, branch management, setup scripts, and agent execution automatically; user interaction is GUI-driven rather than prompt copy-paste.",
+      "source": [
+        "https://docs.conductor.build/guides/how-to-setup",
+        "https://www.conductor.build/"
+      ]
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://www.conductor.build/changelog/0.28.4-todos",
+        "https://docs.conductor.build/core/checkpoints"
+      ],
+      "comment": "Todos block merging until checked off; diff review happens in-app before merge."
+    },
+    "approval-gates": {
+      "value": ["implementation"],
+      "source": ["https://www.conductor.build/changelog/0.28.4-todos"],
+      "comment": "Implementation output is gated by todos + manual merge. No explicit spec/plan/deploy gates."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "comment": "Merge to the main branch requires a human action in the UI; no configuration ships that skips it.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "autonomy-level": {
+      "value": 3,
+      "comment": "Default configuration: agents run autonomously inside a workspace, but merging back requires human diff review and todo sign-off — phase-level approval.",
+      "source": [
+        "https://docs.conductor.build/",
+        "https://www.conductor.build/changelog/0.28.4-todos"
+      ]
+    },
+    "rollback-support": {
+      "value": true,
+      "source": [
+        "https://docs.conductor.build/core/checkpoints",
+        "https://blog.conductor.build/checkpointing/"
+      ],
+      "comment": "Checkpoints store per-turn snapshots in a private git ref (.git/refs/conductor-checkpoints/) and expose a revert UI."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex"],
+      "source": [
+        "https://www.conductor.build/",
+        "https://docs.conductor.build/"
+      ],
+      "comment": "First-party support only for Claude Code and OpenAI Codex CLI; no documented Cursor/Aider/Windsurf integration."
+    },
+    "editor-integrations": {
+      "value": [],
+      "comment": "Conductor is a standalone macOS GUI app with its own editor-like UI and integrated terminal — none of the predefined tags (vscode/jetbrains/neovim/terminal-only/web) apply.",
+      "source": ["https://www.conductor.build/"]
+    },
+    "model-agnostic": {
+      "value": false,
+      "comment": "Locked to the Claude Code and Codex agent runtimes; cannot swap in an arbitrary agent. Underlying model choice (e.g., Opus 4.7, GPT-5.3-Codex) is configurable, and gateway providers (Bedrock, Vertex, OpenRouter) are supported, but the harness is vendor-specific.",
+      "source": [
+        "https://www.conductor.build/changelog/0.34.0-opus-4-6-and-gpt-5-3-codex",
+        "https://docs.conductor.build/"
+      ]
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.conductor.build/"],
+      "comment": "MCP listed as a core feature in the docs index for connecting external tools and data sources."
+    },
+    "artifact-formats": {
+      "value": ["json", "markdown"],
+      "source": [
+        "https://docs.conductor.build/guides/how-to-setup",
+        "https://www.conductor.build/changelog"
+      ],
+      "comment": "conductor.json for repo config; markdown for agent instructions (CLAUDE.md/AGENTS.md-style), scratchpads, and todos."
+    },
+    "artifacts-covered": {
+      "value": ["tasks"],
+      "source": ["https://www.conductor.build/changelog/0.28.4-todos"],
+      "comment": "Todos are the only structured workflow artifact produced. Conductor does not generate specs, plans, architecture docs, or ADRs."
+    },
+    "project-layout": {
+      "value": "conductor.json at the repo root (setup/run/archive scripts) plus optional agent instructions configured per-repo; agent workspaces live in git worktrees managed by the app.",
+      "source": [
+        "https://docs.conductor.build/guides/how-to-setup",
+        "https://docs.conductor.build/"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": false,
+      "comment": "Only conductor.json lives in the repo. Chat history, checkpoints (private git ref), scratchpads, and per-workspace todos are local-only and not shared via git.",
+      "source": [
+        "https://docs.conductor.build/core/checkpoints",
+        "https://docs.conductor.build/account/privacy"
+      ]
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://docs.conductor.build/"],
+      "comment": "No language lock-in; quickstart templates are provided for Django, Next.js, Phoenix, and Rails but any stack works."
+    },
+    "enforcement-mechanisms": {
+      "value": ["manual-approval", "hooks"],
+      "source": [
+        "https://www.conductor.build/changelog/0.28.4-todos",
+        "https://docs.conductor.build/core/checkpoints"
+      ],
+      "comment": "Manual approval via todos/diff review gates merges. Checkpointing is implemented via Claude Code hooks; user-defined team/personal hooks are documented. No CI-check or agent-review enforcement."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "comment": "No prescribed phase sequence is enforced; users can drive agents freely.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "artifact-validation": {
+      "value": false,
+      "comment": "No documented schema validation for produced artifacts (todos, chat, scratchpads). conductor.json has a known shape but no published JSON Schema validator.",
+      "source": ["https://docs.conductor.build/guides/how-to-setup"]
+    },
+    "memory-implementation": {
+      "value": ["markdown-files", "session-only"],
+      "source": [
+        "https://docs.conductor.build/account/privacy",
+        "https://docs.conductor.build/"
+      ],
+      "comment": "Persistent context via per-repo instructions (CLAUDE.md/AGENTS.md-equivalent) and per-workspace scratchpads. Chat history is persisted locally but scoped to the workspace/session."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.conductor.build/account/privacy"],
+      "comment": "Chat history and checkpoints persist on disk across app restarts; repo-level instructions persist in conductor.json."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://docs.conductor.build/"],
+      "comment": "Repo-level 'instructions' configured via Repository Settings are the CLAUDE.md/AGENTS.md analogue and are honored by agents at startup."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "comment": "No Conductor-level token or cost reporting surfaced in docs or changelog as of 2026-04. Underlying Claude Code /cost works within the embedded agent but is not aggregated by Conductor.",
+      "source": [
+        "https://docs.conductor.build/",
+        "https://www.conductor.build/changelog"
+      ]
+    },
+    "run-history": {
+      "value": true,
+      "source": [
+        "https://docs.conductor.build/core/checkpoints",
+        "https://docs.conductor.build/"
+      ],
+      "comment": "Per-turn checkpoints and full chat history per workspace are retained for review."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://docs.conductor.build/account/privacy"],
+      "comment": "Analytics (PostHog) are disclosed; user-level opt-out via Settings > Privacy, repo-level via enterpriseDataPrivacy=true in conductor.json."
+    },
+    "custom-templates": {
+      "value": false,
+      "comment": "No user-defined artifact/prompt template system documented. Framework 'quickstarts' (Django, Next.js, Phoenix, Rails) are authored by Conductor, not user-extensible.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "hooks": {
+      "value": true,
+      "source": [
+        "https://docs.conductor.build/",
+        "https://docs.conductor.build/core/checkpoints"
+      ],
+      "comment": "Conductor uses Claude Code hooks for checkpointing and documents team/personal hook scripts; setup/run/archive scripts in conductor.json are additional lifecycle events."
+    },
+    "sub-agents": {
+      "value": false,
+      "comment": "Conductor itself does not ship a user-defined persona or sub-agent system; any such behavior comes from the underlying Claude Code / Codex runtime and is not a Conductor workflow primitive.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "marketplace": {
+      "value": false,
+      "comment": "No public marketplace or community-shared template repository documented.",
+      "source": ["https://docs.conductor.build/"]
+    },
+    "install-mechanism": {
+      "value": ["binary", "shell-script"],
+      "source": [
+        "https://www.conductor.build/",
+        "https://formulae.brew.sh/cask/conductor"
+      ],
+      "comment": "Direct .dmg download from conductor.build; also available via `brew install --cask conductor`."
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "comment": "App install is fast, but first run requires GitHub auth, Claude Code/Codex credentials, workspace setup script, and dependency installs — typically 5-30 minutes end-to-end depending on the project.",
+      "source": [
+        "https://docs.conductor.build/guides/how-to-setup",
+        "https://news.ycombinator.com/item?id=44594584"
+      ]
+    },
+    "self-hosted": {
+      "value": true,
+      "comment": "Runs entirely on the user's Mac; chat history and checkpoints stored locally. Account metadata is stored in Conductor's backend but the workflow itself executes locally.",
+      "source": ["https://docs.conductor.build/account/privacy"]
+    },
+    "requires-account": {
+      "value": true,
+      "source": [
+        "https://docs.conductor.build/account/privacy",
+        "https://www.conductor.build/"
+      ],
+      "comment": "Requires Claude and/or OpenAI credentials to drive the bundled agents, GitHub login for repo access, and a Conductor account (account data persisted to Conductor-managed Postgres)."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": [
+        "https://www.conductor.build/",
+        "https://elite-ai-assisted-coding.dev/p/the-parallel-agent-multiplier-conductor-with-charlie-holtz"
+      ],
+      "comment": "Worktrees are the core isolation primitive — every agent workspace is a managed worktree + branch."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "comment": "Well-structured docs.conductor.build with dedicated sections for core concepts, guides, privacy, and a detailed versioned changelog. Not exhaustive (some features like cost tracking absent), hence 4 rather than 5.",
+      "source": [
+        "https://docs.conductor.build/",
+        "https://www.conductor.build/changelog"
+      ]
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source commercial product — no public GitHub repository to measure."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://www.conductor.build/changelog"],
+      "comment": "v0.48.5 released 2026-04-18; weekly release cadence visible in the changelog — well within the 90-day threshold as of 2026-04-21."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://docs.conductor.build/",
+        "https://www.conductor.build/"
+      ],
+      "comment": "Framework quickstarts (Django, Next.js + Vercel, Elixir + Phoenix, Rails) ship in the docs; homepage lists customer testimonials from Linear, Vercel, Notion, Ramp, Life360, Square, Reducto, Spotify."
+    },
+    "community-channel": {
+      "value": null,
+      "comment": "No public Discord/Slack/forum surfaced in docs, website, or Y Combinator page as of research date."
+    }
+  }
 }

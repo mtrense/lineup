@@ -179,7 +179,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **cc-sdd** — Kiro-style spec-driven workflow pack installable across 8 AI coding agents; distinct slash-command/skill bundle angle (added 2026-04-21)
 - [x] **Task Master** — PRD-to-task-graph planning layer that drops into Cursor, Claude Code, Windsurf, Roo, VS Code, and Lovable via MCP (added 2026-04-21)
 - [x] **Beads** — Git-native graph issue tracker providing persistent memory and ready-queue scheduling for long-horizon AI coding agents (added 2026-04-21)
-- [ ] **Conductor** — Commercial macOS desktop harness for parallel Claude Code / Codex agents in isolated git worktrees (added 2026-04-21)
+- [x] **Conductor** — Commercial macOS desktop harness for parallel Claude Code / Codex agents in isolated git worktrees (added 2026-04-21)
 - [ ] **Ralph Loop** — Geoffrey Huntley's stateless-loop methodology; canonical autonomous-loop pattern referenced across the agentic-coding space (added 2026-04-21)
 - [ ] **MetaGPT** — Multi-agent framework simulating a software company (PM, architect, engineer roles) from a single natural-language requirement (added 2026-04-21)
 
