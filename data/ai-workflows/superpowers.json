@@ -2,5 +2,258 @@
   "name": "Superpowers",
   "description": "Agentic skills framework and software development methodology for AI coding agents",
   "url": "https://github.com/obra/superpowers",
-  "values": {}
+  "lastVerified": "2026-04-23",
+  "values": {
+    "description": {
+      "value": "Composable skills bundle and seven-phase methodology (brainstorm → worktree → plan → subagent-driven implementation → TDD → review → finish) installable across Claude Code, Codex, Cursor, OpenCode, Copilot CLI, and Gemini CLI.",
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Synthesized from the README's 'How it works' and 'The Basic Workflow' sections."
+    },
+    "website": {
+      "value": "https://primeradiant.com/superpowers/",
+      "source": ["https://github.com/obra/superpowers", "https://primeradiant.com/superpowers/"],
+      "comment": "Repo has no homepage field; this is the Prime Radiant landing/signup page linked from the README."
+    },
+    "repository": {
+      "value": "https://github.com/obra/superpowers",
+      "source": ["https://github.com/obra/superpowers"]
+    },
+    "creator": {
+      "value": "Jesse Vincent / Prime Radiant",
+      "source": ["https://github.com/obra/superpowers", "https://blog.fsck.com/2025/10/09/superpowers/"],
+      "comment": "README credits Jesse Vincent ('obra') and Prime Radiant as the maintaining org."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://api.github.com/repos/obra/superpowers", "https://blog.fsck.com/2025/10/09/superpowers/"],
+      "comment": "Repo created 2025-10-09 alongside the original release announcement on blog.fsck.com."
+    },
+    "latest-release": {
+      "value": "2026-03",
+      "source": ["https://github.com/obra/superpowers/releases"],
+      "comment": "v5.0.7 released 2026-03-31; latest commit 2026-04-16. Checked 2026-04-23."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/obra/superpowers/blob/main/LICENSE", "https://api.github.com/repos/obra/superpowers"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "MIT-licensed plugin distributed via free marketplaces; sponsorship is voluntary."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers/blob/main/LICENSE"]
+    },
+    "covered-phases": {
+      "value": ["spec", "planning", "tasks", "implementation", "testing", "review"],
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md"],
+      "comment": "Brainstorming produces a spec; writing-plans produces plan+tasks; subagent-driven-development handles implementation; test-driven-development is its own enforced phase; requesting-code-review is a distinct phase. No discovery, architecture, deployment, or retrospective phases."
+    },
+    "methodology-style": {
+      "value": ["spec-driven", "harness-centric", "strict-tdd", "plan-and-execute"],
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/skills/using-superpowers/SKILL.md"],
+      "comment": "Spec-driven (brainstorm → spec → plan → code), harness-centric (auto-activating skills + session-start hook are the core value), strict-tdd (RED-GREEN-REFACTOR is mandatory and code-before-tests is deleted), plan-and-execute (plans decomposed into 2-5 minute tasks then executed by subagents)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/using-superpowers/SKILL.md"],
+      "comment": "using-superpowers SKILL.md states 'Mandatory workflows, not suggestions' and 'IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE.'"
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Seven distinct phases and explicit review steps push above lightweight, but artifacts are bite-sized markdown (one design doc, one plan) rather than the heavy multi-document output of BMAD-style frameworks."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/hooks/hooks.json"],
+      "comment": "Skills auto-activate via the agent's Skill tool, a SessionStart hook bootstraps every session, and slash commands (/brainstorm, /write-plan, /execute-plan) drive the workflow. Not 'very-high' because there is no managed cloud orchestration — execution still happens inside the user's local agent."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "README: 'Once it's teased a spec out... it shows it to you in chunks short enough to actually read and digest. After you've signed off on the design...' and 'once you say go' before subagent execution."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "User explicitly signs off on the brainstormed spec and on the implementation plan before subagent execution begins; later phases are autonomous within the approved plan."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Default workflow requires human approval of spec and plan; the README highlights autonomous execution only after those gates."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Phase-level approvals (spec, plan) followed by long autonomous subagent runs of up to a couple hours within the approved plan."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/RELEASE-NOTES.md"],
+      "comment": "The using-git-worktrees and finishing-a-development-branch skills give explicit merge/PR/keep/discard options on isolated worktrees, plus TDD enforces frequent commits for granular reverts."
+    },
+    "supported-agents": {
+      "value": ["claude-code", "codex", "cursor", "opencode", "copilot-chat", "other"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "README lists Claude Code, OpenAI Codex (CLI + App), Cursor, OpenCode, GitHub Copilot CLI, and Gemini CLI as first-party. 'other' covers Gemini CLI since the tag set has no gemini id."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only", "vscode"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Primary integration is via terminal-based agents (Claude Code, Codex CLI, Copilot CLI, Gemini CLI, OpenCode). Cursor support adds a VS Code-derived editor surface."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Same skills bundle works across agents backed by Claude, GPT (Codex/Copilot), and Gemini models."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "No MCP server is shipped; the framework distributes through each agent's native plugin/extension system, not via Model Context Protocol."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md"],
+      "comment": "Skill files (SKILL.md), design docs, and plans are all markdown."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans", "tasks"],
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md", "https://github.com/obra/superpowers"],
+      "comment": "Brainstorming produces a design/spec document; writing-plans produces an implementation plan with bite-sized tasks. No first-class artifacts for ADRs, roadmaps, change-logs, user docs, or test plans."
+    },
+    "project-layout": {
+      "value": "Plans saved to docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md (overridable). Skills, hooks, and slash commands live inside the installed plugin (e.g., .claude-plugin/, .codex/, .cursor-plugin/, .opencode/), not in the user's project tree.",
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md", "https://github.com/obra/superpowers"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md"],
+      "comment": "Plans (and design docs) are saved as markdown into the repo's docs/ tree and committed alongside source."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Methodology and skills are language-neutral; the writing-plans SKILL uses Python/pytest in its example but does not require any specific stack."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "hooks", "agent-review", "test-gates"],
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/hooks/hooks.json", "https://raw.githubusercontent.com/obra/superpowers/main/skills/using-superpowers/SKILL.md", "https://github.com/obra/superpowers"],
+      "comment": "Instructional via skill prompts ('YOU DO NOT HAVE A CHOICE'); SessionStart hook bootstraps every session; a code-reviewer subagent performs two-stage review (v5.0.6 moved spec/plan review to inline self-review checklists but kept the post-task code review subagent); TDD requires watching the failing test before implementation."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/using-superpowers/SKILL.md"],
+      "comment": "Phase ordering is enforced through skill instructions, not through a mechanical block. The agent can be told to skip phases by the human partner."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md", "https://raw.githubusercontent.com/obra/superpowers/main/RELEASE-NOTES.md"],
+      "comment": "No schema validation; plans and specs are free-form markdown. v5.0.6 added an inline 'No Placeholders' self-review checklist but it is instructional, not structural."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md"],
+      "comment": "Repo ships CLAUDE.md, AGENTS.md, and GEMINI.md project-context files; design docs and plans are saved as markdown under docs/superpowers/plans/."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md"],
+      "comment": "Specs and plans persist as committed markdown files; the SessionStart hook reloads the bootstrap each session."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Repo root contains CLAUDE.md, AGENTS.md, and GEMINI.md; the methodology explicitly defers to user instructions in those files."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "No token or cost tracking is part of the skills bundle; cost reporting depends entirely on the host agent."
+    },
+    "run-history": {
+      "value": false,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "No structured run-history or trace store; persistence is the spec/plan markdown files only."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Framework collects no telemetry — it is a local markdown skills + hooks bundle. Effectively full user control by absence of collection."
+    },
+    "custom-templates": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/skills/using-superpowers/SKILL.md"],
+      "comment": "The writing-skills skill exists specifically so users can author their own skills (the framework's equivalent of templates) following the same SKILL.md format."
+    },
+    "hooks": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/obra/superpowers/main/hooks/hooks.json"],
+      "comment": "Ships a SessionStart hook (matchers: startup|clear|compact) running scripts in hooks/session-start; users can extend or wrap it via the host agent's hooks system."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Includes a code-reviewer subagent (agents/code-reviewer.md) and 14 user-extensible skills (writing-skills documents how to author more)."
+    },
+    "marketplace": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Available via Anthropic's official Claude plugin marketplace AND a separate obra/superpowers-marketplace registry; also distributed through Codex/Cursor/Copilot plugin marketplaces and Gemini extensions."
+    },
+    "install-mechanism": {
+      "value": ["editor-extension", "shell-script"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Primary install path is each host agent's plugin/extension system (editor-extension closest fit). OpenCode install is a 'fetch and follow this URL' instruction, which behaves like a shell-script bootstrap."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Single plugin/extension install command per host agent."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "Skills, hooks, and slash commands run inside the user's local agent; no hosted service required."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "No Superpowers/Prime Radiant account required; the host agent's own account requirements are out of scope."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "using-git-worktrees is one of the seven core workflow phases; the methodology assumes each spec/plan runs in its own worktree."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.com/obra/superpowers", "https://raw.githubusercontent.com/obra/superpowers/main/RELEASE-NOTES.md"],
+      "comment": "Detailed README with per-platform install paths, per-skill SKILL.md files, dedicated docs/README.codex.md / docs/README.opencode.md guides, contributor guidelines, and version-specific RELEASE-NOTES; falls short of 5 because there is no centralized hosted documentation site."
+    },
+    "github-stars": {
+      "value": 165029,
+      "source": ["https://api.github.com/repos/obra/superpowers"],
+      "comment": "Stars as of 2026-04-23."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/obra/superpowers/releases", "https://api.github.com/repos/obra/superpowers"],
+      "comment": "v5.0.7 released 2026-03-31; latest push 2026-04-16. Both well within the 90-day window from 2026-04-23."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "No first-party example projects or case studies linked from the README; the original blog announcement describes the methodology rather than walking through a sample app."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://github.com/obra/superpowers"],
+      "comment": "README links to a public Discord (discord.gg/35wsABTejz); GitHub issues are accepted but Discussions are not enabled, so github-discussions does not apply."
+    }
+  }
 }
