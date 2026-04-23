@@ -2,5 +2,340 @@
   "name": "HumanLayer",
   "description": "Open-source IDE (CodeLayer) that orchestrates AI coding agents with battle-tested workflows for parallel sessions and context engineering.",
   "url": "https://humanlayer.dev",
-  "values": {}
+  "lastVerified": "2026-04-23",
+  "values": {
+    "description": {
+      "value": "Open-source desktop IDE (CodeLayer) plus daemon (hld) and MCP CLI (hlyr) orchestrating parallel Claude Code sessions with approval gates, worktrees, and the 'Advanced Context Engineering' research/plan/implement workflow.",
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://www.humanlayer.dev/",
+        "https://deepwiki.com/humanlayer/humanlayer"
+      ]
+    },
+    "website": {
+      "value": "https://humanlayer.dev",
+      "source": ["https://humanlayer.dev"]
+    },
+    "repository": {
+      "value": "https://github.com/humanlayer/humanlayer",
+      "source": ["https://github.com/humanlayer/humanlayer"]
+    },
+    "creator": {
+      "value": "HumanLayer (founded by Dexter Horthy; Y Combinator F24)",
+      "source": [
+        "https://www.ycombinator.com/companies/humanlayer",
+        "https://news.ycombinator.com/item?id=42247368"
+      ],
+      "comment": "Company founded 2023, San Francisco; publicly launched as YC F24 company via HN Launch in Nov 2024."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": [
+        "https://news.ycombinator.com/item?id=42247368",
+        "https://www.ycombinator.com/launches/M8e-humanlayer-human-in-the-loop-for-ai-agents-and-beyond"
+      ],
+      "comment": "HumanLayer SDK / platform publicly launched via YC Launch HN in November 2024. CodeLayer IDE emerged later as the coding-agent-focused IDE."
+    },
+    "latest-release": {
+      "value": "2026-02",
+      "source": [
+        "https://github.com/humanlayer/humanlayer/releases"
+      ],
+      "comment": "As of 2026-04-23: only nightly builds published (e.g. codelayer-0.1.0-nightly-20260227142452, Feb 27, 2026). CodeLayer has not yet cut a stable (non-nightly) release."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/humanlayer/blob/main/README.md"
+      ],
+      "comment": "HumanLayer SDK and CodeLayer sources both Apache 2.0."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "freemium", "paid-saas"],
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://automateandtweak.com/tool/humanlayer/"
+      ],
+      "comment": "CodeLayer IDE and hlyr CLI are free/OSS (Apache 2.0). The optional HumanLayer Cloud API for approval delivery has a freemium model (free Starter tier up to 1000 operations/mo, Premium at $500/mo, enterprise VPC deployment)."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/humanlayer/humanlayer"]
+    },
+    "covered-phases": {
+      "value": ["discovery", "planning", "implementation"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE methodology prescribes a three-phase workflow: Research (understand the codebase → maps to discovery), Plan (precise implementation steps), Implement (execute phase-by-phase). Human review gates sit before each phase but are not themselves a distinct artifact phase."
+    },
+    "methodology-style": {
+      "value": ["plan-and-execute", "process-centric", "harness-centric"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md",
+        "https://deepwiki.com/humanlayer/humanlayer"
+      ],
+      "comment": "Core contribution is the Research→Plan→Implement loop ('Frequent Intentional Compaction') plus the CodeLayer desktop harness that runs Claude Code sessions in parallel. Not spec-centric in the SpecKit/OpenSpec sense."
+    },
+    "opinionated": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE methodology is strongly opinionated about phase ordering and context-window management (target 40-60% utilization). CodeLayer harness is keyboard-first with prescribed session lifecycle."
+    },
+    "ceremony-level": {
+      "value": ["medium"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Markdown research and plan artifacts with human review gates at each, but fewer distinct artifact kinds and review gates than BMAD or SpecKit."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": [
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/humanlayer"
+      ],
+      "comment": "CodeLayer is a full harness: Go daemon (hld) + Tauri/React desktop UI + TypeScript MCP CLI, orchestrating Claude Code sessions with SQLite persistence, session forking, and auto-accept controls."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Human-in-the-loop is the company's founding thesis. CodeLayer MCP server injects deterministic approval gates; ACE methodology centers human review on research and plan artifacts."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE deliberately places human review on the highest-leverage artifacts (research ≈ spec, plan) rather than on individual code edits. Implementation-phase tool calls can be approved per-tool via MCP or auto-accepted."
+    },
+    "autonomous-e2e": {
+      "value": true,
+      "source": ["https://deepwiki.com/humanlayer/humanlayer"],
+      "comment": "CodeLayer session settings expose 'Auto-Accept Edits' and selective tool auto-approval, allowing end-to-end execution without interactive human approval when configured."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md",
+        "https://deepwiki.com/humanlayer/humanlayer"
+      ],
+      "comment": "Default configuration emphasizes phase-level human approvals at research and plan gates; per-tool auto-accept exists but is opt-in."
+    },
+    "rollback-support": {
+      "value": true,
+      "source": ["https://deepwiki.com/humanlayer/humanlayer"],
+      "comment": "Session forking lets users branch from any point in a session's history; worktree-based parallel sessions isolate changes so unwanted work can be discarded at the git level."
+    },
+    "supported-agents": {
+      "value": ["claude-code"],
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://www.humanlayer.dev/"
+      ],
+      "comment": "CodeLayer is explicitly 'built on Claude Code' and positioned as 'Superhuman for Claude Code'. The separate HumanLayer SDK (for approvals) is model-agnostic, but the coding-agent workflow is currently Claude Code only."
+    },
+    "editor-integrations": {
+      "value": null,
+      "comment": "CodeLayer is a standalone Tauri/React desktop IDE, not a plugin to an existing editor. None of the defined tags (vscode, jetbrains, neovim, terminal-only, web) fit cleanly."
+    },
+    "model-agnostic": {
+      "value": false,
+      "source": ["https://github.com/humanlayer/humanlayer"],
+      "comment": "CodeLayer workflow is built on and tightly coupled to Claude Code (Anthropic models). The HumanLayer SDK itself is provider-agnostic, but that is a separate product layer."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/humanlayer/blob/main/CLAUDE.md"
+      ],
+      "comment": "hlyr implements an MCP server (the 'codelayer' server) that Claude Code connects to for approval gates and tool access."
+    },
+    "artifact-formats": {
+      "value": ["markdown"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Research and plan artifacts are produced as structured markdown files committed alongside source code."
+    },
+    "artifacts-covered": {
+      "value": ["specs", "plans"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE produces two primary artifact kinds: research documents (spec-like understanding of the problem) and plans (precise implementation steps). No separate tasks/ADR/release-notes artifacts in the core methodology."
+    },
+    "project-layout": {
+      "value": "CodeLayer desktop app manages session state in its own local SQLite store (via the hld daemon); per-project workflow artifacts are plain markdown files (research docs, plans, CLAUDE.md) stored wherever the user chooses within the project repo — there is no enforced directory convention like .speckit or .bmad.",
+      "source": [
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Markdown research and plan artifacts live in the project repo and are tracked in git. Session conversation history lives in CodeLayer's local SQLite store, not git."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Case studies cite applying the methodology to a 300k-LOC Rust codebase and shipping 35k LOC of WASM/cancellation work, demonstrating cross-language applicability."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "manual-approval"],
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md",
+        "https://deepwiki.com/humanlayer/humanlayer"
+      ],
+      "comment": "Phase discipline is enforced primarily through prompt instructions and the harness's deterministic MCP approval gates (manual-approval). No linters or test-gates are built into the methodology."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE explicitly prescribes Research → Plan → Implement; the author argues errors in earlier phases multiply downstream, so the ordering is load-bearing."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Research and plan markdown is free-form; no schema validation or linting of artifacts is part of the workflow."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files", "kv-store"],
+      "source": [
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/humanlayer/blob/main/CLAUDE.md"
+      ],
+      "comment": "Per-project memory: CLAUDE.md and other markdown context files in the repo. Per-session memory: SQLite store managed by the hld daemon persisting full conversation histories and tool-call traces."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://deepwiki.com/humanlayer/humanlayer"],
+      "comment": "hld daemon persists full session state (messages, tool calls, results) to SQLite and streams updates via SSE; sessions can be resumed or forked across runs."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/humanlayer/blob/main/CLAUDE.md"
+      ],
+      "comment": "HumanLayer's own repo ships a CLAUDE.md; project-scoped context files are a first-class part of the Claude Code workflow CodeLayer builds on."
+    },
+    "cost-tracking": {
+      "value": null,
+      "comment": "No first-class token/cost tracking feature is documented in the README, DeepWiki, or ACE doc as of 2026-04-23. The ACE author anecdotally reports ~$12k/mo team Claude Opus spend, suggesting external tracking."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://deepwiki.com/humanlayer/humanlayer"],
+      "comment": "hld daemon stores complete session histories (messages, tool calls, results) in SQLite; CodeLayer UI provides session table, fuzzy search, and detail views."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "comment": "Telemetry posture not clearly documented in public README or docs as of 2026-04-23. The project is self-hosted OSS; telemetry policy for the CodeLayer binary is not stated on the landing page or top-level README."
+    },
+    "custom-templates": {
+      "value": null,
+      "comment": "Not explicitly documented. ACE methodology uses custom prompts/subagents for the Research phase, implying user-provided templates are expected, but no formal template system is described in public docs."
+    },
+    "hooks": {
+      "value": null,
+      "comment": "Deterministic MCP approval gates function as hook points, and session settings expose auto-accept toggles, but there is no documented user-scriptable lifecycle-hook mechanism (pre-phase, post-phase) in the public docs as of 2026-04-23."
+    },
+    "sub-agents": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE methodology explicitly uses 'dedicated subagents or custom prompts' for the Research phase, leveraging Claude Code's subagent capability."
+    },
+    "marketplace": {
+      "value": false,
+      "comment": "No public marketplace or shared-template registry for HumanLayer/CodeLayer as of 2026-04-23."
+    },
+    "install-mechanism": {
+      "value": ["npm", "binary"],
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/humanlayer/releases"
+      ],
+      "comment": "hlyr CLI installable via npx (e.g. `npx humanlayer ...`); CodeLayer desktop app distributed as a macOS binary via GitHub Releases (nightly builds as of 2026-04-23)."
+    },
+    "setup-time": {
+      "value": ["5-30min"],
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://www.humanlayer.dev/"
+      ],
+      "comment": "Install nightly CodeLayer binary, configure Claude Code MCP connection, optionally join waitlist. Not a one-command setup."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://deepwiki.com/humanlayer/humanlayer"
+      ],
+      "comment": "CodeLayer IDE + hld daemon + hlyr CLI all run locally on the user's machine. HumanLayer Cloud API (for off-device approval delivery via Slack/SMS/email) is an optional hosted service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://github.com/humanlayer/humanlayer"
+      ],
+      "comment": "Core OSS CodeLayer workflow runs without a HumanLayer account; an account is only required for the optional cloud approval API. Landing page has a waitlist signup but it gates early-access marketing rather than the OSS binaries."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": [
+        "https://www.humanlayer.dev/",
+        "https://github.com/humanlayer/humanlayer"
+      ],
+      "comment": "Worktrees are an explicit, first-class feature: CodeLayer runs parallel Claude Code sessions in isolated git worktrees ('Worktrees? Done.')."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://github.com/humanlayer/humanlayer",
+        "https://deepwiki.com/humanlayer/humanlayer",
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "Top-level README is thin ('Coming soon' install, waitlist-heavy). Depth exists but scattered: CLAUDE.md, DEVELOPMENT.md, the separate ace-fca.md methodology doc, and DeepWiki generated docs. Adequate for determined users, not polished."
+    },
+    "github-stars": {
+      "value": 10600,
+      "source": ["https://github.com/humanlayer/humanlayer"],
+      "comment": "10.6k stars on 2026-04-23. Stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/humanlayer/humanlayer/releases"],
+      "comment": "Nightly releases published daily through at least 2026-02-27; 2,097+ commits. Clearly within 90-day active threshold."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md"
+      ],
+      "comment": "ACE doc cites concrete case studies: 300k-LOC Rust codebase bug fix, 35k LOC shipped in 7 hours. YC launch talk 'Advanced Context Engineering for Coding Agents' (Aug 2025) provides walkthrough."
+    },
+    "community-channel": {
+      "value": ["discord"],
+      "source": ["https://humanlayer.dev/discord"],
+      "comment": "Official Discord at humanlayer.dev/discord (redirects to discord.gg/3chc2y8jpT)."
+    }
+  }
 }
