@@ -186,6 +186,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Paperclip** — AI-workforce control plane (org structure, agent budgets, goal alignment, governance) applicable to fleets of coding agents; added after broadening Scope to cover this category (added 2026-04-21)
 - [x] **Ouroboros** — spec-driven, multi-agent workflow toolkit ("Stop prompting. Start specifying.") with Claude Code, Codex CLI, and MCP integrations (added 2026-04-21)
 - [x] **Intent** — Augment Code's commercial spec-driven workspace with a Coordinator agent that delegates to parallel specialist agents around living specs (added 2026-04-21)
+- [ ] **Superpowers** — Jesse Vincent / Prime Radiant's agentic skills framework and methodology bundling TDD, debugging, and planning skills across Claude Code, Cursor, Codex, OpenCode, Copilot CLI, and Gemini CLI (added 2026-04-23)
 
 ## Notes for Researchers
 
