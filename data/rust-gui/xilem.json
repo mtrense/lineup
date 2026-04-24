@@ -1,5 +1,337 @@
 {
   "name": "Xilem",
   "description": "Raph Levien's successor to Druid, architectural showcase, still early",
-  "values": {}
+  "url": "https://xilem.dev",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["apache-2-0"],
+      "source": ["https://github.com/linebender/xilem", "https://lib.rs/crates/xilem"]
+    },
+    "repository": {
+      "value": "https://github.com/linebender/xilem",
+      "source": ["https://github.com/linebender/xilem"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/xilem",
+      "source": ["https://crates.io/crates/xilem"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/xilem",
+      "source": ["https://docs.rs/xilem/latest/xilem/"]
+    },
+    "first-release": {
+      "value": "2024",
+      "source": ["https://lib.rs/crates/xilem"],
+      "comment": "First crates.io publish (0.1.0) on May 7, 2024. Raph Levien's original architecture blog post dates to 2022, but the crate is much younger."
+    },
+    "latest-stable-version": {
+      "value": "0.4.0",
+      "source": ["https://lib.rs/crates/xilem", "https://github.com/linebender/xilem/releases/tag/v0.4.0"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/linebender/xilem", "https://github.com/linebender/xilem/commits/main"],
+      "comment": "1,422 commits on main; most recent commits April 22, 2026. Linebender publishes monthly progress updates."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0", "https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md"],
+      "comment": "README states: \"Xilem can currently be considered to be in an alpha state.\" Still pre-1.0 (0.4.0) with expected breaking changes between minor releases."
+    },
+    "corporate-backing": {
+      "value": "Linebender community. Major contributors (including creator Raph Levien and Matt Campbell of AccessKit) have received multi-year grants from Google Fonts.",
+      "source": ["https://linebender.org", "https://linebender.org/blog/xilem-backend-roadmap/"],
+      "comment": "Linebender itself is described as a volunteer community organization, not a company or foundation. Individual contributors are funded by Google Fonts."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/linebender/xilem", "https://raw.githubusercontent.com/linebender/xilem/main/Cargo.toml"],
+      "comment": "Workspace members are all Rust crates; rendering via pure-Rust Vello (wgpu)."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md", "https://lib.rs/crates/xilem"],
+      "comment": "Users produce a lightweight view tree that is diffed to apply minimal updates to a retained widget tree (Masonry)."
+    },
+    "reactivity-model": {
+      "value": ["react-like"],
+      "source": ["https://github.com/linebender/xilem", "https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md"],
+      "comment": "Declarative view tree with diff-based reconciliation, described as \"inspired by React, SwiftUI and Elm.\" Not signals-based; state lives in app struct passed through the view hierarchy."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/linebender/xilem"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "Event loop runs on the main thread (winit); async work uses the Task/Worker view primitives which drive Tokio futures."
+    },
+    "renderer": {
+      "value": ["wgpu"],
+      "source": ["https://github.com/linebender/xilem", "https://lib.rs/crates/xilem"],
+      "comment": "2D rendering via Vello (a compute-shader-based vector renderer) on top of wgpu. wgpu itself selects Vulkan/Metal/DX12/GL/WebGPU at runtime but the framework-level backend is wgpu."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem"],
+      "comment": "Vello is a GPU-accelerated vector renderer."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.rs/masonry/latest/masonry/"],
+      "comment": "winit reports scale factors that Masonry/Xilem propagate to rendering; v0.4 added a Length type for logical pixels."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem"],
+      "comment": "Vello is explicitly a 2D vector renderer; Parley handles vector text rendering."
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": ["https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "No documented public API for injecting custom wgpu render passes at the xilem layer; the canvas example uses Vello paint primitives rather than raw shaders."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "The canvas.rs example demonstrates custom 2D rendering via Vello's scene API inside the UI; raw wgpu viewport embedding is not independently verified."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/README.md"],
+      "comment": "winit supports Windows; README references Windows as a target (one debug flag is noted as not supported on Windows, which implies Windows is otherwise a target)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/README.md"],
+      "comment": "README gives macOS Cargo config recommendations; winit supports macOS."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/README.md"],
+      "comment": "README enumerates Linux/BSD package requirements; winit supports X11 by default."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/README.md"],
+      "comment": "README mentions both Wayland and X11 Linux/BSD support; winit provides native Wayland."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md", "https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "No iOS example or documented support; Android is the sole official mobile target in the 2024/2025 roadmap."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem/tree/main/xilem/examples/android", "https://linebender.org/blog/tmil-16/"],
+      "comment": "Dedicated xilem/examples/android directory with cargo-apk glue code for calc, emoji_picker, http_cats, mason, stopwatch, to_do_mvc, variable_clock. Android is a funded focus per the Linebender roadmap; April 2025 update added software-keyboard text input and a11y on Android."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/Cargo.toml", "https://raw.githubusercontent.com/linebender/xilem/main/README.md"],
+      "comment": "Separate xilem_web crate in the workspace with its own examples (counter, fetch, todomvc, svg demos). README: \"It has a web backend and a Masonry backend.\""
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://docs.rs/crate/xilem/0.4.0"],
+      "comment": "Depends on tokio, winit, vello, and wgpu — none of which are no_std compatible."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html", "https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "Views are constructed via Rust functions/builder methods (flex((button(...), label(...))) style); no DSL or macro syntax for markup."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md", "https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "No hot-reload feature documented or in release notes; Rust recompile required."
+    },
+    "layout-system": {
+      "value": ["flexbox"],
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html", "https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "Flex (row/column with MainAxis/CrossAxis alignment), Grid, ZStack, Split, SizedBox primitives. The Flex model is the dominant idiom; Grid is also provided. No constraints solver."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://docs.rs/masonry/latest/masonry/", "https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "Masonry's properties module defines theme defaults and per-widget property sets; v0.4 added styling properties to Xilem views. No CSS-like stylesheet DSL."
+    },
+    "theme-switching": {
+      "value": null,
+      "source": ["https://docs.rs/masonry/latest/masonry/"],
+      "comment": "Masonry exposes theme defaults but runtime light/dark switching is not independently verified in docs or examples."
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/README.md", "https://docs.rs/masonry/latest/masonry/"],
+      "comment": "README: \"AccessKit for plugging into accessibility APIs.\" Masonry Core builds accessibility trees via AccessKit."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "Parley provides complex-script text shaping (RTL, BiDi), but Xilem ships no built-in localization/message-catalog framework."
+    },
+    "widget-breadth": {
+      "value": 2,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html", "https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "Covers basics (Button, Label, Checkbox, Slider, TextInput, ProgressBar, Image, Spinner, Prose, Flex, Grid, SizedBox, Split, ZStack, Portal, VirtualScroll, IndexedStack, VariableLabel, Transformed) but no tables, trees, rich text/markdown, native menus, dialogs, or charts."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No table/grid widget; VirtualScroll provides virtualized lists for simple one-dimensional data."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "Label and Prose render styled text via Parley, but there is no dedicated markdown widget or rich-text editor."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No hierarchical tree widget."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html", "https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "No native menu bar or context menu support."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "No built-in file dialog widget or documented rfd integration at the xilem layer."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No first-party charting; custom drawing is possible via Vello's scene API (see canvas.rs example)."
+    },
+    "custom-widgets": {
+      "value": 2,
+      "source": ["https://docs.rs/masonry/latest/masonry/", "https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md"],
+      "comment": "Masonry exposes a Widget trait for authoring new widgets, but Xilem is in alpha, documentation is sparse, and the trait surface is still evolving between releases."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio"],
+      "source": ["https://docs.rs/crate/xilem/0.4.0", "https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "Tokio is a direct dependency; Task and Worker view primitives spawn Tokio futures. No support for async-std or smol is advertised."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No built-in tray icon support; would require an external crate (tray-icon)."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No built-in OS notification integration."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "v0.4.0 release notes: \"Basic text-only clipboard operations.\" No image or rich-content clipboard yet."
+    },
+    "drag-and-drop": {
+      "value": false,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0", "https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No documented OS-level drag-and-drop in xilem or Masonry as of v0.4.0."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html"],
+      "comment": "No webview embedding."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0", "https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "v0.4.0 added initial multi-window support to Masonry; multiple_windows.rs example ships in the repo."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://docs.rs/crate/xilem/0.4.0"],
+      "comment": "Not independently measured. Expected to be moderate-to-large given wgpu + Vello + Parley + winit + tokio direct deps, but no published \"hello world\" numbers."
+    },
+    "startup-time": {
+      "value": null,
+      "source": ["https://docs.rs/crate/xilem/0.4.0"],
+      "comment": "Not independently measured. wgpu adapter init typically dominates cold start, similar to other wgpu-based frameworks."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": ["https://docs.rs/crate/xilem/0.4.0"],
+      "comment": "Not independently measured."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md"],
+      "comment": "Reactive diffing model: \"lightweight view objects, diffing them to provide minimal updates to a retained UI.\" Redraw is triggered by state changes rather than a continuous loop."
+    },
+    "dependency-count": {
+      "value": ["heavy"],
+      "source": ["https://docs.rs/crate/xilem/0.4.0"],
+      "comment": "7 direct deps (masonry, masonry_winit, tokio, tracing, vello, winit, xilem_core) but transitive closure via wgpu/vello/parley/winit/tokio comfortably exceeds 200 crates. Not independently measured with cargo tree."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/linebender/xilem/main/xilem/README.md", "https://docs.rs/xilem/latest/xilem/"],
+      "comment": "API docs exist on docs.rs; README has TODO stubs (e.g., \"TODO: Include note about how to use cargo apk here\"). No book, limited tutorials. Reflects the explicit alpha status."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://docs.rs/xilem/latest/xilem/view/index.html", "https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "Idiomatic Rust builder-style views; functional but verbose view types and explicit state threading. Core team has noted ergonomics as an active work item (view types can surface complex generics)."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/linebender/xilem/tree/main/xilem/examples"],
+      "comment": "23 examples in xilem/examples (calc, canvas, emoji_picker, flex, http_cats, lists, mason, memoization, multiple_windows, scroll, slider_demo, stopwatch, to_do_mvc, transforms, variable_clock, virtual_cats, widgets, etc.) plus separate xilem_web examples."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://github.com/linebender/xilem"],
+      "comment": "No official online playground or demo gallery."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/linebender/xilem"],
+      "comment": "No Xilem-specific LSP, formatter, or inspector beyond stock rust-analyzer."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://docs.rs/masonry/latest/masonry/"],
+      "comment": "Masonry ships a widget inspector (F11) and a debug layout-rect overlay (F12); both are available to Xilem apps."
+    },
+    "github-stars": {
+      "value": 5300,
+      "source": ["https://github.com/linebender/xilem"],
+      "comment": "Snapshot: ~5.3k stars as observed 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 6987,
+      "source": ["https://crates.io/api/v1/crates/xilem"],
+      "comment": "All-time downloads of the top-level `xilem` crate as of 2026-04-24. Low because Xilem is still alpha and not yet used as a library dependency."
+    },
+    "last-release": {
+      "value": "2025-10-29",
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0", "https://lib.rs/crates/xilem"],
+      "comment": "Version 0.4.0."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://github.com/linebender/xilem/releases/tag/v0.4.0"],
+      "comment": "No shipping production apps widely known. A sample Mastodon client (\"Placehero\") ships in-tree as an early-stage showcase."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://linebender.org", "https://github.com/linebender/xilem"],
+      "comment": "Linebender Zulip is active for 2D graphics/UI topics broadly; Xilem-specific contributor base is modest (~40 contributors across a year's releases)."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/linebender"],
+      "comment": "Part of the Linebender stack (Vello, Parley, Fontique, AccessKit, Masonry) but no widespread third-party widget or theme crates for Xilem itself."
+    }
+  }
 }
