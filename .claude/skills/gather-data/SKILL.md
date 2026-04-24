@@ -23,12 +23,11 @@ If the comparison type is missing, ask the user. If the scope filter doesn't mat
 
 ## Auto-Pick (when candidate id is omitted)
 
-Select the next candidate that needs research from `data/<type>/index.json`, in listed order:
+Use the **Initial Candidates** checkboxes in `RESEARCH.md` as the source of truth — this skill flips `- [ ] <Name>` → `- [x] <Name>` at the end of a successful pass (Phase 3), so an unchecked box means "not yet researched."
 
-1. **Primary signal**: the candidate's `data/<type>/<id>.json` has an empty `values` object, OR is missing values for most attributes defined in `attributes.json` (rough threshold: fewer than half the attributes populated). These are the initial-mode candidates.
-2. **Secondary signal** (only when no primary candidates remain): RESEARCH.md has a `- [ ] <Name>` entry matching the candidate's display name or id, meaning the checkbox was never flipped. Treat as initial-mode.
-3. **Announce the pick** to the user: `"Auto-picked <candidate-id> — <N>/<M> attributes populated"`. Proceed in initial mode without further Socratic exchange (the user can interrupt if the pick is wrong).
-4. **Nothing to pick**: if every registered candidate has substantially complete values, report "all candidates appear fully researched" and stop. Suggest the user pass a candidate id explicitly to force a refresh, or scaffold a new candidate via `/scaffold-type`.
+1. **Pick the first `- [ ] <Name>` entry** in RESEARCH.md's Initial Candidates section, in listed order. Resolve the name to a candidate id by matching against `data/<type>/index.json` (the entry text may be the display name or the id).
+2. **Announce the pick**: `"Auto-picked <candidate-id> (unchecked in RESEARCH.md)"`. Proceed in initial mode without further Socratic exchange (the user can interrupt if the pick is wrong).
+3. **Nothing to pick**: if every entry is `- [x]`, report "all registered candidates are checked off in RESEARCH.md" and stop. Suggest the user pass a candidate id explicitly to force a refresh, or scaffold a new candidate via `/scaffold-type`.
 
 Refresh of an already-researched candidate always requires an explicit candidate id — auto-pick never runs refresh mode, to avoid churning fresh data.
 
@@ -43,7 +42,7 @@ Refresh of an already-researched candidate always requires an explicit candidate
 4. Read `data/<type>/index.json` — needed for auto-pick AND to sanity-check that the target candidate is registered.
 5. Read `data/<type>/<candidate>.json` — existing metadata and any previously gathered values (after the candidate is resolved, explicitly or via auto-pick).
 6. Determine **mode**:
-   - `initial` — if `values` is empty or missing most attributes. Always the mode under auto-pick.
+   - `initial` — if `values` is empty or missing most attributes, OR the candidate was chosen via auto-pick.
    - `refresh` — if the file already contains substantive values AND the candidate was passed explicitly. In refresh mode, prefer updating values with newer sources and explicitly note in a `comment` when a value changed significantly.
 
 ## Phase 1: Plan the Research Pass
