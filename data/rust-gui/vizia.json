@@ -1,5 +1,377 @@
 {
   "name": "Vizia",
   "description": "Declarative, audio-plugin-friendly",
-  "values": {}
+  "url": "https://github.com/vizia/vizia",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://crates.io/api/v1/crates/vizia"
+      ]
+    },
+    "repository": {
+      "value": "https://github.com/vizia/vizia",
+      "source": ["https://crates.io/api/v1/crates/vizia"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/vizia",
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "Derived trivially from crate name"
+    },
+    "documentation": {
+      "value": "https://docs.vizia.dev",
+      "source": ["https://api.github.com/repos/vizia/vizia"],
+      "comment": "Homepage set to docs.vizia.dev in the GitHub repo metadata; an in-progress book lives at book.vizia.dev"
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "0.1.0 published 2021-09-17"
+    },
+    "latest-stable-version": {
+      "value": "0.4.0",
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "Released 2026-04-23"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/vizia/vizia",
+        "https://crates.io/api/v1/crates/vizia"
+      ],
+      "comment": "0.4.0 released 2026-04-23; 1,843 commits on main; repo pushed to same day as research"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "Still pre-1.0 (0.4.0); breaking changes between 0.3 and 0.4 (styling system overhaul per nih_plug_vizia notes)"
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "Primary maintainer is Dr George Atkinson (geom3trik); no corporate sponsor identified"
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://github.com/vizia/vizia/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Framework code is pure Rust with no native GUI toolkit wrapping. Rendering goes through skia-safe (Rust binding to Google's C++ Skia library) — classified as pure-rust here because Skia is a rendering primitive, consistent with how wgpu-based frameworks are classified"
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://github.com/vizia/vizia/blob/main/ARCHITECTURE.md"],
+      "comment": "Views are ECS entities with persistent state; bindings update the retained tree on state change"
+    },
+    "reactivity-model": {
+      "value": ["signals", "retained-tree"],
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://github.com/vizia/vizia/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Bindings observe model state and rebuild affected views (signals-like). Underneath, widgets are mutated in an ECS (retained-tree)"
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Pure Rust; no native GUI toolkit wrapped"
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.vizia.dev/vizia/struct.Application.html"],
+      "comment": "UI runs on the main thread; cross-thread communication via Application::get_proxy() returning a ContextProxy"
+    },
+    "renderer": {
+      "value": ["skia", "opengl"],
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://github.com/vizia/vizia/blob/main/ARCHITECTURE.md"
+      ],
+      "comment": "Skia canvas drawn via an OpenGL context created by winit. Platform deps pull in skia-safe with metal + GL on macOS and x11/wayland + GL on Linux"
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia/blob/main/ARCHITECTURE.md"],
+      "comment": "Skia canvas is GPU-backed via OpenGL (and Metal on macOS via skia-safe features)"
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Skia + winit combination handles HiDPI scaling; no specific issue reported"
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Skia provides vector primitives; Vizia ships 4,250+ SVG Tabler Icons and has an svg view"
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": [],
+      "comment": "Not advertised as a feature; Skia supports SkSL but no documentation shows Vizia exposing shader injection to apps"
+    },
+    "embedded-custom-rendering": {
+      "value": null,
+      "source": [],
+      "comment": "No documented API for embedding a custom wgpu/OpenGL viewport inside a Vizia view"
+    },
+    "windows": {
+      "value": true,
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://vizia.github.io/vizia-site/"
+      ]
+    },
+    "macos": {
+      "value": true,
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://vizia.github.io/vizia-site/"
+      ]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "x11 is a default feature flag"
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "wayland is a default feature flag"
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Self-described as a \"declarative desktop GUI framework\"; no mobile targets listed"
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Desktop-only per project description"
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "No WASM target documented; framework relies on native OpenGL + Skia"
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Uses std, async, Skia — not suitable for no_std"
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "README: \"Write GUI code in a declarative way in pure Rust\" — no DSL or RSX macros; views are composed via Rust builder-style calls"
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Hot-reloadable CSS stylesheets (examples/stylesheet.rs); Rust view code itself still requires recompile"
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid"],
+      "source": [
+        "https://github.com/vizia/vizia",
+        "https://github.com/vizia/morphorm"
+      ],
+      "comment": "Layout engine is morphorm (flex-inspired); examples include grid.rs, hstack/vstack/zstack"
+    },
+    "styling-approach": {
+      "value": ["css-like"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Uses cssparser + selectors crates; real CSS stylesheets with hot reload"
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Ships light and dark built-in themes; stylesheet hot reload enables runtime theme switching"
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "accesskit is a default feature flag in 0.3+"
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Uses fluent-bundle for localization; examples/l10n.rs shows usage"
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": [
+        "https://github.com/vizia/vizia/tree/main/examples/views",
+        "https://docs.vizia.dev/vizia/views/index.html"
+      ],
+      "comment": "30+ built-in widgets including table, virtual_table, virtual_list, markdown, menu/menubar, combobox, calendar, knob, xypad — but no tree/outline widget and no charting. Solidly in \"most common + a few advanced\" territory"
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": [
+        "https://github.com/vizia/vizia/tree/main/examples/views",
+        "https://docs.vizia.dev/vizia/views/index.html"
+      ],
+      "comment": "Both Table (variable row heights) and VirtualTable (virtualized for large datasets) are first-party views"
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": [
+        "https://github.com/vizia/vizia/tree/main/examples",
+        "https://docs.vizia.dev/vizia/views/index.html"
+      ],
+      "comment": "markdown feature flag enabled by default; Markdown view plus rich_text.rs example"
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://docs.vizia.dev/vizia/views/index.html"],
+      "comment": "No Tree/TreeView widget in the views module; users would need to compose one"
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia/tree/main/examples/views"],
+      "comment": "MenuBar and Menu views exist but are drawn by Vizia via Skia, not using the OS-native menu bar"
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia/tree/main/examples"],
+      "comment": "save_dialog.rs example; typically wired via the rfd crate (Vizia doesn't ship its own native dialog code)"
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://docs.vizia.dev/vizia/views/index.html"],
+      "comment": "No first-party chart/plot widget"
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://github.com/vizia/vizia/tree/main/examples"],
+      "comment": "examples/custom_view.rs demonstrates the View trait; authoring custom widgets is documented and idiomatic"
+    },
+    "async-runtime-compatible": {
+      "value": null,
+      "source": [],
+      "comment": "Framework is runtime-agnostic via Application::get_proxy() (ContextProxy allows sending events from any thread/runtime), but no specific runtime is officially blessed in the docs. Tokio appears in the workspace Cargo.toml but that's internal, not a user-facing guarantee"
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "No built-in tray support documented"
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "No built-in OS notification integration documented"
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "clipboard is a default feature flag"
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia/blob/main/examples/dragdrop.rs"],
+      "comment": "examples/dragdrop.rs demonstrates intra-app drag-and-drop; DropData::File handles OS-level file drops onto the app"
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "No webview integration"
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/vizia/vizia/blob/main/examples/multiwindow.rs"],
+      "comment": "Window::new() with an on_close hook; example works with the winit backend (panics under the baseview/audio-plugin backend)"
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass; Skia-based frameworks are typically in the moderate-to-large range, but I lack a verified measurement"
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass"
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass"
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "README: \"further optimizations to only draw what is necessary\"; retained-mode with binding-driven redraw"
+    },
+    "dependency-count": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured via cargo tree in this pass; Skia + winit + accesskit + fluent + cssparser suggest at least moderate, likely heavy, but unverified"
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://docs.vizia.dev",
+        "https://book.vizia.dev"
+      ],
+      "comment": "Has docs.rs API + an in-progress book + 50+ examples + widget gallery. Book is described as a tutorial/reference but coverage of advanced topics appears incomplete"
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Idiomatic Rust builder patterns, Lens/Data-style derive macros for bindings, no lifetime-heavy view signatures"
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/vizia/vizia/tree/main/examples"],
+      "comment": "40+ view examples + 14 top-level examples + gallery + widget_gallery + 7GUIs + todo = well over 20"
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground; widget gallery is a desktop example, not web-hosted"
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "No framework-specific LSP/inspector; since views are plain Rust and styles are plain CSS, generic tooling (rust-analyzer, CSS language servers) covers the editor story"
+    },
+    "dev-tools-inspector": {
+      "value": false,
+      "source": ["https://docs.vizia.dev/vizia/views/index.html"],
+      "comment": "No built-in widget-tree inspector documented"
+    },
+    "github-stars": {
+      "value": 2051,
+      "source": ["https://api.github.com/repos/vizia/vizia"],
+      "comment": "Snapshot 2026-04-24"
+    },
+    "crates-io-downloads": {
+      "value": 5637,
+      "source": ["https://crates.io/api/v1/crates/vizia"],
+      "comment": "All-time downloads of the top-level vizia crate as of 2026-04-24; recent_downloads=366. Modest for an older project — plugin authors often depend on nih_plug_vizia rather than vizia directly"
+    },
+    "last-release": {
+      "value": "2026-04-23",
+      "source": ["https://crates.io/api/v1/crates/vizia"]
+    },
+    "notable-production-users": {
+      "value": "Audio plugins built with nih-plug + vizia-plug (various independent VST3/CLAP plugins); no flagship shipping application widely known",
+      "source": [
+        "https://github.com/vizia/vizia-plug",
+        "https://github.com/robbert-vdh/nih-plug"
+      ],
+      "comment": "nih-plug's supported GUI frameworks include Vizia alongside egui and iced; audio-plugin niche is where Vizia sees most production use"
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/vizia/vizia"],
+      "comment": "Active Discord and 100 forks on the repo; fewer than large/medium chat thresholds"
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/vizia"],
+      "comment": "vizia-plug for audio plugins, nih_plug_vizia integration; limited third-party themes/widget crates"
+    }
+  }
 }
