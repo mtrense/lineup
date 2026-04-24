@@ -72,9 +72,9 @@ Lineup ships with Claude Code skills under `.claude/skills/` that handle each st
 
 | Skill | Purpose |
 |-------|---------|
-| `/new-type <type> [seed]` | Draft `data/<type>/RESEARCH.md` for a brand-new comparison type through a short Socratic scoping conversation (purpose, scope, attribute groups, initial candidates). Writes only the research guide so you can iterate on it before any schema files are generated. |
+| `/new-type <type> [seed]` | Draft `data/<type>/RESEARCH.md` for a brand-new comparison type through a short Socratic scoping conversation (purpose, scope, attribute groups, candidates). Writes only the research guide so you can iterate on it before any schema files are generated. |
 | `/scaffold-type <type> [candidate-id …]` | Translate RESEARCH.md into `data/<type>/attributes.json`, register the type in the top-level `data/index.json`, and scaffold empty-`values` stubs for each Initial Candidate into `data/<type>/index.json`. Re-run later (with or without explicit ids) to scaffold additional candidates. |
-| `/add-candidate <type> <name> [url / description / reason]` | Add a single candidate after a scope-fit check against RESEARCH.md's Scope section. Creates the stub, appends to `index.json`, and appends a `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Initial Candidates list. |
+| `/add-candidate <type> <name> [url / description / reason]` | Add a single candidate after a scope-fit check against RESEARCH.md's Scope section. Creates the stub, appends to `index.json`, and appends a `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Candidates list. |
 | `/discover-candidates <type> [hint]` | Search the web for candidates that fit the type's scope, filter and deduplicate against the existing roster, present the picks for selection, and scaffold the chosen ones the same way `/add-candidate` does. |
 | `/extend-comparison <type> <description>` | Append one or more new attributes (or a whole new attribute group) to an already-scaffolded type. Updates RESEARCH.md's Attribute Groups tables and `attributes.json` in lockstep. Existing candidates render `—` for the new attribute until filled in. |
 | `/gather-data <type> [candidate] [attribute-or-group]` | Research and populate attribute values for a candidate via web sources. Records `{value, source, comment}` per attribute, stamps `lastVerified`, and ticks the RESEARCH.md checkbox on first research. |
@@ -83,7 +83,7 @@ Lineup ships with Claude Code skills under `.claude/skills/` that handle each st
 
 Creating a new comparison type end-to-end:
 
-1. **Scope the type.** `/new-type <type> <optional seed>` — iterate on the generated `RESEARCH.md` until purpose, scope, attribute groups, and initial candidates read well.
+1. **Scope the type.** `/new-type <type> <optional seed>` — iterate on the generated `RESEARCH.md` until purpose, scope, attribute groups, and candidates read well.
 2. **Scaffold schema and stubs.** `/scaffold-type <type>` — generates `attributes.json`, registers the type in `data/index.json`, and creates empty stubs for each Initial Candidate.
 3. **Research each candidate.** `/gather-data <type>` — auto-picks the next under-researched candidate, searches primary sources, and populates the `values` block. Repeat until every candidate is covered.
 

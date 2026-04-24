@@ -23,9 +23,9 @@ If the comparison type is missing, ask the user. If the scope filter doesn't mat
 
 ## Auto-Pick (when candidate id is omitted)
 
-Use the **Initial Candidates** checkboxes in `RESEARCH.md` as the source of truth — this skill flips `- [ ] <Name>` → `- [x] <Name>` at the end of a successful pass (Phase 3), so an unchecked box means "not yet researched."
+Use the **Candidates** checkboxes in `RESEARCH.md` as the source of truth — this skill flips `- [ ] <Name>` → `- [x] <Name>` at the end of a successful pass (Phase 3), so an unchecked box means "not yet researched."
 
-1. **Pick the first `- [ ] <Name>` entry** in RESEARCH.md's Initial Candidates section, in listed order. Resolve the name to a candidate id by matching against `data/<type>/index.json` (the entry text may be the display name or the id).
+1. **Pick the first `- [ ] <Name>` entry** in RESEARCH.md's Candidates section, in listed order. Resolve the name to a candidate id by matching against `data/<type>/index.json` (the entry text may be the display name or the id).
 2. **Announce the pick**: `"Auto-picked <candidate-id> (unchecked in RESEARCH.md)"`. Proceed in initial mode without further Socratic exchange (the user can interrupt if the pick is wrong).
 3. **Nothing to pick**: if every entry is `- [x]`, report "all registered candidates are checked off in RESEARCH.md" and stop. Suggest the user pass a candidate id explicitly to force a refresh, or scaffold a new candidate via `/scaffold-type`.
 
@@ -109,7 +109,7 @@ Write the full updated `data/<type>/<candidate>.json`:
 
 ### RESEARCH.md checkbox (initial mode only)
 
-If the candidate appears in `RESEARCH.md`'s **Initial Candidates** section with an unchecked box (`- [ ] <Name>` or `- [ ] <candidate-id>`), switch it to `- [x]` now that real data exists. Match on the display name OR the candidate id; do not touch unrelated lines.
+If the candidate appears in `RESEARCH.md`'s **Candidates** section with an unchecked box (`- [ ] <Name>` or `- [ ] <candidate-id>`), switch it to `- [x]` now that real data exists. Match on the display name OR the candidate id; do not touch unrelated lines.
 
 ## Phase 4: Summary
 

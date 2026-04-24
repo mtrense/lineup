@@ -204,7 +204,7 @@ Based on available benchmarks and language design:
 - Features that exist but are undocumented
 - Conflicting information from sources
 
-## Initial Candidates
+## Candidates
 
 - [x] **Rhai** - Popular pure-Rust scripting, simple syntax, good docs
 - [x] **mlua** - Lua 5.x/LuaJIT bindings, most mature Lua integration

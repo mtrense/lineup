@@ -1,6 +1,6 @@
 ---
 name: discover-candidates
-description: "Search the web for additional candidates that fit an existing Lineup comparison type, present them for the user to pick from, then scaffold the chosen ones (RESEARCH.md Initial Candidates append, data/<type>/index.json append, per-candidate stub files). Use when the comparison type is already scaffolded and you want to expand its candidate roster with items you haven't identified yourself. Complements `/add-candidate` (user brings one name), `/scaffold-type` (bulk-scaffolds names already in RESEARCH.md), and `/new-type` (drafts the research guide). Arguments: comparison type id (required), optional free-text hint narrowing the search (e.g. a niche, region, or characteristic)."
+description: "Search the web for additional candidates that fit an existing Lineup comparison type, present them for the user to pick from, then scaffold the chosen ones (RESEARCH.md Candidates append, data/<type>/index.json append, per-candidate stub files). Use when the comparison type is already scaffolded and you want to expand its candidate roster with items you haven't identified yourself. Complements `/add-candidate` (user brings one name), `/scaffold-type` (bulk-scaffolds names already in RESEARCH.md), and `/new-type` (drafts the research guide). Arguments: comparison type id (required), optional free-text hint narrowing the search (e.g. a niche, region, or characteristic)."
 disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), WebSearch, WebFetch
@@ -15,7 +15,7 @@ The skill does three things on success:
 
 1. **Discovers** candidates via `WebSearch` / `WebFetch`, filtered by the comparison's Scope and deduplicated against already-listed / already-scaffolded entries.
 2. **Presents** the filtered list to the user for explicit selection — this skill never silently writes discovered candidates.
-3. **Scaffolds** the selected ones: appends to `data/<type>/RESEARCH.md`'s Initial Candidates list, appends entries to `data/<type>/index.json`, and creates `data/<type>/<candidate>.json` stubs with empty `values`.
+3. **Scaffolds** the selected ones: appends to `data/<type>/RESEARCH.md`'s Candidates list, appends entries to `data/<type>/index.json`, and creates `data/<type>/<candidate>.json` stubs with empty `values`.
 
 `/gather-data` fills the attribute values on a subsequent pass — this skill never populates `values` or writes `lastVerified`.
 
@@ -36,12 +36,12 @@ If the comparison type id is missing or doesn't match an existing directory, abo
 
 1. Read `CLAUDE.md` at the project root to confirm this is a Lineup project and pick up local conventions (commit format, shell rules).
 2. Confirm `data/<type>/` exists. If not, abort and suggest `/new-type <type>` followed by `/scaffold-type <type>`.
-3. Confirm `data/<type>/RESEARCH.md` exists. If not, abort — this skill depends on Scope and Initial Candidates being in place.
+3. Confirm `data/<type>/RESEARCH.md` exists. If not, abort — this skill depends on Scope and Candidates being in place.
 4. Confirm `data/<type>/index.json` exists (the type has been scaffolded). If not, abort and suggest running `/scaffold-type <type>` first.
 5. Read `data/<type>/RESEARCH.md` — focus on:
    - **Overview** — what this comparison is for; the discovery query should match this framing.
    - **Scope** (Included / Excluded) — the filter you apply to discovered results.
-   - **Initial Candidates** — the de-duplication list. Capture every entry's display name, derived kebab-case id, and checkbox state.
+   - **Candidates** — the de-duplication list. Capture every entry's display name, derived kebab-case id, and checkbox state.
    - **Research Sources** (Secondary Sources especially) — pre-existing leads to check first (curated lists, surveys, community comparisons). These often yield higher-quality candidates than generic web queries.
 6. Read `data/<type>/index.json` — detect already-registered candidate ids (some may not be in RESEARCH.md if they were added manually).
 7. `Glob data/<type>/*.json` once to detect pre-existing per-candidate files.
@@ -86,7 +86,7 @@ For each raw candidate from Phase 2, apply filters in order. Track each dropped 
 Derive the candidate id via kebab-case (lowercase, ASCII, spaces/punctuation → hyphens, collapse runs). Drop the candidate if any of these match:
 
 - **Already scaffolded**: `data/<type>/<candidate-id>.json` exists OR the id is in `data/<type>/index.json`. Note in the summary ("already scaffolded — skipped").
-- **Already listed in RESEARCH.md**: an Initial Candidates entry whose display name kebab-cases to the same id, or whose line text matches case-insensitively. Note the checkbox state in the summary ("already listed, unchecked — suggest `/scaffold-type`" vs. "already listed, researched — skipped").
+- **Already listed in RESEARCH.md**: an Candidates entry whose display name kebab-cases to the same id, or whose line text matches case-insensitively. Note the checkbox state in the summary ("already listed, unchecked — suggest `/scaffold-type`" vs. "already listed, researched — skipped").
 - **Obvious alias**: the candidate is a renamed / acquired / forked version of one already listed (e.g. `OpenDevin` → `OpenHands`). Surface as a dedup but ask the user whether to treat the new name as a rename or a distinct entry.
 
 ### 3.2 Scope-fit filter
@@ -184,7 +184,7 @@ Always `shownByDefault: true` for freshly-added candidates — the user can flip
 
 ### 5.3 `data/<type>/RESEARCH.md`
 
-Append one line per pick to the end of the **Initial Candidates** list:
+Append one line per pick to the end of the **Candidates** list:
 
 ```
 - [ ] <Display Name> — <reason for inclusion> (added <YYYY-MM-DD>)
@@ -194,7 +194,7 @@ Append one line per pick to the end of the **Initial Candidates** list:
 - The `(added <YYYY-MM-DD>)` suffix is mandatory for entries added by this skill — it distinguishes discovery-sourced entries from candidates that came out of the original `/new-type` scoping dialogue.
 - Checkbox stays `- [ ]`. It will be ticked by `/gather-data` on the first research pass.
 - Do NOT touch any other line. Do NOT modify Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections.
-- Do NOT reorder the Initial Candidates list — append only.
+- Do NOT reorder the Candidates list — append only.
 
 ## Phase 6: Summary
 
@@ -209,7 +209,7 @@ Present a concise summary:
 - **Files written**:
   - `data/<type>/<candidate-id>.json` × `<N_selected>` (created)
   - `data/<type>/index.json` (`<N_selected>` entries appended)
-  - `data/<type>/RESEARCH.md` (`<N_selected>` lines appended to Initial Candidates with `(added <date>)` suffix)
+  - `data/<type>/RESEARCH.md` (`<N_selected>` lines appended to Candidates with `(added <date>)` suffix)
 - **Filtered out** (only when relevant): brief tally grouped by reason (already scaffolded, Excluded bullet match, quality floor, dedup alias).
 - **Defaults to review** (only when relevant):
   - Candidate id truncated from a multi-segment name.
@@ -243,9 +243,9 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT silently write files in Phase 5. Phase 4's explicit user selection is the gate — if the user didn't pick it, don't write it.
 - Do NOT populate any `values` inside candidate files. That is `/gather-data`'s responsibility.
 - Do NOT write `lastVerified` on candidate files. The missing field signals "not yet researched" honestly.
-- Do NOT modify `attributes.json`, Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections of RESEARCH.md. This skill only appends to the Initial Candidates list.
+- Do NOT modify `attributes.json`, Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections of RESEARCH.md. This skill only appends to the Candidates list.
 - Do NOT overwrite any existing candidate file. Phase 3.1 catches pre-existing files; if one slips through, abort rather than clobber.
-- Do NOT reorder entries in `data/<type>/index.json` or the RESEARCH.md Initial Candidates list. Append only.
+- Do NOT reorder entries in `data/<type>/index.json` or the RESEARCH.md Candidates list. Append only.
 - Do NOT tick any RESEARCH.md checkbox (`- [ ]` → `- [x]`); that is `/gather-data`'s job.
 - Do NOT modify the top-level `data/index.json` — this skill operates inside an already-registered type.
 - Do NOT weaken the Scope filter to pad the list. A shorter filtered list is better than a longer one with borderline entries — the user is the final filter, but Phase 3's filter has to be defensible on its own terms.
@@ -253,5 +253,5 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - JSON output MUST be valid: ASCII quotes, no trailing commas, no comments.
 - Match existing project style: indentation, key ordering inside candidate files (`name`, `description`, `url`, `values`).
 - If a required file is missing (no `CLAUDE.md`, no `data/<type>/`, no `RESEARCH.md`, no `index.json`), abort with a clear message pointing the user at the skill that creates it (`/new-type` or `/scaffold-type`).
-- If the RESEARCH.md Initial Candidates section is malformed (no heading, no existing list to append to), abort and tell the user precisely what to fix.
+- If the RESEARCH.md Candidates section is malformed (no heading, no existing list to append to), abort and tell the user precisely what to fix.
 - If JSON you are about to write would break the project's build, abort the whole pass and report which file is malformed before overwriting anything. Do not leave the scaffold half-applied.

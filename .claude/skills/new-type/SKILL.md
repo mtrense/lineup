@@ -9,9 +9,9 @@ argument-hint: "<comparison-type-id> [free-text seed]"
 
 # Comparison: New Type
 
-You are drafting the research guide for a new comparison type in a Lineup project. A comparison type lives under `data/<type>/`; this skill produces only the authoritative `RESEARCH.md` (scope, attributes, sources, assessment, initial candidates) so you and the user can collaborate on it before the structural JSON files are generated.
+You are drafting the research guide for a new comparison type in a Lineup project. A comparison type lives under `data/<type>/`; this skill produces only the authoritative `RESEARCH.md` (scope, attributes, sources, assessment, candidates) so you and the user can collaborate on it before the structural JSON files are generated.
 
-Once RESEARCH.md is in a shape the user is happy with, they run `/scaffold-type <type>` to derive `attributes.json`, register the type in the top-level `data/index.json`, and scaffold stubs for the Initial Candidates into `data/<type>/index.json`. Candidate attribute values are researched later via `/gather-data`. `/scaffold-type` also handles adding further candidate stubs to an already-scaffolded type.
+Once RESEARCH.md is in a shape the user is happy with, they run `/scaffold-type <type>` to derive `attributes.json`, register the type in the top-level `data/index.json`, and scaffold stubs for the Candidates into `data/<type>/index.json`. Candidate attribute values are researched later via `/gather-data`. `/scaffold-type` also handles adding further candidate stubs to an already-scaffolded type.
 
 ## Argument Parsing
 
@@ -42,7 +42,7 @@ Cover these dimensions:
    - for ranked types: direction (ascending = higher is better, descending = lower is better, neutral = no ranking)
    - for tag types: expected tag set
    - a one-line research note: how to find this value
-4. **Initial candidates** — Propose a seed list of items to research. Order roughly by salience (undisputed leaders first, niche/emerging last) but do not split into tiers.
+4. **Candidates** — Propose a seed list of items to research. Order roughly by salience (undisputed leaders first, niche/emerging last) but do not split into tiers.
 
 ### Attribute Type Cheatsheet (for RESEARCH.md tables)
 
@@ -83,7 +83,7 @@ Include ALL seven required sections:
 3. **Attribute Groups** — one `### <N>. Group Name` per group, each followed by a markdown table with columns `Attribute | Type | Research Notes`. Type column uses human labels from the cheatsheet above.
 4. **Research Sources** — two subsections: `### Primary Sources (Preferred)` and `### Secondary Sources`. Numbered lists, each entry naming the source and what it's useful for.
 5. **Assessment Guidelines** — bullet list, one per ambiguous attribute or threshold (`**Attribute Name**: specific criteria`). Explicitly state when `null` is preferable to a guessed value.
-6. **Initial Candidates** — a single flat list (no tier subheadings). Each candidate as `- [ ] <Name> — <reason for inclusion>`. Checkboxes get ticked later when data is gathered.
+6. **Candidates** — a single flat list (no tier subheadings). Each candidate as `- [ ] <Name> — <reason for inclusion>`. Checkboxes get ticked later when data is gathered.
 7. **Notes for Researchers** — numbered list of general principles: verify sources, cite with URLs, use `null` with comment when uncertain, note version/date of time-sensitive facts.
 
 Match the tone and depth of existing `data/*/RESEARCH.md` files in the project.

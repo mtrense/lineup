@@ -190,7 +190,7 @@ Users should be able to:
 - Metric requires testing that cannot be done via research
 - Conflicting information from multiple sources
 
-## Initial Candidates
+## Candidates
 
 - [x] **sled** - Popular pure-Rust embedded database, modern API
 - [x] **redb** - Pure Rust, LMDB-inspired, simple and fast

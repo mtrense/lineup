@@ -1,6 +1,6 @@
 ---
 name: scaffold-type
-description: "Scaffold a Lineup comparison type from its RESEARCH.md and/or add candidate stubs to an existing one. First run after /new-type derives data/<type>/attributes.json, registers the type in data/index.json, and scaffolds the Initial Candidates from RESEARCH.md into data/<type>/index.json + per-candidate stub files. Later runs (with or without explicit candidate ids) add more candidate stubs to an existing type. Use between /new-type and /gather-data. Arguments: comparison type id (required), zero or more candidate ids."
+description: "Scaffold a Lineup comparison type from its RESEARCH.md and/or add candidate stubs to an existing one. First run after /new-type derives data/<type>/attributes.json, registers the type in data/index.json, and scaffolds the Candidates from RESEARCH.md into data/<type>/index.json + per-candidate stub files. Later runs (with or without explicit candidate ids) add more candidate stubs to an existing type. Use between /new-type and /gather-data. Arguments: comparison type id (required), zero or more candidate ids."
 disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit, Bash(date:*)
@@ -14,7 +14,7 @@ You are scaffolding the machine-readable files for a Lineup comparison type base
 The skill has two operational concerns, both driven off RESEARCH.md, both invoked through the same command:
 
 1. **Schema scaffolding** — on first run, translate RESEARCH.md into `data/<type>/attributes.json`, create `data/<type>/index.json`, and register the type in the top-level `data/index.json`.
-2. **Candidate scaffolding** — create `data/<type>/<candidate>.json` stubs (empty `values`) for candidates and append them to `data/<type>/index.json`. Runs on first invocation (using RESEARCH.md's Initial Candidates list) AND on later invocations (adding newly-listed or explicitly-named candidates).
+2. **Candidate scaffolding** — create `data/<type>/<candidate>.json` stubs (empty `values`) for candidates and append them to `data/<type>/index.json`. Runs on first invocation (using RESEARCH.md's Candidates list) AND on later invocations (adding newly-listed or explicitly-named candidates).
 
 The skill chooses which concerns to run based on repository state — do NOT require the user to pick a mode.
 
@@ -25,7 +25,7 @@ This skill is **non-interactive and bulk-oriented**: it translates RESEARCH.md i
 `$ARGUMENTS` format (positional, whitespace-delimited):
 
 1. **comparison type id** — kebab-case; must match an existing `data/<type>/` directory created by `/new-type`.
-2. **candidate ids** (zero or more) — kebab-case file stems; each becomes `<candidate>.json`. When omitted, auto-pick every unscaffolded entry from `RESEARCH.md`'s Initial Candidates list (see **Candidate Auto-Pick** below).
+2. **candidate ids** (zero or more) — kebab-case file stems; each becomes `<candidate>.json`. When omitted, auto-pick every unscaffolded entry from `RESEARCH.md`'s Candidates list (see **Candidate Auto-Pick** below).
 
 If the comparison type id is missing, not kebab-case, or the directory doesn't exist, abort and ask. This is the one unavoidable prompt — no defensible default exists for it.
 
@@ -37,7 +37,7 @@ If the comparison type id is missing, not kebab-case, or the directory doesn't e
 4. Read `data/<type>/RESEARCH.md` end-to-end. Focus on:
    - **Overview** — source of the `description` field for `attributes.json` and the top-level `data/index.json` entry.
    - **Attribute Groups** tables — each `### <N>. Group Name` becomes a `groups[]` entry, each row becomes one attribute.
-   - **Initial Candidates** — source of the candidate pick list and per-candidate display name + description.
+   - **Candidates** — source of the candidate pick list and per-candidate display name + description.
    - **Scope / Assessment Guidelines** — may inform tag sets or attribute descriptions.
 5. Check whether `data/<type>/attributes.json` exists:
    - **Missing** → first-run mode: schema + candidates will both be scaffolded this pass.
@@ -88,11 +88,11 @@ Always runs. Build the candidate batch from the arguments plus RESEARCH.md.
 
 ### Candidate Auto-Pick (when no candidate ids are given)
 
-Scan `RESEARCH.md`'s **Initial Candidates** section for **every** `- [ ] <Name> — …` entry whose derived candidate id is NOT already scaffolded (no `data/<type>/<id>.json`, no entry in `data/<type>/index.json`). Preserve the listed order. The result is the full bulk batch.
+Scan `RESEARCH.md`'s **Candidates** section for **every** `- [ ] <Name> — …` entry whose derived candidate id is NOT already scaffolded (no `data/<type>/<id>.json`, no entry in `data/<type>/index.json`). Preserve the listed order. The result is the full bulk batch.
 
 - **Deriving the candidate id**: kebab-case of the display name — lowercase, ASCII, spaces and punctuation → hyphens, collapse runs, trim leading/trailing hyphens. `PostgreSQL` → `postgresql`; `Amazon RDS` → `amazon-rds`; `MySQL / MariaDB` → keep the first segment (`mysql`) and flag the truncation in the summary so the user can rename the file if they meant the combined entry.
-- **First-run mode**: since `data/<type>/index.json` doesn't exist yet, every Initial Candidates entry is a pick. If the list is empty, report that schema was scaffolded without candidates and suggest running `/scaffold-type <type>` again after adding entries to RESEARCH.md.
-- **Additive mode, nothing to pick**: if every Initial Candidates entry is already scaffolded (or the list is empty), report the state and stop after Phase 1 is confirmed no-op. Suggest the user either add new entries to RESEARCH.md or pass explicit candidate ids.
+- **First-run mode**: since `data/<type>/index.json` doesn't exist yet, every Candidates entry is a pick. If the list is empty, report that schema was scaffolded without candidates and suggest running `/scaffold-type <type>` again after adding entries to RESEARCH.md.
+- **Additive mode, nothing to pick**: if every Candidates entry is already scaffolded (or the list is empty), report the state and stop after Phase 1 is confirmed no-op. Suggest the user either add new entries to RESEARCH.md or pass explicit candidate ids.
 
 Proceed straight to Phase 3 with the full pick list — do not ask the user to confirm. Each id becomes a filename, easy to rename before commit; surfacing picks in the summary gives the user the same control without an extra round-trip.
 
@@ -184,7 +184,7 @@ Create the scaffold:
 
 Do NOT reorder existing entries. When appending multiple, keep them in the order produced by auto-pick (RESEARCH.md order) or the order of explicit arguments.
 
-If no candidates are in the batch (first-run mode, empty Initial Candidates list), still create `data/<type>/index.json` with `{ "candidates": [] }` so the type is well-formed.
+If no candidates are in the batch (first-run mode, empty Candidates list), still create `data/<type>/index.json` with `{ "candidates": [] }` so the type is well-formed.
 
 ### Top-level `data/index.json` (first-run mode only)
 
@@ -204,8 +204,8 @@ Append a single entry at the end of the array, preserving all existing entries a
 
 Per candidate in the batch:
 
-- **If the candidate is already listed** under **Initial Candidates**: leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/gather-data` when data is actually gathered, not here.
-- **If the candidate is NOT listed** (explicit mode only — auto-pick always picks from the list): append a new entry to the end of the **Initial Candidates** list using the format:
+- **If the candidate is already listed** under **Candidates**: leave the line untouched. The checkbox stays `- [ ]` — it gets ticked by `/gather-data` when data is actually gathered, not here.
+- **If the candidate is NOT listed** (explicit mode only — auto-pick always picks from the list): append a new entry to the end of the **Candidates** list using the format:
 
   ```
   - [ ] <Display Name> — <one-sentence description> (added <YYYY-MM-DD>)
@@ -223,7 +223,7 @@ Present a single summary covering both the schema (if newly scaffolded) and ever
   - Confirmation that `data/index.json` was updated with a new top-level entry.
 - **Created** (one line per candidate): the scaffold file path, plus the resolved `name` and `description` inline (so the user sees the chosen casing without opening the file).
 - **`data/<type>/index.json`**: count of new entries (and whether the file was created or appended).
-- **RESEARCH.md**: count of Initial Candidates already listed (untouched) vs. count of entries appended with `(added <date>)` suffix. Omit when no edits happened.
+- **RESEARCH.md**: count of Candidates already listed (untouched) vs. count of entries appended with `(added <date>)` suffix. Omit when no edits happened.
 - **Skipped** (only if any): each id with the reason (already scaffolded → suggest `/gather-data`).
 - **Defaults to review** — group across the batch; only include the section when defaults actually applied. Examples:
   - Direction defaulted because the research note was ambiguous (list each `<group-id>.<attribute-id>` and the chosen direction).
@@ -272,7 +272,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 ## Rules
 
 - Do NOT ask the user clarifying questions. Resolve every field from arguments + RESEARCH.md + the defaults above; surface anything the user might want to change in the Phase 4 summary. The only exceptions are the hard precondition failures listed below.
-- Do NOT modify `RESEARCH.md`'s Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections — Initial Candidates is the only section this skill edits, and only to append new `- [ ]` lines for explicit ids. Never tick an existing checkbox (`- [ ]` → `- [x]`); that's `/gather-data`'s job.
+- Do NOT modify `RESEARCH.md`'s Scope, Attribute Groups, Research Sources, Assessment Guidelines, or Notes sections — Candidates is the only section this skill edits, and only to append new `- [ ]` lines for explicit ids. Never tick an existing checkbox (`- [ ]` → `- [x]`); that's `/gather-data`'s job.
 - Do NOT invent attributes, groups, or tag values not present in RESEARCH.md.
 - Do NOT populate any `values` inside candidate files — that's `/gather-data`.
 - Do NOT write `lastVerified` on candidate files. A scaffolded candidate has not been researched; the missing field is what makes the "Last Verified" row render `—` honestly.

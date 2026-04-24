@@ -244,7 +244,7 @@ Users should be able to:
 - Cannot verify from documentation or testing
 - Not applicable (e.g., Mobile Framework for framework without official mobile solution)
 
-## Initial Candidates
+## Candidates
 
 Includes JavaScript/TypeScript frameworks alongside frameworks using WebAssembly or compiled from non-JS languages (Rust, Go, C#/.NET, and other compiled languages).
 

@@ -203,7 +203,7 @@ Do NOT modify:
 - **Overview**
 - **Scope**
 - **Research Sources**
-- **Initial Candidates**
+- **Candidates**
 - **Notes for Researchers**
 - any existing attribute rows
 
@@ -262,7 +262,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT touch candidate files (`data/<type>/<candidate>.json`). Missing values render as `—` honestly; `/gather-data` fills them later.
 - Do NOT touch `data/<type>/index.json` (it's a candidate list, not an attribute list).
 - Do NOT touch the top-level `data/index.json`.
-- Do NOT modify `RESEARCH.md`'s Overview, Scope, Research Sources, Initial Candidates, or Notes for Researchers sections. Only the Attribute Groups tables (append rows or append a new group section) and Assessment Guidelines (append bullets, or create the subsection if absent) are in scope.
+- Do NOT modify `RESEARCH.md`'s Overview, Scope, Research Sources, Candidates, or Notes for Researchers sections. Only the Attribute Groups tables (append rows or append a new group section) and Assessment Guidelines (append bullets, or create the subsection if absent) are in scope.
 - Do NOT invent tag values the user didn't specify. If the tag set is missing, either ask once (Phase 2) or seed `tags: []` and flag it.
 - Do NOT overwrite `attributes.json` or `RESEARCH.md` wholesale — use `Edit` with narrowly-scoped `old_string` to append surgically so existing formatting is preserved bit-for-bit.
 - Do NOT ask the user more than one consolidated round of clarifying questions. Everything else resolves to defaults + Phase 4 summary.

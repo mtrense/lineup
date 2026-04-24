@@ -180,7 +180,7 @@ Users should be able to:
   - "australia" - Australia, New Zealand
   - Note: Some brands have region-specific models (e.g., Parkside is Europe-only, Ridgid is primarily North America)
 
-## Initial Candidates
+## Candidates
 
 ### Impact Drivers (Priority Category)
 

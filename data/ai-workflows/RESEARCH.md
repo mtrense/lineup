@@ -157,7 +157,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - **Active Maintenance**: A commit within 90 days of the research date. If the last release is old but commits are recent, still mark `true`.
 - **When to use `null`**: The attribute cannot be reliably determined from public information; the attribute is not meaningfully applicable to this candidate's model (e.g., GitHub stars for a closed-source commercial product); multiple sources conflict irreconcilably.
 
-## Initial Candidates
+## Candidates
 
 - [x] **SpecKit** - GitHub's spec-driven development toolkit, high-profile reference point in the space
 - [x] **BMAD-METHOD** - "Breakthrough Method for Agile AI-Driven Development", established multi-agent agile framework with a large following

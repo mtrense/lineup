@@ -182,7 +182,7 @@ This comparison evaluates platforms for hosting static websites and JAMstack app
 - The attribute is not applicable to the platform's model
 - Conflicting information from multiple sources cannot be resolved
 
-## Initial Candidates
+## Candidates
 
 - [x] **Netlify** - Pioneer of JAMstack hosting, feature-rich platform with generous free tier
 - [x] **Vercel** - Next.js creator's platform, strong edge/serverless capabilities

@@ -96,7 +96,7 @@ This document provides guidelines for researching and assessing database systems
 - **GitHub Stars**: Use `null` for closed-source databases
 - **Latest Version**: Use semantic version if available, otherwise use the official version string
 
-## Initial Candidates
+## Candidates
 
 - [x] PostgreSQL - Most popular open-source RDBMS
 - [x] MySQL - Widely deployed RDBMS

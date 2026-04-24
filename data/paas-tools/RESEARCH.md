@@ -206,7 +206,7 @@ Users should be able to:
 - For self-hosted, note hosting infrastructure requirements
 - Be specific about what triggers paid tier (apps, resources, team size)
 
-## Initial Candidates
+## Candidates
 
 **Managed Platforms**
 - [ ] **Heroku** - Pioneer of PaaS, git-push deployment model

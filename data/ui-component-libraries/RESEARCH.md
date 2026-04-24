@@ -275,7 +275,7 @@ Users should be able to:
 - Cannot verify from documentation or testing
 - Not applicable to the library type (RSC for Vue library)
 
-## Initial Candidates
+## Candidates
 
 **React**
 - [x] **MUI (Material-UI)** - Most popular React component library

@@ -188,7 +188,7 @@ Users should be able to:
 - Note if pricing is transparent or "contact sales"
 - For self-hosted, note if there's a paid "Pro" version with extra features
 
-## Initial Candidates
+## Candidates
 
 **Traditional / Hybrid (Self-hosted)**
 - [x] **WordPress** - Dominant CMS, powers ~40% of the web

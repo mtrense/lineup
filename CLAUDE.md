@@ -278,7 +278,7 @@ Each comparison type should have a `RESEARCH.md` file that serves as the authori
    - Define thresholds and criteria for subjective ratings
    - Specify when to use `null` vs a value
 
-6. **Initial Candidates**
+6. **Candidates**
    - List of candidates to research
    - Use checkboxes to track completion: `- [x] Done` / `- [ ] Pending`
 
@@ -320,7 +320,7 @@ Each comparison type should have a `RESEARCH.md` file that serves as the authori
 ## Assessment Guidelines
 - **[Attribute]**: Specific criteria for this attribute...
 
-## Initial Candidates
+## Candidates
 
 - [ ] Candidate A - reason for inclusion
 - [ ] Candidate B - reason for inclusion

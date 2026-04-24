@@ -207,7 +207,7 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
   - **kinesis**: AWS Kinesis integration
   - **custom**: Proprietary streaming protocol (e.g., DynamoDB Streams)
 
-## Initial Candidates
+## Candidates
 
 - [x] CockroachDB - Leading open-source NewSQL, strong consistency
 - [x] TiDB - MySQL-compatible distributed SQL from PingCAP

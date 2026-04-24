@@ -144,7 +144,7 @@ Users should be able to:
 - Cannot verify from documentation or testing
 - Closed-source with no public documentation on the feature
 
-## Initial Candidates
+## Candidates
 
 - [x] **ProseMirror** - Foundation for many modern editors
 - [x] **Tiptap** - Popular ProseMirror wrapper with excellent DX

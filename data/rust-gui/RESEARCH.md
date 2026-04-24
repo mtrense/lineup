@@ -226,7 +226,7 @@ Users should be able to:
 - Features behind unstable/experimental feature flags that may be removed
 - Conflicting information between sources (prefer null + a comment explaining the conflict)
 
-## Initial Candidates
+## Candidates
 
 - [x] **iced** — Elm-inspired, pure-Rust, wgpu renderer, active and popular
 - [x] **egui** — Immediate-mode, pure-Rust, easy to embed, widely used for tooling UIs
