@@ -1,5 +1,428 @@
 {
   "name": "imgui-rs",
   "description": "Dear ImGui bindings, immediate-mode, popular for game tooling",
-  "values": {}
+  "icon": "",
+  "url": "https://github.com/imgui-rs/imgui-rs",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs",
+        "https://lib.rs/crates/imgui"
+      ],
+      "comment": "Dual-licensed MIT OR Apache-2.0 (user choice)."
+    },
+    "repository": {
+      "value": "https://github.com/imgui-rs/imgui-rs",
+      "source": ["https://crates.io/crates/imgui"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/imgui",
+      "source": ["https://crates.io/crates/imgui"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/imgui",
+      "source": ["https://docs.rs/imgui/latest/imgui/"]
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://lib.rs/crates/imgui"],
+      "comment": "First crates.io publish v0.0.5 on 2015-11-30; repository created 2015-08-16."
+    },
+    "latest-stable-version": {
+      "value": "0.12.0",
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/releases",
+        "https://crates.io/crates/imgui"
+      ],
+      "comment": "Released 2024-05-05. No newer release yet as of 2026-04-24, though the repo is still receiving commits."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/commits/main"
+      ],
+      "comment": "Commits continue through 2026-01; ~15+ commits in last 6 months. Release cadence has slowed (no new crate release since 2024-05), but maintenance is ongoing."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs",
+        "https://lib.rs/crates/imgui"
+      ],
+      "comment": "Decade of releases, pre-1.0 versioning (0.12.0) but API is stable in practice."
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "Volunteer maintainers; no formal corporate sponsor. Upstream Dear ImGui has commercial sponsors but they don't fund imgui-rs directly."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs",
+        "https://docs.rs/imgui/latest/imgui/"
+      ],
+      "comment": "Wraps the C++ Dear ImGui library via imgui-sys (bindgen)."
+    },
+    "rendering-mode": {
+      "value": ["immediate"],
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://github.com/imgui-rs/imgui-rs"
+      ],
+      "comment": "Dear ImGui is the archetypal immediate-mode GUI: UI is rebuilt each frame from state."
+    },
+    "reactivity-model": {
+      "value": ["retained-tree"],
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/ocornut/imgui"
+      ],
+      "comment": "Per RESEARCH.md guideline: immediate-mode libraries use the retained-tree reactivity label for their direct state-mutation pattern (the user owns state and calls widget functions each frame)."
+    },
+    "binding-target": {
+      "value": ["imgui"],
+      "source": ["https://github.com/imgui-rs/imgui-rs"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://docs.rs/imgui/latest/imgui/"
+      ],
+      "comment": "Dear ImGui contexts are single-threaded; UI must be driven from one thread (typically the main rendering thread). The Rust API reflects this via non-Send Ui lifetimes."
+    },
+    "renderer": {
+      "value": ["opengl", "vulkan", "directx", "metal", "wgpu"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs",
+        "https://github.com/ocornut/imgui"
+      ],
+      "comment": "imgui-rs is renderer-agnostic. Official: imgui-glow-renderer (OpenGL). Community: imgui-wgpu (wgpu), imgui-d3d12/d3d11 (DirectX), imgui-vulkan, metal via custom backends. No native-toolkit or software renderer — ImGui always needs a GPU surface."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "All supported renderers are GPU-backed (OpenGL/Vulkan/DirectX/Metal/wgpu)."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/ocornut/imgui"
+      ],
+      "comment": "DisplayFramebufferScale / io.DisplaySize handle HiDPI; the app is responsible for wiring it via the platform backend (winit handles it automatically)."
+    },
+    "vector-rendering": {
+      "value": false,
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "Dear ImGui renders via raster triangles with bitmap fonts. Shapes are tessellated to triangles; there is no resolution-independent vector primitive API."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://polymonster.co.uk/blog/imgui-backend"
+      ],
+      "comment": "Because the renderer is user-owned, applications can inject custom render passes and shaders around the ImGui draw data."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "Custom textures (images rendered by the user's renderer) can be displayed inside ImGui windows; full 3D viewports are commonly embedded this way (game editors)."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "Requires MSVC ABI Rust toolchain on Windows."
+    },
+    "macos": {
+      "value": true,
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://github.com/imgui-rs/imgui-rs"
+      ]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://github.com/imgui-rs/imgui-rs"
+      ],
+      "comment": "Works via winit/SDL2/GLFW platform backends."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": [
+        "https://github.com/ocornut/imgui/issues/8587",
+        "https://github.com/ocornut/imgui/discussions/5279"
+      ],
+      "comment": "Basic Wayland works via winit/GLFW (not XWayland). Multi-viewport (detached windows) is NOT supported on Wayland due to missing absolute-positioning protocols."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "No official iOS backend in imgui-rs. Dear ImGui itself has iOS examples, but the Rust bindings do not ship official iOS platform/renderer support."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "No official Android backend in imgui-rs. The upstream C++ library has an Android example, but the Rust bindings require custom platform glue and are not routinely tested on Android."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/blob/main/imgui/Cargo.toml"
+      ],
+      "comment": "imgui crate has a `wasm` feature flag (imgui-sys wasm build); usable via emscripten/wasm32 targets with a compatible renderer. Not the primary deployment target."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "Depends on std via parking_lot and imgui-sys; no advertised no_std support."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "UI is constructed by calling builder functions on a Ui handle each frame (e.g., ui.button(), ui.window(...).build())."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": [
+        "https://github.com/ocornut/imgui/issues/7379"
+      ],
+      "comment": "No Rust-level hot reload. Dear ImGui's immediate-mode nature pairs with C++ Edit&Continue in supported IDEs, but Rust users recompile to see changes."
+    },
+    "layout-system": {
+      "value": ["auto", "manual"],
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/ocornut/imgui"
+      ],
+      "comment": "Layout is driven by widget call order (auto-flow via ui.same_line(), groups, columns) with explicit cursor positioning available. No flexbox/grid/constraint engine."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "Global Style struct (push_style_color/push_style_var) plus per-call inline props. No CSS-like stylesheet."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "StyleColor/StyleVar can be swapped at runtime; built-in dark/light/classic themes. Trivially reconfigurable mid-frame."
+    },
+    "accessibility": {
+      "value": ["none"],
+      "source": [
+        "https://github.com/ocornut/imgui/issues/8022",
+        "https://github.com/ocornut/imgui/issues/4122",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Dear ImGui and imgui-rs have no screen-reader support and no AccessKit integration. Upstream issues tracking a11y remain open. The 2025 Rust GUI survey explicitly notes 'no screen reader accessibility support'."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "No built-in i18n/RTL/localization. CJK and other scripts require custom font atlases; complex-script shaping (Arabic/Devanagari) is not supported by the default font renderer."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/imgui-rs/imgui-examples"
+      ],
+      "comment": "Extensive built-in widgets: buttons, sliders, inputs, color pickers, combos, tabs, trees, tables (beta), menus, plots (simple line/histogram), drag-drop, tooltips, popups. No rich-text/markdown or native dialogs."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "Tables API (tables-api feature) provides sortable/resizable columns. Clipper enables virtualization for large lists. Exposed in imgui-rs 0.12.0 with feature flag."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "Plain text only by default. Limited colored-text helpers. No markdown widget in imgui-rs core (third-party imgui_markdown exists for C++ but not exposed in Rust bindings)."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "TreeNode / CollapsingHeader widgets are standard."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "ImGui draws its own menu bar (BeginMainMenuBar) inside the GPU surface — not platform-native. No OS menu-bar integration."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "No built-in file dialogs. Users pair with rfd or draw an in-app file picker. imgui_file_browser exists as a third-party C++ addon but is not bundled in imgui-rs."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/4bb4/implot-rs"
+      ],
+      "comment": "Only trivial plot_lines/plot_histogram helpers in core. Rich plotting (ImPlot) is a separate project; implot-rs exists but is third-party and in WIP state."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/imgui-rs/imgui-examples"
+      ],
+      "comment": "Custom widgets are straightforward: compose primitives or use the DrawList API for freeform drawing. Minimal boilerplate, but you work in Rust bindings around a C++ API, which leaks some rough edges."
+    },
+    "async-runtime-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "Immediate-mode frame loop is inherently synchronous. Apps can run a tokio/async-std runtime on a side thread and marshal results to the UI thread, but the framework itself is sync-only."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "No tray support. Users pair with tray-icon or similar external crates."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "No OS notification API. Users pair with notify-rust or similar."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "ClipboardBackend trait lets users wire up clipboard read/write; winit/SDL2 backends typically handle it automatically."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://docs.rs/imgui/latest/imgui/"],
+      "comment": "In-app drag-drop API (BeginDragDropSource/Target) is built in. OS-level drag-drop (files into the window) depends on the chosen platform backend (winit exposes file-drop events)."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "No webview integration."
+    },
+    "multi-window": {
+      "value": true,
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/releases",
+        "https://polymonster.co.uk/blog/imgui-backend"
+      ],
+      "comment": "Multi-window (multi-viewport) support lands via the docking feature flag in imgui-rs 0.12.0; the renderer backend must support it. Wayland not supported for detached viewports."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not directly measured. Release builds are typically in the small-to-moderate range (bundles C++ Dear ImGui statically), but concrete 'hello world' numbers weren't benchmarked in this pass."
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "Dear ImGui startup is essentially negligible; most cold-start cost comes from the windowing/renderer backend (winit+GPU device init)."
+    },
+    "memory-footprint": {
+      "value": ["low"],
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "Dear ImGui itself is very compact (~few MB RSS for a hello-world). Actual footprint depends on the renderer backend (GPU driver, winit)."
+    },
+    "idle-redraw": {
+      "value": ["continuous"],
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Pure immediate-mode: the UI is rebuilt every frame, typically at vsync. Some applications gate redraws manually (wait for input events) but this requires extra work from the app."
+    },
+    "dependency-count": {
+      "value": ["minimal"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/blob/main/imgui/Cargo.toml",
+        "https://lib.rs/crates/imgui"
+      ],
+      "comment": "imgui crate has 5 direct deps (bitflags, cfg-if, imgui-sys, mint, parking_lot) — transitive count is minimal. Real apps pull in winit + a renderer which adds substantially."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://github.com/imgui-rs/imgui-examples",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Adequate API docs (~79% coverage) and ~21 official examples, but no guide/book. The 2025 Rust GUI survey notes examples use deprecated components and getting-started is 'annoying'. Users often cross-reference C++ Dear ImGui docs."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": [
+        "https://docs.rs/imgui/latest/imgui/",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Builder-pattern API with RAII tokens for windows/scopes is reasonably Rust-y, but manual backend assembly (winit + renderer + platform) is boilerplate-heavy. Some rough edges from wrapping a C++ context."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/imgui-rs/imgui-examples"],
+      "comment": "21 examples in imgui-examples repository."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No official online playground. Upstream Dear ImGui has a WASM demo, but imgui-rs does not host one."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/imgui-rs/imgui-rs"],
+      "comment": "No framework-specific LSP/formatter/inspector. Standard rust-analyzer applies."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://github.com/ocornut/imgui"],
+      "comment": "Dear ImGui ships a Metrics/Debugger window (ShowMetricsWindow) and a StackTool — exposed in imgui-rs via ui.show_metrics_window() etc. Serves as a runtime inspector."
+    },
+    "github-stars": {
+      "value": 2995,
+      "source": ["https://api.github.com/repos/imgui-rs/imgui-rs"],
+      "comment": "Snapshot 2026-04-24 via GitHub API."
+    },
+    "crates-io-downloads": {
+      "value": 890834,
+      "source": ["https://crates.io/api/v1/crates/imgui"],
+      "comment": "All-time downloads of the imgui crate as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2024-05-05",
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs/releases",
+        "https://crates.io/crates/imgui"
+      ],
+      "comment": "v0.12.0. The repo continues to receive commits but no new release has been published in ~23 months."
+    },
+    "notable-production-users": {
+      "value": "Primarily used as embedded tooling UI in Rust game projects and debug overlays; less commonly the sole UI of a shipping app. Upstream Dear ImGui powers Tracy profiler, ImHex, RemedyBG (C++ — not via imgui-rs).",
+      "source": [
+        "https://github.com/ocornut/imgui",
+        "https://arewegameyet.rs/ecosystem/ui/"
+      ],
+      "comment": "No widely-known Rust shipping product uses imgui-rs as its primary UI. Its niche in the Rust ecosystem is engine/editor tooling and debug panels."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": [
+        "https://github.com/imgui-rs/imgui-rs",
+        "https://github.com/imgui-rs/imgui-rs/commits/main"
+      ],
+      "comment": "No dedicated Discord/Matrix. A handful of active contributors (sanbox-irl + occasional community PRs). Upstream Dear ImGui community is large but doesn't map 1:1 to the Rust bindings."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": [
+        "https://github.com/4bb4/implot-rs",
+        "https://crates.io/crates/imgui"
+      ],
+      "comment": "Third-party bits exist (implot-rs, imgui-wgpu, imgui-d3d12-renderer, imgui-glfw-rs) but are scattered and unevenly maintained. A parallel effort (dear-imgui-rs) offers a broader extension set but is a different crate tree."
+    }
+  }
 }

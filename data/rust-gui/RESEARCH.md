@@ -243,7 +243,7 @@ Users should be able to:
 - [x] **Relm4** — Elm-style framework layered on top of gtk4-rs
 - [x] **cxx-qt** — Modern Qt bindings using CXX, KDAB-maintained
 - [x] **fltk-rs** — FLTK bindings, tiny binaries, cross-platform
-- [ ] **imgui-rs** — Dear ImGui bindings, immediate-mode, popular for game tooling
+- [x] **imgui-rs** — Dear ImGui bindings, immediate-mode, popular for game tooling
 - [ ] **cacao** — Rust bindings to Apple's AppKit (macOS-only, native Cocoa)
 - [ ] **Tauri** — Webview-wrapper app shell; UI authored in HTML/JS, Rust provides IPC and system integration
 
