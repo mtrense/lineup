@@ -1,5 +1,332 @@
 {
   "name": "gtk4-rs",
   "description": "Official GTK 4 bindings for Rust",
-  "values": {}
+  "url": "https://gtk-rs.org",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs", "https://lib.rs/crates/gtk4"]
+    },
+    "repository": {
+      "value": "https://github.com/gtk-rs/gtk4-rs",
+      "source": ["https://github.com/gtk-rs/gtk4-rs"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/gtk4",
+      "source": ["https://lib.rs/crates/gtk4"]
+    },
+    "documentation": {
+      "value": "https://gtk-rs.org/gtk4-rs/stable/latest/book/",
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/"]
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://lib.rs/crates/gtk4"],
+      "comment": "First crates.io publish was on 2019-07-25."
+    },
+    "latest-stable-version": {
+      "value": "0.11.2",
+      "source": ["https://lib.rs/crates/gtk4", "https://crates.io/api/v1/crates/gtk4"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs", "https://lib.rs/crates/gtk4"],
+      "comment": "Regular releases (0.11.0 Feb 2026, 0.11.1 Mar 2026, 0.11.2 Apr 2026); last push 2026-04-19."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://lib.rs/crates/gtk4", "https://github.com/gtk-rs/gtk4-rs"],
+      "comment": "Crate is still 0.x (0.11.2) so not technically post-1.0, but the bindings are widely used in production (many GNOME-ecosystem apps) and API changes are measured and documented across minor releases."
+    },
+    "corporate-backing": {
+      "value": "Community (gtk-rs organization; several maintainers affiliated with GNOME/Igalia/Centricular)",
+      "source": ["https://github.com/gtk-rs", "https://lib.rs/crates/gtk4"],
+      "comment": "No single corporate sponsor; maintained by the gtk-rs organization with contributions from GNOME ecosystem developers."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs"],
+      "comment": "Safe Rust bindings over the C GTK 4 library via gtk4-sys and gobject-introspection-generated code."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "GTK maintains a persistent widget tree; widgets are updated on state change rather than rebuilt per frame."
+    },
+    "reactivity-model": {
+      "value": ["callbacks", "retained-tree"],
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/"],
+      "comment": "Traditional signal/callback-based event handling with direct mutation of the retained widget tree; no framework-level signals or elm-style message passing."
+    },
+    "binding-target": {
+      "value": ["gtk"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/main_event_loop.html"],
+      "comment": "GTK is not thread-safe; no gtk4 type implements Send or Sync. Work on other threads must communicate via channels or glib's main context."
+    },
+    "renderer": {
+      "value": ["opengl", "vulkan", "software"],
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/", "https://docs.gtk.org/gtk4/running.html"],
+      "comment": "GSK provides NGL (OpenGL), Vulkan, and Cairo (software) backends. NGL is the default since 4.14; Vulkan is selectable via GSK_RENDERER. Broadway renderer streams to a browser but is a separate backend."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/"],
+      "comment": "Default GSK renderer is GPU-accelerated (NGL/OpenGL); Vulkan available as an opt-in."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"]
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "GTK draws via GSK scene nodes and Cairo; resolution-independent 2D primitives available. SVG icon rendering uses a built-in parser with librsvg fallback (since 4.20)."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/"],
+      "comment": "GskGLShader was deprecated and no cross-renderer custom-shader API exists. Custom GPU rendering is done by embedding a GtkGLArea viewport rather than injecting shaders into GSK."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/gtk-rs/gtk4-rs/tree/main/examples"],
+      "comment": "GtkGLArea embeds a custom OpenGL viewport; gtk4-rs ships glium_gl_area and femtovg_area examples demonstrating embedded custom rendering."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/GTK", "https://www.gtk.org/"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/GTK", "https://www.gtk.org/"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/wayland.html", "https://www.phoronix.com/news/GTK-4.20-Released"],
+      "comment": "Native Wayland support via gdk4-wayland; GTK 4.20 improved Wayland protocol coverage (wl_seat v10, tablet v2)."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://discourse.gnome.org/t/gtk-4-and-android/2808"],
+      "comment": "No official iOS backend exists."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://discourse.gnome.org/t/what-versions-of-android-does-the-gtk4-demo-support/28598", "https://github.com/gtk-rs/gtk4-rs/issues/1997"],
+      "comment": "GTK 4.18 introduced an experimental Android backend, but it is not production-ready and gtk4-rs build-system support for Android has open issues."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://docs.gtk.org/gtk4/running.html"],
+      "comment": "The Broadway GDK backend streams a GTK app to a browser via a server process, but GTK itself does not compile to WebAssembly."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/gtk-rs/gtk4-rs"],
+      "comment": "Requires libc, glib, and the GTK C library; not usable on no_std targets."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust", "xml"],
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/composite_templates.html", "https://github.com/gtk-rs/gtk4-rs/tree/main/examples/composite_template"],
+      "comment": "Imperative builder-style Rust API is primary; GtkBuilder .ui XML (incl. composite templates via the gtk4-macros crate) is supported for declarative UI markup."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/"],
+      "comment": "No built-in hot reload; code and template changes require recompile. The GTK Inspector allows live CSS/property tweaks but is not a development hot-reload pipeline."
+    },
+    "layout-system": {
+      "value": ["auto", "constraints", "grid"],
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Layout managers include GtkBoxLayout (auto), GtkGridLayout (grid), GtkConstraintLayout (constraints), GtkFixedLayout (manual coords), plus custom layout managers."
+    },
+    "styling-approach": {
+      "value": ["css-like"],
+      "source": ["https://docs.gtk.org/gtk4/css-overview.html"],
+      "comment": "GTK has its own CSS-like stylesheet language with selectors, pseudo-classes, and a subset of CSS properties."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Runtime theme/dark-mode switching via GtkSettings and the gtk-application-prefer-dark-theme property; libadwaita-based apps follow the system color scheme automatically."
+    },
+    "accessibility": {
+      "value": ["native", "accesskit"],
+      "source": ["https://blog.gtk.org/2025/05/12/an-accessibility-update/", "https://docs.gtk.org/gtk4/section-accessibility.html"],
+      "comment": "at-spi backend on Linux (native) is default; AccessKit backend merged in GTK 4.18 enables accessibility on Windows and macOS for the first time."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/i18n.html", "https://docs.gtk.org/glib/i18n.html"],
+      "comment": "gettext-based i18n; Pango handles complex scripts, RTL, and bidirectional text rendering."
+    },
+    "widget-breadth": {
+      "value": 5,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Rich stdlib including ColumnView (tables), TreeListModel/TreeExpander (trees), TextView (rich text), GtkFileDialog, popovers, dialogs, assistants, and hundreds of widget classes covering typical desktop-app needs."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.ColumnView.html"],
+      "comment": "GtkColumnView is the modern virtualized tabular widget; GtkTreeView (now deprecated) remains available."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.TextView.html"],
+      "comment": "GtkTextView with GtkTextBuffer/GtkTextTag supports full rich-text rendering; no first-party markdown widget, but third-party crates (e.g., marker-parser) integrate with TextView."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.TreeExpander.html"],
+      "comment": "Hierarchical lists via GtkTreeListModel + GtkTreeExpander + GtkListView; legacy GtkTreeView also available."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.PopoverMenu.html"],
+      "comment": "GtkPopoverMenu and GMenu provide menu bars and context menus; on macOS, the menu bar is bridged to the native app menu where applicable."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.FileDialog.html"],
+      "comment": "GtkFileDialog (since 4.10) is the modern file picker; uses native portal dialogs under Flatpak/Wayland."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "No first-party charting widget; third-party crates (e.g., plotters with a GTK4 backend) are commonly used."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/g_object_subclassing.html"],
+      "comment": "Well-documented GObject subclassing pattern via the glib::wrapper! and glib::Object machinery, but authoring a custom widget still requires understanding GObject semantics (ObjectSubclass, properties, signals) and writing moderate boilerplate."
+    },
+    "async-runtime-compatible": {
+      "value": ["native-async", "tokio", "async-std", "smol"],
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/main_event_loop.html", "https://users.rust-lang.org/t/using-gtk-rs-and-tokio/100539"],
+      "comment": "GLib's main context is a native futures executor (spawn_future_local). smol/async-std integrate directly. Tokio requires running a separate tokio runtime on another thread and communicating via async channels."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://docs.gtk.org/gtk3/class.StatusIcon.html"],
+      "comment": "GtkStatusIcon is deprecated (since GTK 3.14) and not available in GTK 4. Tray-icon support requires third-party crates like ksni or libappindicator bindings."
+    },
+    "notifications": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gio/class.Notification.html"],
+      "comment": "GNotification via GApplication; desktop-integrated (freedesktop, macOS, Windows) when the app is properly registered."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.Clipboard.html", "https://github.com/gtk-rs/gtk4-rs/tree/main/examples/clipboard"],
+      "comment": "GdkClipboard provides built-in clipboard read/write with a ContentProvider abstraction."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/drag-and-drop.html"],
+      "comment": "GTK 4 has a rewritten DnD API using GtkDragSource, GtkDropTarget, and ContentProvider."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/gtk-rs/gtk4-rs"],
+      "comment": "Not built in, but the separate webkit6-rs (WebKitGTK) crate provides an embeddable WebView widget for GTK 4."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.Application.html"],
+      "comment": "GtkApplication manages multiple top-level GtkWindow instances."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass. On Linux with GTK installed system-wide, a release binary is typically small-to-moderate because gtk/glib are linked dynamically; bundling the GTK runtime on Windows or macOS pushes distributions into the large category."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Retained-mode: GTK only redraws regions invalidated by state/property changes or explicit queue_draw calls."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": ["https://lib.rs/crates/gtk4"],
+      "comment": "Approximate: pulling gtk4 transitively brings in gtk4-sys, gdk4, gsk4, glib, gio, cairo-rs, pango, graphene-rs, gdk-pixbuf, and their -sys crates plus system-deps — on the order of 50-100 crates; not measured precisely this pass."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/", "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/", "https://github.com/gtk-rs/gtk4-rs/tree/main/examples"],
+      "comment": "Dedicated book (GUI development with Rust and GTK 4), full docs.rs API reference, migration notes, and 47 runnable examples."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/"],
+      "comment": "Builder patterns, type-safe signals, and auto-generated bindings help, but GObject semantics (RefCounted clone, glib::Object wrappers, subclassing macros, callback lifetimes) leak into user code and push ergonomics below pure-Rust alternatives."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs/tree/main/examples"],
+      "comment": "47 example directories in the repository."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground; examples must be cloned and built locally."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/"],
+      "comment": "No framework-specific LSP or inspector plugin. Standard rust-analyzer covers the Rust code; GtkBuilder .ui files are XML and get generic XML editor support."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/running.html", "https://developer.gnome.org/documentation/tools/inspector.html"],
+      "comment": "GTK Inspector (Ctrl+Shift+I / Ctrl+Shift+D or GTK_DEBUG=interactive) provides a live widget tree, property editor, CSS tweaking, and more — equivalent to browser devtools."
+    },
+    "github-stars": {
+      "value": 2283,
+      "source": ["https://api.github.com/repos/gtk-rs/gtk4-rs"],
+      "comment": "Snapshot 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 2790590,
+      "source": ["https://crates.io/api/v1/crates/gtk4"],
+      "comment": "All-time downloads of the gtk4 crate as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2026-04-05",
+      "source": ["https://crates.io/api/v1/crates/gtk4", "https://lib.rs/crates/gtk4"],
+      "comment": "Version 0.11.2."
+    },
+    "notable-production-users": {
+      "value": "Many GNOME-ecosystem apps — Solanum (pomodoro timer), Shortwave (internet radio), GNOME Authenticator (2FA), Health, Video Trimmer, Fractal (Matrix client), and the basis for Relm4-powered apps.",
+      "source": ["https://www.gtk.org/docs/language-bindings/rust", "https://github.com/topics/gtk4-rs"]
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/gtk-rs/gtk4-rs", "https://matrix.to/#/#rust:gnome.org"],
+      "comment": "Active gnome-rust Matrix channel, regular contributions from the gtk-rs organization and wider GNOME community; 200+ contributors historically across the gtk-rs project."
+    },
+    "ecosystem-crates": {
+      "value": ["rich"],
+      "source": ["https://gtk-rs.org/", "https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/"],
+      "comment": "libadwaita-rs, webkit6-rs, gstreamer-rs, sourceview5-rs, vte4, and the full GNOME platform have first-class Rust bindings under the gtk-rs umbrella; Relm4 provides an Elm-inspired framework layer on top."
+    }
+  }
 }

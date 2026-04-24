@@ -239,7 +239,7 @@ Users should be able to:
 - [x] **Freya** — Skia-backed renderer for Dioxus components
 - [x] **GPUI** — Zed editor's in-house GPU-accelerated framework, opened up for external use
 - [x] **Vizia** — Declarative, audio-plugin-friendly
-- [ ] **gtk4-rs** — Official GTK 4 bindings for Rust
+- [x] **gtk4-rs** — Official GTK 4 bindings for Rust
 - [ ] **Relm4** — Elm-style framework layered on top of gtk4-rs
 - [ ] **cxx-qt** — Modern Qt bindings using CXX, KDAB-maintained
 - [ ] **fltk-rs** — FLTK bindings, tiny binaries, cross-platform
