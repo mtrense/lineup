@@ -1,5 +1,329 @@
 {
   "name": "egui",
   "description": "Immediate-mode, pure-Rust, easy to embed, widely used for tooling UIs",
-  "values": {}
+  "url": "https://www.egui.rs/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://github.com/emilk/egui", "https://lib.rs/crates/egui"],
+      "comment": "Dual-licensed MIT OR Apache-2.0."
+    },
+    "repository": {
+      "value": "https://github.com/emilk/egui",
+      "source": ["https://crates.io/crates/egui"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/egui",
+      "source": ["https://crates.io/crates/egui"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/egui/",
+      "source": ["https://docs.rs/egui/latest/egui/"]
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://lib.rs/crates/egui"],
+      "comment": "First crates.io publish was version 0.1.2 on 2020-06-10."
+    },
+    "latest-stable-version": {
+      "value": "0.34.1",
+      "source": ["https://crates.io/crates/egui", "https://github.com/emilk/egui/releases"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/emilk/egui/releases"],
+      "comment": "0.34.0 on 2026-03-26 and 0.34.1 on 2026-03-27; thousands of commits on main."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Pre-1.0 (0.x series) with breaking changes each minor release; README states 'in active development... lacks many features and the interfaces are still in flux.' Widely used in production but not API-stable."
+    },
+    "corporate-backing": {
+      "value": "Rerun (rerun.io) — sponsors primary development by Emil Ernerfeldt",
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No unsafe in egui itself; all core crates (egui, epaint, emath) are pure Rust. Renderer integrations may bring C deps via wgpu/glow."
+    },
+    "rendering-mode": {
+      "value": ["immediate"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "README: 'Pure immediate mode: no callbacks' — UI rebuilt from state each frame."
+    },
+    "reactivity-model": {
+      "value": ["retained-tree"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Per RESEARCH.md guidance: egui is fundamentally immediate, but classified as retained-tree because state mutation happens via direct Ui method calls (no Message enum, no signals, no VDOM)."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "UI must run on the main thread (via eframe/winit). egui::Context uses an internal RwLock so widget code can read Context data from other threads, but rendering/event-loop is main-thread-only."
+    },
+    "renderer": {
+      "value": ["wgpu", "opengl"],
+      "source": ["https://github.com/emilk/egui", "https://crates.io/crates/egui-wgpu"],
+      "comment": "Official integration crates: egui-wgpu (wgpu — default in eframe) and egui_glow (OpenGL/WebGL). egui itself is backend-agnostic, outputting triangle meshes, so third-party backends (e.g., Skia, software) exist."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Default rendering is GPU-accelerated via wgpu (or OpenGL via glow)."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Automatic scaling via pixels_per_point; handled by egui-winit/eframe integration."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/egui_extras/"],
+      "comment": "epaint provides vector primitives (shapes, paths, stroked/filled geometry). SVG image loading via egui_extras."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "wgpu and glow backends expose paint callbacks for injecting custom render passes; see examples/custom_3d_glow."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "Paint callbacks allow embedding wgpu/OpenGL viewports; examples/custom_3d_glow demonstrates this."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Wayland supported via winit; app-id setting and native Wayland surfaces work. Some edge cases (popups) historically rough."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui/issues/3117", "https://github.com/emilk/egui/discussions/5434"],
+      "comment": "No official iOS target in eframe. Community builds exist via cargo-mobile but are not maintained by the egui project; users seek up-to-date guides as of late 2024."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "Official hello_android example; eframe README lists Android as a supported native target."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui", "https://www.egui.rs/"],
+      "comment": "First-class web target via eframe WASM builds; live demo at egui.rs."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://crates.io/crates/egui"],
+      "comment": "egui depends on std (ahash, unicode-segmentation, etc.); no no_std support."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Builder pattern with closure-based scoping (ui.horizontal(|ui| { ... })); no macro DSL or external markup."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No dedicated hot-reload story. Users rely on generic Rust hot-reload tooling like dioxus-hot-reload or dexterous_developer if they want it."
+    },
+    "layout-system": {
+      "value": ["auto"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Widget-driven flow layout via horizontal/vertical/columns; no flexbox or grid constraint solver. Manual positioning also available."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Global theming via Context::set_style/set_visuals (Rust theme struct); per-widget overrides passed inline."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Built-in dark/light themes, switchable at runtime via Context::set_visuals."
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Optional AccessKit integration; native API support on Windows and macOS. Experimental built-in screen reader on web."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No built-in i18n: non-Latin scripts require user-supplied fonts via Context::set_fonts; no built-in RTL layout, bidi, or localization framework."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://github.com/emilk/egui", "https://docs.rs/egui_extras/"],
+      "comment": "Core covers buttons, sliders, checkboxes, radio, text edit (multi-line, copy/paste, undo), color picker, windows, tooltips, collapsing headers, scroll areas, images. egui_extras adds Table and DatePickerButton. egui_plot (official) adds charts. Per RESEARCH guideline, this places egui at 3–4; assigning 4 for rich stdlib across first-party crates."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://docs.rs/egui_extras/"],
+      "comment": "Virtualized Table widget via egui_extras (first-party, same repo)."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui", "https://crates.io/crates/egui_commonmark"],
+      "comment": "RichText struct supports per-span fonts/colors/sizes in core. Markdown via egui_commonmark (third-party but widely used)."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No dedicated tree widget in core or egui_extras; CollapsingHeader can be nested manually to simulate one."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "egui draws its own menu bar and context menus inside the canvas; no integration with platform-native menu bars (e.g., macOS top menu)."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "Not built into egui core; eframe README recommends rfd and egui ships an examples/file_dialog sample using it."
+    },
+    "charts-plotting": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui_plot", "https://crates.io/crates/egui_plot"],
+      "comment": "egui_plot (first-party, extracted from the main repo in 2024) provides line, bar, and box plots. Maintainer is seeking help as of 2026."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://docs.rs/egui/latest/egui/trait.Widget.html"],
+      "comment": "Widget trait is minimal (a single method returning Response). Immediate-mode means no lifecycle boilerplate; Response API gives input handling for free. Well-documented pattern."
+    },
+    "async-runtime-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "egui itself is sync and does not bundle or mandate any async runtime. Apps can freely drive any runtime alongside it (examples/external_eventloop_async demonstrates this); tagged sync-only because there is no first-class async integration in the framework."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Not built into egui or eframe; users integrate third-party crates like tray-icon."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No built-in OS notification support in egui or eframe."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.rs/egui/latest/egui/struct.Context.html"],
+      "comment": "Context::copy_text/copy_image for writes; clipboard reads flow in via raw input events handled by eframe/egui-winit."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://docs.rs/egui/latest/egui/struct.Context.html"],
+      "comment": "File drag-and-drop delivered via raw input hovered_files/dropped_files; internal widget drag-and-drop API (dnd_drag_source/dnd_drop_zone) added in recent releases."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No embedded webview component; egui is a standalone renderer."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "Multi-viewport API (examples/multiple_viewports, examples/serial_windows) added in 0.24 enables true OS-level child/parent windows on native."
+    },
+    "binary-size": {
+      "value": null,
+      "comment": "Not independently measured in this research pass; known to vary significantly by backend (glow generally smaller than wgpu). Users typically report 5–15 MB stripped for minimal eframe apps on wgpu."
+    },
+    "startup-time": {
+      "value": null,
+      "comment": "Not independently measured in this research pass. wgpu initialization is the usual bottleneck; glow backend starts faster."
+    },
+    "memory-footprint": {
+      "value": null,
+      "comment": "Not independently measured in this research pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "README: 'only repaints during interaction or animation, not during idle periods.' Despite being immediate-mode, egui does not run a continuous render loop."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": ["https://docs.rs/crate/egui/latest"],
+      "comment": "egui crate itself has ~13 direct deps. A typical eframe + wgpu app transitively pulls in ~150–200 crates, placing the overall footprint in the moderate band (closer to heavy with wgpu)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/egui/", "https://www.egui.rs/"],
+      "comment": "Good API docs on docs.rs with inline examples; live web demo serves as the practical tutorial. No dedicated book/guide. README is terse. 23 examples in the repo compensate."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Idiomatic builders, closure-scoped layouts, and a trivial Widget trait. Minor friction around persisting state across frames (via Ui memory or user structs) — an inherent cost of immediate-mode."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/emilk/egui/tree/master/examples"],
+      "comment": "23 official examples covering custom fonts, custom rendering, multi-viewport, screenshots, keyboard input, file dialogs, Android, etc."
+    },
+    "interactive-playground": {
+      "value": "https://www.egui.rs/",
+      "source": ["https://www.egui.rs/"],
+      "comment": "Full egui demo app compiled to WASM and hosted on the official site; exercises most core widgets live."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "No egui-specific editor tooling because there is no DSL — rust-analyzer handles everything generically."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://docs.rs/egui/latest/egui/struct.Context.html"],
+      "comment": "Built-in debug overlays: Context::set_debug_on_hover reveals widget rects/IDs on hover; Settings/Inspection/Memory windows accessible from the demo app."
+    },
+    "github-stars": {
+      "value": 28800,
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "Approx 28.8k stars as checked 2026-04-24; number stales quickly."
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "comment": "Not captured in this pass; crates.io page did not render via WebFetch. lib.rs reports >1.2M monthly downloads, implying all-time totals in the tens of millions."
+    },
+    "last-release": {
+      "value": "2026-03-27",
+      "source": ["https://github.com/emilk/egui/releases"],
+      "comment": "0.34.1 patch release on 2026-03-27 (0.34.0 the day prior)."
+    },
+    "notable-production-users": {
+      "value": "Rerun (multimodal data visualization SDK); widely used for dev tools, game tooling, and debug UIs in Rust game engines (Bevy via bevy_egui)",
+      "source": ["https://github.com/emilk/egui"]
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "28.8k GitHub stars, active Discord, hundreds of contributors, frequent community crates in the ecosystem."
+    },
+    "ecosystem-crates": {
+      "value": ["rich"],
+      "source": ["https://github.com/emilk/egui"],
+      "comment": "First-party: egui_extras (Table, DatePicker, image loaders), egui_plot, egui-wgpu, egui_glow, egui-winit. Third-party: egui_commonmark (markdown), egui-phosphor (icons), egui_graphs, bevy_egui, egui-material3, and a community-maintained 3rd-party crates wiki."
+    }
+  }
 }
