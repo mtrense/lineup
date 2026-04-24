@@ -1,7 +1,6 @@
 ---
 name: add-candidate
 description: "Add a single new candidate to an existing Lineup comparison type, with a scope-fit check against the comparison's RESEARCH.md before anything is written. Creates the `data/<type>/<candidate>.json` stub, appends the entry to `data/<type>/index.json`, and appends a new `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Candidates list. Use when the user has a specific candidate in mind (often with URL / description / reasoning provided inline) and wants it vetted against scope before it lands. For bulk scaffolding of candidates already listed in RESEARCH.md, use `/scaffold-type` instead. Arguments: comparison type id (required), candidate name (required), optional free-text context (URL, description, reasoning)."
-disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), WebFetch, WebSearch
 argument-hint: "<comparison-type> <candidate-name> [url / description / reasoning]"

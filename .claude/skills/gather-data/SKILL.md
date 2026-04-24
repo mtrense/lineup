@@ -1,9 +1,8 @@
 ---
 name: gather-data
-description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
-disable-model-invocation: true
+description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute, then commits the updated candidate file. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
 model: opus
-allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *)
+allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git diff:*)
 argument-hint: "<comparison-type> [candidate] [attribute-id-or-group]"
 ---
 
@@ -111,31 +110,36 @@ Write the full updated `data/<type>/<candidate>.json`:
 
 If the candidate appears in `RESEARCH.md`'s **Candidates** section with an unchecked box (`- [ ] <Name>` or `- [ ] <candidate-id>`), switch it to `- [x]` now that real data exists. Match on the display name OR the candidate id; do not touch unrelated lines.
 
-## Phase 4: Summary
+## Phase 4: Commit
 
-Present to the user:
+This skill is designed to run unattended (including inside `/research-batch`), so it commits its own work. Do NOT stop early to wait for human review — the commit *is* the handoff.
+
+1. Fetch the timestamp: `date +"%Y-%m-%d %H:%M"` via Bash.
+2. Stage the files:
+   ```bash
+   git add data/<type>/<candidate>.json data/<type>/RESEARCH.md
+   ```
+   Include `data/<type>/index.json` in the `git add` only if you modified it (rare — only happens when the candidate's `shownByDefault` flag needs flipping).
+3. Commit using the project's multi-`-m` format (per CLAUDE.md) and Lineup's candidate commit convention:
+   ```bash
+   git commit -m "data(<type>): CANDIDATE <initial|refresh> <YYYY-MM-DD HH:MM>" \
+     -m "<summary of findings and notable comments>" \
+     -m "🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
+     -m "Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
+   ```
+4. Run `git status` to confirm the commit landed and the tree is clean.
+
+**When NOT to commit.** If the research pass failed catastrophically (e.g. no attributes could be populated due to tool errors, or a Primary Source contradiction forced you to stop per the Rules below), do NOT commit — report what went wrong and leave the file staged or unstaged as appropriate so the user can intervene. A pass that legitimately landed many `null` values (with honest `comment`s) is NOT a failure and SHOULD commit.
+
+## Phase 5: Summary
+
+After the commit succeeds, present to the user:
 
 - Mode used (`initial` / `refresh`).
 - `lastVerified: <date>` — confirm the date stamp that was written.
 - Count of attributes populated vs. set to `null` (with a short rationale for each `null`).
 - Any `comment`s worth the user's attention (contested values, tag gaps, time-sensitive notes).
-- The exact commit command, using the project's multi-`-m` format (per CLAUDE.md) and Lineup's candidate commit convention:
-
-```bash
-git add data/<type>/<candidate>.json data/<type>/RESEARCH.md
-git commit -m "data(<type>): CANDIDATE <initial|refresh> <YYYY-MM-DD HH:MM>" \
-  -m "<summary of findings and notable comments>" \
-  -m "🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
-  -m "Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
-```
-
-Use `date +"%Y-%m-%d %H:%M"` via Bash to fetch the current timestamp at summary time, then substitute it into the command you print.
-
-If you also modified `data/<type>/index.json` (rare — only happens when the candidate's `shownByDefault` flag needs flipping as part of the research outcome), include it in `git add`.
-
-## Git
-
-Do NOT commit. The user will review and run the commit command.
+- The commit SHA and subject line for the commit that just landed.
 
 ## Rules
 
@@ -146,5 +150,6 @@ Do NOT commit. The user will review and run the commit command.
 - Do NOT edit `attributes.json` in the middle of a research pass. If a tag set or attribute definition is clearly wrong, flag it to the user and stop; the user can fix it and restart.
 - Respect RESEARCH.md's Assessment Guidelines literally. When a guideline says "mark `true` only if X", do not round up.
 - When refreshing, never silently drop a previously-recorded value. If you can't verify it, keep it and add a `comment` noting the verification failure, or replace with the new value and note the change.
-- Stop and ask if a Primary Source contradicts itself or another Primary Source — surface it to the user instead of picking a side arbitrarily.
+- Stop and ask if a Primary Source contradicts itself or another Primary Source — surface it to the user instead of picking a side arbitrarily. In that case, skip the commit in Phase 4.
 - Always set `lastVerified` to today's date (day precision, `YYYY-MM-DD`) when writing the candidate file — in both `initial` and `refresh` modes. Never copy the old timestamp forward unchanged; the point of the stamp is to record that *this* pass verified the data.
+- Commit only the research files: `data/<type>/<candidate>.json`, `data/<type>/RESEARCH.md`, and (if modified) `data/<type>/index.json`. Never use `git add -A` or `git add .` — unrelated dirty state in the working tree must not be swept into the research commit.

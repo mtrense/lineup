@@ -1,7 +1,6 @@
 ---
 name: discover-candidates
 description: "Search the web for additional candidates that fit an existing Lineup comparison type, present them for the user to pick from, then scaffold the chosen ones (RESEARCH.md Candidates append, data/<type>/index.json append, per-candidate stub files). Use when the comparison type is already scaffolded and you want to expand its candidate roster with items you haven't identified yourself. Complements `/add-candidate` (user brings one name), `/scaffold-type` (bulk-scaffolds names already in RESEARCH.md), and `/new-type` (drafts the research guide). Arguments: comparison type id (required), optional free-text hint narrowing the search (e.g. a niche, region, or characteristic)."
-disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), WebSearch, WebFetch
 argument-hint: "<comparison-type> [search hint]"

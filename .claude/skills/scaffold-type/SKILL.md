@@ -1,7 +1,6 @@
 ---
 name: scaffold-type
 description: "Scaffold a Lineup comparison type from its RESEARCH.md and/or add candidate stubs to an existing one. First run after /new-type derives data/<type>/attributes.json, registers the type in data/index.json, and scaffolds the Candidates from RESEARCH.md into data/<type>/index.json + per-candidate stub files. Later runs (with or without explicit candidate ids) add more candidate stubs to an existing type. Use between /new-type and /gather-data. Arguments: comparison type id (required), zero or more candidate ids."
-disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write, Edit, Bash(date:*)
 argument-hint: "<comparison-type-id> [candidate-id ...]"

@@ -1,7 +1,6 @@
 ---
 name: new-type
 description: "Draft data/<type>/RESEARCH.md for a new Lineup comparison type through Socratic scoping. Writes only the research guide so the user can iterate on scope, attributes, and sources before schema files are generated. Use when adding a new side-by-side comparison (databases, hosting providers, etc.) to a Lineup project. Arguments: comparison type id (kebab-case, required), optional free-text seed."
-disable-model-invocation: true
 model: opus
 allowed-tools: Read, Glob, Write
 argument-hint: "<comparison-type-id> [free-text seed]"
