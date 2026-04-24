@@ -237,7 +237,7 @@ Users should be able to:
 - [x] **Makepad** — Live-coding IDE and in-house framework, unique DSL and rendering
 - [x] **Ribir** — Declarative, reactive, pure-Rust
 - [x] **Freya** — Skia-backed renderer for Dioxus components
-- [ ] **GPUI** — Zed editor's in-house GPU-accelerated framework, opened up for external use
+- [x] **GPUI** — Zed editor's in-house GPU-accelerated framework, opened up for external use
 - [ ] **Vizia** — Declarative, audio-plugin-friendly
 - [ ] **gtk4-rs** — Official GTK 4 bindings for Rust
 - [ ] **Relm4** — Elm-style framework layered on top of gtk4-rs

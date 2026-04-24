@@ -1,5 +1,402 @@
 {
   "name": "GPUI",
   "description": "Zed editor's in-house GPU-accelerated framework, opened up for external use",
-  "values": {}
+  "url": "https://www.gpui.rs",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["apache-2-0"],
+      "source": [
+        "https://crates.io/crates/gpui",
+        "https://lib.rs/crates/gpui"
+      ],
+      "comment": "Published on crates.io as Apache-2.0. The Zed repo hosts multiple LICENSE files (AGPL for Zed itself, Apache and GPL alongside) because individual crates carry their own licenses; the gpui crate is Apache-2.0."
+    },
+    "repository": {
+      "value": "https://github.com/zed-industries/zed/tree/main/crates/gpui",
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/gpui",
+      "source": ["https://crates.io/crates/gpui"]
+    },
+    "documentation": {
+      "value": "https://www.gpui.rs",
+      "source": ["https://www.gpui.rs/"],
+      "comment": "Official guide site; API docs also on docs.rs/gpui. README notes documentation is still under development."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://lib.rs/crates/gpui"],
+      "comment": "First crates.io release (v0.1.0) was 2022-06-23."
+    },
+    "latest-stable-version": {
+      "value": "0.2.2",
+      "source": [
+        "https://lib.rs/crates/gpui",
+        "https://docs.rs/crate/gpui/latest/features"
+      ],
+      "comment": "Pre-1.0; README states breaking changes are expected between versions."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://lib.rs/crates/gpui"
+      ],
+      "comment": "Developed alongside Zed; regular releases (0.2.0/0.2.1/0.2.2 all in October 2025)."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Explicitly pre-1.0 per the README: \"still in active development as we work on the Zed code editor, and is still pre-1.0. There will often be breaking changes between versions.\" Production-proven via Zed, but unstable API."
+    },
+    "corporate-backing": {
+      "value": "Zed Industries",
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "No runtime dependency on a C/C++ toolkit; renders via wgpu (Linux/Windows) or Metal via objc2 bindings (macOS). Platform glue is considered pure-Rust in this comparison."
+    },
+    "rendering-mode": {
+      "value": ["hybrid"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "README: \"a hybrid immediate and retained mode, GPU accelerated, UI framework for Rust.\" Views rebuild element trees each frame from state while an entity graph retains scoped state."
+    },
+    "reactivity-model": {
+      "value": ["react-like", "callbacks"],
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://zed.dev/blog/gpui-ownership"
+      ],
+      "comment": "Views implement a Render trait returning element trees (react-like rebuild-and-diff). Interactivity is callback-driven (on_click, on_mouse_down, etc.). State ownership is via entities/models in a central AppContext rather than fine-grained signals."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "UI runs on the platform main thread; GPUI provides a BackgroundExecutor for off-thread async work that can dispatch back to the UI."
+    },
+    "renderer": {
+      "value": ["wgpu", "metal", "vulkan", "directx"],
+      "source": [
+        "https://github.com/zed-industries/zed/pull/46758",
+        "https://news.ycombinator.com/item?id=47002825"
+      ],
+      "comment": "macOS renders with Metal directly. Linux and Windows use wgpu, which in turn targets Vulkan (Linux) and DirectX 12 (Windows). Shader code is WGSL and portable across all three."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"]
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "GPUI performs pixel-aligned rounding for HiDPI and subpixel glyph positioning; Zed ships on Retina displays."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": [
+        "https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"
+      ],
+      "comment": "Paths, gradients and SVG are supported; examples directory includes painting.rs, gradient.rs, paths_bench.rs and an svg/ example."
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "No public custom-shader/render-pass API documented. GPUI's WGSL pipelines (quads, shadows, sprites, paths) are internal. Could not confirm a stable hook for app-supplied shaders."
+    },
+    "embedded-custom-rendering": {
+      "value": null,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "No documented API for embedding an external wgpu/OpenGL viewport inside the UI. Apps can add custom Element types that paint via the built-in Scene primitives, but surfacing a user-owned render pass isn't advertised."
+    },
+    "windows": {
+      "value": true,
+      "source": [
+        "https://www.theregister.com/2025/09/30/zed_windows_beta_sneaks_out/",
+        "https://news.ycombinator.com/item?id=47002825"
+      ],
+      "comment": "Windows support shipped as a public beta of Zed in late 2025 (Windows 10 1809+ required, Vulkan-capable GPU). Renders via wgpu→DirectX 12. Still newer than macOS/Linux; some Windows-specific integrations have rough edges."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Primary development target. Renders via Metal. Requires Xcode."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": [
+        "https://zed.dev/docs/linux",
+        "https://docs.rs/crate/gpui/latest/features"
+      ],
+      "comment": "x11 is a default Cargo feature of the gpui crate."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": [
+        "https://zed.dev/docs/linux",
+        "https://docs.rs/crate/gpui/latest/features"
+      ],
+      "comment": "wayland is a default Cargo feature; Zed picks between X11 and Wayland at runtime via guess_compositor."
+    },
+    "ios": {
+      "value": false,
+      "source": [
+        "https://github.com/itsbalamurali/gpui-mobile",
+        "https://github.com/zed-industries/zed/discussions/8203"
+      ],
+      "comment": "No official iOS support. A community fork (gpui-mobile) implements the Platform trait for iOS via wgpu/Metal, but this isn't maintained by Zed Industries."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/itsbalamurali/gpui-mobile"],
+      "comment": "Same as iOS: only unofficial community fork via wgpu/Vulkan."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/discussions/8203"],
+      "comment": "A wasm32-unknown-unknown platform stub has been prototyped (see PR #50228 and discussion #8203) but is not usable for real apps; not officially supported."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Not designed for no_std or microcontrollers; depends on std, wgpu, cosmic-text, and platform windowing."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://zed.dev/blog/gpui-ownership"
+      ],
+      "comment": "Views are written as Rust code that builds element trees via chained builder methods (div().flex().bg(...).child(...)). No DSL, RSX, or XML in the core framework; community crates like gpux add JSX-style macros on top."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/discussions/44327"],
+      "comment": "No first-class hot reload. A demo project shows reloading layout/styles from JSON files at runtime, but general UI changes still require a recompile."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid"],
+      "source": [
+        "https://deepwiki.com/zed-industries/zed/2.2-ui-framework-(gpui)",
+        "https://docs.rs/gpui/latest/gpui/"
+      ],
+      "comment": "Layout is delegated to Taffy, which supports both CSS Flexbox and CSS Grid."
+    },
+    "styling-approach": {
+      "value": ["inline-props", "theme-api"],
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://deepwiki.com/zed-industries/zed/2.2-ui-framework-(gpui)"
+      ],
+      "comment": "README describes a \"tailwind-style API\": styles are applied by chaining methods inline on elements (e.g., .bg_red_500().p_2()). Themes are expressed as Rust structs consumed through a Theme API."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/awesome-gpui"],
+      "comment": "Zed itself supports runtime theme switching between light/dark and user-defined themes, built on GPUI's theme API. Community crates like gpui-component expose multi-theme support."
+    },
+    "accessibility": {
+      "value": ["none"],
+      "source": ["https://github.com/zed-industries/zed/discussions/6576"],
+      "comment": "No AccessKit integration and no native a11y bridge. Zed's own discussion (active through October 2025) acknowledges \"zero practical accessibility with screen readers\" outside of system-provided dialogs, and a11y is described as a long-term initiative beyond 1.0."
+    },
+    "internationalization": {
+      "value": false,
+      "source": [
+        "https://github.com/zed-industries/zed/discussions/46963",
+        "https://github.com/zed-industries/zed/discussions/43592"
+      ],
+      "comment": "No built-in i18n/RTL support. Proposals and RFCs for localization in Zed are open but not implemented; community crates (e.g., yororen-ui) layer JSON translation loading on top."
+    },
+    "widget-breadth": {
+      "value": 2,
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://github.com/longbridge/gpui-component"
+      ],
+      "comment": "Core GPUI ships primitives (div, text, list, uniform_list, tree, popover) but not buttons, inputs, dropdowns, dialogs, or form widgets — those come from third-party component libraries (gpui-component, adabraka-ui, yororen-ui)."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": [
+        "https://github.com/zed-industries/zed/tree/main/crates/gpui/examples",
+        "https://deepwiki.com/zed-industries/zed/2.2-ui-framework-(gpui)"
+      ],
+      "comment": "UniformList provides O(1) virtualized layout for fixed-height rows and List provides O(log N) for variable-height rows via SumTree indexing; examples include data_table.rs. A polished table widget is not part of core."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"],
+      "comment": "Core GPUI renders plain text runs with styling; there's no markdown widget in the public crate. Zed's markdown rendering lives in separate internal crates."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"],
+      "comment": "Examples directory includes tree.rs demonstrating a hierarchical tree widget."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"],
+      "comment": "set_menus.rs example shows platform-native menu bar integration."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Platform trait exposes native open/save file dialogs; Zed uses them for workspace picking."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/awesome-gpui"],
+      "comment": "No first-party charting widget. Third-party plotters-gpui provides a plotters backend."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://deepwiki.com/zed-industries/zed/2.2-ui-framework-(gpui)"
+      ],
+      "comment": "The Element trait is well-documented and views compose freely, but custom low-level elements need some understanding of the three-phase (layout/prepaint/paint) pipeline. Not trivial, not arcane."
+    },
+    "async-runtime-compatible": {
+      "value": ["native-async"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "GPUI ships its own BackgroundExecutor/ForegroundExecutor integrated with the platform event loop. External runtimes like tokio aren't natively integrated; users typically use GPUI's executor."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://crates.io/crates/adabraka-gpui"],
+      "comment": "Not provided by core. A third-party fork (adabraka-gpui) adds tray and global-hotkey support."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://crates.io/crates/adabraka-gpui"],
+      "comment": "No built-in OS notification API in core GPUI; same adabraka fork adds native notifications."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Platform trait exposes clipboard read/write; x11-clipboard is pulled in as part of the default x11 feature set."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"],
+      "comment": "Supports both in-window drag-and-drop and OS-level file drops; drag_drop.rs example demonstrates both paths."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "No built-in webview element. Could be added via wry in user code, but not part of the framework."
+    },
+    "multi-window": {
+      "value": true,
+      "source": [
+        "https://github.com/zed-industries/zed/tree/main/crates/gpui/examples",
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"
+      ],
+      "comment": "App::open_window can be called multiple times; window.rs and window_positioning.rs examples demonstrate multi-window usage."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass. No credible published \"hello world\" size measurement for a minimal GPUI app stripped and released; Zed the full editor binary is ~50MB but is not representative."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass. GPUI targets 120fps rendering and sub-millisecond input latency but cold-start figures for a minimal app have not been reliably benchmarked."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"],
+      "comment": "Framework intelligently determines which parts of the view need to be redrawn in response to state changes; does not continuously repaint when idle. 120fps target applies to active rendering, not idle."
+    },
+    "dependency-count": {
+      "value": ["heavy"],
+      "source": ["https://docs.rs/crate/gpui/latest/features"],
+      "comment": "~60 direct dependencies with wgpu, cosmic-text, wayland-*, x11rb and friends pulled in by default; transitive graph comfortably exceeds 200 crates for a default build."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": [
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md",
+        "https://www.gpui.rs/"
+      ],
+      "comment": "README explicitly says \"the best way to learn about these APIs is to read the Zed source code or drop a question in the Zed Discord.\" The gpui.rs site and docs.rs exist but a full book/tutorial set is still under development."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": [
+        "https://zed.dev/blog/gpui-ownership",
+        "https://github.com/zed-industries/zed/blob/main/crates/gpui/README.md"
+      ],
+      "comment": "Idiomatic Rust with builder-style chaining, derive macros for actions, and entity handles that integrate with the borrow checker. Some friction around Context/Entity lifetimes and the three-phase render pipeline when writing custom elements."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/zed-industries/zed/tree/main/crates/gpui/examples"],
+      "comment": "36+ example .rs files plus image/ and svg/ subdirectories in crates/gpui/examples (hello_world, input, tree, data_table, drag_drop, animation, text_layout, uniform_list, etc.)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground; framework is native-desktop only."
+    },
+    "ide-tooling": {
+      "value": ["inspector", "syntax-highlighting"],
+      "source": ["https://docs.rs/crate/gpui/latest/features"],
+      "comment": "`inspector` is a Cargo feature of the gpui crate that enables a runtime widget inspector. No custom LSP (not needed — rust-analyzer covers the Rust-only API). Syntax highlighting comes via standard Rust tooling."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": [
+        "https://docs.rs/crate/gpui/latest/features",
+        "https://docs.rs/gpui/latest/gpui/"
+      ],
+      "comment": "An Inspector type and `inspector` feature flag expose a runtime element-tree inspector for debugging layout and styles."
+    },
+    "github-stars": {
+      "value": 79700,
+      "source": ["https://github.com/zed-industries/zed"],
+      "comment": "Snapshot of Zed repository stars on 2026-04-24 (~79.7k). GPUI does not have its own repo; it lives in crates/gpui inside zed-industries/zed. Star count reflects the broader Zed project."
+    },
+    "crates-io-downloads": {
+      "value": 74409,
+      "source": ["https://crates.io/crates/gpui"],
+      "comment": "All-time downloads per crates.io listing; figure is an October 2025 snapshot and has since grown (lib.rs reported ~18k/month in April 2026). Values below 100k reflect that GPUI was only published standalone in 2022 and that Zed itself uses the source, not the published crate."
+    },
+    "last-release": {
+      "value": "2025-10-22",
+      "source": ["https://lib.rs/crates/gpui"],
+      "comment": "v0.2.2 released 2025-10-22; v0.2.0 and v0.2.1 also published in October 2025."
+    },
+    "notable-production-users": {
+      "value": "Zed editor (Zed Industries); community apps include Loungy (Spotlight-style launcher), DBFlux (multi-DB client), Fulgur (editor), GitComet (Git UI), hummingbird (music player), Fast Forward (macOS window switcher)",
+      "source": ["https://github.com/zed-industries/awesome-gpui"]
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": [
+        "https://github.com/zed-industries/awesome-gpui",
+        "https://github.com/zed-industries/zed/discussions"
+      ],
+      "comment": "No dedicated GPUI chat; the Zed Discord and zed-industries GitHub discussions serve as the primary channels. The awesome-gpui list shows a small-but-growing set of third-party apps and libraries (~20 entries)."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/zed-industries/awesome-gpui"],
+      "comment": "Ecosystem includes gpui-component (60+ widgets), adabraka-ui, yororen-ui, gpui-hooks, gpui-router, gpui-video-player, gpui-storybook, plotters-gpui, gpux (JSX+Tailwind macro layer), GPUI-RSX. Still far from the breadth of iced/egui ecosystems."
+    }
+  }
 }
