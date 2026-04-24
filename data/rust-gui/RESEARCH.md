@@ -231,7 +231,7 @@ Users should be able to:
 - [x] **iced** — Elm-inspired, pure-Rust, wgpu renderer, active and popular
 - [x] **egui** — Immediate-mode, pure-Rust, easy to embed, widely used for tooling UIs
 - [x] **Slint** — Declarative DSL, GPL/commercial dual-license, corporate-backed (SixtyFPS GmbH), cross-platform including embedded
-- [ ] **Dioxus (desktop/mobile)** — React-like / signals, cross-platform, includes mobile targets
+- [x] **Dioxus (desktop/mobile)** — React-like / signals, cross-platform, includes mobile targets
 - [ ] **Xilem** — Raph Levien's successor to Druid, architectural showcase, still early
 - [ ] **Floem** — SolidJS-inspired signals, powers the Lapce editor
 - [ ] **Makepad** — Live-coding IDE and in-house framework, unique DSL and rendering

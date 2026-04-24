@@ -1,5 +1,340 @@
 {
   "name": "Dioxus (desktop/mobile)",
   "description": "React-like / signals, cross-platform, includes mobile targets",
-  "values": {}
+  "url": "https://dioxuslabs.com",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://lib.rs/crates/dioxus"],
+      "comment": "Dual-licensed MIT or Apache-2.0."
+    },
+    "repository": {
+      "value": "https://github.com/DioxusLabs/dioxus",
+      "source": ["https://github.com/DioxusLabs/dioxus"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/dioxus",
+      "source": ["https://crates.io/crates/dioxus"]
+    },
+    "documentation": {
+      "value": "https://dioxuslabs.com/learn/0.7",
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://docs.rs/dioxus/latest/dioxus/"],
+      "comment": "Official learning site (book + API reference); docs.rs mirrors the API docs."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://lib.rs/crates/dioxus"],
+      "comment": "First crates.io publish on January 20, 2021."
+    },
+    "latest-stable-version": {
+      "value": "0.7.6",
+      "source": ["https://lib.rs/crates/dioxus", "https://github.com/DioxusLabs/dioxus/releases"],
+      "comment": "Released April 22, 2026; intended as the final patch of the 0.7 series."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/DioxusLabs/dioxus/releases", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "Six 0.7.x patch releases between November 2025 and April 2026; 7,126 commits on main, full-time core team."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://dioxuslabs.com", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Pre-1.0 (0.7.x) but production-deployed at Airbus, ESA, Cognition, Y Combinator, Futurewei; API still evolves between minor releases."
+    },
+    "corporate-backing": {
+      "value": "Dioxus Labs (Y Combinator-backed full-time core team); supported by FutureWei, Satellite.im, and the GitHub Accelerator program.",
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://www.ycombinator.com/companies/dioxus-labs"]
+    },
+    "implementation": {
+      "value": ["hybrid"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/", "https://lib.rs/crates/dioxus-native"],
+      "comment": "Default desktop/mobile path is a webview-wrapper (wry + tao, WebKit/WebView2/WebKitGTK), but dioxus-native renders pure-Rust via Blitz (Stylo CSS + Taffy layout + Vello/wgpu). App logic is always native Rust — only the DOM/CSS layer is hosted."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://docs.rs/dioxus/latest/dioxus/", "https://dioxuslabs.com/learn/0.7"],
+      "comment": "RSX produces a VirtualDom that is reconciled into a retained DOM tree (either the webview's HTML DOM or Blitz's DOM)."
+    },
+    "reactivity-model": {
+      "value": ["signals", "react-like"],
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://docs.rs/dioxus/latest/dioxus/", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Authoring uses React-style RSX with components and hooks; state is signals-based (use_signal, Store) for fine-grained updates — the 0.7 release notes describe it as combining React, Solid, and Svelte."
+    },
+    "binding-target": {
+      "value": ["webview"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Desktop/mobile default binds to the system webview via wry (WebKit on macOS/iOS, WebView2 on Windows, WebKitGTK on Linux/Android). The dioxus-native renderer bypasses the webview but is still marked experimental for production use."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/dioxus/latest/dioxus/", "https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "VirtualDom runs on a dedicated native thread; UI interaction goes through the main event loop. Async work uses Tokio in user code."
+    },
+    "renderer": {
+      "value": ["webview", "wgpu"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0", "https://github.com/DioxusLabs/blitz"],
+      "comment": "Default: system webview via wry. Alternative: dioxus-native/Blitz GPU pipeline built on Vello (wgpu). Blitz targets broadly usable beta end-of-2025, production 2026."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "System webview compositors are GPU-accelerated; dioxus-native is fully GPU via Vello/wgpu."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Inherited from the webview (CSS px + devicePixelRatio) and handled by wgpu in the native renderer."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "SVG and CSS-based vector primitives are supported natively in both the webview and Blitz paths."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "No first-class shader injection API. Webview path exposes WebGL/WebGPU in JavaScript via a canvas; dioxus-native does not currently expose a public shader hook."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "HTML <canvas> (WebGL/WebGPU) works in the webview renderer; custom rendering in the dioxus-native path is limited to what Blitz exposes."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Desktop via WebView2 (Edge/Chromium)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Desktop via WebKit (system WKWebView)."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Via WebKitGTK; tao/wry support X11 by default."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Supported through WebKitGTK's GTK backend, which runs natively under Wayland. Not explicitly called out per-release in Dioxus docs — inherited from GTK."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://github.com/DioxusLabs/dioxus/releases"],
+      "comment": "dioxus-mobile targets iOS via the system WKWebView; 0.7.4 added iOS build customization and Swift FFI interop."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://github.com/DioxusLabs/dioxus/releases"],
+      "comment": "dioxus-mobile targets Android via Android WebView and JNI bindings; 0.7.4 added Kotlin/Java FFI."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://dioxuslabs.com"],
+      "comment": "dioxus-web compiles to WASM and produces bundles under 50 KB per the 0.7 announcement. Covered in more detail by the `spa-web-frameworks` entry."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Dioxus depends on std, tokio (via fullstack), wry/tao, or Blitz — none of which target no_std."
+    },
+    "authoring-style": {
+      "value": ["rust-macro"],
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://docs.rs/dioxus/latest/dioxus/"],
+      "comment": "All views are declared through the `rsx!{}` macro, an HTML/JSX-like DSL embedded in Rust."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0", "https://dioxuslabs.com"],
+      "comment": "0.7 introduced Subsecond hot-patching — both RSX markup and underlying Rust logic reload without losing app state, across web, desktop, and mobile."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/", "https://github.com/DioxusLabs/blitz"],
+      "comment": "Full CSS layout in the webview path; dioxus-native uses Taffy for flexbox/grid."
+    },
+    "styling-approach": {
+      "value": ["css-like", "inline-props"],
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0", "https://dioxuslabs.com/learn/0.7"],
+      "comment": "Standard HTML/CSS styling plus Tailwind zero-setup in 0.7; 0.7.3 added scoped CSS and CSS modules. Inline style props also supported on elements."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Straightforward via CSS custom properties and media queries (including `prefers-color-scheme`); dioxus-primitives ships light/dark tokens."
+    },
+    "accessibility": {
+      "value": ["accesskit", "native"],
+      "source": ["https://lib.rs/crates/dioxus-native", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Webview path inherits browser a11y (native). dioxus-native has an optional `accessibility` feature that integrates AccessKit. dioxus-primitives components ship with full ARIA attributes and keyboard shortcuts."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://dioxuslabs.com/learn/0.7"],
+      "comment": "No built-in i18n/localization framework; users wire up crates like fluent-rs or rust-i18n. RTL and complex scripts are inherited from the webview/Blitz CSS support."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "dioxus-primitives ships 28 Radix/shadcn-style foundational components (accordion, dialog, tabs, form controls, etc.). Rich text and charts still rely on community crates."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "HTML <table> is trivially available and the shadcn DataTable pattern works, but no first-party virtualized/performant table widget is shipped."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7"],
+      "comment": "HTML inherently supports rich text (bold/italic/links/images). No first-party markdown widget, but markdown→HTML conversion via community crates (pulldown-cmark, comrak) is common."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "dioxus-primitives offers Accordion/Collapsible but no dedicated hierarchical tree/outline widget."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dioxus-desktop"],
+      "comment": "dioxus-desktop bundles the `muda` crate for platform-native menu bars and context menus."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dioxus-desktop"],
+      "comment": "`rfd` (Rust File Dialog) is a direct dependency of dioxus-desktop."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "No first-party charting. Users integrate JS libraries (Chart.js/D3 via the webview) or render SVG with a Rust chart crate."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://docs.rs/dioxus/latest/dioxus/"],
+      "comment": "Components are just Rust functions returning Element via rsx!{}; reusable widgets need minimal boilerplate and integrate with signals/hooks cleanly."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio", "native-async"],
+      "source": ["https://docs.rs/dioxus/latest/dioxus/", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Tokio is first-class (required for dioxus-fullstack on Axum 0.8). `use_future`/`use_coroutine` hooks abstract over the runtime on the UI side."
+    },
+    "system-tray": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dioxus-desktop"],
+      "comment": "`tray-icon` crate is pulled in by dioxus-desktop for tray support."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://lib.rs/crates/dioxus-desktop"],
+      "comment": "No first-party OS notification integration; requires an external crate like notify-rust."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Available through the webview (navigator.clipboard via JS or Rust-side wry APIs)."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases"],
+      "comment": "HTML5 drag-and-drop works in the webview path; 0.7.2 release notes explicitly fixed desktop drag-and-drop bugs."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "The desktop/mobile app itself is a webview — iframes and nested webviews are supported via HTML."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://lib.rs/crates/dioxus-desktop", "https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "`use_window`/`use_wry_event_handler` hooks plus exposed tao Proxy allow multiple top-level windows."
+    },
+    "binary-size": {
+      "value": ["small"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Docs state desktop binaries are 'typically under 5MB' because the system webview is reused rather than bundled. Not independently measured here."
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "Webview startup is typically in the 50-200ms range on modern hardware; no first-party benchmark. Not independently measured here."
+    },
+    "memory-footprint": {
+      "value": ["moderate"],
+      "source": ["https://dioxuslabs.com/learn/0.7/guides/platforms/desktop/"],
+      "comment": "A webview process plus the Rust VirtualDom commonly sits in the 80-200MB bucket at idle. Not independently measured here."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "Signal-driven reactivity + browser compositor: redraws only when state changes or the DOM is dirty."
+    },
+    "dependency-count": {
+      "value": ["heavy"],
+      "source": ["https://lib.rs/crates/dioxus", "https://lib.rs/crates/dioxus-desktop"],
+      "comment": "Dioxus itself splits across ~25 sub-crates; dioxus-desktop adds wry, tao, muda, tray-icon, rfd, global-hotkey and their transitives — easily >200 crates in a typical build. Not independently measured with cargo tree."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://docs.rs/dioxus/latest/dioxus/"],
+      "comment": "Official guide with tutorials, MDN-integrated element docs, versioned books per release (0.6, 0.7), comprehensive API docs on docs.rs, and a rich examples directory."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://dioxuslabs.com/learn/0.7", "https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "RSX + hooks + signals feel idiomatic for React/Solid developers; #[component] macro and derive for Props cut boilerplate. Signal cloning semantics and Scope lifetimes still occasionally leak."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/DioxusLabs/dioxus/tree/main/examples"],
+      "comment": "Examples organized into 10 numbered categories (app demos, UI, styling, state, async, routing, fullstack, APIs, reference, integrations) with dozens of individual samples."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://github.com/DioxusLabs/playground"],
+      "comment": "An official playground repo exists but has been repeatedly broken and is being rebuilt; not usable as a reliable online demo as of 2026-04."
+    },
+    "ide-tooling": {
+      "value": ["syntax-highlighting", "formatter", "inspector"],
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0", "https://lib.rs/crates/dioxus"],
+      "comment": "VS Code extension provides RSX syntax highlighting; `dx fmt` (dioxus-autofmt) formats RSX; 0.7 integrated the devtools debugger into the CLI. No dedicated LSP beyond rust-analyzer."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus/releases/tag/v0.7.0"],
+      "comment": "0.7 shipped an integrated cross-platform debugger; webview path also allows standard browser DevTools via `dx serve`."
+    },
+    "github-stars": {
+      "value": 35800,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Snapshot: ~35.8k stars as observed 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 1375140,
+      "source": ["https://crates.io/api/v1/crates/dioxus"],
+      "comment": "All-time downloads of the top-level `dioxus` crate as of 2026-04-24 (~132k/month)."
+    },
+    "last-release": {
+      "value": "2026-04-22",
+      "source": ["https://github.com/DioxusLabs/dioxus/releases", "https://lib.rs/crates/dioxus"],
+      "comment": "Version 0.7.6."
+    },
+    "notable-production-users": {
+      "value": "Homepage lists Airbus, ESA (European Space Agency), Cognition, Y Combinator, and Futurewei as production users ('Trusted by top companies').",
+      "source": ["https://dioxuslabs.com"],
+      "comment": "Specific products shipped by these companies with Dioxus are not publicly disclosed."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://discord.com/invite/XgGxMSkvUM", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "~6,600 Discord members, ~35.8k GitHub stars, full-time core team at Dioxus Labs (YC), and an active dioxus-community GitHub org for third-party crates."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/dioxus-community", "https://lib.rs/crates/dioxus"],
+      "comment": "Official split into dioxus-router/signals/stores/fullstack/native; community org hosts dioxus-free-icons, dioxus-charts, dioxus-toast, dioxus-sdk, and more — still thinner than React's but steadily growing."
+    }
+  }
 }
