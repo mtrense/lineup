@@ -1,5 +1,385 @@
 {
   "name": "Floem",
   "description": "SolidJS-inspired signals, powers the Lapce editor",
-  "values": {}
+  "url": "https://lap.dev/floem/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://github.com/lapce/floem",
+        "https://crates.io/api/v1/crates/floem"
+      ]
+    },
+    "repository": {
+      "value": "https://github.com/lapce/floem",
+      "source": ["https://crates.io/api/v1/crates/floem"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/floem",
+      "source": ["https://crates.io/api/v1/crates/floem"]
+    },
+    "documentation": {
+      "value": "https://docs.floem.dev/",
+      "source": ["https://docs.floem.dev/"]
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://crates.io/api/v1/crates/floem"],
+      "comment": "floem 0.1.0 published to crates.io on 2023-11-21"
+    },
+    "latest-stable-version": {
+      "value": "0.2.0",
+      "source": ["https://crates.io/api/v1/crates/floem"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/lapce/floem"],
+      "comment": "Last push 2026-04-20; regular commit activity in the last 6 months"
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": [
+        "https://github.com/lapce/floem",
+        "https://lap.dev/floem/"
+      ],
+      "comment": "Pre-1.0 (0.2.0); README explicitly states 'still maturing' with occasional breaking changes expected before v1.0. Used in production by Lapce and Lapdev."
+    },
+    "corporate-backing": {
+      "value": "lap.dev (Lapce organization)",
+      "source": ["https://lap.dev/floem/", "https://github.com/lapce/floem"],
+      "comment": "Developed under the Lapce GitHub organization (lap.dev); community-driven rather than funded by a traditional corporation."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": "Pure Rust with wgpu/Vello/Skia/tiny-skia rendering backends; no C/C++ toolkit dependency."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "README: 'The view tree is constructed only once, safeguarding you from accidentally creating a bottleneck.' Retained view tree updated via fine-grained signals."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "Fine-grained reactivity inspired by leptos_reactive (signal primitives)."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/lapce/floem"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "UI must run on the main thread (winit-based)."
+    },
+    "renderer": {
+      "value": ["wgpu", "skia", "software"],
+      "source": [
+        "https://github.com/lapce/floem",
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml"
+      ],
+      "comment": "Default feature uses Vger (wgpu); optional backends include Vello (wgpu) and Skia; tiny-skia serves as a CPU/software fallback."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "GPU rendering via wgpu is the default; tiny-skia CPU fallback kicks in only when no GPU is available."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": [
+        "https://github.com/lapce/floem/tree/main/examples",
+        "https://github.com/lapce/floem"
+      ],
+      "comment": "Winit + wgpu pipeline handles HiDPI; window-scale example demonstrates scale-factor handling."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "Svg widget plus Vello/Skia vector renderers."
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": ["https://github.com/lapce/floem/tree/main/examples"],
+      "comment": "Repo contains a 'webgpu' example which embeds custom wgpu rendering, but injecting custom shaders into the UI renderer itself is not documented as a supported API."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/lapce/floem/tree/main/examples"],
+      "comment": "Official 'webgpu' example demonstrates embedding custom wgpu content inside the UI."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://lap.dev/floem/"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://lap.dev/floem/"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "Linux supported via winit, which includes the X11 backend."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "Linux supported via winit, which includes a native Wayland backend."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "iOS listed as 'planned support' on the project homepage; not officially supported today."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "Android listed as 'planned support' on the project homepage. A 'navigation-stack-mobile' example exists but mobile is not an officially supported target."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://lap.dev/floem/"],
+      "comment": "Web support via WebGPU is described as experimental on lap.dev/floem, not production-ready."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "No no_std or microcontroller support documented."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://docs.floem.dev/", "https://github.com/lapce/floem"],
+      "comment": "Views composed via Rust functions and tuples with a builder-style .style() closure; no DSL or macro markup language."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "No hot reload documented; changes require recompile."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid"],
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": "Flexbox and Grid provided via the Taffy crate."
+    },
+    "styling-approach": {
+      "value": ["inline-props", "theme-api"],
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": ".style(|s| ...) closures for inline styling; global themes and classes with light/dark presets via a built-in design system."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "README advertises 'Global themes' with light/dark mode support; 'themes' example demonstrates runtime switching."
+    },
+    "accessibility": {
+      "value": ["none"],
+      "source": [
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "2025 survey tested Floem with Windows Narrator and reported 'the complete lack of accessibility or IME support is the real issue.' No AccessKit integration is documented as of 2026-04-24."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": "Built-in localization via the Fluent crate with runtime language switching; 'localization' example in the repo."
+    },
+    "widget-breadth": {
+      "value": 3,
+      "source": [
+        "https://docs.rs/floem/latest/floem/views/index.html",
+        "https://github.com/lapce/floem/blob/main/examples/widget-gallery/src/main.rs"
+      ],
+      "comment": "Common widgets well covered (button, label, text input, checkbox, radio, slider, toggle, dropdown, tabs, scroll, virtual-list, rich-text, text-editor, SVG, image). Lacks first-party table/tree/chart widgets."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No dedicated table widget; virtual_list/virtual_stack handle virtualization but are not grid/table abstractions."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": [
+        "https://docs.rs/floem/latest/floem/views/index.html",
+        "https://github.com/lapce/floem/blob/main/examples/widget-gallery/src/main.rs"
+      ],
+      "comment": "RichText view + text_editor module provide rich text rendering; no dedicated Markdown widget, but the rich-text primitive covers styled runs."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No built-in hierarchical tree/outline widget."
+    },
+    "native-menus": {
+      "value": true,
+      "source": [
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml",
+        "https://github.com/lapce/floem/blob/main/examples/widget-gallery/src/main.rs"
+      ],
+      "comment": "Uses the muda crate (Windows/macOS) for native menu bars and context menus; widget gallery includes a Context Menu demo."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": [
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml",
+        "https://github.com/lapce/floem/tree/main/examples"
+      ],
+      "comment": "Uses the rfd crate for native file dialogs; 'files' example demonstrates usage."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No first-party charting/plotting widget."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": ["https://docs.floem.dev/", "https://github.com/lapce/floem"],
+      "comment": "Custom views implemented via the View trait; documentation exists but requires understanding Floem's view/id internals. Functional composition is pleasant for composite widgets but the tuple-based API has a practical upper bound (noted in external surveys)."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio"],
+      "source": [
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml",
+        "https://github.com/lapce/floem/tree/main/examples"
+      ],
+      "comment": "Explicit tokio feature flag in Cargo.toml; official 'tokio-timer' and 'async-resource' examples. Non-tokio runtimes not specifically advertised."
+    },
+    "system-tray": {
+      "value": null,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No system tray support documented in floem or the muda dependency surface as exposed by Floem."
+    },
+    "notifications": {
+      "value": null,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No built-in OS notification API surfaced by Floem; users would integrate a separate crate."
+    },
+    "clipboard": {
+      "value": true,
+      "source": [
+        "https://github.com/lapce/floem/blob/main/examples/widget-gallery/src/main.rs",
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml"
+      ],
+      "comment": "Clipboard integration via platform crates (clipboard-win on Windows, objc bindings on macOS); widget gallery has a dedicated Clipboard demo."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": [
+        "https://github.com/lapce/floem/blob/main/examples/widget-gallery/src/main.rs"
+      ],
+      "comment": "Widget gallery includes 'Draggable' and 'Dropped File' demos; drag-and-drop events exposed through the view API."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://docs.rs/floem/latest/floem/views/index.html"],
+      "comment": "No embedded webview widget; Floem is a native UI stack only."
+    },
+    "multi-window": {
+      "value": true,
+      "source": [
+        "https://github.com/lapce/floem/tree/main/examples",
+        "https://docs.rs/floem/latest/floem/views/index.html"
+      ],
+      "comment": "Multi-window supported via winit; window-icon/window-scale/window-size/handle_window_close examples demonstrate multiple top-level windows."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this research pass; no published hello-world binary size figures."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this research pass."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this research pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "Retained view tree with signal-driven invalidation; redraws only when tracked state changes."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": [
+        "https://lib.rs/crates/floem",
+        "https://api.github.com/repos/lapce/floem/contents/Cargo.toml"
+      ],
+      "comment": "~38 direct dependencies per lib.rs; transitive tree lands in the 50–200 crate 'moderate' bracket (not precisely counted via cargo tree in this pass)."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://docs.floem.dev/",
+        "https://docs.rs/floem/latest/floem/",
+        "https://github.com/lapce/floem/tree/main/examples"
+      ],
+      "comment": "docs.floem.dev overview site + docs.rs API reference + 31 in-repo examples. No comprehensive book/tutorial series; adequate but not exhaustive."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": [
+        "https://docs.floem.dev/",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Idiomatic Rust with signal primitives and closure-based .style() API. External review notes a practical limit of 16 sibling views in a container tuple; functional but with rough edges."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/lapce/floem/tree/main/examples"],
+      "comment": "31 example crates in the official repo (counted 2026-04-24)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground or hosted demo gallery; widget-gallery must be run locally via cargo."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/lapce/floem"],
+      "comment": "Pure-Rust source; relies on rust-analyzer. No framework-specific LSP, formatter, or inspector beyond the runtime element inspector (counted separately)."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": "Built-in element inspector for debugging layout ('inspired by browser dev tools')."
+    },
+    "github-stars": {
+      "value": 4103,
+      "source": ["https://api.github.com/repos/lapce/floem"],
+      "comment": "Snapshot 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 14429,
+      "source": ["https://crates.io/api/v1/crates/floem"],
+      "comment": "All-time downloads as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2024-11-14",
+      "source": ["https://crates.io/api/v1/crates/floem"],
+      "comment": "floem 0.2.0 published 2024-11-14; no newer crates.io release as of 2026-04-24 despite ongoing main-branch commits."
+    },
+    "notable-production-users": {
+      "value": "Lapce (code editor), Lapdev (cloud development environments)",
+      "source": ["https://github.com/lapce/floem", "https://lap.dev/floem/"],
+      "comment": "Floem was extracted from/drives the Lapce editor; lap.dev also lists Lapdev as a user."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/lapce/floem"],
+      "comment": "201 forks, 20 subscribers; active Discord per README but contributor count is modest. Fits the small bracket rather than medium or solo."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": [
+        "https://github.com/pieterdd/floem-ui-kit",
+        "https://crates.io/crates/floem"
+      ],
+      "comment": "Third-party floem-ui-kit exists; broader ecosystem of themes/widgets/integrations is sparse."
+    }
+  }
 }

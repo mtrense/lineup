@@ -233,7 +233,7 @@ Users should be able to:
 - [x] **Slint** — Declarative DSL, GPL/commercial dual-license, corporate-backed (SixtyFPS GmbH), cross-platform including embedded
 - [x] **Dioxus (desktop/mobile)** — React-like / signals, cross-platform, includes mobile targets
 - [x] **Xilem** — Raph Levien's successor to Druid, architectural showcase, still early
-- [ ] **Floem** — SolidJS-inspired signals, powers the Lapce editor
+- [x] **Floem** — SolidJS-inspired signals, powers the Lapce editor
 - [ ] **Makepad** — Live-coding IDE and in-house framework, unique DSL and rendering
 - [ ] **Ribir** — Declarative, reactive, pure-Rust
 - [ ] **Freya** — Skia-backed renderer for Dioxus components
