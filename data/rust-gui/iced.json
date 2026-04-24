@@ -1,5 +1,329 @@
 {
   "name": "iced",
   "description": "Elm-inspired, pure-Rust, wgpu renderer, active and popular",
-  "values": {}
+  "url": "https://iced.rs",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/iced-rs/iced", "https://lib.rs/crates/iced"]
+    },
+    "repository": {
+      "value": "https://github.com/iced-rs/iced",
+      "source": ["https://github.com/iced-rs/iced"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/iced",
+      "source": ["https://crates.io/crates/iced"]
+    },
+    "documentation": {
+      "value": "https://book.iced.rs",
+      "source": ["https://book.iced.rs/"]
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://lib.rs/crates/iced"],
+      "comment": "First crates.io publish was version 0.0.0 on May 29, 2019."
+    },
+    "latest-stable-version": {
+      "value": "0.14.0",
+      "source": ["https://lib.rs/crates/iced", "https://iced.rs"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/iced-rs/iced", "https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary"],
+      "comment": "0.14 released Dec 2025 after a long development cycle; master branch shows ongoing commits toward 0.15."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://iced.rs", "https://github.com/iced-rs/awesome-iced"],
+      "comment": "Pre-1.0 (currently 0.14) but production-proven (COSMIC, Halloy, Liana). API still evolves between minor releases."
+    },
+    "corporate-backing": {
+      "value": "Community-driven. Historically sponsored by the Cryptowatch team at Kraken.com; System76 actively contributes via its COSMIC desktop fork.",
+      "source": ["https://github.com/iced-rs/iced", "https://book.iced.rs/faq.html"],
+      "comment": "Creator Héctor Ramón describes iced as his personal project per the FAQ."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/iced-rs/iced", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"]
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://docs.rs/iced/latest/iced/", "https://book.iced.rs/"],
+      "comment": "View function produces a widget tree that iced reconciles; 0.14 added reactive rendering (on-demand redraws) by default."
+    },
+    "reactivity-model": {
+      "value": ["elm"],
+      "source": ["https://github.com/iced-rs/iced", "https://docs.rs/iced/latest/iced/"],
+      "comment": "Classic Elm architecture: Message enum + update/view functions."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/iced-rs/iced"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/iced/latest/iced/"],
+      "comment": "UI runs on the main thread; async tasks via Command/futures can run on a thread pool, Tokio, or smol."
+    },
+    "renderer": {
+      "value": ["wgpu", "software"],
+      "source": ["https://github.com/iced-rs/iced", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "iced_wgpu (Vulkan/Metal/DX12/GL via wgpu) is the default; iced_tiny_skia provides a software fallback. WebGL feature enables browser targets."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced"]
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.rs/iced/latest/iced/"]
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "Canvas widget and svg feature flag provide vector drawing primitives."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "custom_shader example demonstrates injecting a user-defined wgpu render pipeline."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "custom_shader and integration examples embed custom wgpu/3D content inside the iced UI."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "Default features include `x11`."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "Default features include `wayland`; used natively by the COSMIC desktop environment."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://docs.rs/iced/latest/iced/"],
+      "comment": "docs.rs lists only Windows, Linux, and macOS as target platforms. No official iOS support."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://docs.rs/iced/latest/iced/"],
+      "comment": "docs.rs lists only Windows, Linux, and macOS as target platforms. No official Android support."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "Web target via the `webgl` feature; mentioned as cross-platform (Windows, macOS, Linux, and the Web) in the README."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"]
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://docs.rs/iced/latest/iced/", "https://book.iced.rs/"],
+      "comment": "Views are built with Rust functions and builder methods; convenience macros (row!, column!) exist but are thin sugar over the builder API."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml", "https://news.ycombinator.com/item?id=46185323"],
+      "comment": "0.14 introduced a `hot` feature flag and associated tooling for reloading UI code during development."
+    },
+    "layout-system": {
+      "value": ["flexbox"],
+      "source": ["https://book.iced.rs/"],
+      "comment": "Row/column containers with Length::Fill/Shrink/Fixed sizing behave like a simplified flexbox."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://docs.rs/iced/latest/iced/"],
+      "comment": "Built-in Theme variants (Light, Dark, Nord, etc.) plus per-widget style functions and inline props."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.rs/iced/latest/iced/", "https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary"],
+      "comment": "Runtime theme changes are supported; 0.14 added automatic reaction to the system light/dark theme."
+    },
+    "accessibility": {
+      "value": ["partial"],
+      "source": ["https://github.com/iced-rs/iced/issues/552", "https://news.ycombinator.com/item?id=46185323"],
+      "comment": "AccessKit integration is in progress (driven by System76 for COSMIC); issue #552 remains open and full a11y is not landed in mainline as of 0.14."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary"],
+      "comment": "0.14 added IME (input method editor) support for non-Latin input, but iced provides no built-in localization framework — users wire up a crate like fluent or rust-i18n themselves."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples", "https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary"],
+      "comment": "Common widgets plus 0.14 additions: table, grid, markdown, float, pin, QR code, canvas, svg. Missing: tree view, native menus, first-party charts."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary", "https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "Table (and grid) widget added in 0.14; virtualization behavior not independently verified."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "First-class markdown widget (behind `markdown` feature) landed in 0.14, with customizable rendering and image support."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "No built-in tree/outline widget; users rely on nested column+button patterns or community crates."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "No native menu bar or context menu support; iced draws its own UI entirely."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/issues/1002"],
+      "comment": "No built-in file dialogs; apps integrate the external `rfd` crate."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/awesome-iced"],
+      "comment": "No first-party chart widget; `plotters-iced` is the community option."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://docs.rs/iced/latest/iced/", "https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "Documented `advanced` module exposes the Widget trait; examples (custom_widget, custom_quad, loupe) show the pattern with moderate boilerplate."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio", "smol", "native-async"],
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "Feature flags `tokio`, `smol`, and default `thread-pool` select the async executor."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "No built-in system tray; requires external crate (e.g., tray-icon)."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "No built-in OS notifications; requires external crate (e.g., notify-rust)."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.rs/iced/latest/iced/"],
+      "comment": "`iced::clipboard` module exposes read/write actions."
+    },
+    "drag-and-drop": {
+      "value": false,
+      "source": ["https://crates.io/crates/iced_drop"],
+      "comment": "No built-in OS-level drag-and-drop; the community `iced_drop` crate adds in-app drag-and-drop."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/iced-rs/iced/blob/master/Cargo.toml"]
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://docs.rs/iced/latest/iced/", "https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "`window` module and `multi_window` example demonstrate multiple top-level windows; 0.14 also adds a daemon mode."
+    },
+    "binary-size": {
+      "value": ["moderate"],
+      "source": ["https://news.ycombinator.com/item?id=46185323"],
+      "comment": "Not independently measured here; wgpu + image pipeline typically produce stripped binaries in the 10-30 MB range. Verify for your build."
+    },
+    "startup-time": {
+      "value": ["moderate"],
+      "source": ["https://news.ycombinator.com/item?id=46185323"],
+      "comment": "Hacker News discussion reports cold start around a few hundred ms to ~2s depending on hardware and wgpu backend init. Not independently measured."
+    },
+    "memory-footprint": {
+      "value": ["low"],
+      "source": ["https://news.ycombinator.com/item?id=46185323"],
+      "comment": "Hacker News thread reports ~70 MB idle for a minimal app (within the 20-80 MB \"low\" bucket). Not independently measured."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary"],
+      "comment": "0.14 enables reactive rendering by default so the window only redraws when state changes."
+    },
+    "dependency-count": {
+      "value": ["heavy"],
+      "source": ["https://lib.rs/crates/iced", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "The 9 direct iced_* sub-crates plus wgpu/image/winit pull in well over 200 transitive crates in a typical build. Not independently measured with cargo tree."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://book.iced.rs/", "https://docs.rs/iced/latest/iced/"],
+      "comment": "Official book + FAQ + comprehensive API docs + 56 examples. Book was rewritten around 0.13 and tracks current APIs; some community material lags."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://docs.rs/iced/latest/iced/", "https://book.iced.rs/"],
+      "comment": "Idiomatic Rust with strong type safety, builder methods, and typed Messages. Some verbosity (explicit Message enums, view/update split) is inherent to Elm."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/iced-rs/iced/tree/master/examples"],
+      "comment": "56 examples in the repository."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://github.com/iced-rs/awesome-iced"],
+      "comment": "No official online playground; demos require local compilation. The tour example is the canonical showcase."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/iced-rs/awesome-iced"],
+      "comment": "No iced-specific LSP/inspector/formatter beyond what rust-analyzer provides for any Rust project."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://www.phoronix.com/news/Iced-0.14-Rust-GUI-LIbrary", "https://github.com/iced-rs/iced/blob/master/Cargo.toml"],
+      "comment": "0.14 introduced the `comet` debugger with time-travel and devtools foundations (behind the `time-travel` / `debug` features)."
+    },
+    "github-stars": {
+      "value": 30300,
+      "source": ["https://github.com/iced-rs/iced"],
+      "comment": "Snapshot: ~30.3k stars as observed 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 1756610,
+      "source": ["https://crates.io/crates/iced"],
+      "comment": "All-time downloads of the top-level `iced` crate as of 2026-04-24 (~109k/month)."
+    },
+    "last-release": {
+      "value": "2025-12-07",
+      "source": ["https://lib.rs/crates/iced", "https://iced.rs"],
+      "comment": "Version 0.14.0."
+    },
+    "notable-production-users": {
+      "value": "COSMIC desktop environment (System76 / Pop!_OS), Halloy (IRC client), Liana (Bitcoin wallet), Sniffnet (network monitor), Veloren launcher, ESLauncher2.",
+      "source": ["https://github.com/iced-rs/awesome-iced", "https://github.com/iced-rs/iced"]
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/iced-rs/awesome-iced", "https://github.com/iced-rs/iced"],
+      "comment": "Active Discord, dedicated Discourse forum, ~30k GitHub stars, regular external contributors."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/iced-rs/awesome-iced"],
+      "comment": "Notable crates: iced_aw (widget extensions), iced_audio, iced_video_player, iced_drop, iced_dialog, plotters-iced, cosmic-text, cosmic-time, nih-plug (audio plugins), bevy_iced."
+    }
+  }
 }

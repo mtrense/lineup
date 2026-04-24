@@ -228,7 +228,7 @@ Users should be able to:
 
 ## Initial Candidates
 
-- [ ] **iced** — Elm-inspired, pure-Rust, wgpu renderer, active and popular
+- [x] **iced** — Elm-inspired, pure-Rust, wgpu renderer, active and popular
 - [ ] **egui** — Immediate-mode, pure-Rust, easy to embed, widely used for tooling UIs
 - [ ] **Slint** — Declarative DSL, GPL/commercial dual-license, corporate-backed (SixtyFPS GmbH), cross-platform including embedded
 - [ ] **Dioxus (desktop/mobile)** — React-like / signals, cross-platform, includes mobile targets
