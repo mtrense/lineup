@@ -1,5 +1,338 @@
 {
   "name": "fltk-rs",
-  "description": "FLTK bindings, tiny binaries, cross-platform",
-  "values": {}
+  "description": "Rust bindings for FLTK 1.4 — lightweight, statically-linkable cross-platform GUI toolkit with ~80 widgets and tiny binaries",
+  "icon": "",
+  "url": "https://fltk-rs.github.io/fltk-rs/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://lib.rs/crates/fltk", "https://github.com/fltk-rs/fltk-rs"],
+      "comment": "MIT licensed. The underlying FLTK library itself uses a permissive LGPL-with-static-linking exception, but the fltk-rs crate is MIT."
+    },
+    "repository": {
+      "value": "https://github.com/fltk-rs/fltk-rs",
+      "source": ["https://github.com/fltk-rs/fltk-rs"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/fltk",
+      "source": ["https://lib.rs/crates/fltk"]
+    },
+    "documentation": {
+      "value": "https://fltk-rs.github.io/fltk-book/",
+      "source": ["https://fltk-rs.github.io/fltk-book/"]
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://lib.rs/crates/fltk"],
+      "comment": "First crates.io release v0.1.22 on 2020-03-31."
+    },
+    "latest-stable-version": {
+      "value": "1.5.22",
+      "source": ["https://lib.rs/crates/fltk", "https://docs.rs/crate/fltk/latest"],
+      "comment": "Latest stable release on crates.io as of research date."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/fltk-rs/fltk-rs/releases", "https://github.com/fltk-rs/fltk-rs"],
+      "comment": "289 releases, latest 1.5.22 on 2025-11-16; repo updated March 2026 per search snapshot."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://lib.rs/crates/fltk"],
+      "comment": "Post-1.0 (now 1.5.x) with 5+ years of releases; API considered stable by maintainers."
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://moalyousef.github.io/blog/Fltkrs2022.html"],
+      "comment": "Primarily maintained by Mohammed Alyousef (MoAlyousef); started for a university hospital simulation center use case. No corporate sponsor."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "Wraps the FLTK 1.4 C++ library via a cfltk C wrapper + fltk-sys bindings; C++17 compiler required at build time."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://fltk-rs.github.io/fltk-book/", "https://www.fltk.org/doc-1.4/drawing.html"],
+      "comment": "Classic retained widget tree; widgets persist and redraw on demand."
+    },
+    "reactivity-model": {
+      "value": ["callbacks", "retained-tree"],
+      "source": ["https://fltk-rs.github.io/fltk-book/Events.html", "https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Traditional callback/event-handler model, with an optional message-passing channel API (crossbeam-channel) on top."
+    },
+    "binding-target": {
+      "value": ["fltk"],
+      "source": ["https://github.com/fltk-rs/fltk-rs"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://fltk-rs.github.io/fltk-rs/FAQ.html", "https://www.fltk.org/doc-1.4/group__fl__multithread.html"],
+      "comment": "Event handling and drawing must occur on the main thread; worker threads communicate via app::awake_callback or channels, with an optional app::lock/unlock for widget mutation."
+    },
+    "renderer": {
+      "value": ["native-toolkit", "opengl"],
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-book/GlutWindow.html"],
+      "comment": "Default renderer is FLTK's own CPU-based drawing via native OS graphics (GDI on Windows, Quartz/Cocoa on macOS, X11/Cairo or Wayland on Linux). OpenGL available through GlWindow with the `enable-glwindow` feature."
+    },
+    "gpu-acceleration": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-book/GlutWindow.html"],
+      "comment": "UI is not GPU-accelerated by default. OpenGL windows can be opted into for custom rendering, but the standard widget pipeline is CPU."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://www.fltk.org/doc-1.4/group__fl__screen.html", "https://www.fltk.org/doc-1.4/osissues.html"],
+      "comment": "FLTK 1.4 (which fltk-rs 1.5.x wraps) introduced screen-specific scale factors and retina support; Ctrl+/-/0 shortcuts adjust scaling at runtime."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://www.fltk.org/doc-1.4/drawing.html", "https://github.com/fltk-rs/fltk-rs"],
+      "comment": "FLTK provides vector-drawing primitives (lines, arcs, Bezier paths) and includes an SVG image widget."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/GlutWindow.html"],
+      "comment": "Only within a GlWindow using the `enable-glwindow` feature; you must manage OpenGL shaders yourself via glow or similar. Not part of the standard widget renderer."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/GlutWindow.html", "https://github.com/fltk-rs/demos/blob/master/opengl/src/main.rs"],
+      "comment": "GlWindow lets you embed OpenGL-rendered content. No built-in wgpu adapter."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Supports MSVC and GNU/MinGW toolchains."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Officially supported; uses Cocoa backend."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs/fltk-rs"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs/fltk-rs/blob/master/README.md", "https://www.fltk.org/doc-1.4/wayland-devel.html"],
+      "comment": "Supported via the `use-wayland` feature flag (FLTK hybrid Wayland/X11 backend). CFLTK_WAYLAND_ONLY env var allows Wayland-only builds."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "Not listed as an official target."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "Not listed as an official target."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "No WASM/browser target; library is statically linked native C++ code."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Requires std and a C++17 runtime; not targeted at no_std or microcontrollers."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://fltk-rs.github.io/fltk-book/", "https://fltk-rs.github.io/fltk-book/Widgets.html"],
+      "comment": "Builder-style imperative Rust API. Optional DSL-ish path via fl2rust which converts FLUID `.fl` UI files to Rust code at build time, but there is no native markup language."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "No runtime hot reload; UI changes require recompilation."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid", "manual"],
+      "source": ["https://fltk-rs.github.io/fltk-book/Layouts.html", "https://github.com/fltk-rs/fltk-grid"],
+      "comment": "Provides Flex (flexbox-style), Pack, and manual coordinate layout built-in; Grid widget available via the separate fltk-grid crate."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://crates.io/crates/fltk-theme"],
+      "comment": "Five built-in color schemes (Base, GTK, Plastic, Gleam, Oxy) selected via an app-wide API; per-widget properties (color, font, box type) set imperatively. Additional themes via the fltk-theme crate."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://crates.io/crates/fltk-theme"],
+      "comment": "Scheme and widget colors can be changed at runtime via app::set_scheme and redraw; fltk-theme supports light/dark presets."
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://github.com/fltk-rs/fltk-accesskit", "https://fltk-rs.github.io/fltk-book/Accessibility.html"],
+      "comment": "Integration exists via the separate fltk-accesskit crate (AccessKit adapter). Not built into the core crate, and coverage depends on which widgets the developer registers with AccessibilityContext."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-rs/FAQ.html"],
+      "comment": "RTL and CJK text shaping rely on Pango (default on Linux). The `no-pango` feature flag removes it at the cost of losing RTL/CJK support. No built-in locale/translation system — users wire their own."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-book/Widgets.html"],
+      "comment": "~80 widgets including buttons, inputs, menus, tables (Fl_Table), trees, browsers, text display/editor, valuators, dialogs, and an SVG image widget. Missing first-party: rich-text/markdown and charts/plotting (both require third-party crates)."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://www.fltk.org/doc-1.4/classFl__Table.html", "https://github.com/fltk-rs/fltk-table"],
+      "comment": "Base Fl_Table widget ships with fltk; fltk-table provides a smart wrapper with reduced boilerplate. Virtualized row drawing via draw_cell callback."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://fltk-rs.github.io/fltk-book/Widgets.html"],
+      "comment": "TextEditor/TextDisplay widgets support styled text (style tables) but there is no first-party markdown or rich-text widget."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/Trees.html", "https://docs.rs/fltk/latest/fltk/tree/"]
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/", "https://docs.rs/fltk/latest/fltk/"],
+      "comment": "MenuBar, MenuButton, Choice, and SysMenuBar (macOS native menu bar) all provided."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/Dialogs.html"],
+      "comment": "Both FLTK-drawn FileChooser and platform-native NativeFileChooser (Win32, Cocoa, GTK) are built-in."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://fltk-rs.github.io/fltk-book/Widgets.html"],
+      "comment": "A legacy Chart widget exists but is very basic; no first-party modern charting. Users typically embed plotters output or use a custom widget."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://fltk-rs.github.io/fltk-book/Custom-Widgets.html"],
+      "comment": "Documented `widget_extends!` macro + dedicated book chapter with working examples (custom button, custom dial). Low-to-moderate boilerplate; needs awareness of draw/handle overrides."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio", "async-std", "smol"],
+      "source": ["https://crates.io/crates/fltk-evented", "https://github.com/fltk-rs/demos"],
+      "comment": "fltk-evented provides async Listener widgets usable with tokio or async-std; demos repo shows tokio + reqwest integration. No built-in executor — you pick one."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs/discussions/1233", "https://github.com/fltk-rs/fltk-rs/discussions/1623"],
+      "comment": "FLTK itself does not expose tray APIs; a third-party crate (e.g., tray-item) is required. A demo exists at fltk-rs/demos/systray."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs/discussions/1233"],
+      "comment": "No native OS notification API in fltk-rs; use a separate crate (e.g., notify-rust)."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://www.fltk.org/doc-1.4/group__fl__clipboard.html", "https://fltk-rs.github.io/fltk-book/Drag-&-Drop.html"],
+      "comment": "app::copy / app::paste exposed; text and image clipboard supported."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://fltk-rs.github.io/fltk-book/Drag-&-Drop.html"],
+      "comment": "Dragged files surface as a Paste event with app::event_text() holding the path."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": ["https://github.com/fltk-rs"],
+      "comment": "Not in core, but the first-party fltk-webview crate (a wry-based webview embedded in an fltk window) is maintained by the same org."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://docs.rs/fltk/latest/fltk/", "https://fltk-rs.github.io/fltk-book/"],
+      "comment": "Multiple top-level Windows are a core FLTK feature."
+    },
+    "binary-size": {
+      "value": ["tiny"],
+      "source": ["https://github.com/fltk-rs/fltk-rs", "https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "Maintainers advertise ~1MB stripped release binary for a minimal app — unusually small for a full GUI toolkit. Not independently benchmarked here."
+    },
+    "startup-time": {
+      "value": ["instant"],
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Maintainer describes startup as 'fast'; FLTK is well known for sub-50ms cold start. No independent measurement collected on 2026-04-24."
+    },
+    "memory-footprint": {
+      "value": ["minimal"],
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "FLTK minimal apps typically sit well under 20MB RSS. Claim based on project README and general FLTK reputation, not measured on 2026-04-24."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://www.fltk.org/doc-1.4/drawing.html"],
+      "comment": "FLTK only redraws widgets whose damage() bits are set; no continuous frame loop."
+    },
+    "dependency-count": {
+      "value": ["minimal"],
+      "source": ["https://lib.rs/crates/fltk"],
+      "comment": "Only 6 direct Rust dependencies (bitflags, crossbeam-channel, fltk-sys, minipaste, once_cell, ttf-parser). Transitive tree is small compared to wgpu-based frameworks, and most of the weight is the vendored FLTK C++ source compiled via cmake."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://fltk-rs.github.io/fltk-book/", "https://docs.rs/fltk/latest/fltk/"],
+      "comment": "Dedicated fltk-book with tutorials, thorough docs.rs API reference, FAQ, and video series. Book self-describes as 'introductory'; advanced FLTK semantics sometimes require consulting FLTK C++ docs."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://fltk-rs.github.io/fltk-book/", "https://docs.rs/fltk/latest/fltk/"],
+      "comment": "Builder pattern and trait-based widget exts are idiomatic; however, the C++ lineage leaks through (widget_extends! macro, group begin/end pattern, callback Rc<RefCell> idioms). Functional and reasonably clean but not as polished as iced/Dioxus."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://fltk-rs.github.io/fltk-rs/fltk/examples/", "https://github.com/fltk-rs/demos"],
+      "comment": "30+ examples in the main repo plus a dedicated fltk-rs/demos repository with integration samples (tokio, reqwest, serde, webview, systray, opengl, etc.)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://fltk-rs.github.io/fltk-rs/"],
+      "comment": "No online playground or demo gallery — the library runs native and cannot target WASM. Examples must be built locally."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "No framework-specific LSP, formatter, or inspector. Relies entirely on rust-analyzer + rustfmt since authoring is plain Rust. The FLUID designer (C++ side) produces .fl files that fl2rust can convert, but FLUID itself is not an fltk-rs tool."
+    },
+    "dev-tools-inspector": {
+      "value": false,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "No runtime widget inspector comparable to browser devtools."
+    },
+    "github-stars": {
+      "value": 1800,
+      "source": ["https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Approximately 1.8k stars as of 2026-04-24 research. Snapshot will age."
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "source": ["https://lib.rs/crates/fltk"],
+      "comment": "lib.rs reports ~15k downloads per month but does not expose an all-time total here. Setting null rather than guessing; refresh once crates.io total is directly verified."
+    },
+    "last-release": {
+      "value": "2025-11-16",
+      "source": ["https://lib.rs/crates/fltk", "https://github.com/fltk-rs/fltk-rs/releases"],
+      "comment": "fltk 1.5.22 released 2025-11-16."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://moalyousef.github.io/blog/Fltkrs2022.html"],
+      "comment": "No widely-known shipping commercial apps publicly attributed to fltk-rs. Origin story references a university hospital simulation-center use case, but no marquee production user is documented on the project pages."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/fltk-rs/fltk-rs/discussions", "https://github.com/fltk-rs/fltk-rs"],
+      "comment": "Active GitHub Discussions and one primary maintainer with a handful of regular contributors; no dedicated Discord/Matrix. Smaller than iced/egui/Slint communities."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/fltk-rs"],
+      "comment": "First-party org hosts fltk-theme, fltk-table, fltk-grid, fltk-evented, fltk-webview, fltk-accesskit, fltk-term, fl2rust, fltk-observe — a useful set of adjacent crates, though still narrower than the ecosystems around iced or Tauri."
+    }
+  }
 }
