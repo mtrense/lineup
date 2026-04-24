@@ -1,5 +1,361 @@
 {
   "name": "Makepad",
   "description": "Live-coding IDE and in-house framework, unique DSL and rendering",
-  "values": {}
+  "url": "https://makepad.nl/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": [
+        "https://crates.io/api/v1/crates/makepad-widgets",
+        "https://github.com/makepad/makepad/blob/dev/LICENSE"
+      ],
+      "comment": "Crates.io metadata lists 'MIT OR Apache-2.0'; the LICENSE file in the repo is the MIT text with copyright 'Makepad B.V.'"
+    },
+    "repository": {
+      "value": "https://github.com/makepad/makepad",
+      "source": ["https://github.com/makepad/makepad"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/makepad-widgets",
+      "source": ["https://crates.io/crates/makepad-widgets"],
+      "comment": "makepad-widgets is the top-level framework crate application developers depend on (per Makepad Book and robius.rs tutorials). The older 'makepad' crate on crates.io is not the current entry point."
+    },
+    "documentation": {
+      "value": "https://makepad.rs/",
+      "source": ["https://makepad.rs/guide/start/introduction"],
+      "comment": "Official 'Makepad Book' is hosted at makepad.rs (book.makepad.rs redirects there)."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://api.github.com/repos/makepad/makepad"],
+      "comment": "GitHub repository created 2019-02-20. The current top-level crate makepad-widgets was first published 2022-10-20 (v0.3.0), but Makepad has been a public project since 2019 under earlier crate names."
+    },
+    "latest-stable-version": {
+      "value": "1.0.0",
+      "source": [
+        "https://crates.io/api/v1/crates/makepad-widgets",
+        "https://lib.rs/crates/makepad-widgets"
+      ],
+      "comment": "makepad-widgets 1.0.0, released 2025-05-13."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/makepad/makepad"],
+      "comment": "Repo pushed 2026-04-22 (two days before this pass); dev branch receives frequent commits."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://makepad.nl/",
+        "https://news.ycombinator.com/item?id=43971829"
+      ],
+      "comment": "1.0 released May 2025. The HN release thread acknowledged 'rough edges and missing bits', so 'mature' would overstate; 'stable' reflects the 1.0 milestone."
+    },
+    "corporate-backing": {
+      "value": "Makepad B.V.",
+      "source": ["https://github.com/makepad/makepad/blob/dev/LICENSE"],
+      "comment": "LICENSE copyright is held by Makepad B.V. (Netherlands). Core developers include Rik Arends; no public details on commercial model. Related Project Robius is a community effort that builds on Makepad."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "No C/C++ toolkit is wrapped. Linux requires system libs (wayland, X11, EGL, Mesa) but those are platform glue, not a widget toolkit; shader compiler (MPSL) and renderer are all Rust."
+    },
+    "rendering-mode": {
+      "value": ["hybrid"],
+      "source": [
+        "https://makepad.rs/guide/start/introduction",
+        "https://makepad.rs/guide/start/makepad-framework-architecture"
+      ],
+      "comment": "Makepad documents itself as a hybrid: retained widget tree with shader-based GPU rendering, plus a 'dual immediate mode' for data-driven widget drawing via begin/drawitem/end."
+    },
+    "reactivity-model": {
+      "value": ["callbacks", "retained-tree"],
+      "source": ["https://robius.rs/blog/building-chatgpt-client-using-makepad/"],
+      "comment": "Widgets emit actions that are dispatched to handler methods via the MatchEvent trait; widgets are mutated directly in handle_event. No fine-grained signals, no virtual-DOM diffing, no Elm-style pure update function."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/makepad/makepad"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://makepad.rs/guide/start/makepad-framework-architecture"],
+      "comment": "Cx context and widget tree are driven on the main thread; background work uses framework-provided async primitives (cx.http_request etc.)."
+    },
+    "renderer": {
+      "value": ["metal", "directx", "opengl", "custom"],
+      "source": [
+        "https://github.com/makepad/makepad",
+        "https://makepad.rs/guide/start/makepad-framework-architecture"
+      ],
+      "comment": "Backends: Metal (macOS/iOS), DirectX 11 (Windows), OpenGL (Linux/Android), WebGL (WASM). Ships a custom shader language (MPSL) that is translated to each platform's shading language. Not built on wgpu."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://makepad.rs/guide/start/introduction"],
+      "comment": "Shader-based GPU rendering is the core architectural premise."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "Native Metal/DX11/OpenGL backends with DPI-aware rendering; Makepad Studio ships for Retina-class displays."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad/tree/dev/examples"],
+      "comment": "Vector/font/image engines are part of the platform stack; the 'vector' example demonstrates resolution-independent drawing."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://makepad.rs/guide/start/makepad-framework-architecture"],
+      "comment": "User-written shaders in MPSL are the primary styling mechanism; the 'shader' example is dedicated to this."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad/tree/dev/examples"],
+      "comment": "The entire framework is a custom GPU pipeline; examples like 'arracing', 'fractal zoomer', and 'shader' embed custom shaders and GPU content as widget content."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://makepad.nl/"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://makepad.nl/"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "Linux build deps include libwayland-dev and wayland-protocols alongside X11 packages; Makepad has a native Wayland path via EGL."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"]
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "Ironfish synthesizer is the flagship Android example."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "Compiles to WASM with a WebGL renderer; --wasm-opt and --brotli tooling is provided."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "No no_std or microcontroller story; the framework assumes a full Rust std and a platform event loop."
+    },
+    "authoring-style": {
+      "value": ["declarative-dsl", "rust-macro"],
+      "source": ["https://makepad.rs/guide/start/makepad-framework-architecture"],
+      "comment": "UI and styling are authored in Live DSL, which is embedded inside Rust via the live_design! macro. Event handling stays in imperative Rust."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://makepad.rs/guide/start/introduction"],
+      "comment": "Live styling: applications recompile and execute new Live DSL at runtime without restarting, with no Rust recompile required for style/layout edits."
+    },
+    "layout-system": {
+      "value": ["auto"],
+      "source": ["https://makepad.rs/guide/start/makepad-framework-architecture"],
+      "comment": "Custom nested box model executed in 'semi-immediate mode', with Fill/Fit sizing and flow/spacing directives. Not flexbox, not CSS grid; closest match here is 'auto' (widget-driven)."
+    },
+    "styling-approach": {
+      "value": ["stylesheet-dsl"],
+      "source": ["https://makepad.rs/guide/start/makepad-framework-architecture"],
+      "comment": "Styles live in Live DSL blocks and work similarly to CSS but with Makepad's own syntax and shader hooks (MPSL)."
+    },
+    "theme-switching": {
+      "value": null,
+      "source": [],
+      "comment": "No documented runtime light/dark theme switching primitive; theme_desktop_dark files exist but a user-triggered switch mechanism is not documented in the Book."
+    },
+    "accessibility": {
+      "value": ["none"],
+      "source": ["https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"],
+      "comment": "boringcactus' 2025 survey reports Windows Narrator cannot see window chrome or content. No AccessKit integration, no native a11y layer. Contributors on HN flagged a11y as a known gap."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://crates.io/api/v1/crates/makepad-widgets"],
+      "comment": "Bundles Chinese/emoji font sub-crates for glyph coverage, but no built-in i18n framework (no locale loader, no RTL-aware layout primitives documented)."
+    },
+    "widget-breadth": {
+      "value": 3,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "Common widgets are present: button, label, text_input, check_box, slider, drop_down, popup_menu, tabs, splitter, portal_list (virtualized), scroll_bar, image, markdown, html. No data-grid or tree widget. Reasonable middle-of-pack stdlib."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "No table/grid widget in the widgets crate; portal_list gives virtualized single-column lists."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "markdown.rs and html.rs widgets exist; pulldown-cmark is a direct dep of makepad-widgets."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "No tree/outline widget; would be hand-rolled with portal_list + nested views."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "popup_menu and menu widgets are custom-drawn with Makepad's own rendering, not native OS menu bars."
+    },
+    "file-dialogs": {
+      "value": null,
+      "source": [],
+      "comment": "No first-party native file dialog widget or documented rfd integration found. Likely works via user-added crates but not verified."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/examples"],
+      "comment": "A 'charts' example exists but is custom-drawn per app; no reusable charting widget in the widgets crate."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": [
+        "https://makepad.rs/guide/start/makepad-framework-architecture",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Custom widgets via #[derive(Widget)] and live_design! templates are central to the framework, but the DSL is under-documented per the 2025 boringcactus survey, so the onboarding cost is real."
+    },
+    "async-runtime-compatible": {
+      "value": ["native-async"],
+      "source": ["https://robius.rs/blog/building-chatgpt-client-using-makepad/"],
+      "comment": "Makepad provides its own async primitives (e.g. cx.http_request) and event loop. No first-party tokio or async-std integration documented."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "No tray-icon API documented or shipped with the framework."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad/tree/dev/widgets/src"],
+      "comment": "No native OS notification API documented in widgets or platform crates."
+    },
+    "clipboard": {
+      "value": null,
+      "source": [],
+      "comment": "text_input and text_selection widgets suggest basic copy/paste within text fields, but no public clipboard read/write API was found in docs. Not verified."
+    },
+    "drag-and-drop": {
+      "value": null,
+      "source": [],
+      "comment": "No native OS drag-and-drop API documented. Not verified."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/makepad/makepad"],
+      "comment": "Makepad renders entirely on its own GPU stack; no webview embedding."
+    },
+    "multi-window": {
+      "value": null,
+      "source": [],
+      "comment": "Examples and templates all ship single-window apps with one top-level Window in live_design!. Could not confirm or rule out multiple top-level windows from public docs."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable public measurement for a hello-world Makepad release binary. Refusing to guess."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable public measurement. Makepad ships GPU shader precompile and demos feel snappy, but no reproducible cold-start number."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable public measurement of idle RSS for a minimal app."
+    },
+    "idle-redraw": {
+      "value": null,
+      "source": [],
+      "comment": "Framework has event-driven redraw and an explicit next_frame trigger; behavior depends on app (animations vs static UI). Could not conclusively classify as on-demand vs continuous."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": ["https://crates.io/api/v1/crates/makepad-widgets"],
+      "comment": "makepad-widgets lists 12 direct deps (most of them internal makepad-* crates); total transitive cargo tree for a minimal app lands in the ~50-200 range typical for a GPU GUI stack. Not measured exactly on this pass."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://makepad.rs/guide/start/introduction",
+        "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"
+      ],
+      "comment": "Makepad Book exists with guides and architecture pages, and Robius tutorials exist. But the Live DSL reference is thin and 2025 survey called out 'no documentation' for the load-bearing macro DSL. Middling overall."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://robius.rs/blog/building-chatgpt-client-using-makepad/"],
+      "comment": "Derive macros (#[derive(Widget)]) and live_design! are idiomatic for Makepad, but developers must learn a second language (Live DSL + MPSL) and manage explicit draw/handle_event functions. Functional but non-trivial mental model."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/makepad/makepad/tree/dev/examples"],
+      "comment": "25 example directories on dev branch (counter, uizoo, todo, charts, browser, aichat, maps, shader, xr, etc.)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No hosted online playground found. WASM demos exist per-example (e.g. Ironfish, Fractal Zoomer) but there is no central REPL."
+    },
+    "ide-tooling": {
+      "value": ["inspector"],
+      "source": ["https://makepad.nl/"],
+      "comment": "Makepad Studio is a first-party authoring/inspection app for Live DSL; no LSP, formatter, or general-purpose editor plugin is shipped for external IDEs."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://makepad.nl/"],
+      "comment": "Makepad Studio provides live UI editing and inspection tooling; the README also highlights 'AI automation inside Studio to control and inspect UI'."
+    },
+    "github-stars": {
+      "value": 6365,
+      "source": ["https://api.github.com/repos/makepad/makepad"],
+      "comment": "Star count on 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 16218,
+      "source": ["https://crates.io/api/v1/crates/makepad-widgets"],
+      "comment": "All-time downloads of makepad-widgets as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2025-05-13",
+      "source": ["https://crates.io/api/v1/crates/makepad-widgets"],
+      "comment": "makepad-widgets 1.0.0 release date."
+    },
+    "notable-production-users": {
+      "value": "Robrix (Matrix client, Project Robius), Moly (local-LLM client), Ironfish synthesizer demo, Makepad Studio itself",
+      "source": [
+        "https://news.ycombinator.com/item?id=43971829",
+        "https://github.com/project-robius/robrix"
+      ],
+      "comment": "Robrix (pre-alpha) is the most visible third-party app. No large commercial shipping app publicly uses Makepad as of this research pass."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"],
+      "comment": "Discord exists; contributor activity is concentrated around a core Makepad team plus Project Robius collaborators. Not a large open community."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://crates.io/crates/makepad-widgets"],
+      "comment": "Almost all makepad-* crates are first-party sub-crates of the Makepad repo. No meaningful third-party theme/widget/integration ecosystem on crates.io yet."
+    }
+  }
 }
