@@ -1,0 +1,854 @@
+{
+  "name": "Rust GUI Libraries",
+  "description": "GUI libraries for Rust developers across desktop, mobile, and web — pure-Rust frameworks, native-toolkit bindings, and webview wrappers",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Basic identifying information, licensing, and maintenance status",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "blue" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" },
+              { "id": "lgpl-3-0", "value": "LGPL-3.0", "color": "red" },
+              { "id": "gpl-3-0", "value": "GPL-3.0", "color": "red" }
+            ]
+          },
+          "description": "Primary open-source license(s); note dual-licensing in a comment"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository (GitHub, GitLab, sr.ht)"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Main crates.io package page (top-level framework crate)"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Primary documentation site (docs.rs, book, or custom)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release or first crates.io publish"
+        },
+        {
+          "id": "latest-stable-version",
+          "name": "Latest Stable Version",
+          "valueType": "text",
+          "description": "Current stable version from crates.io"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              {
+                "id": "actively-maintained",
+                "value": "Actively Maintained",
+                "color": "green"
+              },
+              {
+                "id": "passively-maintained",
+                "value": "Passively Maintained",
+                "color": "blue"
+              },
+              {
+                "id": "seeking-maintainer",
+                "value": "Seeking Maintainer",
+                "color": "yellow"
+              },
+              { "id": "archived", "value": "Archived", "color": "gray" },
+              { "id": "abandoned", "value": "Abandoned", "color": "red" }
+            ]
+          },
+          "description": "Maintenance signals based on commits in the last 6 months"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              {
+                "id": "experimental",
+                "value": "Experimental",
+                "color": "orange"
+              },
+              { "id": "beta", "value": "Beta", "color": "yellow" },
+              { "id": "stable", "value": "Stable", "color": "blue" },
+              { "id": "mature", "value": "Mature", "color": "green" }
+            ]
+          },
+          "description": "API stability, production usage, and years since 1.0"
+        },
+        {
+          "id": "corporate-backing",
+          "name": "Corporate Backing",
+          "valueType": "text",
+          "description": "Company or foundation funding development (or \"Community\" if none)"
+        }
+      ]
+    },
+    {
+      "id": "architecture-paradigm",
+      "name": "Architecture & Paradigm",
+      "description": "Implementation style, rendering mode, reactivity, and threading",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pure-rust", "value": "Pure Rust", "color": "green" },
+              {
+                "id": "rust-bindings",
+                "value": "Rust Bindings",
+                "color": "blue"
+              },
+              {
+                "id": "webview-wrapper",
+                "value": "Webview Wrapper",
+                "color": "purple"
+              },
+              { "id": "hybrid", "value": "Hybrid", "color": "orange" }
+            ]
+          },
+          "description": "Runtime composition: pure-Rust, wraps a native toolkit, hosts HTML/JS, or mixed"
+        },
+        {
+          "id": "rendering-mode",
+          "name": "Rendering Mode",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "immediate", "value": "Immediate", "color": "blue" },
+              { "id": "retained", "value": "Retained", "color": "green" },
+              { "id": "hybrid", "value": "Hybrid", "color": "orange" }
+            ]
+          },
+          "description": "Immediate (redraw from state each frame) vs retained (persistent widget tree) vs hybrid"
+        },
+        {
+          "id": "reactivity-model",
+          "name": "Reactivity Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "elm", "value": "Elm", "color": "purple" },
+              { "id": "signals", "value": "Signals", "color": "green" },
+              { "id": "react-like", "value": "React-like", "color": "blue" },
+              { "id": "callbacks", "value": "Callbacks", "color": "orange" },
+              {
+                "id": "retained-tree",
+                "value": "Retained Tree",
+                "color": "gray"
+              }
+            ]
+          },
+          "description": "How state updates propagate to the UI; select all that apply"
+        },
+        {
+          "id": "binding-target",
+          "name": "Binding Target",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "gtk", "value": "GTK", "color": "blue" },
+              { "id": "qt", "value": "Qt", "color": "green" },
+              { "id": "cocoa", "value": "Cocoa", "color": "purple" },
+              { "id": "wxwidgets", "value": "wxWidgets", "color": "orange" },
+              { "id": "fltk", "value": "FLTK", "color": "red" },
+              { "id": "imgui", "value": "Dear ImGui", "color": "cyan" },
+              { "id": "webview", "value": "Webview", "color": "gray" },
+              { "id": "none", "value": "None (Pure Rust)", "color": "gray" }
+            ]
+          },
+          "description": "Underlying native toolkit for binding-based libraries"
+        },
+        {
+          "id": "thread-model",
+          "name": "Thread Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              {
+                "id": "single-threaded-ui",
+                "value": "Single-Threaded UI",
+                "color": "orange"
+              },
+              {
+                "id": "multi-threaded",
+                "value": "Multi-Threaded",
+                "color": "green"
+              },
+              {
+                "id": "send-sync-widgets",
+                "value": "Send+Sync Widgets",
+                "color": "purple"
+              }
+            ]
+          },
+          "description": "Threading constraints on UI code"
+        }
+      ]
+    },
+    {
+      "id": "rendering-backend",
+      "name": "Rendering Backend",
+      "description": "Graphics backends, GPU acceleration, and custom rendering hooks",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "renderer",
+          "name": "Renderer",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "wgpu", "value": "wgpu", "color": "orange" },
+              { "id": "opengl", "value": "OpenGL", "color": "blue" },
+              { "id": "vulkan", "value": "Vulkan", "color": "red" },
+              { "id": "metal", "value": "Metal", "color": "gray" },
+              { "id": "directx", "value": "DirectX", "color": "green" },
+              { "id": "skia", "value": "Skia", "color": "purple" },
+              {
+                "id": "native-toolkit",
+                "value": "Native Toolkit",
+                "color": "blue"
+              },
+              { "id": "webview", "value": "Webview", "color": "gray" },
+              { "id": "software", "value": "Software", "color": "orange" },
+              { "id": "custom", "value": "Custom", "color": "purple" }
+            ]
+          },
+          "description": "Supported rendering backends; select all"
+        },
+        {
+          "id": "gpu-acceleration",
+          "name": "GPU Acceleration",
+          "valueType": "boolean",
+          "description": "UI rendering uses the GPU by default"
+        },
+        {
+          "id": "hidpi-support",
+          "name": "HiDPI Support",
+          "valueType": "boolean",
+          "description": "Automatic scaling on Retina/high-DPI displays"
+        },
+        {
+          "id": "vector-rendering",
+          "name": "Vector Rendering",
+          "valueType": "boolean",
+          "description": "Resolution-independent drawing (SVG-like primitives) available"
+        },
+        {
+          "id": "custom-shaders",
+          "name": "Custom Shaders",
+          "valueType": "boolean",
+          "description": "Apps can inject custom GPU shaders or render passes"
+        },
+        {
+          "id": "embedded-custom-rendering",
+          "name": "Embedded Custom Rendering",
+          "valueType": "boolean",
+          "description": "Can embed a wgpu/OpenGL viewport for custom 3D/2D content inside the UI"
+        }
+      ]
+    },
+    {
+      "id": "platform-support",
+      "name": "Platform Support",
+      "description": "Officially supported and tested deployment targets",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "windows",
+          "name": "Windows",
+          "valueType": "boolean",
+          "description": "Native Windows support (Win32/WinRT, not WSL)"
+        },
+        {
+          "id": "macos",
+          "name": "macOS",
+          "valueType": "boolean",
+          "description": "Native macOS support (Apple Silicon + Intel)"
+        },
+        {
+          "id": "linux-x11",
+          "name": "Linux X11",
+          "valueType": "boolean",
+          "description": "Works under X11"
+        },
+        {
+          "id": "linux-wayland",
+          "name": "Linux Wayland",
+          "valueType": "boolean",
+          "description": "Works natively under Wayland (not just XWayland)"
+        },
+        {
+          "id": "ios",
+          "name": "iOS",
+          "valueType": "boolean",
+          "description": "Can deploy to iOS"
+        },
+        {
+          "id": "android",
+          "name": "Android",
+          "valueType": "boolean",
+          "description": "Can deploy to Android"
+        },
+        {
+          "id": "web-wasm",
+          "name": "Web (WASM)",
+          "valueType": "boolean",
+          "description": "Compiles to WebAssembly and runs in a browser"
+        },
+        {
+          "id": "embedded-no-std",
+          "name": "Embedded / no_std",
+          "valueType": "boolean",
+          "description": "Supports no_std or microcontroller targets"
+        }
+      ]
+    },
+    {
+      "id": "authoring-styling",
+      "name": "Authoring & Styling",
+      "description": "How UI is written, styled, and made accessible",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "authoring-style",
+          "name": "Authoring Style",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              {
+                "id": "declarative-dsl",
+                "value": "Declarative DSL",
+                "color": "purple"
+              },
+              { "id": "rust-macro", "value": "Rust Macro", "color": "orange" },
+              {
+                "id": "imperative-rust",
+                "value": "Imperative Rust",
+                "color": "blue"
+              },
+              { "id": "xml", "value": "XML", "color": "gray" }
+            ]
+          },
+          "description": "How views are authored (own DSL, RSX/view! macros, builder API, XML)"
+        },
+        {
+          "id": "hot-reload",
+          "name": "Hot Reload",
+          "valueType": "boolean",
+          "description": "UI updates without recompile (may be limited to DSL files or dev mode)"
+        },
+        {
+          "id": "layout-system",
+          "name": "Layout System",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "flexbox", "value": "Flexbox", "color": "blue" },
+              { "id": "grid", "value": "Grid", "color": "green" },
+              {
+                "id": "constraints",
+                "value": "Constraints",
+                "color": "purple"
+              },
+              { "id": "auto", "value": "Auto", "color": "gray" },
+              { "id": "manual", "value": "Manual", "color": "orange" }
+            ]
+          },
+          "description": "Layout strategies available"
+        },
+        {
+          "id": "styling-approach",
+          "name": "Styling Approach",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "css-like", "value": "CSS-like", "color": "blue" },
+              { "id": "theme-api", "value": "Theme API", "color": "green" },
+              {
+                "id": "stylesheet-dsl",
+                "value": "Stylesheet DSL",
+                "color": "purple"
+              },
+              {
+                "id": "inline-props",
+                "value": "Inline Props",
+                "color": "orange"
+              },
+              {
+                "id": "native-toolkit",
+                "value": "Native Toolkit",
+                "color": "gray"
+              }
+            ]
+          },
+          "description": "How styles are expressed"
+        },
+        {
+          "id": "theme-switching",
+          "name": "Theme Switching",
+          "valueType": "boolean",
+          "description": "Runtime theme/dark-mode switching supported"
+        },
+        {
+          "id": "accessibility",
+          "name": "Accessibility",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "accesskit", "value": "AccessKit", "color": "green" },
+              { "id": "native", "value": "Native", "color": "blue" },
+              { "id": "partial", "value": "Partial", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Accessibility integration mechanism"
+        },
+        {
+          "id": "internationalization",
+          "name": "Internationalization",
+          "valueType": "boolean",
+          "description": "Built-in i18n support (RTL, complex scripts, localization)"
+        }
+      ]
+    },
+    {
+      "id": "widget-library",
+      "name": "Widget Library",
+      "description": "Built-in widget coverage and custom widget authoring",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "widget-breadth",
+          "name": "Widget Breadth",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=rich stdlib (tables, trees, rich text, charts); 3=common widgets; 1=primitives only"
+        },
+        {
+          "id": "data-grid-table",
+          "name": "Data Grid / Table",
+          "valueType": "boolean",
+          "description": "Has a virtualized or performant table/grid widget"
+        },
+        {
+          "id": "rich-text-markdown",
+          "name": "Rich Text / Markdown",
+          "valueType": "boolean",
+          "description": "Native rich text rendering or markdown widget"
+        },
+        {
+          "id": "tree-outline",
+          "name": "Tree / Outline",
+          "valueType": "boolean",
+          "description": "Hierarchical tree widget"
+        },
+        {
+          "id": "native-menus",
+          "name": "Native Menus",
+          "valueType": "boolean",
+          "description": "Platform-native menu bar / context menus"
+        },
+        {
+          "id": "file-dialogs",
+          "name": "File Dialogs",
+          "valueType": "boolean",
+          "description": "Native file-open/save dialogs (via rfd or built-in)"
+        },
+        {
+          "id": "charts-plotting",
+          "name": "Charts / Plotting",
+          "valueType": "boolean",
+          "description": "First-party or well-integrated charting widget"
+        },
+        {
+          "id": "custom-widgets",
+          "name": "Custom Widgets",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "Ease of authoring custom widgets: 5=documented, minimal boilerplate; 1=requires internals"
+        }
+      ]
+    },
+    {
+      "id": "integration-extras",
+      "name": "Integration & Extras",
+      "description": "Async runtime compatibility and platform integration features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "async-runtime-compatible",
+          "name": "Async Runtime Compatible",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "tokio", "value": "Tokio", "color": "blue" },
+              { "id": "async-std", "value": "async-std", "color": "green" },
+              { "id": "smol", "value": "smol", "color": "purple" },
+              {
+                "id": "native-async",
+                "value": "Native Async",
+                "color": "orange"
+              },
+              { "id": "sync-only", "value": "Sync Only", "color": "gray" }
+            ]
+          },
+          "description": "Async runtimes the framework supports; select all"
+        },
+        {
+          "id": "system-tray",
+          "name": "System Tray",
+          "valueType": "boolean",
+          "description": "Tray icon support (may require separate crate)"
+        },
+        {
+          "id": "notifications",
+          "name": "Notifications",
+          "valueType": "boolean",
+          "description": "Native OS notification integration"
+        },
+        {
+          "id": "clipboard",
+          "name": "Clipboard",
+          "valueType": "boolean",
+          "description": "Built-in clipboard read/write"
+        },
+        {
+          "id": "drag-and-drop",
+          "name": "Drag and Drop",
+          "valueType": "boolean",
+          "description": "Native OS drag-and-drop support"
+        },
+        {
+          "id": "embedded-webview",
+          "name": "Embedded Webview",
+          "valueType": "boolean",
+          "description": "Can embed a webview component (Tauri, wry, etc.) inside the UI"
+        },
+        {
+          "id": "multi-window",
+          "name": "Multi-Window",
+          "valueType": "boolean",
+          "description": "Multiple top-level windows supported"
+        }
+      ]
+    },
+    {
+      "id": "performance-footprint",
+      "name": "Performance & Footprint",
+      "description": "Binary size, startup, memory, and idle redraw behavior",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "binary-size",
+          "name": "Binary Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "tiny", "value": "Tiny (<2MB)", "color": "green" },
+              { "id": "small", "value": "Small (2-10MB)", "color": "blue" },
+              {
+                "id": "moderate",
+                "value": "Moderate (10-30MB)",
+                "color": "orange"
+              },
+              { "id": "large", "value": "Large (>30MB)", "color": "red" }
+            ]
+          },
+          "description": "Release build, stripped, of a minimal \"hello world\" app"
+        },
+        {
+          "id": "startup-time",
+          "name": "Startup Time",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "instant", "value": "Instant (<50ms)", "color": "green" },
+              { "id": "fast", "value": "Fast (50-200ms)", "color": "blue" },
+              {
+                "id": "moderate",
+                "value": "Moderate (200ms-1s)",
+                "color": "orange"
+              },
+              { "id": "slow", "value": "Slow (>1s)", "color": "red" }
+            ]
+          },
+          "description": "Cold start of minimal app"
+        },
+        {
+          "id": "memory-footprint",
+          "name": "Memory Footprint",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "minimal", "value": "Minimal (<20MB)", "color": "green" },
+              { "id": "low", "value": "Low (20-80MB)", "color": "blue" },
+              {
+                "id": "moderate",
+                "value": "Moderate (80-200MB)",
+                "color": "orange"
+              },
+              { "id": "high", "value": "High (>200MB)", "color": "red" }
+            ]
+          },
+          "description": "Idle RSS of minimal app"
+        },
+        {
+          "id": "idle-redraw",
+          "name": "Idle Redraw",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "on-demand", "value": "On-Demand", "color": "green" },
+              { "id": "continuous", "value": "Continuous", "color": "orange" },
+              { "id": "configurable", "value": "Configurable", "color": "blue" }
+            ]
+          },
+          "description": "Whether the framework redraws only on state change (better for battery) or continuously"
+        },
+        {
+          "id": "dependency-count",
+          "name": "Dependency Count",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "minimal", "value": "Minimal (<50)", "color": "green" },
+              {
+                "id": "moderate",
+                "value": "Moderate (50-200)",
+                "color": "blue"
+              },
+              { "id": "heavy", "value": "Heavy (>200)", "color": "orange" }
+            ]
+          },
+          "description": "Transitive crate count from cargo tree"
+        }
+      ]
+    },
+    {
+      "id": "developer-experience",
+      "name": "Developer Experience",
+      "description": "Documentation, ergonomics, examples, and tooling",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=book + tutorials + API docs + examples; 3=adequate API docs with examples; 1=minimal or outdated"
+        },
+        {
+          "id": "api-ergonomics",
+          "name": "API Ergonomics",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=idiomatic Rust, builders, derive macros; 3=functional but verbose; 1=C-style or awkward"
+        },
+        {
+          "id": "examples-count",
+          "name": "Examples Count",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              {
+                "id": "extensive",
+                "value": "Extensive (>20)",
+                "color": "green"
+              },
+              { "id": "good", "value": "Good (10-20)", "color": "blue" },
+              { "id": "limited", "value": "Limited (3-10)", "color": "orange" },
+              { "id": "minimal", "value": "Minimal (<3)", "color": "gray" }
+            ]
+          },
+          "description": "Official examples in the repository"
+        },
+        {
+          "id": "interactive-playground",
+          "name": "Interactive Playground",
+          "valueType": "link",
+          "description": "URL to online playground/REPL/demo gallery"
+        },
+        {
+          "id": "ide-tooling",
+          "name": "IDE Tooling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "lsp", "value": "LSP", "color": "green" },
+              {
+                "id": "syntax-highlighting",
+                "value": "Syntax Highlighting",
+                "color": "blue"
+              },
+              { "id": "formatter", "value": "Formatter", "color": "purple" },
+              { "id": "inspector", "value": "Inspector", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Editor integrations specific to the framework"
+        },
+        {
+          "id": "dev-tools-inspector",
+          "name": "Dev Tools / Inspector",
+          "valueType": "boolean",
+          "description": "Runtime widget tree / state inspector (browser-devtools style)"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-community",
+      "name": "Ecosystem & Community",
+      "description": "Adoption signals, production users, and community size",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Star count at time of research (record date in comment; stales quickly)"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "All-time downloads of the top-level crate"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent crates.io release"
+        },
+        {
+          "id": "notable-production-users",
+          "name": "Notable Production Users",
+          "valueType": "text",
+          "description": "Shipping apps known to use this library"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "large", "value": "Large", "color": "green" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "solo", "value": "Solo", "color": "gray" }
+            ]
+          },
+          "description": "Approximate community scale (Discord/Matrix members, contributor count)"
+        },
+        {
+          "id": "ecosystem-crates",
+          "name": "Ecosystem Crates",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rich", "value": "Rich", "color": "green" },
+              { "id": "growing", "value": "Growing", "color": "blue" },
+              { "id": "minimal", "value": "Minimal", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Availability of themes, widgets, and integration crates"
+        }
+      ]
+    }
+  ]
+}
