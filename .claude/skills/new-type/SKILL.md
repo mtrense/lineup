@@ -66,18 +66,13 @@ Human labels to use in the `Type` column of the attribute tables. The `/scaffold
 
 For ranked types, state direction in the research note (e.g. "higher is better", "lower is better", "neutral"). For tag types, list the expected tag set inline in the research note (e.g. "tags: MIT, Apache-2.0, GPL-3.0, proprietary").
 
-### Convergence Checkpoint
+### Convergence
 
-Before generating the file, present a compact summary:
-- Comparison type id + display name + one-line description
-- Attribute groups with attributes and value types (bulleted, not the full table)
-- Initial candidates list
-
-Ask: "Ready to generate RESEARCH.md?" Only proceed on explicit confirmation.
+Once you've gathered enough in Phase 1 to draft all seven sections, proceed straight to Phase 2 and write the file. Do NOT present a pre-write chat summary or ask "Ready to generate?" — the user reviews the file itself, not a recap. The user will iterate on the written file directly.
 
 ## Phase 2: File Generation
 
-Generate **only** `data/<type>/RESEARCH.md`. Do NOT create `attributes.json`, do NOT create `index.json`, and do NOT touch the top-level `data/index.json` — those belong to `/scaffold-type` and should wait until RESEARCH.md is finalized.
+Write `data/<type>/RESEARCH.md` immediately after Phase 1 converges. Do NOT create `attributes.json`, do NOT create `index.json`, and do NOT touch the top-level `data/index.json` — those belong to `/scaffold-type` and should wait until RESEARCH.md is finalized.
 
 ### `data/<type>/RESEARCH.md`
 
@@ -93,14 +88,13 @@ Include ALL seven required sections:
 
 Match the tone and depth of existing `data/*/RESEARCH.md` files in the project.
 
-## Phase 3: Summary
+## Phase 3: Handoff
 
-Present:
-- Path of the created file: `data/<type>/RESEARCH.md`.
-- A compact recap of the scope (included / excluded), attribute groups, and initial candidates so the user can eyeball the draft without re-reading the whole file.
-- **Next step**: collaborate with the user to refine RESEARCH.md as needed. Once it reads well, run `/scaffold-type <type>` to generate `attributes.json`, the empty `index.json`, and the entry in `data/index.json`.
+Keep this short — the user reviews the file, not a chat recap. Output only:
+- The path of the created file: `data/<type>/RESEARCH.md`.
+- **Next step**: review the file and tell me what to change. Once it reads well, run `/scaffold-type <type>` to generate `attributes.json`, the empty `index.json`, and the entry in `data/index.json`.
 
-Do NOT print a commit command here — the type is not yet usable (no schema, not registered in `data/index.json`). The commit pattern is `/scaffold-type`'s concern.
+Do NOT re-summarize scope, attribute groups, or candidates here — they are in the file. Do NOT print a commit command — the type is not yet usable (no schema, not registered in `data/index.json`). The commit pattern is `/scaffold-type`'s concern.
 
 ## Git
 
