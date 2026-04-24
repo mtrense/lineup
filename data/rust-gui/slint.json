@@ -1,5 +1,335 @@
 {
   "name": "Slint",
   "description": "Declarative DSL, GPL/commercial dual-license, corporate-backed (SixtyFPS GmbH), cross-platform including embedded",
-  "values": {}
+  "url": "https://slint.dev",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["gpl-3-0"],
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/", "https://lib.rs/crates/slint"],
+      "comment": "Triple-licensed: GPL-3.0 for open source, royalty-free proprietary license for desktop/mobile/web, and paid commercial license. The crates.io manifest declares only GPL-3.0-only, which is tagged here as the primary open-source license."
+    },
+    "repository": {
+      "value": "https://github.com/slint-ui/slint",
+      "source": ["https://github.com/slint-ui/slint"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/slint",
+      "source": ["https://crates.io/crates/slint"]
+    },
+    "documentation": {
+      "value": "https://docs.slint.dev",
+      "source": ["https://docs.slint.dev/latest/docs/slint/"]
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://slint.dev/blog/sixtyfps-becomes-slint", "https://lib.rs/crates/slint"],
+      "comment": "Project started in spring 2020 under the name SixtyFPS; renamed to Slint in 2022. First `slint` crate publish on crates.io was February 1, 2022; earlier `sixtyfps` crate releases go back to 2020."
+    },
+    "latest-stable-version": {
+      "value": "1.16.1",
+      "source": ["https://crates.io/crates/slint", "https://lib.rs/crates/slint"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/blog/slint-1.16-released"],
+      "comment": "1.16 shipped April 16, 2026, 1.16.1 on April 23, 2026; master branch averages hundreds of commits per month from SixtyFPS GmbH staff and community contributors."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://slint.dev/blog/announcing-slint-1.0", "https://slint.dev/"],
+      "comment": "1.0 released April 2023; now at 1.16 with a stable API, commercial customers, and a production track record on desktop and embedded."
+    },
+    "corporate-backing": {
+      "value": "SixtyFPS GmbH — remote team distributed across Germany, Finland, and the US; funds development via a dual open-source/commercial license model.",
+      "source": ["https://slint.dev/", "https://github.com/slint-ui/slint"]
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/slint-ui/slint", "https://docs.rs/slint/latest/slint/docs/cargo_features/index.html"],
+      "comment": "Core is pure Rust. Optional Qt backend links against system Qt for native styling, but the default feature set ships femtovg/Skia/software renderers with no C/C++ toolkit dependency."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "Retained scene tree authored in the .slint DSL; property bindings update the tree when reactive dependencies change."
+    },
+    "reactivity-model": {
+      "value": ["signals", "callbacks"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://slint.dev/"],
+      "comment": "Fine-grained reactive property bindings (signal-like) in the DSL drive the retained tree; Rust/C++ side wires up callbacks for events and invokes setters on generated property accessors."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/slint-ui/slint"],
+      "comment": "Slint renders its own widgets; an optional Qt backend exists for native styling but is not the default target."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://github.com/slint-ui/slint/discussions/4377", "https://releases.slint.dev/1.5.1/docs/rust/slint/fn.spawn_local"],
+      "comment": "Event loop must run on the main thread; cross-thread communication goes through slint::invoke_from_event_loop or slint::spawn_local."
+    },
+    "renderer": {
+      "value": ["opengl", "skia", "software", "native-toolkit", "wgpu"],
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/blog/slint-1.12-released", "https://docs.rs/slint/latest/slint/docs/cargo_features/index.html"],
+      "comment": "Default femtovg renderer uses OpenGL ES 2.0; Skia and pure-software renderers are opt-in. Qt backend renders with the system's native toolkit. Slint 1.12 added FemtoVGWGPURenderer so apps can share a wgpu device with crates like Bevy."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/slint-ui/slint"],
+      "comment": "Default femtovg and Skia renderers are GPU-accelerated; software renderer exists for MCUs and headless targets."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/desktop"]
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "Path element renders resolution-independent SVG-style primitives; @image-url can load SVGs."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://slint.dev/blog/slint-1.12-released"],
+      "comment": "Slint 1.12 added WGPU integration enabling apps to share a wgpu device and run custom render passes (e.g. embedding Bevy). Older OpenGL underlay/texture APIs also allow custom GL rendering."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/slint-ui/slint/tree/master/examples", "https://slint.dev/blog/slint-1.12-released"],
+      "comment": "Dedicated examples (opengl_underlay, opengl_texture, wgpu_texture, Bevy integration) embed custom 3D/2D content inside the Slint UI."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/desktop"],
+      "comment": "Windows 10 and 11 on x86-64 and Windows 11 on aarch64 are officially supported."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/desktop"],
+      "comment": "macOS 14 Sonoma, 15 Sequoia, and macOS 26 on Apple Silicon are officially supported."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/desktop"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/desktop"],
+      "comment": "Docs state Slint runs on Linux distributions using Wayland or X-Windows; Wayland is a first-class target via winit."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://slint.dev/blog/slint-1.12-released", "https://nlnet.nl/project/SlintiOS/"],
+      "comment": "iOS introduced as a tech preview in Slint 1.12 (June 2025); cross-compilation, Xcode integration, and App Store deployment are documented but support is still labeled preview as of 1.16, so the boolean is held to `false` per RESEARCH.md's stricter reading."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://slint.dev/blog/slint-1.5-released", "https://github.com/slint-ui/slint"],
+      "comment": "Android support stabilized in Slint 1.5 (2024) via the backend-android-activity-05 feature."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/platforms/web/", "https://docs.slint.dev/latest/docs/slint/tutorial/running_in_a_browser/"],
+      "comment": "Rust apps cross-compile to WebAssembly via the Winit+FemtoVG backend and run in the browser. Slint's own docs state WASM is geared toward demos and is not recommended for general-purpose web apps (no screen-reader support, custom text rendering, non-standard HTML semantics)."
+    },
+    "embedded-no-std": {
+      "value": true,
+      "source": ["https://slint.dev/", "https://github.com/slint-ui/slint"],
+      "comment": "First-class support for microcontrollers: Raspberry Pi, STM32, RP2040, ESP, Zephyr; software renderer supports no_std-capable targets."
+    },
+    "authoring-style": {
+      "value": ["declarative-dsl"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://slint.dev/"],
+      "comment": "UI is authored in .slint files (own DSL) and compiled to native Rust/C++/JS/Python code; host-language bindings then wire up data and callbacks."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/blog/slint-1.5-released"],
+      "comment": "slint-viewer auto-reloads .slint files; the VS Code extension / slint-lsp provide an in-editor live preview that updates on save without recompiling the Rust/C++ host."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://slint.dev/blog/slint-1.16-released"],
+      "comment": "HorizontalLayout / VerticalLayout behave as a simplified flexbox; GridLayout is a grid. Slint 1.16 adds a more general experimental FlexboxLayout."
+    },
+    "styling-approach": {
+      "value": ["stylesheet-dsl", "theme-api", "inline-props"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://slint.dev/blog/default-native-style-change", "https://slint.dev/blog/slint-1.16-released"],
+      "comment": ".slint files are the stylesheet DSL; global Palette and selectable widget styles (Fluent, Material, Cupertino, Cosmic) form a theme API; inline property overrides per widget are pervasive."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "Palette supports runtime light/dark switching that responds to system color-scheme changes."
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://github.com/slint-ui/slint/pull/2865", "https://docs.rs/slint/latest/slint/docs/cargo_features/index.html"],
+      "comment": "Winit backend integrates with AccessKit for cross-platform screen-reader support (enabled by default via the `accessibility` feature). Coverage is growing — text-input exposure and large-listview performance remain open issues."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/guide/development/translations"],
+      "comment": "Built-in @tr macro with gettext (.mo) runtime loading, bundled .po files for WASM/MCU targets, plural forms, contextual translations, and slint-tr-extractor tooling. RTL is not explicitly documented."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://docs.slint.dev/latest/docs/slint/reference/window/menubar/", "https://slint.dev/blog/slint-1.16-released", "https://github.com/slint-ui/slint/blob/master/examples/gallery/gallery.slint"],
+      "comment": "std-widgets covers Button, CheckBox, Switch, Slider, SpinBox, LineEdit, TextEdit, ComboBox, TabWidget, ScrollView, GroupBox, ProgressIndicator, ListView, StandardListView, StandardTableView, Dialog, StandardButton; 1.x added MenuBar/ContextMenuArea and (in 1.16) StyledText with markdown. Missing: tree view, first-party charts."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "StandardTableView widget is provided; backed by ListView virtualization."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://slint.dev/blog/slint-1.16-released"],
+      "comment": "StyledText element and @markdown(...) macro landed in 1.16 as a first step toward full rich-text rendering."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/slint-ui/slint/discussions/1042"],
+      "comment": "No first-party TreeView widget; the documented pattern is flattening a tree into a ListView model."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://docs.slint.dev/latest/docs/slint/reference/window/menubar/", "https://slint.dev/blog/slint-1.10-released"],
+      "comment": "MenuBar / ContextMenuArea / Menu / MenuItem / MenuSeparator elements. Slint uses the `muda` crate on Windows and macOS for native rendering; on macOS the menu bar is hoisted to the system bar."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://github.com/slint-ui/slint/tree/master/examples"],
+      "comment": "Slint has a Dialog container widget but no first-party native file-open/save dialog; apps integrate the external `rfd` crate."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/slint-ui/slint/tree/master/examples"],
+      "comment": "No built-in chart widget. The `plotter` example demonstrates custom chart rendering using the Path element."
+    },
+    "custom-widgets": {
+      "value": 5,
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://github.com/slint-ui/slint/tree/master/examples"],
+      "comment": "Authoring custom widgets in the .slint DSL is straightforward: declare a component with properties, callbacks, states, and animations — little boilerplate and full hot reload."
+    },
+    "async-runtime-compatible": {
+      "value": ["native-async", "tokio"],
+      "source": ["https://releases.slint.dev/1.5.1/docs/rust/slint/fn.spawn_local", "https://github.com/slint-ui/slint/discussions/4377"],
+      "comment": "Slint provides its own event loop with slint::spawn_local; tokio futures can be awaited by spawning the tokio runtime on another thread and using invoke_from_event_loop to marshal results back. async-std/smol aren't called out as first-class, though the pattern is the same."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://slint.dev/blog/making-slint-desktop-ready"],
+      "comment": "Not built-in. The desktop-ready roadmap post discusses adding tray icons and context menus via dbus/macOS/Windows APIs; users today rely on external crates like tray-icon."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "No built-in OS notification API; users integrate external crates (e.g. notify-rust)."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://snapshots.slint.dev/master/docs/slint/reference/keyboard-input/textinput/", "https://github.com/slint-ui/slint/issues/6503"],
+      "comment": "TextInput/LineEdit/TextEdit expose copy/cut/paste functions and keyboard shortcuts. A general-purpose programmatic clipboard API (outside text widgets) is still tracked as a feature request."
+    },
+    "drag-and-drop": {
+      "value": false,
+      "source": ["https://slint.dev/blog/slint-1.16-released"],
+      "comment": "1.16 introduces in-app drag-and-drop but only between elements within a single window, and the feature is gated behind SLINT_ENABLE_EXPERIMENTAL_FEATURES=1. OS-level / cross-window drag-and-drop is on the roadmap and requires upstream winit work."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "No first-party webview element. Integrating wry/webview would be user-managed through a custom OpenGL/WGPU underlay."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/slint-ui/slint/discussions/5644"],
+      "comment": "Multi-window support shipped in Slint 1.7."
+    },
+    "binary-size": {
+      "value": ["moderate"],
+      "source": ["https://lib.rs/crates/slint"],
+      "comment": "Not independently measured here. Typical stripped release builds of a minimal Slint app with the default femtovg renderer land in the 10-30 MB range; software-only renderer can be much smaller on MCU targets."
+    },
+    "startup-time": {
+      "value": ["fast"],
+      "source": ["https://slint.dev/"],
+      "comment": "Not independently measured. Slint emphasizes low overhead and targets MCUs; desktop cold starts are generally in the 50-200 ms range. Verify locally for your build."
+    },
+    "memory-footprint": {
+      "value": ["low"],
+      "source": ["https://slint.dev/"],
+      "comment": "Not independently measured. Idle memory of a minimal desktop app typically sits in the 20-80 MB band; MCU targets drop far below 20 MB by design."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://docs.slint.dev/latest/docs/slint/"],
+      "comment": "Retained-mode renderer redraws on property change; animations opt into continuous redraw while running."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": ["https://lib.rs/crates/slint", "https://docs.rs/slint/latest/slint/docs/cargo_features/index.html"],
+      "comment": "Default feature set pulls in winit, femtovg, image, cosmic-text, etc.; typical cargo tree is in the 50-200 range. Not independently measured with cargo tree."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://slint.dev/"],
+      "comment": "Full docs site with language reference, widget reference, platform guides, tutorials, and per-language quickstarts for Rust/C++/Node/Python. Blog regularly covers new features and migration notes."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://docs.slint.dev/latest/docs/slint/", "https://docs.rs/slint/latest/slint/"],
+      "comment": "Rust side is builder-ish with generated typed accessors and ModelRc for data; .slint DSL handles the view layer. Minor friction from the two-language split (e.g. generated code model) but overall idiomatic."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/slint-ui/slint/tree/master/examples"],
+      "comment": "40+ official examples across desktop, mobile, embedded/MCU, WebAssembly, 3D/WGPU integrations, and games."
+    },
+    "interactive-playground": {
+      "value": "https://slintpad.com",
+      "source": ["https://github.com/slint-ui/slint"],
+      "comment": "SlintPad is the official browser-based editor/playground for .slint code."
+    },
+    "ide-tooling": {
+      "value": ["lsp", "syntax-highlighting", "formatter", "inspector"],
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/blog/slint-1.5-released"],
+      "comment": "slint-lsp language server with autocomplete + live preview; official Visual Studio Code, Kate, and Neovim integrations; slint-viewer acts as a runtime inspector/previewer with auto-reload."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://slint.dev/blog/slint-1.5-released"],
+      "comment": "Live-preview and slint-viewer double as widget-tree inspectors; the VS Code extension surfaces a design-mode inspector."
+    },
+    "github-stars": {
+      "value": 22300,
+      "source": ["https://github.com/slint-ui/slint"],
+      "comment": "Snapshot: ~22.3k stars as observed 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 1005132,
+      "source": ["https://crates.io/crates/slint"],
+      "comment": "All-time downloads of the top-level `slint` crate as of 2026-04-24 (~180k/month recent). Does not include the earlier `sixtyfps` crate."
+    },
+    "last-release": {
+      "value": "2026-04-23",
+      "source": ["https://crates.io/crates/slint", "https://lib.rs/crates/slint"],
+      "comment": "Version 1.16.1."
+    },
+    "notable-production-users": {
+      "value": "OTIV (autonomous rail vehicles), SK Signet (EV chargers), WesAudio (DAW plugins), Nexter Robotics, Embex GmbH, Jasic Technology Europe, Toradex, and various embedded/MCU deployments.",
+      "source": ["https://slint.dev/showcase", "https://slint.dev/"]
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/slint-ui/slint", "https://slint.dev/"],
+      "comment": "~22k GitHub stars, active Chat/Mattermost and GitHub Discussions, regular external contributions, plus a paid SixtyFPS GmbH core team."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://slint.dev/showcase", "https://github.com/slint-ui/slint"],
+      "comment": "Official Rust/C++/Node/Python bindings, Figma-to-Slint plugin, community widget libraries (SurrealismUI, vivi, coop). Third-party widget/theme ecosystem is smaller than older toolkits but actively expanding."
+    }
+  }
 }
