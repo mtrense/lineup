@@ -236,7 +236,7 @@ Users should be able to:
 - [x] **Floem** — SolidJS-inspired signals, powers the Lapce editor
 - [x] **Makepad** — Live-coding IDE and in-house framework, unique DSL and rendering
 - [x] **Ribir** — Declarative, reactive, pure-Rust
-- [ ] **Freya** — Skia-backed renderer for Dioxus components
+- [x] **Freya** — Skia-backed renderer for Dioxus components
 - [ ] **GPUI** — Zed editor's in-house GPU-accelerated framework, opened up for external use
 - [ ] **Vizia** — Declarative, audio-plugin-friendly
 - [ ] **gtk4-rs** — Official GTK 4 bindings for Rust

@@ -1,5 +1,340 @@
 {
   "name": "Freya",
   "description": "Skia-backed renderer for Dioxus components",
-  "values": {}
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/crates/freya", "https://github.com/marc2332/freya"],
+      "comment": "MIT only; declared in the crate manifest and LICENSE.md."
+    },
+    "repository": {
+      "value": "https://github.com/marc2332/freya",
+      "source": ["https://github.com/marc2332/freya"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/freya",
+      "source": ["https://crates.io/crates/freya"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/freya",
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "The older book at book.freyaui.dev is now marked 'no longer maintained'; docs.rs and the examples folder are the current reference. freyaui.dev is the landing site."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://lib.rs/crates/freya", "https://crates.io/crates/freya"],
+      "comment": "First crates.io publish was 0.1.1 on November 19, 2022."
+    },
+    "latest-stable-version": {
+      "value": "0.3.4",
+      "source": ["https://crates.io/crates/freya"],
+      "comment": "0.3.4 released 2025-06-02 is the last non-prerelease publish. 0.4.0 is in release-candidate phase (0.4.0-rc.19 on 2026-04-23) and ships a major rewrite that drops the Dioxus dependency."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/marc2332/freya", "https://crates.io/crates/freya"],
+      "comment": "47 crate versions across 3+ years; 0.4 rewrite in active RC cycle with the most recent publish on 2026-04-23."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/marc2332/freya", "https://crates.io/crates/freya"],
+      "comment": "No 1.0 release yet; 0.4 is a substantial architectural rewrite (dropping Dioxus for an in-house reactive core) and is still in RC. API remains in flux between minor versions."
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Solo primary maintainer (Marc Espín / marc2332) funded through GitHub Sponsors; no company sits behind the project."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/marc2332/freya", "https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "Widget/layout/reactivity layers are pure Rust. The renderer links the Skia C++ library via the freya-skia-safe bindings, which is consistent with how other pure-Rust Rust GUI frameworks (Slint, Floem) are classified here."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://docs.rs/freya/latest/freya/", "https://deepwiki.com/marc2332/freya"],
+      "comment": "Declarative components produce a persistent element tree that updates reactively when state changes; no immediate-mode redraw-from-scratch per frame."
+    },
+    "reactivity-model": {
+      "value": ["signals", "react-like"],
+      "source": ["https://docs.rs/freya/latest/freya/", "https://deepwiki.com/marc2332/freya"],
+      "comment": "Uses hooks (use_state, use_signal, use_memo) and rsx-style authoring. 0.4 moved from a Dioxus-powered reactive core to an in-house core (freya-core + ragnarok event system) but the hook/RSX authoring model is preserved."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Not a binding to a native widget toolkit; widgets are implemented in Rust and drawn to Skia."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "Event loop and component tree live on the main thread, per the winit-based architecture; async work is offloaded via Tokio."
+    },
+    "renderer": {
+      "value": ["skia", "opengl", "vulkan"],
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml", "https://github.com/marc2332/freya"],
+      "comment": "Skia is the drawing API; it runs on top of an OpenGL (glutin) or Vulkan (ash) context depending on platform and features."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://freyaui.dev/", "https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "Skia draws via GPU (OpenGL/Vulkan) by default."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "winit reports the display scale factor; Skia scales pixel-accurate rendering accordingly."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "freya-skia-safe is configured with the `svg` feature; Skia supports vector primitives and SVG natively."
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No documented public API for injecting custom GPU shader passes. Skia exposes SkRuntimeEffect internally, but Freya does not surface a shader-pass extension point in its public API."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "The examples folder contains feature_canvas.rs demonstrating custom per-frame drawing into a canvas element."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya", "https://crates.io/crates/freya"],
+      "comment": "Windows is a first-class build target (both MSVC and GNU toolchains mentioned in contributing docs)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya", "https://docs.rs/freya/latest/freya/"],
+      "comment": "macOS (Apple Silicon and Intel) is a first-class build target."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "Linux is officially supported; winit handles X11 out of the box."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "winit 0.30 supports Wayland natively; Freya does not disable it. No dedicated Wayland-tested status statement from the maintainers, but it is a standard winit target."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No official iOS target; the README explicitly advertises desktop-only support (Windows/macOS/Linux)."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "A community contributor (SparkyTD) has done work toward Android, but the project is not advertised as supporting Android officially and it is not listed as a tested platform."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya", "https://crates.io/crates/freya"],
+      "comment": "Project tagline is 'cross-platform and non-web GUI library'; WebAssembly is explicitly out of scope."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "Depends on std-heavy crates (tokio, winit, skia). No no_std story."
+    },
+    "authoring-style": {
+      "value": ["rust-macro"],
+      "source": ["https://docs.rs/freya/latest/freya/", "https://github.com/marc2332/freya"],
+      "comment": "Primary authoring is via an rsx!-style macro inside Rust components. Examples in the repo use this macro uniformly. A chained builder API is shown on freyaui.dev but the documented/primary style is the macro."
+    },
+    "hot-reload": {
+      "value": null,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Earlier (Dioxus-based) versions inherited Dioxus hot-reload for static attributes. The 0.4 rewrite dropped the Dioxus dependency and the project does not currently advertise a hot-reload feature. Unverified for the current 0.4 RC series."
+    },
+    "layout-system": {
+      "value": ["flexbox"],
+      "source": ["https://deepwiki.com/marc2332/freya", "https://docs.rs/freya/latest/freya/"],
+      "comment": "Uses an in-house layout engine called Torin with flexbox-style direction/main-align/cross-align primitives."
+    },
+    "styling-approach": {
+      "value": ["inline-props", "theme-api"],
+      "source": ["https://docs.rs/freya/latest/freya/", "https://freyaui.dev/"],
+      "comment": "Styles are authored as attributes on rsx elements (inline-props). A theming system provides reusable theme structs and light/dark switching."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "Runtime-swappable themes with light/dark variants ship in the standard library."
+    },
+    "accessibility": {
+      "value": ["accesskit"],
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml"],
+      "comment": "Depends directly on accesskit 0.24 and accesskit_winit for cross-platform screen-reader integration."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://docs.rs/freya/latest/freya/", "https://github.com/marc2332/freya"],
+      "comment": "Optional `i18n` feature pulls in a Fluent-based localization layer; routing and text layout handle locale-aware content."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples", "https://github.com/marc2332/freya"],
+      "comment": "Broad built-in coverage: buttons, inputs, switches, sliders, scroll views, calendar, color picker, tooltip, table, markdown, rich text editor, code editor with tree-sitter, terminal emulator, Lucide icons, Material Design components, Plotters charts. Missing a proper data-grid virtualization story and richer dialog primitives keeps it at 4 rather than 5."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "component_table example ships in the examples folder and a VirtualScrollView is available for large datasets."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples", "https://github.com/marc2332/freya"],
+      "comment": "Built-in markdown component plus a rich-text editor component with cursor/selection handling."
+    },
+    "tree-outline": {
+      "value": null,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "No dedicated tree widget found in the built-in component set; apps typically compose nested VirtualScrollViews. Unverified."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "component_menu.rs demonstrates an in-app menu drawn with Freya widgets; no OS-native menu bar / context menu integration is provided."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No first-party file dialog; apps reach for the standalone rfd crate."
+    },
+    "charts-plotting": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Optional `plotters` feature provides first-class integration with the Plotters crate."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "New components are ordinary Rust functions returning an rsx tree; hooks compose cleanly. Lower-level custom rendering requires going through Torin/Skia, which costs a star."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio"],
+      "source": ["https://github.com/marc2332/freya/blob/main/Cargo.toml", "https://docs.rs/freya/latest/freya/"],
+      "comment": "Tokio is a direct dependency and the only documented async runtime integration; background tasks and remote asset loading go through Tokio."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No built-in tray icon support; not listed in features or examples."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No native OS notification integration advertised."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Rich text and input components support clipboard cut/copy/paste via the winit-provided clipboard."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "component_drag_drop example demonstrates drag-and-drop within the UI."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Optional `webview` feature embeds a webview component alongside Freya widgets."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "feature_multi_window example ships in the examples folder."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable measurement available; a hello-world binary was not built for this research pass. Skia-based frameworks typically land in the moderate-to-large range, but this is not verified."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "No first-party or reproducible third-party cold-start measurement found."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "No first-party or reproducible third-party idle-RSS measurement found."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "Reactive core redraws only when observed state changes; animation hooks opt into continuous redraw while running."
+    },
+    "dependency-count": {
+      "value": null,
+      "source": [],
+      "comment": "Freya pulls in winit, glutin, ash, tokio, Skia bindings, and accesskit among others; total transitive count was not measured in this pass."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/freya/latest/freya/", "https://book.freyaui.dev/", "https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "docs.rs API coverage is strong (~94%) and the examples folder is extensive. The dedicated book (book.freyaui.dev) is marked 'no longer maintained', which leaves a gap between API docs and a narrative guide for newcomers."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://docs.rs/freya/latest/freya/"],
+      "comment": "rsx! macro, hooks, and signal/memoization APIs read idiomatically and avoid boilerplate. A point is held back because the 0.4 rewrite still has rough edges and breaking changes across RCs."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/marc2332/freya/tree/main/examples"],
+      "comment": "Well over 20 example files (100+ reported) covering components, animations, features, and platform integrations."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://freyaui.dev/"],
+      "comment": "No online playground or demo gallery found; the landing site is marketing-only and the book is offline."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No Freya-specific LSP, formatter, or syntax package. Because views are written in plain Rust via rsx!, rust-analyzer provides baseline IDE support, but there is no dedicated tooling."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://github.com/marc2332/freya", "https://docs.rs/freya/latest/freya/"],
+      "comment": "Optional `devtools` feature / freya-devtools crate exposes a runtime component-tree inspector."
+    },
+    "github-stars": {
+      "value": 2700,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "2.7k stars as of 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 32845,
+      "source": ["https://crates.io/crates/freya"],
+      "comment": "All-time downloads of the top-level `freya` crate as reported by crates.io on 2026-04-24."
+    },
+    "last-release": {
+      "value": "2026-04-23",
+      "source": ["https://crates.io/crates/freya"],
+      "comment": "Most recent publish was 0.4.0-rc.19 on 2026-04-23."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "No shipping production applications publicly attributed to Freya. GitHub sponsors are listed but not product users."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/marc2332/freya"],
+      "comment": "Active Discord, GitHub Sponsors, 2.7k stars, and a handful of recurring community contributors; solo primary maintainer."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/marc2332/freya", "https://crates.io/crates/freya"],
+      "comment": "Most ecosystem surface is first-party feature-gated crates (freya-devtools, freya-testing, freya-router, material-design, plotters integration, i18n, webview, terminal). Few third-party extensions exist yet."
+    }
+  }
 }
