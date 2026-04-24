@@ -1,5 +1,335 @@
 {
   "name": "Relm4",
   "description": "Elm-style framework layered on top of gtk4-rs",
-  "values": {}
+  "url": "https://relm4.org",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["apache-2-0", "mit"],
+      "source": ["https://github.com/Relm4/Relm4", "https://crates.io/crates/relm4"],
+      "comment": "Dual-licensed Apache-2.0 OR MIT (LICENSE-APACHE and LICENSE-MIT both present in the repository)."
+    },
+    "repository": {
+      "value": "https://github.com/Relm4/Relm4",
+      "source": ["https://github.com/Relm4/Relm4"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/relm4",
+      "source": ["https://crates.io/crates/relm4"]
+    },
+    "documentation": {
+      "value": "https://relm4.org/book/stable/",
+      "source": ["https://relm4.org", "https://docs.rs/relm4/"]
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/relm4"],
+      "comment": "First crates.io publish was 2021-08-10."
+    },
+    "latest-stable-version": {
+      "value": "0.11.0",
+      "source": ["https://crates.io/api/v1/crates/relm4", "https://lib.rs/crates/relm4"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/Relm4/Relm4", "https://crates.io/api/v1/crates/relm4"],
+      "comment": "Last push 2026-04-23; 0.11.0 released 2026-04-08 following a steady cadence of minor releases."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://relm4.org", "https://github.com/Relm4/Relm4"],
+      "comment": "Still pre-1.0 (0.11.0) but API is stable across minor releases, widely used in production GNOME-ecosystem apps, and documentation is comprehensive."
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "No single corporate sponsor; maintained by the Relm4 organization with a small group of volunteer maintainers."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://relm4.org", "https://github.com/Relm4/Relm4"],
+      "comment": "Relm4 is a Rust framework layered on the gtk4-rs bindings to C-based GTK 4; runtime composition is identical to gtk4-rs with an Elm-style architecture added on top."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://relm4.org/book/stable/"],
+      "comment": "Inherits GTK 4's retained widget tree; Relm4's view! macro and tracker pattern update the persistent tree reactively rather than redrawing per frame."
+    },
+    "reactivity-model": {
+      "value": ["elm"],
+      "source": ["https://relm4.org", "https://relm4.org/book/stable/"],
+      "comment": "Explicit Elm architecture: each Component defines a Model, an Input/Output message enum, and an update function that maps messages to model changes. The view! macro + #[watch] attributes (and the optional tracker crate) handle efficient UI updates."
+    },
+    "binding-target": {
+      "value": ["gtk"],
+      "source": ["https://relm4.org", "https://github.com/Relm4/Relm4"],
+      "comment": "Built on gtk4-rs; targets GTK 4 exclusively (no other toolkit backends)."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://relm4.org/book/stable/threads_and_async/commands.html"],
+      "comment": "Inherits GTK's main-thread-only UI constraint. Relm4 provides Workers and Commands that run on a Tokio runtime (thread count configurable via RELM_THREADS) and communicate back to the UI thread via messages."
+    },
+    "renderer": {
+      "value": ["opengl", "vulkan", "software"],
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/"],
+      "comment": "Inherits GTK 4 GSK renderers: NGL (OpenGL, default), Vulkan, and Cairo (software). Relm4 does not introduce its own renderer."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/"],
+      "comment": "Default GTK renderer (NGL) is GPU-accelerated; inherited by Relm4."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"]
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Inherits GTK's GSK/Cairo resolution-independent primitives."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://blog.gtk.org/2024/01/28/new-renderers-for-gtk/"],
+      "comment": "No cross-renderer custom-shader API in GTK 4 (GskGLShader was deprecated); Relm4 does not add one."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://github.com/Relm4/Relm4/tree/main/examples"],
+      "comment": "GtkGLArea is available through gtk4-rs; Relm4 can host a GL viewport as a widget inside a component."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://relm4.org", "https://www.gtk.org/"],
+      "comment": "Inherits gtk4-rs platform support; Relm4 advertises cross-platform desktop (Linux/macOS/Windows)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://relm4.org", "https://www.gtk.org/"]
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"]
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/wayland.html"]
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://discourse.gnome.org/t/gtk-4-and-android/2808"],
+      "comment": "GTK 4 has no official iOS backend; Relm4 therefore cannot target iOS."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://discourse.gnome.org/t/what-versions-of-android-does-the-gtk4-demo-support/28598"],
+      "comment": "GTK 4.18+ ships an experimental Android backend but it is not production-ready; Relm4 has no dedicated Android story."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://docs.gtk.org/gtk4/running.html"],
+      "comment": "GTK does not compile to WebAssembly; Relm4 inherits this limitation."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "Requires GTK 4, glib, and Tokio — not usable on no_std targets."
+    },
+    "authoring-style": {
+      "value": ["rust-macro", "imperative-rust"],
+      "source": ["https://relm4.org/book/stable/", "https://github.com/Relm4/Relm4/blob/main/examples/macro_reference.rs"],
+      "comment": "Primary authoring style is the view! / component! declarative Rust macro (RSX-like, compile-time checked). Direct imperative gtk4-rs builder code is also usable (simple_manual.rs example)."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://relm4.org/book/stable/"],
+      "comment": "No hot reload for view! macros or component code; changes require recompile. GTK Inspector still allows live CSS/property tweaks at runtime."
+    },
+    "layout-system": {
+      "value": ["auto", "constraints", "grid"],
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Inherits GTK 4 layout managers: GtkBoxLayout (auto), GtkGridLayout (grid), GtkConstraintLayout (constraints)."
+    },
+    "styling-approach": {
+      "value": ["css-like"],
+      "source": ["https://docs.gtk.org/gtk4/css-overview.html", "https://crates.io/crates/relm4-css"],
+      "comment": "Uses GTK's CSS-like stylesheet language. The optional relm4-css companion crate adds ergonomic styling helpers on top."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Runtime theme/dark-mode switching via GtkSettings; libadwaita-based Relm4 apps follow the system color scheme automatically."
+    },
+    "accessibility": {
+      "value": ["native", "accesskit"],
+      "source": ["https://blog.gtk.org/2025/05/12/an-accessibility-update/"],
+      "comment": "Inherits GTK 4 accessibility: at-spi backend on Linux (native) plus AccessKit backend merged in GTK 4.18 for Windows/macOS."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://gtk-rs.org/gtk4-rs/stable/latest/book/i18n.html"],
+      "comment": "Inherits gettext-based i18n and Pango's complex-script/RTL rendering from GTK 4. No Relm4-specific i18n framework, but the underlying stack handles it end-to-end."
+    },
+    "widget-breadth": {
+      "value": 5,
+      "source": ["https://relm4.org", "https://docs.gtk.org/gtk4/"],
+      "comment": "Relm4 exposes the full GTK 4 widget catalogue (ColumnView/tables, TreeExpander/trees, TextView/rich text, dialogs, popovers, etc.) plus typed wrappers in relm4 core (typed_column_view, typed_list_view, typed_grid_view) and ready-made widgets in relm4-components (Alert, OpenDialog, SaveDialog, ComboBox, WebImage)."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://github.com/Relm4/Relm4/blob/main/examples/typed_column_view.rs"],
+      "comment": "GtkColumnView with Relm4's typed_column_view wrapper provides a virtualized, ergonomic tabular widget."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.TextView.html"],
+      "comment": "GtkTextView/TextBuffer supports rich text. No first-party markdown widget; third-party crates are needed."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.TreeExpander.html"],
+      "comment": "Inherits GtkTreeListModel + GtkTreeExpander + GtkListView for hierarchical lists."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://github.com/Relm4/Relm4/blob/main/examples/menu.rs"],
+      "comment": "GtkPopoverMenu / GMenu accessible directly; Relm4's menu! macro wraps menu definitions declaratively (menu.rs example)."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://crates.io/crates/relm4-components"],
+      "comment": "relm4-components provides ready-made OpenDialog, SaveDialog, and OpenButton components wrapping GtkFileDialog."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "No first-party charting widget; users integrate third-party crates (e.g., plotters with a GTK4 backend)."
+    },
+    "custom-widgets": {
+      "value": 4,
+      "source": ["https://relm4.org/book/stable/", "https://github.com/Relm4/Relm4/blob/main/examples/widget_template.rs"],
+      "comment": "Relm4's Component trait + widget_template! macro + the Elm-style message flow make authoring reusable composite widgets substantially more ergonomic than raw gtk4-rs GObject subclassing. Truly novel low-level widgets still fall back to gtk4-rs subclassing."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio", "native-async"],
+      "source": ["https://relm4.org/book/stable/threads_and_async/commands.html", "https://docs.rs/relm4/"],
+      "comment": "Tokio is a first-class dependency — Relm4 Workers and Commands run on a Tokio runtime (thread count configurable via RELM_THREADS). Direct use of glib's main context (native-async) for main-thread futures is also supported via gtk4-rs."
+    },
+    "system-tray": {
+      "value": false,
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "No built-in tray-icon support (GTK 4 dropped GtkStatusIcon). Apps typically integrate third-party crates like ksni."
+    },
+    "notifications": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gio/class.Notification.html"],
+      "comment": "GNotification via GApplication is available through gtk4-rs; Relm4's Component trait is built on GtkApplication."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/class.Clipboard.html"],
+      "comment": "GdkClipboard accessible via gtk4-rs."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/Relm4/Relm4/blob/main/examples/drag_and_drop.rs"],
+      "comment": "Dedicated drag_and_drop.rs example in the repository using GtkDragSource / GtkDropTarget."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "Not built in. The separate webkit6-rs (WebKitGTK) crate can be embedded as a GTK widget in a Relm4 component if needed."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://github.com/Relm4/Relm4/blob/main/examples/multi_window.rs"],
+      "comment": "multi_window.rs example demonstrates multiple top-level windows; GtkApplication (wrapped by Relm4) manages them."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass. As a gtk4-rs-based framework, typical Linux binaries are small-to-moderate (GTK linked dynamically); Windows/macOS distributions bundling GTK push into the large category."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://docs.gtk.org/gtk4/"],
+      "comment": "Inherits GTK 4's retained on-demand redraw behavior."
+    },
+    "dependency-count": {
+      "value": ["moderate"],
+      "source": ["https://lib.rs/crates/relm4"],
+      "comment": "Pulls in the full gtk4-rs stack (gtk4, gdk4, gsk4, glib, gio, cairo-rs, pango, graphene-rs, gdk-pixbuf, their -sys crates) plus Tokio and Relm4's own macro/helper crates — on the order of 80-150 crates, not measured precisely this pass."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://relm4.org/book/stable/", "https://docs.rs/relm4/", "https://github.com/Relm4/Relm4/tree/main/examples"],
+      "comment": "Dedicated Relm4 book (multi-chapter, covers basic concepts, component macro, tracker, factory, threads/async/commands, libraries), full docs.rs API reference, and 40+ runnable examples in the repo."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://relm4.org/book/stable/", "https://github.com/Relm4/Relm4/blob/main/examples/simple.rs"],
+      "comment": "Elm-style Component trait with typed Input/Output messages, the view! macro for declarative UI, #[watch] attributes, and widget_template! make ergonomics significantly better than raw gtk4-rs. Some lifetime/clone-for-closure friction and GObject semantics still leak through where gtk4-rs types surface directly."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/Relm4/Relm4/tree/main/examples"],
+      "comment": "40+ example files in the repository (actions, components, factory, drag_and_drop, multi_window, worker, non_blocking_async, typed_column_view, tracker, tab_game, to_do, toast, etc.)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground; examples must be cloned and built locally."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://relm4.org/book/stable/"],
+      "comment": "No framework-specific LSP or inspector plugin. Standard rust-analyzer covers the Rust code (including view! macro expansion)."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://docs.gtk.org/gtk4/running.html"],
+      "comment": "GTK Inspector (Ctrl+Shift+I / GTK_DEBUG=interactive) is fully functional for Relm4 apps — live widget tree, property editor, CSS tweaks — inherited from the GTK 4 runtime."
+    },
+    "github-stars": {
+      "value": 1865,
+      "source": ["https://api.github.com/repos/Relm4/Relm4"],
+      "comment": "Snapshot 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 508481,
+      "source": ["https://crates.io/api/v1/crates/relm4"],
+      "comment": "All-time downloads of the relm4 crate as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2026-04-08",
+      "source": ["https://crates.io/api/v1/crates/relm4"],
+      "comment": "Version 0.11.0."
+    },
+    "notable-production-users": {
+      "value": "fm (file manager), Done (to-do), Lemoa (Lemmy client), LACT (AMD GPU control), Reovim (Neovim GUI), NixOS Configuration Editor, Rhino Setup, Space Acres (Subspace farmer), Exercise Timer, ratic (music), Vinyl, Toolbox Tuner, Words!, Score Tracker, BitRitter, Spidey, xdg-mimer, CoDLinux, waypomo.",
+      "source": ["https://github.com/Relm4/Relm4"],
+      "comment": "~20 shipping apps listed in the \"Projects using Relm4\" section of the README."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/Relm4/Relm4", "https://relm4.org"],
+      "comment": "Matrix chat channel exists; active but modest contributor base (a handful of core maintainers led by AaronErhardt, plus semi-regular external contributors)."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://lib.rs/crates/relm4"],
+      "comment": "Official companion crates: relm4-macros (view!/component! macros), relm4-components (Alert, Open/SaveDialog, ComboBox, WebImage), relm4-icons (bundled icon set), relm4-css (styling helpers). The wider GNOME Rust ecosystem (libadwaita-rs, webkit6-rs, gstreamer-rs, sourceview5-rs) composes naturally with Relm4 components."
+    }
+  }
 }
