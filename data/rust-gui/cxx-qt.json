@@ -1,5 +1,339 @@
 {
   "name": "cxx-qt",
   "description": "Modern Qt bindings using CXX, KDAB-maintained",
-  "values": {}
+  "url": "https://kdab.github.io/cxx-qt/book/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://github.com/KDAB/cxx-qt", "https://crates.io/api/v1/crates/cxx-qt"],
+      "comment": "Dual-licensed MIT OR Apache-2.0. Note that end users also need to comply with Qt's own license (LGPLv3 or commercial) for the underlying Qt framework they link against."
+    },
+    "repository": {
+      "value": "https://github.com/KDAB/cxx-qt",
+      "source": ["https://github.com/KDAB/cxx-qt"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/cxx-qt",
+      "source": ["https://crates.io/crates/cxx-qt"]
+    },
+    "documentation": {
+      "value": "https://kdab.github.io/cxx-qt/book/",
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://crates.io/api/v1/crates/cxx-qt"]
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/cxx-qt"],
+      "comment": "First crates.io publish: 0.1.0 on 2021-12-03."
+    },
+    "latest-stable-version": {
+      "value": "0.8.1",
+      "source": ["https://crates.io/api/v1/crates/cxx-qt", "https://github.com/KDAB/cxx-qt/releases"]
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/KDAB/cxx-qt", "https://github.com/KDAB/cxx-qt/releases"],
+      "comment": "Last push 2026-04-19; five releases in the last ~13 months (0.7.1 through 0.8.1). KDAB actively develops the project."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://www.kdab.com/cxx-qt/", "https://github.com/KDAB/cxx-qt/releases/tag/v0.8.0"],
+      "comment": "KDAB historically described cxx-qt as early/work-in-progress, but the v0.8.0 release notes (Dec 2025) state the API is \"now considered stable\" with intent to avoid further backwards-incompatible changes. Still pre-1.0 on crates.io."
+    },
+    "corporate-backing": {
+      "value": "KDAB (Klarälvdalens Datakonsult AB)",
+      "source": ["https://www.kdab.com/cxx-qt/", "https://github.com/KDAB/cxx-qt"],
+      "comment": "Developed and maintained by KDAB, a long-standing Qt/C++ consultancy."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://github.com/KDAB/cxx-qt", "https://docs.rs/cxx-qt/latest/cxx_qt/"],
+      "comment": "Links against the C++ Qt framework via the CXX crate. cxx-qt-lib wraps QtCore/QtGui; the generated QObject subclasses have a C++ half and a Rust half."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://doc.qt.io/qt-6/qtquick-index.html"],
+      "comment": "UI is built in QML (Qt Quick), which maintains a persistent scene graph that updates on state change; not immediate-mode."
+    },
+    "reactivity-model": {
+      "value": ["callbacks", "retained-tree"],
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://docs.rs/cxx-qt/latest/cxx_qt/"],
+      "comment": "Qt's signal/slot mechanism plus QObject properties drive UI updates (property bindings in QML). No framework-level elm-style messages or Rust-side signals library."
+    },
+    "binding-target": {
+      "value": ["qt"],
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "Targets Qt 5.15 LTS and all Qt 6 versions (defaults to Qt 6)."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui", "multi-threaded"],
+      "source": ["https://github.com/KDAB/cxx-qt/discussions/805", "https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/threading.rs"],
+      "comment": "Qt/QML remains main-thread-only, but cxx-qt provides CxxQtThread (Send) to queue closures from any Rust background thread back onto the Qt event loop, enabling safe multi-threaded application logic."
+    },
+    "renderer": {
+      "value": ["opengl", "vulkan", "metal", "directx", "software"],
+      "source": ["https://doc.qt.io/qt-6/topics-graphics.html", "https://www.qt.io/blog/graphics-in-qt-6.0-qrhi-qt-quick-qt-quick-3d"],
+      "comment": "Qt Quick in Qt 6 draws through the Qt RHI, which abstracts OpenGL, Vulkan, Metal, Direct3D, and a null/software backend; selectable via QSG_RHI_BACKEND."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/topics-graphics.html"],
+      "comment": "Qt Quick is GPU-accelerated by default through RHI."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/highdpi.html"],
+      "comment": "Inherits Qt's built-in HiDPI support; Qt 6 enables high-DPI scaling by default."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-shapes-shape.html"],
+      "comment": "QML Shapes module and QPainter provide vector drawing; SVG rendering via QtSvg."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-shadereffect.html", "https://doc.qt.io/qt-6/qml-qtquick3d-custommaterial.html"],
+      "comment": "Qt Quick ShaderEffect and Qt Quick 3D CustomMaterial let apps inject custom shaders. Shaders are written in a Vulkan-style GLSL processed by the Qt Shader Tools pipeline."
+    },
+    "embedded-custom-rendering": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qquickframebufferobject.html", "https://doc.qt.io/qt-6/qml-qtquick3d-view3d.html"],
+      "comment": "Custom GPU content can be embedded via QQuickFramebufferObject, scene-graph custom nodes, or Qt Quick 3D View3D. Directly wrapping these from Rust requires cxx-qt user-side bridges since cxx-qt-lib primarily covers QtCore/QtGui."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "Windows is in the CI matrix."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "macOS is in the CI matrix."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/KDAB/cxx-qt", "https://doc.qt.io/qt-6/supported-platforms.html"],
+      "comment": "Linux is in the CI matrix; Qt's xcb platform plugin provides X11 support."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/supported-platforms.html"],
+      "comment": "Inherits Qt's Wayland platform plugin (qtwayland). Not explicitly called out in cxx-qt's CI, but Wayland is the default on modern Linux desktops."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "cxx-qt's README says the project \"should work on other platforms that Qt and Rust both support, however, these are not tested regularly.\" iOS is not part of the CI matrix, so marking false per RESEARCH.md's rule against unverified platform support."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "Not in cxx-qt's CI matrix. Qt itself supports Android, but cxx-qt's Android story is untested/unsupported per the project README."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/KDAB/cxx-qt", "https://kdab.github.io/cxx-qt/book/concepts/wasm-builds.html"],
+      "comment": "WebAssembly is in the CI matrix. Requires Qt for WebAssembly and a matching emsdk; only single-threaded wasm toolchains are supported, and cargo-only (non-CMake) builds are not yet viable."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/KDAB/cxx-qt"],
+      "comment": "Requires the Qt C++ framework and CXX; no no_std support. Qt for MCU exists as a separate product but cxx-qt does not target it."
+    },
+    "authoring-style": {
+      "value": ["declarative-dsl", "rust-macro"],
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://docs.rs/cxx-qt/latest/cxx_qt/"],
+      "comment": "UI is authored in QML (Qt's declarative DSL). Rust side uses the #[cxx_qt::bridge] procedural macro to declare QObject subclasses, properties, signals, and invokables that QML then consumes."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qtqml-tooling-qmlpreview.html"],
+      "comment": "QML content supports live reload via the qmlpreview tool and third-party tooling (qhot, Felgo Live). Rust-side changes (QObject definitions, invokables) still require recompile; hot reload is limited to the QML/JS layer."
+    },
+    "layout-system": {
+      "value": ["flexbox", "grid", "constraints", "auto", "manual"],
+      "source": ["https://doc.qt.io/qt-6/qtquicklayouts-index.html", "https://doc.qt.io/qt-6/qml-qtquick-layouts-gridlayout.html"],
+      "comment": "Qt Quick Layouts provide RowLayout/ColumnLayout (flexbox-like), GridLayout, and anchors. Anchor-based layout is constraint-like; explicit x/y positioning is available. Inherited entirely from Qt Quick."
+    },
+    "styling-approach": {
+      "value": ["inline-props", "theme-api"],
+      "source": ["https://doc.qt.io/qt-6/qtquickcontrols-styles.html", "https://doc.qt.io/qt-6/qtquickcontrols-fluent.html"],
+      "comment": "QML styling uses inline properties on items plus Qt Quick Controls styles (Basic, Fusion, Material, Universal, Fluent, iOS, macOS, Windows, etc.). There is no CSS-like stylesheet DSL; QPalette / Qt Quick Theme types serve the theme-API role."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qtquickcontrols-material.html", "https://doc.qt.io/qt-6/qml-qtquick-controls-applicationwindow.html"],
+      "comment": "Qt Quick Controls styles (Material/Universal/Fluent) expose runtime light/dark theme toggling; Qt 6.5+ follows the system color scheme automatically via Qt.styleHints.colorScheme."
+    },
+    "accessibility": {
+      "value": ["native"],
+      "source": ["https://doc.qt.io/qt-6/accessible.html", "https://doc.qt.io/qt-6/accessible-qtquick.html"],
+      "comment": "Accessibility inherited from Qt's platform-native a11y bridges (UI Automation on Windows, NSAccessibility on macOS, AT-SPI on Linux). QML exposes the Accessible attached type. Not integrated with AccessKit."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/internationalization.html"],
+      "comment": "Full Qt i18n stack: QTranslator/lupdate/lrelease, tr()/qsTr() in QML, bidirectional text via Qt's text engine, complex scripts via HarfBuzz."
+    },
+    "widget-breadth": {
+      "value": 4,
+      "source": ["https://doc.qt.io/qt-6/qtquickcontrols-index.html", "https://doc.qt.io/qt-6/qml-qtquick-tableview.html"],
+      "comment": "Via Qt Quick Controls + Qt Quick: buttons, inputs, dialogs, popovers, menus, TableView, TreeView, ListView, sliders, tabs, drawers, plus Qt Quick 3D. Qt Widgets (QTableWidget etc.) are not exposed through cxx-qt-lib, so QWidget-only components must be bridged manually. Not rated 5 because cxx-qt-lib focuses on QtCore/QtGui and reaching parts of QtWidgets from Rust still requires user-authored CXX bridges."
+    },
+    "data-grid-table": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-tableview.html"],
+      "comment": "Qt Quick TableView is a virtualized table; Rust code backs it via QAbstractItemModel subclasses exposed through cxx-qt."
+    },
+    "rich-text-markdown": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/richtext-html-subset.html", "https://doc.qt.io/qt-6/qml-qtquick-text.html"],
+      "comment": "QML Text/TextEdit supports a rich-text HTML subset and Markdown rendering (textFormat: Text.MarkdownText) since Qt 5.14."
+    },
+    "tree-outline": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-treeview.html"],
+      "comment": "QML TreeView is a standard component since Qt 6.3; TreeViewDelegate styles it per platform."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-controls-menubar.html", "https://doc.qt.io/qt-6/qml-qtquick-controls-menu.html"],
+      "comment": "Qt Quick Controls MenuBar/Menu/MenuItem integrate with platform-native menus (including the macOS app menu bar)."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-dialogs-filedialog.html"],
+      "comment": "QML FileDialog and QFileDialog both invoke native platform file pickers where available."
+    },
+    "charts-plotting": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qtcharts-index.html", "https://doc.qt.io/qt-6/qtgraphs-index.html"],
+      "comment": "Qt Charts (GPLv3 / commercial) and the newer Qt Graphs module provide first-party charting; both are usable from QML. License implications should be considered."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://doc.qt.io/qt-6/qtquick-customize.html"],
+      "comment": "Authoring custom QML items is well-documented on the Qt side. Implementing a custom QObject in Rust via #[cxx_qt::bridge] is idiomatic but requires understanding Qt's property/signal system plus CXX's bridge semantics, producing moderate boilerplate."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio", "async-std", "smol", "native-async"],
+      "source": ["https://github.com/KDAB/cxx-qt/discussions/805", "https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/threading.rs"],
+      "comment": "No built-in async integration, but any runtime (tokio, async-std, smol) can drive background tasks that marshal results back via CxxQtThread. Qt's own event loop acts as a native async executor for the UI thread."
+    },
+    "system-tray": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qsystemtrayicon.html"],
+      "comment": "Qt ships QSystemTrayIcon (part of QtWidgets). Not exposed by cxx-qt-lib directly, but reachable via a user-defined CXX bridge."
+    },
+    "notifications": {
+      "value": false,
+      "source": ["https://bugreports.qt.io/browse/QTBUG-37490"],
+      "comment": "Qt has no first-party cross-platform desktop notification API; applications typically use QSystemTrayIcon::showMessage or platform-specific APIs. Not a cxx-qt-provided feature."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qclipboard.html"],
+      "comment": "Qt provides QClipboard; usable from cxx-qt apps via QtGui bindings or custom CXX bridges."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/dnd.html", "https://doc.qt.io/qt-6/qml-qtquick-dragevent.html"],
+      "comment": "Full drag-and-drop stack in QtGui and Qt Quick (DragEvent, DropArea, Drag attached property)."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qtwebengine-index.html", "https://doc.qt.io/qt-6/qml-qtwebengine-webengineview.html"],
+      "comment": "Qt WebEngine (Chromium-based) provides an embeddable WebEngineView. It is a separate Qt module with its own licensing (LGPLv3/commercial) and is not bundled with every Qt distribution."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://doc.qt.io/qt-6/qml-qtquick-window.html"],
+      "comment": "Qt/QML Window types natively support multiple top-level windows."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass. In practice, Qt's dynamic libraries plus a Rust app typically fall into the moderate-to-large range (Qt6Core + Qt6Gui + Qt6Qml + Qt6Quick totals ~40MB of dylibs before app code), but dynamic linking against a system-installed Qt keeps the app binary itself small."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "Not measured in this pass."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://doc.qt.io/qt-6/qtquick-visualcanvas-scenegraph.html"],
+      "comment": "Qt Quick's scene graph redraws only when the scene is invalidated or an animation is running; idle UIs do not repaint continuously."
+    },
+    "dependency-count": {
+      "value": ["minimal"],
+      "source": ["https://lib.rs/crates/cxx-qt"],
+      "comment": "On the Rust side cxx-qt pulls a small tree (cxx, cxx-qt-macro, static_assertions, thiserror) per lib.rs; the bulk of the dependency surface is the Qt C++ framework linked at runtime, which isn't counted in cargo tree."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://docs.rs/cxx-qt/latest/cxx_qt/"],
+      "comment": "Dedicated mdBook-style guide covering getting started, concepts, and reference, plus docs.rs API docs and 9 example projects. Short of a 5 because tutorials are thin and some concepts (threading, advanced QML integration) still rely on reading examples."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://kdab.github.io/cxx-qt/book/", "https://docs.rs/cxx-qt/latest/cxx_qt/"],
+      "comment": "The #[cxx_qt::bridge] macro is idiomatic-looking, but authors must thread Pin<&mut T>, learn CXX's shared/opaque type vocabulary, and understand Qt's property/signal semantics. Ergonomic for a binding; not as smooth as pure-Rust frameworks."
+    },
+    "examples-count": {
+      "value": ["limited"],
+      "source": ["https://github.com/KDAB/cxx-qt/tree/main/examples"],
+      "comment": "9 example directories in the repo (qml_minimal, qml_basics, qml_features, qml_minimal_plugin, qml_multi_crates, cargo_without_cmake, demo_threading, span-inspector, todo_app)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground — running examples requires a local Qt install and either Cargo or CMake."
+    },
+    "ide-tooling": {
+      "value": ["lsp", "syntax-highlighting", "formatter"],
+      "source": ["https://github.com/KDAB/cxx-qt/releases/tag/v0.8.0", "https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html"],
+      "comment": "cxx-qt 0.8 auto-generates .qmlls.ini for Qt's QML Language Server (qmlls) and supports qmllint; Qt Creator, VS Code QML extension, and others provide syntax highlighting and qmlformat. No framework-specific inspector beyond Qt's own."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://doc.qt.io/qtcreator/creator-qml-debugging-example.html", "https://doc.qt.io/qt-6/qtqml-debugging-qmlprofiler.html"],
+      "comment": "Qt Creator's QML debugger and QML Profiler provide a live object/state inspector; applies to cxx-qt apps since they run on Qt Quick."
+    },
+    "github-stars": {
+      "value": 1458,
+      "source": ["https://api.github.com/repos/KDAB/cxx-qt"],
+      "comment": "Snapshot 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 52757,
+      "source": ["https://crates.io/api/v1/crates/cxx-qt"],
+      "comment": "All-time downloads of the cxx-qt crate as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2026-02-17",
+      "source": ["https://crates.io/api/v1/crates/cxx-qt", "https://github.com/KDAB/cxx-qt/releases"],
+      "comment": "Version 0.8.1."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": [],
+      "comment": "No widely-known shipping application has publicly announced use of cxx-qt. KDAB positions it as suitable for adding Rust to existing Qt/QML codebases, and there are hints of adoption in embedded/automotive KDAB client work, but no concrete public users are verifiable as of 2026-04."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/KDAB/cxx-qt", "https://cxx-qt.zulipchat.com"],
+      "comment": "Active KDAB-hosted Zulip chat and a small but engaged contributor base; 1.5k stars, 99 forks. Smaller than established Rust GUI frameworks but healthy for a specialized binding."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://lib.rs/crates/cxx-qt"],
+      "comment": "Ecosystem is primarily KDAB's own umbrella crates (cxx-qt-lib, cxx-qt-build, cxx-qt-gen, cxx-qt-macro, qt-build-utils); only a handful of downstream crates. Qt's own C++ ecosystem is rich but not exposed to Rust by third-party crates."
+    }
+  }
 }
