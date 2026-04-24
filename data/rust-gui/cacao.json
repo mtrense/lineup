@@ -1,5 +1,371 @@
 {
   "name": "cacao",
   "description": "Rust bindings to Apple's AppKit (macOS-only, native Cocoa)",
-  "values": {}
+  "url": "https://github.com/ryanmcgrath/cacao",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "mpl-2-0"],
+      "source": [
+        "https://github.com/ryanmcgrath/cacao",
+        "https://crates.io/api/v1/crates/cacao"
+      ],
+      "comment": "Dual-licensed MIT OR MPL-2.0+ (latter with version-upgrade clause)."
+    },
+    "repository": {
+      "value": "https://github.com/ryanmcgrath/cacao",
+      "source": ["https://crates.io/api/v1/crates/cacao"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/cacao",
+      "source": ["https://crates.io/api/v1/crates/cacao"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/cacao/latest/cacao/",
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "No dedicated documentation site; docs.rs is the primary reference."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/cacao"],
+      "comment": "First crates.io publish: 2020-04-01."
+    },
+    "latest-stable-version": {
+      "value": "0.3.2",
+      "source": ["https://crates.io/api/v1/crates/cacao"],
+      "comment": "0.4.0-beta2 (2023-08-01) is the newest published version but is a prerelease; max_stable is 0.3.2. Checked 2026-04-24."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": [
+        "https://api.github.com/repos/ryanmcgrath/cacao",
+        "https://api.github.com/repos/ryanmcgrath/cacao/commits"
+      ],
+      "comment": "Most recent push: 2025-02-03; most recent commits: 2024-12-28 (several PRs merged). No release since 2023-08 but trunk still receives occasional fixes. Calling it passive rather than active given long intervals between bursts of activity."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": [
+        "https://github.com/ryanmcgrath/cacao",
+        "https://docs.rs/cacao/latest/cacao/"
+      ],
+      "comment": "README and docs.rs explicitly describe AppKit support as 'beta quality, fairly usable' and UIKit as 'alpha quality'. No 1.0 release."
+    },
+    "corporate-backing": {
+      "value": "Community (Ryan McGrath, solo maintainer)",
+      "source": ["https://rymc.io/blog/2021/cacao-rs-macos-ios-rust/"],
+      "comment": "Independent open-source project by Ryan McGrath; no corporate sponsor disclosed."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": [
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md",
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml"
+      ],
+      "comment": "Wraps Apple's Objective-C AppKit/UIKit via objc2/block2; control objects are Rust structs bridged to NSObject subclasses."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Inherits AppKit/UIKit's retained-tree model; views and controls are persistent stateful objects backed by Core Animation layers."
+    },
+    "reactivity-model": {
+      "value": ["callbacks", "retained-tree"],
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Uses the Cocoa delegate pattern: controls accept Rust trait-object delegates that receive callbacks from bridged Objective-C subclasses. State is mutated directly on retained widgets."
+    },
+    "binding-target": {
+      "value": ["cocoa"],
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "AppKit (Cocoa) on macOS plus UIKit on iOS/tvOS. The 'cocoa' tag is used here as the closest match in the attribute tag set."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://docs.rs/cacao/latest/cacao/appkit/index.html"],
+      "comment": "Inherits AppKit/UIKit's main-thread-only UI constraint; no Send/Sync guarantees exposed for widget types."
+    },
+    "renderer": {
+      "value": ["native-toolkit"],
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Delegates all drawing to AppKit/UIKit (Core Animation / Quartz). Under the hood Apple uses Metal but the library does not expose a GPU API to user code."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Views are layer-backed (Core Animation), which is GPU-composited by AppKit. Not user-configurable."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/appkit/index.html"],
+      "comment": "Handled automatically by AppKit/UIKit (Retina scaling is a framework responsibility, not cacao's)."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "Available via AppKit drawing primitives and CoreGraphics; cacao exposes a custom-drawing example but does not add its own vector-graphics API beyond the native one."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "No Metal/Vulkan shader injection API in cacao itself. Users would drop to the Objective-C runtime to access Metal directly."
+    },
+    "embedded-custom-rendering": {
+      "value": null,
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "Not explicitly provided as a cacao abstraction. Custom NSView drawing is demonstrated in examples/custom_image_drawing.rs, but embedding a wgpu/Metal viewport would require dropping to the objc escape hatch; no first-class support documented."
+    },
+    "windows": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "Apple-only (AppKit/UIKit). Windows is explicitly out of scope."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "Primary supported platform (AppKit, beta quality)."
+    },
+    "linux-x11": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml"],
+      "comment": "GNUStep and Airyx are mentioned aspirationally in the crate description but are not officially tested platforms; treat Linux as unsupported."
+    },
+    "linux-wayland": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "Apple-only binding; no Wayland support."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "UIKit bindings exist but are described as alpha quality; widget coverage is limited vs. AppKit."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "No Android target; bindings are Apple-specific."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "Not applicable; AppKit/UIKit cannot run in a browser."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml"],
+      "comment": "Links to Apple frameworks and libc; no no_std support."
+    },
+    "authoring-style": {
+      "value": ["imperative-rust"],
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "Builder-style imperative API mirroring AppKit's instantiate-and-configure pattern; no DSL or macro-based markup."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "No hot-reload mechanism; UI changes require recompile."
+    },
+    "layout-system": {
+      "value": ["constraints", "manual"],
+      "source": [
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml",
+        "https://docs.rs/cacao/latest/cacao/"
+      ],
+      "comment": "Auto Layout (NSLayoutConstraint wrapper) is the default; manual frame positioning is also available via frame_layout example. No flexbox/grid abstractions."
+    },
+    "styling-approach": {
+      "value": ["native-toolkit", "inline-props"],
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "Styling follows AppKit conventions (system colors, appearance inheritance) with per-view property setters. No CSS-like or stylesheet DSL layer."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Inherits AppKit's automatic light/dark mode handling; the architecture doc specifically discusses dark-mode-aware ivar storage for background colors."
+    },
+    "accessibility": {
+      "value": ["native"],
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "Accessibility is inherited from AppKit/UIKit (NSAccessibility). No dedicated cacao-level accessibility API or AccessKit integration was found in the docs.rs index."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "RTL, IME, and locale-aware text shaping are handled by the underlying AppKit/UIKit text system. cacao itself does not add localization helpers — strings are passed through unchanged — but the OS takes care of rendering and input."
+    },
+    "widget-breadth": {
+      "value": 2,
+      "source": [
+        "https://github.com/ryanmcgrath/cacao",
+        "https://docs.rs/cacao/latest/cacao/all.html"
+      ],
+      "comment": "Covers common controls (Button, Label, TextField, ListView, Image, WebView, Toolbar, SplitView) but lacks tables, tree/outline views, rich text editing, charts, and advanced dialogs. Menu support is limited to one level deep. Below 'common widgets well-covered' threshold."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "ListView (wraps NSTableView in list-mode) is available but no multi-column data-grid/table widget is exposed. NSOutlineView / column-based NSTableView are not wrapped."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "AttributedString exists for simple styled text, but no markdown widget or rich-text editor (NSTextView wrapper is not exposed)."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "No NSOutlineView wrapper in the public API."
+    },
+    "native-menus": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/appkit/menu/index.html"],
+      "comment": "NSMenu/NSMenuItem wrappers are available for the app menu bar. Noted limitation: currently only one level deep. Context menus are not explicitly documented."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "FileSavePanel and FileSelectPanel wrap NSSavePanel / NSOpenPanel."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "No first-party chart widget; no Apple SwiftUI Charts-equivalent binding."
+    },
+    "custom-widgets": {
+      "value": 2,
+      "source": [
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md",
+        "https://docs.rs/cacao/latest/cacao/"
+      ],
+      "comment": "Authoring a custom control requires subclassing via the objc runtime escape hatch or implementing a Delegate trait and understanding the bridge pattern. Non-trivial boilerplate and some unsafe exposure."
+    },
+    "async-runtime-compatible": {
+      "value": ["sync-only"],
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml"],
+      "comment": "No async runtime integration. The event loop is AppKit/UIKit's (NSRunLoop / UIApplication). Users bridging to tokio/async-std must do so manually."
+    },
+    "system-tray": {
+      "value": null,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "No NSStatusItem/NSStatusBar wrapper found in the docs.rs item index. Could be accessed via the objc escape hatch, but not first-class."
+    },
+    "notifications": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "user_notifications module wraps UNUserNotificationCenter (opt-in via the 'user-notifications' feature flag)."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "pasteboard::Pasteboard wraps NSPasteboard."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/all.html"],
+      "comment": "DragInfo / DragOperation types exposed; integrates with AppKit's drag-and-drop APIs."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/webview/index.html"],
+      "comment": "webview module wraps WKWebView (opt-in via the 'webview' feature). Not available on tvOS (Apple restriction)."
+    },
+    "multi-window": {
+      "value": true,
+      "source": ["https://docs.rs/cacao/latest/cacao/appkit/index.html"],
+      "comment": "Multiple NSWindow instances supported; WindowController wrapper is provided."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "No published hello-world binary-size measurement found. Given it is a thin Objective-C shim with AppKit linked dynamically, binaries are expected to be small, but not measured for this pass."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "No cold-start measurements published. AppKit launch is typically fast but not independently measured here."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "No published idle-RSS measurement."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md"],
+      "comment": "Inherits AppKit's event-driven redraw: views invalidate (setNeedsDisplay) and the runloop redraws on demand — not continuous."
+    },
+    "dependency-count": {
+      "value": ["minimal"],
+      "source": [
+        "https://lib.rs/crates/cacao",
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/Cargo.toml"
+      ],
+      "comment": "14 direct dependencies per lib.rs; transitive count is well under 50 (objc2/block2 + core-foundation + a handful of small utilities). No heavy transitive graph."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": [
+        "https://docs.rs/cacao/latest/cacao/",
+        "https://github.com/ryanmcgrath/cacao"
+      ],
+      "comment": "API docs on docs.rs are present and reasonable, and there is a 2021 blog post motivation piece, but no book or structured tutorial. Many modules have terse descriptions; no migration docs."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": [
+        "https://github.com/ryanmcgrath/cacao/blob/trunk/ARCHITECTURE.md",
+        "https://docs.rs/cacao/latest/cacao/"
+      ],
+      "comment": "Idiomatic where possible (typed delegates, builder-ish config) but the objc bridge leaks (generic delegate type parameters, occasional unsafe escape hatch, Objective-C naming conventions). Functional but verbose."
+    },
+    "examples-count": {
+      "value": ["good"],
+      "source": ["https://github.com/ryanmcgrath/cacao/tree/trunk/examples"],
+      "comment": "19 items (13 standalone .rs files + 4 example projects: browser, calculator, ios-beta, todos_list). Lands in the 10-20 'good' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": [],
+      "comment": "No online playground/demo gallery exists for cacao."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "Standard rust-analyzer is all that applies; no cacao-specific LSP, inspector, or formatter."
+    },
+    "dev-tools-inspector": {
+      "value": false,
+      "source": ["https://docs.rs/cacao/latest/cacao/"],
+      "comment": "No bundled widget-tree inspector. Users can fall back to Xcode's view-debugger at the Objective-C level, but cacao does not ship its own."
+    },
+    "github-stars": {
+      "value": 2057,
+      "source": ["https://api.github.com/repos/ryanmcgrath/cacao"],
+      "comment": "Snapshot as of 2026-04-24."
+    },
+    "crates-io-downloads": {
+      "value": 132022,
+      "source": ["https://crates.io/api/v1/crates/cacao"],
+      "comment": "All-time downloads as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2023-08-01",
+      "source": ["https://crates.io/api/v1/crates/cacao"],
+      "comment": "0.4.0-beta2 (prerelease). Latest stable 0.3.2 is older. No releases since 2023 despite continued trunk activity."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://rymc.io/blog/2021/cacao-rs-macos-ios-rust/"],
+      "comment": "The maintainer's own 2021 post notes he doesn't expect widespread adoption. No widely-known shipping apps attribute themselves to cacao publicly."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/ryanmcgrath/cacao"],
+      "comment": "No Discord/Matrix; maintainer-directed support is 'twitter or email'. Fork count (79) and occasional PR contributors, but development is essentially solo."
+    },
+    "ecosystem-crates": {
+      "value": ["none"],
+      "source": ["https://github.com/ryanmcgrath/cacao"],
+      "comment": "No notable third-party theme, widget, or integration crates built specifically on top of cacao."
+    }
+  }
 }
