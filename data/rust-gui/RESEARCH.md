@@ -245,7 +245,7 @@ Users should be able to:
 - [x] **fltk-rs** — FLTK bindings, tiny binaries, cross-platform
 - [x] **imgui-rs** — Dear ImGui bindings, immediate-mode, popular for game tooling
 - [x] **cacao** — Rust bindings to Apple's AppKit (macOS-only, native Cocoa)
-- [ ] **Tauri** — Webview-wrapper app shell; UI authored in HTML/JS, Rust provides IPC and system integration
+- [x] **Tauri** — Webview-wrapper app shell; UI authored in HTML/JS, Rust provides IPC and system integration
 
 ### Not Including (with reasons)
 

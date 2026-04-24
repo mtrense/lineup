@@ -1,5 +1,405 @@
 {
   "name": "Tauri",
   "description": "Webview-wrapper app shell; UI authored in HTML/JS, Rust provides IPC and system integration",
-  "values": {}
+  "url": "https://tauri.app/",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": [
+        "https://github.com/tauri-apps/tauri",
+        "https://crates.io/api/v1/crates/tauri"
+      ],
+      "comment": "Dual-licensed MIT OR Apache-2.0."
+    },
+    "repository": {
+      "value": "https://github.com/tauri-apps/tauri",
+      "source": ["https://crates.io/api/v1/crates/tauri"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/tauri",
+      "source": ["https://crates.io/api/v1/crates/tauri"]
+    },
+    "documentation": {
+      "value": "https://v2.tauri.app/",
+      "source": ["https://v2.tauri.app/"]
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/api/v1/crates/tauri"],
+      "comment": "First crates.io publish of the `tauri` crate was Nov 27, 2019. The Tauri 1.0 stable release was June 2022; 2.0 stable was Oct 2, 2024."
+    },
+    "latest-stable-version": {
+      "value": "2.10.3",
+      "source": [
+        "https://crates.io/api/v1/crates/tauri",
+        "https://github.com/tauri-apps/tauri/releases"
+      ],
+      "comment": "As of 2026-04-24; released Mar 4, 2026."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://github.com/tauri-apps/tauri",
+        "https://github.com/tauri-apps/tauri/releases"
+      ],
+      "comment": "Very active: frequent releases on the 2.x line, latest tauri 2.10.3 on 2026-03-04."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://v2.tauri.app/blog/tauri-20/",
+        "https://en.wikipedia.org/wiki/Tauri_(software_framework)"
+      ],
+      "comment": "1.0 in June 2022, 2.0 stable in Oct 2024; large production user base."
+    },
+    "corporate-backing": {
+      "value": "Tauri Programme / Commons Conservancy (non-profit foundation); CrabNebula as lead commercial partner",
+      "source": [
+        "https://github.com/tauri-apps/tauri",
+        "https://en.wikipedia.org/wiki/Tauri_(software_framework)"
+      ],
+      "comment": "Governed as a Programme within the Dutch Commons Conservancy; sustained via sponsors and CrabNebula."
+    },
+    "implementation": {
+      "value": ["webview-wrapper"],
+      "source": [
+        "https://v2.tauri.app/concept/architecture/",
+        "https://v2.tauri.app/reference/webview-versions/"
+      ],
+      "comment": "Rust backend drives windowing (tao) and hosts the OS native webview (wry wrapping WebView2, WKWebView, WebKitGTK, Android System WebView). The UI itself is authored in HTML/JS/CSS via any JS framework the user picks."
+    },
+    "rendering-mode": {
+      "value": null,
+      "source": ["https://v2.tauri.app/concept/architecture/"],
+      "comment": "Not meaningfully applicable: Tauri is an app shell, not a widget library. Rendering mode depends entirely on the frontend framework chosen by the user (React, Svelte, Leptos, plain HTML, etc.)."
+    },
+    "reactivity-model": {
+      "value": null,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "N/A at the Rust layer. Tauri exposes Rust commands via `#[tauri::command]` (an RPC-style callback mechanism), but the UI reactivity is whatever the chosen JS framework provides."
+    },
+    "binding-target": {
+      "value": ["webview"],
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "Binds to the OS-native webview: WebView2 (Windows), WKWebView (macOS/iOS), WebKitGTK (Linux), Android System WebView."
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui", "multi-threaded"],
+      "source": [
+        "https://docs.rs/tauri/latest/tauri/async_runtime/index.html",
+        "https://v2.tauri.app/develop/state-management/"
+      ],
+      "comment": "Windowing/webview runs on the main thread (OS constraint); Tauri owns a Tokio multi-threaded runtime for async commands and managed state is Send + Sync."
+    },
+    "renderer": {
+      "value": ["webview"],
+      "source": [
+        "https://v2.tauri.app/reference/webview-versions/",
+        "https://v2.tauri.app/concept/architecture/"
+      ],
+      "comment": "Always renders via the OS-native webview; the actual GPU path (Skia/Metal/DirectX) is determined by that webview implementation, not by Tauri."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "True indirectly: WebView2/WKWebView/WebKitGTK all use GPU compositing by default."
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "Inherited from the OS webview; all platform webviews are HiDPI-aware."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "SVG, CSS vector primitives, and Canvas/WebGL via HTML."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "No first-class Rust-side shader injection into the UI. WebGL/WebGPU shaders are usable inside the webview HTML layer."
+    },
+    "embedded-custom-rendering": {
+      "value": false,
+      "source": ["https://v2.tauri.app/concept/architecture/"],
+      "comment": "Tauri doesn't expose a native wgpu/OpenGL viewport inside the UI tree; any custom rendering happens via WebGL/WebGPU in the embedded webview."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "Windows 7 and above."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "macOS 10.15 Catalina and above; Apple Silicon and Intel."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "Linux via WebKitGTK; works under X11."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "WebKitGTK runs under Wayland via GTK; officially supported."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://v2.tauri.app/blog/tauri-20/"],
+      "comment": "Added in Tauri 2.0 (Oct 2024); iOS 9 and above."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://v2.tauri.app/blog/tauri-20/"],
+      "comment": "Added in Tauri 2.0 (Oct 2024); Android 7 and above."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "Not a target. Tauri is an app shell for native desktop/mobile; a web build would just be the underlying JS app without the Tauri runtime."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://v2.tauri.app/start/prerequisites/"],
+      "comment": "Requires full std and an OS webview; no no_std or microcontroller story."
+    },
+    "authoring-style": {
+      "value": null,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "N/A — UI is authored in HTML/CSS/JS via whatever frontend framework the user picks (React, Svelte, Vue, Leptos, plain HTML, etc.). Tauri itself is an app shell, not a widget-authoring framework."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": [
+        "https://v2.tauri.app/blog/tauri-20/",
+        "https://github.com/tauri-apps/tauri/discussions/5383"
+      ],
+      "comment": "Hot-reload and HMR come from the frontend dev server (Vite etc.) via `build.devUrl`; Tauri 2 also extended HMR to mobile devices/emulators. Rust-side changes still require recompile."
+    },
+    "layout-system": {
+      "value": null,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "N/A — layout is CSS-driven (flexbox, grid, etc.) via the webview, not provided by Tauri."
+    },
+    "styling-approach": {
+      "value": ["css-like"],
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "Styling is plain CSS inside the webview. Using `css-like` tag because the UI is literally CSS; no Rust-side theming layer is shipped by Tauri."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://v2.tauri.app/reference/config/"],
+      "comment": "Windows can expose system theme preference and the webview picks up OS dark-mode; CSS-driven theme switching is trivial."
+    },
+    "accessibility": {
+      "value": ["native"],
+      "source": [
+        "https://github.com/tauri-apps/tauri/issues/207",
+        "https://v2.tauri.app/reference/webview-versions/"
+      ],
+      "comment": "A11y is inherited from the OS webview's HTML/ARIA stack (same a11y surface as a browser). Tauri does not ship AccessKit integration; open issues report edge cases in frameless-window mode."
+    },
+    "internationalization": {
+      "value": true,
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "Full web-platform i18n (RTL, complex scripts, Intl APIs) via the webview; Tauri adds no i18n layer of its own."
+    },
+    "widget-breadth": {
+      "value": null,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "N/A — Tauri ships no widgets. Widget breadth is whatever the chosen JS/HTML framework provides (HTML built-ins + component library)."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "Not provided by Tauri itself; users bring their own (AG Grid, TanStack Table, etc.) via the webview."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "Not provided by Tauri; trivial to implement with HTML + a web markdown lib, but not a Tauri feature."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "Not provided by Tauri; supplied by the chosen frontend framework or component library."
+    },
+    "native-menus": {
+      "value": true,
+      "source": [
+        "https://v2.tauri.app/plugin/",
+        "https://github.com/tauri-apps/tauri/tree/dev/examples"
+      ],
+      "comment": "Native menu bar and context menus are first-class in Tauri's Rust API (Menu, Submenu, MenuItem)."
+    },
+    "file-dialogs": {
+      "value": true,
+      "source": ["https://v2.tauri.app/plugin/"],
+      "comment": "Official tauri-plugin-dialog provides native open/save file dialogs."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://v2.tauri.app/plugin/"],
+      "comment": "No first-party charting; users pick a JS charting library (Chart.js, D3, etc.)."
+    },
+    "custom-widgets": {
+      "value": null,
+      "source": ["https://v2.tauri.app/start/"],
+      "comment": "N/A — custom widgets are authored in the chosen JS/HTML framework, not in Tauri itself."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio"],
+      "source": [
+        "https://docs.rs/tauri/latest/tauri/async_runtime/index.html",
+        "https://v2.tauri.app/develop/state-management/"
+      ],
+      "comment": "Tauri owns and uses a Tokio multi-threaded runtime internally; async commands and app setup run on Tokio. Users can also hand Tauri their own Tokio Handle."
+    },
+    "system-tray": {
+      "value": true,
+      "source": ["https://github.com/tauri-apps/tauri"],
+      "comment": "First-class TrayIcon API in the core crate."
+    },
+    "notifications": {
+      "value": true,
+      "source": ["https://v2.tauri.app/plugin/"],
+      "comment": "Official tauri-plugin-notification."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://v2.tauri.app/plugin/"],
+      "comment": "Official tauri-plugin-clipboard-manager."
+    },
+    "drag-and-drop": {
+      "value": true,
+      "source": ["https://github.com/tauri-apps/tauri/tree/dev/examples"],
+      "comment": "File drag-and-drop events are emitted on windows (see the `drag` example in the repo); HTML drag-and-drop inside the webview is supported as well."
+    },
+    "embedded-webview": {
+      "value": true,
+      "source": [
+        "https://github.com/tauri-apps/tauri/tree/dev/examples",
+        "https://v2.tauri.app/reference/acl/capability/"
+      ],
+      "comment": "The whole app *is* a webview; multiwebview (multiple webviews per window) is supported via a feature flag (see the `multiwebview` example)."
+    },
+    "multi-window": {
+      "value": true,
+      "source": [
+        "https://v2.tauri.app/reference/config/",
+        "https://github.com/tauri-apps/tauri/tree/dev/examples"
+      ],
+      "comment": "Multiple top-level windows are a core feature; see the `multiwindow` example and the `windows` array in config."
+    },
+    "binary-size": {
+      "value": "small",
+      "source": [
+        "https://v2.tauri.app/concept/size/",
+        "https://tech-insider.org/tauri-vs-electron-2026/"
+      ],
+      "comment": "Community reports put a minimal Tauri hello-world at roughly 2-3 MB bundle on macOS/Linux, fitting the 2-10 MB `small` bucket. Numbers vary by platform, frontend payload, and optimizations (LTO, strip)."
+    },
+    "startup-time": {
+      "value": "fast",
+      "source": ["https://v2.tauri.app/concept/size/"],
+      "comment": "Cold start dominated by webview initialization; typically 50-200ms on modern hardware for a minimal app. No rigorous independent benchmark referenced; bucket is a best-defensible estimate."
+    },
+    "memory-footprint": {
+      "value": "low",
+      "source": ["https://v2.tauri.app/concept/size/"],
+      "comment": "Idle RSS of a minimal Tauri app lands in the 20-80 MB range (webview + Rust runtime). Higher than pure-Rust immediate-mode frameworks but much lower than Electron."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://v2.tauri.app/reference/webview-versions/"],
+      "comment": "Webviews repaint on demand via the browser compositor; no continuous 60fps redraw at idle."
+    },
+    "dependency-count": {
+      "value": "heavy",
+      "source": ["https://crates.io/api/v1/crates/tauri"],
+      "comment": "The `tauri` crate pulls in a large transitive graph (tao, wry, serde, tokio, many plugins); cargo tree on a default app easily exceeds 200 crates."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://v2.tauri.app/",
+        "https://v2.tauri.app/learn/"
+      ],
+      "comment": "Full documentation site with guide, concepts, plugin docs, security model, end-to-end tutorials, API reference, and published books."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": [
+        "https://v2.tauri.app/develop/state-management/",
+        "https://docs.rs/tauri/latest/tauri/"
+      ],
+      "comment": "Idiomatic Rust: `#[tauri::command]` attribute, builder API, derive macros, typed State injection. Minor friction from Mutex boilerplate and the large generated handler macro."
+    },
+    "examples-count": {
+      "value": ["good"],
+      "source": ["https://github.com/tauri-apps/tauri/tree/dev/examples"],
+      "comment": "~13-14 example apps in the repo (api, commands, drag, multiwindow, multiwebview, splashscreen, state, streaming, isolation, resources, helloworld, run-return, file-associations). Many more guides on the docs site."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://v2.tauri.app/"],
+      "comment": "No online playground — Tauri apps require a native build. The docs site hosts tutorials instead."
+    },
+    "ide-tooling": {
+      "value": ["syntax-highlighting", "inspector"],
+      "source": [
+        "https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode",
+        "https://v2.tauri.app/develop/debug/vscode/"
+      ],
+      "comment": "Official VS Code extension for tauri.conf.json validation and command palette; webview devtools act as the widget inspector. No Tauri-specific LSP (Rust code uses rust-analyzer, frontend uses its own tooling)."
+    },
+    "dev-tools-inspector": {
+      "value": true,
+      "source": ["https://v2.tauri.app/develop/debug/vscode/"],
+      "comment": "Standard browser-style devtools are available inside the webview during development; covers DOM, network, console, performance."
+    },
+    "github-stars": {
+      "value": 106000,
+      "source": ["https://github.com/tauri-apps/tauri"],
+      "comment": "Snapshot 2026-04-24; ~106k stars (growing); expect to stale quickly."
+    },
+    "crates-io-downloads": {
+      "value": 14437869,
+      "source": ["https://crates.io/api/v1/crates/tauri"],
+      "comment": "All-time downloads of the `tauri` crate as of 2026-04-24."
+    },
+    "last-release": {
+      "value": "2026-03-04",
+      "source": [
+        "https://crates.io/api/v1/crates/tauri",
+        "https://github.com/tauri-apps/tauri/releases"
+      ],
+      "comment": "tauri v2.10.3."
+    },
+    "notable-production-users": {
+      "value": "Hoppscotch, GitButler, Spacedrive, Cap, Yaak, Elasticvue, EcoPaste, and many shipping desktop/mobile apps on the awesome-tauri and madewithtauri lists",
+      "source": [
+        "https://github.com/tauri-apps/awesome-tauri",
+        "https://madewithtauri.com/"
+      ]
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": [
+        "https://discord.com/invite/tauri",
+        "https://v2.tauri.app/blog/tauri-20/"
+      ],
+      "comment": "Discord >20k members (17.7k at 2.0 launch, ~22k on invite page in 2026); broad contributor base; one of the most active projects in the Rust GUI space."
+    },
+    "ecosystem-crates": {
+      "value": ["rich"],
+      "source": [
+        "https://v2.tauri.app/plugin/",
+        "https://github.com/tauri-apps/awesome-tauri"
+      ],
+      "comment": "Large official plugin set (clipboard, dialog, fs, http, notification, shell, sql, stronghold, store, updater, tray, global-shortcut, autostart, deep-link, barcode-scanner, biometric, geolocation, nfc, haptics, ...) plus extensive community plugins and templates."
+    }
+  }
 }
