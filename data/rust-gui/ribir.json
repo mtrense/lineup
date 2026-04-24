@@ -1,5 +1,337 @@
 {
   "name": "Ribir",
-  "description": "Declarative, reactive, pure-Rust",
-  "values": {}
+  "description": "Declarative, reactive, pure-Rust GUI framework with wgpu rendering and a non-intrusive state model",
+  "url": "https://ribir.org",
+  "lastVerified": "2026-04-24",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/RibirX/Ribir", "https://lib.rs/crates/ribir"]
+    },
+    "repository": {
+      "value": "https://github.com/RibirX/Ribir",
+      "source": ["https://github.com/RibirX/Ribir"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/ribir",
+      "source": ["https://lib.rs/crates/ribir"]
+    },
+    "documentation": {
+      "value": "https://ribir.org/docs/introduction/",
+      "source": ["https://ribir.org", "https://ribir.org/docs/introduction/"]
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "First crates.io publish on 2023-02-26."
+    },
+    "latest-stable-version": {
+      "value": "0.3.0",
+      "source": ["https://github.com/RibirX/Ribir", "https://github.com/RibirX/Ribir/releases"],
+      "comment": "0.3.0 (2024-08-26) is the most recent non-prerelease. Active development is on 0.4.0-alpha.* (latest 0.4.0-alpha.65, 2026-04-21)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/RibirX/Ribir/releases"],
+      "comment": "Weekly 0.4.0-alpha releases through April 2026; 69 releases total; 1,830+ commits on master."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/RibirX/Ribir", "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"],
+      "comment": "Core framework described as \"basically stable\" by maintainers; widget library self-described as in \"rough stage\" with unstable APIs. No 1.0 release yet (current track is 0.4.0-alpha)."
+    },
+    "corporate-backing": {
+      "value": "Community",
+      "source": ["https://github.com/RibirX/Ribir", "https://ribir.org"],
+      "comment": "No corporate sponsor identified in README, website, or crates.io metadata."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/RibirX/Ribir", "https://lib.rs/crates/ribir"],
+      "comment": "Pure Rust; wgpu + winit + lyon (path tessellation) with no C/C++ GUI toolkit dependency."
+    },
+    "rendering-mode": {
+      "value": ["retained"],
+      "source": ["https://github.com/RibirX/Ribir", "https://ribir.org"],
+      "comment": "Persistent widget tree with point-to-point compile-time-generated update paths on state mutation."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://ribir.org", "https://github.com/RibirX/Ribir"],
+      "comment": "\"Non-intrusive state\" converts data to listenable states that trigger fine-grained UI updates on mutation — a signals-style reactivity model."
+    },
+    "binding-target": {
+      "value": ["none"],
+      "source": ["https://github.com/RibirX/Ribir"]
+    },
+    "thread-model": {
+      "value": ["single-threaded-ui"],
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "winit + wgpu based; UI runs on the main thread per standard winit event-loop constraints. Not explicitly documented beyond the underlying stack."
+    },
+    "renderer": {
+      "value": ["wgpu"],
+      "source": ["https://github.com/RibirX/Ribir", "https://lib.rs/crates/ribir"],
+      "comment": "Default (and primary) backend is wgpu; a webgl feature exists for WASM."
+    },
+    "gpu-acceleration": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"]
+    },
+    "hidpi-support": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Inherits HiDPI handling from winit + wgpu; framework is resolution-independent (path-based)."
+    },
+    "vector-rendering": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Painter converts the view to 2D paths and tessellates them via lyon."
+    },
+    "custom-shaders": {
+      "value": null,
+      "source": [],
+      "comment": "No documented API for user-provided GPU shaders or custom render passes in README or docs; left null pending verification."
+    },
+    "embedded-custom-rendering": {
+      "value": null,
+      "source": [],
+      "comment": "No documented API for embedding a wgpu/OpenGL viewport inside the UI; left null pending verification."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Officially supported and in CI."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Officially supported and in CI."
+    },
+    "linux-x11": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Supported via winit; desktop Linux is in CI."
+    },
+    "linux-wayland": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Supported via winit's Wayland backend; no Wayland-specific caveats called out."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "README marks iOS as 🚧 (compiles but not fully tested/adapted). Per RESEARCH.md guidance, only mark true when officially supported and tested."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "README marks Android as 🚧 (compiles but not fully tested/adapted)."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Web is in CI; live wordle_game demo is hosted at ribir.org/wordle_game/."
+    },
+    "embedded-no-std": {
+      "value": false,
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "Depends on winit, wgpu, and tokio — std-only; no no_std target advertised."
+    },
+    "authoring-style": {
+      "value": ["rust-macro", "imperative-rust"],
+      "source": ["https://ribir.org/docs/introduction/", "https://github.com/RibirX/Ribir"],
+      "comment": "Primary authoring is via Rust macros (fn_widget!, pipe!, rdl!). A macro-free imperative/builder path is also supported for users who opt out of the DSL."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir", "https://ribir.org"],
+      "comment": "No hot-reload feature documented in README or docs; macro-based authoring would require recompile."
+    },
+    "layout-system": {
+      "value": ["constraints", "auto"],
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Layout is \"inspired by Flutter sublinear layout but not the same\" — widget-driven sublinear constraint propagation rather than CSS flexbox/grid."
+    },
+    "styling-approach": {
+      "value": ["theme-api", "inline-props"],
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Theme struct with support for different themes per sub-tree and runtime modification; styles are also expressible inline on widgets."
+    },
+    "theme-switching": {
+      "value": true,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "README explicitly lists runtime theme modification."
+    },
+    "accessibility": {
+      "value": ["none"],
+      "source": ["https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"],
+      "comment": "Independent 2025 survey found Windows Narrator could not read any text in a Ribir window. No AccessKit integration documented."
+    },
+    "internationalization": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir", "https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html"],
+      "comment": "No built-in i18n/localization layer documented. Basic IME input exists but is described as rough by maintainers, and the 2025 survey reported significant IME defects."
+    },
+    "widget-breadth": {
+      "value": 2,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Maintainers describe the widget library as ~20+ basic widgets in a \"rough stage\" with unstable APIs; no tables, trees, rich text, markdown, or charts documented."
+    },
+    "data-grid-table": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No table/grid widget documented."
+    },
+    "rich-text-markdown": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Only basic text typography and IME input; no rich-text or markdown widget documented."
+    },
+    "tree-outline": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No tree/outline widget documented."
+    },
+    "native-menus": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No native menu-bar or context-menu integration documented."
+    },
+    "file-dialogs": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No built-in file dialogs documented; users would need to pull in rfd or similar themselves."
+    },
+    "charts-plotting": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No first-party charting widget documented."
+    },
+    "custom-widgets": {
+      "value": 3,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Framework exposes four explicit composition patterns (function widget, Compose, Render, ComposeChild) with docs; implementing a custom Render widget requires understanding the painter/layout traits but is a documented path."
+    },
+    "async-runtime-compatible": {
+      "value": ["tokio"],
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "Tokio is a direct dependency of the top-level crate; futures/rxrust are also used internally."
+    },
+    "system-tray": {
+      "value": null,
+      "source": [],
+      "comment": "No system-tray integration documented in README or website; left null pending verification."
+    },
+    "notifications": {
+      "value": null,
+      "source": [],
+      "comment": "No native-notification integration documented in README or website; left null pending verification."
+    },
+    "clipboard": {
+      "value": true,
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "arboard (cross-platform clipboard crate) is a direct dependency of ribir, indicating built-in clipboard support."
+    },
+    "drag-and-drop": {
+      "value": null,
+      "source": [],
+      "comment": "No OS-level drag-and-drop integration documented in README or website; left null pending verification."
+    },
+    "embedded-webview": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Ribir is a pure-Rust widget framework; no webview embedding capability documented."
+    },
+    "multi-window": {
+      "value": null,
+      "source": [],
+      "comment": "No explicit multi-window support documented in README or website; left null pending verification."
+    },
+    "binary-size": {
+      "value": null,
+      "source": [],
+      "comment": "No independently measured hello-world binary size available; would require a measurement pass."
+    },
+    "startup-time": {
+      "value": null,
+      "source": [],
+      "comment": "No independently measured startup time available."
+    },
+    "memory-footprint": {
+      "value": null,
+      "source": [],
+      "comment": "No independently measured idle RSS available."
+    },
+    "idle-redraw": {
+      "value": ["on-demand"],
+      "source": ["https://github.com/RibirX/Ribir", "https://ribir.org"],
+      "comment": "Point-to-point view-update strategy with compile-time generated update paths — UI redraws only when listenable state mutates."
+    },
+    "dependency-count": {
+      "value": ["heavy"],
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "lib.rs reports ~78-125MB installed and ~2M SLoC in the dependency tree via wgpu, winit, tokio, and rxrust — implies heavy (>200) transitive crates."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://ribir.org/docs/introduction/"],
+      "comment": "Tutorial-based docs with versioned paths (0.1.x, 0.2.x, Next) and bilingual English/Chinese content; API docs on docs.rs. Adequate but not at the depth of Slint/Tauri/Dioxus books."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/RibirX/Ribir", "https://ribir.org/docs/introduction/"],
+      "comment": "Idiomatic Rust macros (fn_widget!, pipe!, rdl!) and a composition system, but with unstable widget APIs and some learning curve around the four widget composition patterns."
+    },
+    "examples-count": {
+      "value": ["limited"],
+      "source": ["https://github.com/RibirX/Ribir/tree/master/examples"],
+      "comment": "8 example projects in the official examples/ folder: attachments, counter, gallery, messages, pomodoro, storybook, todos, wordle_game."
+    },
+    "interactive-playground": {
+      "value": "https://ribir.org/wordle_game/",
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Official WASM demo (Wordle-style game) hosted on the project site; no general-purpose REPL/playground."
+    },
+    "ide-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No Ribir-specific LSP, formatter, or inspector documented; authoring is in-Rust so rust-analyzer handles syntax but there is no framework-aware tooling."
+    },
+    "dev-tools-inspector": {
+      "value": false,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "No runtime widget-tree inspector documented."
+    },
+    "github-stars": {
+      "value": 1700,
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Approx 1.7k stars as of 2026-04-24; star counts drift."
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "source": [],
+      "comment": "Exact crates.io download count not captured during this research pass."
+    },
+    "last-release": {
+      "value": "2026-04-21",
+      "source": ["https://github.com/RibirX/Ribir/releases", "https://lib.rs/crates/ribir"],
+      "comment": "Most recent release is v0.4.0-alpha.65 on 2026-04-21. The most recent non-prerelease was 0.3.0 on 2024-08-26."
+    },
+    "notable-production-users": {
+      "value": "Polestar Chat (cross-platform ChatGPT/Gemini desktop client)",
+      "source": ["https://ribir.org"],
+      "comment": "Self-listed on the Ribir website; no other widely-known shipping apps identified."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/RibirX/Ribir"],
+      "comment": "Few active contributors outside the core RibirX team; 37 forks and 25 watchers as of research date."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://lib.rs/crates/ribir"],
+      "comment": "Ecosystem is essentially the RibirX-maintained sub-crates (ribir_core, ribir_gpu, ribir_text, ribir_widgets, ribir_dev_helper); no third-party theme, widget, or integration crate ecosystem identified."
+    }
+  }
 }

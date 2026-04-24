@@ -235,7 +235,7 @@ Users should be able to:
 - [x] **Xilem** — Raph Levien's successor to Druid, architectural showcase, still early
 - [x] **Floem** — SolidJS-inspired signals, powers the Lapce editor
 - [x] **Makepad** — Live-coding IDE and in-house framework, unique DSL and rendering
-- [ ] **Ribir** — Declarative, reactive, pure-Rust
+- [x] **Ribir** — Declarative, reactive, pure-Rust
 - [ ] **Freya** — Skia-backed renderer for Dioxus components
 - [ ] **GPUI** — Zed editor's in-house GPU-accelerated framework, opened up for external use
 - [ ] **Vizia** — Declarative, audio-plugin-friendly
