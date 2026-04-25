@@ -1,5 +1,476 @@
 {
   "name": "Radxa ROCK 5B+",
   "description": "RK3588 refresh with M.2 and storage upgrades",
-  "values": {}
+  "icon": "💎",
+  "url": "https://radxa.com/products/rock5/5bp/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Radxa",
+      "source": ["https://radxa.com/about/"],
+      "comment": "Radxa Computer (Shenzhen) Co., Ltd., founded 2012."
+    },
+    "model": {
+      "value": "ROCK 5B+",
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "release-date": {
+      "value": "2024-07",
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/"
+      ],
+      "comment": "Radxa announced general availability around 2024-07-23/24 (Liliputing pickup 2024-07-23, CNX-Software 2024-07-27)."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://arace.tech/products/radxa-rock-5b-plus"
+      ],
+      "comment": "Currently the active flagship of the ROCK 5 line. Verified 2026-04-26: Radxa lists it on the product page; Arace shows the listing live (all SKUs flagged Sold Out at the time of check, indicating intermittent supply rather than EOL)."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction",
+        "https://github.com/radxa/oshw"
+      ],
+      "comment": "Radxa publishes schematic PDFs, 2D DXF outlines, and 3D STP models for the ROCK 5B family but no PCB layout source / Gerber / BOM. Per RESEARCH.md, schematics-only does not qualify as OSHW."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://radxa.com/about/"],
+      "comment": "Radxa is headquartered in Shenzhen, Guangdong."
+    },
+    "website": {
+      "value": "https://radxa.com/products/rock5/5bp/",
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "soc": {
+      "value": "RK3588",
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 + 4× Cortex-A55 (big.LITTLE)",
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "A76 cluster up to 2.4 GHz; A55 cluster up to 1.8 GHz (same SoC bin as the original 5B)."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "gpu": {
+      "value": "Mali-G610 MC4",
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "Mali-G610 MC4 supports OpenGL ES 3.2 / OpenCL 2.2 / Vulkan 1.2 per Arm spec."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/",
+        "https://www.collabora.com/news-and-blog/news-and-events/rockchip-rk3588-upstream-support-progress-future-plans.html"
+      ],
+      "comment": "Mali-G610 supports Vulkan 1.2; mainline Panthor driver upstreamed in kernel 6.10 (2024) and shipping in Armbian's mainline track."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://radxa.com/products/rock5/5bp/"],
+      "comment": "Vendor-quoted 6 TOPS @ INT8 (RK3588 NPU). Same silicon as the original 5B."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "Up to 8K@60 decode for H.265/H.264/VP9/AV1/AVS2."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "Up to 8K@30 encode; AV1 encode is NOT supported on RK3588."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "Five RAM tiers offered: 4/8/16/24/32 GB. The 24 GB and 32 GB SKUs are exclusive to the 5B+; the original 5B tops out at 16 GB."
+    },
+    "ram-type": {
+      "value": ["lpddr5"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "LPDDR5 — primary upgrade vs. the LPDDR4x on the original 5B."
+    },
+    "emmc": {
+      "value": true,
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/"
+      ],
+      "comment": "Onboard eMMC up to 128 GB (32/64/128 GB SKU options). Soldered down rather than the swappable connector used on the original 5B."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://radxa.com/products/rock5/5bp/"]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "Two M.2 M-key sockets, each PCIe 3.0 ×2 (vs. the single M.2 M-key PCIe 3.0 ×4 on the original 5B). Tradeoff: more drives, but each runs at half the lane width."
+    },
+    "sata": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "No native SATA port; storage attaches via the M.2 NVMe slots, USB, or the M.2 B-key cellular slot."
+    },
+    "ethernet": {
+      "value": ["2-5g"],
+      "source": ["https://radxa.com/products/rock5/5bp/"],
+      "comment": "Single 10/100/1000/2500 Mbps RJ45."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://radxa.com/products/rock5/5bp/"],
+      "comment": "One RJ45 port."
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "Onboard Realtek RTL8852BE — Wi-Fi 6 (2×2 MIMO, 802.11ax) with two antenna connectors. Onboard wireless is a key 5B+ upgrade — the original 5B has no onboard Wi-Fi."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "Bluetooth 5.2 via the same RTL8852BE combo module."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "2× USB 3.1 Gen 1 (5 Gbps) Type-A host ports."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/"
+      ],
+      "comment": "1× USB-C (USB 3.1 Gen 1) data port with DisplayPort alt-mode and OTG. A SECOND USB-C connector exists as power-only (USB-PD) and is not counted here per the attribute definition (data-capable only)."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["https://radxa.com/products/rock5/5bp/"],
+      "comment": "PoE pads broken out on the GPIO header for an external PoE HAT; not built into the Ethernet port."
+    },
+    "hdmi-outputs": {
+      "value": 2,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/",
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "2× HDMI 2.1 outputs (Type-A): one up to 8K@60, one up to 4K@60. Plus a separate full-size HDMI INPUT (4K@60) — upgraded from the micro-HDMI input on the original 5B; not counted here."
+    },
+    "max-display-resolution": {
+      "value": "8K@60",
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "displayport": {
+      "value": true,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "DisplayPort via USB-C alt-mode (up to 4K@60); no dedicated DP connector."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "1× 4-lane MIPI DSI (up to 1080p60)."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "2× 4-lane MIPI CSI (or 4× 2-lane), supporting up to 4 cameras — broader than the original 5B."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "4-ring 3.5 mm TRRS jack with line-out and mic-in."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/hardware-design/hardware-interface"
+      ],
+      "comment": "40-pin header in Raspberry Pi 40-pin pinout, with I2C/SPI/UART/I2S/PWM."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/"
+      ],
+      "comment": "Pi-compatible 40-pin pinout, but PCB is 100×75 mm (not RPi standard) so HAT mechanical mounting and EEPROM auto-config are not RPi-spec compliant."
+    },
+    "pcie-lanes-exposed": {
+      "value": "2× M.2 M-key (PCIe 3.0 ×2 each) + 1× M.2 B-key (cellular)",
+      "source": [
+        "https://www.cnx-software.com/2024/07/27/radxa-rock-5b-plus-sbc-lpddr5-memory-emmc-flash-wifi-6-two-m-2-m-key-sockets-4g-lte-5g/",
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/"
+      ],
+      "comment": "Two M.2 M-key 2280 sockets for NVMe SSDs (PCIe 3.0 ×2 each) plus a new M.2 B-key (3042) socket with SIM slot for 4G LTE / 5G modems. The 5B's PCIe 3.0 ×4 single slot was split into two ×2 slots."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/hardware-design/hardware-interface"
+      ]
+    },
+    "power-input": {
+      "value": "USB-C PD 2.0 (9V/12V/15V/20V @ 2A)",
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction"
+      ],
+      "comment": "Dedicated power-only USB-C port with USB-PD 2.0 (separate from the data-capable USB-C). Also accepts fixed 5–20V on the same port. ≥30 W PD supply recommended."
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable measured idle figure for the 5B+ specifically. Profile is broadly comparable to the original 5B (~1.7 W headless, ~5–8 W desktop) but onboard Wi-Fi 6 adds load and LPDDR5 idle differs from LPDDR4x. Marked null per RESEARCH.md guidance to avoid extrapolating from the 5B."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable measured 5B+-specific full-load figure. The same RK3588 SoC on the 5B draws ~10–15 W under stress; expect the 5B+ to land in the same range. Marked null to avoid copying a non-5B+ measurement."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction"
+      ],
+      "comment": "Same RK3588 thermal envelope as the original 5B; sustained load throttles on a passive heatsink. Radxa ships an active heatsink + fan accessory and the 5B+ adds a dedicated PWM fan header."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "Onboard RTC battery connector retained from the 5B."
+    },
+    "length-mm": {
+      "value": 100,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction",
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ]
+    },
+    "width-mm": {
+      "value": 75,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction",
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/"
+      ],
+      "comment": "100×75 mm — 3 mm wider than the original 5B's 100×72 mm Pico-ITX footprint, so 5B-designed cases are not guaranteed to fit."
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction"
+      ],
+      "comment": "100×75 mm exceeds the 100×72 mm Pico-ITX standard by 3 mm. Per RESEARCH.md's strict form-factor classification, this is `custom` rather than `pico-itx`. Visually similar to Pico-ITX but mechanically incompatible with strict Pico-ITX cases."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/getting-started/introduction"
+      ],
+      "comment": "Custom four-corner mounting pattern, not Raspberry Pi standard. Differs slightly from the original 5B due to the wider PCB."
+    },
+    "weight-g": {
+      "value": null,
+      "source": [],
+      "comment": "Vendor does not publish a bare-board weight; not reported in major reviews. Marked null per RESEARCH.md guidance."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://www.armbian.com/rock-5b-plus/",
+        "https://github.com/armbian/build/pull/7457",
+        "https://www.collabora.com/news-and-blog/news-and-events/rockchip-rk3588-upstream-support-progress-future-plans.html"
+      ],
+      "comment": "Armbian ships both a current/mainline (6.18) and vendor (6.1) track and tags the 5B+ as Platinum/Stable. As with other RK3588 boards, mainline boots and the major peripherals work (USB3, 2.5 GbE, Mali-G610 via Panthor, HDMI display) but hardware video decode (VDPU381), NPU, MIPI DSI, USB-PD negotiation, and the onboard RTL8852BE Wi-Fi/BT are still maturing as of kernel 6.18 (early 2026)."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5b/download"],
+      "comment": "Radxa publishes a Debian Bookworm KDE image (kernel 6.1) and Android 12 images (SD/eMMC and SPI-NVMe) specifically for the 5B+."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b/download",
+        "https://www.armbian.com/rock-5b-plus/"
+      ],
+      "comment": "Vendor Debian image plus first-class Armbian support (Ubuntu 24.04 / Debian 13 / Ubuntu 26.04 with mainline + vendor kernels). DietPi/Manjaro/openFyde are reported to work but not enumerated as 5B+-specific images at the time of check."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5b/download"],
+      "comment": "U-Boot via Rockchip SPL loader (RK3588_SPL_Loader_v1.15.113.bin)."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": [
+        "https://www.collabora.com/news-and-blog/news-and-events/rockchip-rk3588-upstream-support-progress-future-plans.html"
+      ],
+      "comment": "Radxa does not publish a formal support window for the 5B+. The ongoing RK3588 mainlining effort (Collabora) and active Armbian Platinum status suggest multi-year practical support, but it is not contractually stated."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5b/download"],
+      "comment": "Official Android 12 image (SD/eMMC and SPI-NVMe variants)."
+    },
+    "msrp-base-usd": {
+      "value": 75,
+      "source": [
+        "https://liliputing.com/radxa-rock-5b-brings-memory-storage-and-pcie-improvements-to-this-single-board-computer/",
+        "https://arace.tech/products/radxa-rock-5b-plus"
+      ],
+      "comment": "Launch base price (4 GB, no eMMC). Snapshot 2026-04-26: Arace lists base SKU at $75. LinuxGizmos quoted launch tier at $69.66 (4 GB) — the few-dollar drift reflects the difference between AliExpress promo and Arace retail."
+    },
+    "msrp-top-usd": {
+      "value": 198,
+      "source": [
+        "https://linuxgizmos.com/radxa-teases-upgraded-rock-5b-sbc-with-lpddr5-ram-and-onboard-wi-fi-6/"
+      ],
+      "comment": "Launch top tier (32 GB LPDDR5, no eMMC) at $198. The 16 GB and 24 GB tiers sit between $119 and $159; 8 GB at ~$90 and 4 GB at ~$70. Snapshot 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://radxa.com/products/rock5/5bp/",
+        "https://arace.tech/products/radxa-rock-5b-plus",
+        "https://thinkrobotics.com/products/radxa-rock-5b-1"
+      ],
+      "comment": "Sold via Radxa's approved-partner network: Arace (HK), Allnet China, Ameridroid (US), OKdo (UK/EU), ThinkRobotics (IN/global). Covers NA, EU, APAC, India."
+    },
+    "typical-lead-time": {
+      "value": ["weeks"],
+      "source": [
+        "https://arace.tech/products/radxa-rock-5b-plus"
+      ],
+      "comment": "Snapshot 2026-04-26: Arace lists every SKU as Sold Out and other distributors show intermittent stock — the 5B+ is in active production but supply does not always meet demand. Most resellers quote restocks in weeks rather than months."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5b",
+        "https://wiki.radxa.com/Rock5/5B"
+      ],
+      "comment": "Shares the unified ROCK 5B/5B+ docs site — getting-started, hardware design, low-level dev, and OS guides; schematic PDFs published. Loses a point for missing PCB sources and the 5B/5B+ deltas not always being clearly called out across the docs vs. the older wiki."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": [
+        "https://forum.radxa.com/"
+      ],
+      "comment": "Radxa is firmly in the second tier per RESEARCH.md thresholds (alongside Khadas/FriendlyELEC). Active forum + Armbian Platinum + r/SBCs/r/RockchipSBCs presence."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.radxa.com/"],
+      "comment": "Vendor-run forum.radxa.com plus an official Discord; the dedicated 5B+ subforum sees regular activity."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://radxa.com/products/rock5/5bp/"
+      ],
+      "comment": "Inherits most of the 5B accessory ecosystem (heatsinks, metal cases, PoE HAT, NVMe shields, MIPI cameras/displays). Some 5B-specific cases don't fit due to the 100×75 mm PCB. Broader than most second-tier SBCs but well below the Raspberry Pi accessory universe."
+    }
+  }
 }
