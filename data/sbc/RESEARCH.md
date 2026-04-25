@@ -222,7 +222,7 @@ Users should be able to:
 
 ## Candidates
 
-- [ ] **Raspberry Pi 5** — BCM2712, the reference SBC for hobbyist Linux
+- [x] **Raspberry Pi 5** — BCM2712, the reference SBC for hobbyist Linux
 - [ ] **Raspberry Pi 4 Model B** — Still widely deployed; baseline against RPi 5
 - [ ] **Raspberry Pi Zero 2 W** — Ultra-compact, low-power RPi
 - [ ] **Raspberry Pi 3 Model B+** — Older but still in production; cheap entry point

@@ -1,5 +1,343 @@
 {
   "name": "Raspberry Pi 5",
   "description": "BCM2712, the reference SBC for hobbyist Linux",
-  "values": {}
+  "icon": "raspberry-pi",
+  "url": "https://www.raspberrypi.com/products/raspberry-pi-5/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Raspberry Pi Ltd",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "model": {
+      "value": "Raspberry Pi 5",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "release-date": {
+      "value": "2023-10",
+      "source": ["https://www.raspberrypi.com/news/introducing-raspberry-pi-5/"],
+      "comment": "Announced 2023-09-28; first units shipped end of October 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Raspberry Pi Ltd guarantees production through January 2036."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf"],
+      "comment": "Raspberry Pi publishes mechanical drawings and a partial schematic, but PCB design files are not released under an OSHW-compatible license."
+    },
+    "country-of-origin": {
+      "value": "United Kingdom",
+      "source": ["https://www.raspberrypi.com/news/introducing-raspberry-pi-5/"],
+      "comment": "Designed in Cambridge, UK; manufactured at the Sony UK Technology Centre in Pencoed, South Wales."
+    },
+    "website": {
+      "value": "https://www.raspberrypi.com/products/raspberry-pi-5/",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "soc": {
+      "value": "BCM2712",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "soc-vendor": {
+      "value": ["broadcom"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "BCM2712 was designed in-house by Raspberry Pi but is fabbed and branded as Broadcom — vendor tag 'broadcom' matches the silicon brand."
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "cpu-architecture": {
+      "value": "4× Arm Cortex-A76",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "process-node": {
+      "value": "16 nm",
+      "source": ["https://aichiplink.com/blog/Broadcom%20BCM2712%20Processor:%20Benchmarks,%20Tests,%20and%20Specifications_253"],
+      "comment": "TSMC 16nm process node per multiple secondary sources; Raspberry Pi has not published the exact node themselves."
+    },
+    "gpu": {
+      "value": "VideoCore VII",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "opengl-es-version": {
+      "value": "3.1",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "VideoCore VII supports Vulkan 1.3."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "No onboard NPU; AI HAT+ accessory adds a Hailo-8/8L NPU but this is an add-on."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No onboard NPU."
+    },
+    "hw-video-decode": {
+      "value": ["h265"],
+      "source": ["https://news.ycombinator.com/item?id=38068801", "https://forums.raspberrypi.com/viewtopic.php?t=357870"],
+      "comment": "BCM2712 does HEVC/H.265 4K60 in hardware. Unlike BCM2711 on the Pi 4, hardware H.264 decode was dropped — H.264, VP9, and AV1 are software-decoded on the CPU."
+    },
+    "hw-video-encode": {
+      "value": [],
+      "source": ["https://news.ycombinator.com/item?id=38068801"],
+      "comment": "No hardware video encoder on Pi 5; encoding (H.264/H.265) is CPU-only."
+    },
+    "ram-min-gb": {
+      "value": 1,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "1 GB SKU added later (alongside the 2 GB cost-down variant); SKUs sold are 1, 2, 4, 8, and 16 GB."
+    },
+    "ram-max-gb": {
+      "value": 16,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "ram-type": {
+      "value": ["lpddr4x"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "LPDDR4X-4267."
+    },
+    "emmc": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "High-speed SDR104 microSD slot."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "No onboard M.2 slot; PCIe 2.0 x1 is exposed via an FFC connector and an official M.2 HAT+ accessory adds an M.2 2230/2242 slot."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Single Gigabit Ethernet port with PoE+ support via separate HAT."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "wifi": {
+      "value": ["wifi-5"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/", "https://wifidiving.substack.com/p/raspberry-pi-5-in-built-wifi"],
+      "comment": "Dual-band 802.11ac (Wi-Fi 5) via Infineon CYW43455 combo chip."
+    },
+    "bluetooth": {
+      "value": "5.0",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Bluetooth 5.0 with BLE."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "2× USB 3.0 with simultaneous 5 Gbps operation (Pi 4 had to share one controller across both)."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "USB-C port is power-only (5V/5A PD); no USB data on the Type-C connector."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "PoE+ available only through the official PoE+ HAT."
+    },
+    "hdmi-outputs": {
+      "value": 2,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "2× micro-HDMI; dual 4Kp60 with HDR."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "No DisplayPort or DP-Alt mode (USB-C is power-only)."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/documentation/computers/raspberry-pi.html"],
+      "comment": "2× combined CSI/DSI 22-pin connectors — either can act as a DSI display port."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/documentation/computers/raspberry-pi.html"],
+      "comment": "2× combined CSI/DSI 22-pin connectors — either can act as a CSI camera port."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://www.raspberrypi.com/documentation/computers/raspberry-pi.html"],
+      "comment": "Pi 5 dropped the 3.5 mm AV jack present on the Pi 4; documentation references the AV jack inconsistently but the official product brief and product page list no analog jack on the Pi 5 board itself."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Standard Raspberry Pi 40-pin GPIO header."
+    },
+    "rpi-hat-compatible": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Mechanically and electrically HAT-compatible; some older HATs needing the 3.5 mm jack or specific board height may have fit issues."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (FPC connector)",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Single-lane PCIe 2.0 over an FFC/FPC connector; an official M.2 HAT+ adapts this to an M.2 NVMe slot."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"]
+    },
+    "power-input": {
+      "value": "USB-C 5V/5A PD",
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Official 27 W PSU recommended for full 5A/5V; lower-power supplies clamp peripheral current."
+    },
+    "idle-power-w": {
+      "value": 3.0,
+      "source": ["https://www.jeffgeerling.com/blog/2024/new-2gb-pi-5-has-33-smaller-die-30-idle-power-savings/"],
+      "comment": "~3 W idle (4 GB variant) measured by Jeff Geerling with the official 5A PSU; 2 GB variant ~2.4 W. Varies ±1 W with PSU choice."
+    },
+    "load-power-w": {
+      "value": 12.0,
+      "source": ["https://aichiplink.com/blog/Broadcom%20BCM2712%20Processor:%20Benchmarks,%20Tests,%20and%20Specifications_253"],
+      "comment": "BCM2712 TDP ~12 W; full-load wall-plug draw with peripherals typically ~9–12 W per Geerling measurements."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Raspberry Pi sells an Active Cooler (heatsink + fan) and recommends active cooling for sustained max load; passive heatsinking will throttle. The board has a JST-SH PWM fan header for the official cooler."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "First flagship Pi with an onboard RTC and a 2-pin battery connector."
+    },
+    "length-mm": {
+      "value": 85.0,
+      "source": ["https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-mechanical-drawing.pdf"],
+      "comment": "PCB length 85 mm (slightly varying figures in the wild — 85 mm is the official mechanical drawing dimension)."
+    },
+    "width-mm": {
+      "value": 56.0,
+      "source": ["https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-mechanical-drawing.pdf"],
+      "comment": "PCB width 56 mm — same Raspberry Pi standard footprint as the Pi 4."
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": ["https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-mechanical-drawing.pdf"]
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": ["https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-mechanical-drawing.pdf"]
+    },
+    "weight-g": {
+      "value": 46.0,
+      "source": ["https://www.ghacks.net/2023/09/28/raspberry-pi-5-specs-price-and-more/"],
+      "comment": "Bare board weight ~46 g (retailers report 46–50 g depending on revision)."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": ["https://www.phoronix.com/news/SUSE-Upstream-Linux-RPi-5", "https://rootcommit.com/2025/raspberrypi5-mainline-linux-kernel/"],
+      "comment": "Mainline boots (kernel 6.12+ with SUSE-led upstreaming) but RP1 South Bridge support — including Ethernet, USB, GPIO — is still being upstreamed; vendor downstream kernel remains required for full hardware. As of April 2026 mainline support is improving but not yet at parity."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.raspberrypi.com/software/"],
+      "comment": "Raspberry Pi OS (Debian-based) published and actively maintained."
+    },
+    "distros-with-images": {
+      "value": ["raspberry-pi-os", "ubuntu", "debian", "fedora", "alpine", "dietpi", "manjaro"],
+      "source": ["https://www.raspberrypi.com/software/operating-systems/"],
+      "comment": "Raspberry Pi OS (official), Ubuntu (Canonical-published 24.04+ images), Debian (community/raspi.debian.net), Fedora (aarch64), Alpine, DietPi, Manjaro ARM all publish Pi 5 images. Armbian historically does not target the Pi family."
+    },
+    "bootloader": {
+      "value": ["proprietary"],
+      "source": ["https://www.raspberrypi.com/documentation/computers/raspberry-pi.html"],
+      "comment": "Pi 5 uses Raspberry Pi's proprietary closed-source bootloader stored in onboard SPI flash; it loads Linux directly without U-Boot in the default flow."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Production guaranteed through January 2036 — over a decade of expected hardware availability and matching kernel/OS support."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://forums.raspberrypi.com/viewtopic.php?t=357870"],
+      "comment": "No official Android image; community LineageOS/KonstaKANG ports exist but are unofficial."
+    },
+    "msrp-base-usd": {
+      "value": 50.0,
+      "source": ["https://www.raspberrypi.com/news/introducing-raspberry-pi-5/", "https://www.tomshardware.com/raspberry-pi/raspberry-pi-5-price-increases-drastically-as-ai-shortage-bites-16gb-version-now-usd205-second-price-increase-in-three-months-over-70-percent-more-expensive-than-original-msrp"],
+      "comment": "Original launch MSRP for the 4 GB SKU was $60 (October 2023); a 2 GB SKU was later added at $50. Recent (early-2026) memory-driven price hikes have pushed street prices higher — note that street price as of April 2026 commonly exceeds MSRP by 50%+."
+    },
+    "msrp-top-usd": {
+      "value": 120.0,
+      "source": ["https://www.tomshardware.com/raspberry-pi/raspberry-pi-5-price-increases-drastically-as-ai-shortage-bites-16gb-version-now-usd205-second-price-increase-in-three-months-over-70-percent-more-expensive-than-original-msrp"],
+      "comment": "Original 16 GB MSRP $120 at launch (Jan 2025). Tom's Hardware reports street/announced prices have climbed to ~$205+ as of early 2026 due to LPDDR4 supply pressure. MSRP figure here reflects original sticker price."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": ["https://www.raspberrypi.com/products/raspberry-pi-5/"],
+      "comment": "Sold globally through the Approved Reseller network."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://thepihut.com/products/raspberry-pi-5"],
+      "comment": "Snapshot 2026-04-26: in stock at major resellers (The Pi Hut, Adafruit, CanaKit), though pricing is volatile."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://www.raspberrypi.com/documentation/computers/raspberry-pi.html"],
+      "comment": "Comprehensive official documentation, mechanical drawings, datasheet/product brief, BCM2712 docs, and beginner-friendly Getting Started materials."
+    },
+    "community-size": {
+      "value": ["huge"],
+      "source": ["https://forums.raspberrypi.com/"],
+      "comment": "Per RESEARCH.md threshold: 'huge' is reserved for Raspberry Pi only."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forums.raspberrypi.com/"],
+      "comment": "Official Raspberry Pi Forums are extremely active and vendor-staffed."
+    },
+    "accessory-ecosystem": {
+      "value": 5,
+      "source": ["https://www.raspberrypi.com/products/"],
+      "comment": "Largest SBC accessory ecosystem in the world: official Active Cooler, Case, AI HAT+, M.2 HAT+, PoE+ HAT, Camera Modules, Touch Display 2, and a vast third-party HAT/case/screen market."
+    }
+  }
 }
