@@ -74,7 +74,7 @@ Users should be able to:
 |-----------|------|----------------|
 | **RAM Min (GB)** | decimal (ascending) | Smallest configuration sold. |
 | **RAM Max (GB)** | decimal (ascending) | Largest configuration sold. |
-| **RAM Type** | tags | `lpddr3`, `lpddr4`, `lpddr4x`, `lpddr5`, `ddr4`, `ddr5`. |
+| **RAM Type** | tags | `lpddr2`, `lpddr3`, `lpddr4`, `lpddr4x`, `lpddr5`, `ddr4`, `ddr5`. |
 | **eMMC** | boolean | Onboard eMMC present (any capacity option). |
 | **microSD Slot** | boolean | Standard microSD card slot present. |
 | **M.2 NVMe Slot** | boolean | M.2 slot supporting NVMe SSD (any key/length). |
