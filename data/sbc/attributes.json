@@ -1,0 +1,794 @@
+{
+  "name": "Single Board Computers",
+  "description": "Linux-capable single board computers across ARM, RISC-V, and x86 — covering compute, I/O, software support, power, and price",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Manufacturer, model, lifecycle status, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "manufacturer",
+          "name": "Manufacturer",
+          "valueType": "text",
+          "description": "Company that designs and sells the board"
+        },
+        {
+          "id": "model",
+          "name": "Model",
+          "valueType": "text",
+          "description": "Official product name"
+        },
+        {
+          "id": "release-date",
+          "name": "Release Date",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "Public availability date (use announcement if launch slipped)"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "in-production", "value": "In Production", "color": "green" },
+              { "id": "available-new", "value": "Available New", "color": "blue" },
+              { "id": "eol-but-stocked", "value": "EOL but Stocked", "color": "orange" },
+              { "id": "discontinued", "value": "Discontinued", "color": "red" }
+            ]
+          },
+          "description": "Current lifecycle and availability status"
+        },
+        {
+          "id": "architecture-family",
+          "name": "Architecture Family",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "arm64", "value": "ARM64", "color": "blue" },
+              { "id": "armv7", "value": "ARMv7", "color": "gray" },
+              { "id": "riscv64", "value": "RISC-V 64", "color": "purple" },
+              { "id": "x86-64", "value": "x86-64", "color": "orange" }
+            ]
+          },
+          "description": "Primary CPU instruction set architecture"
+        },
+        {
+          "id": "open-source-hardware",
+          "name": "Open Source Hardware",
+          "valueType": "boolean",
+          "description": "Schematics + PCB design files released under an OSHW-compatible license"
+        },
+        {
+          "id": "country-of-origin",
+          "name": "Country of Origin",
+          "valueType": "text",
+          "description": "Country of design or HQ (not where the PCB is fabricated)"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product page"
+        }
+      ]
+    },
+    {
+      "id": "soc-cpu",
+      "name": "SoC & CPU",
+      "description": "System-on-chip identity and CPU specifications",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "soc",
+          "name": "SoC",
+          "valueType": "text",
+          "description": "System-on-chip name as the vendor labels it"
+        },
+        {
+          "id": "soc-vendor",
+          "name": "SoC Vendor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "broadcom", "value": "Broadcom", "color": "red" },
+              { "id": "rockchip", "value": "Rockchip", "color": "green" },
+              { "id": "amlogic", "value": "Amlogic", "color": "blue" },
+              { "id": "allwinner", "value": "Allwinner", "color": "orange" },
+              { "id": "nxp", "value": "NXP", "color": "purple" },
+              { "id": "mediatek", "value": "MediaTek", "color": "red" },
+              { "id": "starfive", "value": "StarFive", "color": "blue" },
+              { "id": "t-head", "value": "T-Head", "color": "orange" },
+              { "id": "spacemit", "value": "SpacemiT", "color": "green" },
+              { "id": "intel", "value": "Intel", "color": "blue" },
+              { "id": "amd", "value": "AMD", "color": "red" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Silicon designer behind the SoC, not the board maker"
+        },
+        {
+          "id": "cpu-cores",
+          "name": "CPU Cores",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Total core count"
+        },
+        {
+          "id": "cpu-architecture",
+          "name": "CPU Architecture",
+          "valueType": "text",
+          "description": "Microarchitecture summary (e.g., \"4× Cortex-A76 + 4× Cortex-A55\")"
+        },
+        {
+          "id": "max-clock-speed-ghz",
+          "name": "Max Clock Speed (GHz)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Highest sustained stock clock"
+        },
+        {
+          "id": "process-node",
+          "name": "Process Node",
+          "valueType": "text",
+          "description": "Fabrication node if known"
+        }
+      ]
+    },
+    {
+      "id": "gpu-ai-acceleration",
+      "name": "GPU & AI Acceleration",
+      "description": "Graphics, video codec, and neural-processing capabilities",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "gpu",
+          "name": "GPU",
+          "valueType": "text",
+          "description": "GPU model name"
+        },
+        {
+          "id": "opengl-es-version",
+          "name": "OpenGL ES Version",
+          "valueType": "text",
+          "description": "Highest supported OpenGL ES version"
+        },
+        {
+          "id": "vulkan-support",
+          "name": "Vulkan Support",
+          "valueType": "boolean",
+          "description": "Vulkan 1.x driver available (mainline or vendor)"
+        },
+        {
+          "id": "npu",
+          "name": "NPU",
+          "valueType": "boolean",
+          "description": "Dedicated neural-processing unit on board"
+        },
+        {
+          "id": "npu-performance-tops",
+          "name": "NPU Performance (TOPS)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Advertised tera-ops at INT8; null if no NPU"
+        },
+        {
+          "id": "hw-video-decode",
+          "name": "HW Video Decode",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "h264", "value": "H.264", "color": "blue" },
+              { "id": "h265", "value": "H.265", "color": "green" },
+              { "id": "vp9", "value": "VP9", "color": "orange" },
+              { "id": "av1", "value": "AV1", "color": "purple" }
+            ]
+          },
+          "description": "Codecs decoded in hardware"
+        },
+        {
+          "id": "hw-video-encode",
+          "name": "HW Video Encode",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "h264", "value": "H.264", "color": "blue" },
+              { "id": "h265", "value": "H.265", "color": "green" },
+              { "id": "vp9", "value": "VP9", "color": "orange" },
+              { "id": "av1", "value": "AV1", "color": "purple" }
+            ]
+          },
+          "description": "Codecs encoded in hardware"
+        }
+      ]
+    },
+    {
+      "id": "memory-storage",
+      "name": "Memory & Storage",
+      "description": "RAM configurations and onboard storage interfaces",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "ram-min-gb",
+          "name": "RAM Min (GB)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Smallest RAM configuration sold"
+        },
+        {
+          "id": "ram-max-gb",
+          "name": "RAM Max (GB)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Largest RAM configuration sold"
+        },
+        {
+          "id": "ram-type",
+          "name": "RAM Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "lpddr3", "value": "LPDDR3", "color": "gray" },
+              { "id": "lpddr4", "value": "LPDDR4", "color": "blue" },
+              { "id": "lpddr4x", "value": "LPDDR4X", "color": "blue" },
+              { "id": "lpddr5", "value": "LPDDR5", "color": "green" },
+              { "id": "ddr4", "value": "DDR4", "color": "orange" },
+              { "id": "ddr5", "value": "DDR5", "color": "red" }
+            ]
+          },
+          "description": "Memory technology used"
+        },
+        {
+          "id": "emmc",
+          "name": "eMMC",
+          "valueType": "boolean",
+          "description": "Onboard eMMC present (any capacity option)"
+        },
+        {
+          "id": "microsd-slot",
+          "name": "microSD Slot",
+          "valueType": "boolean",
+          "description": "Standard microSD card slot present"
+        },
+        {
+          "id": "m2-nvme-slot",
+          "name": "M.2 NVMe Slot",
+          "valueType": "boolean",
+          "description": "M.2 slot supporting NVMe SSD (any key/length)"
+        },
+        {
+          "id": "sata",
+          "name": "SATA",
+          "valueType": "boolean",
+          "description": "Native SATA port (not USB-to-SATA)"
+        }
+      ]
+    },
+    {
+      "id": "connectivity-io",
+      "name": "Connectivity & I/O",
+      "description": "Network, wireless, USB, and PoE interfaces",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "ethernet",
+          "name": "Ethernet",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "100m", "value": "100M", "color": "red" },
+              { "id": "1g", "value": "1G", "color": "orange" },
+              { "id": "2-5g", "value": "2.5G", "color": "blue" },
+              { "id": "10g", "value": "10G", "color": "green" }
+            ]
+          },
+          "description": "Highest Ethernet port speed"
+        },
+        {
+          "id": "dual-ethernet",
+          "name": "Dual Ethernet",
+          "valueType": "boolean",
+          "description": "Two or more Ethernet ports"
+        },
+        {
+          "id": "wifi",
+          "name": "Wi-Fi",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "wifi-4", "value": "Wi-Fi 4", "color": "red" },
+              { "id": "wifi-5", "value": "Wi-Fi 5", "color": "orange" },
+              { "id": "wifi-6", "value": "Wi-Fi 6", "color": "blue" },
+              { "id": "wifi-6e", "value": "Wi-Fi 6E", "color": "green" },
+              { "id": "wifi-7", "value": "Wi-Fi 7", "color": "purple" }
+            ]
+          },
+          "description": "Highest Wi-Fi standard supported"
+        },
+        {
+          "id": "bluetooth",
+          "name": "Bluetooth",
+          "valueType": "text",
+          "description": "Bluetooth version if present; null if absent"
+        },
+        {
+          "id": "usb-a-3x-ports",
+          "name": "USB-A 3.x Ports",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Count of USB-A ports running 5 Gbps or faster"
+        },
+        {
+          "id": "usb-a-2-ports",
+          "name": "USB-A 2.0 Ports",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Count of USB-A ports limited to 480 Mbps"
+        },
+        {
+          "id": "usb-c-ports-data",
+          "name": "USB-C Ports (Data)",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "USB-C ports usable for data (excluding power-only)"
+        },
+        {
+          "id": "poe-support",
+          "name": "PoE Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "via-hat", "value": "Via HAT", "color": "orange" },
+              { "id": "built-in", "value": "Built-in", "color": "green" }
+            ]
+          },
+          "description": "Power-over-Ethernet capability"
+        }
+      ]
+    },
+    {
+      "id": "display-camera",
+      "name": "Display & Camera",
+      "description": "Display outputs and camera interfaces",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "hdmi-outputs",
+          "name": "HDMI Outputs",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Number of HDMI ports"
+        },
+        {
+          "id": "max-display-resolution",
+          "name": "Max Display Resolution",
+          "valueType": "text",
+          "description": "Highest single-display resolution officially supported"
+        },
+        {
+          "id": "displayport",
+          "name": "DisplayPort",
+          "valueType": "boolean",
+          "description": "Native DisplayPort output (USB-C DP-Alt counts; note in comment)"
+        },
+        {
+          "id": "mipi-dsi",
+          "name": "MIPI-DSI",
+          "valueType": "boolean",
+          "description": "MIPI-DSI display connector present"
+        },
+        {
+          "id": "mipi-csi",
+          "name": "MIPI-CSI",
+          "valueType": "boolean",
+          "description": "MIPI-CSI camera connector present"
+        },
+        {
+          "id": "audio-jack",
+          "name": "Audio Jack",
+          "valueType": "boolean",
+          "description": "3.5 mm analog audio output present"
+        }
+      ]
+    },
+    {
+      "id": "expansion",
+      "name": "Expansion",
+      "description": "GPIO, HAT compatibility, and PCIe exposure",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "gpio-pins",
+          "name": "GPIO Pins",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Count of GPIO pins on the main header"
+        },
+        {
+          "id": "rpi-compatible-header",
+          "name": "RPi-Compatible Header",
+          "valueType": "boolean",
+          "description": "40-pin header pin-compatible with the Raspberry Pi GPIO"
+        },
+        {
+          "id": "rpi-hat-compatible",
+          "name": "RPi HAT Compatible",
+          "valueType": "boolean",
+          "description": "Mechanical and electrical HAT compatibility (header position, mounting holes, EEPROM)"
+        },
+        {
+          "id": "pcie-lanes-exposed",
+          "name": "PCIe Lanes Exposed",
+          "valueType": "text",
+          "description": "PCIe lanes exposed to user; \"none\" if not exposed"
+        },
+        {
+          "id": "i2c-spi-uart",
+          "name": "I2C / SPI / UART",
+          "valueType": "boolean",
+          "description": "Any of I²C, SPI, or UART available on the GPIO header"
+        }
+      ]
+    },
+    {
+      "id": "power-thermal",
+      "name": "Power & Thermal",
+      "description": "Power input, consumption, and cooling requirements",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "power-input",
+          "name": "Power Input",
+          "valueType": "text",
+          "description": "Connector and voltage (e.g., \"USB-C 5V/5A\")"
+        },
+        {
+          "id": "idle-power-w",
+          "name": "Idle Power (W)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Typical idle consumption with peripherals removed"
+        },
+        {
+          "id": "load-power-w",
+          "name": "Load Power (W)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Typical full-load draw under stock cooling"
+        },
+        {
+          "id": "cooling-required",
+          "name": "Cooling Required",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "passive-ok", "value": "Passive OK", "color": "green" },
+              { "id": "heatsink-recommended", "value": "Heatsink Recommended", "color": "orange" },
+              { "id": "active-required", "value": "Active Required", "color": "red" }
+            ]
+          },
+          "description": "Vendor's recommended cooling for sustained max load"
+        },
+        {
+          "id": "rtc-battery-header",
+          "name": "RTC Battery Header",
+          "valueType": "boolean",
+          "description": "Onboard header or holder for a real-time-clock battery"
+        }
+      ]
+    },
+    {
+      "id": "form-factor",
+      "name": "Form Factor",
+      "description": "Physical dimensions and mechanical compatibility",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "length-mm",
+          "name": "Length (mm)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "PCB length"
+        },
+        {
+          "id": "width-mm",
+          "name": "Width (mm)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "PCB width"
+        },
+        {
+          "id": "form-factor-class",
+          "name": "Form Factor Class",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pi-standard", "value": "Pi Standard", "color": "blue" },
+              { "id": "pi-zero", "value": "Pi Zero", "color": "green" },
+              { "id": "pico-itx", "value": "Pico-ITX", "color": "orange" },
+              { "id": "nano-itx", "value": "Nano-ITX", "color": "purple" },
+              { "id": "credit-card", "value": "Credit Card", "color": "red" },
+              { "id": "custom", "value": "Custom", "color": "gray" }
+            ]
+          },
+          "description": "Standard form factor class the board fits"
+        },
+        {
+          "id": "mounting-hole-pattern",
+          "name": "Mounting Hole Pattern",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pi-standard", "value": "Pi Standard", "color": "blue" },
+              { "id": "pi-zero", "value": "Pi Zero", "color": "green" },
+              { "id": "none", "value": "None", "color": "gray" },
+              { "id": "custom", "value": "Custom", "color": "orange" }
+            ]
+          },
+          "description": "Mounting hole pattern compatibility"
+        },
+        {
+          "id": "weight-g",
+          "name": "Weight (g)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "ascending"
+          },
+          "description": "Bare board weight"
+        }
+      ]
+    },
+    {
+      "id": "software-support",
+      "name": "Software Support",
+      "description": "Linux kernel maturity, distros, bootloader, and support window",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "mainline-linux-kernel",
+          "name": "Mainline Linux Kernel",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "full", "value": "Full", "color": "green" },
+              { "id": "partial", "value": "Partial", "color": "orange" },
+              { "id": "vendor-only", "value": "Vendor Only", "color": "red" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Mainline upstream kernel support level"
+        },
+        {
+          "id": "official-os-image",
+          "name": "Official OS Image",
+          "valueType": "boolean",
+          "description": "Vendor publishes a maintained Linux image"
+        },
+        {
+          "id": "distros-with-images",
+          "name": "Distros With Images",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "raspberry-pi-os", "value": "Raspberry Pi OS", "color": "red" },
+              { "id": "ubuntu", "value": "Ubuntu", "color": "orange" },
+              { "id": "debian", "value": "Debian", "color": "red" },
+              { "id": "armbian", "value": "Armbian", "color": "blue" },
+              { "id": "fedora", "value": "Fedora", "color": "blue" },
+              { "id": "opensuse", "value": "openSUSE", "color": "green" },
+              { "id": "alpine", "value": "Alpine", "color": "blue" },
+              { "id": "dietpi", "value": "DietPi", "color": "green" },
+              { "id": "manjaro", "value": "Manjaro", "color": "green" },
+              { "id": "vendor-only", "value": "Vendor Only", "color": "gray" }
+            ]
+          },
+          "description": "Distros publishing a board-specific image"
+        },
+        {
+          "id": "bootloader",
+          "name": "Bootloader",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "u-boot", "value": "U-Boot", "color": "blue" },
+              { "id": "uefi", "value": "UEFI", "color": "green" },
+              { "id": "proprietary", "value": "Proprietary", "color": "red" },
+              { "id": "coreboot", "value": "coreboot", "color": "orange" },
+              { "id": "tow-boot", "value": "Tow-Boot", "color": "purple" }
+            ]
+          },
+          "description": "Primary bootloader used on the board"
+        },
+        {
+          "id": "long-term-support",
+          "name": "Long-Term Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "5y-plus", "value": "5y+", "color": "green" },
+              { "id": "3-5y", "value": "3-5y", "color": "blue" },
+              { "id": "1-3y", "value": "1-3y", "color": "orange" },
+              { "id": "unclear", "value": "Unclear", "color": "gray" }
+            ]
+          },
+          "description": "Vendor's stated software-support window"
+        },
+        {
+          "id": "android-support",
+          "name": "Android Support",
+          "valueType": "boolean",
+          "description": "Official or maintained Android image available"
+        }
+      ]
+    },
+    {
+      "id": "pricing-availability",
+      "name": "Pricing & Availability",
+      "description": "Retail price spread and regional availability",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "msrp-base-usd",
+          "name": "MSRP Base (USD)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Manufacturer's price for the base configuration; lower is better at equal capability"
+        },
+        {
+          "id": "msrp-top-usd",
+          "name": "MSRP Top (USD)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Manufacturer's price for the highest configuration sold"
+        },
+        {
+          "id": "available-regions",
+          "name": "Available Regions",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "north-america", "value": "North America", "color": "blue" },
+              { "id": "europe", "value": "Europe", "color": "green" },
+              { "id": "asia-pacific", "value": "Asia-Pacific", "color": "orange" },
+              { "id": "india", "value": "India", "color": "purple" },
+              { "id": "global", "value": "Global", "color": "red" }
+            ]
+          },
+          "description": "Where the board ships from official channels or major resellers"
+        },
+        {
+          "id": "typical-lead-time",
+          "name": "Typical Lead Time",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "in-stock", "value": "In Stock", "color": "green" },
+              { "id": "weeks", "value": "Weeks", "color": "blue" },
+              { "id": "months", "value": "Months", "color": "orange" },
+              { "id": "scarce", "value": "Scarce", "color": "red" }
+            ]
+          },
+          "description": "Lead-time snapshot — record date in comment"
+        }
+      ]
+    },
+    {
+      "id": "community-ecosystem",
+      "name": "Community & Ecosystem",
+      "description": "Documentation, community size, and accessory ecosystem",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=comprehensive official docs, schematics, datasheet; 3=adequate; 1=sparse"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "huge", "value": "Huge", "color": "green" },
+              { "id": "large", "value": "Large", "color": "blue" },
+              { "id": "medium", "value": "Medium", "color": "purple" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "niche", "value": "Niche", "color": "gray" }
+            ]
+          },
+          "description": "Approximate community scale"
+        },
+        {
+          "id": "active-forum-discord",
+          "name": "Active Forum / Discord",
+          "valueType": "boolean",
+          "description": "Vendor-run or vendor-blessed forum/Discord with regular activity"
+        },
+        {
+          "id": "accessory-ecosystem",
+          "name": "Accessory Ecosystem",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=many cases, HATs, screens, official accessories; 1=minimal third-party support"
+        }
+      ]
+    }
+  ]
+}
