@@ -224,7 +224,7 @@ Users should be able to:
 
 - [x] **Raspberry Pi 5** — BCM2712, the reference SBC for hobbyist Linux
 - [x] **Raspberry Pi 4 Model B** — Still widely deployed; baseline against RPi 5
-- [ ] **Raspberry Pi Zero 2 W** — Ultra-compact, low-power RPi
+- [x] **Raspberry Pi Zero 2 W** — Ultra-compact, low-power RPi
 - [ ] **Raspberry Pi 3 Model B+** — Older but still in production; cheap entry point
 - [ ] **Radxa ROCK 5B** — RK3588, premier high-performance ARM SBC alternative
 - [ ] **Radxa ROCK 5B+** — RK3588 refresh with M.2 and storage upgrades
