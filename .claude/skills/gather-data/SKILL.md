@@ -67,8 +67,28 @@ For each in-scope attribute, in the order declared by `attributes.json`:
    - `comment` — short free-text. Add when: the value is `null` (explain why), the value needed interpretation (cite the specific guideline), the value is contested, or the value is time-sensitive (include the date you checked).
 5. **Be honest about uncertainty.** If a reasonable researcher would disagree, pick the most defensible value and note the ambiguity in `comment`. Do NOT invent sources. Do NOT cite URLs you haven't fetched.
 6. **Dates**: for `date` valueType with `format: "year"`, write `"2024"`. For `month-year`, `"2024-01"`. For `full`, `"2024-01-15"`. Store ISO 8601 strings.
-7. **Tags**: the `value` is a `string[]` of tag ids already defined in `attributes.json`. If the right tag is missing, prefer using an existing tag and noting the nuance in `comment` over editing `attributes.json` mid-research. If a tag is clearly needed and genuinely generic, flag it to the user before editing `attributes.json`.
+7. **Tags**: the `value` is a `string[]` of tag ids already defined in `attributes.json`. If the tag you need is missing from the defined set, that is a schema contradiction — stop and follow **Halting on Schema Contradictions** below.
 8. **Booleans**: apply the threshold from RESEARCH.md's Assessment Guidelines (e.g. "ACID compliant only if full ACID by default"). Borderline cases → `comment` with the reasoning.
+
+### Halting on Schema Contradictions
+
+Stop the pass early — without writing the candidate file or committing — when you detect that the schema cannot faithfully express what your research found. Typical cases:
+
+- A `tags`-type attribute needs a tag that isn't defined in `attributes.json`.
+- An attribute is described in RESEARCH.md but missing from `attributes.json` (or vice-versa) and the gap is load-bearing for this candidate.
+- RESEARCH.md's Research Notes imply a different `valueType`, `direction`, or option shape than what `attributes.json` defines.
+- A real, important property of the candidate has no defined attribute to land in.
+- An Assessment Guideline is missing or self-contradictory for an attribute you're trying to fill.
+
+When you hit one of these, do NOT try to work around it with a stretched value or a silent `null`. Instead:
+
+1. **Do not** edit `attributes.json` directly.
+2. **Propose a concrete diff to RESEARCH.md** — show the change as a fenced code block (which Attribute Groups row to add or change, which tag id + label to add to a tag set, which guideline to clarify). Do not apply the diff; the user reviews it first.
+3. **Recommend the user run `/scaffold-type <type>`** after they accept the RESEARCH.md change so `attributes.json` is regenerated from the updated guide.
+4. **Do NOT write the candidate file, do NOT flip the RESEARCH.md checkbox, do NOT commit.** Skip Phases 3 and 4 entirely.
+5. Summarize what you researched so far (which attributes are settled, which are blocked on the contradiction) so the user can resume after the schema is fixed. Then stop and wait for human review.
+
+A `null` value with an honest `comment` is NOT a contradiction — that's the ordinary "no data available" path and it should commit normally. The bar for halting is "the schema itself is wrong or incomplete," not "this candidate is fuzzy."
 
 ### ValueType → `value` cheatsheet
 
@@ -129,7 +149,12 @@ This skill is designed to run unattended (including inside `/research-batch`), s
    ```
 4. Run `git status` to confirm the commit landed and the tree is clean.
 
-**When NOT to commit.** If the research pass failed catastrophically (e.g. no attributes could be populated due to tool errors, or a Primary Source contradiction forced you to stop per the Rules below), do NOT commit — report what went wrong and leave the file staged or unstaged as appropriate so the user can intervene. A pass that legitimately landed many `null` values (with honest `comment`s) is NOT a failure and SHOULD commit.
+**When NOT to commit.** Do NOT commit when:
+- A schema contradiction was detected (see **Halting on Schema Contradictions** in Phase 2) — the candidate file should not have been written either; report the proposed RESEARCH.md diff and the `/scaffold-type` recommendation, and wait for human review.
+- A Primary Source contradicts itself or another Primary Source (see Rules below) and forced you to stop.
+- The pass failed catastrophically due to tool errors and no attributes could be populated.
+
+A pass that legitimately landed many `null` values (with honest `comment`s) is NOT a failure and SHOULD commit.
 
 ## Phase 5: Summary
 
@@ -147,7 +172,7 @@ After the commit succeeds, present to the user:
 - Do NOT set `source: []` silently. If a value has no source (e.g. derived trivially from the candidate's own name), say so in `comment`.
 - Do NOT invent attribute ids. Every key in `values` MUST match an `attribute.id` in `attributes.json`.
 - Do NOT change the candidate's `name`, `description`, `icon`, or `url` unless explicitly asked.
-- Do NOT edit `attributes.json` in the middle of a research pass. If a tag set or attribute definition is clearly wrong, flag it to the user and stop; the user can fix it and restart.
+- Do NOT edit `attributes.json` directly. When the schema can't express your findings (missing tag, missing attribute, mismatched `valueType`, etc.), follow **Halting on Schema Contradictions** in Phase 2: propose a RESEARCH.md diff, recommend `/scaffold-type <type>`, skip Phases 3 and 4, and wait for human review.
 - Respect RESEARCH.md's Assessment Guidelines literally. When a guideline says "mark `true` only if X", do not round up.
 - When refreshing, never silently drop a previously-recorded value. If you can't verify it, keep it and add a `comment` noting the verification failure, or replace with the new value and note the change.
 - Stop and ask if a Primary Source contradicts itself or another Primary Source — surface it to the user instead of picking a side arbitrarily. In that case, skip the commit in Phase 4.
