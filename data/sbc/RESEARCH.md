@@ -226,7 +226,7 @@ Users should be able to:
 - [x] **Raspberry Pi 4 Model B** — Still widely deployed; baseline against RPi 5
 - [x] **Raspberry Pi Zero 2 W** — Ultra-compact, low-power RPi
 - [x] **Raspberry Pi 3 Model B+** — Older but still in production; cheap entry point
-- [ ] **Radxa ROCK 5B** — RK3588, premier high-performance ARM SBC alternative
+- [x] **Radxa ROCK 5B** — RK3588, premier high-performance ARM SBC alternative
 - [ ] **Radxa ROCK 5B+** — RK3588 refresh with M.2 and storage upgrades
 - [ ] **Radxa ROCK 5A** — RK3588S in RPi-style form factor
 - [ ] **Radxa ROCK 4SE** — RK3399-T, mid-tier
