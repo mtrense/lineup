@@ -1,5 +1,362 @@
 {
   "name": "Milk-V Mars",
   "description": "JH7110 RISC-V, RPi-style budget",
-  "values": {}
+  "url": "https://milkv.io/mars",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Milk-V (Shenzhen MilkV Technology Co., Ltd)",
+      "source": ["https://milkv.io/about"]
+    },
+    "model": {
+      "value": "Mars",
+      "source": ["https://milkv.io/mars"]
+    },
+    "release-date": {
+      "value": "2023-05",
+      "source": [
+        "https://www.tomshardware.com/news/milk-v-unveils-risc-v-raspberry-pi-alternative-milk-v-mars"
+      ],
+      "comment": "Announced/unveiled May 31, 2023; shipping started shortly after."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": ["https://milkv.io/mars"],
+      "comment": "Product page still actively listed and stocked through resellers (Arace, Amazon) as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "RV64GC ISA via SiFive U74 cores."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://milkv.io/docs/mars/getting-started/hardware"],
+      "comment": "Vendor publishes schematics (V1.21) and 2D dimension PDFs, but full PCB design files under an OSHW-compatible license were not located. Per RESEARCH.md, schematics-only does not qualify as OSHW."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://milkv.io/about"],
+      "comment": "Shenzhen MilkV Technology Co., Ltd, headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://milkv.io/mars",
+      "source": ["https://milkv.io/mars"]
+    },
+    "soc": {
+      "value": "StarFive JH7110",
+      "source": ["https://milkv.io/docs/mars/overview"]
+    },
+    "soc-vendor": {
+      "value": ["starfive"],
+      "source": ["https://milkv.io/docs/mars/overview"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "Plus an S7 monitor core (not user-exposed); 4× U74-MC application cores."
+    },
+    "cpu-architecture": {
+      "value": "4× SiFive U74-MC (RV64GC) + S7 monitor core",
+      "source": ["https://milkv.io/docs/mars/overview"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.5,
+      "source": ["https://milkv.io/docs/mars/overview"]
+    },
+    "process-node": {
+      "value": "28 nm",
+      "source": ["https://tinycomputers.io/posts/milk-v-mars-review.html"],
+      "comment": "JH7110 is reported as fabricated on a 28 nm process; not stated explicitly on Milk-V's product page."
+    },
+    "gpu": {
+      "value": "Imagination BXE-4-32 MC1",
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "Default 400 MHz, up to 600 MHz."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://milkv.io/docs/mars/overview"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "Vulkan 1.2 supported by the Imagination BXE-4-32 GPU; mainline open-source driver coverage remains limited (glmark2-es2 scored 0 in independent testing per geerlingguy/sbc-reviews #46)."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "JH7110 has no dedicated NPU."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on this SoC."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "H.264/H.265 4K@60 decode. No VP9/AV1 decode."
+    },
+    "hw-video-encode": {
+      "value": ["h265"],
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "H.265 1080p@30 encode only. JPEG encoder also present but not in tag set."
+    },
+    "ram-min-gb": {
+      "value": 1,
+      "source": ["https://milkv.io/mars"],
+      "comment": "Vendor product page advertises 1/2/4/8 GB; retail availability typically starts at 2 GB."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://milkv.io/mars"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "LPDDR4 at 2800 MT/s."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://milkv.io/mars"],
+      "comment": "Plug-and-play eMMC module slot (module sold separately)."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://milkv.io/mars"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://milkv.io/mars"],
+      "comment": "M.2 E-key slot is present (PCIe 2.0 x1) but intended for Wi-Fi/BT modules; NVMe storage is not supported on the Mars (unlike its Mars CM/M.2 M-key cousins)."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://milkv.io/mars"]
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://milkv.io/mars"]
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://milkv.io/mars"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://milkv.io/mars"],
+      "comment": "No onboard Wi-Fi; M.2 E-key slot accepts a third-party Wi-Fi/BT module."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://milkv.io/mars"],
+      "comment": "No onboard Bluetooth; provided only via optional M.2 E-key module."
+    },
+    "usb-a-3x-ports": {
+      "value": 3,
+      "source": ["https://milkv.io/mars"]
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": ["https://milkv.io/mars"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://milkv.io/mars"],
+      "comment": "USB-C connector is power-input only (5V/3A+)."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["https://milkv.io/mars"],
+      "comment": "PoE only via an add-on PoE expansion board."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://milkv.io/mars"],
+      "comment": "HDMI 2.0."
+    },
+    "max-display-resolution": {
+      "value": "4K@30",
+      "source": ["https://milkv.io/mars"],
+      "comment": "Vendor lists 4K@30 output (4K@60 decode); HDMI 2.0 port."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://milkv.io/mars"]
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://milkv.io/mars"],
+      "comment": "Two MIPI-DSI connectors (2-lane and 4-lane)."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://milkv.io/mars"],
+      "comment": "MIPI-CSI camera connector (2-lane); some sources also list a 4-lane CSI."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://wikidevi.wi-cat.ru/Milk-V_Mars"],
+      "comment": "3.5 mm analog audio jack present per WikiDevi teardown; not prominent on the marketing page."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://milkv.io/mars"],
+      "comment": "40-pin header; up to 28 usable GPIO at 3.3 V."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://milkv.io/mars"],
+      "comment": "Vendor advertises 40-pin RPi-compatible GPIO header."
+    },
+    "rpi-hat-compatible": {
+      "value": true,
+      "source": [
+        "https://milkv.io/mars",
+        "https://www.tomshardware.com/news/milk-v-unveils-risc-v-raspberry-pi-alternative-milk-v-mars"
+      ],
+      "comment": "Form factor mirrors the Raspberry Pi 3B layout (85×56 mm) with compatible header. EEPROM-based HAT auto-config compliance not formally certified — mechanical compatibility yes, software-driver coverage for HAT-specific drivers depends on RISC-V kernel support."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (M.2 E-key)",
+      "source": ["https://wikidevi.wi-cat.ru/Milk-V_Mars"],
+      "comment": "Single PCIe 2.0 lane routed to the M.2 E-key slot."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "I²C, SPI, UART, PWM, and CAN exposed on the 40-pin header."
+    },
+    "power-input": {
+      "value": "USB-C 5V/3A+ (also via GPIO header or PoE-HAT)",
+      "source": ["https://milkv.io/mars"]
+    },
+    "idle-power-w": {
+      "value": 3,
+      "source": ["https://github.com/geerlingguy/sbc-reviews/issues/46"],
+      "comment": "Measured at the wall by Jeff Geerling's sbc-reviews."
+    },
+    "load-power-w": {
+      "value": 5.3,
+      "source": ["https://github.com/geerlingguy/sbc-reviews/issues/46"],
+      "comment": "Peak under stress-ng matrix and Geekbench 6 multicore (5.3 W); HPL averaged 4.7 W."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://github.com/geerlingguy/sbc-reviews/issues/46"],
+      "comment": "Modest 28 nm SoC; runs warm under sustained load. Vendor does not formally mandate active cooling, but heatsinking is widely recommended in community reviews."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "source": ["https://wikidevi.wi-cat.ru/Milk-V_Mars"],
+      "comment": "An RTC chip (HYM8563TS) is present; whether a battery-backed connector/holder is fitted is not clearly documented in vendor materials."
+    },
+    "length-mm": {
+      "value": 85,
+      "source": ["https://milkv.io/mars"]
+    },
+    "width-mm": {
+      "value": 56,
+      "source": ["https://milkv.io/mars"]
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": [
+        "https://milkv.io/mars",
+        "https://www.tomshardware.com/news/milk-v-unveils-risc-v-raspberry-pi-alternative-milk-v-mars"
+      ],
+      "comment": "85×56 mm Raspberry Pi 3B-style layout."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": ["https://www.tomshardware.com/news/milk-v-unveils-risc-v-raspberry-pi-alternative-milk-v-mars"],
+      "comment": "Adopts the same layout as the Raspberry Pi 3B per multiple reviews."
+    },
+    "weight-g": {
+      "value": null,
+      "comment": "Vendor product page and reviews consulted (Tom's Hardware, XDA, tinycomputers.io, geerlingguy sbc-reviews) do not list bare-board weight."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://docs.u-boot.org/en/latest/board/starfive/milk-v_mars.html",
+        "https://kiljan.org/2025/04/07/arch-linux-risc-v-on-a-milk-v-mars/"
+      ],
+      "comment": "U-Boot upstream support since v2024.x and mainline Linux 6.10+ boots on Mars; GPU (BXE-4-32) is not yet upstream and PCIe support is incomplete (Wi-Fi cards/eGPUs unreliable). Hence 'partial' rather than 'full'."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://milkv.io/docs/mars/getting-started"],
+      "comment": "Milk-V publishes a Debian-based official image."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "fedora"],
+      "source": [
+        "https://www.phoronix.com/news/Ubuntu-24.04-Milk-V-Mars",
+        "https://kiljan.org/2025/04/07/arch-linux-risc-v-on-a-milk-v-mars/",
+        "https://www.deepin.org/en/deepin-adapts-to-milkv-mars/"
+      ],
+      "comment": "Vendor ships a Debian Bookworm image. Ubuntu 24.04/25.04 RISC-V images are explicitly board-tested by Canonical. Fedora Server 42 (RISC-V) images boot on Mars. Armbian support is in-progress (community thread, not yet official). deepin V23 has also been adapted but is not in the tag set."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.u-boot.org/en/latest/board/starfive/milk-v_mars.html"]
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://milkv.io/mars"],
+      "comment": "Milk-V has not published a formal LTS window for the Mars; community kernel maintenance is improving via mainline (StarFive JH7110 platform), but vendor commitment is undefined."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://milkv.io/docs/mars/getting-started"],
+      "comment": "No official or maintained Android image listed for Mars; vendor focus is Linux/Debian-based."
+    },
+    "msrp-base-usd": {
+      "value": 40,
+      "source": [
+        "https://www.xda-developers.com/milk-v-mars-review/",
+        "https://www.tomshardware.com/news/milk-v-unveils-risc-v-raspberry-pi-alternative-milk-v-mars"
+      ],
+      "comment": "Launch MSRP for the 2 GB configuration (the 1 GB tier is rarely retailed). Snapshot — pricing checked 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 70,
+      "source": ["https://www.xda-developers.com/milk-v-mars-review/"],
+      "comment": "8 GB configuration, board-only. Snapshot 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.amazon.com/Milk-V-RISC-V-Single-Computer-Startfive/dp/B0D7DWPNS3",
+        "https://arace.tech/products/milk-v-mars"
+      ],
+      "comment": "Sold via Milk-V's own store, Arace.tech (international), Amazon (NA), and various AliExpress sellers — effectively global."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://arace.tech/products/milk-v-mars"],
+      "comment": "Stock available at multiple resellers as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://milkv.io/docs/mars/overview"],
+      "comment": "Adequate getting-started docs, schematics PDF, and dimension drawings; gaps in software-stack details (kernel matrix, distro caveats, peripheral driver state)."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://forum.armbian.com/topic/37708-milk-v-mars/"],
+      "comment": "Active but modest-size community (Milk-V Discord/forum, Reddit r/RISCV). Niche relative to mainstream ARM SBCs."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://community.milkv.io/"],
+      "comment": "Vendor-run community forum (community.milkv.io) with regular activity; Discord also exists."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://milkv.io/mars"],
+      "comment": "First-party PoE HAT, eMMC modules, heatsinks, and cases exist; broader RPi HAT compatibility is mechanical-only and depends on RISC-V driver availability — limits practical accessory depth."
+    }
+  }
 }
