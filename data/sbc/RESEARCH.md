@@ -271,7 +271,7 @@ Users should be able to:
 - [x] **ODYSSEY-X86J4125** — Intel J4125 with onboard Arduino co-MCU
 - [x] **Seeed reTerminal** — Compute Module 4 + integrated screen + carrier
 - [x] **MNT Reform / Pocket Reform mainboard** — Open-hardware SBCs (multiple SoC modules)
-- [ ] **Mixtile Blade 3** — RK3588, compute-cluster-friendly with dual 2.5G
+- [x] **Mixtile Blade 3** — RK3588, compute-cluster-friendly with dual 2.5G
 
 ## Notes for Researchers
 

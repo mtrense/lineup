@@ -1,5 +1,369 @@
 {
   "name": "Mixtile Blade 3",
-  "description": "RK3588, compute-cluster-friendly with dual 2.5G",
-  "values": {}
+  "description": "RK3588 Pico-ITX SBC with U.2 stacking, dual 2.5GbE, and PCIe Gen3 x4 — designed for compute clusters",
+  "icon": "",
+  "url": "https://www.mixtile.com/blade-3/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Mixtile",
+      "source": ["https://www.mixtile.com/blade-3/"]
+    },
+    "model": {
+      "value": "Blade 3",
+      "source": ["https://www.mixtile.com/blade-3/"]
+    },
+    "release-date": {
+      "value": "2022-10",
+      "source": [
+        "https://www.hackster.io/news/the-eight-core-mixtile-blade-3-is-a-pico-itx-powerhouse-aimed-at-edge-ai-iot-clustering-and-more-31e1ba6bbd98",
+        "https://www.cnx-software.com/2022/03/11/mixtile-blade-3-rockchip-rk3588-pico-itx-board-server-applications/"
+      ],
+      "comment": "Crowd Supply campaign opened March 2022 with shipments targeted for late October 2022; User Manual v1.0 dated 2022-06-13."
+    },
+    "status": {
+      "value": ["in-production"],
+      "source": [
+        "https://www.mixtile.com/store/sbc/blade-3/",
+        "https://www.cnx-software.com/2024/05/05/save-75-dollars-rockchip-rk3588-mixtile-blade-3-sbc-core-3358e-module-discount/"
+      ],
+      "comment": "All four SKUs (4/8/16/32GB RAM) listed on the Mixtile store as of 2026-04-26; User Manual v1.3 was updated 2024-05-08."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://www.mixtile.com/blade-3/"],
+      "comment": "Vendor publishes a user manual and block diagram but no PCB design files or schematics under an OSHW-compatible license."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://linuxgizmos.com/cluster-focused-sbc-features-octa-core-rk3588/"],
+      "comment": "Mixtile is headquartered in Shenzhen, China; the company is registered as Mixtile Limited (Hong Kong)."
+    },
+    "website": {
+      "value": "https://www.mixtile.com/blade-3/",
+      "source": ["https://www.mixtile.com/blade-3/"]
+    },
+    "soc": {
+      "value": "Rockchip RK3588",
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 + 4× Cortex-A55 (big.LITTLE)",
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Block diagram lists Cortex-A76 up to 2.4 GHz, Cortex-A55 up to 1.8 GHz."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": ["https://www.mixtile.com/blade-3/"]
+    },
+    "gpu": {
+      "value": "ARM Mali-G610 MC4",
+      "source": ["https://www.mixtile.com/blade-3/"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.mixtile.com/blade-3/"],
+      "comment": "Mali-G610 supports OpenGL ES 3.2 via the vendor BSP; Panthor mainline driver also supports the same level."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.mixtile.com/blade-3/"],
+      "comment": "Mali-G610 vendor driver supports Vulkan 1.2."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Vendor-quoted INT8 peak (RK3588 NPU)."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "User Manual: H.265/H.264/VP9 decode up to 8K@60fps. AV1 decode is supported on RK3588 silicon but Mixtile does not list it."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "H.264/H.265 encode up to 8K@30fps. RK3588 has no AV1 or VP9 hardware encoder."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://www.mixtile.com/store/sbc/blade-3/"]
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": ["https://www.mixtile.com/store/sbc/blade-3/"]
+    },
+    "ram-type": {
+      "value": ["lpddr4", "lpddr5"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "User Manual v1.3 lists \"LPDDR4/LPDDR5\". Earlier marketing material listed LPDDR4 only; later SKUs may use LPDDR5."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Onboard eMMC, 32 GB / 64 GB / 128 GB / 256 GB SKUs."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Standard microSD socket (SDMMC 3.0, up to 64 GB per User Manual)."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No native M.2 connector. NVMe is reachable via the U.2 connector and an optional U.2-to-M.2 adapter case sold separately."
+    },
+    "sata": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Native SATA 3.0 signals are exposed on the U.2 edge connector (not via USB-to-SATA)."
+    },
+    "ethernet": {
+      "value": ["2-5g"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Two RJ45 ports backed by Realtek RTL8125BG-CG PHYs, 2.5 GbE each."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No onboard Wi-Fi. The Mini-PCIe socket can host a third-party Wi-Fi/BT card."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No onboard Bluetooth (paired with Wi-Fi absence)."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No USB Type-A ports — host USB is exposed via USB-C only."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "usb-c-ports-data": {
+      "value": 2,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "USB0/ADB and USB1/PD: both USB 3.2 Gen 1 with DisplayPort 1.4a Alt-Mode; USB1/PD doubles as the USB-C PD power input."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "One HDMI 2.1 OUT (8K@60 / 4K@120). A second HDMI 2.0 connector is an INPUT (4K@60), not counted as an output."
+    },
+    "max-display-resolution": {
+      "value": "8K@60 (HDMI 2.1)",
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "User Manual: 7680×4320@60Hz over HDMI 2.1; DisplayPort 1.4a over USB-C tops out at 7680×4320@30Hz."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "DisplayPort 1.4a is exposed over USB-C DP-Alt on both Type-C ports; no native DP connector on the board."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "User Manual block diagram and product overview list only a 4-lane MIPI-CSI FPC connector. Some press articles (Hackster, ameriDroid) refer to a MIPI-DSI connector, but this appears to be a confusion with the MIPI-CSI FPC; primary sources do not corroborate it."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "4-lane MIPI-CSI FPC connector on the underside of the PCB."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No 3.5 mm jack. Audio is exposed only as I2S signals on the 30-pin GPIO header (and over HDMI/DP digital)."
+    },
+    "gpio-pins": {
+      "value": 30,
+      "source": [
+        "https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf",
+        "https://www.mixtile.com/docs/usage-of-blade-3-30-pins/"
+      ],
+      "comment": "30-pin connector exposing digital I/O, I²C, USB 2.0, TTL UART, SPI, I²S, ADC, CAN. (One Mixtile docs page mistakenly says \"40-pin\"; the User Manual, the dedicated 30-pin header doc URL, and product photos all confirm 30 pins.)"
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "30-pin pinout, not the Raspberry Pi 40-pin layout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Pico-ITX form factor with a 30-pin header — incompatible with RPi HAT mechanical and electrical specs."
+    },
+    "pcie-lanes-exposed": {
+      "value": "4× PCIe 3.0 via U.2 edge connector + 1× PCIe 2.1 via Mini-PCIe socket",
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "U.2 also carries SATA 3.0 and a 12 V power input; Mini-PCIe additionally exposes USB 2.0."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "All three (plus I²S, CAN, ADC) on the 30-pin header; a separate UART debug header is also broken out."
+    },
+    "power-input": {
+      "value": "USB-C PD 2.0 (max 20V/3A) or 12V DC via U.2",
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "idle-power-w": {
+      "value": 4.5,
+      "source": ["https://www.the-diy-life.com/mixtile-blade-3-test-review/"],
+      "comment": "Measured ~4.5 W at idle in The DIY Life review (16 GB / 128 GB SKU, USB-C PD 15 V input)."
+    },
+    "load-power-w": {
+      "value": 7.5,
+      "source": ["https://www.the-diy-life.com/mixtile-blade-3-test-review/"],
+      "comment": "Measured 7–7.5 W under load in the same review. Mixtile lists ≤10 W as the max."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Ships with a heatsink pre-installed; ~7–8 W sustained load fits passive cooling. A fan header is provided for users who push it harder."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "No RTC battery holder or header is documented or visible in the product overview."
+    },
+    "length-mm": {
+      "value": 100,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "width-mm": {
+      "value": 72,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"]
+    },
+    "form-factor-class": {
+      "value": ["pico-itx"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Mixtile explicitly markets it as a \"2.5-inch Pico-ITX form factor, 100 × 72 mm\"."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Four corner mounting holes on a 100×72 mm PCB; not the Pi-standard 85×56 mm pattern."
+    },
+    "weight-g": {
+      "value": null,
+      "comment": "Bare board weight is not published by Mixtile and is not stated in any of the reviews surveyed (CNX-Software, LinuxGizmos, Hackster, The DIY Life, magazinmehatronika)."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://www.armbian.com/mixtile-blade-3/",
+        "https://forum.armbian.com/topic/32852-armbian-build-pr-rfc-mixtile-blade3-rockchip-rk3588-edge-67-add-dt-from-joshua-riek-some-fixes/"
+      ],
+      "comment": "Board DT was added to upstream around 6.7; the Armbian images shipping today still default to the rockchip vendor 6.1 kernel because RK3588 GPU/NPU/video codec support upstream is partial. Boots mainline, but the AI/video accelerators that make this board interesting need vendor drivers."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Ships with a customized Debian 11 image preloaded; vendor also provides Ubuntu and Android 12 images."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "armbian"],
+      "source": [
+        "https://www.armbian.com/mixtile-blade-3/",
+        "https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"
+      ],
+      "comment": "Armbian publishes Ubuntu 24.04 (GNOME and KDE) and Debian 13 minimal images for the board; Mixtile ships its own customized Debian image."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Standard Rockchip RK3588 boot chain: MaskROM → loader → U-Boot. The on-board dip switch selects boot media (eMMC / microSD / SPI flash / MaskROM)."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://www.mixtile.com/blade-3/"],
+      "comment": "Mixtile does not publish a software-support window for Blade 3. User Manual was last refreshed 2024-05; vendor still patches images, but no formal LTS commitment."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"],
+      "comment": "Vendor advertises Android 12 support."
+    },
+    "msrp-base-usd": {
+      "value": 229,
+      "source": ["https://www.mixtile.com/store/sbc/blade-3/"],
+      "comment": "Current Mixtile store base SKU (4 GB / 32 GB) as of 2026-04-26. Original Crowd Supply launch base price was $160 (2022)."
+    },
+    "msrp-top-usd": {
+      "value": 439,
+      "source": ["https://www.mixtile.com/store/sbc/blade-3/"],
+      "comment": "Current Mixtile store top SKU (32 GB / 256 GB) as of 2026-04-26. Original Crowd Supply launch top price was $320 (2022)."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.crowdsupply.com/mixtile-limited/mixtile-blade-3",
+        "https://ameridroid.com/products/mixtile-blade-3",
+        "https://www.mixtile.com/store/sbc/blade-3/"
+      ],
+      "comment": "Sold direct from Mixtile (Asia-Pacific), Crowd Supply (US, ships globally), ameriDroid (US), and Oz Robotics."
+    },
+    "typical-lead-time": {
+      "value": ["weeks"],
+      "source": [
+        "https://ameridroid.com/products/mixtile-blade-3",
+        "https://www.mixtile.com/store/sbc/blade-3/"
+      ],
+      "comment": "Snapshot 2026-04-26: ameriDroid lists both stocked SKUs as out of stock; Mixtile's own store still lists all four SKUs for sale. Typical resupply on direct orders runs to a few weeks."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://www.mixtile.com/docs/Mixtile-Blade-3-Docs/",
+        "https://www.mixtile.com/app/uploads/2024/05/Mixtile-Blade-3-User-Manual_v1.3.pdf"
+      ],
+      "comment": "Adequate: User Manual v1.3 with block diagram, pin assignments, and dimension drawings; online docs portal covers OS install and the 30-pin header. No public schematics or PCB design files."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://community.mixtile.com/c/blade-3/14"],
+      "comment": "Active but small vendor-run forum; far smaller than Pi/Orange Pi/ODROID communities."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://community.mixtile.com/c/blade-3/14"],
+      "comment": "Vendor-run Mixtile Community forum has a dedicated Blade 3 category."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://www.mixtile.com/store/sbc/blade-3/"],
+      "comment": "Mixtile sells a Blade 3 Case (with U.2-to-M.2 NVMe adapter) and a Cluster Box that stacks four boards via U.2; otherwise minimal third-party accessories."
+    }
+  }
 }
