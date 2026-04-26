@@ -1,5 +1,384 @@
 {
   "name": "Pine64 Star64",
-  "description": "JH7110 RISC-V",
-  "values": {}
+  "description": "Pine64's first RISC-V SBC, built on the StarFive JH7110 quad-core SiFive U74 SoC with Imagination BXE-4-32 GPU; positioned as an open-platform RISC-V learning/development board.",
+  "icon": "",
+  "url": "https://pine64.org/devices/star64/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Pine64",
+      "source": ["https://pine64.org/devices/star64/"]
+    },
+    "model": {
+      "value": "Star64 Model-A",
+      "source": ["https://pine64.com/product/star64-model-a-8gb-single-board-computer/"]
+    },
+    "release-date": {
+      "value": "2023-04",
+      "source": [
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ],
+      "comment": "Public availability began April 4, 2023; product was announced earlier (August 2022) but production slipped."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://pine64.com/product/star64-model-a-4gb-single-board-computer/",
+        "https://pine64.com/product/star64-model-a-8gb-single-board-computer/"
+      ],
+      "comment": "Both 4GB and 8GB Model-A variants listed as 'In stock' on the Pine64 store as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://en.wikipedia.org/wiki/List_of_open_source_hardware_projects"],
+      "comment": "Pine64 publishes schematics for many boards but does not release PCB/Gerber design files; not formally OSHW-licensed. Schematic v1.1 (dated 20230504) is publicly available for the Star64."
+    },
+    "country-of-origin": {
+      "value": "USA / Hong Kong",
+      "source": ["https://en.wikipedia.org/wiki/Pine64"],
+      "comment": "Pine64 is headquartered in Fremont, California; Pine Store Limited is incorporated in Hong Kong; boards ship from Shenzhen warehouses."
+    },
+    "website": {
+      "value": "https://pine64.org/devices/star64/",
+      "source": ["https://pine64.org/devices/star64/"]
+    },
+    "soc": {
+      "value": "StarFive JH7110",
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "soc-vendor": {
+      "value": ["starfive"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Quad-core SiFive U74 application cores. The JH7110 also includes an S7 monitor core and an E24 real-time control core, but the user-visible Linux core count is 4."
+    },
+    "cpu-architecture": {
+      "value": "4× SiFive U74 (RV64GC)",
+      "source": [
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.5,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Vendor-stated 'up to 1.5 GHz' for the U74 cluster."
+    },
+    "process-node": {
+      "value": null,
+      "comment": "StarFive does not publicly disclose the JH7110 process node; commonly reported as 28 nm in the community but not officially confirmed by primary sources, so left null per Assessment Guidelines."
+    },
+    "gpu": {
+      "value": "Imagination BXE-4-32",
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Up to 600 MHz."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Hardware supports Vulkan 1.2 (vendor BXE driver). Open-source/mainline driver maturity is still early; Vulkan availability in distro images is patchy."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "JH7110 has no dedicated NPU."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on the SoC."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ],
+      "comment": "JH7110 video decoder supports H.264/AVC and H.265/HEVC up to 4Kp60. No VP9 or AV1."
+    },
+    "hw-video-encode": {
+      "value": ["h265"],
+      "source": [
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ],
+      "comment": "Hardware H.265 encode up to 1080p30 per CNX-Software's spec sheet; H.264 encode is not advertised by Pine64 for the JH7110."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": [
+        "https://pine64.com/product-category/star64/"
+      ],
+      "comment": "Pine64 store currently sells only 4 GB and 8 GB Model-A variants. The wiki mentions a 2 GB variant in the spec sheet, but it is not offered for sale; using 4 GB as the smallest configuration actually sold."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://pine64.com/product-category/star64/"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "LPDDR4 @ 1866 MHz."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "Optional eMMC module socket (Pine64-style daughter card, up to 128 GB) — not soldered onboard."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "No native M.2 slot. PCIe 2.0 x1 is exposed via a standard PCIe slot connector instead; users add NVMe via a PCIe-to-M.2 adapter."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "No native SATA. Pine64 sells an optional PCIe-to-SATA adapter that uses the PCIe slot."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": [
+        "https://pine64.org/devices/star64/",
+        "https://pine64.org/documentation/STAR64/Board_features/"
+      ],
+      "comment": "Pine64 offers Single or Dual 10/100/1000 Mbps Ethernet variants; the production Model-A as sold ships with 2× Gigabit RJ45."
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": [
+        "https://pine64.org/devices/star64/"
+      ],
+      "comment": "Production Model-A boards use the Fn-Link RTL8852BU module (Realtek RTL8852BU), which is 802.11ax (Wi-Fi 6) + BT 5.2. Older Pine64 wiki spec sheet still lists '802.11 b/g/n/ac' but contradicts the current product page; the chipset is the authoritative signal."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": ["https://pine64.org/devices/star64/"]
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "1× dedicated USB 3.0 host port."
+    },
+    "usb-a-2-ports": {
+      "value": 3,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "No USB-C ports on the Star64; power input is a 5.5 mm DC barrel jack."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "No PoE support, no PoE HAT path advertised by Pine64."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": [
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ],
+      "comment": "Single HDMI 2.0 port."
+    },
+    "max-display-resolution": {
+      "value": "4K@30",
+      "source": [
+        "https://pine64.org/documentation/STAR64/Board_features/",
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ],
+      "comment": "Vendor lists 'up to 4K@30Hz' over HDMI; '4K HDR @ 60fps' is mentioned on the wiki but applies to the SoC display pipeline / HDR signaling rather than a sustained 60 Hz desktop mode."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "No DisplayPort output; HDMI only."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "4-lane MIPI-DSI for LCD."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "4-lane MIPI-CSI for camera."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"]
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "2×20 'Pi2' GPIO header (40 pins)."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Pine64 'Pi2' header is mechanically and electrically compatible with the Raspberry Pi 40-pin GPIO layout for most pins, but software pin-mapping is RISC-V/JH7110-specific so HAT drivers may need porting."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Mechanical 40-pin compatibility is partial: the board is 133×80 mm (not RPi-standard 85×56 mm) and mounting holes do not match RPi HAT spec, so most HATs will not seat or align properly even though the header pinout is similar."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (x1 lane in mechanical x4 slot)",
+      "source": [
+        "https://wiki.pine64.org/wiki/STAR64",
+        "https://www.cnx-software.com/2023/04/02/pine64-star64-sbc-starfive-jh7110-quad-core-risc-v-processor-imagination-gpu/"
+      ]
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/STAR64/Board_features/"],
+      "comment": "I2C, SPI, UART all available on the GPIO header."
+    },
+    "power-input": {
+      "value": "DC barrel 12V/3A (5.5 mm)",
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No credible measured idle-power figure found from Jeff Geerling, CNX-Software, Phoronix, or Pine64. Per RESEARCH.md notes #8, leaving null rather than guessing from TDP."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "No credible measured full-load figure found from independent reviewers; left null rather than estimated."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://wiki.pine64.org/wiki/NASCase-STAR64"],
+      "comment": "Pine64 recommends a heatsink for sustained loads (especially in the NAS Case context); active cooling is optional. JH7110 is comparable to RPi 4 thermal class — heatsink-recommended is the most defensible bucket."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "comment": "Pine64 documentation and product pages do not explicitly mention an RTC battery header for the Star64. Left null pending confirmation from the schematic; not safe to assume either direction."
+    },
+    "length-mm": {
+      "value": 133,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "width-mm": {
+      "value": 80,
+      "source": ["https://wiki.pine64.org/wiki/STAR64"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "133×80 mm is well outside the ~85×56 mm Pi-standard envelope. Closer in spirit to a Quartz64-style Pine64 form factor; flagged as 'custom' per RESEARCH.md guidelines."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://wiki.pine64.org/wiki/STAR64"],
+      "comment": "Mounting holes follow Pine64's own pattern (shared with Quartz64 / NAS Case), not the RPi standard."
+    },
+    "weight-g": {
+      "value": 128,
+      "source": [
+        "https://pine64.com/product/star64-model-a-8gb-single-board-computer/"
+      ],
+      "comment": "Pine64 store lists shipping weight as 0.128 kg; bare-board weight may be slightly lower but no separate figure is published."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://docs.u-boot.org/en/latest/board/starfive/pine64_star64.html",
+        "https://bugs.launchpad.net/ubuntu/+source/livecd-rootfs/+bug/2099993"
+      ],
+      "comment": "Star64 boots a stock upstream kernel (DTS upstreamed; Linux 6.14 added explicit Star64 support and U-Boot v2025.10 supports it natively, sharing binaries with VisionFive 2). However, GPU (BXE-4-32) and VPU acceleration still rely on out-of-tree Imagination/StarFive drivers, so this is 'partial' rather than 'full'."
+    },
+    "official-os-image": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/STAR64/Software/"],
+      "comment": "Pine64 itself does not publish a maintained first-party Linux image. They redirect users to community/third-party builds (Armbian, DietPi, Fishwaldo's Yocto images, NixOS, NuttX). Vendor docs explicitly note releases are 'still in alpha state, only fit for testing'."
+    },
+    "distros-with-images": {
+      "value": ["armbian", "dietpi"],
+      "source": [
+        "https://www.armbian.com/star64/",
+        "https://pine64.org/documentation/STAR64/Software/"
+      ],
+      "comment": "Per RESEARCH.md, only counting distros that publish a board-specific image: Armbian (board page exists) and DietPi (Star64-specific Linux 6.1 image). Yocto/Fishwaldo and NixOS exist but are not in the defined tag set; community Debian/Ubuntu rootfs images run on Armbian's kernel but no upstream Debian/Ubuntu Star64-specific image is published."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.u-boot.org/en/latest/board/starfive/pine64_star64.html"],
+      "comment": "Mainline U-Boot supports the Star64 as of v2025.10, sharing binaries with the StarFive VisionFive 2."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://pine64.org/documentation/STAR64/Software/"],
+      "comment": "Pine64 has not committed to a stated software-support window. Software is community-driven and explicitly described as 'alpha' by Pine64; longevity depends on JH7110 mainline trajectory more than on Pine64 itself."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/STAR64/Software/"],
+      "comment": "No official or maintained Android image for the Star64; Pine64 software docs list only Linux distros and NuttX RTOS."
+    },
+    "msrp-base-usd": {
+      "value": 69.99,
+      "source": ["https://pine64.com/product/star64-model-a-4gb-single-board-computer/"],
+      "comment": "Pine64 store price for the 4 GB Model-A as of 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 89.99,
+      "source": ["https://pine64.com/product/star64-model-a-8gb-single-board-computer/"],
+      "comment": "Pine64 store price for the 8 GB Model-A as of 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": ["https://pine64.com/"],
+      "comment": "Sold globally via the Pine64 store (ships from Shenzhen/Hong Kong); also via resellers like ameriDroid (North America)."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://pine64.com/product/star64-model-a-4gb-single-board-computer/",
+        "https://pine64.com/product/star64-model-a-8gb-single-board-computer/"
+      ],
+      "comment": "Both 4 GB and 8 GB variants showed 'In stock' on the Pine64 store on 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://pine64.org/documentation/STAR64/_full/",
+        "https://wiki.pine64.org/wiki/STAR64"
+      ],
+      "comment": "Adequate: Pine64 publishes a wiki, schematics, datasheet links, and a documentation portal with pinout and software notes, but coverage is uneven (e.g., no power measurements, no clear OS-image status) and the wiki spec block is partly stale (Wi-Fi 5 vs Wi-Fi 6 mismatch)."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://forum.pine64.org/forumdisplay.php?fid=143"],
+      "comment": "Pine64 has a sizeable overall community, but the Star64 sub-community specifically is small relative to RPi/Rockchip; activity is concentrated in the dedicated Pine64 forum and a few RISC-V enthusiasts."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.pine64.org/forumdisplay.php?fid=143"],
+      "comment": "Pine64 runs an active forum with a dedicated Star64 sub-board, plus the main Pine64 chat/Discord."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://pine64.com/product-category/star64/",
+        "https://wiki.pine64.org/wiki/NASCase-STAR64"
+      ],
+      "comment": "Limited: Pine64 sells a NAS Case, PCIe-to-SATA adapter, eMMC modules, and a few accessories. No vibrant third-party HAT/case ecosystem akin to RPi or Rockchip boards."
+    }
+  }
 }
