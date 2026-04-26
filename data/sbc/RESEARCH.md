@@ -243,7 +243,7 @@ Users should be able to:
 - [x] **Hardkernel ODROID-M1S** — RK3566S, thin form factor
 - [x] **Hardkernel ODROID-C4** — Amlogic S905X3, budget media-friendly
 - [x] **Hardkernel ODROID-H4** — Intel N97 x86 SBC, mini-ITX-ish
-- [ ] **Khadas VIM4** — Amlogic A311D2 with NPU, premium build
+- [x] **Khadas VIM4** — Amlogic A311D2 with NPU, premium build
 - [ ] **Khadas Edge2** — RK3588S, slim form factor
 - [ ] **Banana Pi BPI-M7** — RK3588, large-RAM configurations
 - [ ] **Banana Pi BPI-F3** — SpacemiT K1 RISC-V octa-core

@@ -1,5 +1,416 @@
 {
   "name": "Khadas VIM4",
   "description": "Amlogic A311D2 with NPU, premium build",
-  "values": {}
+  "url": "https://www.khadas.com/vim4",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Khadas",
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "model": {
+      "value": "VIM4",
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "release-date": {
+      "value": "2022-05",
+      "source": [
+        "https://www.cnx-software.com/2022/05/10/buy-khadas-vim4-sbc/",
+        "https://www.notebookcheck.net/Khadas-VIM4-Powerful-SBC-released-from-199-90-with-early-bird-discount.618736.0.html"
+      ],
+      "comment": "Public retail availability May 2022 ($199.90 launch); pre-announced October 2021. The 3.2 TOPS NPU variant (A311D2-N0D) followed in June 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.cnx-software.com/2023/06/02/khadas-vim4-amlogic-a311d2-sbc-gets-3-2-tops-npu/"
+      ],
+      "comment": "Currently sold direct by Khadas; the NPU-enabled variant is the active SKU as of 2026-04."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/start"],
+      "comment": "Khadas publishes schematics for the VIM4 but not full PCB design files under an OSHW-compatible license; per RESEARCH.md guideline this does not qualify."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "Khadas / Wesion is headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://www.khadas.com/vim4",
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "soc": {
+      "value": "Amlogic A311D2",
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.cnx-software.com/2021/10/21/khadas-vim4-amlogic-a311d2-sbc/"
+      ]
+    },
+    "soc-vendor": {
+      "value": ["amlogic"],
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A73 + 4× Cortex-A53 (big.LITTLE)",
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.cnx-software.com/2021/10/21/khadas-vim4-amlogic-a311d2-sbc/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.2,
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "Cortex-A73 cluster runs at 2.2 GHz; A53 cluster at 2.0 GHz."
+    },
+    "process-node": {
+      "value": "12 nm",
+      "source": [
+        "https://dl.khadas.com/products/vim4/specs/comparing-vim4-with-rpi5-and-bpi-m2s.pdf"
+      ],
+      "comment": "Amlogic A311D2 fabricated on TSMC 12 nm per Khadas comparison document."
+    },
+    "gpu": {
+      "value": "Mali-G52 MP8 (8EE) @ 800 MHz",
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": [
+        "https://docs.mesa3d.org/drivers/panfrost.html"
+      ],
+      "comment": "Mali-G52 hardware supports OpenGL ES 3.2; mainline Panfrost is conformant up to ES 3.1, vendor blob covers 3.2."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": [
+        "https://forum.khadas.com/t/initial-vulkan-support-under-ubuntu-22-04-wayland-desktop/17281",
+        "https://docs.mesa3d.org/drivers/panfrost.html"
+      ],
+      "comment": "No production Vulkan driver. PanVK is non-conformant on Mali-G52 and the Khadas vendor stack does not ship a Vulkan driver; community experiments only."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2023/06/02/khadas-vim4-amlogic-a311d2-sbc-gets-3-2-tops-npu/"],
+      "comment": "Current production VIM4 ships the A311D2-N0D variant with NPU enabled; original 2022 boards had the NPU disabled."
+    },
+    "npu-performance-tops": {
+      "value": 3.2,
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.cnx-software.com/2023/06/02/khadas-vim4-amlogic-a311d2-sbc-gets-3-2-tops-npu/"
+      ],
+      "comment": "Vendor-quoted INT8 peak."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": [
+        "https://www.cnx-software.com/2021/10/21/khadas-vim4-amlogic-a311d2-sbc/"
+      ],
+      "comment": "A311D2 supports 4K H.264 / H.265 / VP9 decode. AV1 decode is not advertised by Khadas/Amlogic for this SoC."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://www.cnx-software.com/2021/10/21/khadas-vim4-amlogic-a311d2-sbc/"
+      ],
+      "comment": "Hardware H.264 and H.265 encode supported by the A311D2."
+    },
+    "ram-min-gb": {
+      "value": 8,
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "Only an 8 GB SKU is sold."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://www.khadas.com/vim4"]
+    },
+    "ram-type": {
+      "value": ["lpddr4x"],
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "8 GB LPDDR4X 64-bit @ 2016 MHz (Khadas spec page); CNX cited 2112 MHz pre-launch — Khadas product page is authoritative."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "32 GB eMMC 5.1 onboard on the current SKU."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "M.2 2280 slot, single-lane PCIe 2.0, supports NVMe SSDs."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "No native SATA port; storage attaches via M.2 PCIe or USB."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "Single Gigabit RJ-45 with Wake-on-LAN."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"]
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "AP6275S module: dual-band 802.11a/b/g/n/ac/ax 2x2 MIMO."
+    },
+    "bluetooth": {
+      "value": "5.1",
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"],
+      "comment": "Bluetooth 5.1 via the AP6275S combo module. Some retailer listings still cite 5.2 from pre-release marketing; the shipping module is BT 5.1."
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "1× USB 3.0 Type-A (5 Gbps, 1500 mA)."
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "1× USB 2.0 Type-A (1300 mA)."
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "USB-C combines 9–20 V power input with USB 2.0 OTG data."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "No PoE on the board itself; no Khadas PoE HAT exists for the VIM4 form factor."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "1× HDMI 2.1 Type-A output. The board also has a separate micro-HDMI input port for capture/conferencing."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.khadas.com/vim4"],
+      "comment": "HDMI 2.1 output up to 4K@60p."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "No DP output; eDP is exposed via FPC connector for embedded panels but not as a user-accessible DisplayPort."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "40-pin MIPI-DSI/eDP FPC connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "Two MIPI-CSI camera connectors (20-pin and 30-pin, 4-lane)."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": [
+        "https://forum.khadas.com/t/vim4-audio-out-for-external-speakers/15640",
+        "https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"
+      ],
+      "comment": "No 3.5 mm analog jack. Audio out is via HDMI or Bluetooth; on-board audio support is limited to digital MIC and I2S over the GPIO/M.2 headers."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/applications/gpio/40pin-header"]
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": [
+        "https://www.tomshardware.com/reviews/khadas-vim4-review",
+        "https://docs.khadas.com/products/sbc/vim4/applications/gpio/40pin-header"
+      ],
+      "comment": "Physical 40-pin header but pinout differs from Raspberry Pi GPIO; not pin-compatible."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.tomshardware.com/reviews/khadas-vim4-review"],
+      "comment": "Mechanically a 40-pin header, but pinout, mounting holes (M2x4 Khadas pattern), and EEPROM auto-config do not match the Raspberry Pi HAT spec."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (M.2 2280)",
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"]
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/applications/gpio/40pin-header"],
+      "comment": "I2C, UART, I2S, ADC and PWM exposed on the 40-pin header (SPI is muxed but not officially listed for this header)."
+    },
+    "power-input": {
+      "value": "USB-C 9–20 V (PD) or VIN header 9–20 V",
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"
+      ],
+      "comment": "Wide-input range; Khadas ships a 30 W USB-C PD adapter in the kit."
+    },
+    "idle-power-w": {
+      "value": 1.2,
+      "source": ["https://www.tomshardware.com/reviews/khadas-vim4-review"],
+      "comment": "Tom's Hardware measured 0.1 A @ 12 V at idle."
+    },
+    "load-power-w": {
+      "value": 6.0,
+      "source": ["https://www.tomshardware.com/reviews/khadas-vim4-review"],
+      "comment": "Tom's Hardware measured up to 0.5 A @ 12 V under stress test."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"
+      ],
+      "comment": "Khadas sells the VIM4 with an active cooling fan kit (3705 fan) and recommends it for sustained load; passive operation throttles quickly."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://docs.khadas.com/products/sbc/vim4/hardware/start"],
+      "comment": "Onboard RTC battery connector."
+    },
+    "length-mm": {
+      "value": 82.0,
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"]
+    },
+    "width-mm": {
+      "value": 58.0,
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"],
+      "comment": "82×58 mm (Khadas-VIM form factor); close to Pi-standard size but mounting holes are Khadas's own M2 pattern, so per RESEARCH.md guideline this is `custom`."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"],
+      "comment": "Four M2 mounting holes in Khadas's VIM-series pattern; not Pi-compatible."
+    },
+    "weight-g": {
+      "value": 31.0,
+      "source": ["https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"]
+    },
+    "mainline-linux-kernel": {
+      "value": ["vendor-only"],
+      "source": [
+        "https://armbian.com/khadas-vim4/",
+        "https://khadas.github.io/linux/vim4/build_linux_kernel.html"
+      ],
+      "comment": "Amlogic A311D2 has no upstream mainline support as of 2026-04; both Khadas and Armbian ship a vendor 5.4/5.15 fork. Mainline patches exist for some peripherals but the SoC does not boot on a stock upstream kernel."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://docs.khadas.com/products/sbc/vim4/os-images/start"
+      ],
+      "comment": "Khadas publishes maintained Ubuntu 22.04, Debian, and Android 11 images via OOWOW."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "armbian", "manjaro"],
+      "source": [
+        "https://docs.khadas.com/products/sbc/vim4/os-images/start",
+        "https://armbian.com/khadas-vim4/"
+      ],
+      "comment": "Khadas-published Ubuntu and Debian images; Armbian builds Ubuntu/Debian images on legacy 5.15.137; Manjaro ARM has historically published a VIM4 image (CoreELEC/LibreELEC also available but those are appliance distros, not in the tag set)."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://khadas.github.io/linux/vim4/build_linux_kernel.html"],
+      "comment": "U-Boot (Amlogic vendor fork) chained from the Amlogic BL2/BL31 ROM. OOWOW is Khadas's installer that runs on top of U-Boot."
+    },
+    "long-term-support": {
+      "value": ["3-5y"],
+      "source": [
+        "https://armbian.com/khadas-vim4/",
+        "https://www.khadas.com/post/january-2024-update"
+      ],
+      "comment": "Khadas has a track record of multi-year support for VIM-series boards (VIM1/3 still receive images years after release); Armbian still ships fresh builds for VIM4 in 2026. No vendor-stated EOL window."
+    },
+    "android-support": {
+      "value": true,
+      "source": [
+        "https://docs.khadas.com/products/sbc/vim4/os-images/start",
+        "https://khadas.github.io/android/vim4/build_android.html"
+      ],
+      "comment": "Khadas publishes an official Android 11 64-bit image; Android 14 work is in progress in the vendor tree."
+    },
+    "msrp-base-usd": {
+      "value": 219.9,
+      "source": [
+        "https://www.cnx-software.com/2023/06/02/khadas-vim4-amlogic-a311d2-sbc-gets-3-2-tops-npu/",
+        "https://www.khadas.com/vim4"
+      ],
+      "comment": "Current SKU is the NPU-equipped bare board at $219.90 (price checked 2026-04-26). Original non-NPU board launched at $199.90 in May 2022."
+    },
+    "msrp-top-usd": {
+      "value": 239.9,
+      "source": [
+        "https://www.cnx-software.com/2023/06/02/khadas-vim4-amlogic-a311d2-sbc-gets-3-2-tops-npu/"
+      ],
+      "comment": "NPU board with active-cooling kit; checked 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.amazon.com/Computer-Supports-Interfaces-Bluetooth-MaliG52MP8/dp/B09ZTLLZLZ",
+        "https://www.newegg.com/p/3D0-004W-00026"
+      ],
+      "comment": "Sold direct from Khadas worldwide and via Amazon US / Newegg / European resellers."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.amazon.com/Computer-Supports-Interfaces-Bluetooth-MaliG52MP8/dp/B09ZTLLZLZ"
+      ],
+      "comment": "In stock at Khadas store and major resellers as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.khadas.com/products/sbc/vim4/start",
+        "https://dl.khadas.com/products/vim4/specs/vim4-specs.pdf"
+      ],
+      "comment": "Comprehensive docs portal with hardware reference, GPIO pinout, build guides, and a published specs PDF. Loses a point because some sub-pages 404 and a full schematic/datasheet pack is not linked."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.khadas.com/c/vim4/30"],
+      "comment": "Khadas runs an active forum and Discord; per RESEARCH.md thresholds Khadas falls into the 'medium' tier alongside Radxa and FriendlyELEC."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.khadas.com/c/vim4/30"],
+      "comment": "Khadas vendor-run forum has a dedicated VIM4 sub-category with regular activity; Khadas also runs an official Discord."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://www.khadas.com/vim4",
+        "https://www.hackster.io/idreams/khadas-vim4-review-03e3ef"
+      ],
+      "comment": "Official cooling kit, USB-C PSU, antennas, M2X mating SBC, DIY case, TS050 touchscreen, and OS-8A audio kit. Smaller than the Pi/Radxa ecosystems but solid first-party coverage; no broad third-party HAT scene."
+    }
+  }
 }
