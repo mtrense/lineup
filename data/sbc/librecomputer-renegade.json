@@ -1,5 +1,344 @@
 {
   "name": "LibreComputer Renegade (ROC-RK3328-CC)",
-  "description": "RK3328, budget option",
-  "values": {}
+  "description": "Rockchip RK3328 quad-A53 SBC with Gigabit Ethernet, USB 3.0, and DDR4 in a Raspberry Pi 3-style form factor",
+  "icon": "fa-microchip",
+  "url": "https://libre.computer/products/roc-rk3328-cc/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Libre Computer Project",
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Co-developed with the Firefly team; Firefly markets the same board as ROC-RK3328-CC, Libre Computer markets it as 'Renegade'."
+    },
+    "model": {
+      "value": "Renegade (ROC-RK3328-CC)"
+    },
+    "release-date": {
+      "value": "2017-12",
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Crowdfunded December 2017; retail availability began January 2018."
+    },
+    "status": {
+      "value": ["available-new"],
+      "source": [
+        "https://www.loverpi.com/products/libre-computer-board-roc-rk3328-cc",
+        "https://www.cnx-software.com/2022/07/18/libre-computer-roc-rk3328-cc-now-supports-ubuntu-22-04-with-linux-5-18-2/"
+      ],
+      "comment": "Still listed and stocked at LoveRPi, Amazon, Newegg, and eBay as of 2026-04-26. CNX-Software noted in mid-2022 the board was already getting hard to find direct from Libre, so 'available-new' rather than 'in-production' is the safer tag — production cadence is unclear."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://hub.libre.computer/t/libre-computer-board-hardware-schematics-links/36"],
+      "comment": "Only schematic PDFs are published; no PCB design files released under an OSHW-compatible license. Per RESEARCH.md guideline, schematics-only does not qualify as OSHW. The board is widely *marketed* as open source by Firefly."
+    },
+    "country-of-origin": {
+      "value": "USA",
+      "source": ["https://en.wikipedia.org/wiki/Libre_Computer_Project"],
+      "comment": "Libre Computer Project is headquartered in California, USA. PCB hardware is co-developed/manufactured with Firefly (China)."
+    },
+    "website": {
+      "value": "https://libre.computer/products/roc-rk3328-cc/"
+    },
+    "soc": {
+      "value": "Rockchip RK3328",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "cpu-architecture": {
+      "value": "4× ARM Cortex-A53",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.4,
+      "source": ["https://wiki.gentoo.org/wiki/Libre_Computer_Renegade"],
+      "comment": "Firefly product page lists 'up to 1.5 GHz', but multiple independent sources (Gentoo wiki, kernel DT, common reviews) record sustained stock clock at 1.4 GHz. Recorded the more conservative figure that matches measured behavior."
+    },
+    "process-node": {
+      "value": "28 nm",
+      "source": ["https://en.wikipedia.org/wiki/Rockchip_RK3328"],
+      "comment": "RK3328 is fabricated on a 28 nm HKMG process per Rockchip; not stated on the board page itself."
+    },
+    "gpu": {
+      "value": "ARM Mali-450 MP2",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "opengl-es-version": {
+      "value": "2.0",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Mali-450 supports OpenGL ES 1.1/2.0 and OpenVG 1.1; no ES 3.x support."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Mali-450 (Utgard architecture) has no Vulkan driver from Arm or in mainline; OpenGL ES only."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Vendor advertises 4K@60 H.265 HEVC, H.264 AVC, and VP9 hardware decode. No AV1."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Up to 1080p60 H.264 hardware encode per Firefly spec. No HEVC/VP9/AV1 encode."
+    },
+    "ram-min-gb": {
+      "value": 1,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"]
+    },
+    "ram-max-gb": {
+      "value": 4,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"]
+    },
+    "ram-type": {
+      "value": ["ddr4"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Standard DDR4 (not LPDDR4); unusual for an SBC of this size and a marketed differentiator."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Onboard eMMC connector/extension interface; eMMC modules sold separately."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "Single Gigabit Ethernet (Realtek RTL8211E PHY)."
+    },
+    "dual-ethernet": {
+      "value": false
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "No onboard wireless; USB Wi-Fi dongle required."
+    },
+    "bluetooth": {
+      "value": null,
+      "comment": "No onboard Bluetooth."
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "No PoE on the board and no first-party PoE HAT documented."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "HDMI 2.0a, 4K@60 with HDR10/HLG per Firefly spec."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "3.5 mm AV jack carrying composite video plus stereo audio (RPi-style)."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "40-pin 2.54 mm header. A separate 3-pin ADC header adds 2 analog inputs and is not counted here."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Header is described as 'mostly Raspberry Pi compatible' — most pin functions match RPi but a handful diverge; verify per-HAT before relying on it."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Mechanically Pi 3-sized (85×56 mm) and most HATs fit, but no HAT-spec EEPROM auto-config; mechanical-only compatibility per RESEARCH.md threshold."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "RK3328 has no PCIe controller; no PCIe is exposed."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "power-input": {
+      "value": "Micro-USB 5V/2A",
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "5V/2.5A or higher recommended in practice when driving USB 3.0 storage."
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No credible idle measurement found in vendor docs or in Jeff Geerling / CNX-Software / Phoronix reviews. Rather than extrapolate from RK3328 TDP, leaving null per RESEARCH.md."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "No credible measured full-load figure isolated from peripherals. CNX-Software measured ~10 W with a USB 3.0 HDD attached, which is dominated by the drive — not a board-only number."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://www.cnx-software.com/2018/07/14/roc-rk3328-cc-review-fast-storage-power-supply/"],
+      "comment": "Vendor ships without heatsink; CNX-Software review and 4GB Amazon SKU bundle a heatsink to prevent throttling under sustained load."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "length-mm": {
+      "value": 85,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "width-mm": {
+      "value": 56,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"],
+      "comment": "PCB is 85×56 mm, matching Raspberry Pi 3 footprint."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Marketed as a 'Raspberry Pi 3-compatible' form factor, including mounting holes."
+    },
+    "weight-g": {
+      "value": 36,
+      "source": ["https://en.t-firefly.com/product/rocrk3328cc"]
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts",
+        "https://www.cnx-software.com/2022/07/18/libre-computer-roc-rk3328-cc-now-supports-ubuntu-22-04-with-linux-5-18-2/"
+      ],
+      "comment": "Board DTS rk3328-roc-cc.dts is in mainline Linux; Libre Computer ships an Ubuntu image based on mainline Linux 5.18+. Mali-450 GPU still needs userspace blobs for accelerated 3D, but boot, Ethernet, USB, HDMI, and GPIO all work upstream."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2022/07/18/libre-computer-roc-rk3328-cc-now-supports-ubuntu-22-04-with-linux-5-18-2/"],
+      "comment": "Libre Computer publishes maintained Ubuntu 22.04/24.04 and Debian/Raspbian images for the board."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "armbian"],
+      "source": [
+        "https://www.armbian.com/renegade/",
+        "https://www.cnx-software.com/2022/07/18/libre-computer-roc-rk3328-cc-now-supports-ubuntu-22-04-with-linux-5-18-2/"
+      ],
+      "comment": "Vendor publishes Ubuntu and Debian/Raspbian images; Armbian publishes a board-specific image (kernel 6.18.x as of 2026-04). Fedora/openSUSE/Arch were promised by CNX in 2022 but no official board-specific image is published, so not listed. Kali, OpenMediaVault, Home Assistant, openHAB are Armbian-derived community variants, not separate distro families."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://archlinuxarm.org/forum/viewtopic.php?f=65&t=13171"],
+      "comment": "Mainline U-Boot since v2021.07. Earlier images use Rockchip miniloader + ATF; modern Libre Computer firmware stack is fully open-source U-Boot."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["https://www.cnx-software.com/2022/07/18/libre-computer-roc-rk3328-cc-now-supports-ubuntu-22-04-with-linux-5-18-2/"],
+      "comment": "Board released December 2017; Libre Computer was still pushing fresh Ubuntu 22.04 images on mainline 5.18 in 2022 (4.5 years later) and Armbian still ships current 6.x kernels in 2026 — well past 5 years of useful software support."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "Android 7.1.1 image historically published by Firefly. Image is dated and not actively refreshed; functional but not modern Android."
+    },
+    "msrp-base-usd": {
+      "value": 35,
+      "source": ["https://www.cnx-software.com/2018/01/08/firefly-roc-rk3328-cc-development-board-now-for-sale-for-35-and-up/"],
+      "comment": "1 GB tier launched at $35 (Firefly retail, January 2018). Reseller pricing on Amazon as of 2026-04-26 floats higher and the 1 GB tier is rarely listed; 2 GB typically retails near $50."
+    },
+    "msrp-top-usd": {
+      "value": 70,
+      "source": ["https://www.cnx-software.com/2017/12/05/libre-computer-renegade-sbc-features-rockchip-rk3328-processor-with-up-to-4gb-ddr4-ram-crowdfunding/"],
+      "comment": "4 GB tier launched at $70 in the 2017 crowdfunding campaign; LoveRPi currently lists the same SKU around $50–$65 (checked 2026-04-26)."
+    },
+    "available-regions": {
+      "value": ["north-america", "europe", "asia-pacific"],
+      "source": [
+        "https://www.loverpi.com/products/libre-computer-board-roc-rk3328-cc",
+        "https://www.amazon.com/Libre-Computer-ROC-RK3328-CC-Renegade-Ethernet/dp/B078RMQYHS",
+        "https://en.t-firefly.com/product/rocrk3328cc"
+      ],
+      "comment": "Sold via LoveRPi/Amazon/Newegg in North America, common European Pi resellers (allnet/welectron), and Firefly directly in APAC."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.loverpi.com/products/libre-computer-board-roc-rk3328-cc"],
+      "comment": "Snapshot 2026-04-26: in stock at LoveRPi and Amazon (4 GB SKU). Stock can fluctuate; some eBay/Newegg listings showed out-of-stock on the same date."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://wiki.t-firefly.com/ROC-RK3328-CC/index.html",
+        "https://hub.libre.computer/t/roc-rk3328-cc-renegade-overview-resources-and-guides/322"
+      ],
+      "comment": "Firefly wiki and Libre Computer Hub both provide getting-started guides, GPIO references, and OS images, plus a published schematic PDF. Documentation is adequate for the price point but not in the same league as Raspberry Pi or ODROID."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://hub.libre.computer/t/roc-rk3328-cc-renegade-overview-resources-and-guides/322"],
+      "comment": "Per RESEARCH.md thresholds, LibreComputer fits 'medium' (established second-tier vendor). The Renegade specifically has a smaller following than the AML-S905X-CC Le Potato within the same product line."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://hub.libre.computer/t/roc-rk3328-cc-renegade-overview-resources-and-guides/322"],
+      "comment": "Vendor-run hub.libre.computer Discourse forum is active with regular Libre Computer staff participation."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "comment": "No first-party HATs, cases, or displays from Libre Computer for this specific board. Mechanical Pi 3 compatibility means generic Pi cases and many HATs fit, but the curated ecosystem is minimal — rated 2/5."
+    }
+  }
 }
