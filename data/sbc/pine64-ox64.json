@@ -1,5 +1,403 @@
 {
   "name": "Pine64 Ox64",
   "description": "BL808 RISC-V, ultra-compact",
-  "values": {}
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Pine64",
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "model": {
+      "value": "Ox64",
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "release-date": {
+      "value": "2022-12",
+      "source": [
+        "https://pine64.com/product/128mb-ox64-sbc-available-on-december-2-2022/",
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/"
+      ],
+      "comment": "Public availability December 2, 2022 via Pine Store; announced October 2022."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://pine64.com/product/16mb-ox64-sbc-available-on-december-2-2022/",
+        "https://pine64.com/product/128mb-ox64-sbc-available-on-december-2-2022/"
+      ],
+      "comment": "Both 16Mb ($6) and 128Mb ($8) SKUs listed In stock at Pine Store as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Primary application core is the 64-bit T-Head C906 (RV64); two auxiliary 32-bit cores (E907, E902) are present but not the user-facing application ISA."
+    },
+    "open-source-hardware": {
+      "value": null,
+      "source": ["https://pine64.org/documentation/Ox64/Further_information/Schematics_and_certifications/"],
+      "comment": "Schematics PDF is published, but no PCB design files under an OSHW-compatible license were located. Per RESEARCH.md, schematics-only does not qualify as OSHW; left null pending confirmation rather than assumed false."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://en.wikipedia.org/wiki/Pine64"],
+      "comment": "Pine64 is a Hong Kong / China-based brand operated by Pine Microsystems; design/HQ is in China. SoC (BL808) is by Bouffalo Lab, also China."
+    },
+    "website": {
+      "value": "https://pine64.org/devices/ox64/",
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "soc": {
+      "value": "Bouffalo Lab BL808",
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://files.pine64.org/doc/datasheet/ox64/BL808_DS_en_1.1(open).pdf"
+      ]
+    },
+    "soc-vendor": {
+      "value": ["other"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Bouffalo Lab is not in the predefined SoC Vendor tag list; closest applicable tag is `other`."
+    },
+    "cpu-cores": {
+      "value": 1,
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/"
+      ],
+      "comment": "1× 64-bit T-Head C906 application core. The BL808 also contains 1× E907 (RV32, 320 MHz) and 1× E902 (RV32, 150 MHz) auxiliary cores; counting only the Linux-capable 64-bit core here, with the multi-core breakdown captured in CPU Architecture."
+    },
+    "cpu-architecture": {
+      "value": "1× T-Head C906 @ 480 MHz (RV64IMAFCV) + 1× T-Head E907 @ 320 MHz (RV32) + 1× T-Head E902 @ 150 MHz (RV32)",
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 0.48,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "C906 application core runs at 480 MHz."
+    },
+    "process-node": {
+      "value": null,
+      "source": [],
+      "comment": "Bouffalo Lab does not publish a fabrication node for the BL808 in the public datasheet; no credible third-party teardown identifying the node was found."
+    },
+    "gpu": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "BL808 has no dedicated GPU; the SoC provides display/imaging blocks (MJPEG/H.264 encoder, JPEG decoder) but no programmable GPU for OpenGL ES / Vulkan."
+    },
+    "opengl-es-version": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No GPU, hence no OpenGL ES support."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No GPU on the SoC."
+    },
+    "npu": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/",
+        "https://www.elektormagazine.com/articles/bl808-and-cohorts-new-riscv-mcus"
+      ],
+      "comment": "BL808 includes the BLAI-100 (Bouffalo Lab AI engine) for video/audio detection/recognition."
+    },
+    "npu-performance-tops": {
+      "value": 0.1,
+      "source": ["https://www.elektormagazine.com/articles/bl808-and-cohorts-new-riscv-mcus"],
+      "comment": "BLAI-100 rated at 0.1 TOPS per Elektor Magazine. Treat as vendor-quoted INT8 ballpark; not directly comparable to the multi-TOPS NPUs on Rockchip/Amlogic SoCs."
+    },
+    "hw-video-decode": {
+      "value": ["h264"],
+      "source": [
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/",
+        "https://files.pine64.org/doc/datasheet/ox64/BL808_DS_en_1.1(open).pdf"
+      ],
+      "comment": "BL808 datasheet documents an MJPEG/JPEG decoder and H.264 encoder; H.264 decode is included in the multimedia subsystem. Codec list is narrow vs typical media SBC SoCs."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": [
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/"
+      ],
+      "comment": "Hardware H.264 encoder up to 1920×1080@30fps + 640×480@30fps, plus MJPEG. No H.265/VP9/AV1."
+    },
+    "ram-min-gb": {
+      "value": 0.0625,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "64 MB embedded PSRAM only; not user-upgradable. Same on both 16Mb and 128Mb SKUs (the SKU number refers to flash size, not RAM)."
+    },
+    "ram-max-gb": {
+      "value": 0.0625,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Single fixed 64 MB embedded PSRAM configuration."
+    },
+    "ram-type": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "BL808 uses embedded PSRAM (pseudo-SRAM), which is not one of the LPDDR/DDR tag options defined in the schema."
+    },
+    "emmc": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No eMMC. Onboard storage is XSPI NOR flash (16 Mbit / 2 MB or 128 Mbit / 16 MB depending on SKU)."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://pine64.com/product/128mb-ox64-sbc-available-on-december-2-2022/"
+      ],
+      "comment": "microSD (SDHC/SDXC) is present only on the 128 Mbit SKU; the 16 Mbit SKU has no microSD slot."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "ethernet": {
+      "value": ["100m"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "10/100 Mbit/s Ethernet is available only via an optional add-on board; the SBC itself has no native RJ45 jack. Tagged at the highest port speed offered (100m)."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "wifi": {
+      "value": ["wifi-4"],
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://www.cnx-software.com/2022/12/02/pine64-ox64-sbc-bl808-risc-v-multi-protocol-wisoc-64mb-ram/"
+      ],
+      "comment": "Integrated 2.4 GHz 1T1R 802.11 b/g/n; 802.11n is Wi-Fi 4 in the WFA naming scheme."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "BL808 datasheet quotes BLE 5.x; Pine64 wiki specifies Bluetooth 5.2."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No USB-A ports of any kind; USB is exposed via Type-C OTG only."
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://liliputing.com/pine64-ox64-is-a-raspberry-pi-pico-sized-single-board-pc-with-a-risc-v-processor/"
+      ],
+      "comment": "1× USB 2.0 OTG Type-C (data + power). A separate micro-USB port is power-only and not counted here."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No PoE; native Ethernet itself requires an add-on board."
+    },
+    "hdmi-outputs": {
+      "value": 0,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No HDMI."
+    },
+    "max-display-resolution": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No native display output on the board (no HDMI/DP/MIPI-DSI). The MIPI-CSI lanes are camera-input only."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Wiki lists a 2-lane MIPI-CSI camera connector but no DSI display connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Dual-lane MIPI-CSI port co-located at the USB-C end for an optional camera module."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "No 3.5 mm jack on the SBC; audio (mic/speaker) is optional via the camera add-on module."
+    },
+    "gpio-pins": {
+      "value": 26,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Wiki states 26 GPIO pins (with SPI/I2C/UART functionality) exposed across two 20-pin castellated headers in a breadboard-friendly layout. Header pin count is 40 mechanically but only 26 are GPIO; remaining pins are power/reference/dedicated function."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Two 20-pin castellated headers along the long edges (breadboard layout) — not pin-compatible with the RPi 40-pin GPIO header."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Form factor and headers are not RPi HAT compatible."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "BL808 SoC has no PCIe controller."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "I²C, SPI, I²S and UART available on the GPIO headers."
+    },
+    "power-input": {
+      "value": "USB-C 5V/0.5A (or micro-USB 5V/0.5A)",
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://liliputing.com/pine64-ox64-is-a-raspberry-pi-pico-sized-single-board-pc-with-a-risc-v-processor/"
+      ]
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No measured idle-power figure from a credible review (Phoronix / CNX-Software / Jeff Geerling) was located. Per RESEARCH.md guidance, leaving null rather than extrapolating from the 5V/0.5A supply rating."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No measured load-power figure located. Theoretical maximum is bounded by the 5V/0.5A (≈2.5W) input spec but actual sustained draw is undocumented."
+    },
+    "cooling-required": {
+      "value": ["passive-ok"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "BL808 is a low-power MCU-class SoC running at 480 MHz with a 0.5 A 5V supply spec; vendor ships the board bare with no heatsink and no cooling guidance — passive operation is the default."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "length-mm": {
+      "value": 51,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
+    },
+    "width-mm": {
+      "value": 21,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Wiki gives 51 × 21 × 19 × 3.5 mm; 21 mm interpreted as PCB width, 19 mm as height including the USB-C jack, 3.5 mm as PCB thickness."
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Breadboard-friendly stamp-style PCB (~51×21 mm); does not match Pi-standard or Pi-zero outlines."
+    },
+    "mounting-hole-pattern": {
+      "value": ["none"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Castellated edge headers, no dedicated mounting holes documented on the wiki specs."
+    },
+    "weight-g": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Vendor does not publish a bare-board weight; no reliable third-party measurement located."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://pine64.org/documentation/Ox64/Software/Releases/",
+        "https://forum.armbian.com/topic/23803-cnx-software-pine64-ox64-sbc-to-feature-bl808-64-bit32-bit-risc-v-multi-protocol-wisoc-with-64mb-built-in-ram/"
+      ],
+      "comment": "BL808 support has progressed in mainline (linux-next / community trees with IRQ chip, SD, USB drivers) but key blocks (Wi-Fi, BLAI NPU, video codec) still rely on Bouffalo's vendor SDK. Treated as `partial` rather than `full`."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
+      "comment": "Pine64 documents an official alpha Linux image (and links Bouffalo's bl808_linux), plus Buildroot and NuttX RTOS releases. Quality is explicitly labelled alpha / bring-up."
+    },
+    "distros-with-images": {
+      "value": ["debian"],
+      "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
+      "comment": "Community Buildroot and Pine64-tracked Debian-based images exist for the Ox64; no published Ubuntu / Armbian / Fedora / openSUSE / Alpine / DietPi / Manjaro images target this board specifically. Buildroot is not in the available tag set."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
+      "comment": "U-Boot + OpenSBI used for Linux boot; OpenSBI is the SBI firmware layer, not selectable in the bootloader tag set."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
+      "comment": "No vendor-stated software support window. Software effort is largely community-driven via the #ox64-nutcracker channel."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
+      "comment": "No Android image published; 64 MB RAM and the BL808 architecture make Android impractical on this board."
+    },
+    "msrp-base-usd": {
+      "value": 6,
+      "source": ["https://pine64.com/product/16mb-ox64-sbc-available-on-december-2-2022/"],
+      "comment": "Pine Store community price for the 16 Mbit (no microSD) SKU as of 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 8,
+      "source": ["https://pine64.com/product/128mb-ox64-sbc-available-on-december-2-2022/"],
+      "comment": "Pine Store community price for the 128 Mbit (with microSD) SKU as of 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://pine64.com/",
+        "https://ameridroid.com/products/pine64-ox64-16mb"
+      ],
+      "comment": "Sold via Pine Store (ships globally) and US reseller Ameridroid; commonly listed on EU/AP marketplaces too."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://pine64.com/product/16mb-ox64-sbc-available-on-december-2-2022/",
+        "https://pine64.com/product/128mb-ox64-sbc-available-on-december-2-2022/"
+      ],
+      "comment": "Both SKUs marked In stock at Pine Store as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://wiki.pine64.org/wiki/Ox64",
+        "https://pine64.org/documentation/Ox64/",
+        "https://files.pine64.org/doc/datasheet/ox64/BL808_DS_en_1.1(open).pdf"
+      ],
+      "comment": "Pine64 wiki + dedicated documentation site + BL808 datasheet PDF mirror; structured but Linux side is alpha/bring-up. Rated adequate (3/5) — neither sparse nor RPi-grade."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": [
+        "https://forum.pine64.org/forumdisplay.php?fid=84",
+        "https://pine64.org/documentation/Ox64/Software/Releases/"
+      ],
+      "comment": "Active but small community on Pine64 forums and the #ox64-nutcracker chat; far smaller than RPi or Rockchip-class ecosystems."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": [
+        "https://forum.pine64.org/",
+        "https://pine64.org/documentation/Ox64/Software/Releases/"
+      ],
+      "comment": "Pine64 forum has a dedicated section, plus a vendor-blessed #ox64-nutcracker chat channel referenced in the official docs."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://wiki.pine64.org/wiki/Ox64"],
+      "comment": "Few first-party accessories (camera module, optional Ethernet add-on, USB-UART debug board); no significant third-party HAT/case ecosystem given the unique form factor."
+    }
+  }
 }
