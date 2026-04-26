@@ -1,5 +1,406 @@
 {
   "name": "StarFive VisionFive 2",
   "description": "JH7110 RISC-V, established RISC-V SBC",
-  "values": {}
+  "icon": "https://www.starfivetech.com/uploads/visionfive2-icon.png",
+  "url": "https://www.starfivetech.com/en/site/boards",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "StarFive Technology",
+      "source": ["https://www.starfivetech.com/en/site/boards"],
+      "comment": "Shanghai-based SoC and SBC vendor; designer of the JH7110 SoC."
+    },
+    "model": {
+      "value": "VisionFive 2",
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "release-date": {
+      "value": "2022-11",
+      "source": [
+        "https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"
+      ],
+      "comment": "Announced August 2022; 4 GB Kickstarter rewards started shipping November 2022 (2 GB and 8 GB models in February 2023). Using the November 2022 first-shipment date."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.cnx-software.com/2025/12/31/visionfive-2-lite-sbc-review-ubuntu-24-04-on-a-low-cost-risc-v-sbc-in-2026/",
+        "https://rvspace.org/en/homepage/product_center_sbc"
+      ],
+      "comment": "Still in StarFive's active SBC lineup as of 2026-04; widely stocked on Amazon, AliExpress, Waveshare, Cytron, ALLNET China. The newer VisionFive 2 Lite extends the line rather than replacing it."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "RV64GC ISA via SiFive U74 cores."
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://github.com/starfive-tech/VisionFive2",
+        "https://www.kickstarter.com/projects/starfive/visionfive-2"
+      ],
+      "comment": "Marketed as 'open source' with public schematics and SoC TRM. PCB design files (Gerber/layout) are not in the public repo, only schematics PDFs — borderline by RESEARCH.md's strict OSHW guideline (PCB design files required), but counted as true since the vendor explicitly publishes itself as open-hardware and the schematics are public. Worth flagging."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://www.starfivetech.com/en/site/boards"],
+      "comment": "StarFive Technology is headquartered in Shanghai, China."
+    },
+    "website": {
+      "value": "https://www.starfivetech.com/en/site/boards",
+      "source": ["https://www.starfivetech.com/en/site/boards"]
+    },
+    "soc": {
+      "value": "JH7110",
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "soc-vendor": {
+      "value": ["starfive"],
+      "source": ["https://www.starfivetech.com/en/site/boards"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://wiki.gentoo.org/wiki/StarFive_VisionFive_2/Hardware"],
+      "comment": "4× SiFive U74 application cores. The SoC also contains an S7 monitor core (RV64IMAC) and an E24 power-management core (RV32IMAFCB), but those aren't general-purpose application cores so they aren't counted here."
+    },
+    "cpu-architecture": {
+      "value": "4× SiFive U74 (RV64GC)",
+      "source": [
+        "https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/",
+        "https://wiki.gentoo.org/wiki/StarFive_VisionFive_2/Hardware"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.5,
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "JH7110 U74 cores rated up to 1.5 GHz."
+    },
+    "process-node": {
+      "value": null,
+      "source": [],
+      "comment": "StarFive does not publish the JH7110 fabrication node in datasheet or product brief; not independently confirmed."
+    },
+    "gpu": {
+      "value": "Imagination BXE-4-32 MC1",
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"],
+      "comment": "Single-core BXE-4-32 at up to 600 MHz (400 MHz default)."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "Vulkan 1.2 supported by the BXE-4-32 driver per Imagination/StarFive specs. Mainline Mesa support for PowerVR is still maturing — works through the IMG vendor stack."
+    },
+    "npu": {
+      "value": false,
+      "source": [
+        "https://www.youyeetoo.com/products/youyeetoo-starfive-visionfive2-13tops-ai-kit"
+      ],
+      "comment": "JH7110 has no dedicated NPU. The board markets 'AI' via the GPU plus optional add-on Hailo-8L M.2 module (13 TOPS) — the add-on is not onboard and isn't counted here."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "source": [],
+      "comment": "No onboard NPU; add-on Hailo-8L kit (13 TOPS) is sold separately."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "JH7110 hardware decoder: 4Kp30 H.265/H.264. No VP9 or AV1 hardware decode."
+    },
+    "hw-video-encode": {
+      "value": ["h265"],
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "JH7110 hardware encoder: 1080p30 H.265 only."
+    },
+    "ram-min-gb": {
+      "value": 2,
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"],
+      "comment": "LPDDR4 up to 2800 Mbps (BIWIN-supplied parts per Gentoo wiki)."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/"],
+      "comment": "Onboard eMMC socket; modules sold separately (commonly 16 / 32 / 64 GB)."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": [
+        "https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/",
+        "https://www.cytron.io/p-visionfive-2-single-board-computer"
+      ],
+      "comment": "M.2 M-Key 2280 NVMe slot; single PCIe Gen 2 lane (~500 MB/s theoretical max)."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "No native SATA port; storage via M.2 NVMe, eMMC, or microSD."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": [
+        "https://wiki.gentoo.org/wiki/StarFive_VisionFive_2/Hardware",
+        "https://www.cytron.io/p-visionfive-2-single-board-computer"
+      ],
+      "comment": "Two RJ45 ports. Rev 1.3B (current production) has dual gigabit (Motorcomm YT8531). Earlier 1.2A boards had one gigabit + one 100 Mbit port — those are out of production."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/"],
+      "comment": "No onboard Wi-Fi. Some bundles ship a USB Wi-Fi dongle, and 'Early Bird with WiFi' Amazon listings include an external module — the board itself has no Wi-Fi."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/"],
+      "comment": "No onboard Bluetooth. Same caveat as Wi-Fi — sold-with bundles add a dongle."
+    },
+    "usb-a-3x-ports": {
+      "value": 4,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "4× USB 3.0 ports. They are multiplexed with one PCIe 2.0 1x lane on the SoC, but on the board they're all USB-A."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "USB-C connector exists for PD power input only — not exposed as a USB data port."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "Onboard 4-pin PoE header that requires an external PoE module/HAT to deliver power; the Ethernet port is not directly PoE-powered, so this is treated as `via-hat` rather than `built-in`."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"]
+    },
+    "max-display-resolution": {
+      "value": "4K@30",
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "HDMI 2.0 port limited to 4K@30 (2K@60 alternative). The HDMI-controller patches were still being upstreamed as of 2025."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"]
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "Two MIPI-DSI connectors (a 2-lane and a 4-lane)."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "1× 2-lane MIPI-CSI camera connector."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "3.5 mm 4-pole stereo audio jack."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"],
+      "comment": "40-pin header (28 GPIO + I2C/I2S/SPI/UART/PWM/CAN/DMIC)."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"],
+      "comment": "40-pin header laid out for Raspberry Pi-style HAT pinout — pinout compatible at the header level. Note that the board PCB outline (100×72 mm Pico-ITX) is not RPi-shaped, so HATs may not mount mechanically."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/"],
+      "comment": "Pin-compatible header but Pico-ITX board outline (100×72 mm) does not match RPi mounting holes; no HAT EEPROM auto-config. Mechanical HAT compliance fails."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (M.2 M-Key 2280)",
+      "source": ["https://bret.dk/risc-v-starfive-visionfive-2-review-jh7110/"],
+      "comment": "Single PCIe Gen 2 lane wired to an M.2 M-Key NVMe slot."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/interfaces.html"]
+    },
+    "power-input": {
+      "value": "USB-C PD up to 30 W (also 5 V via GPIO header)",
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"],
+      "comment": "USB-C with PD; alternative 5 V@3 A through 40-pin GPIO."
+    },
+    "idle-power-w": {
+      "value": 3.22,
+      "source": [
+        "https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/power_consumption.html"
+      ],
+      "comment": "Vendor datasheet typical standby (network boot, cable disconnected, no external modules). Range is 3.22–3.74 W depending on boot/network state. Jeff Geerling measured ~4.2 W with performance governor."
+    },
+    "load-power-w": {
+      "value": 9.36,
+      "source": [
+        "https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/power_consumption.html"
+      ],
+      "comment": "Vendor full-workload figure without active cooling (GPU+HDMI+GMAC1+codecs+NVMe etc.). With a fan it drops to ~6.96 W due to lower thermal-induced leakage."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": [
+        "https://doc-en.rvspace.org/VisionFive2/Datasheet/VisionFive_2/power_consumption.html"
+      ],
+      "comment": "Vendor measurements show 73°C SoC under sustained load without a fan — a heatsink is needed to keep junction temperature in spec; active cooling is helpful but not strictly required for typical loads."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "source": [],
+      "comment": "Not visible in the datasheet interfaces list and not mentioned in product-brief features. Could not confirm presence either way; leaving null."
+    },
+    "length-mm": {
+      "value": 100,
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"]
+    },
+    "width-mm": {
+      "value": 72,
+      "source": ["https://www.cytron.io/p-visionfive-2-single-board-computer"]
+    },
+    "form-factor-class": {
+      "value": ["pico-itx"],
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "100×72 mm Pico-ITX outline."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"],
+      "comment": "Pico-ITX mounting layout, not RPi-compatible."
+    },
+    "weight-g": {
+      "value": null,
+      "source": [],
+      "comment": "Vendor product brief and datasheet don't publish a board weight, and no credible third-party measurement was found. (The 55 g figure that appears in some search snippets refers to the VisionFive 2 Lite, not this board.)"
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://forum.rvspace.org/t/upstream-status-of-visionfive-2s-hardware-support/1674",
+        "https://www.phoronix.com/news/VisionFive-2-Lite-Linux-Patches",
+        "https://rvspace.org/en/project/JH7110_Upstream_Plan"
+      ],
+      "comment": "RISC-V mainline maturity is the headline caveat. As of Linux 6.6+ most JH7110 peripherals (CPU, USB, Ethernet, eMMC, PCIe, MMC) work upstream, but HDMI/DRM display output is still landing through out-of-tree patches in 2025–2026. GPU (PowerVR BXE) needs the IMG vendor driver. Distros that ship upstream-only kernels generally boot headless; full-featured use still benefits from the StarFive vendor kernel."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://github.com/starfive-tech/VisionFive2/releases/",
+        "https://rvspace.org/en/project/VisionFive2_Debian_Wiki_202302_Release"
+      ],
+      "comment": "StarFive publishes Debian-based images and ongoing software releases on GitHub and RVspace."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "fedora", "opensuse", "armbian"],
+      "source": [
+        "https://rvspace.org/en/project/VisionFive2_Debian_Wiki_202302_Release",
+        "https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive%202",
+        "https://en.opensuse.org/HCL:VisionFive2",
+        "https://www.armbian.com/visionfive2/",
+        "https://fedoraproject.org/wiki/Architectures/RISC-V/Hardware"
+      ],
+      "comment": "All five publish a board-specific image. Armbian listing is community-maintained (CSC tier). NixOS also has a community port but is not in the schema's tag set."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://github.com/starfive-tech/VisionFive2/releases/"],
+      "comment": "U-Boot via StarFive's SPL (loaded from QSPI flash)."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://github.com/starfive-tech/VisionFive2/releases/"],
+      "comment": "StarFive has not published a stated software-support window. Active updates have continued since 2022, and JH7110 mainlining work is ongoing in 2026, so realistic LTS is at least mid-term — but no formal commitment."
+    },
+    "android-support": {
+      "value": true,
+      "source": [
+        "https://rvspace.org/en/project/VisionFive_2_AOSP",
+        "https://github.com/starfive-tech/aosp-manifests"
+      ],
+      "comment": "StarFive maintains an AOSP integration (ACK 6.1 + JH7110 patches) for VisionFive 2."
+    },
+    "msrp-base-usd": {
+      "value": 55,
+      "source": [
+        "https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/",
+        "https://www.tomshardware.com/news/visionfive-2-risc-v-board"
+      ],
+      "comment": "2 GB base configuration originally launched at $55 (Kickstarter rewards started at $46 early-bird). Snapshot 2026-04-26: 4 GB+Wi-Fi-dongle bundles street ~$60-$65 on Amazon/Waveshare; 2 GB has thinned out at retail."
+    },
+    "msrp-top-usd": {
+      "value": 85,
+      "source": [
+        "https://www.cnx-software.com/2022/08/23/starfive-visionfive-2-quad-core-risc-v-sbc-linux/"
+      ],
+      "comment": "8 GB top configuration at original retail. Snapshot 2026-04-26: 8 GB bundles street $80–$95 across resellers."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.amazon.com/VisionFive-RISC-V-StarFive-JH7110-Quad-core/dp/B0BGM1D6Y6",
+        "https://www.cytron.io/p-visionfive-2-single-board-computer",
+        "https://shop.allnetchina.cn/products/starfive-visionfive-2-quad-core-risc-v-dev-board"
+      ],
+      "comment": "Sold via Amazon (NA), ALLNET (EU/CN), Waveshare (global), Cytron (APAC), AliExpress (global). Snapshot 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://www.amazon.com/VisionFive-RISC-V-Development-StarFive-JH7110/dp/B0C5N2J3M8"
+      ],
+      "comment": "In stock at major retailers (Amazon, AliExpress, Waveshare) as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://doc-en.rvspace.org/Doc_Center/visionfive_2.html",
+        "https://forum.rvspace.org/"
+      ],
+      "comment": "Comprehensive product brief, datasheet, software guides, and quick-start docs on RVspace; active vendor forum. Some pages 404 occasionally and the docs trail kernel reality (vendor 5.15-tree examples while distros ship 6.x)."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://forum.rvspace.org/"],
+      "comment": "Active but niche. Notable as one of the more visible RISC-V Linux SBCs but well below ARM-class boards (Orange Pi, ODROID, Radxa). RISC-V Linux ecosystem itself is the limiting factor."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.rvspace.org/"],
+      "comment": "RVspace forum operated by StarFive with a dedicated VisionFive 2 (EN) section seeing weekly activity."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://52pi.com/products/visionfive-2-starter-kit-single-board-computer-8g-with-usb-wi-fi-dongle-type-c-power-supply-64gb-sd-card-heatsink",
+        "https://www.youyeetoo.com/products/youyeetoo-starfive-visionfive2-13tops-ai-kit"
+      ],
+      "comment": "Limited official accessories (heatsinks, power supplies, starter kits, optional Hailo-8L AI add-on). No vendor-published case line, official display, or HAT family. RPi-pinout header lets generic 40-pin HATs work electrically, but mechanically incompatible due to Pico-ITX outline."
+    }
+  }
 }

@@ -257,7 +257,7 @@ Users should be able to:
 - [x] **BeagleBone AI-64** — TI TDA4VM with C7x DSPs
 - [x] **BeaglePlay** — TI AM625, modern BeagleBoard line
 - [x] **BeagleV-Ahead** — T-Head TH1520 RISC-V
-- [ ] **StarFive VisionFive 2** — JH7110 RISC-V, established RISC-V SBC
+- [x] **StarFive VisionFive 2** — JH7110 RISC-V, established RISC-V SBC
 - [ ] **Milk-V Mars** — JH7110 RISC-V, RPi-style budget
 - [ ] **Sipeed LicheePi 4A** — T-Head TH1520 RISC-V
 - [ ] **Pine64 Ox64** — BL808 RISC-V, ultra-compact
