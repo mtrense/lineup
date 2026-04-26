@@ -1,5 +1,353 @@
 {
   "name": "UDOO Bolt V8",
   "description": "AMD Ryzen Embedded V1605B, high-power x86 SBC",
-  "values": {}
+  "url": "https://www.udoo.org/udoo-bolt/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "SECO / UDOO",
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/", "https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "UDOO is a SECO-owned brand; the Bolt V8 is sold via the SECO Shop."
+    },
+    "model": {
+      "value": "UDOO Bolt V8",
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/"]
+    },
+    "release-date": {
+      "value": "2019-03",
+      "source": ["https://liliputing.com/2019/03/udoo-bolt-single-board-pc-with-ryzen-embedded-starts-shipping-this-week-crowdfunding/", "https://www.udoo.org/udoo-bolt-shipping-over/"],
+      "comment": "Kickstarter campaign closed July 2018; broad shipping began late March 2019."
+    },
+    "status": {
+      "value": ["available-new"],
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "Still listed and orderable on the SECO Shop as of 2026-04-26 at $452 USD with 2-5 working day delivery; no successor announced for the V8 SKU itself, but it is a 2018-era design so longevity is unclear."
+    },
+    "architecture-family": {
+      "value": ["x86-64"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Resources.html", "https://www.udoo.org/forum/threads/are-bolt-schematics-and-gpio-files-available.31866/"],
+      "comment": "UDOO markets the Bolt as 'open hardware' but the official Resources page only publishes mechanical drawings (top/bottom/3D) and the manual; schematics and PCB files are not released. Per RESEARCH.md guideline (schematics-only does not qualify), marked false."
+    },
+    "country-of-origin": {
+      "value": "Italy",
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "SECO S.p.A. is headquartered in Arezzo, Italy."
+    },
+    "website": {
+      "value": "https://www.udoo.org/udoo-bolt/",
+      "source": ["https://www.udoo.org/udoo-bolt/"]
+    },
+    "soc": {
+      "value": "AMD Ryzen Embedded V1605B",
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html", "https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"]
+    },
+    "soc-vendor": {
+      "value": ["amd"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "4 cores / 8 threads (SMT)."
+    },
+    "cpu-architecture": {
+      "value": "4× Zen (AMD Ryzen Embedded V1605B, 8 threads)",
+      "source": ["https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 3.6,
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/", "https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"],
+      "comment": "UDOO and the SECO Shop quote 3.6 GHz boost; some third-party databases (WikiChip) cite 3.2 GHz boost for the V1605B silicon. Used the vendor's stated maximum for this board."
+    },
+    "process-node": {
+      "value": "14 nm",
+      "source": ["https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"],
+      "comment": "GlobalFoundries 14LP; Zen / Raven Ridge embedded variant."
+    },
+    "gpu": {
+      "value": "AMD Radeon Vega 8 (8 CUs)",
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"]
+    },
+    "opengl-es-version": {
+      "value": null,
+      "source": ["https://docs.mesa3d.org/drivers/radv.html"],
+      "comment": "Mesa's RadeonSI driver primarily exposes desktop OpenGL on Vega; OpenGL ES capability exists via Mesa but is not a number the vendor advertises for this board. Left null to avoid misreporting a Mesa-version-dependent value."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://docs.mesa3d.org/drivers/radv.html", "https://videocardz.com/newz/amd-officially-drops-vulkan-driver-support-for-polaris-and-vega-architectures-on-linux"],
+      "comment": "Vega 8 is supported by Mesa RADV (open-source Vulkan). AMD has dropped Vega from its proprietary AMDVLK driver, but RADV continues to support it on mainline Mesa."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"],
+      "comment": "Zen-era V1000 series has no dedicated NPU."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on this SoC."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"],
+      "comment": "Vega 8 / VCN 1.0 supports H.264, H.265 (HEVC) and VP9 decode. No AV1 decode."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://en.wikichip.org/wiki/amd/ryzen_embedded/v1605b"],
+      "comment": "VCN 1.0 supports H.264 and H.265 encode."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "Sold bare-board with no RAM; 4 GB SO-DIMM is the smallest practical kit configuration commonly bundled. Board itself ships without memory."
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Two SO-DIMM slots, dual-channel DDR4-2400 with ECC support, up to 32 GB total."
+    },
+    "ram-type": {
+      "value": ["ddr4"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Standard SO-DIMM DDR4-2400 (not LPDDR4); ECC supported."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "32 GB eMMC 5.0 soldered on board."
+    },
+    "microsd-slot": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No microSD slot on the Bolt V8."
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "M.2 Socket 3 Key M 2280 with PCIe x4 Gen 3 for NVMe; an additional M.2 Key B 2260 supports SATA SSDs."
+    },
+    "sata": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Dedicated SATA III 6 Gbit/s connector on board."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Single Gigabit Ethernet via Realtek RTL8111G."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No Wi-Fi soldered on; an M.2 Key E 2230 slot is provided for an optional Wi-Fi/BT combo module. The Bolt Gear bundle adds one but the bare V8 board does not include it."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No onboard Bluetooth; depends on the optional M.2 Key E module the user installs."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "2× USB 3.0 (5 Gbps) Type-A."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No dedicated USB 2.0 Type-A ports on the rear I/O; USB 2.0 lines are exposed via internal headers."
+    },
+    "usb-c-ports-data": {
+      "value": 2,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "2× USB Type-C running USB 3.1 Gen 2 (10 Gbps), with DisplayPort Alt-Mode and USB-PD 3.0."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No PoE support; the board uses a 19 V DC barrel jack or USB-C PD."
+    },
+    "hdmi-outputs": {
+      "value": 2,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "2× HDMI 1.4 / 2.0a (CEC). Plus 2× DisplayPort Alt-Mode on the USB-C ports."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/"],
+      "comment": "Vega 8 supports 4K at 60 Hz on HDMI 2.0a; UDOO advertises up to 4 independent 4K displays across the 2× HDMI + 2× USB-C DP-Alt outputs."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "DisplayPort exposed via USB-C DP Alternate Mode (2 ports). No native DP connector."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No MIPI-DSI display connector — uncommon on x86 boards."
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "No MIPI-CSI camera connector."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Realtek ALC888 codec; two 3.5 mm combo jacks (headphone/mic and S/PDIF optical)."
+    },
+    "gpio-pins": {
+      "value": 33,
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/", "https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Arduino Leonardo subsystem (ATmega32U4): 23 digital I/O (7 PWM) + 12 analog inputs as accessible Arduino pins. Counted the 23 digital + 10 GPIO from the embedded controller as the user-facing GPIO total; depending on counting method this could also be 23 (Arduino-only) or higher when counting separate EC GPIOs. The header is not RPi-style."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Pinout_Headers.html"],
+      "comment": "Header layout follows the Arduino Leonardo pinout, not the 40-pin RPi GPIO."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Pinout_Headers.html"],
+      "comment": "Not RPi HAT compatible mechanically or electrically."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× M.2 M-key (PCIe 3.0 x4) + 1× M.2 B-key (PCIe 2.0 x2) + 1× M.2 E-key (PCIe x1 for Wi-Fi)",
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "All PCIe is brought out via M.2 slots; no external PCIe slot or FPC connector."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Embedded controller exposes 2× UART, 2× I2C, 1× SPI on internal headers, plus the Arduino Leonardo subsystem's own I2C/SPI/UART."
+    },
+    "power-input": {
+      "value": "DC barrel 19V/65W or USB-C PD",
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "Either the 19 V/65 W DC barrel jack or USB Type-C Power Delivery; the Bolt Gear kit ships a 65 W barrel adapter."
+    },
+    "idle-power-w": {
+      "value": 10.5,
+      "source": ["https://www.legitreviews.com/udoo-bolt-gear-mini-pc-review_219734/2"],
+      "comment": "Wall-meter idle ~10.5 W (Legit Reviews, Bolt Gear V8). Forum reports cite ~11.2 W; the 10.5 W figure is from a measured Kill-A-Watt reading."
+    },
+    "load-power-w": {
+      "value": 34.5,
+      "source": ["https://www.legitreviews.com/udoo-bolt-gear-mini-pc-review_219734/2"],
+      "comment": "Cinebench R20 multi-threaded peak ~34.5 W at the wall (Legit Reviews). The V1605B SoC alone draws up to ~13.5 W (15 W TDP class)."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Resources.html"],
+      "comment": "UDOO ships an official heatsink + fan combo and the Bolt Gear case includes active cooling; sustained Ryzen V1000 load needs a fan."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/"],
+      "comment": "Onboard RTC battery is included from the factory."
+    },
+    "length-mm": {
+      "value": 120,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"],
+      "comment": "120 × 120 mm (Nano-ITX form factor)."
+    },
+    "width-mm": {
+      "value": 120,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Overview.html"]
+    },
+    "form-factor-class": {
+      "value": ["nano-itx"],
+      "source": ["https://www.udoo.org/discover-the-udoo-bolt/"],
+      "comment": "12 × 12 cm matches the Nano-ITX standard exactly; UDOO marketing also uses this label."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Resources.html"],
+      "comment": "Mechanical drawings published by UDOO show four mounting holes; not RPi-pattern. Tagged as custom (no Nano-ITX-specific tag in the schema)."
+    },
+    "weight-g": {
+      "value": null,
+      "source": ["https://www.udoo.org/docs-bolt/Hardware_References/Resources.html"],
+      "comment": "Bare-board weight not published in the official datasheet or overview; only Bolt Gear (cased kit) weight is documented. Left null to avoid guessing."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": ["https://www.udoo.org/docs-bolt/Operating_Systems/Linux/index.html"],
+      "comment": "Standard x86-64 board with AMI UEFI; mainline Linux ≥ 5.2.5 boots out of the box and supports all major peripherals."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-bolt/Operating_Systems/Linux/index.html"],
+      "comment": "UDOO publishes a Bolt-optimized Ubuntu 19.04 image; newer Ubuntu and Windows installs work directly from upstream media."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu"],
+      "source": ["https://www.udoo.org/docs-bolt/Operating_Systems/Linux/index.html"],
+      "comment": "Only the Ubuntu image is officially provided by UDOO. Any x86-64 distro installs from generic media via UEFI, but per RESEARCH.md only board-specific images are listed."
+    },
+    "bootloader": {
+      "value": ["uefi"],
+      "source": ["https://www.udoo.org/docs-bolt/BIOS_UEFI_and_Tools/BIOS_UEFI_Firmware.html"],
+      "comment": "AMI UEFI BIOS."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://www.udoo.org/udoo-bolt/"],
+      "comment": "UDOO does not publish a stated software support window. The board has been on sale since 2019 and the AMI UEFI receives occasional updates, but no formal LTS commitment."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-bolt/Operating_Systems/"],
+      "comment": "No official Android image from UDOO for the Bolt V8."
+    },
+    "msrp-base-usd": {
+      "value": 452,
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "SECO Shop list price as of 2026-04-26 (excl. VAT/shipping). Original launch price was $459."
+    },
+    "msrp-top-usd": {
+      "value": 452,
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "Bolt V8 ships in a single SKU (no factory RAM/storage upgrade options); base = top. The Bolt Gear bundle (case, PSU, Wi-Fi module) is a separate product."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html", "https://www.mouser.com/new/udoo/udoo-bolt-board/"],
+      "comment": "SECO Shop ships internationally; also distributed via Mouser, Electromaker, and regional resellers (Fab.to.Lab in India, etc.)."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://shop.seco.com/en/udoo-bolt-v8.html"],
+      "comment": "SECO Shop quotes 2-5 working days delivery as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://www.udoo.org/docs-bolt/", "https://www.udoo.org/docs-bolt/Hardware_References/Resources.html"],
+      "comment": "Comprehensive online docs, mechanical drawings, Arduino integration docs, BIOS/UEFI guide, and a downloadable hardware manual. Schematics are not published, which prevents a 5."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://www.udoo.org/forum/"],
+      "comment": "UDOO has an active vendor forum but the community is much smaller than RPi/Orange Pi/Rockchip ecosystems."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://www.udoo.org/forum/"],
+      "comment": "Vendor-run forum with regular activity; no official Discord."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://www.udoo.org/docs-bolt/Accessories/Official_Accessories.html"],
+      "comment": "Official accessories cover heatsink+fan, metal case (Bolt Gear), and Wi-Fi module. Limited third-party accessory market — being x86 it leans on standard PC peripherals rather than a HAT/shield ecosystem."
+    }
+  }
 }
