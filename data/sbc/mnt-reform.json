@@ -1,5 +1,432 @@
 {
   "name": "MNT Reform / Pocket Reform mainboard",
-  "description": "Open-hardware SBCs (multiple SoC modules)",
-  "values": {}
+  "description": "Open-hardware modular laptop mainboard from MNT Research that accepts swappable processor modules (i.MX8M, i.MX8M Plus, LS1028A, A311D RCM4, RK3588 RCORE) over a 200-pin SO-DIMM connector",
+  "icon": "https://mntre.com/favicon.ico",
+  "url": "https://mntre.com/reform.html",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "MNT Research GmbH",
+      "source": ["https://mntre.com/reform.html"],
+      "comment": "Berlin, Germany; sells the mainboard as a standalone product alongside the Reform/Pocket Reform laptops."
+    },
+    "model": {
+      "value": "MNT Reform Motherboard 3.0",
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-30"],
+      "comment": "Latest standalone mainboard revision (USB-C PD, 4-lane PCIe to M.2). Pocket Reform has its own smaller mainboard sold only as part of the laptop. Values below describe the Reform Motherboard 3.0 with the default RCORE RK3588 module unless noted."
+    },
+    "release-date": {
+      "value": "2020-04",
+      "source": [
+        "https://certification.oshwa.org/de000017.html",
+        "https://mntre.com/reform.html"
+      ],
+      "comment": "Original Reform v2.0 mainboard certified by OSHWA on 2020-04-13. The Motherboard 3.0 revision shipped in 2024."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://shop.mntre.com/products/mnt-reform"
+      ],
+      "comment": "Checked 2026-04-26: Motherboard 3.0 listed as in stock at MNT Research shop."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://mntre.com/modularity.html"],
+      "comment": "All currently-shipping processor modules (i.MX8M Plus, A311D RCM4, RK3588 RCORE) are ARM64. The discontinued LS1028A module was also ARM64. No active RISC-V or x86 modules. Future SoMs could change this; the mainboard itself is SoC-agnostic."
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://certification.oshwa.org/de000017.html",
+        "https://source.mnt.re/reform/reform"
+      ],
+      "comment": "OSHWA-certified DE000017. Hardware under CERN OHL, full KiCad PCB design files published on MNT GitLab."
+    },
+    "country-of-origin": {
+      "value": "Germany",
+      "source": ["https://mntre.com/reform.html"],
+      "comment": "MNT Research GmbH, Berlin."
+    },
+    "website": {
+      "value": "https://mntre.com/reform.html",
+      "source": ["https://mntre.com/reform.html"]
+    },
+    "soc": {
+      "value": "Rockchip RK3588 (default RCORE module)",
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module",
+        "https://mntre.com/modularity.html"
+      ],
+      "comment": "The mainboard itself has no SoC — the SoC lives on a swappable 200-pin SO-DIMM module. RK3588 is the default and highest-performance option (RCORE V2). Other current options: NXP i.MX8M Plus (4× A53), Amlogic A311D (RCM4-BPI). Discontinued: i.MX8M Quad, NXP LS1028A."
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "Tagging vendor of the default RCORE module. Other available modules use NXP and Amlogic silicon — the mainboard is vendor-agnostic by design."
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "RK3588 default: 4× Cortex-A76 + 4× Cortex-A55. i.MX8M Plus module is 4 cores; A311D module is 6 cores. Pick depends on installed module."
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 @ 2.4 GHz + 4× Cortex-A55 @ 1.8 GHz (RK3588)",
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module",
+        "https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"
+      ],
+      "comment": "Reflects default RCORE RK3588 module. i.MX8M Plus is 4× A53 @ 1.8 GHz; A311D is 4× A73 + 2× A53; LS1028A is 2× A72."
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "RK3588 A76 cluster sustained clock as configured by MNT in Reform (other RK3588 boards push 2.4-2.6 GHz). i.MX8M Plus tops at 1.8 GHz; A311D at 2.2 GHz."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 is fabbed on Samsung 8 nm. Other modules vary: i.MX8M Plus on 14 nm, A311D on 12 nm."
+    },
+    "gpu": {
+      "value": "ARM Mali-G610 MP4 (RK3588)",
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "Default RCORE module. i.MX8M Plus uses Vivante GC7000UL; A311D uses Mali-G52 MP4."
+    },
+    "opengl-es-version": {
+      "value": "3.3",
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "Mainline Panthor open driver on RK3588 supports OpenGL ES 3.3 / OpenGL 3.3 in current Mesa."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module",
+        "https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"
+      ],
+      "comment": "Mali-G610 with mainline Panthor + PanVK driver in Mesa as of late 2024. Not available on i.MX8M Plus or A311D modules."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 default has 6 TOPS NPU. i.MX8M Plus also has an NPU (2.3 TOPS); A311D has 5 TOPS. LS1028A and i.MX8M Quad have none."
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 RKNN @ INT8. Note: NPU not currently usable from mainline due to driver gap; Rockchip vendor stack required."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 VPU. Other modules narrower: i.MX8M Plus does H.264/H.265 only; A311D adds VP9."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 hardware encode for H.264 and H.265 (no AV1 encode). i.MX8M Plus also limited to H.264/H.265."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://mntre.com/modularity.html"],
+      "comment": "Smallest configuration sold across module options: i.MX8M Quad and A311D RCM4 ship with 4 GB. Current RCORE RK3588 module starts at 16 GB."
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module",
+        "https://www.crowdsupply.com/mnt/mnt-reform-next"
+      ],
+      "comment": "RK3588 RCORE sold in 16 GB and 32 GB variants. LS1028A also 16 GB. RAM lives on the SoM, not the mainboard."
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module",
+        "https://mntre.com/modularity.html"
+      ],
+      "comment": "All current modules use LPDDR4 (i.MX8M Plus, A311D RCM4, RK3588 RCORE). The historical LS1028A module used DDR4 SO-DIMM."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "eMMC sits on the processor module, not the mainboard. RCORE RK3588 module ships with 256 GB eMMC. Older modules typically had less."
+    },
+    "microsd-slot": {
+      "value": false,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "Reform mainboard exposes a full-size SD card slot, not microSD. Pocket Reform mainboard has microSD."
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://mntre.com/documentation/reform-handbook/hardware.html"
+      ],
+      "comment": "M.2 M-key slot with 4× PCIe lanes on Motherboard 3.0 (1× lane on 2.5). NVMe primary use. Pocket Reform mainboard also has M.2 M-key for NVMe."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "M.2 slot can carry SATA signals on the discontinued LS1028A module only; no native SATA port on the mainboard with current modules."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform",
+        "https://mntre.com/modularity.html"
+      ],
+      "comment": "1× RJ45 gigabit on Reform mainboard. LS1028A module additionally exposes a second 1G port (router use). Pocket Reform uses ix Industrial connector @ 1G via passive adapter."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "Single RJ45 on Motherboard 2.5/3.0. The discontinued LS1028A module brought a 2nd port out internally."
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": [
+        "https://mntre.com/documentation/reform-handbook/hardware.html",
+        "https://shop.mntre.com/products/mnt-pocket-reform-wi-fi-bundle"
+      ],
+      "comment": "No Wi-Fi soldered on the mainboard. Wireless is added via the mPCIe slot. MNT sells an Intel AX210 bundle (Wi-Fi 6E + BT 5.3) as an upgrade for Pocket Reform."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "No onboard Bluetooth. Comes from whatever wireless card the user installs in mPCIe (Intel AX210 ships in MNT's official bundle and provides BT 5.3)."
+    },
+    "usb-a-3x-ports": {
+      "value": 3,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform",
+        "https://shop.mntre.com/products/mnt-reform-motherboard-25"
+      ],
+      "comment": "3× external USB 3.0 Type-A on Reform Motherboard 2.5/3.0 via TUSB8041 hub. (Pocket Reform mainboard exposes USB-C only.)"
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "Two internal JST-PH USB 2.0 headers exist (used for keyboard/trackball in laptop builds), but no external USB-A 2.0 ports."
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-30"],
+      "comment": "Motherboard 3.0 adds a USB-C port that handles power delivery and exposes a USB-UART debug console. Used as the primary power input. Older Motherboard 2.5 had only a USB-C flashing port for the system controller. Pocket Reform mainboard has 2× USB-C."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "No PoE on either Reform or Pocket Reform mainboards."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://shop.mntre.com/products/mnt-reform"],
+      "comment": "Single full-size HDMI on Reform mainboard. Pocket Reform mainboard uses Micro-HDMI."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"],
+      "comment": "RK3588 RCORE module supports HDMI 2.0 4K@60. i.MX8M Plus and A311D modules cap lower (4K@30 / 1080p depending on module)."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "No native DisplayPort on the external connector panel. The mainboard has an internal eDP path (via SN65DSI86 bridge) used to drive the laptop's built-in display."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "Internal MIPI-DSI path is used to drive the laptop panel through a DSI-to-eDP bridge; not exposed as a user-facing FPC connector for arbitrary DSI panels."
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "No MIPI-CSI camera connector on either Reform or Pocket Reform mainboards."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "TRRS headphone/mic jack via Wolfson/Cirrus WM8960 audio DAC on Reform mainboard. Pocket Reform mainboard uses TI TLV320AIC3100 with 3.5 mm jack."
+    },
+    "gpio-pins": {
+      "value": null,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "No 40-pin GPIO header. Reform exposes an Expansion Port carrying SPI, UART, two ADCs, JTAG, and 3.3 V — pin count varies by mainboard revision and is not stated as a GPIO count comparable to RPi-style headers. Pocket Reform additionally has a Qwiic I2C connector (J5)."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "Not a Raspberry Pi-compatible 40-pin header."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "Custom form factor; HATs do not fit mechanically or electrically."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 3.0 ×4 (M.2 M-key) + 1× PCIe 2.0 ×1 (mPCIe)",
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://shop.mntre.com/products/mnt-reform-motherboard-25"
+      ],
+      "comment": "Motherboard 3.0 widens the M.2 to ×4 lanes from RK3588. mPCIe slot is also routed for PCIe (typically used for Wi-Fi). On older modules (i.MX8M Quad) the M.2 was only ×1."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "Expansion Port carries SPI and UART; Motherboard 3.0 adds two QwiiC I2C ports."
+    },
+    "power-input": {
+      "value": "USB-C PD (Motherboard 3.0); barrel jack 12-32 V on 2.5",
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://shop.mntre.com/products/mnt-reform-motherboard-25"
+      ],
+      "comment": "Motherboard 3.0 introduces firmwareless USB-C PD (TPS25730). Older 2.5 used barrel jack with wide 7-32 V input and 8S LiFePO4 battery charger built in."
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": ["https://community.mnt.re/t/module-power-and-performance-benchmarking/2398"],
+      "comment": "No isolated mainboard idle measurement is published. Whole-system idle figures from the community on Pocket Reform: ~3.8 W (CM4), ~3.9 W (A311D), ~5.4 W (i.MX8M Plus). RK3588 module figures vary widely with screen/peripherals; no clean board-only number to cite."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": ["https://community.mnt.re/t/rk3588-owners-how-is-the-power-draw/3003"],
+      "comment": "Whole-laptop load draw with RK3588 module is roughly 12-18 W in community reports, but the SBC mainboard alone (without display or input devices) is not separately characterized."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"],
+      "comment": "RCORE RK3588 module ships with a passive heatsink integrated. Reform laptop has no fan; sustained max load on RK3588 typically thermally throttles. A fan is desirable for prolonged full-load workloads but not strictly required by the vendor."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://mntre.com/documentation/reform-handbook/hardware.html"],
+      "comment": "Onboard CR-class RTC battery holder; Reform mainboard always-on system controller (LPC11U24 / RP2040 on Pocket) backs an RTC."
+    },
+    "length-mm": {
+      "value": 276,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "Reform Motherboard 2.5: 27.6 cm × 9.5 cm. Motherboard 3.0 published spec page does not restate dimensions; assumed unchanged for case compatibility."
+    },
+    "width-mm": {
+      "value": 95,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "9.5 cm. Reform mainboard runs the full width of the laptop chassis."
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "Long, narrow PCB designed to fit the Reform laptop chassis (or MNT Station enclosure). Does not match Pi, Pico-ITX, or other standard SBC form factors."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://liliputing.com/mnt-station-lets-you-repurpose-a-mnt-reform-mainboard-as-a-mini-pc/"],
+      "comment": "Mounting holes are matched to MNT's own chassis (Reform laptop and MNT Station enclosure)."
+    },
+    "weight-g": {
+      "value": null,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-25"],
+      "comment": "MNT does not publish bare-board weight separately from the assembled laptop (1.9 kg) or processor module."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://reform.debian.net/images/",
+        "https://www.cnx-software.com/2024/12/31/mnt-reform-next-open-source-rk3588-modular-12-5-inch-laptop/"
+      ],
+      "comment": "MNT publishes mainline-based Debian images and contributes DTS upstream. RK3588 has very strong mainline support (Collabora). NPU on RK3588 is not yet usable from mainline (vendor stack required). i.MX8M Plus and A311D modules are also mainline-bootable."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://reform.debian.net/images/",
+        "https://source.mnt.re/reform/reform-system-image"
+      ],
+      "comment": "MNT maintains reform-system-image (Debian-based) with reproducible signed builds; Debian Trixie disk and netboot images available from reform.debian.net."
+    },
+    "distros-with-images": {
+      "value": ["debian"],
+      "source": [
+        "https://reform.debian.net/images/",
+        "https://wiki.gentoo.org/wiki/MNT_Reform"
+      ],
+      "comment": "Debian is the only distro with an officially published, board-tailored image. Gentoo, NixOS, and OpenBSD have community wiki guides but no first-party images. Plan 9/9front and Genode Sculpt OS images are also available from MNT for experimentation but those are niche OSes outside the schema's tag set."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": [
+        "https://source.mnt.re/reform/reform-system-image",
+        "https://mntre.com/documentation/reform-handbook/hardware.html"
+      ],
+      "comment": "U-Boot is used across all current processor modules. Bootloader lives on the SoM; the mainboard is bootloader-agnostic. Some firmware blobs (e.g., DDR init, RK3588 BL31) are still proprietary."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": [
+        "https://mntre.com/reform.html",
+        "https://mntre.com/modularity.html"
+      ],
+      "comment": "Original Reform launched 2020 and the same mainboard/chassis is still supported 6 years on with new SoM upgrades (RCORE V2 in 2025). MNT's whole product thesis is long-life, repairable, modular hardware. No formal calendar commitment."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://mntre.com/docs-reform.html"],
+      "comment": "No official Android image. Community has run AOSP on RK3588 boards generally but not on Reform specifically."
+    },
+    "msrp-base-usd": {
+      "value": 330,
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-30"],
+      "comment": "Motherboard 3.0 listed at €299; converted to USD at ~1.10 EUR-USD rate (approx, 2026-04-26). Note: this is the bare mainboard without any processor module."
+    },
+    "msrp-top-usd": {
+      "value": 940,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://shop.mntre.com/products/mnt-reform-rcore-rk3588-processor-module"
+      ],
+      "comment": "Mainboard 3.0 (€299) + RCORE RK3588 16 GB / 256 GB module (€550) ≈ €849, ~$940 USD on 2026-04-26. 32 GB RCORE configuration adds more. Excludes cooling, case, Wi-Fi card, NVMe."
+    },
+    "available-regions": {
+      "value": ["europe", "north-america"],
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://www.crowdsupply.com/mnt/mnt-reform-next"
+      ],
+      "comment": "Direct from MNT (Berlin) ships globally; primary fulfillment via Crowd Supply / Mouser into North America. Limited Asia-Pacific distribution."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://shop.mntre.com/products/mnt-reform-motherboard-30"],
+      "comment": "Checked 2026-04-26: Motherboard 3.0 and RCORE RK3588 module both listed as available in MNT shop. Pocket Reform sometimes shifts to 'weeks' lead time during batch transitions."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://mntre.com/documentation/reform-handbook/hardware.html",
+        "https://source.mnt.re/reform/reform"
+      ],
+      "comment": "Comprehensive Operator Handbook (multiple editions), full KiCad source, schematics PDFs, build guides, system controller firmware, and reproducible OS images all open. Among the best-documented SBCs in the comparison."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://community.mnt.re/"],
+      "comment": "Active vendor-run forum with steady but small traffic. Smaller than Pine64/Radxa communities; larger than truly niche research boards."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://community.mnt.re/"],
+      "comment": "community.mnt.re Discourse is actively staffed by MNT team."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://shop.mntre.com/products/mnt-reform-motherboard-30",
+        "https://liliputing.com/mnt-station-lets-you-repurpose-a-mnt-reform-mainboard-as-a-mini-pc/"
+      ],
+      "comment": "First-party only: laptop chassis, MNT Station mini-PC enclosure, Wi-Fi bundle, processor modules, replacement parts. No HAT ecosystem; few third-party add-ons."
+    }
+  }
 }
