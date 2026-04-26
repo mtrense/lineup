@@ -1,5 +1,401 @@
 {
   "name": "UDOO Vision",
-  "description": "Intel Core Ultra x86 SBC",
-  "values": {}
+  "description": "Pico-ITX x86 SBC built around an Intel Apollo Lake SoC with an onboard ATmega32U4 Arduino-Leonardo microcontroller, aimed at edge computer-vision projects.",
+  "url": "https://www.udoo.org/udoo-vision/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "SECO / UDOO",
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "UDOO is SECO S.p.A.'s maker brand; the board is designed and assembled by SECO in Italy and sold under the UDOO label."
+    },
+    "model": {
+      "value": "UDOO VISION (X5 / X7)",
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Sold in two SKUs: VISION X5 (Atom x5-E3940) and VISION X7 (Atom x7-E3950)."
+    },
+    "release-date": {
+      "value": "2023-05",
+      "source": [
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/",
+        "https://www.udoo.org/exciting-news-the-udoo-vision-is-now-available-on-our-shop/"
+      ],
+      "comment": "Announced and made available on the UDOO shop in May 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.udoo.org/udoo-vision/",
+        "https://www.hackster.io/news/udoo-launches-the-high-performance-vision-x5-x7-single-board-computers-for-edge-ai-workloads-f9e3a786e7b0"
+      ],
+      "comment": "Both X5 and X7 SKUs still listed on the UDOO/SECO shop as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["x86-64"],
+      "source": ["https://www.udoo.org/docs-vision/Operating_Systems/Linux.html"],
+      "comment": "Apollo Lake is x86_64."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://www.udoo.org/download/files/UDOO_VISION/schematics/UDOO_VISION_revA0_schematics.pdf",
+        "https://www.udoo.org/udoo-vision/"
+      ],
+      "comment": "UDOO publishes a schematics PDF but no PCB design files under an OSHW-compatible license; per RESEARCH.md guidelines schematics-only does not qualify."
+    },
+    "country-of-origin": {
+      "value": "Italy",
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "UDOO/SECO is headquartered in Arezzo, Italy; product page states 'Made with love in Italy'."
+    },
+    "website": {
+      "value": "https://www.udoo.org/udoo-vision/",
+      "source": ["https://www.udoo.org/udoo-vision/"]
+    },
+    "soc": {
+      "value": "Intel Atom x7-E3950 / x5-E3940 (Apollo Lake)",
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ],
+      "comment": "Two SoC SKUs are sold; the X7 ships the higher-binned x7-E3950 part."
+    },
+    "soc-vendor": {
+      "value": ["intel"],
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Both x5-E3940 and x7-E3950 are quad-core."
+    },
+    "cpu-architecture": {
+      "value": "4× Intel Atom Goldmont (Apollo Lake)",
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.0,
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ],
+      "comment": "Top SKU (X7) reaches 2.0 GHz turbo; X5 tops out at 1.8 GHz. Recorded the higher figure for the board family."
+    },
+    "process-node": {
+      "value": "14 nm",
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Apollo Lake is fabricated on Intel's 14 nm process."
+    },
+    "gpu": {
+      "value": "Intel HD Graphics 500 (Gen9, 12 EU on X5 / 18 EU on X7)",
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.hackster.io/news/udoo-launches-the-high-performance-vision-x5-x7-single-board-computers-for-edge-ai-workloads-f9e3a786e7b0"
+      ]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Intel Gen9 graphics support OpenGL ES 3.2 via the Mesa i965/iris driver; not a UDOO-specific claim."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Intel HD Graphics 500 (Gen9) supports Vulkan 1.x via the mainline Mesa ANV driver."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Apollo Lake has no dedicated NPU; UDOO markets 'AI' through OpenVINO running on the iGPU/CPU."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on board — N/A."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://www.udoo.org/docs-vision/Hardware_References/Video_Output.html"],
+      "comment": "Apollo Lake's Gen9 media engine decodes H.264, H.265 (HEVC up to 4K) and VP9 in hardware. AV1 is not supported."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.udoo.org/docs-vision/Hardware_References/Video_Output.html"],
+      "comment": "Apollo Lake Gen9 hardware encoders cover H.264 and H.265; no AV1 / VP9 encode."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Smallest config (X5) ships with 4 GB LPDDR4 soldered."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Top config (X7) ships with 8 GB LPDDR4 soldered; not user-upgradeable."
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "32-bit quad-channel LPDDR4 soldered on-board."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "32 GB eMMC on X5, 64 GB on X7."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "M.2 Key B 2242/3042/2280 slot is wired for SATA SSDs only, not NVMe (no PCIe lanes routed to that slot)."
+    },
+    "sata": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "1× SATA III 6 Gb/s connector plus the SATA-mode M.2 Key B slot."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "2× Gigabit Ethernet RJ45 ports."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Two GbE ports on the rear I/O."
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "No Wi-Fi soldered on board; an M.2 Key E slot accepts an optional Wi-Fi/BT card (sold separately), so the bare board ships without wireless."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "No Bluetooth soldered on board; comes only with the optional M.2 Key E Wi-Fi/BT card."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.udoo.org/udoo-vision/"
+      ],
+      "comment": "2× USB 3.0 Type-A on the rear I/O."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "There are 2× USB 2.0 lanes but only on an internal pin header, not USB-A sockets."
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "No USB-C connectors on the board."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Powered via 12 V DC barrel jack; no PoE support documented."
+    },
+    "hdmi-outputs": {
+      "value": 0,
+      "source": ["https://www.udoo.org/docs-vision/Hardware_References/Video_Output.html"],
+      "comment": "No native HDMI port. Video outputs are eDP (internal) and miniDP++; HDMI is only reachable via a passive/active miniDP-to-HDMI adapter."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.udoo.org/docs-vision/Hardware_References/Video_Output.html"],
+      "comment": "eDP supports 3840×2160 @60 Hz; miniDP++ tops out at 2560×1600 @60 Hz natively, 4K via active DP-to-HDMI adapter."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Hardware_References/Video_Output.html"],
+      "comment": "1× miniDP++ multimode DisplayPort plus 1× eDP (internal panel) connector."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "No MIPI-DSI connector documented; embedded display uses eDP instead."
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "No MIPI-CSI camera connector documented; cameras attach via USB or M.2."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "TRRS combo connector (mic + headphone) driven by a Cirrus Logic CS4207 codec."
+    },
+    "gpio-pins": {
+      "value": 26,
+      "source": [
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/",
+        "https://www.udoo.org/udoo-vision/"
+      ],
+      "comment": "26-pin GPIO header carrying the ATmega32U4 (Arduino Leonardo) pinout: up to 23 digital I/O (7 PWM) and 12 analog inputs. Not the 40-pin RPi pinout."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Header is Arduino-Leonardo compatible, not Raspberry Pi 40-pin GPIO compatible."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Pico-ITX form factor with Arduino-Leonardo header; no RPi HAT mechanical or electrical compatibility."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× M.2 Key E (Wi-Fi/BT) + 1× M.2 Key B (WWAN)",
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "PCIe is routed to the M.2 Key E (Wi-Fi/BT) and the M.2 Key B WWAN slot. The M.2 Key B SSD slot is SATA-only. UDOO does not publish PCIe generation; Apollo Lake exposes PCIe 2.0 lanes."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "I²C, SPI and UART are all available via the ATmega32U4 GPIO header / front-panel connectors."
+    },
+    "power-input": {
+      "value": "DC barrel 12V/3A (5.5/2.1 mm)",
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ]
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "UDOO does not publish idle power; no credible measured value found in third-party reviews. Per RESEARCH.md guidance, prefer null over guessing from TDP."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ],
+      "comment": "Vendor lists SoC TDP only (9.5 W X5 / 12 W X7); whole-board load power is not published and no measured number was found. Marked null."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": ["https://www.hackster.io/news/udoo-launches-the-high-performance-vision-x5-x7-single-board-computers-for-edge-ai-workloads-f9e3a786e7b0"],
+      "comment": "Board ships with a heatsink + fan assembly attached to the SoC underside."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://www.udoo.org/docs-vision/Introduction/Introduction.html"],
+      "comment": "Onboard RTC battery connector with a coin-cell battery."
+    },
+    "length-mm": {
+      "value": 100,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Pico-ITX form factor, 100 × 72 mm."
+    },
+    "width-mm": {
+      "value": 72,
+      "source": ["https://www.udoo.org/udoo-vision/"]
+    },
+    "form-factor-class": {
+      "value": ["pico-itx"],
+      "source": ["https://www.udoo.org/udoo-vision/"]
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Pico-ITX standard mounting pattern, not RPi-compatible."
+    },
+    "weight-g": {
+      "value": null,
+      "comment": "Bare-board weight not published by UDOO; no credible third-party measurement found."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://www.udoo.org/docs-vision/Operating_Systems/Linux.html"
+      ],
+      "comment": "Standard x86_64 board with UEFI; Apollo Lake platform support has been mainline in the Linux kernel since 4.x. Generic distros boot directly via UEFI without any UDOO-specific patches."
+    },
+    "official-os-image": {
+      "value": false,
+      "source": ["https://www.udoo.org/docs-vision/Operating_Systems/Linux.html"],
+      "comment": "UDOO does not publish a board-specific Linux image; the docs instead point users to install stock Ubuntu/other x86_64 distros via UEFI."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian"],
+      "source": ["https://www.udoo.org/docs-vision/Operating_Systems/Linux.html"],
+      "comment": "No board-specific images, but UDOO docs explicitly walk through installing generic Ubuntu (22.04 / 20.04 for OpenVINO) and the board boots any standard x86_64 distro (Debian, Fedora, etc.). Listed only the ones UDOO names directly."
+    },
+    "bootloader": {
+      "value": ["uefi"],
+      "source": [
+        "https://www.udoo.org/docs-vision/Advanced_Topics/UEFI_Firmware.html"
+      ],
+      "comment": "AMI UEFI firmware; standard x86 boot path."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "UDOO does not publish a stated software-support window; prior UDOO X86 boards have received multi-year UEFI updates but Vision-specific commitment is undocumented."
+    },
+    "android-support": {
+      "value": false,
+      "source": [
+        "https://www.udoo.org/docs-vision/Operating_Systems/Linux.html",
+        "https://www.udoo.org/udoo-vision/"
+      ],
+      "comment": "Marketing copy on udoo.org/udoo-vision/ mentions 'Linux, Android and Windows', but UDOO publishes no Vision-specific Android image and the Operating Systems documentation only covers Linux and Windows. Marked false to avoid overstating support."
+    },
+    "msrp-base-usd": {
+      "value": 349,
+      "source": [
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ],
+      "comment": "VISION X5 launch price USD 349 ex VAT; checked 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 419,
+      "source": [
+        "https://www.cnx-software.com/2023/05/13/udoo-vision-sbc-with-intel-atom-x5-e3940-or-x7-e3950-cpu-offers-arduino-leonardo-compatibility/"
+      ],
+      "comment": "VISION X7 launch price USD 419 ex VAT; checked 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["europe", "north-america", "global"],
+      "source": [
+        "https://www.udoo.org/udoo-vision/",
+        "https://www.hackster.io/news/udoo-launches-the-high-performance-vision-x5-x7-single-board-computers-for-edge-ai-workloads-f9e3a786e7b0"
+      ],
+      "comment": "Sold worldwide via the official UDOO/SECO shop, which ships from Italy. Mouser distribution (datasheet listing) provides North-America reach."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.udoo.org/exciting-news-the-udoo-vision-is-now-available-on-our-shop/"],
+      "comment": "UDOO shop quotes 2–5 working days dispatch from Italy; checked 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://www.udoo.org/docs-vision/Introduction/Introduction.html",
+        "https://www.udoo.org/download/files/UDOO_VISION/schematics/UDOO_VISION_revA0_schematics.pdf"
+      ],
+      "comment": "Comprehensive online docs portal, datasheet on Mouser, and a public schematics PDF; minor gaps (some docs pages 404, no published power figures) keep it short of 5."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "Active UDOO forum but Vision-specific traffic is modest; smaller than Raspberry Pi / Orange Pi communities."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://www.udoo.org/forum/"],
+      "comment": "Vendor-run UDOO forum has dedicated UDOO Vision threads with regular activity."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://www.udoo.org/udoo-vision/"],
+      "comment": "UDOO offers a small set of branded add-ons (Wi-Fi/BT M.2, WWAN modules, cases) but the Arduino-Leonardo header limits HAT/shield reuse and there is no broad third-party accessory ecosystem."
+    }
+  }
 }
