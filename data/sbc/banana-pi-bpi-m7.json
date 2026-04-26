@@ -1,5 +1,388 @@
 {
   "name": "Banana Pi BPI-M7",
   "description": "RK3588, large-RAM configurations",
-  "values": {}
+  "url": "https://www.banana-pi.org/en/banana-pi-sbcs/169.html",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "SINOVOIP (Banana Pi)",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Banana Pi is the brand operated by Shenzhen SINOVOIP Co., Ltd."
+    },
+    "model": {
+      "value": "BPI-M7",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "release-date": {
+      "value": "2024-01",
+      "source": [
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/",
+        "https://liliputing.com/banana-pi-bpi-m7-board-has-a-rk3588-chip-2-x-2-5-gbe-ethernet-ports-and-pcie-nvme-ssd-support/"
+      ],
+      "comment": "Public sale opened on AliExpress on 30 Jan 2024 ($165 for 8GB/64GB); originally announced in Nov 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.banana-pi.org/en/banana-pi-sbcs/169.html",
+        "https://www.bpi-shop.com/products/banana-pi-bpi-m7-with-rockchip-rk3588-8-16-32g-ram-64-128g-emmc-wifi6-support.html"
+      ],
+      "comment": "Listed on official Banana Pi product catalog and BPI Shop as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "RK3588 is ARMv8.2-A (Cortex-A76 + A55), 64-bit only."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://github.com/BPI-SINOVOIP/BPI-Schematics",
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"
+      ],
+      "comment": "BPI publishes schematic PDFs on GitHub but no PCB design source files under an OSHW license; per RESEARCH.md this does not qualify."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Designed by SINOVOIP, headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://www.banana-pi.org/en/banana-pi-sbcs/169.html",
+      "source": ["https://www.banana-pi.org/en/banana-pi-sbcs/169.html"]
+    },
+    "soc": {
+      "value": "RK3588",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Full RK3588 (not RK3588S); enables PCIe 3.0 x4 M.2 and dual 2.5GbE."
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 @ 2.4 GHz + 4× Cortex-A55 @ 1.8 GHz (big.LITTLE)",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Stock max clock for the A76 cluster on RK3588."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor-stated 8 nm; Rockchip describes RK3588 as Samsung 8LPP-class."
+    },
+    "gpu": {
+      "value": "Mali-G610 MP4",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Mali-G610 MP4 supports Vulkan 1.1 per BPI specs."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor-quoted 6 TOPS @ INT8 across 3 NPU cores; INT4/INT8/INT16 mixed-precision supported."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "8K@60 H.265/VP9, 8K@30 H.264, 4K@60 AV1 per vendor specs."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor-stated 8K@30 H.265/H.264 encode; AV1 and VP9 not listed for encode."
+    },
+    "ram-min-gb": {
+      "value": 8,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "ram-type": {
+      "value": ["lpddr4", "lpddr4x"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor specs say \"64-bit LPDDR4/LPDDR4x\"; retail SKUs are typically LPDDR4x."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Onboard 32/64/128 GB eMMC depending on SKU."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://liliputing.com/banana-pi-bpi-m7-board-has-a-rk3588-chip-2-x-2-5-gbe-ethernet-ports-and-pcie-nvme-ssd-support/"
+      ]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "1× M.2 M-key, PCIe 3.0 x4, NVMe."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "No native SATA port; storage expansion via M.2 NVMe only."
+    },
+    "ethernet": {
+      "value": ["2-5g"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "2× 2.5GbE ports, well-suited to router/NAS use."
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "AP6275P module, 802.11a/b/g/n/ac/ax (Wi-Fi 6, not 6E)."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://liliputing.com/banana-pi-bpi-m7-board-has-a-rk3588-chip-2-x-2-5-gbe-ethernet-ports-and-pcie-nvme-ssd-support/"
+      ],
+      "comment": "AP6275P provides BT 5.2; vendor wiki occasionally writes \"BT5\" generically."
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "1× USB 3.0 (USB 3.1 Gen 1) Type-A."
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "USB Type-C 3.1 with DP 1.4 alt-mode and OTG; same port also accepts USB-C PD power input."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"
+      ],
+      "comment": "No PoE feature in vendor specs and no documented PoE HAT path on the 40-pin header."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "1× HDMI 2.1; additional displays available via USB-C DP-Alt and MIPI-DSI."
+    },
+    "max-display-resolution": {
+      "value": "8K@60",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "HDMI 2.1 up to 8K@60; USB-C DP 1.4 listed as 8K@30."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "No native DP connector; USB-C DP-Alt mode (DP 1.4) provides DisplayPort output, which RESEARCH.md says counts."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "1× MIPI-DSI up to 4K@60."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "2× 2-lane MIPI-CSI camera connectors."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"
+      ],
+      "comment": "Vendor lists \"HP audio out\" as an on-board header/speaker connector, not a 3.5 mm jack."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor advertises the 40-pin header as \"fully compatible with Raspberry Pi\" pinout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"],
+      "comment": "Board is 92×62 mm with non-RPi mounting hole positions, so HAT mechanical compliance is not met even though the GPIO pinout matches."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× M.2 M-key (PCIe 3.0 ×4)",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "I²C, SPI, and UART are all available on the 40-pin header."
+    },
+    "power-input": {
+      "value": "USB-C PD (9V/2A, 12V/2A, 15V/2A)",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No measured idle figure published by vendor or in major reviews (CNX-Software, Liliputing); per RESEARCH.md prefer null over a TDP guess."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "Same as idle: no independently measured full-load figure available; RK3588 boards typically draw 7-10 W under load but this specific board's value is unverified."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": ["https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"],
+      "comment": "Per RESEARCH.md guidance, RK3588 boards under sustained load are typically active-required; BPI ships the board with a heatsink+fan kit."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"
+      ],
+      "comment": "2-pin battery connector wired to an HYM8563TS RTC."
+    },
+    "length-mm": {
+      "value": 92,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "width-mm": {
+      "value": 62,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"],
+      "comment": "BPI markets it as Pico-ITX-class, but Pico-ITX is 100×72 mm; at 92×62 mm with non-Pi holes it does not match any defined preset and is best classified as custom."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"],
+      "comment": "Holes do not match the RPi standard pattern; vendor publishes its own DXF."
+    },
+    "weight-g": {
+      "value": null,
+      "comment": "Bare-board weight not published in the wiki, product page, or major reviews."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://www.armbian.com/bananapi-m7/",
+        "https://forum.banana-pi.org/t/bpi-m7-archlinuxarm-build-script/17794"
+      ],
+      "comment": "Boots upstream/Collabora kernel and is supported in Armbian (current 6.18 + vendor 6.1.115); like other RK3588 boards, GPU/NPU and some video acceleration still rely on out-of-tree pieces, so partial rather than full."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://docs.banana-pi.org/en/BPI-M7/BananaPi_BPI-M7"
+      ],
+      "comment": "Vendor publishes Android 12, Debian 11, and Buildroot images."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://www.armbian.com/bananapi-m7/",
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7"
+      ],
+      "comment": "Debian (vendor), Ubuntu 20.04/22.04 (third-party builds endorsed by BPI), and Armbian official build. Buildroot/Kylin omitted as they are not in the defined tag set."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "U-Boot; mainline U-Boot also boots the board per Collabora work."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://forum.banana-pi.org/c/banana-pi-m7/bpi-m7/129"],
+      "comment": "BPI does not publish a formal support-window commitment; community track record on BPI boards is mixed, so unclear is the honest tag."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-M7"],
+      "comment": "Vendor ships an Android 12 image."
+    },
+    "msrp-base-usd": {
+      "value": 165,
+      "source": ["https://liliputing.com/banana-pi-bpi-m7-board-has-a-rk3588-chip-2-x-2-5-gbe-ethernet-ports-and-pcie-nvme-ssd-support/"],
+      "comment": "Launch AliExpress price for 8GB/64GB at January 2024 sale; BPI Shop currently lists $292 for the same SKU (checked 2026-04-26), so retail markup is significant."
+    },
+    "msrp-top-usd": {
+      "value": null,
+      "comment": "Vendor has not published an MSRP for the 32GB/128GB top SKU; resellers list highly variable prices and BPI Shop only exposes the 8/64 price publicly. Null pending an authoritative source."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.amazon.com/Banana-Pi-BPI-M7-LPDDR4x-Linux/dp/B0CXF344DM",
+        "https://www.newegg.com/p/3C6-01CJ-006C0",
+        "https://ameridroid.com/products/banana-pi-m7",
+        "https://www.bpi-shop.com/products/banana-pi-bpi-m7-with-rockchip-rk3588-8-16-32g-ram-64-128g-emmc-wifi6-support.html"
+      ],
+      "comment": "Sold via AliExpress (global), Amazon US, Newegg, ameriDroid (NA), and BPI Shop (China/global) as of 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://www.amazon.com/Banana-Pi-BPI-M7-LPDDR4x-Linux/dp/B0CXF344DM",
+        "https://ameridroid.com/products/banana-pi-m7"
+      ],
+      "comment": "In stock at multiple major resellers as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-M7",
+        "https://docs.banana-pi.org/en/BPI-M7/BananaPi_BPI-M7"
+      ],
+      "comment": "Vendor wiki has full spec tables, schematic PDFs, and getting-started guide, but coverage is patchy compared to Raspberry Pi or Radxa docs and several pages link out to forum threads for details."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://forum.banana-pi.org/c/banana-pi-m7/bpi-m7/129"],
+      "comment": "Active vendor forum but with modest traffic; broader RK3588 community is large, but BPI-M7-specific community sits in the small bucket per RESEARCH.md thresholds."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.banana-pi.org/c/banana-pi-m7/bpi-m7/129"],
+      "comment": "Vendor-run forum has a dedicated BPI-M7 subforum with regular activity."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://www.bpi-shop.com/products/banana-pi-bpi-m7-with-rockchip-rk3588-8-16-32g-ram-64-128g-emmc-wifi6-support.html",
+        "https://www.cnx-software.com/2024/01/30/banana-pi-bpi-m7-thin-rockchip-rk3588-sbc-dual-2-5gbe-m-2-nvme-storage-hdmi-2-1/"
+      ],
+      "comment": "Vendor offers a heatsink/fan kit and bundles, but no significant ecosystem of cases, displays, or HATs targeted specifically at the BPI-M7. Generic 40-pin HATs work mechanically only on a case-by-case basis."
+    }
+  }
 }

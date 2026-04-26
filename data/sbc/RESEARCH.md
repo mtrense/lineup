@@ -245,7 +245,7 @@ Users should be able to:
 - [x] **Hardkernel ODROID-H4** — Intel N97 x86 SBC, mini-ITX-ish
 - [x] **Khadas VIM4** — Amlogic A311D2 with NPU, premium build
 - [x] **Khadas Edge2** — RK3588S, slim form factor
-- [ ] **Banana Pi BPI-M7** — RK3588, large-RAM configurations
+- [x] **Banana Pi BPI-M7** — RK3588, large-RAM configurations
 - [ ] **Banana Pi BPI-F3** — SpacemiT K1 RISC-V octa-core
 - [ ] **LibreComputer Le Potato (AML-S905X-CC)** — Amlogic S905X, RPi 3-compatible budget
 - [ ] **LibreComputer Renegade (ROC-RK3328-CC)** — RK3328, budget option
