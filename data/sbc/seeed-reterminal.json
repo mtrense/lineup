@@ -1,5 +1,349 @@
 {
-  "name": "Seeed reTerminal / reComputer R1100",
-  "description": "Compute Module 4 + integrated screen + carrier",
-  "values": {}
+  "name": "Seeed reTerminal",
+  "description": "Raspberry Pi CM4-based all-in-one HMI with integrated 5\" capacitive touchscreen, sensors, and modular rear expansion bay",
+  "icon": "https://files.seeedstudio.com/wiki/reTerminal/reTerminal-thumbnail.png",
+  "url": "https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Seeed Studio",
+      "source": ["https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html"]
+    },
+    "model": {
+      "value": "reTerminal (CM4104032 / CM4108032)",
+      "source": ["https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html", "https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html"],
+      "comment": "Two SKUs differ only in CM4 RAM (4 GB vs 8 GB); both pair the CM4 with 32 GB eMMC. RESEARCH.md candidate line bundles 'reTerminal / reComputer R1100' but those are distinct products — the reComputer R1100 is a headless DIN-rail IoT gateway with no integrated screen. The 'integrated screen + carrier' description matches the reTerminal, so this entry covers the reTerminal proper."
+    },
+    "release-date": {
+      "value": "2021-04",
+      "source": ["https://www.cnx-software.com/2021/04/15/reterminal-a-raspberry-pi-cm4-based-5-inch-hmi-terminal/", "https://www.seeedstudio.com/blog/2021/04/15/seeed-unveils-its-first-raspberry-pi-powered-human-machine-interface-device/"],
+      "comment": "Announced 15 Apr 2021; pre-orders opened end of April 2021."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": ["https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html", "https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html"],
+      "comment": "8 GB CM4108032 SKU listed In Stock at $259 on Seeed store; 4 GB CM4104032 SKU listed Out of Stock at the same vendor (checked 2026-04-26). Product line is still actively sold and the newer reTerminal DM 10\" continues the family."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Broadcom BCM2711, ARMv8-A; runs both 32-bit and 64-bit Raspberry Pi OS images."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://github.com/Seeed-Studio/OSHW-RPi-Series/tree/main/Devices/reTerminal"],
+      "comment": "OSHW-RPi-Series repo only publishes PDF/ZIP schematics and an .STP 3D model — no native PCB design files (KiCad/Eagle/BRD). Per RESEARCH.md Assessment Guidelines this counts as partial openness, not OSHW."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://www.seeedstudio.com/blog/2021/04/15/seeed-unveils-its-first-raspberry-pi-powered-human-machine-interface-device/"],
+      "comment": "Seeed Studio is HQ'd in Shenzhen."
+    },
+    "website": {
+      "value": "https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html",
+      "source": ["https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html"]
+    },
+    "soc": {
+      "value": "Broadcom BCM2711 (via Raspberry Pi CM4)",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "soc-vendor": {
+      "value": ["broadcom"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A72 (ARMv8-A)",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.5,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Stock CM4 clock; community overclock to 2.0–2.2 GHz works but is not vendor-supported."
+    },
+    "process-node": {
+      "value": "28 nm",
+      "source": ["https://www.cnx-software.com/2021/04/15/reterminal-a-raspberry-pi-cm4-based-5-inch-hmi-terminal/"],
+      "comment": "BCM2711 is fabricated on TSMC 28 nm — inherited from the Raspberry Pi 4 / CM4 die."
+    },
+    "gpu": {
+      "value": "Broadcom VideoCore VI",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "opengl-es-version": {
+      "value": "3.1",
+      "source": ["https://www.cnx-software.com/2020/02/03/raspberry-pi-4-opengl-es-3-1-conformant-vulkan-drivers/"],
+      "comment": "BCM2711 / VideoCore VI is OpenGL ES 3.1 conformant via Mesa V3D."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2022/08/09/raspberry-pi-4-vulkan-1-2-conformance-android-vulkan/"],
+      "comment": "Vulkan 1.2 conformant via the Mesa V3DV driver (open-source, in-tree)."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "No NPU on CM4 / BCM2711."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": ["https://forums.raspberrypi.com/viewtopic.php?t=312808"],
+      "comment": "BCM2711 hw-decodes H.265 up to 4Kp60 and H.264 up to 1080p60. No VP9 or AV1 hw-decode."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": ["https://forums.raspberrypi.com/viewtopic.php?t=312808"],
+      "comment": "H.264 1080p30 hw-encode only; no H.265/VP9/AV1 encode block."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html"],
+      "comment": "Smallest currently-sold reTerminal SKU is the CM4104032 (4 GB CM4)."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html"],
+      "comment": "Largest currently-sold SKU is the CM4108032 (8 GB CM4). Seeed has not shipped 1 GB or 2 GB CM4 variants of the reTerminal."
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "CM4 uses LPDDR4-3200 with on-die ECC."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "32 GB eMMC on the CM4 module; soldered, not removable."
+    },
+    "microsd-slot": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "All shipped reTerminal SKUs use the eMMC-equipped CM4, which physically disables the microSD path; the reTerminal chassis exposes no microSD slot."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://pipci.jeffgeerling.com/boards_cm/seeed-studio-reterminal.html"],
+      "comment": "No onboard M.2 slot. The rear vertical expansion connector exposes the CM4's PCIe lane; an optional E10-1 backpack carries SATA, but no NVMe M.2 carrier is sold."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "No native SATA on the reTerminal itself; SATA is only available via the E10-1 expansion backpack."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "wifi": {
+      "value": ["wifi-5"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Dual-band 2.4/5 GHz 802.11b/g/n/ac (Wi-Fi 5) via the CM4's Cypress/Infineon CYW43455 radio."
+    },
+    "bluetooth": {
+      "value": "5.0",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Bluetooth 5.0 BLE via the CM4's onboard radio."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "All exposed USB-A ports run at USB 2.0 speed."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Single USB-C is power-only (5 V / 3 A); not a data port."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://www.kiwi-electronics.com/en/reterminal-e10-1-expansion-board-11037"],
+      "comment": "No PoE on the base device. The optional E10-1 expansion backpack adds PoE, but it is a separate board mating on the rear connector — not a HAT, and not on the SBC itself."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Single Micro-HDMI port (in addition to the integrated 5\" 1280×720 internal display)."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Refers to the Micro-HDMI output (4Kp60 from the CM4). Internal LCD is 5\" 1280×720."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "CM4 carries DSI internally to drive the bonded 5\" panel; no user-accessible DSI connector is exposed on the reTerminal chassis."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "1× 2-lane MIPI CSI camera connector exposed."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://wiki.seeedstudio.com/reTerminal_Hardware/"],
+      "comment": "No 3.5 mm analog audio output on the chassis. Audio out is via HDMI or via the E10-1 expansion."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "40-pin Raspberry Pi-compatible header on the rear; 26 of those pins are GPIO per the standard RPi pinout (the rest are power and ground)."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Pin-compatible with the standard 40-pin RPi GPIO."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Header is electrically compatible but mounted on the back of an enclosed device — there is no Pi-standard mechanical room (mounting holes, board clearance) to mount a HAT directly. Per RESEARCH.md note 6 this is mechanical-only / electrical compatibility, not true HAT compliance."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 via proprietary rear expansion connector",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://pipci.jeffgeerling.com/boards_cm/seeed-studio-reterminal.html"],
+      "comment": "CM4's single PCIe Gen 2 lane is routed to the rear high-speed expansion connector (used by E10-1 etc.); not a standard M.2 or mPCIe slot."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "I²C, SPI, and UART all available on the 40-pin header (up to 5× of each via the CM4's flexible muxing)."
+    },
+    "power-input": {
+      "value": "USB-C 5V/3A",
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "idle-power-w": {
+      "value": 2.55,
+      "source": ["https://dicksondickson.medium.com/seeed-studio-reterminal-review-a-raspberry-pi-cm4-based-terminal-ba6ad82ddfcb"],
+      "comment": "Measured at stock 1.5 GHz with screen on (Dickson Chow review). Excludes external peripherals."
+    },
+    "load-power-w": {
+      "value": 4.9,
+      "source": ["https://dicksondickson.medium.com/seeed-studio-reterminal-review-a-raspberry-pi-cm4-based-terminal-ba6ad82ddfcb"],
+      "comment": "Measured under CPU stress at stock 1.5 GHz; rises to ~7.1 W when overclocked to 2.1 GHz."
+    },
+    "cooling-required": {
+      "value": ["passive-ok"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Vendor enclosure is passive — no fan, no heatsink shipped. CM4 is BCM2711 in a closed ABS case; sustained heavy load will throttle but will not require active cooling for typical HMI workloads."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "An NXP PCF8563T RTC chip is onboard, but the chassis exposes no coin-cell holder or external RTC battery header."
+    },
+    "length-mm": {
+      "value": 140,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "width-mm": {
+      "value": 95,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Bonded enclosure with integrated 5\" touchscreen; not a bare PCB and does not match any of the listed Pi/ITX form-factor classes."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Chassis-level mounting (panel-mount style) rather than Pi-standard PCB mounting holes."
+    },
+    "weight-g": {
+      "value": 285,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Bare reTerminal device weight including enclosure, screen, and CM4."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": ["https://www.phoronix.com/news/Raspberry-Pi-CM4-Linux-5.16"],
+      "comment": "CM4 (BCM2711) has had full mainline support since Linux 5.16. The reTerminal-specific extras (touchscreen, accelerometer, light sensor, RTC) are standard ICs (Goodix, LIS3DH, LTR-303, PCF8563) with mainline drivers; Seeed publishes overlays for them. Audio path through the HDMI / I2S is upstream."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://wiki.seeedstudio.com/flash_different_os_to_emmc/"],
+      "comment": "Seeed publishes preconfigured 32-bit and 64-bit Raspberry Pi OS images for the reTerminal, plus instructions for stock RPi OS / Ubuntu."
+    },
+    "distros-with-images": {
+      "value": ["raspberry-pi-os", "ubuntu"],
+      "source": ["https://wiki.seeedstudio.com/flash_different_os_to_emmc/"],
+      "comment": "Vendor publishes a board-specific Raspberry Pi OS image; Ubuntu (64-bit) is officially documented to work via Seeed's flashing guide. Armbian for the RPi 4 family is still WIP and not a board-specific reTerminal image, so omitted."
+    },
+    "bootloader": {
+      "value": ["proprietary"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "Inherits the Raspberry Pi VideoCore boot ROM + closed-source bootcode/EEPROM firmware chain used by all CM4 / BCM2711 boards. No U-Boot or UEFI on the standard image."
+    },
+    "long-term-support": {
+      "value": ["3-5y"],
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "No formal vendor LTS commitment, but Seeed has actively maintained images and overlays since the 2021 launch (~5 years), and the CM4 itself has a Raspberry Pi commitment to 2034. Capping at 3-5y because Seeed's own software-support window is not contractually stated."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/"],
+      "comment": "No vendor-maintained Android image for the reTerminal. Community LineageOS / Android-on-CM4 ports exist for the Pi 4 family but are not specific to this board."
+    },
+    "msrp-base-usd": {
+      "value": 259,
+      "source": ["https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.html"],
+      "comment": "Seeed list price for the 4 GB CM4104032 SKU as of 2026-04-26 (currently OOS at Seeed). Original 2021 launch price was $195 for the 4 GB model; pricing has risen with CM4 cost."
+    },
+    "msrp-top-usd": {
+      "value": 259,
+      "source": ["https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html"],
+      "comment": "Seeed list price for the 8 GB CM4108032 SKU as of 2026-04-26 ($259, marked down from $359). Both base and top SKUs are currently priced equally on the Seeed store, which is unusual — likely a clearance discount on the 8 GB unit."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": ["https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html", "https://www.amazon.com/Raspberry-CM4-ReTerminal-High-Definition-Multi-Touch/dp/B0BFQQBQ8Z"],
+      "comment": "Seeed ships from China, US, and Germany warehouses; also resold on Amazon US, Botland (EU), Kiwi Electronics (EU), RobotShop (NA/EU)."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.seeedstudio.com/reTerminal-CM4108032-p-5712.html"],
+      "comment": "8 GB SKU In Stock at Seeed as of 2026-04-26; 4 GB SKU is currently Out of Stock at Seeed but available via resellers (Amazon, Botland)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://wiki.seeedstudio.com/reTerminal/", "https://github.com/Seeed-Studio/OSHW-RPi-Series/tree/main/Devices/reTerminal"],
+      "comment": "Comprehensive Seeed wiki (getting-started, hardware-interfaces, FAQ, flashing guides), published schematics (PDF), and a 3D STP model. Falls short of 5 because no native PCB design files and no full datasheet for the chassis-integrated peripherals beyond the wiki write-up."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://www.seeedstudio.com/blog/2021/04/15/seeed-unveils-its-first-raspberry-pi-powered-human-machine-interface-device/"],
+      "comment": "Seeed has a large general community, but the reTerminal is a niche HMI product within it. Discussion is concentrated on the Seeed forum, GitHub issues, and a handful of dedicated reviewers — well under the orange-pi / odroid scale."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.seeedstudio.com/"],
+      "comment": "Vendor-run Seeed Studio forum has an active reTerminal section."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://www.kiwi-electronics.com/en/reterminal-e10-1-expansion-board-11037", "https://stanleyprojects.com/projects/reterminal_module/"],
+      "comment": "First-party E10-1 expansion backpack (DC/PoE/UPS, LTE/4G/5G/LoRaWAN, RS485/232, CAN, SATA) plus optional cameras and a few community modules. No vibrant third-party ecosystem of cases or HATs because the device is a sealed enclosure — most RPi accessories cannot mount on it."
+    }
+  }
 }
