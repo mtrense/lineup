@@ -230,7 +230,7 @@ Users should be able to:
 - [x] **Radxa ROCK 5B+** — RK3588 refresh with M.2 and storage upgrades
 - [x] **Radxa ROCK 5A** — RK3588S in RPi-style form factor
 - [x] **Radxa ROCK 4SE** — RK3399-T, mid-tier
-- [ ] **Radxa ZERO 3W** — RK3566 in Pi Zero form factor
+- [x] **Radxa ZERO 3W** — RK3566 in Pi Zero form factor
 - [ ] **Orange Pi 5 Plus** — RK3588, dual 2.5G Ethernet, NAS-friendly
 - [ ] **Orange Pi 5 Pro** — RK3588S, mid-tier
 - [ ] **Orange Pi 5 Max** — RK3588 with high-end I/O

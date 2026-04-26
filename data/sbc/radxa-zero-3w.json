@@ -1,5 +1,383 @@
 {
   "name": "Radxa ZERO 3W",
   "description": "RK3566 in Pi Zero form factor",
-  "values": {}
+  "url": "https://radxa.com/products/zeros/zero3w/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Radxa",
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "model": {
+      "value": "ZERO 3W",
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "release-date": {
+      "value": "2023-12",
+      "source": [
+        "https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/",
+        "https://liliputing.com/radxa-zero-3w-is-a-pi-zero-sized-pc-with-a-rk3566-processor-and-up-to-8gb-ram/"
+      ],
+      "comment": "Announced October 2023, retail launch December 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://radxa.com/products/zeros/zero3w/",
+        "https://www.armbian.com/radxa-zero-3/"
+      ],
+      "comment": "Still listed on radxa.com and stocked by major distributors as of 2026-04."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_v1110_schematic.pdf"],
+      "comment": "Radxa publishes a schematic PDF (v1.11) but no PCB design files under an OSHW-compatible license; per RESEARCH.md guideline, schematics-only does not qualify."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://radxa.com/about/"],
+      "comment": "Radxa (Shenzhen Radxa Computer Co., Ltd.) is headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://radxa.com/products/zeros/zero3w/",
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "soc": {
+      "value": "Rockchip RK3566",
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A55",
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.6,
+      "source": [
+        "https://docs.radxa.com/en/zero/zero3",
+        "https://radxa.com/products/zeros/zero3w/"
+      ],
+      "comment": "RK3566 SoC is rated up to 1.8 GHz, but Radxa specifies the ZERO 3W at 1.6 GHz max."
+    },
+    "process-node": {
+      "value": "22 nm",
+      "source": ["https://www.lstpcb.com/news/detailed-introduction-and-application-guide-of-rk3566-chip/"],
+      "comment": "RK3566 is fabricated on a 22 nm process; the specific foundry (Samsung is widely cited but unconfirmed) is not documented on Radxa's board page."
+    },
+    "gpu": {
+      "value": "Arm Mali-G52 2EE",
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/zero/zero3"],
+      "comment": "Mali-G52 2EE supports Vulkan 1.1 per vendor documentation."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.rockchips.net/product/rk3566/"]
+    },
+    "npu-performance-tops": {
+      "value": 1.0,
+      "source": [
+        "https://www.rockchips.net/product/rk3566/",
+        "https://www.hackster.io/news/radxa-unveils-the-npu-equipped-zero-3w-and-wired-ethernet-zero-3e-sbcs-starting-at-15-c8ab512961c0"
+      ],
+      "comment": "Rockchip's RK3566 datasheet quotes 1.0 TOPS @ INT8; Radxa's launch coverage on Hackster cited 0.8 TOPS for the Zero 3W. Used Rockchip's higher SoC-level figure but the discrepancy is real."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": [
+        "https://radxa.com/products/zeros/zero3w/",
+        "https://www.rockchips.net/product/rk3566/"
+      ],
+      "comment": "RK3566 video unit decodes H.264/H.265/VP9 up to 4K@60; no AV1 hardware decode."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "H.264/H.265 encode up to 1080p60 per Radxa product page."
+    },
+    "ram-min-gb": {
+      "value": 1,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/zero/zero3"],
+      "comment": "Optional 8/16/32/64 GB eMMC 5.1; sold separately by configuration."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "No M.2 slot — Pi-Zero-class footprint."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "ethernet": {
+      "value": ["none"],
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "ZERO 3W is the wireless variant — Ethernet is on the sister ZERO 3E."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": [
+        "https://radxa.com/products/zeros/zero3w/",
+        "https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/"
+      ],
+      "comment": "Radxa product page advertises 'Wi-Fi 6 / BT 5.4'. Initial Oct 2023 announcement on Hackster mentioned only Wi-Fi 4/BT 5.0; shipping units use Radxa Wireless Module D8 with Wi-Fi 6 + BT 5.4."
+    },
+    "bluetooth": {
+      "value": "5.4",
+      "source": [
+        "https://radxa.com/products/zeros/zero3w/",
+        "https://liliputing.com/radxa-zero-3w-is-a-pi-zero-sized-pc-with-a-rk3566-processor-and-up-to-8gb-ram/"
+      ],
+      "comment": "Shipping units have Bluetooth 5.4 per Radxa and Liliputing; older Radxa docs page still says BT 5.0 — go by the product page and confirmed shipping silicon."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "USB 3.0 is exposed only on a USB-C connector, not USB-A."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "usb-c-ports-data": {
+      "value": 2,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "1× USB 3.0 host (Type-C) + 1× USB 2.0 OTG (Type-C, also accepts power)."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "No Ethernet, so no PoE path."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "Single micro-HDMI port."
+    },
+    "max-display-resolution": {
+      "value": "1080p@60",
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "Output capped at 1080p60 over micro-HDMI per Radxa product page; the SoC can decode 4K but display output is 1080p."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "No DisplayPort output (USB-C ports do not advertise DP-Alt mode)."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "Only a MIPI-CSI camera connector is present; no MIPI-DSI display interface."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "22-pin MIPI CSI (4-lane) with 0.5 mm pitch."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "No 3.5 mm jack on the board; audio over HDMI."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://radxa.com/products/zeros/zero3w/"]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "40-pin header with Raspberry Pi-compatible pinout; sold optionally pre-soldered."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/"],
+      "comment": "Pi Zero 2 W form factor (65×30 mm) is too small for full-size HATs; while the GPIO header is electrically RPi-compatible, mechanical HAT mounting and HAT EEPROM auto-config are not provided."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "RK3566 has a PCIe 2.1 x1 controller but it is not routed out on the ZERO 3W."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "I²C, SPI, and UART are exposed on the 40-pin header."
+    },
+    "power-input": {
+      "value": "USB-C 5V/2A (via OTG port)",
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No credible measured idle figure published by Radxa or major reviewers; per RESEARCH.md, prefer null over guessing from TDP."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No credible measured load figure published; reviews note thermals warrant a heatsink but do not quote sustained wattage."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://forum.radxa.com/t/zero-3w-case-and-temperatures/20175"],
+      "comment": "Vendor offers an official heatsink (5519A) and community testing on the Radxa forum reports thermal throttling under sustained load without one."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "No RTC battery header on the PCB."
+    },
+    "length-mm": {
+      "value": 65,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "width-mm": {
+      "value": 30,
+      "source": ["https://docs.radxa.com/en/zero/zero3"]
+    },
+    "form-factor-class": {
+      "value": ["pi-zero"],
+      "source": [
+        "https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/"
+      ],
+      "comment": "65×30 mm matches the Raspberry Pi Zero family footprint."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-zero"],
+      "source": [
+        "https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/"
+      ],
+      "comment": "Mounting holes follow Pi Zero pattern, but connector positions (micro-HDMI vs mini-HDMI, USB-C vs micro-USB) mean Pi Zero cases generally don't fit without modification."
+    },
+    "weight-g": {
+      "value": null,
+      "source": [],
+      "comment": "Bare-board weight not published by Radxa or major reviewers."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://www.armbian.com/radxa-zero-3/",
+        "https://github.com/armbian/build/pull/7411"
+      ],
+      "comment": "Armbian lists the board as Stable on the current 6.18.x mainline branch; mainline U-Boot 2024.10+ supports it. RK3566 has been mainline since ~5.16 with steadily growing peripheral coverage."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/zero/zero3/download"],
+      "comment": "Radxa publishes officially-tested Debian images (bookworm KDE on 6.1 kernel, bullseye XFCE on 5.10)."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian", "dietpi"],
+      "source": [
+        "https://docs.radxa.com/en/zero/zero3/download",
+        "https://www.armbian.com/radxa-zero-3/",
+        "https://github.com/MichaIng/DietPi/issues/7024"
+      ],
+      "comment": "Official Radxa Debian images; Ubuntu (24.04 minimal/desktop) and Debian rolling images via Armbian; DietPi adds a community image."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://github.com/armbian/build/pull/7411"],
+      "comment": "U-Boot (mainline 2024.10+ as of recent Armbian); Rockchip's idbloader/SPL chain in front of U-Boot proper."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "Radxa does not publish a stated software-support window for the ZERO series; community/Armbian backstop is the practical longevity story."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/zero/zero3/other-os/android/download"],
+      "comment": "Radxa publishes an official Android 11 image (Radxa-Zero3WE-20231130-gpt.zip) covering both ZERO 3W and 3E."
+    },
+    "msrp-base-usd": {
+      "value": 15,
+      "source": [
+        "https://www.hackster.io/news/radxa-unveils-the-npu-equipped-zero-3w-and-wired-ethernet-zero-3e-sbcs-starting-at-15-c8ab512961c0",
+        "https://www.cnx-software.com/2023/12/08/radxa-zero-3w-sbc-rockchip-rk3566-8gb-ram-wifi6-raspberry-pi-zero-2-w-form-factor/"
+      ],
+      "comment": "Radxa launch MSRP: $15 for 1 GB RAM / no eMMC / no header. Retailers (Allnet, Arace, Evelta, Ameridroid) typically charge $18–$22 for the same SKU as of 2026-04."
+    },
+    "msrp-top-usd": {
+      "value": 65,
+      "source": [
+        "https://www.hackster.io/news/radxa-unveils-the-npu-equipped-zero-3w-and-wired-ethernet-zero-3e-sbcs-starting-at-15-c8ab512961c0"
+      ],
+      "comment": "Radxa launch top-tier MSRP: $65 for 8 GB RAM + 64 GB eMMC. Retailers commonly mark this up to ~$70+."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://shop.allnetchina.cn/products/copy-of-radxa-zero-3w",
+        "https://ameridroid.com/products/radxa-zero-3w",
+        "https://arace.tech/products/radxa-zero-3w",
+        "https://evelta.com/radxa-zero-3w-tiny-rk3566-sbc/"
+      ],
+      "comment": "Allnet (CN/EU), Ameridroid (US), Arace (US), Evelta (India) all stock it — broad global retail coverage."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://shop.allnetchina.cn/products/copy-of-radxa-zero-3w"],
+      "comment": "In stock at major distributors as of 2026-04-26 — Arace and Allnet show stock for most SKUs (some 8 GB configs intermittently sold out)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.radxa.com/en/zero/zero3"],
+      "comment": "Solid official docs portal (getting-started, hardware, OS install, schematics PDF). Falls short of a 5 because PCB layout files and detailed mechanical drawings aren't published."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.radxa.com/c/zero-series/26"],
+      "comment": "Active Radxa forum and Armbian sub-thread; Radxa is an established second-tier vendor per RESEARCH.md guideline."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.radxa.com/c/zero-series/26"],
+      "comment": "Vendor-run forum with daily activity in the Zero Series subforum."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://radxa.com/products/zeros/zero3w/"],
+      "comment": "Official heatsink (5519A) and antenna kit; no official case or display. Pi Zero cases mostly do not fit. Generic 40-pin GPIO accessories work mechanically subject to the smaller footprint."
+    }
+  }
 }
