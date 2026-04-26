@@ -261,7 +261,7 @@ Users should be able to:
 - [x] **Milk-V Mars** — JH7110 RISC-V, RPi-style budget
 - [x] **Sipeed LicheePi 4A** — T-Head TH1520 RISC-V
 - [x] **Pine64 Ox64** — BL808 RISC-V, ultra-compact
-- [ ] **ASUS Tinker Board 3N** — RK3568, industrial-flavored ASUS line
+- [x] **ASUS Tinker Board 3N** — RK3568, industrial-flavored ASUS line
 - [ ] **LattePanda 3 Delta** — Intel N5105 x86 SBC
 - [ ] **LattePanda Mu (compute module + carrier kit)** — Intel N100 module + carrier (treated as a usable SBC kit)
 - [ ] **UDOO Bolt V8** — AMD Ryzen Embedded V1605B, high-power x86 SBC
