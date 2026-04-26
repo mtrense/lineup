@@ -1,5 +1,373 @@
 {
   "name": "Radxa ROCK 4SE",
   "description": "RK3399-T, mid-tier",
-  "values": {}
+  "url": "https://radxa.com/products/rock4/4se/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Radxa",
+      "source": ["https://radxa.com/products/rock4/4se/"]
+    },
+    "model": {
+      "value": "ROCK 4SE",
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "Also marketed as ROCK Pi 4B SE in the official datasheet."
+    },
+    "release-date": {
+      "value": "2022-09",
+      "source": [
+        "https://linuxgizmos.com/rock-4-se-single-board-computer-goes-on-sale-for-70/",
+        "http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"
+      ],
+      "comment": "Went on sale via OKdo on 2022-09-06; datasheet rev 1.2 dated 2022-03-29."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf",
+        "https://radxa.com/products/rock4/4se/"
+      ],
+      "comment": "Radxa guarantees product availability through September 2029 (datasheet section 6)."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "ARMv8 / ARM64 instruction set."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://github.com/radxa/oshw"],
+      "comment": "Radxa's OSHW repo only contains rock_pro and rock2_square_baseboard; no PCB design files for the ROCK 4 family. Schematics are published as PDFs but PCB design files are not, so this does not meet the OSHW Assessment Guideline (PCB design files required)."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "Radxa Computer (Shenzhen) Co., Ltd. is the design HQ; published as the copyright holder in the datasheet documentation."
+    },
+    "website": {
+      "value": "https://radxa.com/products/rock4/4se/",
+      "source": ["https://radxa.com/products/rock4/4se/"]
+    },
+    "soc": {
+      "value": "Rockchip RK3399-T",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "RK3399-T is the lower-clocked variant of RK3399 (1.5 GHz A72 cluster vs 1.8 GHz on full RK3399)."
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "cpu-cores": {
+      "value": 6,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "big.LITTLE: 2× Cortex-A72 + 4× Cortex-A53."
+    },
+    "cpu-architecture": {
+      "value": "2× Cortex-A72 + 4× Cortex-A53 (big.LITTLE)",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.5,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Cortex-A72 cluster at 1.5 GHz; Cortex-A53 cluster at 1.0 GHz."
+    },
+    "process-node": {
+      "value": "28 nm",
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "RK3399 family is fabricated on 28 nm HKMG; not stated explicitly in the datasheet but well-documented for the RK3399 SoC line."
+    },
+    "gpu": {
+      "value": "Mali-T860MP4",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet lists OpenGL ES 1.1/2.0/3.0/3.1/3.2."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Mali-T860MP4 supports Vulkan 1.0 (vendor BLOB driver). Mainline panfrost driver also exposes Vulkan via PanVK on GLES-class Mali."
+    },
+    "npu": {
+      "value": false,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "RK3399-T has no NPU. (RK3399Pro has one, but this is RK3399-T.)"
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on this board."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet: H.265/VP9 (HEVC) up to 4Kp60 hardware decode; H.264 up to 1080p60 hardware decode. No AV1."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "RK3399 family has hardware H.264 encode (1080p) via VPU. Datasheet does not list explicit encode codecs; recorded conservatively from the RK3399 SoC capabilities."
+    },
+    "ram-min-gb": {
+      "value": 2,
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "Vendor product page (2026) lists 2/4/8 GB. Note: the original 2022 datasheet rev 1.2 stated 4 GB only. The product page is the current source of truth."
+    },
+    "ram-max-gb": {
+      "value": 8,
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "Vendor product page (2026) lists 2/4/8 GB SKUs. The 4 GB SKU is by far the most widely retailed."
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "64-bit dual-channel LPDDR4."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Industrial-pinout eMMC socket (modules sold separately, up to 128 GB)."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "M.2 M-key NVMe slot on the underside, 1× PCIe 2.x lane (RK3399 PCIe), supports up to 2 TB SSDs per vendor."
+    },
+    "sata": {
+      "value": false,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "No native SATA; storage is microSD / eMMC / M.2 NVMe."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "wifi": {
+      "value": ["wifi-5"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "802.11 b/g/n/ac onboard via AW-CM256 module."
+    },
+    "bluetooth": {
+      "value": "5.0",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Bluetooth 5.0 with BLE."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "1× USB3 host + 1× USB3 OTG (type-A); a hardware switch toggles the OTG port between host and device modes."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Single USB-C is power-only (USB PD / QC); no USB-C data port exposed."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Onboard 4-pin PoE header for the optional Radxa PoE HAT; PoE not built into the Ethernet port itself."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "HDMI 2.0 with CEC, up to 4Kp60. Dual display via HDMI + MIPI-DSI (DSI capped at 1080p60)."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "No DisplayPort and no USB-C DP-Alt mode (USB-C is power-only on this board)."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "1× 2-lane MIPI-DSI display connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "1× 2-lane MIPI-CSI camera connector (FPC)."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "4-ring 3.5 mm jack with mic input; 24-bit/96 kHz HD codec."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "40-pin header laid out compatible with the Raspberry Pi (3.3 V/5 V/GND on the same pins) and matching the Rock Pi 4 family pinout."
+    },
+    "rpi-hat-compatible": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Mechanically Pi-shaped (~85×56 mm with Pi-style mounting holes) and electrically Pi-compatible 40-pin header. No HAT EEPROM auto-config standard, but most third-party HATs fit and work."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.x via M.2 M-key slot",
+      "source": ["https://radxa.com/products/rock4/4se/"],
+      "comment": "M.2 M-key 2280-class slot on the underside, NVMe SSD up to 2 TB; single PCIe 2.x lane from the RK3399."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet pin table exposes 2× UART, 2× SPI, 3× I²C, plus PCM/I2S, SPDIF, PWM, and ADC on the 40-pin header."
+    },
+    "power-input": {
+      "value": "USB-C PD 2.0 (9V/2A, 12V/2A, 15V/2A, 20V/2A) or fixed 6–24 V",
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "USB Type-C power port supports USB PD 2.0, Qualcomm QC 3.0/2.0, or any fixed 6–24 V supply. 5 V from GPIO pins 2/4 also supported."
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No measured idle figure published by Radxa or by a credible reviewer (Phoronix, Jeff Geerling, CNX-Software) specifically for the ROCK 4 SE. Per RESEARCH.md, prefer null over extrapolating from the original Rock Pi 4."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "No measured load figure published by Radxa or by a credible reviewer specifically for the ROCK 4 SE. Per RESEARCH.md, prefer null over extrapolating from the original Rock Pi 4."
+    },
+    "cooling-required": {
+      "value": ["passive-ok"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet (section 5.7): \"will operate perfectly well without any extra cooling … designed for sprint performance.\" Throttles at 85 °C. Heatsink only needed for sustained high load."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Onboard RTC battery header on the underside (visible in the datasheet board diagram, page 3)."
+    },
+    "length-mm": {
+      "value": 84.83,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Mechanical drawing in datasheet section 3 lists 84.8316 mm (Pi-standard length)."
+    },
+    "width-mm": {
+      "value": 56.00,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Mechanical drawing in datasheet section 3 lists 56.0019 mm (Pi-standard width)."
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Within ~5 mm of 85×56 mm and Pi-style mounting holes — matches the Assessment Guideline for pi-standard."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Mounting hole spacing 49.0 × 58.0 mm matches Raspberry Pi 4 / Rock Pi 4 family layout."
+    },
+    "weight-g": {
+      "value": null,
+      "comment": "Radxa does not publish a bare-board weight; retailer pages list ~58 g but that's commonly the gross/packaged weight rather than PCB-only. Recorded null per RESEARCH.md guidance to avoid extrapolation."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts",
+        "https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi"
+      ],
+      "comment": "Board-specific DTS rk3399-rock-4se.dts merged upstream (arrived in 2023, present in mainline as of v6.6+). RK3399 has mature mainline support (Ethernet, USB3, HDMI, GPIO, GPU via panfrost, eMMC, MMC). Wi-Fi/BT via brcmfmac may need firmware blobs."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://github.com/radxa-build/rock-4se/releases/"],
+      "comment": "Radxa publishes an official Debian Bookworm + KDE image (rock-4se_bookworm_kde) via radxa-build/rock-4se on GitHub."
+    },
+    "distros-with-images": {
+      "value": ["debian", "armbian"],
+      "source": [
+        "https://github.com/radxa-build/rock-4se/releases/",
+        "https://forum.armbian.com/topic/11470-kernel-5xx-and-rk3399/"
+      ],
+      "comment": "Radxa officially publishes Debian. Armbian supports the Rock Pi 4 family broadly (community / WIP for ROCK 4 SE specifically — DTS is upstream so kernel boots, but a board-specific Armbian image was not consistently published as of early 2024). Android images were also published by Radxa for Rock Pi 4 family (Android 7.1/9/10/11) but no longer surface for the SE specifically."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://lists.denx.de/pipermail/u-boot/2023-July/523633.html"],
+      "comment": "Mainline U-Boot has board support (\"arm: rockchip: Add Radxa ROCK 4SE\" patch series, July 2023)."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet section 6: \"ROCK Pi guarantee availability ROCK Pi 4B SE until at least September 2029\" — 7-year window from 2022 launch."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf"],
+      "comment": "Datasheet lists Android 7.1 / 9.0 / 10 / 11 support. Maintenance status of Android images today is unclear; original SDK images existed at launch."
+    },
+    "msrp-base-usd": {
+      "value": 70,
+      "source": [
+        "https://linuxgizmos.com/rock-4-se-single-board-computer-goes-on-sale-for-70/",
+        "https://www.okdo.com/us/p/okdo-rock-4-model-se-4gb-single-board-computer-rockchip-rk3399-t-arm-cortex-a72-cortex-a53/"
+      ],
+      "comment": "Launch price (Sept 2022) approximately US$70 for the 4 GB SKU via OKdo. Radxa does not publish a public MSRP page; this is the OKdo launch price (£61.12 ex-VAT ≈ $70.50). Checked 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": null,
+      "comment": "8 GB SKU is listed by Radxa but no consistent public MSRP found; retailers vary widely. 4 GB is by far the most-retailed SKU. Checked 2026-04-26."
+    },
+    "available-regions": {
+      "value": ["north-america", "europe", "asia-pacific"],
+      "source": [
+        "https://www.okdo.com/us/p/okdo-rock-4-model-se-4gb-single-board-computer-rockchip-rk3399-t-arm-cortex-a72-cortex-a53/",
+        "https://ameridroid.com/products/rock-4b-se-4gb",
+        "https://shop.sb-components.co.uk/products/rock-4b-se-4gb"
+      ],
+      "comment": "Sold via OKdo (global), ameriDroid (US), DFRobot (Asia/global), SB Components (UK), Arduino Store (EU), Rokland (US). Snapshot 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://ameridroid.com/products/rock-4b-se-4gb"],
+      "comment": "In stock at major resellers (ameriDroid, OKdo, DFRobot) as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "http://rokland.com/support/manuals/Rock%20Pi4B%20SE%20Datasheet%20v1.2.pdf",
+        "https://wiki.radxa.com/Rock4/4se",
+        "https://docs.radxa.com/en/rock4"
+      ],
+      "comment": "Adequate: official PDF datasheet (rev 1.2), wiki page, and docs portal exist; schematics PDF available; coverage is decent but inconsistent (older wiki vs newer docs portal split, no full PCB design files, sparse troubleshooting guides for the SE specifically)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.radxa.com/"],
+      "comment": "Radxa is an established second-tier vendor per RESEARCH.md thresholds; ROCK 4 SE is one of many boards in the line and inherits the wider Rock Pi 4 community."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.radxa.com/"],
+      "comment": "Vendor-run forum (forum.radxa.com) with regular activity, including a dedicated ROCK 4 Series subforum."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://radxa.com/products/rock4/4se/",
+        "https://kksb-cases.com/products/kksb-rock-pi-4b-case"
+      ],
+      "comment": "Adequate: official PoE HAT, M.2 cases, multiple third-party cases (KKSB, GeeekPi, 52Pi), heatsinks, fans. Pi-style header lets most generic HATs fit but no SE-specific HAT certification programme."
+    }
+  }
 }
