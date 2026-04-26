@@ -234,7 +234,7 @@ Users should be able to:
 - [x] **Orange Pi 5 Plus** — RK3588, dual 2.5G Ethernet, NAS-friendly
 - [x] **Orange Pi 5 Pro** — RK3588S, mid-tier
 - [x] **Orange Pi 5 Max** — RK3588 with high-end I/O
-- [ ] **Orange Pi Zero 3** — Allwinner H618, ultra-cheap LAN-capable
+- [x] **Orange Pi Zero 3** — Allwinner H618, ultra-cheap LAN-capable
 - [ ] **Orange Pi 3B** — RK3566, RPi 3B-style form factor
 - [ ] **FriendlyELEC NanoPC-T6** — RK3588, mini-ITX-ish, dual 2.5G LAN
 - [ ] **FriendlyELEC NanoPi R6S** — RK3588S router-class form factor
