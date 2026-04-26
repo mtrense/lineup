@@ -1,5 +1,387 @@
 {
   "name": "Pine64 RockPro64",
   "description": "RK3399, established community",
-  "values": {}
+  "icon": "https://wiki.pine64.org/wiki/File:RockPro64-isoview-web.jpg",
+  "url": "https://pine64.org/devices/rockpro64/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Pine64",
+      "source": ["https://pine64.org/devices/rockpro64/"]
+    },
+    "model": {
+      "value": "ROCKPro64",
+      "source": ["https://pine64.org/devices/rockpro64/", "https://wiki.pine64.org/wiki/ROCKPro64"]
+    },
+    "release-date": {
+      "value": "2018-06",
+      "source": [
+        "https://www.cnx-software.com/2018/04/28/rockpro64-board-is-now-available-for-59-99-and-up-for-early-adopters-developers/"
+      ],
+      "comment": "Initially announced January 2018; early-adopter pre-orders opened end of April 2018, and general availability was reported in June 2018."
+    },
+    "status": {
+      "value": ["available-new", "eol-but-stocked"],
+      "source": [
+        "https://pine64.org/devices/rockpro64/",
+        "https://pine64.com/product/rockpro64-4gb-single-board-computer/",
+        "https://ameridroid.com/products/rockpro64"
+      ],
+      "comment": "Pine64 declared LTS (long-term supply) commitment until at least 2023. Both Pine64 store variants (2GB, 4GB) showed Out of Stock as of 2026-04-26; major resellers (Ameridroid) also out of stock. Still listed as a current product on pine64.org/devices, no formal discontinuation announced."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Rockchip RK3399 is an ARMv8-A 64-bit hexa-core SoC."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://pine64.org/documentation/ROCKPro64/Further_information/Schematics_and_certifications/",
+        "http://files.pine64.org/doc/rockpro64/rockpro64_v20-SCH.pdf"
+      ],
+      "comment": "Pine64 publishes schematics PDFs (v2.0, v2.1) and DXF board outlines, but full PCB layout/design files are not released under an OSHW-compatible license. Per RESEARCH.md, schematics-only does not qualify."
+    },
+    "country-of-origin": {
+      "value": "Hong Kong",
+      "source": ["https://en.wikipedia.org/wiki/Pine64"],
+      "comment": "Pine64 is a Pine Microsystems Inc. project; the Pine Store / community is operated out of Hong Kong (with manufacturing in mainland China)."
+    },
+    "website": {
+      "value": "https://pine64.org/devices/rockpro64/",
+      "source": ["https://pine64.org/devices/rockpro64/"]
+    },
+    "soc": {
+      "value": "Rockchip RK3399",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/", "https://wiki.pine64.org/wiki/ROCKPro64"]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"]
+    },
+    "cpu-cores": {
+      "value": 6,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Hexa-core: 2× Cortex-A72 (big) + 4× Cortex-A53 (LITTLE)."
+    },
+    "cpu-architecture": {
+      "value": "2× Cortex-A72 + 4× Cortex-A53 (big.LITTLE)",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/", "https://en.wikipedia.org/wiki/Rockchip_RK3399"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.0,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "A72 cluster up to 2.0 GHz; A53 cluster up to 1.5 GHz. Max stock clock taken from A72."
+    },
+    "process-node": {
+      "value": "28 nm",
+      "source": ["https://rockchips.net/rockchip-rk3399/"],
+      "comment": "RK3399 is fabricated on a 28 nm HKMG process."
+    },
+    "gpu": {
+      "value": "ARM Mali-T860 MP4",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Quad-core Mali-T860 at 650 MHz."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Hardware supports OpenGL ES 1.1/1.2/2.0/3.1/3.2 per Mali-T860 vendor specs; mainline Panfrost driver may not expose all features."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Mali-T860 supports Vulkan 1.0 per ARM datasheet; in practice usable via mainline Panfrost or vendor blobs."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/", "https://en.wikipedia.org/wiki/Rockchip_RK3399"],
+      "comment": "RK3399 (used here) has no dedicated NPU. The RK3399Pro variant has an NPU but is not used on the RockPro64."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on RK3399."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Hardware decode for H.264, H.265 (HEVC), and VP9 up to 4K@60. No AV1 decode (RK3399 predates AV1 hardware support)."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": ["https://en.wikipedia.org/wiki/Rockchip_RK3399"],
+      "comment": "RK3399 video encoder supports H.264 up to 1080p@30. No H.265, VP9, or AV1 hardware encode."
+    },
+    "ram-min-gb": {
+      "value": 2,
+      "source": ["https://pine64.com/product/rockpro64-2gb-single-board-computer/"]
+    },
+    "ram-max-gb": {
+      "value": 4,
+      "source": ["https://pine64.com/product/rockpro64-4gb-single-board-computer/"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Dual-channel LPDDR4."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "eMMC module connector onboard; modules sold separately up to 128 GB."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "No native M.2 slot on the PCB. NVMe SSDs are used via the open-ended PCIe 2.1 x4 slot with a PCIe-to-M.2 adapter card."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "No native SATA. SATA only via add-in PCIe card (e.g., the Pine64 PCIe-SATA card with ASMedia ASM1061)."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Single Gigabit Ethernet via Realtek RTL8211F PHY."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "No onboard Wi-Fi. Pine64 sells optional 802.11ac modules (older 2×2 MIMO with BT 4.x, newer 1×1 with BT 5.0) that connect via the dedicated module header."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "No onboard Bluetooth. Provided only via the optional Wi-Fi/BT add-on module (BT 4.x or 5.0 depending on module revision)."
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "1× USB 3.0 Type-A host port."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "1× USB 3.0 Type-C with DisplayPort 1.2 alt mode (data + DP); not used for power input."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "No PoE on the Ethernet port and no PoE HAT pinout in Pine64's accessory catalog for this board."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "1× HDMI 2.0 output up to 4K@60. Wiki notes a single HDMI port (RK3399 internally has two VOPs but only one HDMI is broken out)."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "HDMI 2.0 4096×2160 @ 60 Hz; secondary VOP supports up to 2560×1600 via eDP/MIPI-DSI."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "DisplayPort 1.2 available via the USB-C port (DP-Alt mode); no separate native DP connector."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Dual MIPI-DSI channels (4 lanes each)."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Stereo MIPI-CSI camera interface."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "3.5 mm stereo jack plus separate 3-pin S/PDIF header."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "2×20 'Pi-2' GPIO header."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "Form factor matches Pi 2×20 layout, but pin assignments differ from Raspberry Pi GPIO; many HATs that depend on RPi-specific pin mapping will not work without remapping."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "Mechanically incompatible with RPi HAT spec (different board outline ~133×80 mm vs Pi 85×56 mm; mounting holes are not the Pi pattern). No HAT EEPROM auto-config."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.1 x4 open-ended slot (Gen1 speed)",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Full open-ended physical x4 slot wired to the RK3399's PCIe 2.1 controller; effective speed limited to PCIe Gen1 in many configurations per vendor docs."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "I²C, SPI, UART, and I²S all available on the Pi-2 header."
+    },
+    "power-input": {
+      "value": "DC barrel 12V/3A (5.5/2.1 mm)",
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Pine64 sells a 12V/5A version recommended for use with PCIe HDDs/SSDs."
+    },
+    "idle-power-w": {
+      "value": 3.1,
+      "source": ["https://forum.pine64.org/showthread.php?tid=6343"],
+      "comment": "Forum-reported idle ~3.1 W with eMMC, HDMI display attached, no PCIe peripherals (user 'lucho'); other reporters saw ~2.3-4.2 W depending on attached storage. Snapshot reading."
+    },
+    "load-power-w": {
+      "value": 8.5,
+      "source": ["https://forum.pine64.org/showthread.php?tid=6343"],
+      "comment": "Forum-reported ~8.5 W under sysbench CPU load (user 'Bullet64'); peaks of 11 W observed under heavier 6-thread loads. No vendor-published number."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Pine64 sells and recommends a passive aluminium heatsink (with optional fan); board ships without cooling and will throttle quickly under sustained A72 load without one."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64"],
+      "comment": "Dedicated RTC battery backup header; CR-2032 holder accessory sold separately by Pine64."
+    },
+    "length-mm": {
+      "value": 133,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "133 × 80 × 19 mm per Features doc."
+    },
+    "width-mm": {
+      "value": 80,
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "133×80 mm is well outside RPi-standard (~85×56 mm) and does not match Pico-ITX (100×72) or Nano-ITX. Treated as a custom Pine64 outline."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://pine64.org/documentation/ROCKPro64/_full/"],
+      "comment": "Mounting holes are not Pi-pattern. Heatsink mounting holes around the RK3399 are 59 mm apart (Pine64-specific)."
+    },
+    "weight-g": {
+      "value": 116,
+      "source": ["https://pine64.com/product/rockpro64-4gb-single-board-computer/"],
+      "comment": "0.116 kg per Pine Store product spec; bare board without heatsink or accessories."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://www.armbian.com/rockpro64/",
+        "https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts"
+      ],
+      "comment": "Mature mainline support. The rk3399-rockpro64.dts has been in the upstream Linux kernel for years; Armbian ships images on current 6.18.x kernel as of April 2026 with Ethernet, USB, HDMI, GPIO, PCIe all working. GPU acceleration relies on Panfrost (mainline)."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64_Software_Releases"],
+      "comment": "Pine64 wiki Software Releases page links community-maintained Debian/Armbian images and vendor Android builds."
+    },
+    "distros-with-images": {
+      "value": ["debian", "armbian", "manjaro", "dietpi", "alpine"],
+      "source": [
+        "https://wiki.pine64.org/wiki/ROCKPro64_Software_Releases",
+        "https://www.armbian.com/rockpro64/"
+      ],
+      "comment": "Debian (Bullseye/Bookworm), Armbian (Ubuntu 24.04 + Debian 13 builds on current kernel), Manjaro ARM, DietPi, postmarketOS (Alpine-based) all publish board-specific images. Wiki does not list a board-specific Ubuntu image directly, and Fedora/openSUSE have no dedicated RockPro64 image. Also covered: LibreELEC, Batocera, OpenWrt, Slackware, NixOS, Void Linux, NetBSD, FreeBSD, OpenBSD."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": [
+        "https://wiki.pine64.org/wiki/ROCKPro64",
+        "https://github.com/u-boot/u-boot/tree/master/configs"
+      ],
+      "comment": "U-Boot (mainline support; rockpro64-rk3399_defconfig in upstream U-Boot). Boots from SPI flash, eMMC, microSD, or USB."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["https://pine64.org/devices/rockpro64/"],
+      "comment": "Pine64 originally committed to LTS supply through 2023+. Board has been continuously available for 7+ years (2018-2026) and the SoC has long-term mainline kernel support; vendor-stocked supply is now thin (out of stock at Pine Store), but software longevity is among the best on the SBC market for RK3399."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://wiki.pine64.org/wiki/ROCKPro64_Software_Releases"],
+      "comment": "Vendor-listed Android 7.1.2, 8.1.0, and 9.0.0 images for both eMMC and microSD. No newer Android builds maintained."
+    },
+    "msrp-base-usd": {
+      "value": 59.99,
+      "source": ["https://pine64.com/product/rockpro64-2gb-single-board-computer/"],
+      "comment": "2GB community price as listed at pine64.com on 2026-04-26 (out of stock)."
+    },
+    "msrp-top-usd": {
+      "value": 79.99,
+      "source": ["https://pine64.com/product/rockpro64-4gb-single-board-computer/"],
+      "comment": "4GB community price as listed at pine64.com on 2026-04-26 (out of stock). Resellers like Ameridroid list ~$99.95."
+    },
+    "available-regions": {
+      "value": ["north-america", "europe", "asia-pacific"],
+      "source": [
+        "https://pine64.com/product/rockpro64-4gb-single-board-computer/",
+        "https://ameridroid.com/products/rockpro64",
+        "https://botland.store/pine64-modules/12991-pine64-rockpro64-rockchip-rk3399-cortex-a72-a53-4gb-ram-5904422320201.html"
+      ],
+      "comment": "Pine64 ships from a global store and EU store; Ameridroid covers North America; Botland covers Europe; Indian distributor Fab.to.Lab also stocks. No widely-distributed India-direct or LATAM-specific channels."
+    },
+    "typical-lead-time": {
+      "value": ["scarce"],
+      "source": [
+        "https://pine64.com/product/rockpro64-4gb-single-board-computer/",
+        "https://pine64.com/product/rockpro64-2gb-single-board-computer/",
+        "https://ameridroid.com/products/rockpro64"
+      ],
+      "comment": "Snapshot 2026-04-26: Pine Store (both 2GB and 4GB) and Ameridroid all show Out of Stock. Worth flagging — board may be drifting toward EOL despite Pine64's earlier LTS pledge."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://wiki.pine64.org/wiki/ROCKPro64",
+        "https://pine64.org/documentation/ROCKPro64/",
+        "https://pine64.org/documentation/ROCKPro64/Further_information/Datasheets/"
+      ],
+      "comment": "Comprehensive vendor wiki, full schematic PDFs, layout files, datasheet links for the SoC and peripherals; getting-started guides exist. Slightly behind RPi-tier polish, but excellent by SBC standards."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": [
+        "https://forum.pine64.org/forumdisplay.php?fid=98",
+        "https://forum.armbian.com/forum/163-pine-rockpro64/"
+      ],
+      "comment": "Active Pine64 forum subforum and dedicated Armbian RockPro64 subforum; per RESEARCH.md threshold, Pine64 fits 'medium' (established second-tier vendor)."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.pine64.org/", "https://wiki.pine64.org/wiki/Pine64_IRC_Chat_Channels"],
+      "comment": "Vendor-run forum.pine64.org and official IRC/Matrix/Discord-equivalent chat channels remain active in 2026."
+    },
+    "accessory-ecosystem": {
+      "value": 4,
+      "source": [
+        "https://pine64.com/product-category/rockpro64/",
+        "https://ameridroid.com/products/rockpro64"
+      ],
+      "comment": "Strong vendor-published accessory line: NAS-style metal case, playbox/desktop case, passive heatsink + fan, PCIe-to-SATA card, NVMe adapter, Wi-Fi/BT modules, RTC battery holder, eMMC modules, USB-PD trigger, IR receiver. Light third-party HAT ecosystem because pinout is not Pi-compatible."
+    }
+  }
 }

@@ -251,7 +251,7 @@ Users should be able to:
 - [x] **LibreComputer Renegade (ROC-RK3328-CC)** — RK3328, budget option
 - [x] **LibreComputer Alta (AML-A311D-CC)** — Amlogic A311D with NPU
 - [x] **Pine64 Quartz64 Model A** — RK3566, NAS-oriented
-- [ ] **Pine64 RockPro64** — RK3399, established community
+- [x] **Pine64 RockPro64** — RK3399, established community
 - [ ] **Pine64 Star64** — JH7110 RISC-V
 - [ ] **BeagleBone Black** — TI AM3358, classic industrial / education SBC
 - [ ] **BeagleBone AI-64** — TI TDA4VM with C7x DSPs
