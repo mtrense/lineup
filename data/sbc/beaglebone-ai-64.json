@@ -1,5 +1,378 @@
 {
   "name": "BeagleBone AI-64",
   "description": "TI TDA4VM with C7x DSPs",
-  "values": {}
+  "url": "https://www.beagleboard.org/boards/beaglebone-ai-64",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "BeagleBoard.org Foundation",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Manufactured under license; broadly distributed by Seeed Studio."
+    },
+    "model": {
+      "value": "BeagleBone AI-64",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "release-date": {
+      "value": "2022-06",
+      "source": [
+        "https://www.beagleboard.org/blog/2022-06-14-beaglebone-ai-64-our-first-broadly-available-64-bit-open-hardware-single-board-computer",
+        "https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"
+      ],
+      "comment": "Announced/launched 14 June 2022."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": ["https://www.digikey.com/en/products/detail/texas-instruments/BEAGL-BONE-AI-64/21283880"],
+      "comment": "DigiKey shows in stock with 29 units at $237.50 as of 2026-04-26; manufacturer lead time 12 weeks."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Cortex-A72 application cores are ARMv8 (aarch64); on-die Cortex-R5F MCUs are ARMv7-R but not the application ISA."
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://certification.oshwa.org/us002120.html",
+        "https://embeddedcomputing.com/technology/open-source/beaglebone-ai-64-the-first-64-bit-open-hardware-single-board-computer-broadly-available-from-beagleboardorg"
+      ],
+      "comment": "OSHWA-certified (US002120); design files published in BeagleBoard.org's GitLab/OpenBeagle."
+    },
+    "country-of-origin": {
+      "value": "USA",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "BeagleBoard.org Foundation is headquartered in Michigan, USA; PCBs assembled in China."
+    },
+    "website": {
+      "value": "https://www.beagleboard.org/boards/beaglebone-ai-64",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "soc": {
+      "value": "TI TDA4VM (J721E)",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Member of TI's K3 J721E family."
+    },
+    "soc-vendor": {
+      "value": ["other"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "TI (Texas Instruments) — `ti` tag not yet defined in attributes.json; using `other` per ongoing schema gap (same workaround as beaglebone-black). User has flagged for batch schema fix."
+    },
+    "cpu-cores": {
+      "value": 2,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "2× Cortex-A72 application cores. Additional 6× Cortex-R5F real-time MCUs and 2× C66x + 1× C7x DSPs not counted as application CPU cores."
+    },
+    "cpu-architecture": {
+      "value": "2× Cortex-A72 (+ 6× Cortex-R5F MCUs, 2× C66x DSP, 1× C7x DSP)",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.0,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Cortex-A72 application cores at up to 2.0 GHz."
+    },
+    "process-node": {
+      "value": "16 nm",
+      "source": ["https://www.ti.com/tool/BEAGL-BONE-AI-64"],
+      "comment": "TDA4VM is a TI 16 nm FinFET part per TI processor SDK documentation; not directly stated on the BeagleBoard product page."
+    },
+    "gpu": {
+      "value": "PowerVR Rogue 8XE GE8430 @ 750 MHz",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Imagination Technologies PowerVR Rogue 8XE GE8430."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.imaginationtech.com/products/gpu/powervr-series8xe/"],
+      "comment": "PowerVR Series8XE supports OpenGL ES 3.2; driver coverage on Linux is via TI's vendor stack."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": ["https://www.armbian.com/beaglebone-ai64/"],
+      "comment": "No Vulkan driver shipped in TI's vendor stack or in mainline; PowerVR open-source driver work has not landed Vulkan for this generation."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "C7x vector DSP + Matrix Multiply Accelerator (MMA) form the deep-learning accelerator."
+    },
+    "npu-performance-tops": {
+      "value": 8,
+      "source": [
+        "https://www.beagleboard.org/boards/beaglebone-ai-64",
+        "https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"
+      ],
+      "comment": "8 TOPS @ INT8 from C7x+MMA at 1.0 GHz (vendor figure)."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.ti.com/lit/ds/symlink/tda4vm.pdf"],
+      "comment": "TDA4VM datasheet lists H.264 and H.265 (HEVC) decode up to 4K@60. No VP9/AV1."
+    },
+    "hw-video-encode": {
+      "value": ["h264"],
+      "source": ["https://www.ti.com/lit/ds/symlink/tda4vm.pdf"],
+      "comment": "TDA4VM datasheet lists H.264 encode up to 4K@60. No H.265 encode on this SoC variant."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Single 4 GB SKU; no other RAM options sold."
+    },
+    "ram-max-gb": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "16 GB onboard eMMC."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "M.2 E-key socket is for Wi-Fi/cellular modules (PCIe/USB/SDIO), not M-key NVMe storage."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "No native SATA port."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Single Gigabit Ethernet port."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "No onboard Wi-Fi; M.2 E-key slot accepts a user-supplied Wi-Fi/Bluetooth module."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "No onboard Bluetooth; available only via M.2 E-key add-on."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "2× USB 3.0 Type-A (stacked)."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "1× USB-C carrying USB 3.0 data and power."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "No PoE support; no PoE HAT/cape ecosystem for the BeagleBone P8/P9 layout."
+    },
+    "hdmi-outputs": {
+      "value": 0,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "Mini DisplayPort replaces the micro-HDMI of the earlier BeagleBone AI; no HDMI port on the AI-64."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": ["https://www.ti.com/lit/ds/symlink/tda4vm.pdf"],
+      "comment": "TDA4VM display subsystem supports 4K@60 over DisplayPort."
+    },
+    "displayport": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Native mini DisplayPort (eDP/DP) output."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "4-lane MIPI-DSI display connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Two 4-lane MIPI-CSI camera connectors."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "No 3.5 mm analog audio jack on board; audio routed via DisplayPort or via cape/USB add-ons."
+    },
+    "gpio-pins": {
+      "value": 96,
+      "source": [
+        "https://docs.beagleboard.org/boards/beaglebone/ai-64/04-expansion.html",
+        "https://forum.beagleboard.org/t/bbai64-p8-p9-modes/32837"
+      ],
+      "comment": "P8 (46 pins) + P9 (50 pins) BeagleBone cape headers. Reports vary on P8 width; some sources cite 46+46. Total expansion pin count taken from BeagleBoard expansion docs."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Uses BeagleBone P8/P9 cape headers, not the 40-pin Raspberry Pi GPIO layout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Compatible with BeagleBone capes, not Raspberry Pi HATs."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× M.2 E-key (PCIe + USB + SDIO, primarily for Wi-Fi)",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "M.2 2230 E-key slot; intended for wireless modules but also exposes a PCIe lane."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/ai-64/04-expansion.html"],
+      "comment": "I²C, SPI, UART, CAN, PWM all available on P8/P9 cape headers."
+    },
+    "power-input": {
+      "value": "USB-C 5V/3A or DC barrel 5V/3A (15 W)",
+      "source": [
+        "https://docs.beagleboard.org/boards/beaglebone/ai-64/02-quick-start.html",
+        "https://wikidevi.wi-cat.ru/BeagleBone_AI-64"
+      ],
+      "comment": "Vendor recommends a 5V ≥ 3A (15 W) supply via USB-C or barrel jack."
+    },
+    "idle-power-w": {
+      "value": 5,
+      "source": ["https://medium.com/@hypnotriod/building-simple-beaglebone-ai-64-based-bot-in-go-0f3023c68ad0"],
+      "comment": "Approximate measurement (~5 W idle) by a community user using a UPS module; treat as ballpark, not a Phoronix-grade benchmark."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable independent measurement of full-load draw found. Vendor PSU recommendation is 15 W headroom; this is a TDP allowance, not a measured load figure."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "Board ships with a small heatsink on the TDA4VM; sustained AI/vision workloads benefit from active airflow but no fan is mandated by the vendor."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "source": [],
+      "comment": "No clear documentation of an onboard RTC coin-cell holder or battery header was found in the vendor docs surfaced for this pass; community add-ons exist but on-board provision is unconfirmed."
+    },
+    "length-mm": {
+      "value": 102.5,
+      "source": ["https://wikidevi.wi-cat.ru/BeagleBone_AI-64"],
+      "comment": "PCB 102.5 × 80 × 2.0 mm (14 layers)."
+    },
+    "width-mm": {
+      "value": 80,
+      "source": ["https://wikidevi.wi-cat.ru/BeagleBone_AI-64"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://wikidevi.wi-cat.ru/BeagleBone_AI-64"],
+      "comment": "BeagleBone-cape form factor; larger than the classic BeagleBone Black footprint and not aligned with Pi-standard or any ITX size."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://wikidevi.wi-cat.ru/BeagleBone_AI-64"],
+      "comment": "BeagleBone P8/P9 cape mounting pattern, not RPi standard."
+    },
+    "weight-g": {
+      "value": 193,
+      "source": ["https://wikidevi.wi-cat.ru/BeagleBone_AI-64"],
+      "comment": "Net weight including heatsink."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://www.armbian.com/beaglebone-ai64/",
+        "https://docs.u-boot.org/en/latest/board/beagle/j721e_beagleboneai64.html"
+      ],
+      "comment": "Cortex-A72 cores, basic peripherals, U-Boot, and Ethernet are upstream (TI K3 platform). Vendor-only stack still required for full GPU, C7x/MMA NPU (TIDL), DSP, and vision accelerators. Armbian/BeagleBoard official images all use TI vendor 6.12/6.18 kernels."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "BeagleBoard.org publishes maintained Debian 13 images (XFCE and minimal) with multiple kernel options."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://www.beagleboard.org/distros",
+        "https://www.armbian.com/beaglebone-ai64/"
+      ],
+      "comment": "Debian (official BeagleBoard images), Ubuntu and Debian Forky via Armbian; Kali, Home Assistant, OMV, openHAB images also published via Armbian."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.u-boot.org/en/latest/board/beagle/j721e_beagleboneai64.html"],
+      "comment": "Mainline U-Boot has board support for the J721E BeagleBone AI-64; TI ROM bootloader handles initial stages."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-ai-64"],
+      "comment": "BeagleBoard.org has historically maintained images for many years (e.g., BeagleBone Black is still supported), but no specific committed LTS window is published for the AI-64."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "No official or community-maintained Android image surfaced; only Debian/Ubuntu/Armbian variants offered."
+    },
+    "msrp-base-usd": {
+      "value": 187,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "Initial 2022 launch MSRP. As of 2026-04-26, DigiKey street price is $237.50 — single-config product, so base = top."
+    },
+    "msrp-top-usd": {
+      "value": 187,
+      "source": ["https://www.cnx-software.com/2022/06/15/beaglebone-ai-64-sbc-features-ti-tda4vm-cortex-a72-r5f-soc-with-8-tops-ai-accelerator/"],
+      "comment": "Single configuration; same as base."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/BEAGL-BONE-AI-64/21283880",
+        "https://us.rs-online.com/product/beagleboard/102110646/73466756/"
+      ],
+      "comment": "Distributed via DigiKey, Mouser, RS Components, Element14/Newark, OKdo, Vilros — global retail footprint."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.digikey.com/en/products/detail/texas-instruments/BEAGL-BONE-AI-64/21283880"],
+      "comment": "DigiKey shows 29 units in stock as of 2026-04-26; manufacturer lead time is 12 weeks for restocking."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/ai-64/"],
+      "comment": "Comprehensive multi-chapter docs site, schematics, board files, getting-started, expansion docs; one notch below the very best (RPi/Hardkernel) due to occasional gaps and SDK fragmentation."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "BeagleBoard ecosystem broadly is large/established; AI-64 specifically attracts a smaller subset focused on TI K3/AI work."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "Vendor-run Discourse forum (forum.beagleboard.org) with active threads."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": ["https://www.beagleboard.org/capes"],
+      "comment": "Inherits the BeagleBone cape ecosystem (P8/P9 compatible), but many older capes don't fit AI-64's larger footprint without adjustments. Camera and display ecosystem is decent but not as broad as RPi accessories."
+    }
+  }
 }
