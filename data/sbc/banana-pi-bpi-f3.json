@@ -1,5 +1,371 @@
 {
   "name": "Banana Pi BPI-F3",
   "description": "SpacemiT K1 RISC-V octa-core",
-  "values": {}
+  "url": "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "SINOVOIP / Banana Pi",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "model": {
+      "value": "BPI-F3",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "release-date": {
+      "value": "2024-05",
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"],
+      "comment": "Public availability May 2024 per CNX-Software launch coverage."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html"
+      ],
+      "comment": "Listed as current product on official BPI shop and forum (checked 2026-04-26)."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "SpacemiT K1 is RV64GCVB (RISC-V 64-bit)."
+    },
+    "open-source-hardware": {
+      "value": null,
+      "comment": "Marketed as open-source hardware, but vendor publishes only schematics PDFs and references. Per Assessment Guidelines, schematics-only does not qualify; could not confirm full PCB design files under an OSHW-compatible license. Marking null pending verification."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://www.banana-pi.org/web/?topclassid=19&classid=83&id=547&wap=1"],
+      "comment": "SINOVOIP / Banana Pi is headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "soc": {
+      "value": "SpacemiT K1",
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://www.spacemit.com/en/key-stone-k1/"
+      ]
+    },
+    "soc-vendor": {
+      "value": ["spacemit"],
+      "source": ["https://www.spacemit.com/en/key-stone-k1/"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Two clusters of 4× SpacemiT X60; only Cluster0 carries the AI extensions."
+    },
+    "cpu-architecture": {
+      "value": "8× SpacemiT X60 (RV64GCVB, RVA22)",
+      "source": [
+        "https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/",
+        "https://www.spacemit.com/en/key-stone-k1/"
+      ],
+      "comment": "Asymmetric pair of clusters (4+4) of identical X60 cores; Cluster0 has the 2 TOPS AI extension, Cluster1 does not."
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.6,
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"],
+      "comment": "K1 silicon is rated up to 2.0 GHz, but BPI-F3 ships clocked at 1.6 GHz per CNX-Software and community measurements."
+    },
+    "process-node": {
+      "value": null,
+      "comment": "Not officially disclosed by SpacemiT for the K1; community references vary. Using null per Assessment Guidelines for unverifiable Chinese-SoC nodes."
+    },
+    "gpu": {
+      "value": "Imagination IMG BXE-2-32 @ 819 MHz",
+      "source": [
+        "https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/",
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3"
+      ]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"],
+      "comment": "IMG BXE-2-32 supports Vulkan 1.2 (some sources cite 1.3); driver maturity on RISC-V Linux varies."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.spacemit.com/en/key-stone-k1/"],
+      "comment": "AI extension is part of Cluster0 of the X60 cores rather than a discrete NPU block, but vendor markets it as NPU-class."
+    },
+    "npu-performance-tops": {
+      "value": 2.0,
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://www.spacemit.com/en/key-stone-k1/"
+      ],
+      "comment": "Vendor-quoted 2.0 TOPS at INT8 (per usual SBC convention)."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"],
+      "comment": "VPU supports H.264/H.265/VP9/VP8 4K dec; AV1 is not advertised. VP8 has no defined tag, omitted."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"],
+      "comment": "Encode covers H.264/H.265/VP9/VP8 per CNX-Software launch article. VP8 has no defined tag, omitted."
+    },
+    "ram-min-gb": {
+      "value": 2,
+      "source": ["https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html"]
+    },
+    "ram-max-gb": {
+      "value": 16,
+      "source": ["https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "LPDDR4/4X soldered; vendor labels as LPDDR4."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "8/16/32/128 GB onboard eMMC variants."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "M.2 Key M slot with PCIe lanes; supports NVMe SSDs."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "No native SATA port; SATA only via M.2 + JMB582-style adapter."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Two GbE ports; no 2.5G option."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "wifi": {
+      "value": ["wifi-5"],
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"
+      ],
+      "comment": "Onboard 2.4G/5G dual-band 802.11ac module."
+    },
+    "bluetooth": {
+      "value": "4.2",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Vendor wiki specifies BT 4.2 even though similar AP6256 SiP modules can do BT 5.x; trusting vendor."
+    },
+    "usb-a-3x-ports": {
+      "value": 4,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "1× USB 2.0 Type-C OTG (not high-speed); no USB-C power delivery role."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://openelab.io/products/bpi-5400b-poe-for-bpi"
+      ],
+      "comment": "PoE only via add-on BPI-5400B PoE HAT/module; not built-in to the SBC itself."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "HDMI 1.4."
+    },
+    "max-display-resolution": {
+      "value": "1080p@60",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "HDMI output capped at 1080p60 even though VPU decodes 4K."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "No native DP and Type-C is USB 2.0 OTG only (no DP-Alt mode)."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Two MIPI-CSI camera connectors."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Speaker, microphone, and earphone (3.5 mm) jacks present."
+    },
+    "gpio-pins": {
+      "value": 26,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "26-pin header, not the modern Raspberry Pi 40-pin layout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "26-pin header and 148×100 mm board do not match Pi mechanical or HAT EEPROM standards."
+    },
+    "pcie-lanes-exposed": {
+      "value": "M.2 Key M (PCIe 2.1) + Mini-PCIe — up to 5 PCIe 2.1 lanes total exposed (2+2+1)",
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Vendor advertises a 5-lane PCIe 2.1 fanout split as 2+2+1 across M.2 Key M, Mini-PCIe, and an additional connector."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "power-input": {
+      "value": "DC barrel 12V/3A",
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"]
+    },
+    "idle-power-w": {
+      "value": 3.5,
+      "source": ["https://forum.banana-pi.org/t/bpi-f3-what-is-its-idle-power-16gb-and-8gb-ram-versions/27126"],
+      "comment": "Community measurement on 8 GB variant under Bianbu 3.0.1: 2.64–4.78 W idle without peripherals (using midpoint ~3.5 W); checked 2026-04-26."
+    },
+    "load-power-w": {
+      "value": 7.1,
+      "source": ["https://www.linuxlinks.com/banana-pi-bpi-f3-single-board-computer-running-linux-power-consumption/"],
+      "comment": "LinuxLinks measurement under s-tui CPU stress, 7.1 W (compared with OrangePi RV2 at 6.4 W)."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Vendor ships boards with no required cooling but recommends a heatsink for sustained loads; ~7 W max draw is well within passive territory but K1 thermals warrant a heatsink."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": ["https://forum.banana-pi.org/t/using-the-rtc-clock-on-bpi-f3/24613"],
+      "comment": "Onboard RTC interface for connecting a coin-cell battery."
+    },
+    "length-mm": {
+      "value": 148,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "width-mm": {
+      "value": 100,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"]
+    },
+    "form-factor-class": {
+      "value": ["pico-itx"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "148×100 mm is close to Pico-ITX (100×72) only along one axis; closer to a custom router-style PCB. Tagged pico-itx as the closest defined class but it is not a strict match."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "148×100 mm board does not match Pi-standard mounting holes."
+    },
+    "weight-g": {
+      "value": 200,
+      "source": ["https://www.cnx-software.com/2024/05/10/banana-pi-bpi-f3-sbc-spacemit-k1-octa-core-risc-v-ai-soc/"]
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://www.phoronix.com/news/Linux-6.14-SpaceMiT-RISC-V-CPUs",
+        "https://forum.banana-pi.org/t/armbian-sdk-debian-and-ubuntu-images-for-bpi-f3/18421"
+      ],
+      "comment": "SpacemiT K1 support landed in mainline (Linux 6.14+ adds CPU/early enablement); board boots upstream but GPU, NPU, and several K1 peripherals still rely on vendor 6.1.15 BSP for full functionality."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Vendor-maintained Bianbu Linux images (and Debian/Armbian builds) published on the wiki."
+    },
+    "distros-with-images": {
+      "value": ["debian", "armbian", "ubuntu", "fedora"],
+      "source": [
+        "https://wiki.banana-pi.org/Banana_Pi_BPI-F3",
+        "https://forum.banana-pi.org/t/armbian-sdk-debian-and-ubuntu-images-for-bpi-f3/18421",
+        "https://forum.banana-pi.org/t/bpi-f3-running-ubuntu-24-04/18478"
+      ],
+      "comment": "Bianbu (vendor Debian-derivative), Armbian, Ubuntu 24.04, and Fedora RISC-V images all publish board-specific BPI-F3 builds."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "U-Boot + OpenSBI per vendor source tree."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://wiki.banana-pi.org/Banana_Pi_BPI-F3"],
+      "comment": "Vendor has not stated a formal LTS window; SINOVOIP historically rolls support into community/Armbian. Industrial-grade marketing implies multi-year availability but no explicit commitment."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://forum.banana-pi.org/t/banana-pi-f3-risc-v-android-support/25878"],
+      "comment": "No official or community Android image released as of 2026-04-26."
+    },
+    "msrp-base-usd": {
+      "value": 61,
+      "source": ["https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html"],
+      "comment": "Official BPI shop price for 2 GB LPDDR4 + 8 GB eMMC base config; checked 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": null,
+      "comment": "Top 16 GB / 128 GB eMMC SKU price not currently advertised on the official BPI shop product page; resellers list ~$130–160 but vendor price not confirmed."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html",
+        "https://www.amazon.com/BPI-F3-RISC-V-SBC-Performance-Alternatives/dp/B0D458VPZ2"
+      ],
+      "comment": "Sold globally via BPI shop, AliExpress, Amazon US, and major resellers."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.bpi-shop.com/products/anana-pi-bpi-f3-design-with-spacemit-k1-8-core-risc-v-chip.html"],
+      "comment": "In stock at BPI shop and Amazon; checked 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.banana-pi.org/en/BPI-F3/BananaPi_BPI-F3"],
+      "comment": "Vendor wiki and docs site cover specs and getting-started, schematics PDF available, but coverage is uneven and some pages are stubs. Adequate but not exhaustive."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.banana-pi.org/c/risc-v/bpi-f3/122"],
+      "comment": "Active BPI forum sub-category and Armbian thread; sits between niche RISC-V SBCs and large RPi-ecosystem boards."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.banana-pi.org/c/risc-v/bpi-f3/122"],
+      "comment": "Vendor-run forum has an active BPI-F3 sub-section."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": ["https://openelab.io/products/bpi-5400b-poe-for-bpi"],
+      "comment": "Limited official accessories (PoE module, cases). 26-pin non-Pi header rules out the broad RPi HAT ecosystem."
+    }
+  }
 }
