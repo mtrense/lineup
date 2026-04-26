@@ -228,7 +228,7 @@ Users should be able to:
 - [x] **Raspberry Pi 3 Model B+** — Older but still in production; cheap entry point
 - [x] **Radxa ROCK 5B** — RK3588, premier high-performance ARM SBC alternative
 - [x] **Radxa ROCK 5B+** — RK3588 refresh with M.2 and storage upgrades
-- [ ] **Radxa ROCK 5A** — RK3588S in RPi-style form factor
+- [x] **Radxa ROCK 5A** — RK3588S in RPi-style form factor
 - [ ] **Radxa ROCK 4SE** — RK3399-T, mid-tier
 - [ ] **Radxa ZERO 3W** — RK3566 in Pi Zero form factor
 - [ ] **Orange Pi 5 Plus** — RK3588, dual 2.5G Ethernet, NAS-friendly

@@ -1,5 +1,386 @@
 {
   "name": "Radxa ROCK 5A",
   "description": "RK3588S in RPi-style form factor",
-  "values": {}
+  "icon": "https://radxa.com/favicon.ico",
+  "url": "https://radxa.com/products/rock5/5a/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Radxa",
+      "source": ["https://radxa.com/products/rock5/5a/"]
+    },
+    "model": {
+      "value": "ROCK 5A",
+      "source": ["https://radxa.com/products/rock5/5a/"]
+    },
+    "release-date": {
+      "value": "2023-04",
+      "source": [
+        "https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/",
+        "https://liliputing.com/radxa-rock5-model-a-is-a-credit-card-sized-single-board-pc-with-rk3588-and-up-to-16gb-ram/"
+      ],
+      "comment": "Announced Jan 22, 2023; began shipping Q2 2023. Used April 2023 as approximate first ship month."
+    },
+    "status": {
+      "value": ["in-production"],
+      "source": ["https://radxa.com/products/rock5/5a/"],
+      "comment": "Radxa guarantees availability of the ROCK 5A until at least September 2033 per Radxa wiki/docs (checked 2026-04-26)."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://radxa.com/products/rock5/5a/"],
+      "comment": "Radxa publishes schematic PDFs but not full PCB design files under an OSHW-compatible license."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://radxa.com/products/rock5/5a/"],
+      "comment": "Radxa is a Shenzhen-based brand of Allnet (China)."
+    },
+    "website": {
+      "value": "https://radxa.com/products/rock5/5a/",
+      "source": ["https://radxa.com/products/rock5/5a/"]
+    },
+    "soc": {
+      "value": "Rockchip RK3588S",
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 + 4× Cortex-A55 (big.LITTLE, ARM DynamIQ)",
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.4,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Cortex-A76 cores up to 2.4 GHz; A55 cores up to 1.8 GHz."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": ["https://radxa.com/products/rock5/5a/"],
+      "comment": "Per Radxa product page; RK3588S manufactured on Samsung 8 nm."
+    },
+    "gpu": {
+      "value": "Arm Mali-G610 MP4",
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Vulkan 1.1/1.2 supported via Mali-G610 driver (vendor blob)."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Vendor-quoted INT8 peak (6 TOPS) on the RK3588S NPU."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction",
+        "https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/rockchip/"
+      ],
+      "comment": "RK3588S decodes H.265/VP9 up to 8K@60, H.264 up to 8K@30, AV1 up to 4K@60."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction",
+        "https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/rockchip/"
+      ],
+      "comment": "Encode supports H.264 and H.265 up to 8K@30. RK3588 family has no AV1 hardware encoder."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "ram-max-gb": {
+      "value": 32,
+      "source": [
+        "https://radxa.com/products/rock5/5a/",
+        "https://www.amazon.com/Radxa-5A-RK3588S-Ethernet-32GB/dp/B0D1XHYKNP"
+      ],
+      "comment": "4/8/16 GB are the original SKUs; a 32 GB SKU was later added (visible on radxa.com and Amazon listings)."
+    },
+    "ram-type": {
+      "value": ["lpddr4x"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Modular eMMC 5.1 connector — module sold separately."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/interface-usage/pcie-e-key",
+        "https://www.rs-online.com/designspark/raspberry-pi-5-vs-radxa-rock-5a-an-engineers-review"
+      ],
+      "comment": "Only an M.2 E-key (PCIe 2.0 ×1) slot is present; NVMe SSDs require a Radxa M.2 E-key-to-M-key adapter board, not native."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/interface-usage/pcie-e-key"],
+      "comment": "No native SATA port; SATA available only via an M.2 E-key breakout or the Penta SATA HAT."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "10/100/1000 Mbps RJ45 (PoE optional via add-on HAT)."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction",
+        "https://uk.rs-online.com/web/p/rock-sbc-add-ons/2563901"
+      ],
+      "comment": "No onboard Wi-Fi. M.2 E-key slot accepts an optional Wi-Fi 6 + BT 5.2 module (Radxa A8 / Realtek RTL8852)."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction",
+        "https://uk.rs-online.com/web/p/rock-sbc-add-ons/2563901"
+      ],
+      "comment": "No onboard Bluetooth. BT 5.2 only via the optional M.2 E-key wireless module."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"],
+      "comment": "2× USB 3.0 Type-A (one host, one OTG-capable)."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Single USB-C port is power-only (USB PD/QC input)."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Ethernet jack is PoE-capable; powering requires a separate PoE HAT."
+    },
+    "hdmi-outputs": {
+      "value": 2,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"],
+      "comment": "2× micro-HDMI 2.1 (one up to 8K@60, the other up to 4K@60)."
+    },
+    "max-display-resolution": {
+      "value": "8K@60",
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"]
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "No native DisplayPort output; the USB-C is power-only."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "Quad-lane MIPI DSI connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "4-lane MIPI CSI (or dual 2-lane)."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "3.5 mm combo jack with mic input."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"],
+      "comment": "40-pin header (27 functional GPIO lines available, RPi-compatible pinout)."
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"]
+    },
+    "rpi-hat-compatible": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/",
+        "https://radxa.com/products/accessories/penta-sata-hat/"
+      ],
+      "comment": "Raspberry Pi 4 form factor with matching mounting holes; mechanically supports common HATs and Radxa's own Penta SATA HAT. EEPROM auto-detect not standardized across all HATs."
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 2.0 (M.2 E-key slot)",
+      "source": [
+        "https://www.rs-online.com/designspark/raspberry-pi-5-vs-radxa-rock-5a-an-engineers-review",
+        "https://docs.radxa.com/en/rock5/rock5a/getting-started/interface-usage/pcie-e-key"
+      ],
+      "comment": "Single PCIe 2.0 ×1 lane via the M.2 E-key slot. NVMe SSDs require an E-key-to-M-key adapter."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"],
+      "comment": "I2C, SPI, UART, PWM, ADC, CAN bus all available on the GPIO header."
+    },
+    "power-input": {
+      "value": "USB-C PD/QC (9V/12V/15V/20V at 2A)",
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"],
+      "comment": "USB-C input supports USB PD 2.0 and QC 2.0/3.0 adapters."
+    },
+    "idle-power-w": {
+      "value": 3.5,
+      "source": ["https://magazinmehatronika.com/en/radxa-rock-5a-review/"],
+      "comment": "Reviewer-measured idle. Single secondary-source measurement; treat as approximate."
+    },
+    "load-power-w": {
+      "value": 8.5,
+      "source": ["https://magazinmehatronika.com/en/radxa-rock-5a-review/"],
+      "comment": "Reviewer-measured full-load. Single secondary-source measurement; treat as approximate."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": ["https://magazinmehatronika.com/en/radxa-rock-5a-review/"],
+      "comment": "RK3588-family chips throttle near 85°C without active cooling; board provides a fan header."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://liliputing.com/radxa-rock5-model-a-is-a-credit-card-sized-single-board-pc-with-rk3588-and-up-to-16gb-ram/",
+        "https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"
+      ],
+      "comment": "Onboard RTC battery connector (CR1220 3 V)."
+    },
+    "length-mm": {
+      "value": 85,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "width-mm": {
+      "value": 56,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a/getting-started/introduction"]
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"],
+      "comment": "85×56 mm PCB explicitly designed as a Raspberry Pi 4 lookalike with matching mounts."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": ["https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/"]
+    },
+    "weight-g": {
+      "value": 45,
+      "source": ["https://www.amazon.com/RADXA-RK3588S-High-Performance-8-core-Development/dp/B0C6DP9B3K"],
+      "comment": "Approximate; derived from retailer-listed 1.6 oz item weight. Radxa does not publish bare-board weight."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": ["https://www.armbian.com/rock-5a/"],
+      "comment": "Armbian ships both vendor (6.1) and current/edge mainline kernels. Mainline boots but several RK3588 features (GPU, NPU, full video codecs) still rely on vendor BSP at the time of check (2026-04-26)."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a"],
+      "comment": "Radxa publishes maintained Debian/Ubuntu/Android images for the ROCK 5A."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian", "dietpi"],
+      "source": [
+        "https://docs.radxa.com/en/rock5/rock5a",
+        "https://www.armbian.com/rock-5a/",
+        "https://www.electronics-lab.com/new-radxa-rock-5a-pink-edition-features-16gb-of-ram-and-supports-dietpi-os/"
+      ],
+      "comment": "Official Debian + Ubuntu + Android from Radxa; Armbian with vendor and edge kernels; DietPi listed for the ROCK 5A."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.radxa.com/en/rock5/rock5a"],
+      "comment": "U-Boot (Radxa fork); SPI flash module ships configured for U-Boot."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["https://wiki.radxa.com/Rock5/5a"],
+      "comment": "Radxa guarantees ROCK 5A availability through at least September 2033, implying long-tail support."
+    },
+    "android-support": {
+      "value": true,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a"],
+      "comment": "Official Android 12 image published by Radxa."
+    },
+    "msrp-base-usd": {
+      "value": 99,
+      "source": [
+        "https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/",
+        "https://liliputing.com/radxa-rock5-model-a-is-a-credit-card-sized-single-board-pc-with-rk3588-and-up-to-16gb-ram/"
+      ],
+      "comment": "Launch MSRP for 4 GB SKU was $99 (Q1 2023). Street prices vary by reseller."
+    },
+    "msrp-top-usd": {
+      "value": 189,
+      "source": [
+        "https://www.cnx-software.com/2023/01/22/radxa-rock-5a-sbc-a-raspberry-pi-4-lookalike-with-up-to-16gb-ram-rockchip-rk3588s-soc/",
+        "https://www.amazon.com/Radxa-5A-RK3588S-Ethernet-32GB/dp/B0D1XHYKNP"
+      ],
+      "comment": "Launch top SKU was 16 GB at $189; later 32 GB SKU sells higher (~$199+) at retail."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://radxa.com/products/rock5/5a/",
+        "https://uk.rs-online.com/web/p/rock-sbc-add-ons/2563901"
+      ],
+      "comment": "Sold via Allnet (EU/CN), OKdo/RS (global), ameriDroid (NA), Amazon."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.amazon.com/RADXA-RK3588S-High-Performance-8-core-Development/dp/B0C6DP9B3K"],
+      "comment": "Snapshot 2026-04-26: ROCK 5A SKUs broadly listed in stock at major distributors and on Amazon."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.radxa.com/en/rock5/rock5a"],
+      "comment": "Comprehensive product brief, hardware docs, OS install guides; some sub-pages still incomplete (e.g. detailed pinout/schematic gaps)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.radxa.com/"],
+      "comment": "Radxa is an established second-tier vendor with an active community forum, smaller than Raspberry Pi or Orange Pi."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.radxa.com/"],
+      "comment": "Vendor-run Discourse forum (forum.radxa.com) with regular activity."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": ["https://radxa.com/products/accessories/"],
+      "comment": "Several Radxa-branded accessories (heatsinks, Penta SATA HAT, M.2 adapters, eMMC modules, wireless modules); fewer third-party HATs than the RPi ecosystem."
+    }
+  }
 }
