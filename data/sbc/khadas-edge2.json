@@ -1,5 +1,488 @@
 {
   "name": "Khadas Edge2",
   "description": "RK3588S, slim form factor",
-  "values": {}
+  "url": "https://www.khadas.com/edge2",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Khadas",
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Brand owned by Shenzhen Wesion Technology Co., Ltd."
+    },
+    "model": {
+      "value": "Edge2",
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "release-date": {
+      "value": "2022-09",
+      "source": [
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/",
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Public availability September 2022 ($199 launch for Maker Kit Basic)."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Sold direct from Khadas store and via Amazon US as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://docs.khadas.com/products/sbc/edge2/start"],
+      "comment": "Khadas publishes hardware reference docs but not full PCB design files under an OSHW-compatible license; per RESEARCH.md guideline this does not qualify."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": [
+        "https://www.khadas.com/about",
+        "https://www.aftership.com/brands/khadas.com"
+      ],
+      "comment": "Khadas / Shenzhen Wesion Technology Co., Ltd. is headquartered in Shenzhen, China."
+    },
+    "website": {
+      "value": "https://www.khadas.com/edge2",
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "soc": {
+      "value": "Rockchip RK3588S2",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/start"
+      ],
+      "comment": "RK3588S2 is the same silicon as RK3588S in a refreshed package; Khadas spec page calls out S2."
+    },
+    "soc-vendor": {
+      "value": ["rockchip"],
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "cpu-cores": {
+      "value": 8,
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A76 + 4× Cortex-A55 (big.LITTLE)",
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.25,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/start"
+      ],
+      "comment": "A76 cluster runs up to 2.25 GHz; A55 cluster at 1.8 GHz. Some Khadas docs cite a 2.4 GHz upper bound for the SoC, but the Edge2's published rating is 2.25 GHz."
+    },
+    "process-node": {
+      "value": "8 nm",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/"
+      ],
+      "comment": "RK3588S/S2 fabricated on Samsung 8 nm LPP."
+    },
+    "gpu": {
+      "value": "Mali-G610 MC4",
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Mali-G610 MC4 (Valhall, 4-core) up to 700 MHz."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": [
+        "https://www.cnx-software.com/2024/07/18/panthor-open-source-driver-achieves-opengl-es-3-1-conformance-with-arm-mali-g610-gpu-rk3588-soc/",
+        "https://docs.mesa3d.org/drivers/panfrost.html"
+      ],
+      "comment": "Mali-G610 hardware supports OpenGL ES 3.2; mainline Panthor is conformant up to ES 3.1, vendor stack covers ES 3.2."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://www.collabora.com/news-and-blog/news-and-events/taming-the-panthor-opengl-es-31-conformance-achived-mali-g610.html",
+        "https://docs.mesa3d.org/drivers/panfrost.html"
+      ],
+      "comment": "Vulkan available via two paths: Rockchip's vendor blob (libmali) and the open-source PanVK driver, which is conformant on Mali-G610."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.khadas.com/edge2"]
+    },
+    "npu-performance-tops": {
+      "value": 6,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Vendor-quoted INT8 peak (RK3588S NPU = 6 TOPS aggregate across 3 cores)."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://liliputing.com/khadas-edge2-is-a-compact-single-board-pc-with-rk3588s-processor-and-8gb-ram/"
+      ],
+      "comment": "RK3588S decodes 8K@60 H.265/VP9, 4K@60 AV1, plus H.264. AV1 decode is hardware; AV1 encode is not present."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://www.khadas.com/edge2"
+      ],
+      "comment": "Hardware H.264 and H.265 encode up to 8K@30."
+    },
+    "ram-min-gb": {
+      "value": 8,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Basic SKU."
+    },
+    "ram-max-gb": {
+      "value": 16,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Pro SKU."
+    },
+    "ram-type": {
+      "value": ["lpddr4x"],
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "LPDDR4X 64-bit @ 2112 MHz."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "32 GB eMMC 5.1 (Basic) or 64 GB eMMC 5.1 (Pro) soldered onboard; no socket."
+    },
+    "microsd-slot": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://www.khadas.com/edge2"
+      ],
+      "comment": "No microSD card slot on the board; storage is the soldered eMMC plus USB. Khadas markets the eMMC + OOWOW network installer as the boot path."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "No M.2 connector on the Edge2 itself; the ultraslim form factor leaves no room for M.2."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "No native SATA port."
+    },
+    "ethernet": {
+      "value": ["none"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://www.cnx-software.com/2022/09/20/khadas-edge2-pro-review-rockchip-rk3588s-sbc-ubuntu-22-04/"
+      ],
+      "comment": "No onboard Ethernet jack. Wired networking requires a USB-C 2.5GbE dongle (CNX review used one)."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"]
+    },
+    "wifi": {
+      "value": ["wifi-6"],
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Ampak AP6275P module: dual-band 802.11ax 2x2 MIMO."
+    },
+    "bluetooth": {
+      "value": "5.0",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ]
+    },
+    "usb-a-3x-ports": {
+      "value": 1,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "1× USB 3.1 Type-A (5 Gbps)."
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "1× USB 2.0 Type-A."
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "Two USB-C ports total: one is USB 3.1 + DP-Alt 1.4 + PD (data-capable), the other is power-only PD. Only the data-capable one counted here per RESEARCH.md."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "No Ethernet jack on the board, so PoE is not applicable."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "1× HDMI 2.1 Type-A with HDCP 2.3."
+    },
+    "max-display-resolution": {
+      "value": "8K@60",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "HDMI 2.1 output up to 8K@60Hz; UI rendering practical limit cited at 4K."
+    },
+    "displayport": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "DisplayPort 1.4 over USB-C DP-Alt (up to 4K@60); no full-size DP connector."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Two MIPI-DSI display connectors (one 30-pin, one 40-pin)."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://www.khadas.com/edge2"],
+      "comment": "Three 4-lane MIPI-CSI camera connectors (up to 48 MP each)."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://liliputing.com/khadas-edge2-is-a-compact-single-board-pc-with-rk3588s-processor-and-8gb-ram/"
+      ],
+      "comment": "No 3.5 mm analog jack. Audio is via HDMI, USB-C, or two onboard digital microphones."
+    },
+    "gpio-pins": {
+      "value": null,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://docs.khadas.com/products/sbc/edge2/applications/gpio/40pin-header"
+      ],
+      "comment": "The Edge2 itself has no through-hole GPIO pin header; signals are exposed only via two 30-pin FPC connectors and 7 pogo pads. A 16-pin GPIO header exists on the optional Edge2 IO carrier board, not on the SBC. Recording null because the schema's 'pin count' field doesn't fit FPC-only exposure."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "No 40-pin RPi-compatible header. I/O is via FPC connectors and pogo pads."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Form factor is 82×57.5×5.7 mm with no RPi-pattern header or mounting holes."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start"
+      ],
+      "comment": "RK3588S has PCIe internally but the Edge2 does not expose PCIe to a user-accessible connector (no M.2, no FPC PCIe). USB 3.1 is the high-speed expansion path."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://docs.khadas.com/products/sbc/edge2/applications/gpio/40pin-header"
+      ],
+      "comment": "I2C, SPI, UART, I2S, ADC and PWM exposed via the two 30-pin FPC connectors (and on the optional Edge2 IO carrier's 16-pin header)."
+    },
+    "power-input": {
+      "value": "USB-C PD (9–20 V)",
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/"
+      ],
+      "comment": "Powered via the dedicated PD-only USB-C port; Khadas ships a 30 W PD adapter with the kit."
+    },
+    "idle-power-w": {
+      "value": 2.9,
+      "source": [
+        "https://www.cnx-software.com/2022/09/20/khadas-edge2-pro-review-rockchip-rk3588s-sbc-ubuntu-22-04/"
+      ],
+      "comment": "CNX-Software Edge2 Pro review measured 2.9 W idle on Ubuntu 22.04."
+    },
+    "load-power-w": {
+      "value": 9.0,
+      "source": [
+        "https://www.cnx-software.com/2022/09/20/khadas-edge2-pro-review-rockchip-rk3588s-sbc-ubuntu-22-04/"
+      ],
+      "comment": "CNX measured 9.0 W during 8-core stress test; 4K video peaked at 7.5–10.9 W."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.cnx-software.com/2022/09/20/khadas-edge2-pro-review-rockchip-rk3588s-sbc-ubuntu-22-04/"
+      ],
+      "comment": "Khadas ships an active fansink kit and recommends it for sustained load on the RK3588S; review measured 61.9 °C peak with the included cooler."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://docs.khadas.com/products/sbc/edge2/hardware/start",
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Onboard 3 V RTC battery / connector with companion STM32 microcontroller."
+    },
+    "length-mm": {
+      "value": 82.0,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/",
+        "https://www.khadas.com/edge2"
+      ],
+      "comment": "Maker Kit dimensions 82.0 × 57.5 × 5.7 mm; ARM PC enclosure 89.0 × 62.0 × 16.0 mm."
+    },
+    "width-mm": {
+      "value": 57.5,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "82×57.5 mm is close to Pi-standard size but mounting holes and pinout follow Khadas's own slim-SBC pattern; per RESEARCH.md guideline this is `custom`."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Khadas Edge-series mounting pattern; not Pi-compatible."
+    },
+    "weight-g": {
+      "value": 25.0,
+      "source": [
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Bare board 25 g (without heatsink)."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://lore.kernel.org/linux-arm-kernel/20230315033441.32719-3-dlan@gentoo.org/T/",
+        "https://www.spinics.net/lists/devicetree/msg710382.html",
+        "https://armbian.com/khadas-edge2/"
+      ],
+      "comment": "rk3588s-khadas-edge2.dts has been in mainline since Linux 6.x; basic boot (UART, eMMC, USB-C DRD) works upstream. Wi-Fi (AP6275P), NPU, full GPU/video acceleration still need vendor blobs/patches. Armbian ships both a 6.18 mainline track and a 6.1 vendor track."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://docs.khadas.com/products/sbc/edge2/start",
+        "https://www.cnx-software.com/2022/09/20/khadas-edge2-pro-review-rockchip-rk3588s-sbc-ubuntu-22-04/"
+      ],
+      "comment": "Khadas publishes maintained Ubuntu 22.04 and Android 11/12 images, distributed via the OOWOW network installer."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "armbian"],
+      "source": [
+        "https://docs.khadas.com/products/sbc/edge2/start",
+        "https://armbian.com/khadas-edge2/"
+      ],
+      "comment": "Khadas publishes Ubuntu (and Debian variants); Armbian provides Ubuntu 24.04/26.04 and Debian 13/14 images on both mainline 6.18 and vendor 6.1 kernels."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": [
+        "https://www.mail-archive.com/u-boot@lists.denx.de/msg531931.html",
+        "https://docs.khadas.com/products/sbc/edge2/start"
+      ],
+      "comment": "U-Boot (Rockchip vendor fork; mainline U-Boot patch series for the Edge2 has been posted). OOWOW is Khadas's installer running on top of U-Boot."
+    },
+    "long-term-support": {
+      "value": ["3-5y"],
+      "source": [
+        "https://armbian.com/khadas-edge2/",
+        "https://docs.khadas.com/products/sbc/edge2/start"
+      ],
+      "comment": "No vendor-stated EOL window. Khadas continues to publish updates 3.5 years post-launch and Armbian still ships fresh mainline builds; placing this in the 3-5y bucket conservatively."
+    },
+    "android-support": {
+      "value": true,
+      "source": [
+        "https://docs.khadas.com/products/sbc/edge2/start",
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/"
+      ],
+      "comment": "Khadas publishes Android 11/12 images via OOWOW."
+    },
+    "msrp-base-usd": {
+      "value": 199.0,
+      "source": [
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/",
+        "https://www.cnx-software.com/2022/09/13/khadas-edge2-ultra-thin-sbc-is-powered-by-rockchip-rk3588s-processor/"
+      ],
+      "comment": "Maker Kit Basic (8 GB / 32 GB) launch price; checked 2026-04-26. Khadas store still lists the Edge2 family but the live shop page was not directly readable in this research pass — original launch MSRP is the most defensible figure."
+    },
+    "msrp-top-usd": {
+      "value": 329.0,
+      "source": [
+        "https://linuxgizmos.com/new-khadas-edge2-sbc-launches-at-199/"
+      ],
+      "comment": "ARM PC Pro (16 GB / 64 GB) launch price."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.amazon.com/khadas-SingleBoard-Mali-G610-Bluetooth-Independent/dp/B0BFVMN7HG"
+      ],
+      "comment": "Sold direct from Khadas worldwide and via Amazon US; European resellers stock the Edge series."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.amazon.com/khadas-SingleBoard-Mali-G610-Bluetooth-Independent/dp/B0BFVMN7HG"
+      ],
+      "comment": "Listed at Khadas store and Amazon as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.khadas.com/products/sbc/edge2/start",
+        "https://www.khadas.com/edge2"
+      ],
+      "comment": "Comprehensive Khadas docs portal with hardware reference, FPC pinouts, OOWOW, build guides, and a published specs PDF. Loses a point because the bundled PDF rendered as binary content in this pass and some sub-pages 404."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://forum.khadas.com/c/edge2/64"],
+      "comment": "Khadas runs a vendor forum and Discord; per RESEARCH.md thresholds Khadas falls into the 'medium' tier alongside Radxa and FriendlyELEC."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.khadas.com/c/edge2/64"],
+      "comment": "Vendor-run Khadas forum has a dedicated Edge2 sub-category with regular activity; Khadas also runs an official Discord."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://www.khadas.com/edge2",
+        "https://www.khadas.com/product-page/edge2-station"
+      ],
+      "comment": "Khadas ships official accessories: Edge2 IO carrier, Edge2 Station dock, active fansink, USB-C PD PSU, antennas, TS050 touchscreen. Smaller than the Pi/Radxa ecosystems and no native HAT story (no 40-pin header)."
+    }
+  }
 }
