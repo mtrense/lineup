@@ -1,5 +1,436 @@
 {
   "name": "LattePanda Mu (compute module + carrier kit)",
   "description": "Intel N100 module + carrier (treated as a usable SBC kit)",
-  "values": {}
+  "icon": "icon-fontawesome:microchip",
+  "url": "https://www.lattepanda.com/lattepanda-mu",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "LattePanda (DFRobot / Zhiwei Robotics Corp.)",
+      "source": [
+        "https://www.lattepanda.com/lattepanda-mu",
+        "https://en.wikipedia.org/wiki/Zhiwei_Robotics_Corp."
+      ],
+      "comment": "LattePanda is the brand; the company behind it is DFRobot / Zhiwei Robotics Corp. (Shanghai)."
+    },
+    "model": {
+      "value": "LattePanda Mu",
+      "source": ["https://www.lattepanda.com/lattepanda-mu"]
+    },
+    "release-date": {
+      "value": "2024-04",
+      "source": [
+        "https://www.cnx-software.com/2024/04/11/lattepanda-mu-x86-compute-module-intel-processor-n100-cpu/",
+        "https://linuxgizmos.com/lattepanda-mu-a-micro-x86-compute-module-with-intel-n100-cpu/"
+      ],
+      "comment": "Announced and launched 2024-04-11."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.dfrobot.com/product-2820.html",
+        "https://www.dfrobot.com/product-2844.html"
+      ],
+      "comment": "DFRobot still lists module ($159) and evaluation kit ($209) as in-stock new (checked 2026-04-26)."
+    },
+    "architecture-family": {
+      "value": ["x86-64"],
+      "source": ["https://www.lattepanda.com/lattepanda-mu"]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://github.com/LattePandaTeam/LattePanda-Mu",
+        "https://docs.lattepanda.com/content/mu_edition/lite_carrier/"
+      ],
+      "comment": "The Lite and Full Eval carrier boards are released as open-source KiCAD designs under the repo's MIT license. The compute module's own PCB source files are NOT published — only pinouts, symbols, and footprint libraries. Per RESEARCH.md (\"Schematics-only does not qualify\"), the kit as a whole is marked false; carrier boards are openly designed and reproducible."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://en.wikipedia.org/wiki/Zhiwei_Robotics_Corp."],
+      "comment": "DFRobot / Zhiwei Robotics is headquartered in Shanghai, China."
+    },
+    "website": {
+      "value": "https://www.lattepanda.com/lattepanda-mu",
+      "source": ["https://www.lattepanda.com/lattepanda-mu"]
+    },
+    "soc": {
+      "value": "Intel Processor N100 (Alder Lake-N)",
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://www.lattepanda.com/lattepanda-mu"
+      ],
+      "comment": "Base/most-common config is N100; an N305 (Core i3-N305, 8 cores) variant is also sold. SoC value reflects the base config; max-clock attribute uses N305 stack (see comment there)."
+    },
+    "soc-vendor": {
+      "value": ["intel"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"],
+      "comment": "Base config N100 has 4 cores / 4 threads. The N305 SKU has 8 cores; see ram-max / msrp-top for the upper-tier config."
+    },
+    "cpu-architecture": {
+      "value": "Intel N100 (Alder Lake-N, 4 cores / 4 threads, Gracemont E-cores)",
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://www.cnx-software.com/2024/06/10/lattepanda-mu-review-intel-n100-compute-module-windows-11-carrier-boards-pcie-slots/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 3.4,
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://www.intel.com/content/www/us/en/products/sku/231803/intel-processor-n100-6m-cache-up-to-3-40-ghz/specifications.html"
+      ],
+      "comment": "N100 max turbo per Intel ARK is 3.40 GHz. The N305 SKU on the same module reaches 3.8 GHz."
+    },
+    "process-node": {
+      "value": "Intel 7",
+      "source": [
+        "https://www.intel.com/content/www/us/en/products/sku/231803/intel-processor-n100-6m-cache-up-to-3-40-ghz/specifications.html"
+      ],
+      "comment": "Alder Lake-N is fabricated on Intel 7."
+    },
+    "gpu": {
+      "value": "Intel UHD Graphics (Alder Lake-N, 24 EUs)",
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://www.cnx-software.com/2024/06/10/lattepanda-mu-review-intel-n100-compute-module-windows-11-carrier-boards-pcie-slots/"
+      ],
+      "comment": "Xe-LP-derived UHD Graphics, 24 EUs at up to 750 MHz on N100; 32 EUs at up to 1.25 GHz on the N305 SKU."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": [
+        "https://www.intel.com/content/www/us/en/support/articles/000005524/graphics.html"
+      ],
+      "comment": "Gen12 Intel graphics expose OpenGL ES 3.2 via Mesa on Linux; OpenGL 4.6 also supported."
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://www.intel.com/content/www/us/en/support/articles/000005524/graphics.html",
+        "https://www.khronos.org/conformance/adopters/conformant-products/vulkan"
+      ],
+      "comment": "Intel Gen12 (Alder Lake-N UHD) is Vulkan 1.x conformant via mainline Mesa anv/vulkan-intel."
+    },
+    "npu": {
+      "value": false,
+      "source": [
+        "https://www.intel.com/content/www/us/en/products/sku/231803/intel-processor-n100-6m-cache-up-to-3-40-ghz/specifications.html"
+      ],
+      "comment": "Alder Lake-N predates Intel's NPU (introduced with Meteor Lake)."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9", "av1"],
+      "source": [
+        "https://en.wikipedia.org/wiki/Intel_Quick_Sync_Video",
+        "https://www.intel.com/content/www/us/en/docs/onevpl/developer-reference-media-intel-hardware/1-0/overview.html"
+      ],
+      "comment": "Intel Quick Sync Video on Alder Lake-N supports H.264, H.265 (HEVC), VP9, and AV1 hardware decode."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://en.wikipedia.org/wiki/Intel_Quick_Sync_Video"
+      ],
+      "comment": "Quick Sync on Alder Lake-N encodes H.264 and HEVC. AV1 hardware encode arrived with Arc / Meteor Lake; not present on N100. VP9 encode is also not supported."
+    },
+    "ram-min-gb": {
+      "value": 8,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"],
+      "comment": "Smallest configuration sold is 8GB LPDDR5 (N100 SKU)."
+    },
+    "ram-max-gb": {
+      "value": 16,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"],
+      "comment": "Top configuration is 16GB LPDDR5 4800 MT/s (N305 SKU)."
+    },
+    "ram-type": {
+      "value": ["lpddr5"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"],
+      "comment": "LPDDR5-4800 with in-band ECC."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/specification/"],
+      "comment": "64 GB onboard eMMC 5.1 (HS400) on the module."
+    },
+    "microsd-slot": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Neither the module nor the standard Lite Carrier expose a microSD slot."
+    },
+    "m2-nvme-slot": {
+      "value": true,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier exposes an M.2 M-key (2230) slot for NVMe SSD via PCIe 3.0 x1; the Full Eval Carrier adds an additional PCIe 3.0 x4 slot."
+    },
+    "sata": {
+      "value": false,
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/lite_carrier/",
+        "https://docs.lattepanda.com/content/mu_edition/specification/"
+      ],
+      "comment": "The module supports up to 2× SATA 6 Gbps natively, but neither the Lite Carrier nor the Full Eval Carrier expose a SATA port; SATA is only available on user-designed carriers."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier ships with a single 1 GbE port (Realtek RTL8111). The Full Eval Carrier provides 2× 2.5 GbE — see dual-ethernet comment."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier (the standard kit) has only one Ethernet port. The optional Full Eval Carrier offers dual 2.5 GbE."
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "No Wi-Fi shipped; M.2 E-key 2230 slot accepts a user-supplied Wi-Fi/Bluetooth card."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "No Bluetooth shipped; depends on the user's M.2 E-key add-in card."
+    },
+    "usb-a-3x-ports": {
+      "value": 2,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier exposes 2× USB 3.2 Gen 2 (10 Gbps) Type-A."
+    },
+    "usb-a-2-ports": {
+      "value": 2,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "The Lite Carrier's single USB-C port is power-only (15V PD input) — not a data port."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "No PoE on either the Lite Carrier or the Full Eval Carrier."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier has a single HDMI 2.0 output. The module itself can drive up to 3 HDMI/DP outputs simultaneously, and the Full Eval Carrier breaks out 2× HDMI."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://docs.lattepanda.com/content/mu_edition/lite_carrier/"
+      ],
+      "comment": "HDMI 2.0 on the Lite Carrier; module supports up to 4096×2160 @ 60 Hz on each display interface."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "No native DisplayPort on the Lite Carrier (only HDMI 2.0); the module exposes DP 1.4 lanes that custom carriers can break out."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier has no MIPI-DSI connector. The module provides eDP 1.4 (not DSI) for embedded panels."
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier doesn't break out MIPI-CSI. The module itself has MIPI-CSI lanes that can be exposed by a custom carrier."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier has no 3.5 mm analog jack; audio is over HDMI."
+    },
+    "gpio-pins": {
+      "value": 0,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "The Lite Carrier exposes only SIO_UART and a Gravity-4P (UART/I2C) header — no general 40-pin GPIO. The module supports up to 64 expandable GPIOs but those are reached only via custom carriers."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "No 40-pin RPi GPIO header on the Lite Carrier."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"]
+    },
+    "pcie-lanes-exposed": {
+      "value": "1× PCIe 3.0 x4 slot + 1× M.2 M-key (PCIe 3.0 x1) + 1× M.2 E-key (PCIe 3.0 x1)",
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "Lite Carrier exposes 6 PCIe 3.0 lanes total. PCIe x4 slot only powers up when using the 12V DC barrel input. The module itself has 9 PCIe 3.0 lanes available to custom carriers."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "UART (SIO_UART header) and I²C (Gravity-4P) are on the Lite Carrier; SPI is reachable through the module's edge connector but not on a labelled header."
+    },
+    "power-input": {
+      "value": "DC barrel 12-20V (5.5×2.5 mm) or USB-C PD 15V; 45W minimum PSU",
+      "source": ["https://docs.lattepanda.com/content/mu_edition/lite_carrier/"],
+      "comment": "PCIe x4 slot and the SATA function require the 12V DC barrel input (USB-C PD path supplies less). Module itself accepts DC 9-20V."
+    },
+    "idle-power-w": {
+      "value": 10,
+      "source": [
+        "https://www.cnx-software.com/2024/06/10/lattepanda-mu-review-intel-n100-compute-module-windows-11-carrier-boards-pcie-slots/"
+      ],
+      "comment": "CNX-Software measured ~10 W at idle in the kit configuration. Snapshot from the 2024-06 review."
+    },
+    "load-power-w": {
+      "value": 35,
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/specification/",
+        "https://www.cnx-software.com/2024/06/10/lattepanda-mu-review-intel-n100-compute-module-windows-11-carrier-boards-pcie-slots/"
+      ],
+      "comment": "Configurable TDP up to 35 W; CNX measured the cooler holding 84-85°C under sustained load with the active fan at 4000 RPM. Default mid-range (~15-20 W) draws less; this is the upper bound."
+    },
+    "cooling-required": {
+      "value": ["active-required"],
+      "source": [
+        "https://www.cnx-software.com/2024/06/10/lattepanda-mu-review-intel-n100-compute-module-windows-11-carrier-boards-pcie-slots/",
+        "https://www.dfrobot.com/product-2844.html"
+      ],
+      "comment": "Vendor-supplied passive heatsink hits ~91°C under Cinebench R23; vendor recommends and ships the active cooler in the evaluation kit. Passive only viable below ~10W TDP cap."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/lite_carrier/",
+        "https://docs.lattepanda.com/content/mu_edition/specification/"
+      ],
+      "comment": "CR1220 RTC battery socket on the Lite Carrier; module also documents a 3V RTC battery input."
+    },
+    "length-mm": {
+      "value": 146,
+      "source": ["https://www.dfrobot.com/product-2844.html"],
+      "comment": "Lite Carrier dimensions are 146 × 102 mm (3.5-inch embedded form factor). The module alone is 69.6 × 60 mm."
+    },
+    "width-mm": {
+      "value": 102,
+      "source": ["https://www.dfrobot.com/product-2844.html"],
+      "comment": "Width of the Lite Carrier."
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://www.dfrobot.com/product-2844.html"],
+      "comment": "Lite Carrier is a 3.5-inch embedded SBC outline (146×102 mm). Doesn't match Pi-standard, Pi Zero, Pico-ITX, or Nano-ITX. The bare module is a SO-DIMM-shaped SoM."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://www.dfrobot.com/product-2844.html"],
+      "comment": "Custom mounting pattern; not Pi-compatible."
+    },
+    "weight-g": {
+      "value": null,
+      "source": ["https://www.dfrobot.com/product-2844.html"],
+      "comment": "Vendor publishes the active cooler's weight (69 g) but not the bare module nor Lite Carrier weights. No reliable independent measurement found."
+    },
+    "mainline-linux-kernel": {
+      "value": "full",
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/os_compatible/",
+        "https://docs.lattepanda.com/content/mu_edition/os_linux/"
+      ],
+      "comment": "Standard x86-64 platform; everything is supported by mainline drivers (i915 for UHD Graphics, RTL8111 for Ethernet, AHCI/NVMe). Vendor's compatibility table marks Ubuntu 22.04/24.04, Debian 12, Fedora 39, Arch, Manjaro, OpenWRT 23.05, Proxmox VE 8.1, TrueNAS SCALE 23.10 all green."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/os_compatible/"],
+      "comment": "Vendor documentation officially supports stock Ubuntu 22.04 LTS (HWE) and 24.04 LTS images — no custom image needed; the board is a generic UEFI x86-64 system."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "fedora", "manjaro"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/os_compatible/"],
+      "comment": "Listed only distros that are both explicitly green in LattePanda's compatibility table AND present in the schema's allowed tag set. Rocky Linux, Linux Mint, Pop!_OS, deepin, Arch, Proxmox, OpenWRT, and TrueNAS SCALE are also confirmed working via stock generic x86-64 images but have no matching tag id."
+    },
+    "bootloader": {
+      "value": ["uefi"],
+      "source": [
+        "https://docs.lattepanda.com/content/mu_edition/os_linux/",
+        "https://mail.coreboot.org/hyperkitty/list/coreboot-gerrit@coreboot.org/thread/IOEWDBK4YHMK6JIU5V6HQN7A35GRI3TM/"
+      ],
+      "comment": "Ships with stock UEFI (AMI). Coreboot upstream gained LattePanda Mu mainboard support, so coreboot is achievable for tinkerers but isn't the factory boot path."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://docs.lattepanda.com/content/mu_edition/os_compatible/"],
+      "comment": "No vendor-stated software-support window. Because the platform is generic UEFI x86-64, longevity is effectively governed by mainline Linux/Windows lifecycles rather than LattePanda's commitment."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://docs.lattepanda.com/content/mu_edition/os_compatible/"],
+      "comment": "No official Android image; Android-x86 might work but is not vendor-supported."
+    },
+    "msrp-base-usd": {
+      "value": 159,
+      "source": ["https://www.dfrobot.com/product-2820.html"],
+      "comment": "Module-only price for N100 / 8GB / 64GB at DFRobot, 2026-04-26. (Launch early-bird was $99 in April 2024; current MSRP is $159.)"
+    },
+    "msrp-top-usd": {
+      "value": 299,
+      "source": ["https://www.dfrobot.com/product-2820.html"],
+      "comment": "N305 / 16GB / 64GB module variant. Note the Mu Evaluation Kit (N100 module + Lite Carrier + active cooler) sits at $209."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.dfrobot.com/product-2820.html",
+        "https://www.amazon.com/LattePanda-Mu-Micro-Evaluation-Processor-Prototype/dp/B0D4VC43HC",
+        "https://www.lattepanda.com/distributors"
+      ],
+      "comment": "Sold worldwide via DFRobot, Amazon US, Mouser/DigiKey, plus regional distributors in Europe (Botland) and Asia (Youyeetoo)."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://www.dfrobot.com/product-2820.html",
+        "https://www.amazon.com/LattePanda-Mu-Micro-Evaluation-Processor-Prototype/dp/B0D4VC43HC"
+      ],
+      "comment": "In stock at DFRobot and on Amazon US as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.lattepanda.com/",
+        "https://github.com/LattePandaTeam/LattePanda-Mu"
+      ],
+      "comment": "Comprehensive vendor docs portal, OS compatibility matrix, design guides, plus open-source carrier KiCAD files and pinout spreadsheets. Falls short of 5 because the module's own PCB sources aren't published and a few datasheet sections are thin (electrical timing, full SI/EMI guidelines)."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": [
+        "https://discord.com/invite/UHgtJbf978",
+        "https://www.lattepanda.com/forum/"
+      ],
+      "comment": "Active vendor forum and ~2,200-member Discord, but the LattePanda audience is a fraction of RPi/Orange Pi/Rockchip ecosystems — small per RESEARCH.md thresholds."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": [
+        "https://www.lattepanda.com/forum/",
+        "https://discord.com/invite/UHgtJbf978"
+      ],
+      "comment": "Vendor-run forum and Discord; recent threads on Mu carrier-board designs in 2026."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://www.dfrobot.com/product-2844.html",
+        "https://github.com/LattePandaTeam/LattePanda-Mu"
+      ],
+      "comment": "Vendor sells dedicated Mu accessories (Lite carrier, Full Eval carrier, active cooler, passive heatsink) and the design challenge has produced several community carriers (MOKA, Nano-ITX). Lacks the depth of cases/HATs/screens found in mainstream SBC ecosystems."
+    }
+  }
 }

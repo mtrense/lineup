@@ -263,7 +263,7 @@ Users should be able to:
 - [x] **Pine64 Ox64** — BL808 RISC-V, ultra-compact
 - [x] **ASUS Tinker Board 3N** — RK3568, industrial-flavored ASUS line
 - [x] **LattePanda 3 Delta** — Intel N5105 x86 SBC
-- [ ] **LattePanda Mu (compute module + carrier kit)** — Intel N100 module + carrier (treated as a usable SBC kit)
+- [x] **LattePanda Mu (compute module + carrier kit)** — Intel N100 module + carrier (treated as a usable SBC kit)
 - [ ] **UDOO Bolt V8** — AMD Ryzen Embedded V1605B, high-power x86 SBC
 - [ ] **UDOO Vision** — Intel Core Ultra x86 SBC
 - [ ] **ODYSSEY-X86J4125** — Intel J4125 with onboard Arduino co-MCU
