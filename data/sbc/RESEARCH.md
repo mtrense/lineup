@@ -249,7 +249,7 @@ Users should be able to:
 - [x] **Banana Pi BPI-F3** — SpacemiT K1 RISC-V octa-core
 - [x] **LibreComputer Le Potato (AML-S905X-CC)** — Amlogic S905X, RPi 3-compatible budget
 - [x] **LibreComputer Renegade (ROC-RK3328-CC)** — RK3328, budget option
-- [ ] **LibreComputer Alta (AML-A311D-CC)** — Amlogic A311D with NPU
+- [x] **LibreComputer Alta (AML-A311D-CC)** — Amlogic A311D with NPU
 - [ ] **Pine64 Quartz64 Model A** — RK3566, NAS-oriented
 - [ ] **Pine64 RockPro64** — RK3399, established community
 - [ ] **Pine64 Star64** — JH7110 RISC-V

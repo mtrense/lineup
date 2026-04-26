@@ -1,5 +1,512 @@
 {
   "name": "LibreComputer Alta (AML-A311D-CC)",
-  "description": "Amlogic A311D with NPU",
-  "values": {}
+  "description": "Amlogic A311D Cottonwood-series SBC with 5 TOPS NPU and Pi-compatible 40-pin header",
+  "icon": "https://libre.computer/favicon.ico",
+  "url": "https://libre.computer/products/aml-a311d-cc/",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Libre Computer (Shenzhen Libre Technology)",
+      "source": [
+        "https://en.wikipedia.org/wiki/Libre_Computer_Project",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "model": {
+      "value": "Alta (AML-A311D-CC)",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "release-date": {
+      "value": "2023-11",
+      "source": [
+        "https://linuxgizmos.com/libre-computer-unveils-amlogic-powered-aml-a311d-cc-alta-sbc/",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Pre-orders began September/October 2023; first shipments November 24, 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014",
+        "https://armbian.com/fr/boards/aml-a311d-cc"
+      ],
+      "comment": "Still actively sold by Libre Computer and resellers (LoveRPi, Amazon) and listed with current Armbian images as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": [
+        "https://en.wikipedia.org/wiki/Libre_Computer_Project"
+      ],
+      "comment": "Per Libre Computer Project policy, schematics and 2D silkscreen are released, but full PCB CAD files are not. Per the SBC RESEARCH.md guideline, schematics-only does not qualify as OSHW."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": [
+        "https://en.wikipedia.org/wiki/Libre_Computer_Project"
+      ],
+      "comment": "Designed by Shenzhen Libre Technology Co., Ltd., Shenzhen, China."
+    },
+    "website": {
+      "value": "https://libre.computer/products/aml-a311d-cc/",
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ]
+    },
+    "soc": {
+      "value": "Amlogic A311D",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "soc-vendor": {
+      "value": ["amlogic"],
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "cpu-cores": {
+      "value": 6,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A73 + 2× Cortex-A53 (big.LITTLE)",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://linuxgizmos.com/libre-computer-unveils-amlogic-powered-aml-a311d-cc-alta-sbc/"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 2.2,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Cortex-A73 cluster up to 2.2 GHz; A53 cluster up to 1.8 GHz."
+    },
+    "process-node": {
+      "value": "12 nm",
+      "source": [
+        "https://gadgetversus.com/processor/amlogic-a311d-specs/"
+      ],
+      "comment": "Vendor (Amlogic) does not publish the node directly; widely reported as 12 nm in third-party SoC databases."
+    },
+    "gpu": {
+      "value": "Arm Mali-G52 MP4 @ 800 MHz",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ]
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": [
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta",
+        "https://www.collabora.com/news-and-blog/news-and-events/panfrost-achieves-opengl-es-3.1-conformance-on-mali-g52.html"
+      ],
+      "comment": "Mali-G52 hardware advertises OpenGL ES 3.2; the open-source Panfrost driver in mainline Mesa is conformant up to OpenGL ES 3.1 on G52."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": [
+        "https://docs.mesa3d.org/drivers/panfrost.html"
+      ],
+      "comment": "Mali-G52 hardware supports Vulkan 1.1, but the open-source PanVk driver is conformant only on Mali-G610; on G52 it is non-conformant/work-in-progress, and Amlogic does not ship a vendor Vulkan driver for this board. Practical Vulkan support is therefore not available as of 2026-04."
+    },
+    "npu": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "npu-performance-tops": {
+      "value": 5,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://liliputing.com/libre-computer-aml-a311d-cc-alta-is-an-amlogic-powered-single-board-pc-with-a-5-tops-npu/"
+      ],
+      "comment": "Vendor-quoted 5.0 TOPS @ INT8 at 800 MHz."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": [
+        "https://www.cnx-software.com/2019/07/11/amlogic-a311d-and-s922x-b-processors-support-8k-vp9-video-decoding/"
+      ],
+      "comment": "Amlogic A311D AVE-10 video engine officially supports H.264, H.265 (10-bit), and VP9 (Profile-2 4K@60). No AV1 decode."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": [
+        "https://www.cnx-software.com/2019/07/11/amlogic-a311d-and-s922x-b-processors-support-8k-vp9-video-decoding/"
+      ],
+      "comment": "Amlogic datasheet specifies H.264 and H.265 encode up to 1080p@60. No VP9/AV1 encode."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Only one configuration sold: 4 GB."
+    },
+    "ram-max-gb": {
+      "value": 4,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "emmc": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://www.loverpi.com/products/libre-computer-alta-aml-a311d-cc-ai-sbc"
+      ],
+      "comment": "Onboard eMMC 5.x slim connector for a removable eMMC module (modules sold separately)."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "UHS SDR104 microSD slot."
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/",
+        "https://www.xda-developers.com/libre-computer-alta-review/"
+      ]
+    },
+    "sata": {
+      "value": false,
+      "source": [
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ]
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/",
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ],
+      "comment": "No onboard Wi-Fi; Libre Computer's stated design choice — users are expected to attach USB Wi-Fi or M.2-equivalent dongles."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/",
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ],
+      "comment": "No onboard Bluetooth (paired with the lack of Wi-Fi)."
+    },
+    "usb-a-3x-ports": {
+      "value": 4,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://www.loverpi.com/products/libre-computer-alta-aml-a311d-cc-ai-sbc"
+      ],
+      "comment": "Single USB-C port: power + USB 2.0 OTG data with USB-PD."
+    },
+    "poe-support": {
+      "value": ["via-hat"],
+      "source": [
+        "https://liliputing.com/libre-computer-aml-a311d-cc-alta-is-an-amlogic-powered-single-board-pc-with-a-5-tops-npu/",
+        "https://hub.libre.computer/t/how-to-read-and-control-pwm-fan-speed-on-aml-a311d-cc-and-aml-s905d3-cc/4819/1"
+      ],
+      "comment": "PoE pin header on board accepts an external PoE module/HAT; PoE is not available without an add-on, so per the RESEARCH.md guideline this maps to `via-hat`."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Single HDMI 2.0 (some marketing materials list \"HDMI 2.1\" but the SoC's HDMI block is 2.0-class)."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "HDMI 2.0 output supports 4K@60; MIPI-DSI is limited to 1080p."
+    },
+    "displayport": {
+      "value": false,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "USB-C is USB 2.0 OTG only — no DisplayPort Alt-Mode."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "4-lane MIPI-DSI on a 22-pin connector, up to 1080p."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "4-lane MIPI-CSI on a 22-pin connector (supports up to two 8 MP cameras with split lanes)."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "3.5 mm combo jack carrying analog stereo audio plus CVBS composite video."
+    },
+    "gpio-pins": {
+      "value": 40,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ]
+    },
+    "rpi-compatible-header": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "40-pin GPIO header pin-compatible with the Raspberry Pi 3B+; Libre Computer markets it as a drop-in upgrade path."
+    },
+    "rpi-hat-compatible": {
+      "value": true,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Same dimensions as a Raspberry Pi 3B+ with matching mounting holes and header position; physical HAT compatibility is good. EEPROM-based HAT auto-config is not advertised, so this is mechanical HAT compatibility (the common bar for the SBC market)."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ],
+      "comment": "The A311D's PCIe lane is consumed internally by the onboard USB 3.0 hub/Ethernet chain; no PCIe is broken out to the user."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": [
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta"
+      ],
+      "comment": "I²C, SPI, UART, and SPDIF are all available via the 40-pin header."
+    },
+    "power-input": {
+      "value": "USB-C 5V (USB-PD), PoE module, or 5V GPIO header",
+      "source": [
+        "https://liliputing.com/libre-computer-aml-a311d-cc-alta-is-an-amlogic-powered-single-board-pc-with-a-5-tops-npu/"
+      ],
+      "comment": "Three input options. USB-PD supported on the Type-C port; vendor recommends a supply with 5.0–5.5 V regulation."
+    },
+    "idle-power-w": {
+      "value": 2.1,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ],
+      "comment": "Measured at idle in bret.dk review (2024). Vendor's \"1 W idle\" marketing number could not be reproduced under typical Linux idle conditions."
+    },
+    "load-power-w": {
+      "value": 7.5,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ],
+      "comment": "Peak measured at full load with active fan cooling. With heatsink only, the SoC throttles and load draw drops to ~4.8 W."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014",
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ],
+      "comment": "Ships with a pre-applied integrated heatsink. Sustained full load throttles after ~2 minutes without active airflow, so an active fan is preferable for sustained max-load workloads, but the vendor's stock configuration is heatsink-only."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": [
+        "https://wikidevi.wi-cat.ru/Libre_Computer_Alta",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "No dedicated RTC battery header is documented on the board."
+    },
+    "length-mm": {
+      "value": 85.6,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ],
+      "comment": "Bret.dk hands-on measured 85.6 × 56.5 mm — slightly larger than the 85 × 56 mm Pi-standard reference but within Pi-standard tolerance."
+    },
+    "width-mm": {
+      "value": 56.5,
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ]
+    },
+    "form-factor-class": {
+      "value": ["pi-standard"],
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "85.6 × 56.5 mm with Pi-style mounting holes; within ±5 mm of Pi-standard 85 × 56 mm threshold from RESEARCH.md."
+    },
+    "mounting-hole-pattern": {
+      "value": ["pi-standard"],
+      "source": [
+        "https://bret.dk/libre-computer-alta-review-big-cottonwood/"
+      ],
+      "comment": "Pi 3B+-style 4-corner mounting hole pattern (Libre Computer markets the board as a Pi 3B+ replacement)."
+    },
+    "weight-g": {
+      "value": null,
+      "source": [],
+      "comment": "Bare-board weight is not published by the vendor. Amazon lists 68 g shipping weight, but that includes packaging — not used here."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://armbian.com/fr/boards/aml-a311d-cc",
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "A311D has long-standing mainline support; the Alta board boots stock upstream kernels with Ethernet, USB, HDMI, GPU (Panfrost OpenGL ES), and GPIO functional. NPU device-tree support is landing in mainline kernel 6.17+, so NPU acceleration via mainline is `partial` even though core peripherals are `full`."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Libre Computer publishes maintained Ubuntu, Debian, and Raspberry-Pi-OS-based images for the board."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu", "debian", "armbian"],
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014",
+        "https://armbian.com/fr/boards/aml-a311d-cc"
+      ],
+      "comment": "Armbian lists the Alta with Standard support (Ubuntu Noble, Debian Trixie, etc.). Libre Computer's own images are Ubuntu/Debian/RPi-OS-based. Fedora and openSUSE are advertised as compatible via SystemReady-IR but do not publish board-specific images, so they are excluded per RESEARCH.md guidance."
+    },
+    "bootloader": {
+      "value": ["u-boot", "uefi"],
+      "source": [
+        "https://docs.u-boot.org/en/v2025.04/board/amlogic/aml-a311d-cc.html",
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Stock firmware is mainline U-Boot, packaged so that the OS sees it as Arm SystemReady-IR / UEFI. Both labels are accurate."
+    },
+    "long-term-support": {
+      "value": ["3-5y"],
+      "source": [
+        "https://armbian.com/fr/boards/aml-a311d-cc",
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "Vendor does not publish a formal support-end date, but Libre Computer's track record on prior Cottonwood boards (Le Potato, Renegade) is multi-year mainline tracking. Estimated 3-5y based on the company's pattern; downgrade if the company publishes a tighter window."
+    },
+    "android-support": {
+      "value": null,
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "Libre Computer has not published an official Android image for the Alta as of 2026-04. Android sources for A311D exist via Khadas VIM3 / Amlogic SDK, but no maintained image targets this board specifically."
+    },
+    "msrp-base-usd": {
+      "value": 60,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/",
+        "https://www.loverpi.com/products/libre-computer-alta-aml-a311d-cc-ai-sbc"
+      ],
+      "comment": "Launch MSRP November 2023 was $60. Resellers (Amazon, LoveRPi) typically list at $65-90 depending on bundle. Price checked 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 60,
+      "source": [
+        "https://www.cnx-software.com/2023/11/09/libre-computer-aml-a311d-cc-alta-sbc-features-amlogic-a311d-ai-processor/"
+      ],
+      "comment": "Single SKU — only one RAM/storage configuration is sold, so base and top MSRP are identical."
+    },
+    "available-regions": {
+      "value": ["north-america", "europe", "asia-pacific"],
+      "source": [
+        "https://www.amazon.com/Libre-Computer-Single-Board-AML-A311D-CC/dp/B0CSTDJPLW",
+        "https://www.amazon.co.uk/Libre-Computer-Single-Board-AML-A311D-CC/dp/B0CSTDJPLW",
+        "https://www.loverpi.com/products/libre-computer-alta-aml-a311d-cc-ai-sbc"
+      ],
+      "comment": "Sold via Amazon US, Amazon UK, LoveRPi (US), AliExpress, and direct Libre Computer / Shenzhen channels. Availability snapshot 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": [
+        "https://armbian.com/fr/boards/aml-a311d-cc"
+      ],
+      "comment": "In stock at most resellers as of 2026-04-26 (LoveRPi was sold out at one snapshot but Amazon listings remained live)."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014",
+        "https://docs.u-boot.org/en/v2025.04/board/amlogic/aml-a311d-cc.html"
+      ],
+      "comment": "Vendor hub aggregates schematics, GPIO pinout, and OS guides; SoC datasheet is publicly available. Falls short of polished, single-page docs (à la Raspberry Pi); information is spread across forum posts."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "Libre Computer has an active but smaller user base than the major SBC vendors; per RESEARCH.md thresholds this maps to `small`."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": [
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "hub.libre.computer Discourse forum has regular activity from both users and Libre Computer staff."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://www.loverpi.com/products/libre-computer-alta-aml-a311d-cc-ai-sbc",
+        "https://hub.libre.computer/t/libre-computer-aml-a311d-cc-alta-overview-and-resources/3014"
+      ],
+      "comment": "Mostly leans on generic Pi 3B+-compatible cases and HATs (header is mechanically Pi-compatible). Few first-party accessories beyond an eMMC module and a PoE/fan HAT; no official display, camera, or branded ecosystem of the size Pi or Khadas/Hardkernel maintain."
+    }
+  }
 }
