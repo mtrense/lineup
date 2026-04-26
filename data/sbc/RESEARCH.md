@@ -268,7 +268,7 @@ Users should be able to:
 - [x] **LattePanda Mu (compute module + carrier kit)** — Intel N100 module + carrier (treated as a usable SBC kit)
 - [x] **UDOO Bolt V8** — AMD Ryzen Embedded V1605B, high-power x86 SBC
 - [x] **UDOO Vision** — Intel Core Ultra x86 SBC
-- [ ] **ODYSSEY-X86J4125** — Intel J4125 with onboard Arduino co-MCU
+- [x] **ODYSSEY-X86J4125** — Intel J4125 with onboard Arduino co-MCU
 - [ ] **Seeed reTerminal / reComputer R1100** — Compute Module 4 + integrated screen + carrier
 - [ ] **MNT Reform / Pocket Reform mainboard** — Open-hardware SBCs (multiple SoC modules)
 - [ ] **Mixtile Blade 3** — RK3588, compute-cluster-friendly with dual 2.5G
