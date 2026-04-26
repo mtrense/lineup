@@ -1,5 +1,360 @@
 {
   "name": "BeagleV-Ahead",
-  "description": "T-Head TH1520 RISC-V",
-  "values": {}
+  "description": "Open-source RISC-V SBC built around the T-Head TH1520 with BeagleBone-compatible cape headers",
+  "icon": "🦴",
+  "url": "https://www.beagleboard.org/boards/beaglev-ahead",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "BeagleBoard.org Foundation",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "model": {
+      "value": "BeagleV-Ahead",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "release-date": {
+      "value": "2023-07",
+      "source": ["https://www.beagleboard.org/blog/2023-07-12-beaglev-ahead-announcement"],
+      "comment": "Announced and went on sale July 12, 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.seeedstudio.com/BeagleV-Ahead-p-5738.html",
+        "https://canada.newark.com/beagleboard/102991698/beaglev-ahead-sbc-xuantie-c910/dp/77AK6556"
+      ],
+      "comment": "Still listed as in-stock at Seeed (China warehouse) and at major distributors (Newark/Farnell) as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://certification.oshwa.org/us002535.html",
+        "https://www.beagleboard.org/boards/beaglev-ahead"
+      ],
+      "comment": "OSHWA certified UID US002535; PCB EDA files and schematics published under CC BY 4.0."
+    },
+    "country-of-origin": {
+      "value": "USA",
+      "source": ["https://www.beagleboard.org/blog/2023-07-12-beaglev-ahead-announcement"],
+      "comment": "BeagleBoard.org Foundation is a Michigan, USA-based 501(c)(3); SoC is from China-based T-Head and assembly is via Seeed in China."
+    },
+    "website": {
+      "value": "https://www.beagleboard.org/boards/beaglev-ahead",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "soc": {
+      "value": "T-Head TH1520",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "soc-vendor": {
+      "value": ["t-head"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Four Xuantie C910 application cores. The TH1520 also includes a Xuantie C906 audio DSP and a low-power Xuantie E902 core, but those are not general-purpose application cores."
+    },
+    "cpu-architecture": {
+      "value": "4× XuanTie C910 (RV64GC, out-of-order superscalar)",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.85,
+      "source": [
+        "https://www.beagleboard.org/boards/beaglev-ahead",
+        "https://docs.beagleboard.org/boards/beaglev/ahead/01-introduction.html"
+      ],
+      "comment": "Vendor product page advertises 2 GHz; documentation lists sustained 1.85 GHz. Using the more conservative documented value per Assessment Guidelines (highest sustained stock clock)."
+    },
+    "process-node": {
+      "value": null,
+      "comment": "T-Head does not publish the TH1520 process node and reliable third-party identification of the foundry/node was not found."
+    },
+    "gpu": {
+      "value": "Imagination BXM-4-64",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Vendor product page cites 50 GFLOPS, 3 Mpixel/s for the BXM-4-64."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/",
+        "https://mwilczynski.dev/posts/riscv-gpu-zink/"
+      ],
+      "comment": "Vulkan 1.2 supported by the Imagination BXM-4-64; as of late 2025 the mainline drm/imagination driver brings hardware-accelerated 3D on this GPU on RISC-V (TH1520 became the first RISC-V SoC with mainline accelerated 3D)."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "npu-performance-tops": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Vendor-quoted 4 TOPS @ INT8 at 1 GHz (TH1520 NPU). Not directly comparable across vendors."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "H.265/H.264 decode at 4Kp75."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "H.265/H.264 encode at 4Kp40."
+    },
+    "ram-min-gb": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Single SKU; not sold in alternative RAM configurations."
+    },
+    "ram-max-gb": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "ram-type": {
+      "value": ["lpddr4"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "16 GB onboard eMMC."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/"]
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/"]
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Realtek RTL8211F-VD-CG Gigabit PHY, single RJ-45."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "wifi": {
+      "value": ["wifi-5"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "AP6203BM module: 2.4 GHz/5 GHz dual-band 802.11ac (Wi-Fi 5)."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": ["https://www.seeedstudio.com/BeagleV-Ahead-p-5738.html"],
+      "comment": "Bluetooth 5.2 via the AP6203BM combo module."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "No USB-A. The board has a single micro-USB 3.0 OTG port (5 Gbps)."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "USB connector is micro-USB 3.0 (micro-AB), not USB-C."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Single micro-HDMI (type-D) port."
+    },
+    "max-display-resolution": {
+      "value": "4K@75 (decode); display output untested at this resolution",
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Vendor cites 4Kp75 H.265/H.264 decode. The exact maximum micro-HDMI display output resolution is not separately advertised on the product page."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "1× MIPI-DSI display connector."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "2× MIPI-CSI camera connectors (22-pin, RPi-Zero/CM4 compatible)."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://linuxgizmos.com/beaglev-ahead-pocket-computer-powered-by-risc-v-soc/"],
+      "comment": "3.5 mm analog audio jack present per LinuxGizmos breakdown of the board."
+    },
+    "gpio-pins": {
+      "value": 92,
+      "source": ["https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/"],
+      "comment": "P8 + P9 BeagleBone-style cape headers, 46 pins each (92 total). Header is 3.3 V only — unlike the BBB which offered 5 V on P9. Also includes a separate mikroBUS shuttle connector."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Uses BeagleBone P8/P9 layout, not Raspberry Pi 40-pin pinout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"]
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://www.cnx-software.com/2023/07/13/beaglev-ahead-quad-core-risc-v-sbc-offers-beaglebone-capes-compatibility/"],
+      "comment": "TH1520 has internal PCIe but no PCIe (M.2 or otherwise) is brought out to the user on this board."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "I2C/SPI/UART/PWM/ADC/GPIO available via P8/P9 cape headers and the mikroBUS shuttle connector."
+    },
+    "power-input": {
+      "value": "5V DC via barrel jack or micro-USB 3.0",
+      "source": ["https://linuxgizmos.com/beaglev-ahead-pocket-computer-powered-by-risc-v-soc/"]
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No measured idle figure from a credible review (Phoronix/CNX/Jeff Geerling) found. Per Notes-for-Researchers #8, leaving null rather than guessing from TDP."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "No measured load figure from a credible review found. Vendor does not publish typical full-load draw."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Vendor ships the board bare; no fan or active cooler is specified or required, but the SoC needs a heatsink under sustained load. Treating as heatsink-recommended on that basis (no explicit vendor cooling guidance for sustained max load)."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "comment": "Neither the official product page, the BeagleBoard documentation index, nor the design specs page explicitly confirm or deny an RTC battery holder; could not verify from primary sources."
+    },
+    "length-mm": {
+      "value": 96.5,
+      "source": ["https://docs.beagle.cc/boards/beaglev/ahead/03-design.html"],
+      "comment": "Official PCB size 96.5 × 60.5 × 1.6 mm per the Design & Specifications page (CNX-Software's earlier 86.4 × 53.4 figure was incorrect)."
+    },
+    "width-mm": {
+      "value": 60.5,
+      "source": ["https://docs.beagle.cc/boards/beaglev/ahead/03-design.html"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://docs.beagle.cc/boards/beaglev/ahead/03-design.html"],
+      "comment": "Larger than the BeagleBone Black footprint (BBB is 86.4 × 53.4 mm; BeagleV-Ahead is 96.5 × 60.5 mm), so it is not strictly a BBB-class form factor, even though the cape headers (P8/P9) are pin-compatible."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://docs.beagle.cc/boards/beaglev/ahead/03-design.html"],
+      "comment": "Mounting holes do not match Pi-standard. Could not confirm exact match to BeagleBone Black mounting pattern from primary sources."
+    },
+    "weight-g": {
+      "value": 49.7,
+      "source": ["https://docs.beagle.cc/boards/beaglev/ahead/03-design.html"],
+      "comment": "Net (bare board) weight per official design page; 128.8 g is gross (boxed) weight."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://forum.beagleboard.org/t/upstream-linux-th1520-patch-series/35780",
+        "https://mwilczynski.dev/posts/riscv-gpu-zink/"
+      ],
+      "comment": "Mainline upstreaming has progressed substantially since 2023: TH1520 SoC support, eMMC/microSD, Ethernet, USB are upstream. Linux 6.17 added the GPU power-sequencing driver and the drm/imagination GPU driver gives mainline 3D acceleration on RISC-V (a first). Display controller (Verisilicon DC8200) was still in review (v4) as of late 2025; NPU has no mainline driver. Mainline-kernel coverage is meaningful but not complete — classifying as partial."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "BeagleBoard.org publishes an official Ubuntu image and a Yocto image for the BeagleV-Ahead."
+    },
+    "distros-with-images": {
+      "value": ["ubuntu"],
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "Only Ubuntu is published as a board-specific image on BeagleBoard.org's distros page (alongside the vendor Yocto image, which has no matching tag in the schema). Fedora has community attempts; Armbian has community discussion but no first-class image; Debian builds exist as community/CI artifacts. Not listed here per RESEARCH.md (only board-specific officially-published images)."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://github.com/beagleboard/beaglev-ahead"],
+      "comment": "U-Boot is the bootloader for the BeagleV-Ahead, consistent with TH1520 boards generally."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "comment": "BeagleBoard.org Foundation has historically maintained boards for many years (BeagleBone Black is a clear precedent), but no explicit support window is published for the BeagleV-Ahead specifically."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "No official Android image is listed on the BeagleBoard distros page. Other TH1520 boards (e.g., Sipeed LicheePi 4A) have Android images, but those are not BeagleV-Ahead-specific."
+    },
+    "msrp-base-usd": {
+      "value": 149,
+      "source": [
+        "https://www.beagleboard.org/blog/2023-07-12-beaglev-ahead-announcement",
+        "https://canada.newark.com/beagleboard/102991698/beaglev-ahead-sbc-xuantie-c910/dp/77AK6556"
+      ],
+      "comment": "Launch MSRP USD 149 (2023). Single SKU; price has stayed near this point at distributors as of 2026-04-26."
+    },
+    "msrp-top-usd": {
+      "value": 149,
+      "source": ["https://www.beagleboard.org/blog/2023-07-12-beaglev-ahead-announcement"],
+      "comment": "Single SKU only — base equals top."
+    },
+    "available-regions": {
+      "value": ["north-america", "europe", "asia-pacific", "india"],
+      "source": [
+        "https://canada.newark.com/beagleboard/102991698/beaglev-ahead-sbc-xuantie-c910/dp/77AK6556",
+        "https://uk.farnell.com/beagleboard/102991698/beaglev-ahead/dp/4205457",
+        "https://www.seeedstudio.com/BeagleV-Ahead-p-5738.html",
+        "https://www.fabtolab.com/beaglev-ahead-risc-v-processor-ip-4-tops-ai-acceleration"
+      ],
+      "comment": "Distributed via Seeed (China/global), Farnell/Newark (NA/UK/EU), and India resellers (Fab.to.Lab). Effectively global through the Newark/Farnell network."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.seeedstudio.com/BeagleV-Ahead-p-5738.html"],
+      "comment": "In stock at Seeed (China warehouse) as of 2026-04-26; some regional resellers (e.g., Fab.to.Lab India) showed out-of-stock on the same date."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.beagleboard.org/boards/beaglev/ahead/index.html"],
+      "comment": "Comprehensive official docs portal with introduction, design specifications, and schematics; PDF design files plus open repository on git.beagleboard.org. Slightly below 5 because TH1520 software docs are still catching up to BeagleBone-class polish."
+    },
+    "community-size": {
+      "value": ["small"],
+      "comment": "BeagleBoard community is large overall, but BeagleV-Ahead specifically is a niche/early-RISC-V product within that community — sized as small per the RESEARCH.md guideline thresholds."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.beagleboard.org/t/upstream-linux-th1520-patch-series/35780"],
+      "comment": "Vendor-run forum.beagleboard.org has active BeagleV-Ahead threads and a dedicated subforum."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": ["https://www.beagleboard.org/boards/beaglev-ahead"],
+      "comment": "Reuses the mature BeagleBone P8/P9 cape ecosystem (electrically, with 3.3V-only caveat) and the mikroBUS shuttle ecosystem; no BeagleV-Ahead-specific accessory line. Mid rating reflects the inherited, not native, ecosystem."
+    }
+  }
 }
