@@ -238,7 +238,7 @@ Users should be able to:
 - [x] **Orange Pi 3B** — RK3566, RPi 3B-style form factor
 - [x] **FriendlyELEC NanoPC-T6** — RK3588, mini-ITX-ish, dual 2.5G LAN
 - [x] **FriendlyELEC NanoPi R6S** — RK3588S router-class form factor
-- [ ] **FriendlyELEC NanoPi R5S** — RK3568 router-class form factor
+- [x] **FriendlyELEC NanoPi R5S** — RK3568 router-class form factor
 - [ ] **Hardkernel ODROID-N2+** — Amlogic S922X, mature mid-tier ARM
 - [ ] **Hardkernel ODROID-M1S** — RK3566S, thin form factor
 - [ ] **Hardkernel ODROID-C4** — Amlogic S905X3, budget media-friendly
