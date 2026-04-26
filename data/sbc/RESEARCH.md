@@ -259,7 +259,7 @@ Users should be able to:
 - [x] **BeagleV-Ahead** — T-Head TH1520 RISC-V
 - [x] **StarFive VisionFive 2** — JH7110 RISC-V, established RISC-V SBC
 - [x] **Milk-V Mars** — JH7110 RISC-V, RPi-style budget
-- [ ] **Sipeed LicheePi 4A** — T-Head TH1520 RISC-V
+- [x] **Sipeed LicheePi 4A** — T-Head TH1520 RISC-V
 - [ ] **Pine64 Ox64** — BL808 RISC-V, ultra-compact
 - [ ] **ASUS Tinker Board 3N** — RK3568, industrial-flavored ASUS line
 - [ ] **LattePanda 3 Delta** — Intel N5105 x86 SBC

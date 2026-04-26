@@ -1,5 +1,435 @@
 {
   "name": "Sipeed LicheePi 4A",
   "description": "T-Head TH1520 RISC-V",
-  "values": {}
+  "url": "https://sipeed.com/licheepi4a",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "Sipeed",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "model": {
+      "value": "LicheePi 4A",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "release-date": {
+      "value": "2023-05",
+      "source": [
+        "https://www.cnx-software.com/2023/05/06/lichee-pi-4a-risc-v-sbc-raspberry-pi-4-th1520-processor/",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "Beta launched May 2023; 16GB/128GB top variant added July 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://www.amazon.com/Sipeed-LicheePi-Risc-V-TH1520-Development/dp/B0C5MV6991"
+      ],
+      "comment": "Still listed on Sipeed wiki and major resellers (Amazon, AliExpress, youyeetoo) as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["riscv64"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "RV64GCV (Xuantie C910)."
+    },
+    "open-source-hardware": {
+      "value": false,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Could not locate full PCB design files under an OSHW-compatible license; Sipeed publishes schematics and dimensional drawings but not full PCB sources for the LicheePi 4A. Marking false per RESEARCH.md guideline (schematics-only does not qualify)."
+    },
+    "country-of-origin": {
+      "value": "China",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Sipeed (Shenzhen-based)."
+    },
+    "website": {
+      "value": "https://sipeed.com/licheepi4a",
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://classic.sipeed.com/licheepi4a/"
+      ]
+    },
+    "soc": {
+      "value": "T-Head TH1520",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "soc-vendor": {
+      "value": ["t-head"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Quad-core Xuantie C910. SoC also has an auxiliary C906 audio DSP and an E902 low-power core, but the primary application cores are the four C910s."
+    },
+    "cpu-architecture": {
+      "value": "4× Xuantie C910 (RV64GCV)",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.85,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Sipeed wiki specifies 1.85 GHz on the LicheePi 4A as shipped. Some marketing pages cite '2.0 GHz' as the SoC ceiling, but the board itself ships at 1.85 GHz per the official intro page."
+    },
+    "process-node": {
+      "value": "12 nm",
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "TH1520 is fabricated on a 12 nm node per third-party reporting; T-Head has not published a public datasheet."
+    },
+    "gpu": {
+      "value": "Imagination BXM-4-64",
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://www.cnx-software.com/2023/05/06/lichee-pi-4a-risc-v-sbc-raspberry-pi-4-th1520-processor/"
+      ],
+      "comment": "Imagination BXM-4-64; rated ~50 GFLOPS by vendor."
+    },
+    "opengl-es-version": {
+      "value": "3.2",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Vulkan 1.1/1.2 advertised by vendor; driver is vendor-only and not in mainline mesa as of 2026-04-26."
+    },
+    "npu": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "npu-performance-tops": {
+      "value": 4,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Vendor-quoted 4 TOPS @ INT8."
+    },
+    "hw-video-decode": {
+      "value": ["h264", "h265", "vp9"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Vendor lists H.265/H.264/VP9 plus AVS/AVS+/AVS2/VC1/MPEG4 at up to 4K@75fps. AV1 is not supported."
+    },
+    "hw-video-encode": {
+      "value": ["h264", "h265"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "H.264/H.265 up to 4K@40fps per vendor."
+    },
+    "ram-min-gb": {
+      "value": 8,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "8 GB is the smallest LPDDR4X configuration sold."
+    },
+    "ram-max-gb": {
+      "value": 16,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://www.cnx-software.com/2023/07/10/licheepi-4a-risc-v-sbc-gets-16gb-128gb-version-metal-enclosure-10-1-inch-display-and-more-accessories/"
+      ]
+    },
+    "ram-type": {
+      "value": ["lpddr4x"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Sipeed wiki intro page says LPDDR4X; older lp4a wiki page says LPDDR4. Going with LPDDR4X from the current intro doc."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "8 GB / 32 GB / 128 GB eMMC options on the LM4A core module."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "No M.2 NVMe slot on the LicheePi 4A carrier; the LicheePi Book/Console variants add M.2, but not the SBC."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "No native SATA port on the board."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "Two Gigabit Ethernet ports; one supports PoE."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"]
+    },
+    "wifi": {
+      "value": ["wifi-4"],
+      "source": [
+        "https://www.amazon.com/LicheePi-RISC-V-Linux-Development-TH1520/dp/B0CBPYYXQJ",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "Onboard Wi-Fi 4 + Bluetooth 5.0 on the standard SKU per Amazon listing and Liliputing reporting; a Wi-Fi 6 SKU has been mentioned in marketing material but the standard board ships with Wi-Fi 4 (Realtek). Treating Wi-Fi 4 as the verifiable baseline."
+    },
+    "bluetooth": {
+      "value": "5.0",
+      "source": [
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/",
+        "https://www.amazon.com/LicheePi-RISC-V-Linux-Development-TH1520/dp/B0CBPYYXQJ"
+      ],
+      "comment": "Realtek Bluetooth 5.0 module (rtk_btcoex driver)."
+    },
+    "usb-a-3x-ports": {
+      "value": 4,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "4× USB 3.0 Type-A at 5 Gbps."
+    },
+    "usb-a-2-ports": {
+      "value": 0,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "No USB 2.0 Type-A ports; the only USB 2.0 lane is on the Type-C connector used for power and firmware flashing."
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ],
+      "comment": "Single USB-C is for power and firmware flashing only — not a general-purpose data port. RESEARCH.md says to exclude power-only USB-C from the count, so 0."
+    },
+    "poe-support": {
+      "value": ["built-in"],
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "One of the two Gigabit Ethernet ports supports PoE on-board (no HAT required)."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "1× HDMI 2.0; dual 4K display is achieved via HDMI + MIPI-DSI."
+    },
+    "max-display-resolution": {
+      "value": "4K@60",
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"
+      ]
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "No DisplayPort output (HDMI 2.0 + MIPI-DSI only); USB-C is power-only with no DP-Alt mode."
+    },
+    "mipi-dsi": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "1× 4-lane MIPI-DSI."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "2× 2-lane + 1× 4-lane MIPI-CSI."
+    },
+    "audio-jack": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "3.5 mm stereo jack plus two onboard mics and a speaker header."
+    },
+    "gpio-pins": {
+      "value": 20,
+      "source": [
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/",
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"
+      ],
+      "comment": "Two 10-pin GPIO blocks (effectively a 2×10 / 20-pin layout) — not the RPi 40-pin."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "20-pin Sipeed-specific GPIO layout, not pin-compatible with the Raspberry Pi 40-pin header."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "Header layout, mounting holes, and form factor (103×85 mm) are all incompatible with the RPi HAT spec."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "TH1520 has PCIe internally but no PCIe slot, M.2, or FPC connector is broken out on the LicheePi 4A SBC."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "UART, I²C, and SPI are exposed on the GPIO header."
+    },
+    "power-input": {
+      "value": "5V/2A via DC barrel jack or USB-C",
+      "source": [
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/",
+        "https://www.cnx-software.com/2023/05/06/lichee-pi-4a-risc-v-sbc-raspberry-pi-4-th1520-processor/"
+      ],
+      "comment": "5V via 5.5 mm DC jack or USB Type-C."
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "Could not find a measured idle figure for the bare LicheePi 4A SBC. Reviews are dominated by the Lichee Console laptop variant (~6 W idle including display + USB hub + USB-SATA chips), which isn't directly applicable. Marking null per RESEARCH.md (no measured number from a credible review of the SBC itself)."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No measured full-load figure for the SBC found independent of the Console variant. Marking null."
+    },
+    "cooling-required": {
+      "value": ["heatsink-recommended"],
+      "source": [
+        "https://3.14.by/en/read/RISC-V-Sipeed-Lichee-Console-4A-Alibaba-T-Head-TH1520-review",
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"
+      ],
+      "comment": "Sipeed ships an optional heatsink and cooling fan kit; the Console variant uses an always-on fan, but the SBC itself runs warm at idle and a heatsink is the standard recommendation. No vendor mandate of active cooling for the bare SBC."
+    },
+    "rtc-battery-header": {
+      "value": null,
+      "source": [],
+      "comment": "Sipeed wiki does not call out an onboard RTC battery header for the LicheePi 4A; could not confirm or refute from primary sources. Leaving null."
+    },
+    "length-mm": {
+      "value": 103,
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"]
+    },
+    "width-mm": {
+      "value": 85,
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "PCBA 103×85 mm. Width matches RPi at 85 mm but length (103 mm) and the 20-pin header rule out RPi-standard form factor."
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "103×85 mm; outside the ~85×56 mm pi-standard envelope."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/"],
+      "comment": "Custom Sipeed mounting layout; not the RPi 4-hole pattern."
+    },
+    "weight-g": {
+      "value": null,
+      "source": [],
+      "comment": "Sipeed does not publish the bare-board weight; could not find a credible measured figure. Leaving null."
+    },
+    "mainline-linux-kernel": {
+      "value": ["partial"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/7_develop_mainline.html",
+        "https://docs.u-boot.org/en/stable/board/thead/lpi4a.html"
+      ],
+      "comment": "Initial board support landed in mainline starting with v6.5-rc1 (light-lpi4a.dts). Mainline U-Boot supports the board, and core peripherals (UART, eMMC, SD) work upstream, but GPU, NPU, video codecs, Wi-Fi/BT and other accelerators still require vendor patches. Classifying as 'partial' per RESEARCH.md."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://github.com/revyos/revyos"
+      ],
+      "comment": "Sipeed maintains a Debian-based image; RevyOS (a T-Head-blessed distro) is the de-facto primary image."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://www.armbian.com/licheepi-4a/",
+        "https://docs.revyos.dev/en/docs/Installation/licheepi4a/"
+      ],
+      "comment": "Sipeed publishes Debian and Ubuntu 22.04 images; Armbian lists the LicheePi 4A as a supported board (community-tier). RevyOS is the vendor-flavored Debian image but isn't a tag in the schema. OpenWRT and Android images also exist but no matching tag. OpenHarmony is WIP."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.u-boot.org/en/stable/board/thead/lpi4a.html"],
+      "comment": "U-Boot (mainline) plus OpenSBI v1.2+ in a multi-stage SPL boot flow."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/7_develop_mainline.html"
+      ],
+      "comment": "Sipeed has not published a formal software-support window. Mainline upstreaming is in progress, which would extend longevity beyond a vendor-fork-only board, but no commitment is documented."
+    },
+    "android-support": {
+      "value": true,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://riscv.org/blog/the-release-of-the-first-two-mass-produced-development-boards-aosp-powered-by-th1520-soc/"
+      ],
+      "comment": "Sipeed ships an Android image; AOSP for TH1520 is officially supported by T-Head."
+    },
+    "msrp-base-usd": {
+      "value": 119,
+      "source": [
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/",
+        "https://www.amazon.com/LicheePi-8GB-RISC-V-Linux-Development/dp/B0CCRHBN21"
+      ],
+      "comment": "Base 8 GB / no-eMMC SKU at $119 per launch pricing; checked 2026-04-26. Resellers (Amazon, AliExpress) currently price the same SKU around $130-150."
+    },
+    "msrp-top-usd": {
+      "value": 185,
+      "source": [
+        "https://liliputing.com/sipeed-lichee-pi-4a-is-a-modular-risc-v-mini-pc-with-up-to-16gb-ram/",
+        "https://www.cnx-software.com/2023/07/10/licheepi-4a-risc-v-sbc-gets-16gb-128gb-version-metal-enclosure-10-1-inch-display-and-more-accessories/"
+      ],
+      "comment": "16 GB RAM / 128 GB eMMC top SKU at ~¥1300 ≈ $185 from Sipeed; checked 2026-04-26. Western retail markup pushes this toward $250."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.amazon.com/Sipeed-LicheePi-Risc-V-TH1520-Development/dp/B0C5MV6991",
+        "https://classic.sipeed.com/licheepi4a/"
+      ],
+      "comment": "Sold globally via Sipeed direct, AliExpress, Amazon (US/EU), and youyeetoo. Snapshot 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.amazon.com/Sipeed-LicheePi-Risc-V-TH1520-Development/dp/B0C5MV6991"],
+      "comment": "In stock at major resellers as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/7_develop_mainline.html"
+      ],
+      "comment": "Sipeed wiki is comprehensive on the basics (intro, getting started, OS flashing, pinout) but TH1520 has no public datasheet and the mainline-Linux page admits ongoing gaps. Adequate but not stellar."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://github.com/ruyisdk/support-matrix/blob/main/LicheePi4A/README.md"
+      ],
+      "comment": "Active among RISC-V enthusiasts and the RuyiSDK / RevyOS communities, but small compared to Raspberry Pi or even Rockchip ecosystems."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html"],
+      "comment": "Sipeed runs a Telegram/Discord plus a wiki-linked support channel; activity is regular but modest."
+    },
+    "accessory-ecosystem": {
+      "value": 2,
+      "source": [
+        "https://wiki.sipeed.com/hardware/en/lichee/th1520/lpi4a/1_intro.html",
+        "https://www.cnx-software.com/2023/07/10/licheepi-4a-risc-v-sbc-gets-16gb-128gb-version-metal-enclosure-10-1-inch-display-and-more-accessories/"
+      ],
+      "comment": "Sipeed sells a metal enclosure, 10.1-inch display, MIPI cameras, and PoE / cooling kits aimed at the LicheePi 4A. Beyond Sipeed-first-party there is little third-party ecosystem since GPIO and form factor diverge from the RPi."
+    }
+  }
 }
