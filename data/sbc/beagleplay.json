@@ -1,5 +1,425 @@
 {
   "name": "BeaglePlay",
   "description": "TI AM625, modern BeagleBoard line",
-  "values": {}
+  "url": "https://www.beagleboard.org/boards/beagleplay",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "BeagleBoard.org Foundation",
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Manufactured under license; broadly distributed by Digi-Key, Newark, Mouser, Element14."
+    },
+    "model": {
+      "value": "BeaglePlay",
+      "source": ["https://www.beagleboard.org/boards/beagleplay"]
+    },
+    "release-date": {
+      "value": "2023-03",
+      "source": [
+        "https://www.cnx-software.com/2023/03/09/beagleplay-a-99-texas-instruments-am625-industrial-sbc-with-plenty-of-communication-and-expansion-options/",
+        "https://liliputing.com/beagleplay-is-a-99-single-board-pc-and-dev-platform-with-plenty-of-i-o/"
+      ],
+      "comment": "Announced and made orderable in March 2023."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://www.newark.com/beagleboard/102110762/beagleplay-rohs-compliant-yes/dp/65AK6355"
+      ],
+      "comment": "Still listed at $99 USD via Digi-Key, Newark, Mouser, Element14 as of 2026-04-26."
+    },
+    "architecture-family": {
+      "value": ["arm64"],
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Quad Cortex-A53 application cores are ARMv8 (aarch64); on-die Cortex-M4F and Cortex-R5F MCUs are auxiliary."
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html"
+      ],
+      "comment": "BeagleBoard.org publishes full design files (schematics, layout) on OpenBeagle, consistent with the BeagleBoard.org open-hardware tradition. No matching OSHWA UID surfaced in this pass — certification status unverified."
+    },
+    "country-of-origin": {
+      "value": "USA",
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "BeagleBoard.org Foundation is headquartered in Michigan, USA; PCBs assembled in China."
+    },
+    "website": {
+      "value": "https://www.beagleboard.org/boards/beagleplay",
+      "source": ["https://www.beagleboard.org/boards/beagleplay"]
+    },
+    "soc": {
+      "value": "TI AM625 (AM6254)",
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html"
+      ],
+      "comment": "Specifically the AM6254 SKU within TI's AM62x Sitara family."
+    },
+    "soc-vendor": {
+      "value": ["other"],
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "TI (Texas Instruments) — `ti` tag not yet defined in attributes.json; using `other` per ongoing schema gap (same workaround as beaglebone-black/beaglebone-ai-64). User has flagged for batch schema fix."
+    },
+    "cpu-cores": {
+      "value": 4,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "4× Cortex-A53 application cores. Cortex-M4F MCU and PRU subsystem not counted as application CPU cores."
+    },
+    "cpu-architecture": {
+      "value": "4× Cortex-A53 (+ 1× Cortex-M4F MCU @ 400 MHz, 2× PRU @ 333 MHz)",
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html"
+      ]
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.4,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Cortex-A53 application cores at up to 1.4 GHz."
+    },
+    "process-node": {
+      "value": "16 nm",
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "AM625 is fabricated on a 16 nm FinFET process per TI's product page."
+    },
+    "gpu": {
+      "value": "PowerVR Rogue AXE-1-16M",
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://www.ti.com/product/AM625"
+      ],
+      "comment": "Imagination PowerVR Rogue AXE-1-16M; vendor cites >500 Mpixel/s fillrate, >8 GFLOPS."
+    },
+    "opengl-es-version": {
+      "value": "3.1",
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://www.ti.com/product/AM625"
+      ]
+    },
+    "vulkan-support": {
+      "value": true,
+      "source": [
+        "https://www.ti.com/product/AM625",
+        "https://www.beagleboard.org/blog/2026-02-06-beagleplay-reaches-upstream-powervr-graphics-milestone-a-win-for-open-source-and-our-community"
+      ],
+      "comment": "Vulkan 1.2 supported by the AXE-1-16M. As of Feb 2026, fully upstream PowerVR DRM kernel driver + Mesa Vulkan driver landed for BeaglePlay — open-source Vulkan 1.2 acceleration without proprietary blobs."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "AM625 has no dedicated NPU/MMA. TI markets the device as 'edge AI enabled' but inference relies on the Cortex-A53 cluster (and optionally PRU/M4F)."
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "No NPU on this SoC."
+    },
+    "hw-video-decode": {
+      "value": [],
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "AM625 is an HMI-class SoC with no dedicated hardware video codec block. Decode happens on the A53 cluster (software). Empty tag set indicates no hardware codec acceleration."
+    },
+    "hw-video-encode": {
+      "value": [],
+      "source": ["https://www.ti.com/product/AM625"],
+      "comment": "No hardware video encoder on AM625."
+    },
+    "ram-min-gb": {
+      "value": 2,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Single 2 GB SKU; no other RAM options sold."
+    },
+    "ram-max-gb": {
+      "value": 2,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"]
+    },
+    "ram-type": {
+      "value": ["ddr4"],
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://www.cnx-software.com/2023/03/09/beagleplay-a-99-texas-instruments-am625-industrial-sbc-with-plenty-of-communication-and-expansion-options/"
+      ],
+      "comment": "Vendor design docs and CNX coverage both list DDR4 (not LPDDR4); the early launch coverage's 'DDR2' mention is a typo."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "16 GB onboard eMMC."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "No M.2 connector of any key/length on the board."
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "No native SATA port."
+    },
+    "ethernet": {
+      "value": ["1g"],
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Gigabit Ethernet via RJ45 (RTL8211F PHY). Highest port speed; the second SPE/T1L port is 10 Mbps."
+    },
+    "dual-ethernet": {
+      "value": true,
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html"
+      ],
+      "comment": "Two physical Ethernet ports: Gigabit RJ45 + 10 Mbps single-pair Ethernet (10Base-T1L) RJ11 with power-over-data-line. SPE port is much slower than the gigabit one."
+    },
+    "wifi": {
+      "value": ["wifi-4"],
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://www.cnx-software.com/2023/03/09/beagleplay-a-99-texas-instruments-am625-industrial-sbc-with-plenty-of-communication-and-expansion-options/"
+      ],
+      "comment": "TI WL1807MOD (WiLink 8) provides 2.4/5 GHz dual-band Wi-Fi 4 (802.11n only); no Wi-Fi 5/6 support."
+    },
+    "bluetooth": {
+      "value": "5.2",
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "TI CC1352P7 wireless MCU provides Bluetooth 5.2 LE plus 802.15.4 / Sub-GHz radios."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://kickstartembedded.com/2023/06/02/meet-the-beagleplay-the-hottest-sbc-on-the-block/"
+      ],
+      "comment": "AM625 USB subsystem is USB 2.0 only — the single USB-A host port is USB 2.0 (480 Mbps), not 5 Gbps."
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "1× USB 2.0 Type-A host port."
+    },
+    "usb-c-ports-data": {
+      "value": 1,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "1× USB-C carrying USB 2.0 data and power input."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "No standard PoE on the gigabit port. The SPE/T1L port carries power-over-data-line (10Base-T1L PoDL) but that is a separate, low-power, single-pair industrial standard, not 802.3af/at/bt PoE."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "1× full-size HDMI Type-A output (1080p)."
+    },
+    "max-display-resolution": {
+      "value": "1080p@60",
+      "source": [
+        "https://www.ti.com/product/AM625",
+        "https://www.beagleboard.org/boards/beagleplay"
+      ],
+      "comment": "AM625 display subsystem caps at 1920×1080 @ 60 fps per output. No 4K support on this SoC."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "No native DisplayPort. The OLDI (LVDS) FPC connector for touchscreens is not DisplayPort. USB-C is USB 2.0 only (no DP-Alt)."
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "Display FPC is OLDI/LVDS (4-lane), not MIPI-DSI. AM625 itself has no MIPI-DSI controller."
+    },
+    "mipi-csi": {
+      "value": true,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "22-pin 4-lane MIPI-CSI camera FPC connector, compatible with Raspberry Pi camera modules."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "No 3.5 mm analog audio jack. Audio routes via HDMI or external add-ons (mikroBUS/Grove/QWIIC)."
+    },
+    "gpio-pins": {
+      "value": 0,
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://kickstartembedded.com/2023/06/02/meet-the-beagleplay-the-hottest-sbc-on-the-block/"
+      ],
+      "comment": "BeaglePlay deliberately drops the BeagleBone P8/P9 cape headers and the RPi 40-pin header. Expansion is via 1× mikroBUS, 1× Grove, 1× QWIIC, plus camera/display FPCs. Recording 0 to reflect the absence of a generic GPIO pin header; raw GPIOs are still reachable through the expansion connectors."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "No 40-pin Raspberry Pi-style GPIO header."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "No RPi HAT compatibility — neither header pinout nor mounting-hole pattern matches."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://www.ti.com/product/AM625"
+      ],
+      "comment": "AM625 has no PCIe controller, so no PCIe lanes are exposed on BeaglePlay."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "I²C (QWIIC + Grove + mikroBUS), SPI (mikroBUS), UART (mikroBUS + console) all exposed via the expansion connectors."
+    },
+    "power-input": {
+      "value": "USB-C 5V/3A (15 W)",
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://kickstartembedded.com/2023/06/02/meet-the-beagleplay-the-hottest-sbc-on-the-block/"
+      ],
+      "comment": "USB-C only (no barrel jack). Vendor recommends 5V ≥ 3A (15 W) supply."
+    },
+    "idle-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable independent idle-power measurement surfaced for BeaglePlay (Phoronix/Geerling/CNX-Software did not publish a measured number). 15 W USB-C recommendation is a PSU headroom figure, not idle draw."
+    },
+    "load-power-w": {
+      "value": null,
+      "source": [],
+      "comment": "No reliable independent full-load measurement surfaced. Vendor PSU recommendation of 15 W is a maximum allowance."
+    },
+    "cooling-required": {
+      "value": ["passive-ok"],
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Cortex-A53 quad @ 1.4 GHz on 16 nm with no NPU and no GPU video block runs cool; vendor neither bundles a heatsink nor mandates active cooling. KKSB metal case acts as a passive heatspreader."
+    },
+    "rtc-battery-header": {
+      "value": true,
+      "source": [
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html",
+        "https://kickstartembedded.com/2023/06/02/meet-the-beagleplay-the-hottest-sbc-on-the-block/"
+      ],
+      "comment": "Onboard RTC chip with battery holder for timekeeping when unpowered."
+    },
+    "length-mm": {
+      "value": 80,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "PCB is 80 × 80 mm (vendor lists overall product as 82.5 × 80 × 20 mm including overhang/connectors)."
+    },
+    "width-mm": {
+      "value": 80,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"]
+    },
+    "form-factor-class": {
+      "value": ["custom"],
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "80×80 mm square — neither pi-standard (~85×56), pi-zero, nor any ITX size. Effectively a custom BeaglePlay-specific footprint."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "Custom mounting-hole pattern to match KKSB and BeagleBoard.org-blessed cases; not RPi-standard."
+    },
+    "weight-g": {
+      "value": 55.3,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/03-design.html"],
+      "comment": "Bare board weight per vendor design doc."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://docs.u-boot.org/en/latest/board/beagle/am62x_beagleplay.html",
+        "https://www.beagleboard.org/blog/2026-02-06-beagleplay-reaches-upstream-powervr-graphics-milestone-a-win-for-open-source-and-our-community"
+      ],
+      "comment": "Mainline U-Boot has board support (am62x_beagleplay). As of Feb 2026, the PowerVR DRM kernel driver and Mesa Vulkan driver are upstream — closing the last major peripheral gap. Wi-Fi (WL1807) and BT (CC1352P7) work via standard upstream drivers. Treating as 'full' on that basis; some users still prefer TI's vendor 6.12/6.18 kernel for the most polished out-of-the-box experience."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "BeagleBoard.org publishes maintained Debian images (XFCE and minimal) across kernel 6.12.x, 6.18.x, and 6.19.x lines."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://www.beagleboard.org/distros",
+        "https://www.armbian.com/beagleplay/"
+      ],
+      "comment": "Debian (official BeagleBoard images) plus Ubuntu 26.04, Debian 14 Forky, Kali, Home Assistant, OpenMediaVault, openHAB via Armbian's BeaglePlay page (10 images, vendor 6.12.57 / 6.18.13 kernels)."
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://docs.u-boot.org/en/latest/board/beagle/am62x_beagleplay.html"],
+      "comment": "Mainline U-Boot has am62x_beagleplay board support; TI ROM bootloader handles initial stages."
+    },
+    "long-term-support": {
+      "value": ["unclear"],
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "BeagleBoard.org has historically maintained images for many years (BeagleBone Black is still supported >10 years on), but no formally committed LTS window is published for BeaglePlay."
+    },
+    "android-support": {
+      "value": false,
+      "source": [
+        "https://www.beagleboard.org/projects/android-for-beagleplay",
+        "https://www.beagleboard.org/distros"
+      ],
+      "comment": "TI publishes a Processor SDK Android for AM62x and there are community forum threads about Android-13 on BeaglePlay, but no first-class maintained, regularly-updated Android image is shipped on the BeagleBoard distros page. Marking false on the 'official or maintained' bar."
+    },
+    "msrp-base-usd": {
+      "value": 99,
+      "source": [
+        "https://www.beagleboard.org/boards/beagleplay",
+        "https://www.cnx-software.com/2023/03/09/beagleplay-a-99-texas-instruments-am625-industrial-sbc-with-plenty-of-communication-and-expansion-options/"
+      ],
+      "comment": "$99 USD launch MSRP held since March 2023 across Digi-Key/Newark/Mouser/Element14 listings as of 2026-04-26. Single configuration, so base = top."
+    },
+    "msrp-top-usd": {
+      "value": 99,
+      "source": ["https://www.beagleboard.org/boards/beagleplay"],
+      "comment": "Single configuration; same as base."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.newark.com/beagleboard/102110762/beagleplay-rohs-compliant-yes/dp/65AK6355",
+        "https://www.beagleboard.org/boards/beagleplay"
+      ],
+      "comment": "Distributed via Digi-Key, Newark, Mouser, Element14, OKdo and similar — global retail footprint."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.newark.com/beagleboard/102110762/beagleplay-rohs-compliant-yes/dp/65AK6355"],
+      "comment": "Listed as available at Newark and Digi-Key as of 2026-04-26; no scarcity flags surfaced this pass."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.beagleboard.org/boards/beagleplay/"],
+      "comment": "Comprehensive multi-chapter docs site (introduction, quick-start, design, expansion, demos), schematics, kernel/U-Boot how-tos. One notch below RPi/Hardkernel due to occasional gaps and SDK fragmentation between TI vendor stack and BeagleBoard images."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "BeagleBoard ecosystem is broadly large/established; BeaglePlay specifically has narrower mindshare than RPi but benefits from the shared forum, docs, and Bootlin training material."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "Vendor-run Discourse forum (forum.beagleboard.org) with regular activity, including BeaglePlay-specific threads."
+    },
+    "accessory-ecosystem": {
+      "value": 3,
+      "source": [
+        "https://kksb-cases.com/products/kksb-beagleplay-chassi",
+        "https://docs.beagleboard.org/boards/beagleplay/03-design.html"
+      ],
+      "comment": "BeaglePlay drops cape compatibility, so it relies on mikroBUS Click boards (huge MikroElektronika library), Grove modules, QWIIC modules, plus a few BeaglePlay-specific cases (KKSB). Solid but not RPi-scale; no HAT ecosystem."
+    }
+  }
 }
