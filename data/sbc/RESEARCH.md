@@ -50,7 +50,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **SoC** | text | System-on-chip name (e.g., "BCM2712", "RK3588", "Amlogic S922X", "Intel N100", "JH7110"). |
-| **SoC Vendor** | tags | `broadcom`, `rockchip`, `amlogic`, `allwinner`, `nxp`, `mediatek`, `starfive`, `t-head`, `spacemit`, `intel`, `amd`, `other`. |
+| **SoC Vendor** | tags | `broadcom`, `rockchip`, `amlogic`, `allwinner`, `nxp`, `mediatek`, `starfive`, `t-head`, `spacemit`, `bouffalo-lab`, `intel`, `amd`, `other`. |
 | **CPU Cores** | integer (ascending) | Total core count. |
 | **CPU Architecture** | text | Microarchitecture summary (e.g., "4× Cortex-A76", "4× A76 + 4× A55 (big.LITTLE)", "Intel Alder Lake-N"). |
 | **Max Clock Speed (GHz)** | decimal (ascending) | Highest advertised core clock under stock settings. |
@@ -74,7 +74,7 @@ Users should be able to:
 |-----------|------|----------------|
 | **RAM Min (GB)** | decimal (ascending) | Smallest configuration sold. |
 | **RAM Max (GB)** | decimal (ascending) | Largest configuration sold. |
-| **RAM Type** | tags | `lpddr2`, `lpddr3`, `lpddr4`, `lpddr4x`, `lpddr5`, `ddr4`, `ddr5`. |
+| **RAM Type** | tags | `lpddr2`, `lpddr3`, `lpddr4`, `lpddr4x`, `lpddr5`, `ddr4`, `ddr5`, `psram`. |
 | **eMMC** | boolean | Onboard eMMC present (any capacity option). |
 | **microSD Slot** | boolean | Standard microSD card slot present. |
 | **M.2 NVMe Slot** | boolean | M.2 slot supporting NVMe SSD (any key/length). |
@@ -140,8 +140,8 @@ Users should be able to:
 |-----------|------|----------------|
 | **Mainline Linux Kernel** | tags | `full` (board boots stock mainline kernel), `partial` (boots but features missing), `vendor-only` (requires vendor fork), `none`. |
 | **Official OS Image** | boolean | Vendor publishes a maintained Linux image. |
-| **Distros With Images** | tags | `raspberry-pi-os`, `ubuntu`, `debian`, `armbian`, `fedora`, `opensuse`, `alpine`, `dietpi`, `manjaro`, `vendor-only`. Select all that publish a board-specific image. |
-| **Bootloader** | tags | `u-boot`, `uefi`, `proprietary`, `coreboot`, `tow-boot`. |
+| **Distros With Images** | tags | `raspberry-pi-os`, `ubuntu`, `debian`, `armbian`, `fedora`, `opensuse`, `alpine`, `dietpi`, `manjaro`, `buildroot`, `vendor-only`. Select all that publish a board-specific image. |
+| **Bootloader** | tags | `u-boot`, `uefi`, `proprietary`, `coreboot`, `tow-boot`, `opensbi`. Tag every stage in the firmware/bootloader chain (RISC-V boards typically combine `opensbi` with `u-boot`). |
 | **Long-Term Support** | tags | `5y+`, `3-5y`, `1-3y`, `unclear`. Vendor's stated software-support window. |
 | **Android Support** | boolean | Official or maintained Android image available. |
 
@@ -197,7 +197,9 @@ Users should be able to:
   - `partial` — boots but missing meaningful hardware (e.g., GPU, NPU, Wi-Fi, video codecs).
   - `vendor-only` — requires a vendor-maintained kernel fork; mainline does not boot or boots without essential drivers.
   - `none` — no maintained Linux support exists.
-- **Distros With Images**: Only list distros that publish a board-specific image (or whose generic ARM image is officially documented to work). Do not list a distro just because someone got it running once.
+- **Distros With Images**: Only list distros that publish a board-specific image (or whose generic ARM image is officially documented to work). Do not list a distro just because someone got it running once. Use `buildroot` when the vendor's only official image is a Buildroot-built rootfs (common on early-life RISC-V boards); do not add `buildroot` to boards that merely *support* Buildroot in addition to a real distro image.
+- **RAM Type — PSRAM**: Use `psram` for boards with embedded pseudo-static RAM on MCU-class SoCs (e.g., Bouffalo BL808). PSRAM signals a categorical difference from DDR-class memory, not just another generation. Document the embedded capacity in the comment since it is not separately upgradeable.
+- **Bootloader on RISC-V**: Tag every stage in the firmware/bootloader chain. Most RISC-V boards run OpenSBI (M-mode firmware) under U-Boot (S-mode bootloader) — tag both as `opensbi` + `u-boot`. Use `opensbi` alone only if no S-mode bootloader is present.
 - **PoE Support**: `via-hat` means PoE only available through an add-on board (RPi PoE+ HAT). `built-in` means a PoE-capable port is on the SBC itself.
 - **Cooling Required**: Base on the *vendor's* recommendation for sustained max load, not idle behavior. RPi 5 is `heatsink-recommended`; RK3588 boards are typically `active-required`.
 - **MSRP**: Use the manufacturer's official price for the base configuration. Note date in the comment because SBC pricing fluctuates and many boards are sold at premium markup by resellers.

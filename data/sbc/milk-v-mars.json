@@ -299,8 +299,9 @@
       "comment": "Vendor ships a Debian Bookworm image. Ubuntu 24.04/25.04 RISC-V images are explicitly board-tested by Canonical. Fedora Server 42 (RISC-V) images boot on Mars. Armbian support is in-progress (community thread, not yet official). deepin V23 has also been adapted but is not in the tag set."
     },
     "bootloader": {
-      "value": ["u-boot"],
-      "source": ["https://docs.u-boot.org/en/latest/board/starfive/milk-v_mars.html"]
+      "value": ["opensbi", "u-boot"],
+      "source": ["https://docs.u-boot.org/en/latest/board/starfive/milk-v_mars.html"],
+      "comment": "OpenSBI (M-mode firmware) chained into U-Boot (S-mode bootloader), standard JH7110 boot flow."
     },
     "long-term-support": {
       "value": ["unclear"],

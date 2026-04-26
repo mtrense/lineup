@@ -54,9 +54,8 @@
       ]
     },
     "soc-vendor": {
-      "value": ["other"],
-      "source": ["https://wiki.pine64.org/wiki/Ox64"],
-      "comment": "Bouffalo Lab is not in the predefined SoC Vendor tag list; closest applicable tag is `other`."
+      "value": ["bouffalo-lab"],
+      "source": ["https://wiki.pine64.org/wiki/Ox64"]
     },
     "cpu-cores": {
       "value": 1,
@@ -137,9 +136,9 @@
       "comment": "Single fixed 64 MB embedded PSRAM configuration."
     },
     "ram-type": {
-      "value": null,
+      "value": ["psram"],
       "source": ["https://wiki.pine64.org/wiki/Ox64"],
-      "comment": "BL808 uses embedded PSRAM (pseudo-SRAM), which is not one of the LPDDR/DDR tag options defined in the schema."
+      "comment": "BL808 uses 64 MB embedded PSRAM (pseudo-SRAM), not separately upgradeable."
     },
     "emmc": {
       "value": false,
@@ -324,14 +323,14 @@
       "comment": "Pine64 documents an official alpha Linux image (and links Bouffalo's bl808_linux), plus Buildroot and NuttX RTOS releases. Quality is explicitly labelled alpha / bring-up."
     },
     "distros-with-images": {
-      "value": ["debian"],
+      "value": ["debian", "buildroot"],
       "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
-      "comment": "Community Buildroot and Pine64-tracked Debian-based images exist for the Ox64; no published Ubuntu / Armbian / Fedora / openSUSE / Alpine / DietPi / Manjaro images target this board specifically. Buildroot is not in the available tag set."
+      "comment": "Community Buildroot and Pine64-tracked Debian-based images exist for the Ox64; no published Ubuntu / Armbian / Fedora / openSUSE / Alpine / DietPi / Manjaro images target this board specifically."
     },
     "bootloader": {
-      "value": ["u-boot"],
+      "value": ["opensbi", "u-boot"],
       "source": ["https://pine64.org/documentation/Ox64/Software/Releases/"],
-      "comment": "U-Boot + OpenSBI used for Linux boot; OpenSBI is the SBI firmware layer, not selectable in the bootloader tag set."
+      "comment": "OpenSBI (M-mode firmware) chained into U-Boot (S-mode bootloader) for Linux boot."
     },
     "long-term-support": {
       "value": ["unclear"],
