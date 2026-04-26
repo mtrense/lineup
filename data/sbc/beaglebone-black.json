@@ -1,5 +1,365 @@
 {
   "name": "BeagleBone Black",
   "description": "TI AM3358, classic industrial / education SBC",
-  "values": {}
+  "icon": "fa-microchip",
+  "url": "https://www.beagleboard.org/boards/beaglebone-black",
+  "lastVerified": "2026-04-26",
+  "values": {
+    "manufacturer": {
+      "value": "BeagleBoard.org Foundation",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "model": {
+      "value": "BeagleBone Black",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "release-date": {
+      "value": "2013-04",
+      "source": ["https://en.wikipedia.org/wiki/BeagleBoard"],
+      "comment": "Launched April 23, 2013. Rev C (4 GB eMMC, Debian) shipped 2014 and remains the current revision."
+    },
+    "status": {
+      "value": ["in-production", "available-new"],
+      "source": [
+        "https://www.digikey.com/en/products/detail/beagleboard/102110420/12719590",
+        "https://www.beagleboard.org/distros/beaglebone-black-debian-13-4-2026-04-23-iot-v6-12-x"
+      ],
+      "comment": "As of 2026-04-26, Digi-Key shows >1700 units in stock at $80.12 USD; BeagleBoard.org continues to publish official Debian 13.4 IoT images dated 2026-04-23."
+    },
+    "architecture-family": {
+      "value": ["armv7"],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "Single ARM Cortex-A8 core (ARMv7-A); 32-bit only."
+    },
+    "open-source-hardware": {
+      "value": true,
+      "source": [
+        "https://github.com/beagleboard/beaglebone-black",
+        "https://www.beagleboard.org/"
+      ],
+      "comment": "BeagleBoard.org publishes the full design files (schematics, layout, BOM) on GitHub. The BeagleBone Black Wireless variant carries OSHWA certification; the original BBB shares the same open design lineage."
+    },
+    "country-of-origin": {
+      "value": "USA",
+      "source": ["https://www.beagleboard.org/about"],
+      "comment": "BeagleBoard.org Foundation is a US-based non-profit. Boards are typically manufactured/assembled by partners (e.g., Seeed Studio, GHI Electronics) outside the US."
+    },
+    "website": {
+      "value": "https://www.beagleboard.org/boards/beaglebone-black",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "soc": {
+      "value": "TI Sitara AM3358",
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "Specific part is AM3358BZCZ100 (1 GHz speed grade)."
+    },
+    "soc-vendor": {
+      "value": ["other"],
+      "source": ["https://www.ti.com/product/AM3358"],
+      "comment": "Texas Instruments is the silicon designer; the schema's tag set does not include a `ti` tag, so `other` is the closest fit. A future RESEARCH.md tweak could add a `ti` tag (the BeagleBone AI-64, BeaglePlay, and BeagleBone Black all use TI silicon)."
+    },
+    "cpu-cores": {
+      "value": 1,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"]
+    },
+    "cpu-architecture": {
+      "value": "1× ARM Cortex-A8 (ARMv7-A) + 2× 200 MHz PRU",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "PRUs (Programmable Real-time Units) are 32-bit RISC cores tightly coupled to I/O — useful for deterministic real-time tasks but not part of the CPU complex."
+    },
+    "max-clock-speed-ghz": {
+      "value": 1.0,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"]
+    },
+    "process-node": {
+      "value": "65 nm",
+      "source": ["https://diversedaily.com/exploring-the-texas-instruments-sitara-am335x-the-arm-cortex-a8-industrial-processor/"],
+      "comment": "AM335x family is fabricated on TI's 65 nm process; not stated explicitly in the BeagleBone docs."
+    },
+    "gpu": {
+      "value": "PowerVR SGX530",
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "Documented as 'SGX530 3D, 20M Polygons/s'."
+    },
+    "opengl-es-version": {
+      "value": "2.0",
+      "source": ["https://blog.imaginationtech.com/fun-with-powervr-and-the-beaglebone-black-low-cost-development-made-easy"],
+      "comment": "PowerVR SGX530 supports OpenGL ES 2.0 (not 3.x). Driver is proprietary and historically fragile under modern kernels."
+    },
+    "vulkan-support": {
+      "value": false,
+      "source": ["https://blog.imaginationtech.com/fun-with-powervr-and-the-beaglebone-black-low-cost-development-made-easy"],
+      "comment": "SGX530 predates Vulkan; no Vulkan driver available."
+    },
+    "npu": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"]
+    },
+    "npu-performance-tops": {
+      "value": null,
+      "comment": "No NPU on board."
+    },
+    "hw-video-decode": {
+      "value": [],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "AM3358 / SGX530 does not have a dedicated video decode block; video is handled by the CPU. No standardized hardware codec support."
+    },
+    "hw-video-encode": {
+      "value": [],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "No hardware video encoder."
+    },
+    "ram-min-gb": {
+      "value": 0.5,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"]
+    },
+    "ram-max-gb": {
+      "value": 0.5,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Single 512 MB DDR3L configuration; not user-upgradable."
+    },
+    "ram-type": {
+      "value": ["lpddr3"],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Datasheet specifies DDR3L (low-voltage DDR3) at 800 MHz. The schema's RAM-type tag set does not include a plain `ddr3` or `ddr3l` tag — `lpddr3` is the closest match. A future RESEARCH.md tweak could add a `ddr3` tag for older boards."
+    },
+    "emmc": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "4 GB onboard 8-bit eMMC (Rev C); Rev B had 2 GB."
+    },
+    "microsd-slot": {
+      "value": true,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"]
+    },
+    "m2-nvme-slot": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "sata": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "ethernet": {
+      "value": ["100m"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "10/100 Mbps RJ45; no gigabit."
+    },
+    "dual-ethernet": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "wifi": {
+      "value": ["none"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Original BeagleBone Black has no Wi-Fi. The separate BeagleBone Black Wireless variant adds Wi-Fi 4 + BT, but it is a different product."
+    },
+    "bluetooth": {
+      "value": null,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "No onboard Bluetooth on the original BBB."
+    },
+    "usb-a-3x-ports": {
+      "value": 0,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"]
+    },
+    "usb-a-2-ports": {
+      "value": 1,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Single USB 2.0 Type-A host port (USB1)."
+    },
+    "usb-c-ports-data": {
+      "value": 0,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Client/power port is mini-USB-B (USB 2.0), not USB-C."
+    },
+    "poe-support": {
+      "value": ["none"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "No native PoE on the BBB itself; some third-party capes provide passive PoE handling."
+    },
+    "hdmi-outputs": {
+      "value": 1,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Micro-HDMI (Type-D) connector."
+    },
+    "max-display-resolution": {
+      "value": "1280×1024 @ 60",
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Documented max via the onboard NXP TDA19988 HDMI framer."
+    },
+    "displayport": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"]
+    },
+    "mipi-dsi": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "AM3358 exposes parallel LCD signals, not MIPI-DSI; LCD-cape connection uses the cape headers."
+    },
+    "mipi-csi": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "No MIPI-CSI camera connector. Cameras are typically connected via USB or a parallel-camera cape."
+    },
+    "audio-jack": {
+      "value": false,
+      "source": [
+        "https://docs.beagleboard.org/boards/beaglebone/black/ch04.html",
+        "https://www.openhacks.com/uploadsproductos/beaglebone-audio-reva1-srm.pdf"
+      ],
+      "comment": "No onboard 3.5 mm jack — audio is HDMI-only on the bare board (Wikipedia incorrectly lists a 3.5 mm jack). A 3.5 mm output requires the BeagleBone Audio Cape or similar."
+    },
+    "gpio-pins": {
+      "value": 65,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Two 46-pin cape expansion headers (P8/P9, 92 pins total) carry up to 65 GPIOs along with I²C, SPI, UART, PWM, ADC, and LCD signals. Different from a standard 40-pin RPi header."
+    },
+    "rpi-compatible-header": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Uses two 46-pin BeagleBone cape headers (P8/P9), not the 40-pin RPi GPIO layout."
+    },
+    "rpi-hat-compatible": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Cape ecosystem is BeagleBone-specific, not pin- or mechanically compatible with RPi HATs."
+    },
+    "pcie-lanes-exposed": {
+      "value": "none",
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "AM3358 SoC has no PCIe controller."
+    },
+    "i2c-spi-uart": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "Multiple I²C, SPI, UART buses available on the cape headers."
+    },
+    "power-input": {
+      "value": "5V/1A DC barrel or mini-USB",
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch05.html"],
+      "comment": "Either a 5.5/2.1 mm 5VDC barrel jack or the mini-USB client port; can also be powered via expansion headers."
+    },
+    "idle-power-w": {
+      "value": null,
+      "comment": "No credible measured-idle figure from a primary review (Geerling/CNX/Phoronix) for the BBB. Vendor docs cite ~210–460 mA depending on activity, which works out to ~1.0–2.3 W at 5 V, but this is not a controlled measurement. Per RESEARCH.md, prefer null over guessing from current draw."
+    },
+    "load-power-w": {
+      "value": null,
+      "comment": "No published full-load wattage from a credible review. SRM lists worst-case current near 460 mA (~2.3 W at 5 V), but this is an upper-bound spec, not a measured load figure."
+    },
+    "cooling-required": {
+      "value": ["passive-ok"],
+      "source": ["https://www.beagleboard.org/boards/beaglebone-black"],
+      "comment": "AM3358 at 1 GHz has ~2 W TDP envelope; the BBB has shipped without any heatsink for a decade with no thermal-throttling reputation."
+    },
+    "rtc-battery-header": {
+      "value": false,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch06.html"],
+      "comment": "AM3358 has an internal RTC; the BBB does not bring a battery holder/header to the PCB. RTC time is lost on power-off unless added via a cape."
+    },
+    "length-mm": {
+      "value": 86.4,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch09.html"],
+      "comment": "Mechanical doc cites 3.5\" × 2.15\" (86.36 × 53.34 mm); commonly rounded to 86.4 × 53.3 mm."
+    },
+    "width-mm": {
+      "value": 53.3,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch09.html"]
+    },
+    "form-factor-class": {
+      "value": ["credit-card"],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch09.html"],
+      "comment": "Roughly credit-card sized; not within tolerance of `pi-standard` and uses a custom hole pattern, so the most honest fit is `credit-card`."
+    },
+    "mounting-hole-pattern": {
+      "value": ["custom"],
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch09.html"],
+      "comment": "Four mounting holes in a BeagleBone-specific layout, not RPi-compatible."
+    },
+    "weight-g": {
+      "value": 39.68,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "Vendor docs state '1.4 oz (39.68 g)'."
+    },
+    "mainline-linux-kernel": {
+      "value": ["full"],
+      "source": [
+        "https://github.com/beagleboard/linux",
+        "https://www.beagleboard.org/distros/beaglebone-black-debian-13-4-2026-04-23-iot-v6-12-x"
+      ],
+      "comment": "AM335x has had upstream device-tree support in mainline Linux since the 3.x era; modern kernels (6.12+) boot the BBB with Ethernet, USB, eMMC, and HDMI working out of the box. The PowerVR SGX530 GPU still requires the proprietary userspace blob, which is the main asterisk."
+    },
+    "official-os-image": {
+      "value": true,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "BeagleBoard.org publishes maintained Debian 12 and Debian 13 IoT images, with the latest dated 2026-04-23."
+    },
+    "distros-with-images": {
+      "value": ["debian", "ubuntu", "armbian"],
+      "source": [
+        "https://www.beagleboard.org/distros",
+        "https://www.armbian.com/"
+      ],
+      "comment": "Official vendor images are Debian-based. Armbian community images and Ubuntu spins are also available. (No board-specific Raspberry Pi OS, by design.)"
+    },
+    "bootloader": {
+      "value": ["u-boot"],
+      "source": ["https://github.com/beagleboard/linux"],
+      "comment": "U-Boot, with vendor patches (v2022.04 lineage in current images)."
+    },
+    "long-term-support": {
+      "value": ["5y-plus"],
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "BBB has received continuous OS-image updates from 2013 through 2026 (13 years). Few SBCs match that track record."
+    },
+    "android-support": {
+      "value": false,
+      "source": ["https://www.beagleboard.org/distros"],
+      "comment": "No officially maintained Android image from BeagleBoard.org. Older community Android ports for AM335x exist but are abandoned."
+    },
+    "msrp-base-usd": {
+      "value": 80.12,
+      "source": ["https://www.digikey.com/en/products/detail/beagleboard/102110420/12719590"],
+      "comment": "Digi-Key list price as of 2026-04-26 ($80.12). Original 2013 MSRP was $45; price has roughly doubled over the product's lifetime."
+    },
+    "msrp-top-usd": {
+      "value": 80.12,
+      "source": ["https://www.digikey.com/en/products/detail/beagleboard/102110420/12719590"],
+      "comment": "Single SKU — only one configuration sold."
+    },
+    "available-regions": {
+      "value": ["global"],
+      "source": [
+        "https://www.digikey.com/en/products/detail/beagleboard/102110420/12719590",
+        "https://www.mouser.com/new/beagleboardorg/beagleboneblack/"
+      ],
+      "comment": "Stocked at all major global distributors (Digi-Key, Mouser, Element14/Farnell, Adafruit, RS) as of 2026-04-26."
+    },
+    "typical-lead-time": {
+      "value": ["in-stock"],
+      "source": ["https://www.digikey.com/en/products/detail/beagleboard/102110420/12719590"],
+      "comment": "Digi-Key shows >1700 units in stock, ships 1–3 days, as of 2026-04-26."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://docs.beagleboard.org/boards/beaglebone/black/ch04.html"],
+      "comment": "Comprehensive official docs site with system reference manual, mechanical drawings, schematics on GitHub, and the BeagleBone Cookbook. Among the best in the SBC space."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "Per RESEARCH.md guidelines, BeagleBone is explicitly slotted as `large`."
+    },
+    "active-forum-discord": {
+      "value": true,
+      "source": ["https://forum.beagleboard.org/"],
+      "comment": "BeagleBoard.org runs an active Discourse forum with regular vendor and community participation."
+    },
+    "accessory-ecosystem": {
+      "value": 4,
+      "source": ["https://docs.beagleboard.org/boards/capes/cape-interface-spec.html"],
+      "comment": "Mature cape ecosystem (LCD, audio, motor, relay, prototyping, GPS, etc.) plus official cases. Not at RPi scale, but rich and long-lived."
+    }
+  }
 }

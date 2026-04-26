@@ -253,7 +253,7 @@ Users should be able to:
 - [x] **Pine64 Quartz64 Model A** — RK3566, NAS-oriented
 - [x] **Pine64 RockPro64** — RK3399, established community _(review by 2026-07-26: both Pine Store SKUs and Ameridroid OOS as of 2026-04-26; if still scarce, flip status to `discontinued`)_
 - [x] **Pine64 Star64** — JH7110 RISC-V
-- [ ] **BeagleBone Black** — TI AM3358, classic industrial / education SBC
+- [x] **BeagleBone Black** — TI AM3358, classic industrial / education SBC
 - [ ] **BeagleBone AI-64** — TI TDA4VM with C7x DSPs
 - [ ] **BeaglePlay** — TI AM625, modern BeagleBoard line
 - [ ] **BeagleV-Ahead** — T-Head TH1520 RISC-V
