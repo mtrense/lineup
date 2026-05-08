@@ -46,6 +46,15 @@ Refresh of an already-researched candidate always requires an explicit candidate
    - `initial` — if `values` is empty or missing most attributes. Always the mode under auto-pick.
    - `refresh` — if the file already contains substantive values AND the candidate was passed explicitly. In refresh mode, prefer updating values with newer sources and explicitly note in a `comment` when a value changed significantly.
 
+## Phase 0: Product Identity Check
+
+Before any research, confirm the candidate stub is describing the right product for this comparison type.
+
+1. Read the candidate's `url`, `name`, and `description` from the stub.
+2. Read RESEARCH.md's **Scope** section — specifically what is Included and Excluded.
+3. If the stub's `url` or `description` conflicts with the scope (e.g. stub points to a consumer chat app but scope says "developer token plans", or vice versa), **halt and report the discrepancy to the user before doing any research**. Do not guess which product to use.
+4. If they match, proceed. Note any edge cases in your plan announcement.
+
 ## Phase 1: Plan the Research Pass
 
 Before any web search, build a mental (or written-to-user) list of attributes in scope:
@@ -62,6 +71,14 @@ For each in-scope attribute, in the order declared by `attributes.json`:
 
 1. **Consult RESEARCH.md's Research Notes** for that attribute — this often dictates which source type to hit first.
 2. **Search primary sources first.** Use `WebSearch` for discovery and `WebFetch` to verify specific claims. Favor: official website, official docs, official repository, official release notes. Fall back to secondary sources (Wikipedia, rankings sites, community wikis) when primary sources are silent.
+
+   **When a page is JS-gated, returns 403, or yields only an app shell:** do not treat this as a dead end. Work through this fallback ladder in order before giving up:
+   1. Try alternative paths on the same domain: docs subdomain, `/en/`, `/legal/`, `/api/`, alternate slugs.
+   2. WebSearch for verbatim clause text: `"domain.com" "governing law" OR "GDPR" OR "data retention"` to surface indexed snippets.
+   3. WebSearch `site:domain.com <page-slug>` to find Google-indexed text from the target page.
+   4. Search for secondary analyses: `"[product name]" privacy policy GDPR analysis 2026`.
+   5. Try `https://webcache.googleusercontent.com/search?q=cache:<url>` for a cached snapshot.
+   Only after exhausting steps 1–5 may you use secondary sources — and mark them with `comment: "sourced from secondary analysis; primary page was inaccessible"`. Never cite a URL in `source` that returned only navigation chrome or an empty shell.
 3. **Match the attribute's `valueType`** when writing the value (see cheatsheet below).
 4. **Record `{value, source, comment}`**:
    - `value` — typed per `valueType`. Use `null` when genuinely indeterminate or not applicable (per RESEARCH.md's Assessment Guidelines).
@@ -148,4 +165,5 @@ Do NOT commit. The user will review and run the commit command.
 - Respect RESEARCH.md's Assessment Guidelines literally. When a guideline says "mark `true` only if X", do not round up.
 - When refreshing, never silently drop a previously-recorded value. If you can't verify it, keep it and add a `comment` noting the verification failure, or replace with the new value and note the change.
 - Stop and ask if a Primary Source contradicts itself or another Primary Source — surface it to the user instead of picking a side arbitrarily.
+- **For data-privacy attributes**: the privacy policy you cite must govern the specific **product** being compared — identified by the candidate's `name`, `description`, and `url`. If a company operates multiple products (e.g. a consumer chat app AND a developer API platform), confirm you are reading the policy for the candidate's product, not a sibling. Citing the wrong product's policy is a research error, not an uncertainty — do not paper it over with `null` or a comment.
 - Always set `lastVerified` to today's date (day precision, `YYYY-MM-DD`) when writing the candidate file — in both `initial` and `refresh` modes. Never copy the old timestamp forward unchanged; the point of the stamp is to record that *this* pass verified the data.
