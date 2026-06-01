@@ -1,0 +1,471 @@
+{
+  "name": "AI Coding Agents",
+  "description": "AI agents that write and edit code inside real codebases — CLI agents, IDE-integrated agents, editor extensions, and autonomous cloud agents, compared across form factor, model flexibility, agentic depth, trust, and pricing",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Vendor, lifecycle status, license, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "developer",
+          "name": "Developer",
+          "valueType": "text",
+          "description": "Company or org that builds the agent (Anthropic, OpenAI, Cursor/Anysphere, Google, GitHub, etc.)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "First public release or general-availability date (use the public announcement if GA slipped)"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "active", "value": "Active", "color": "green" },
+              { "id": "beta", "value": "Beta", "color": "blue" },
+              { "id": "preview", "value": "Preview", "color": "orange" },
+              { "id": "discontinued", "value": "Discontinued", "color": "red" }
+            ]
+          },
+          "description": "Current lifecycle status; one primary status"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "proprietary", "value": "Proprietary", "color": "red" },
+              { "id": "open-source", "value": "Open Source", "color": "green" },
+              { "id": "source-available", "value": "Source Available", "color": "orange" },
+              { "id": "freemium", "value": "Freemium", "color": "blue" }
+            ]
+          },
+          "description": "License of the agent itself, not its model"
+        },
+        {
+          "id": "specialization",
+          "name": "Specialization",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "general-purpose", "value": "General Purpose", "color": "blue" },
+              { "id": "frontend-ui", "value": "Frontend / UI", "color": "purple" },
+              { "id": "testing", "value": "Testing", "color": "green" },
+              { "id": "code-review", "value": "Code Review", "color": "orange" },
+              { "id": "migration", "value": "Migration", "color": "gray" },
+              { "id": "data-science", "value": "Data Science", "color": "purple" },
+              { "id": "devops", "value": "DevOps", "color": "red" },
+              { "id": "mobile", "value": "Mobile", "color": "green" }
+            ]
+          },
+          "description": "What the agent is optimized for; most are general-purpose. Multi-select"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product page or repository"
+        }
+      ]
+    },
+    {
+      "id": "form-integration",
+      "name": "Form & Integration",
+      "description": "Where the agent runs and its fundamental product shape",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "interface",
+          "name": "Interface",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "cli", "value": "CLI", "color": "green" },
+              { "id": "ide", "value": "IDE", "color": "blue" },
+              { "id": "ide-extension", "value": "IDE Extension", "color": "purple" },
+              { "id": "web", "value": "Web", "color": "orange" },
+              { "id": "desktop-app", "value": "Desktop App", "color": "gray" }
+            ]
+          },
+          "description": "Product shape; select all that apply (some ship in multiple forms)"
+        },
+        {
+          "id": "host-ides",
+          "name": "Host IDEs",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "vscode", "value": "VS Code", "color": "blue" },
+              { "id": "jetbrains", "value": "JetBrains", "color": "orange" },
+              { "id": "neovim", "value": "Neovim", "color": "green" },
+              { "id": "visual-studio", "value": "Visual Studio", "color": "purple" },
+              { "id": "standalone", "value": "Standalone", "color": "red" },
+              { "id": "terminal", "value": "Terminal", "color": "gray" },
+              { "id": "browser", "value": "Browser", "color": "blue" }
+            ]
+          },
+          "description": "Where it actually runs; standalone for forked editors (Cursor, Windsurf)"
+        },
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Is the agent's own source code openly licensed? (Not the model.)"
+        },
+        {
+          "id": "self-contained-vs-plugin",
+          "name": "Self-Contained vs Plugin",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "standalone-editor", "value": "Standalone Editor", "color": "red" },
+              { "id": "extension", "value": "Extension", "color": "purple" },
+              { "id": "cli-tool", "value": "CLI Tool", "color": "green" },
+              { "id": "cloud-service", "value": "Cloud Service", "color": "blue" }
+            ]
+          },
+          "description": "The fundamental product shape"
+        }
+      ]
+    },
+    {
+      "id": "models-flexibility",
+      "name": "Models & Flexibility",
+      "description": "Model provider and how much model freedom the user has",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "default-model-provider",
+          "name": "Default Model Provider",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "anthropic", "value": "Anthropic", "color": "orange" },
+              { "id": "openai", "value": "OpenAI", "color": "green" },
+              { "id": "google", "value": "Google", "color": "blue" },
+              { "id": "meta", "value": "Meta", "color": "blue" },
+              { "id": "mistral", "value": "Mistral", "color": "red" },
+              { "id": "xai", "value": "xAI", "color": "gray" },
+              { "id": "multiple", "value": "Multiple", "color": "purple" }
+            ]
+          },
+          "description": "The provider behind the default/flagship model"
+        },
+        {
+          "id": "model-choice",
+          "name": "Model Choice",
+          "valueType": "boolean",
+          "description": "Can the user switch between multiple models/providers from within the agent?"
+        },
+        {
+          "id": "bring-your-own-key",
+          "name": "Bring-Your-Own-Key",
+          "valueType": "boolean",
+          "description": "Can the user supply their own API key instead of the vendor's billing?"
+        },
+        {
+          "id": "local-model-support",
+          "name": "Local Model Support",
+          "valueType": "boolean",
+          "description": "Can it run against a local/self-hosted model (Ollama, LM Studio, vLLM, etc.)?"
+        }
+      ]
+    },
+    {
+      "id": "agentic-capabilities",
+      "name": "Agentic Capabilities",
+      "description": "What the agent can do on its own inside a codebase",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "multi-file-editing",
+          "name": "Multi-file Editing",
+          "valueType": "boolean",
+          "description": "Can it plan and apply coordinated edits across multiple files in one task?"
+        },
+        {
+          "id": "autonomous-task-execution",
+          "name": "Autonomous Task Execution",
+          "valueType": "boolean",
+          "description": "Can it execute a multi-step task end-to-end with minimal per-step prompting?"
+        },
+        {
+          "id": "terminal-command-execution",
+          "name": "Terminal/Command Execution",
+          "valueType": "boolean",
+          "description": "Can it run shell commands / build / test as part of its loop?"
+        },
+        {
+          "id": "mcp-support",
+          "name": "MCP Support",
+          "valueType": "boolean",
+          "description": "Supports the Model Context Protocol for external tools/data sources"
+        },
+        {
+          "id": "subagents-parallel-agents",
+          "name": "Subagents / Parallel Agents",
+          "valueType": "boolean",
+          "description": "Can it spawn or orchestrate multiple agents (sub-tasks, parallel workers)?"
+        },
+        {
+          "id": "codebase-indexing",
+          "name": "Codebase Indexing",
+          "valueType": "boolean",
+          "description": "Builds a semantic index / embeddings of the repo for retrieval (vs reading files ad hoc)"
+        },
+        {
+          "id": "planning-mode",
+          "name": "Planning Mode",
+          "valueType": "boolean",
+          "description": "Has an explicit plan-then-execute or read-only planning phase"
+        },
+        {
+          "id": "skills",
+          "name": "Skills",
+          "valueType": "boolean",
+          "description": "Supports reusable, packaged capabilities the agent loads on demand (skills, custom commands, recipes) beyond plain instruction files"
+        },
+        {
+          "id": "multimodal-input",
+          "name": "Multimodal Input",
+          "valueType": "boolean",
+          "description": "Accepts images as input — screenshots, mockups, design files (Figma-to-code, screenshot-driven debugging)"
+        },
+        {
+          "id": "browser-computer-use",
+          "name": "Browser / Computer Use",
+          "valueType": "boolean",
+          "description": "Can drive a real browser or GUI to verify its own changes (navigate, click, run e2e checks, screenshot the result)"
+        }
+      ]
+    },
+    {
+      "id": "interaction-autonomy-model",
+      "name": "Interaction & Autonomy Model",
+      "description": "How the agent engages the developer — from inline pair-programming to fire-and-forget delegation",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "operating-mode",
+          "name": "Operating Mode",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "inline-completion", "value": "Inline Completion", "color": "green" },
+              { "id": "interactive-chat", "value": "Interactive Chat", "color": "blue" },
+              { "id": "supervised-agent", "value": "Supervised Agent", "color": "purple" },
+              { "id": "autonomous", "value": "Autonomous", "color": "orange" },
+              { "id": "async-background", "value": "Async / Background", "color": "red" }
+            ]
+          },
+          "description": "The interaction styles the agent supports; multi-select"
+        },
+        {
+          "id": "inline-completion",
+          "name": "Inline Completion",
+          "valueType": "boolean",
+          "description": "Tab-style autocomplete suggestions as you type (the interactive end). CLI agents typically lack this"
+        },
+        {
+          "id": "background-async-execution",
+          "name": "Background / Async Execution",
+          "valueType": "boolean",
+          "description": "Can run a task asynchronously while the developer does other work (cloud agents, background runs)"
+        },
+        {
+          "id": "persistent-memory",
+          "name": "Persistent Memory",
+          "valueType": "boolean",
+          "description": "Retains context/memory across sessions (project memory, learned preferences) rather than starting fresh each time"
+        },
+        {
+          "id": "checkpoints-rollback",
+          "name": "Checkpoints / Rollback",
+          "valueType": "boolean",
+          "description": "Can undo or restore the working tree to a point before an agent run (built-in checkpoints or snapshot restore)"
+        }
+      ]
+    },
+    {
+      "id": "workflow-collaboration",
+      "name": "Workflow & Collaboration",
+      "description": "Git, pull requests, project rules, and extensibility",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "git-integration",
+          "name": "Git Integration",
+          "valueType": "boolean",
+          "description": "Native awareness of git (staging, diffs, commits) beyond just editing files"
+        },
+        {
+          "id": "pr-creation",
+          "name": "PR Creation",
+          "valueType": "boolean",
+          "description": "Can open or update pull requests (directly or via GitHub/GitLab integration)"
+        },
+        {
+          "id": "custom-rules-instructions",
+          "name": "Custom Rules / Instructions",
+          "valueType": "boolean",
+          "description": "Supports project-level instruction files (rules, AGENTS.md, CLAUDE.md, .cursorrules, etc.)"
+        },
+        {
+          "id": "hooks-extensibility",
+          "name": "Hooks / Extensibility",
+          "valueType": "boolean",
+          "description": "Programmable hooks, custom commands/skills, or a plugin API to extend behavior"
+        }
+      ]
+    },
+    {
+      "id": "trust-safety",
+      "name": "Trust & Safety",
+      "description": "Permission model, self-hosting, privacy, and enterprise governance",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "permission-model",
+          "name": "Permission Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "auto-run", "value": "Auto-Run", "color": "red" },
+              { "id": "ask-approval", "value": "Ask Approval", "color": "green" },
+              { "id": "sandboxed", "value": "Sandboxed", "color": "blue" },
+              { "id": "configurable", "value": "Configurable", "color": "purple" }
+            ]
+          },
+          "description": "How edits and command execution are gated"
+        },
+        {
+          "id": "self-host-on-prem",
+          "name": "Self-Host / On-Prem",
+          "valueType": "boolean",
+          "description": "Can the agent be deployed on the user's own infrastructure"
+        },
+        {
+          "id": "privacy-mode",
+          "name": "Privacy Mode",
+          "valueType": "boolean",
+          "description": "Vendor offers a mode that guarantees your code is not used to train models"
+        },
+        {
+          "id": "enterprise-controls",
+          "name": "Enterprise Controls",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "sso", "value": "SSO", "color": "blue" },
+              { "id": "audit-logs", "value": "Audit Logs", "color": "green" },
+              { "id": "rbac", "value": "RBAC", "color": "purple" },
+              { "id": "vpc", "value": "VPC", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Enterprise-grade governance features offered"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing",
+      "description": "Pricing model, free tier, and entry cost",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "free", "value": "Free", "color": "green" },
+              { "id": "free-tier", "value": "Free Tier", "color": "blue" },
+              { "id": "subscription", "value": "Subscription", "color": "purple" },
+              { "id": "usage-based", "value": "Usage-Based", "color": "orange" },
+              { "id": "byok-only", "value": "BYOK Only", "color": "gray" }
+            ]
+          },
+          "description": "Select all that apply"
+        },
+        {
+          "id": "free-tier",
+          "name": "Free Tier",
+          "valueType": "boolean",
+          "description": "Is there a usable free tier or free plan (not just a trial)?"
+        },
+        {
+          "id": "entry-price-usd-mo",
+          "name": "Entry Price (USD/mo)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Cheapest paid plan's monthly price; lower is better. Use 0 if a real free tier covers core use; null for pure usage-based with no plan"
+        }
+      ]
+    },
+    {
+      "id": "adoption-ecosystem",
+      "name": "Adoption & Ecosystem",
+      "description": "Maturity, community size, and third-party ecosystem",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = stable, widely deployed, polished; 3 = usable but evolving; 1 = early/experimental"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "huge", "value": "Huge", "color": "green" },
+              { "id": "large", "value": "Large", "color": "blue" },
+              { "id": "medium", "value": "Medium", "color": "purple" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "niche", "value": "Niche", "color": "gray" }
+            ]
+          },
+          "description": "Relative scale of users/community"
+        },
+        {
+          "id": "extension-plugin-ecosystem",
+          "name": "Extension/Plugin Ecosystem",
+          "valueType": "boolean",
+          "description": "Has a marketplace or meaningful third-party ecosystem (MCP servers, plugins, community rules)"
+        }
+      ]
+    }
+  ]
+}
