@@ -1,5 +1,224 @@
 {
   "name": "Devin",
   "description": "Cognition's autonomous cloud software engineer",
-  "values": {}
+  "icon": "",
+  "url": "https://devin.ai",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Cognition AI",
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Built by Cognition (Cognition AI / Cognition Labs)."
+    },
+    "first-release": {
+      "value": "2024-03",
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "Publicly announced March 2024; reached general availability Dec 10, 2024; Devin 2.0 launched Apr 3, 2025. First-release date taken from the original public announcement."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://devin.ai/pricing"],
+      "comment": "Generally available since Dec 2024; actively developed (Devin 2.0, Sonnet 4.5 rebuild). Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Closed-source commercial cloud product. Freemium: a limited free plan plus paid tiers."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://cognition.ai/blog/devin-2", "https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Broad autonomous software-engineering agent (refactors, bug fixes, feature work) — not niche-positioned."
+    },
+    "website": {
+      "value": "https://devin.ai",
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Official product page."
+    },
+    "interface": {
+      "value": ["web", "ide", "ide-extension"],
+      "source": ["https://cognition.ai/blog/devin-2", "https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Primary interface is the cloud web app (app.devin.ai); Devin 2.0 adds an agent-native cloud IDE; a VS Code extension is also offered. Also driven via Slack/Linear/MCP."
+    },
+    "host-ides": {
+      "value": ["browser", "vscode"],
+      "source": ["https://cognition.ai/blog/devin-2", "https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Runs in the browser (cloud IDE/app); a VS Code (and forks) extension exists to point Devin at code. Each Devin runs in its own cloud sandbox VM."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Closed-source proprietary cloud service."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cloud-service"],
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "Fundamentally a cloud service; each Devin runs in a sandboxed cloud VM. Ships a VS Code extension as a secondary access point but the product shape is cloud-service."
+    },
+    "default-model-provider": {
+      "value": ["anthropic"],
+      "source": ["https://cognition.ai/blog/devin-sonnet-4-5-lessons-and-challenges"],
+      "comment": "Devin was rebuilt for Anthropic's Claude Sonnet 4.5; Anthropic is the underlying default model provider. Model is not user-selectable. Checked 2026-06-02."
+    },
+    "model-choice": {
+      "value": false,
+      "source": ["https://cognition.ai/blog/devin-sonnet-4-5-lessons-and-challenges"],
+      "comment": "Cognition manages the underlying model; users do not pick a model/provider within Devin."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Billed via ACU/subscription on Cognition's managed infrastructure; no user-supplied API key for the agent's model."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Cloud-only managed service; no local/self-hosted model option."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "Plans and applies coordinated changes across a codebase (refactors, features) and opens PRs."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "Core design: autonomous planning and execution with dynamic re-planning; chains edit/run/test/fix toward a goal with minimal per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Runs in a sandboxed VM with full shell/terminal access to build, run, and test."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp", "https://cognition.ai/blog/mcp-marketplace"],
+      "comment": "Documented MCP support both as a client (MCP Marketplace to add MCP servers) and as a server (mcp.devin.ai)."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-2"],
+      "comment": "Devin 2.0 lets users spin up multiple parallel Devins, each with its own cloud IDE — fan-out of parallel workers."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-2"],
+      "comment": "Devin Wiki/Search build an index of the repo for retrieval with cited code answers and architecture diagrams."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-2"],
+      "comment": "Devin 2.0 has an interactive planning phase — it researches the codebase and produces a detailed plan the user can refine before execution."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp"],
+      "comment": "Supports reusable Playbooks (and Knowledge) — packaged, on-demand procedures the agent loads, beyond a single instruction file."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-sonnet-4-5-lessons-and-challenges"],
+      "comment": "Built on Claude (vision-capable) and accepts images/screenshots as input; verified via Cognition's Claude integration. Treat as well-supported but vendor docs are sparse on the specific UI."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Devin's sandbox includes a real browser it can drive (read docs, look up errors, interact with web apps) to act and verify."
+    },
+    "operating-mode": {
+      "value": ["autonomous", "async-background", "supervised-agent"],
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "Primarily autonomous + async/background (dispatch via Slack/Linear/UI, returns a PR). Devin 2.0's interactive IDE/planning also supports supervised collaboration."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Task-oriented autonomous agent, not an as-you-type tab-completion tool."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Dispatch a task via Slack/Linear/UI and walk away; Devin messages you when the PR is ready. Core async cloud-agent behavior."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp", "https://cognition.ai/blog/devin-2"],
+      "comment": "Knowledge base and repo Wiki persist learned context/preferences across sessions per project."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "source": ["https://cognition.ai/blog/devin-2"],
+      "comment": "No documented built-in checkpoint/rollback-the-run mechanism found; Devin works on a branch and produces a PR, so reverting is via git/PR rather than a snapshot-restore feature. Marked null rather than guessing. Checked 2026-06-02."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Native git/GitHub awareness — branches, commits, and responds to GitHub PR comments."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Generates first-draft pull requests and updates them in response to PR comments."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp"],
+      "comment": "Supports project-level Knowledge and Playbooks as persistent instructions/context for the agent."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp", "https://cognition.ai/blog/mcp-marketplace"],
+      "comment": "Extensible via MCP (client and server, MCP Marketplace), an API, and Playbooks/integrations (Slack, Linear)."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval"],
+      "source": ["https://docs.devin.ai/admin/security", "https://cognition.ai/blog/devin-generally-available"],
+      "comment": "Runs autonomously in a sandboxed VM but output is gated through PR review; repo/tool access is scoped and configurable (per-repo, per-tool, least-privilege). Treated as configurable with an approval gate at the PR boundary."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://devin.ai/enterprise", "https://devin.ai/pricing"],
+      "comment": "Enterprise offers VPC deployment — Devin's dev boxes run inside the customer's own VPC across major clouds. Not a fully on-prem install, but customer-controlled infrastructure."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://docs.devin.ai/admin/security"],
+      "comment": "By default Cognition does not use customer data for model training unless explicitly opted in; Enterprise customers are never trained on."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac", "vpc"],
+      "source": ["https://devin.ai/enterprise", "https://docs.devin.ai/admin/security"],
+      "comment": "SAML/OIDC SSO + SCIM, exportable session audit transcripts (SIEM), role-based access control, and VPC deployment. SOC 2 Type II."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Free tier (limited), paid subscriptions (Pro $20, Max $200, Teams $80/seat), plus pay-as-you-go ACU overages. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Free plan with limited Devin usage, Devin Review, and DeepWiki."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://devin.ai/pricing"],
+      "comment": "Cheapest paid plan is Pro at $20/mo (includes a usage quota plus pay-as-you-go overages). A limited free tier exists but the free usage is capped, so entry price reflects the cheapest paid tier. Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://cognition.ai/blog/devin-generally-available", "https://cognition.ai/blog/devin-2"],
+      "comment": "GA since Dec 2024, two major versions, enterprise adoption and SOC 2 — stable and widely deployed, though the autonomous-agent UX is still evolving. Not a polished 5."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://cognition.ai/blog/devin-2"],
+      "comment": "High-profile and well-funded with significant enterprise traction, but as a paid cloud-only agent its hands-on user base is smaller than free/open IDE tools. Assessed medium. Checked 2026-06-02."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://cognition.ai/blog/mcp-marketplace", "https://docs.devin.ai/work-with-devin/devin-mcp"],
+      "comment": "MCP Marketplace plus integrations (Slack, Linear, GitHub) and an API constitute a meaningful third-party ecosystem."
+    }
+  }
 }

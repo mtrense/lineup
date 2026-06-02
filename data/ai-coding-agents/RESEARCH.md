@@ -190,7 +190,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Cline** — Open-source autonomous coding agent extension for VS Code
 - [x] **Continue** — Open-source, highly configurable IDE extension agent
 - [x] **Gemini CLI** — Google's open-source terminal agent
-- [ ] **Devin** — Cognition's autonomous cloud software engineer
+- [x] **Devin** — Cognition's autonomous cloud software engineer
 - [ ] **Google Jules** — Google's asynchronous autonomous coding agent
 - [ ] **Amazon Q Developer** — AWS's IDE/CLI coding agent
 - [ ] **Zed (agent)** — Agentic editing inside the Zed editor
