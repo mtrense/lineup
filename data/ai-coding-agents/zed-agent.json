@@ -1,5 +1,224 @@
 {
   "name": "Zed (agent)",
   "description": "Agentic editing inside the Zed editor",
-  "values": {}
+  "icon": "",
+  "url": "https://zed.dev/agentic",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Zed Industries",
+      "source": ["https://github.com/zed-industries/zed"],
+      "comment": "Zed Industries, Inc. — creators of Atom and Tree-sitter."
+    },
+    "first-release": {
+      "value": "2025-05",
+      "source": ["https://zed.dev/blog/fastest-ai-code-editor"],
+      "comment": "The agentic Agent Panel launched May 7, 2025. Zed's earlier AI assistant panel (chat + inline transformations, not agentic) shipped Aug 20, 2024 (https://zed.dev/blog/zed-ai). Using the agentic Agent Panel date since this candidate is the agent."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://zed.dev/agentic", "https://zed.dev/pricing"],
+      "comment": "Actively developed; Zed reached 1.0 in 2026. Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/zed-industries/zed"],
+      "comment": "Zed editor (including the agent) is GPL-3.0-or-later with Apache-2.0 components where marked; the ACP protocol and Zeta model are also open source."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://zed.dev/agentic"],
+      "comment": "Broad coding agent for code generation, refactoring, debugging."
+    },
+    "website": {
+      "value": "https://zed.dev/agentic",
+      "source": ["https://zed.dev/agentic"],
+      "comment": "Official agentic editing product page."
+    },
+    "interface": {
+      "value": ["ide"],
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Agent Panel lives inside the standalone Zed editor (a desktop app). No separate CLI or web form for the agent."
+    },
+    "host-ides": {
+      "value": ["standalone"],
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Runs inside Zed, a standalone editor; not an extension hosted in another IDE."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/zed-industries/zed"],
+      "comment": "The agent's source is part of the open-source Zed editor (GPL-3.0-or-later)."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["standalone-editor"],
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "The agent is a built-in feature of the standalone Zed editor."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://zed.dev/docs/ai/overview", "https://zed.dev/agentic"],
+      "comment": "Hosted models include Claude (Anthropic) and GPT (OpenAI); supports Anthropic, OpenAI, Google, Ollama and 8+ providers. Claude is the most prominently featured default."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/overview"],
+      "comment": "User can select among many models/providers within the Agent Panel."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://zed.dev/pricing", "https://zed.dev/docs/ai/overview"],
+      "comment": "BYOK supported for Anthropic, OpenAI, Google, Mistral and others; unlimited use with your own API keys on the free plan."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/overview", "https://zed.dev/agentic"],
+      "comment": "Supports local models via Ollama and OpenAI-compatible servers."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://zed.dev/blog/fastest-ai-code-editor", "https://zed.dev/agentic"],
+      "comment": "Agent plans and applies coordinated edits across many files (demoed editing 50 files), reviewable in a multibuffer diff."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://zed.dev/agentic", "https://zed.dev/blog/fastest-ai-code-editor"],
+      "comment": "Agent discovers context, edits files, and runs commands, staying on task until done with tool-calling loop."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "The Write profile includes a tool to run terminal commands (with user confirmation by default)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel", "https://zed.dev/blog/fastest-ai-code-editor"],
+      "comment": "Extends agent tools via MCP servers (documented, shipped)."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Threads sidebar runs multiple agent threads at once, each independent with its own context and conversation, plus worktree isolation. Treated as parallel agents; no explicit subagent-spawning primitive."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://zed.dev/blog/fastest-ai-code-editor"],
+      "comment": "Agent searches the codebase ad hoc with no prior setup or indexing; context is retrieved on demand (@-mentions, search), not a prebuilt semantic embeddings index."
+    },
+    "planning-mode": {
+      "value": null,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "No explicit dedicated plan-then-execute or read-only planning mode is documented. The Ask profile is read-only (no edits) but is not framed as a plan-first phase; could not confirm a distinct planning mode."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/rules"],
+      "comment": "As of v1.4.0 Zed supports Skills — reusable on-demand agent capabilities invoked via /skill-name or @-mention, stored in ~/.agents/skills/."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Image input supported for capable models (OpenAI GPT-4o and later, Anthropic Claude 3 and later, etc.)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "No built-in browser/GUI-driving capability for the agent to navigate and verify changes; not documented."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent"],
+      "source": ["https://zed.dev/docs/ai/agent-panel", "https://zed.dev/docs/ai/edit-prediction"],
+      "comment": "Edit Prediction (inline-completion), conversational Agent Panel (interactive-chat), and tool-calling agent that defaults to per-action confirmation (supervised-agent). Can be set to auto-run for a more autonomous posture, but runs in-editor (not detached async)."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/edit-prediction"],
+      "comment": "Edit Prediction provides as-you-type tab completions, powered by Zed's open-source Zeta model (alternatives: Copilot, Mercury Coder, Codestral)."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Agent runs within the open editor session; no detached cloud/background dispatch where the user can close the editor and walk away. Multiple threads run in parallel but require the editor open."
+    },
+    "persistent-memory": {
+      "value": false,
+      "source": ["https://zed.dev/docs/ai/rules"],
+      "comment": "Project context via .rules/AGENTS.md and skills is always-on project instruction, not learned cross-session memory. No documented automatic memory carried across distinct sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "Each agent edit exposes a 'Restore Checkpoint' button to revert the working tree to before that change."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://zed.dev/docs/git", "https://zed.dev/blog/git"],
+      "comment": "Native Git panel with staging, diffs, and commits; the agent can generate commit messages and changes are reviewed in a multibuffer diff."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://github.com/zed-industries/zed/discussions/34759"],
+      "comment": "No native built-in PR creation/management in the editor (active community requests). PR creation is possible via an MCP server tool but is not a first-party feature."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/rules"],
+      "comment": "Supports .rules plus .cursorrules, CLAUDE.md, and AGENTS.md auto-included as project-level instructions."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel", "https://zed.dev/docs/ai/rules"],
+      "comment": "Extensible via MCP servers, custom agent profiles, and reusable Skills (slash commands); Zed also has an extension API."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://zed.dev/docs/ai/agent-panel"],
+      "comment": "tool_permissions default is 'confirm' (prompt per action); configurable to 'allow' (auto-run) or 'deny'. Profiles (Write/Ask/Minimal) further gate tool access."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://zed.dev/docs/ai/privacy-and-security"],
+      "comment": "No documented on-prem/self-hosted deployment of the agent service. Users can point at local models (Ollama) or their own API keys, but the editor/agent isn't deployed on the user's own server infrastructure."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/privacy-and-security"],
+      "comment": "Zed states it doesn't store prompts or code context; sharing data for model improvement is strictly opt-in (one-time, per instance). Business plan can lock data-sharing off org-wide."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://zed.dev/blog/zed-for-business", "https://alternativeto.net/news/2026/5/zed-for-business-launches-with-advanced-admin-controls-and-flexible-ai-billing/"],
+      "comment": "Zed for Business ($30/seat) offers org-wide AI model policies, data-governance enforcement, and spend controls, but SSO/SAML, SCIM, audit logs, RBAC, VPC and SOC 2 are roadmap, not yet shipped (checked 2026-06-02). None of the defined tags are currently met."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based", "byok-only"],
+      "source": ["https://zed.dev/pricing"],
+      "comment": "Free Personal plan; Pro $10/mo subscription with $5 token credits then usage-based at API list price +10%; unlimited free use with your own keys (BYOK). Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://zed.dev/pricing"],
+      "comment": "Personal plan is free forever (2,000 edit predictions + unlimited use with your own API keys)."
+    },
+    "entry-price-usd-mo": {
+      "value": 10,
+      "source": ["https://zed.dev/pricing"],
+      "comment": "Pro plan $10/month (unlimited edit predictions + $5 token credits). Checked 2026-06-02; was $20 at the May 2025 launch."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://zed.dev/2025", "https://zed.dev/pricing"],
+      "comment": "Editor reached 1.0 (2026) and is polished/fast with a stable agent panel; agentic features still evolving rapidly, so 4 rather than 5."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/zed-industries/zed"],
+      "comment": "~84k GitHub stars for the editor; growing but the agent itself is newer and smaller than Cursor/Copilot scale."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/agent-panel", "https://zed.dev/docs/ai/rules"],
+      "comment": "Has an extensions ecosystem plus MCP server support and shareable Skills."
+    }
+  }
 }
