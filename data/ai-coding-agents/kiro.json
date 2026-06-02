@@ -108,11 +108,6 @@
       "source": ["https://kiro.dev/blog/introducing-kiro/", "https://www.infoq.com/news/2025/08/aws-kiro-spec-driven-agent/"],
       "comment": "Spec-driven workflow generates a requirements/design spec for review and approval before writing code — an explicit plan-then-execute phase."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://kiro.dev/docs/chat/subagents/", "https://kiro.dev/blog/introducing-kiro/"],
-      "comment": "Custom subagents and agent hooks act as reusable, on-demand packaged capabilities beyond plain instruction files."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://www.devoteam.com/expert-view/aws-kiro-beyond-vibe-coding/", "https://kiro.dev/"],
@@ -217,6 +212,46 @@
       "value": true,
       "source": ["https://kiro.dev/docs/guides/migrating-from-vscode/", "https://kiro.dev/blog/general-availability/"],
       "comment": "Built on Code OSS, supporting Open VSX-compatible extensions; plus MCP servers and custom subagents/hooks."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "custom"],
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Auto-loads markdown steering files from .kiro/steering/ (vendor-specific convention → custom) and also picks up AGENTS.md automatically. No CLAUDE.md/.cursorrules/copilot-instructions convention. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project"],
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Workspace (project) steering in .kiro/steering/, global (user) steering in ~/.kiro/steering/, plus a team scope distributed via MDM/central repositories (enterprise). No per-folder/subdirectory scope documented."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on", "path-based", "agent-requested"],
+      "source": ["https://kiro.dev/docs/steering/"],
+      "comment": "Inclusion modes: 'always' (always-on), 'fileMatch' glob patterns (path-based), and 'auto' where Kiro pulls a file in when the request matches its description (agent-requested). A manual #-reference mode also exists for user-triggered inclusion."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://kiro.dev/docs/steering/", "https://kiro.dev/docs/cli/steering/"],
+      "comment": "Kiro has no autonomous cross-session memory writing; context is captured through explicitly defined/managed steering files, not memories the agent writes on its own. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/skills/", "https://kiro.dev/blog/custom-subagents-skills-and-enterprise-controls/"],
+      "comment": "Agent Skills (based on the open agentskills.io standard) are modular instruction packages loaded on demand; plus custom subagents that appear as slash commands."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://kiro.dev/docs/skills/"],
+      "comment": "Users invoke skills explicitly via '/' slash commands; Kiro also activates a skill autonomously when a request matches the skill's description."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://kiro.dev/docs/skills/"],
+      "comment": "Three-stage progressive disclosure: only skill names and descriptions load at startup; full instructions load on activation; scripts/reference files load on demand during execution."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://kiro.dev/docs/skills/"],
+      "comment": "Skills imported from GitHub (paste a repo/SKILL.md URL) or the local filesystem, then copied into .kiro/skills/ or ~/.kiro/skills/. Portable as community packages via the agentskills.io standard; no curated one-click marketplace documented. Checked 2026-06-02."
     }
   }
 }
