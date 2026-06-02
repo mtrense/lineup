@@ -1,5 +1,223 @@
 {
   "name": "RooCode",
   "description": "Open-source autonomous agent extension (Cline fork lineage)",
-  "values": {}
+  "url": "https://github.com/RooCodeInc/Roo-Code",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Roo Code, Inc.",
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Built by Roo Code, Inc. (RooCodeInc); originated as a community fork of Cline."
+    },
+    "first-release": {
+      "value": "2024-10",
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Repo created 2024-10-31 as the 'Roo Cline' fork of Cline; later renamed 'Roo Code' (rename announced Jan 2025). Using initial fork publication month. Checked 2026-06-02."
+    },
+    "status": {
+      "value": ["discontinued"],
+      "source": ["https://nerova.ai/news/roo-code-shutting-down-may-15-2026-what-users-should-do-next", "https://github.com/RooCodeInc/Roo-Code", "https://roomote.dev/"],
+      "comment": "Discontinued: the VS Code extension, Roo Code Cloud and Router were shut down on 2026-05-15 and the GitHub repo was archived (isArchived=true). The team pivoted to a new cloud product, Roomote. The extension still functions but is frozen (no further fixes/model updates). Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Apache License 2.0 (OSI-approved) per repo license metadata."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Broad coding agent with built-in modes (Code, Architect, Ask, Debug, Orchestrator); not niche-positioned."
+    },
+    "website": {
+      "value": "https://github.com/RooCodeInc/Roo-Code",
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Former product site roocode.com now redirects to roomote.dev (the successor product); GitHub repo used as the stable canonical link."
+    },
+    "interface": {
+      "value": ["ide-extension"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Distributed as a VS Code Marketplace extension (also a separate CLI component existed, but the agent is fundamentally an IDE extension)."
+    },
+    "host-ides": {
+      "value": ["vscode"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "VS Code (and VS Code-compatible editors via Open VSX). No JetBrains build."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Agent's own source is Apache-2.0 licensed and public."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "A VS Code extension (plugin), not a standalone editor."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq", "https://docs.roocode.com/advanced-usage/local-models"],
+      "comment": "BYOK across many providers (Anthropic, OpenAI, Google Gemini, OpenRouter, AWS Bedrock, etc.) with no single bundled default model."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "User picks among many providers/models within the extension."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Core model: user supplies their own provider API key."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://docs.roocode.com/advanced-usage/local-models", "https://docs.roocode.com/providers/ollama"],
+      "comment": "Supports local models via Ollama and LM Studio."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Agentic coding tool that creates and edits files across the project."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Autonomous agent loop (edit, run commands, iterate) with optional auto-approval of actions."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Runs shell/terminal commands as part of its loop (with approval or auto-approve)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/faq"],
+      "comment": "Documented Model Context Protocol server support."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes"],
+      "comment": "Orchestrator (Boomerang) mode breaks complex tasks into subtasks delegated to other modes via the new_task tool."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://docs.roocode.com/advanced-usage/local-models"],
+      "comment": "Codebase Indexing builds a semantic embeddings index stored in a Qdrant vector DB (requires an embeddings API key); not just ad-hoc file reads."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes"],
+      "comment": "Architect mode is a planning-focused mode with edit restricted to markdown (read + plan, no code edits)."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Custom Modes are reusable, packaged agent configurations beyond plain instruction files; also supports slash commands/recipes."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://www.morphllm.com/comparisons/roo-code-vs-cline"],
+      "comment": "Supports drag-and-drop image input into chat (screenshots/mockups), subject to the chosen model supporting vision."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://docs.roocode.com/advanced-usage/local-models"],
+      "comment": "Inherits Cline-lineage browser tool; can drive a browser to act/verify when used with a capable model."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Conversational edits with per-action approval by default; can run fully autonomously when auto-approve is enabled. No tab inline-completion. A cloud layer added remote task control but the extension itself runs in-editor."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Chat/agent-driven edits only; no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Roo Code Cloud added cloud agents with remote task control (dispatch/follow tasks from anywhere); that cloud layer was shut down 2026-05-15, leaving only the in-editor extension."
+    },
+    "persistent-memory": {
+      "value": false,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Relies on per-project rules files for context rather than learned cross-session memory; no documented persistent-memory feature."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/checkpoints"],
+      "comment": "Built-in checkpoints use a shadow git repo to snapshot before file modifications; restore files or files+task. Enabled by default."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/checkpoints", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Can run git commands via terminal execution; checkpoints use git internally. No deep native staging/commit UI beyond that."
+    },
+    "pr-creation": {
+      "value": null,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "No documented native PR-creation feature in the extension; could open PRs only via terminal/CLI commands or an MCP server, not a built-in capability. Marked null per guideline (vendor silent, no independent confirmation)."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Supports project-level .roorules instruction files (and AGENTS.md-style rules)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes"],
+      "comment": "Extensible via MCP servers, custom modes, and slash commands."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Approval requested per action by default; auto-approve settings make it configurable toward auto-run."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://docs.roocode.com/advanced-usage/local-models", "https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Open-source extension runs entirely on the user's machine and can run against fully local models (Ollama/LM Studio) with no vendor backend; the optional Roo Code Cloud was SaaS, not self-hostable."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code"],
+      "comment": "Vendor stated 'we don't use your data for training' and the open-source extension can run with BYOK/local models so code need not reach Roo's servers at all; SOC2 Type 2 claimed. (Cloud service now discontinued.)"
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac"],
+      "source": ["https://roocode.com/"],
+      "comment": "Roo Code Cloud Enterprise plan offered SSO, RBAC, audit logs and SCIM. These were tied to the cloud offering, which was shut down 2026-05-15. Checked 2026-06-02."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only", "subscription", "usage-based"],
+      "source": ["https://roocode.com/", "https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Extension itself is free and open-source (BYOK). The optional Roo Code Cloud added subscription tiers (Pro $20/mo, Team $99/mo) plus usage-based cloud-task hours; cloud now discontinued."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "The extension is fully free (you pay only your own model provider via BYOK)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Extension is free for core use (BYOK); paid Roo Code Cloud Pro was $20/mo but optional and now discontinued. Using 0 per guideline since a genuine free tier covers core coding use."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://nerova.ai/news/roo-code-shutting-down-may-15-2026-what-users-should-do-next"],
+      "comment": "Was a polished, widely deployed tool (24k+ stars, 3M+ installs) — a 4 historically — but as of 2026-05-15 it is discontinued/frozen, so longevity is now nil. Rating reflects the product's realized maturity, not its future."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://nerova.ai/news/roo-code-shutting-down-may-15-2026-what-users-should-do-next"],
+      "comment": "~24k GitHub stars and 3M+ installs at shutdown — medium scale (smaller than Cline). Community now dispersing to Cline/Kilo Code after discontinuation."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/faq"],
+      "comment": "Meaningful ecosystem of MCP servers, community custom modes and rules; spawned forks (Kilo Code, ZooCode)."
+    }
+  }
 }
