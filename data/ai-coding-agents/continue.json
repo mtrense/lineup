@@ -1,5 +1,222 @@
 {
   "name": "Continue",
   "description": "Open-source, highly configurable IDE extension agent",
-  "values": {}
+  "url": "https://www.continue.dev/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Continue Dev, Inc.",
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Founded June 2023 by Ty Dunn and Nate Sesti (Y Combinator S23)."
+    },
+    "first-release": {
+      "value": "2023-07",
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Open-source VS Code extension first released July 2023; v1.0 launched later. Founded June 2023. Month is approximate from public history (checked 2026-06-02)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.continue.dev/", "https://github.com/continuedev/continue"],
+      "comment": "Actively developed; 33.5k GitHub stars, 472 contributors as of 2026-06-02."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Repository licensed Apache 2.0 (© 2023-2024 Continue Dev, Inc.). The hosted Continue Hub/platform adds paid tiers but the IDE extension is OSS."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://docs.continue.dev/"],
+      "comment": "Broad coding assistant (chat, autocomplete, edit, agent); not positioned for a single niche."
+    },
+    "website": {
+      "value": "https://www.continue.dev/",
+      "source": ["https://www.continue.dev/"]
+    },
+    "interface": {
+      "value": ["ide-extension", "cli"],
+      "source": ["https://github.com/continuedev/continue", "https://docs.continue.dev/"],
+      "comment": "Primarily VS Code and JetBrains extensions; also ships an open-source CLI tool (cn)."
+    },
+    "host-ides": {
+      "value": ["vscode", "jetbrains", "terminal"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Extensions for VS Code and JetBrains IDEs, plus a CLI that runs in the terminal."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Agent's own code is Apache 2.0."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Editor extension (VS Code/JetBrains) and a CLI tool; not a standalone editor."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://docs.continue.dev/customize/models", "https://docs.continue.dev/customize/deep-dives/model-capabilities"],
+      "comment": "Model-agnostic by design; the user configures a provider (OpenAI, Anthropic, Google, Ollama, Mistral, xAI, Bedrock, etc.). No single vendor-locked default."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/models", "https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Switch among many models/providers via config.yaml; distinct models per role (chat, edit, autocomplete, embed)."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/models"],
+      "comment": "Users supply their own API keys for any supported provider."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/model-roles/embeddings"],
+      "comment": "Works with Ollama, LM Studio, Jan, vLLM and other local/OpenAI-compatible endpoints; local embeddings supported too."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "Agent mode applies coordinated edits across multiple files."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "Agent mode chains tool calls (edit, run, read) toward a goal; tools sent with each request and the model decides which to call."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "Agent mode can run terminal/shell commands as tools, gated by tool policies."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "MCP servers can be added to give Agent mode additional tools; servers discoverable via the Continue Hub."
+    },
+    "subagents-parallel-agents": {
+      "value": null,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "No documented spawning of sub-agents or parallel workers; Agent mode runs a single tool-calling loop. Marked null (no clear vendor confirmation either way) as of 2026-06-02."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/context/codebase", "https://docs.continue.dev/walkthroughs/codebase-embeddings"],
+      "comment": "Builds an embeddings-based semantic index (default all-MiniLM-L6-v2, stored locally in ~/.continue/index) combined with keyword search; exposed via @codebase."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://docs.continue.dev/ide-extensions/agent/how-it-works"],
+      "comment": "Has a Plan mode that includes only read-only tools, distinct from Agent (all tools) and Chat (no tools)."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/overview", "https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Supports reusable prompts/slash commands and shareable agents via the Continue Hub, beyond plain instruction files."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/deep-dives/model-capabilities"],
+      "comment": "Accepts image input when the configured model is vision-capable (e.g. Claude 3.5+, GPT-4o, Gemini, some Ollama vision models)."
+    },
+    "browser-computer-use": {
+      "value": null,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "No documented built-in browser/GUI-driving tool to act and verify changes; only achievable via external MCP servers. Marked null (not a shipped core capability) as of 2026-06-02."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent"],
+      "source": ["https://docs.continue.dev/ide-extensions/agent/how-it-works", "https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Tab autocomplete, conversational chat/edit, and a supervised Agent mode that asks permission for tools by default."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Genuine as-you-type tab autocomplete via a dedicated autocomplete model role."
+    },
+    "background-async-execution": {
+      "value": null,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "IDE extension agent runs in-session; no documented detached/cloud background task runner. Marked null as of 2026-06-02."
+    },
+    "persistent-memory": {
+      "value": null,
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Rules provide always-on project context, but no documented cross-session learned memory mechanism. Marked null (no clear confirmation of persistent learned memory) as of 2026-06-02."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "No documented built-in checkpoint/snapshot-restore for an agent run as a unit; relies on the user's own git. Marked null as of 2026-06-02."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://docs.continue.dev/features/agent/how-it-works"],
+      "comment": "Diff context and a @git-style context provider; edits surface as reviewable diffs. The newer PR-checks product also integrates with GitHub status checks."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://github.com/continuedev/continue", "https://www.continue.dev/"],
+      "comment": "Continue's CI checks integrate with GitHub pull requests, suggesting diffs you accept/reject from the PR; not a core IDE-extension feature per se."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Supports rules as YAML config, plain text, or Markdown (.md) files applied to Agent, Chat, and Edit."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/overview", "https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Extensible via MCP servers, custom context providers, prompts/slash commands, and the config.yaml/Hub ecosystem."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Agent mode asks permission before using a tool by default; tool policies let the user exclude or auto-allow specific tools."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/model-roles/embeddings", "https://docs.continue.dev/customize/telemetry"],
+      "comment": "Fully local/offline operation is supported (local models + local embeddings); open-source extension runs entirely on the user's machine."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/telemetry"],
+      "comment": "Open-source extension does not train on code; it only sends anonymized, PII-stripped usage telemetry to PostHog, which is opt-out. Running local models keeps code fully on-device."
+    },
+    "enterprise-controls": {
+      "value": ["sso"],
+      "source": ["https://www.continue.dev/pricing"],
+      "comment": "Company (Enterprise) plan offers custom SSO via SAML or OIDC and BYOK; audit logs / RBAC / VPC not explicitly listed on the pricing page (checked 2026-06-02)."
+    },
+    "pricing-model": {
+      "value": ["free", "usage-based", "subscription", "byok-only"],
+      "source": ["https://www.continue.dev/pricing", "https://github.com/continuedev/continue"],
+      "comment": "Core OSS extension is free (you pay your own model/API costs, i.e. BYOK). Hub platform: Starter pay-as-you-go ($3/M tokens), Team ($20/seat/mo), Company custom (checked 2026-06-02)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/continuedev/continue", "https://www.continue.dev/pricing"],
+      "comment": "Open-source extension is free to use with your own/local models; covers core coding use."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/continuedev/continue", "https://www.continue.dev/pricing"],
+      "comment": "Core extension is free for full coding use (BYO model). Paid Hub tiers start at Team $20/seat/mo; Starter is pay-as-you-go ($3/M tokens) with no fixed plan."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/continuedev/continue", "https://docs.continue.dev/"],
+      "comment": "Mature, widely used OSS extension (33.5k stars) past v1.0, but config/feature surface still evolves rapidly; not a perfect 5."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Per RESEARCH.md thresholds, Continue sits in the medium band (alongside Cline, Amazon Q); 33.5k GitHub stars."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/overview", "https://docs.continue.dev/guides/configuring-models-rules-tools"],
+      "comment": "Continue Hub marketplace for shared models, rules, prompts, MCP servers, and agents."
+    }
+  }
 }
