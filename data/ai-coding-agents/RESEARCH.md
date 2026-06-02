@@ -182,7 +182,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 
 - [x] **Claude Code** — Anthropic's terminal-first agentic coding tool; reference CLI agent
 - [x] **OpenAI Codex (CLI)** — OpenAI's open-source terminal coding agent
-- [ ] **Cursor** — AI-native fork of VS Code; leading IDE agent
+- [x] **Cursor** — AI-native fork of VS Code; leading IDE agent
 - [ ] **GitHub Copilot** — The incumbent; agent mode plus completion across VS Code and JetBrains
 - [ ] **Windsurf** — Agentic IDE (formerly Codeium) with "Cascade" flow
 - [ ] **Kiro** — AWS's spec-driven agentic IDE

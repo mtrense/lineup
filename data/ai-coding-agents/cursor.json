@@ -1,5 +1,223 @@
 {
   "name": "Cursor",
   "description": "AI-native fork of VS Code; leading IDE agent",
-  "values": {}
+  "icon": "",
+  "url": "https://cursor.com",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Anysphere",
+      "source": ["https://en.wikipedia.org/wiki/Cursor_(code_editor)"],
+      "comment": "Built by Anysphere Inc., founded 2022 by four MIT students."
+    },
+    "first-release": {
+      "value": "2023-03",
+      "source": ["https://en.wikipedia.org/wiki/Cursor_(code_editor)", "https://research.contrary.com/company/cursor"],
+      "comment": "Cursor was first launched publicly in March 2023 as a VS Code fork."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Actively developed; reached 1.0 in June 2025 and shipping ongoing releases (checked 2026-06-02)."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Closed-source product with a free Hobby tier plus paid plans. Forks open-source VS Code but the agent/editor itself is proprietary."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Broad general-purpose coding agent."
+    },
+    "website": {
+      "value": "https://cursor.com",
+      "source": ["https://cursor.com/pricing"]
+    },
+    "interface": {
+      "value": ["ide", "cli", "web"],
+      "source": ["https://cursor.com/docs", "https://cursor.com/changelog/1-0"],
+      "comment": "Primarily a standalone IDE; also ships a CLI and web/mobile interface for background agents."
+    },
+    "host-ides": {
+      "value": ["standalone"],
+      "source": ["https://en.wikipedia.org/wiki/Cursor_(code_editor)"],
+      "comment": "Standalone forked editor (based on VS Code), not an extension running inside another IDE."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "The agent/editor itself is closed-source despite being built on open-source VS Code."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["standalone-editor", "cli-tool", "cloud-service"],
+      "source": ["https://cursor.com/docs", "https://cursor.com/changelog/1-0"],
+      "comment": "Standalone editor at its core; also offers a CLI and cloud-hosted Background Agents."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://cursor.com/docs/models"],
+      "comment": "Auto mode picks across frontier models from Anthropic, OpenAI, Google, xAI; also ships its own Composer models."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://cursor.com/docs/models"],
+      "comment": "Users can select among models from Anthropic, OpenAI, Google, xAI, and Cursor's own."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://cursor.com/docs/models", "https://cursor.com/pricing"],
+      "comment": "Supports BYOK; users can supply their own OpenAI/Anthropic API keys, and Teams plan references BYOK usage."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://forum.cursor.com/t/setup-ollama-local-model-in-cursor/144687"],
+      "comment": "Possible by overriding the OpenAI API base URL to a local OpenAI-compatible endpoint (e.g. Ollama); workable but unofficial/experimental and requires the model be reachable via a public-style endpoint."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Agent plans and applies coordinated edits across multiple files."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Agent Mode loops: reads codebase, edits, runs commands, watches output, and iterates until the task is done."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Agent can execute terminal commands and monitor output."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/1-0"],
+      "comment": "Shipped Model Context Protocol support including one-click install and OAuth (Cursor 1.0)."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/2-4"],
+      "comment": "Subagents feature shipped (changelog 2.4); Background Agents also allow multiple parallel cloud tasks."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://cursor.com/docs/context/codebase-indexing"],
+      "comment": "Builds a semantic index: chunks code, generates vector embeddings, and stores them for retrieval."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Plan mode researches the codebase and produces an editable plan/to-do document to review and approve before execution."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://cursor.com/docs/skills"],
+      "comment": "Supports Agent Skills (reusable, on-demand packaged instructions/scripts) and custom /-triggered commands."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Agent reads image files (.png, .jpg, .gif, .webp, .svg) as input."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Agent has browser tools with screenshot and interaction capabilities to act and verify."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://cursor.com/docs/agent/overview", "https://cursor.com/changelog/1-0"],
+      "comment": "Spans tab autocomplete, chat edits, supervised/autonomous Agent runs, and cloud Background Agents."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Provides Tab autocomplete completions as you type."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/1-0"],
+      "comment": "Background Agents run tasks off-machine in the cloud while the developer does other work."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/1-0"],
+      "comment": "Memories (beta) remembers facts from conversations and references them in the future."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://stevekinney.com/courses/ai-development/cursor-checkpoints"],
+      "comment": "Agent auto-creates checkpoints before significant changes; user can restore files to any checkpoint."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/1-0"],
+      "comment": "Native git awareness; Background Agents open branches and commit, BugBot reviews PRs."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://cursor.com/changelog/1-0"],
+      "comment": "Background Agents read GitHub issues, open branches, commit, and draft pull requests."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://cursor.com/docs"],
+      "comment": "Supports project-level rules (.cursorrules / Cursor Rules, AGENTS.md)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://cursor.com/docs/hooks"],
+      "comment": "Hooks run before/after agent actions and can block, modify, or audit behavior; also custom commands and a marketplace for rules/skills/plugins."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval"],
+      "source": ["https://cursor.com/docs/agent/overview"],
+      "comment": "Defaults to asking approval for actions; auto-run / allowlist behavior is configurable per the rules and agent settings."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Cloud SaaS product; no documented self-host/on-prem deployment of the agent. Privacy mode keeps code local but the service is vendor-hosted."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Privacy Mode guarantees code is never stored by model providers or used for training."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Teams adds SAML/OIDC SSO; Enterprise adds audit logs, SCIM seat management (RBAC-style), and access controls. No documented self-hosted VPC."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Free Hobby tier, monthly subscriptions, plus usage-based credits for premium model usage (checked 2026-06-02)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Hobby plan is free with limited Agent requests and Tab completions, no credit card required."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Pro (Individual) is $20/mo ($16/mo billed annually). Cheapest paid plan (checked 2026-06-02)."
+    },
+    "maturity": {
+      "value": 5,
+      "source": ["https://cursor.com/pricing", "https://research.contrary.com/company/cursor"],
+      "comment": "GA since 1.0 (June 2025), very widely deployed and polished; one of the leading IDE agents."
+    },
+    "community-size": {
+      "value": ["huge"],
+      "source": ["https://research.contrary.com/company/cursor"],
+      "comment": "Among the largest AI coding tools by adoption; Copilot/Cursor scale per the comparison thresholds."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://cursor.com/pricing", "https://cursor.com/docs/skills"],
+      "comment": "MCP server ecosystem plus a team marketplace for internal rules, skills, and plugins."
+    }
+  }
 }
