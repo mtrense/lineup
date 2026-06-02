@@ -237,12 +237,6 @@
           "description": "Has an explicit plan-then-execute or read-only planning phase"
         },
         {
-          "id": "skills",
-          "name": "Skills",
-          "valueType": "boolean",
-          "description": "Supports reusable, packaged capabilities the agent loads on demand (skills, custom commands, recipes) beyond plain instruction files"
-        },
-        {
           "id": "multimodal-input",
           "name": "Multimodal Input",
           "valueType": "boolean",
@@ -464,6 +458,134 @@
           "name": "Extension/Plugin Ecosystem",
           "valueType": "boolean",
           "description": "Has a marketplace or meaningful third-party ecosystem (MCP servers, plugins, community rules)"
+        }
+      ]
+    },
+    {
+      "id": "project-memory",
+      "name": "Project Memory",
+      "description": "Instruction files, memory scopes, scoped rules, and automatic memory",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "project-memory-files",
+          "name": "Project Memory Files",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "agents-md", "value": "AGENTS.md", "color": "green" },
+              { "id": "claude-md", "value": "CLAUDE.md", "color": "orange" },
+              { "id": "cursorrules", "value": ".cursorrules", "color": "blue" },
+              { "id": "copilot-instructions", "value": "copilot-instructions.md", "color": "purple" },
+              { "id": "custom", "value": "Custom", "color": "gray" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Always-on project instruction files the agent auto-loads (AGENTS.md, CLAUDE.md, .cursorrules, etc.)"
+        },
+        {
+          "id": "memory-scopes",
+          "name": "Memory Scopes",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "enterprise", "value": "Enterprise", "color": "red" },
+              { "id": "user", "value": "User", "color": "blue" },
+              { "id": "project", "value": "Project", "color": "green" },
+              { "id": "folder", "value": "Folder", "color": "purple" }
+            ]
+          },
+          "description": "Levels at which memory/rules can be defined — enterprise, user, project, folder/subdirectory"
+        },
+        {
+          "id": "scoped-rules-files",
+          "name": "Scoped Rules Files",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "path-based", "value": "Path-Based", "color": "blue" },
+              { "id": "file-type-based", "value": "File-Type-Based", "color": "purple" },
+              { "id": "agent-requested", "value": "Agent-Requested", "color": "orange" },
+              { "id": "always-on", "value": "Always-On", "color": "green" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Conditional rule files that apply by scope — path/glob-based, file-type-based, agent-requested, or always-on"
+        },
+        {
+          "id": "auto-memory",
+          "name": "Auto Memory",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "supported", "value": "Supported", "color": "green" },
+              { "id": "can-be-disabled", "value": "Can Be Disabled", "color": "blue" },
+              { "id": "unsupported", "value": "Unsupported", "color": "red" }
+            ]
+          },
+          "description": "Automatic cross-session memory the agent writes on its own; whether it is supported and whether it can be disabled"
+        }
+      ]
+    },
+    {
+      "id": "skills-support",
+      "name": "Skills",
+      "description": "Reusable packaged capabilities — support, invocation, context surface, and distribution",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "skill-support",
+          "name": "Skill Support",
+          "valueType": "boolean",
+          "description": "Supports reusable, packaged capabilities the agent loads on demand (skills, custom commands, recipes) beyond plain instruction files"
+        },
+        {
+          "id": "skill-invocation",
+          "name": "Skill Invocation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "user-callable", "value": "User-Callable", "color": "blue" },
+              { "id": "model-callable", "value": "Model-Callable", "color": "green" }
+            ]
+          },
+          "description": "Who can trigger a skill — the user explicitly (e.g. slash command), the model autonomously, or both"
+        },
+        {
+          "id": "always-on-surface",
+          "name": "Always-On Surface",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "name-only", "value": "Name Only", "color": "green" },
+              { "id": "description-only", "value": "Description Only", "color": "blue" },
+              { "id": "full-content", "value": "Full Content", "color": "orange" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "How much of each skill stays in context by default — name only, description only (progressive disclosure), or full content"
+        },
+        {
+          "id": "skill-distribution",
+          "name": "Skill Distribution",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "marketplace", "value": "Marketplace", "color": "green" },
+              { "id": "registry", "value": "Registry", "color": "blue" },
+              { "id": "git", "value": "Git", "color": "purple" },
+              { "id": "manual-files", "value": "Manual Files", "color": "orange" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "How skills are installed and shared — marketplace, registry, git clone, or manual file copying"
         }
       ]
     }

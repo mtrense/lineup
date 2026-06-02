@@ -73,7 +73,6 @@ Users should be able to:
 | **Subagents / Parallel Agents** | boolean | Can it spawn or orchestrate multiple agents (sub-tasks, parallel workers)? |
 | **Codebase Indexing** | boolean | Builds a semantic index / embeddings of the repo for retrieval (vs reading files ad hoc). |
 | **Planning Mode** | boolean | Has an explicit plan-then-execute or read-only planning phase. |
-| **Skills** | boolean | Supports reusable, packaged capabilities the agent loads on demand (skills, custom commands, recipes) beyond plain instruction files. |
 | **Multimodal Input** | boolean | Accepts images as input — screenshots, mockups, design files (Figma-to-code, screenshot-driven debugging). |
 | **Browser / Computer Use** | boolean | Can drive a real browser or GUI to verify its own changes (navigate, click, run e2e checks, screenshot the result). |
 
@@ -123,6 +122,24 @@ How the agent engages the developer — from inline pair-programming to fire-and
 | **Community Size** | tags | `huge`, `large`, `medium`, `small`, `niche`. Relative scale of users/community. |
 | **Extension/Plugin Ecosystem** | boolean | Has a marketplace or meaningful third-party ecosystem (MCP servers, plugins, community rules). |
 
+### 10. Project Memory
+
+| Attribute | Type | Research Notes |
+|-----------|------|----------------|
+| **Project Memory Files** | tags | `agents-md`, `claude-md`, `cursorrules`, `copilot-instructions`, `custom`, `none`. Always-on instruction files the agent auto-loads from the repo. Multi-select; use `custom` for a vendor-specific filename and `none` if no auto-loaded file convention exists. |
+| **Memory Scopes** | tags | `enterprise`, `user`, `project`, `folder`. The levels at which memory/rules can be defined — org/enterprise policy, per-user global, per-project, and per-folder/subdirectory. Multi-select. |
+| **Scoped Rules Files** | tags | `path-based`, `file-type-based`, `agent-requested`, `always-on`, `none`. How conditional rule files are activated — by path/glob match, by file type, on-demand when the agent requests them, or always applied. `none` if only a single always-on file is supported. |
+| **Auto Memory** | tags | `supported`, `can-be-disabled`, `unsupported`. Whether the agent automatically writes cross-session memories on its own, and whether that behavior can be turned off. |
+
+### 11. Skills
+
+| Attribute | Type | Research Notes |
+|-----------|------|----------------|
+| **Skill Support** | boolean | Supports reusable, packaged capabilities the agent loads on demand (skills, custom commands, recipes) beyond plain instruction files. |
+| **Skill Invocation** | tags | `user-callable`, `model-callable`. Who can trigger a skill — the user explicitly (e.g. a slash command) and/or the model autonomously when relevant. Multi-select. |
+| **Always-On Surface** | tags | `name-only`, `description-only`, `full-content`, `none`. How much of each skill stays in the model's context by default — just the name, the description (progressive disclosure, loaded fully only when invoked), or the entire skill body. |
+| **Skill Distribution** | tags | `marketplace`, `registry`, `git`, `manual-files`, `none`. How skills are installed and shared — a curated marketplace, a package registry, git clone, or manual file copying. |
+
 ## Research Sources
 
 ### Primary Sources (Preferred)
@@ -155,7 +172,14 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - **MCP Support**: `true` only for shipped/documented Model Context Protocol support, not a roadmap promise.
 - **Subagents / Parallel Agents**: `true` if the agent can spawn sub-tasks or run multiple agents/workers. Background "cloud" task runners that fan out count; a single linear loop does not.
 - **Codebase Indexing**: `true` for a built semantic index / embeddings store. Reading files on demand into context is *not* indexing — note the distinction in the comment.
-- **Skills**: `true` for packaged, on-demand capabilities the agent loads when relevant (Claude Code skills, custom slash commands, reusable recipes/prompts). Distinct from `Custom Rules / Instructions` (always-on project context) and `Hooks / Extensibility` (programmatic event hooks / plugin APIs). A tool with only a single instruction file and no reusable command/skill mechanism is `false`.
+- **Project Memory Files**: List every repo-resident instruction file the agent auto-loads (`agents-md`, `claude-md`, `cursorrules`, `copilot-instructions`). Use `custom` for a vendor-specific filename not in the list, and `none` only if the agent has no auto-loaded project-file convention at all. This is the always-on memory surface; distinct from `Auto Memory` (which the agent writes itself).
+- **Memory Scopes**: Mark each level at which the user can place memory/rules. `enterprise` = org/admin-managed policy; `user` = per-user global config; `project` = per-repo; `folder` = per-subdirectory/nested. Only tag a scope the product genuinely supports, not one you assume.
+- **Scoped Rules Files**: About *conditional* activation of rule files. `path-based` = applied when the edited path matches a glob; `file-type-based` = by language/extension; `agent-requested` = the agent pulls them in on demand; `always-on` = a rule file that is always applied. Use `none` when only a single always-applied file is supported (no scoping mechanism).
+- **Auto Memory**: `supported` if the agent writes cross-session memory autonomously; add `can-be-disabled` when the user can turn it off; `unsupported` when there is no automatic memory at all (manual instruction files alone do not count). Distinct from `Persistent Memory`, which only asks whether *any* context survives across sessions.
+- **Skill Support**: `true` for packaged, on-demand capabilities the agent loads when relevant (Claude Code skills, custom slash commands, reusable recipes/prompts). Distinct from `Custom Rules / Instructions` (always-on project context) and `Hooks / Extensibility` (programmatic event hooks / plugin APIs). A tool with only a single instruction file and no reusable command/skill mechanism is `false` (and the rest of this group is then `null`/empty).
+- **Skill Invocation**: `user-callable` if the user can explicitly trigger a skill (slash command, menu, palette); `model-callable` if the agent itself selects and loads a skill autonomously. Many systems are both.
+- **Always-On Surface**: The progressive-disclosure level. `name-only` = only the skill name is always visible; `description-only` = name + description always loaded, body pulled in on invocation; `full-content` = the whole skill body sits in context regardless; `none` if skills are not supported.
+- **Skill Distribution**: How users obtain skills. `marketplace` = curated, browsable, one-click install; `registry` = package-manager-style; `git` = clone/submodule; `manual-files` = drop files into a directory by hand. Pick all that apply; `none` if skills are not supported.
 - **Multimodal Input**: Refers to *image* input specifically (screenshots, mockups, designs). Voice/audio alone does not qualify; note it in the comment if present.
 - **Browser / Computer Use**: `true` only if the agent itself can operate a browser/GUI to act and verify, not merely fetch a URL's text. Plain web-search or doc-fetch tools do not count.
 - **Specialization**: Default to `general-purpose` for broad coding agents. Add a narrower tag only when the product is genuinely positioned and optimized for that niche (e.g. a review-only or UI-first agent), not because it happens to handle that work.
