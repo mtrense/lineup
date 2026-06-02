@@ -132,14 +132,6 @@
       "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
       "comment": "Provides transparent reasoning/status updates and lets you choose step-by-step review before applying changes; spec-driven planning is emphasized in the lineage carried to Kiro."
     },
-    "skills": {
-      "value": true,
-      "source": [
-        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents.html",
-        "https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"
-      ],
-      "comment": "CLI custom agents package reusable tool/permission/context/prompt bundles loaded on demand, plus reusable prompts and slash commands — beyond a single always-on rules file."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://aws.amazon.com/blogs/devops/amazon-q-developer-cli-supports-image-inputs-in-your-terminal/"],
@@ -273,6 +265,52 @@
         "https://github.com/cremich/awesome-q-developer"
       ],
       "comment": "MCP server support plus custom agents and a community ecosystem (e.g. awesome-q-developer); not a large dedicated third-party marketplace of its own."
+    },
+    "project-memory-files": {
+      "value": ["custom"],
+      "source": ["https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/"],
+      "comment": "Auto-loads project rules from the vendor-specific `.amazonq/rules/` directory (Markdown files, organizable in sub-directories). No AGENTS.md/CLAUDE.md convention documented, so tagged `custom`. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": [
+        "https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/",
+        "https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"
+      ],
+      "comment": "Project scope via `.amazonq/rules/` (committed with the repo) and user/global scope via global context (`/context add --global`), global saved prompts (`~/.aws/amazonq/prompts`), and global custom agents (`~/.aws/amazonq/cli-agents`). No org-managed enterprise memory policy or genuine per-folder activation documented (rule sub-directories are organizational, not location-scoped)."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/"],
+      "comment": "On first interaction Q scans `.amazonq/rules` and loads all rules into context, then evaluates each request against them by content/priority to decide applicability. No path/glob- or file-type-triggered activation; rules are loaded always-on and selected by the model."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": [
+        "https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/",
+        "https://aws.amazon.com/blogs/devops/exploring-the-latest-features-of-the-amazon-q-developer-cli/"
+      ],
+      "comment": "No autonomous cross-session memory writing documented. Persistence is manual: conversation save/load (`/save`, `/load`) and hand-authored rules/prompts. The agent does not write its own memories. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"],
+      "comment": "CLI custom agents package reusable tool/permission/context/prompt bundles loaded on demand, plus a saved-prompt library (`/prompts`, invoked with `@`) — reusable capabilities beyond a single always-on rules file."
+    },
+    "skill-invocation": {
+      "value": ["user-callable"],
+      "source": ["https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"],
+      "comment": "User selects a custom agent explicitly (`q chat --agent <name>`) and triggers saved prompts by name (`@<prompt>`). No documented mechanism for the model to autonomously select and load a skill/agent."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"],
+      "comment": "Saved prompts and agents are listed by name + description (`/prompts list`, `/agent list`) with the full body/config pulled in only on invocation — progressive disclosure. A selected custom agent then loads its full config for that session."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"],
+      "comment": "Custom agents/prompts are JSON/Markdown files: project-scoped ones (`.amazonq/`) travel with the repo via git; global ones (`~/.aws/amazonq/cli-agents`, `~/.aws/amazonq/prompts`) are hand-placed files. No official curated marketplace or package registry (community sites like promptz.dev aside)."
     }
   }
 }
