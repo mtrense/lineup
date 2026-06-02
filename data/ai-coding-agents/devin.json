@@ -110,11 +110,6 @@
       "source": ["https://cognition.ai/blog/devin-2"],
       "comment": "Devin 2.0 has an interactive planning phase — it researches the codebase and produces a detailed plan the user can refine before execution."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://docs.devin.ai/work-with-devin/devin-mcp"],
-      "comment": "Supports reusable Playbooks (and Knowledge) — packaged, on-demand procedures the agent loads, beyond a single instruction file."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://cognition.ai/blog/devin-sonnet-4-5-lessons-and-challenges"],
@@ -146,9 +141,9 @@
       "comment": "Knowledge base and repo Wiki persist learned context/preferences across sessions per project."
     },
     "checkpoints-rollback": {
-      "value": null,
-      "source": ["https://cognition.ai/blog/devin-2"],
-      "comment": "No documented built-in checkpoint/rollback-the-run mechanism found; Devin works on a branch and produces a PR, so reverting is via git/PR rather than a snapshot-restore feature. Marked null rather than guessing. Checked 2026-06-02."
+      "value": true,
+      "source": ["https://docs.devin.ai/onboard-devin/repo-setup"],
+      "comment": "REFRESH 2026-06-02: corrected from null to true. Devin's timeline supports a 'restore checkpoint' control that rolls back to a previous point in a session, restoring both files and memory state; environment/machine snapshots also have a Version History with restore. This is a built-in run-rollback mechanism, not just git."
     },
     "git-integration": {
       "value": true,
@@ -219,6 +214,46 @@
       "value": true,
       "source": ["https://cognition.ai/blog/mcp-marketplace", "https://docs.devin.ai/work-with-devin/devin-mcp"],
       "comment": "MCP Marketplace plus integrations (Slack, Linear, GitHub) and an API constitute a meaningful third-party ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://docs.devin.ai/onboard-devin/agents-md"],
+      "comment": "Devin auto-loads an AGENTS.md file from the repo ('put an AGENTS.md file in your project root (or anywhere else); Devin will look for the file before it starts coding'). No CLAUDE.md/.cursorrules convention; Knowledge and Playbooks are stored in Devin's library rather than as repo-resident always-on files. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "project", "folder"],
+      "source": ["https://docs.devin.ai/product-guides/knowledge", "https://docs.devin.ai/onboard-devin/agents-md"],
+      "comment": "Knowledge has enterprise-level (across all orgs) and organization-level scope, and can be pinned to a specific repo or all repos (project). AGENTS.md can be placed in the project root or any subdirectory (folder). Org-level mapped to enterprise; per-user enable/disable exists but is not a separate authoring scope. Checked 2026-06-02."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on", "agent-requested"],
+      "source": ["https://docs.devin.ai/onboard-devin/agents-md", "https://docs.devin.ai/product-guides/knowledge"],
+      "comment": "AGENTS.md is always-on (loaded before coding). Knowledge items use 'Trigger Descriptions' so Devin pulls relevant items in on demand based on context (agent-requested). No documented path/glob- or file-type-based rule activation. Checked 2026-06-02."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": ["https://docs.devin.ai/product-guides/knowledge"],
+      "comment": "Devin automatically suggests Knowledge to remember based on chat feedback and recalls it across future sessions; this is suggest-then-confirm rather than silent autonomous writing — users can edit, regenerate, or dismiss suggestions, and each item can be enabled/disabled per user. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.devin.ai/product-guides/skills"],
+      "comment": "Supports Skills (SKILL.md files following the open Agent Skills standard) plus Playbooks — reusable, on-demand procedures loaded when relevant, beyond a single instruction file. Checked 2026-06-02."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://docs.devin.ai/product-guides/skills"],
+      "comment": "Users invoke skills explicitly via @skills:skill-name (optionally with args); Devin also auto-activates relevant skills (model-callable). Authors can set triggers: [\"user\"] to disable auto-invocation. Checked 2026-06-02."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://docs.devin.ai/product-guides/skills"],
+      "comment": "Progressive disclosure: only the skill name and description appear in the session's skill list by default; the full SKILL.md body is loaded and injected as a system-level instruction only when the skill is invoked. Checked 2026-06-02."
+    },
+    "skill-distribution": {
+      "value": ["git"],
+      "source": ["https://docs.devin.ai/product-guides/skills"],
+      "comment": "Git-based: skills are committed to repositories at .agents/skills/<skill-name>/SKILL.md (or .github/skills/, .claude/skills/) and auto-discovered/indexed across connected repos. No marketplace or package registry. Checked 2026-06-02."
     }
   }
 }
