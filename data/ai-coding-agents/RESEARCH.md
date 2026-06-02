@@ -187,7 +187,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Windsurf** — Agentic IDE (formerly Codeium) with "Cascade" flow
 - [x] **Kiro** — AWS's spec-driven agentic IDE
 - [x] **Aider** — Open-source CLI pair-programmer with strong git integration
-- [ ] **Cline** — Open-source autonomous coding agent extension for VS Code
+- [x] **Cline** — Open-source autonomous coding agent extension for VS Code
 - [ ] **Continue** — Open-source, highly configurable IDE extension agent
 - [ ] **Gemini CLI** — Google's open-source terminal agent
 - [ ] **Devin** — Cognition's autonomous cloud software engineer

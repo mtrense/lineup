@@ -1,5 +1,223 @@
 {
   "name": "Cline",
   "description": "Open-source autonomous coding agent extension for VS Code",
-  "values": {}
+  "icon": "🤖",
+  "url": "https://cline.bot/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Cline Bot Inc.",
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Originally built by Saoud Rizwan; now developed by Cline Bot Inc."
+    },
+    "first-release": {
+      "value": "2024-06",
+      "source": ["https://aiwiki.ai/wiki/cline", "https://x.com/sdrzn/status/1843989769828602273"],
+      "comment": "First released June 2024 under the name Claude Dev; renamed to Cline with v2.0 on Oct 9, 2024 once multi-provider support was added."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Actively developed and widely deployed as of 2026-06-02."
+    },
+    "license": {
+      "value": ["open-source", "freemium"],
+      "source": ["https://github.com/cline/cline", "https://cline.bot/blog/introducing-cline-for-enterprise"],
+      "comment": "Agent itself is Apache 2.0 open source (free to use, BYOK); a paid Team/Enterprise tier layers on governance, hence also freemium."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Broad general-purpose coding agent."
+    },
+    "website": {
+      "value": "https://cline.bot/",
+      "source": ["https://cline.bot/"]
+    },
+    "interface": {
+      "value": ["ide-extension", "cli"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Primarily a VS Code/JetBrains extension; also ships a CLI (npm i -g cline) and an embeddable SDK. Treated as extension + CLI."
+    },
+    "host-ides": {
+      "value": ["vscode", "jetbrains", "terminal"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "VS Code (primary), JetBrains (early access), and terminal via the CLI. Also installs in VS Code forks (Cursor, Windsurf)."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/cline/cline"],
+      "comment": "Apache 2.0 licensed; agent source is open (the models it drives are not)."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Fundamentally an IDE extension; also distributed as a CLI tool and SDK."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "No single bundled default model; user supplies a provider/key. Anthropic Claude is the most commonly used, but Cline is provider-agnostic."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Supports Anthropic, OpenAI, Google Gemini, Bedrock, Azure, Vertex, DeepSeek, xAI, Mistral, Cerebras, and any OpenAI-compatible API."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "BYOK is the default model — install free, plug in your own API key, pay the provider directly."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Supports local models via Ollama and any OpenAI-compatible endpoint."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Coordinated multi-file changes with linter-aware fixes, diffs, and per-step undo."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Act mode chains edit -> run -> react-to-output autonomously; auto-approve enables full autopilot."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Runs shell commands and reacts to live output (dev servers, tests, deploys)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Native Model Context Protocol server support; can also generate MCP servers."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Supports multi-agent teams (coordinator delegating to specialists) and a Kanban board for parallel agent runs."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://cline.bot/blog/why-cline-doesnt-index-your-codebase-and-why-thats-a-good-thing"],
+      "comment": "Deliberate design choice: no RAG, embeddings, or vector index. Uses agentic file reading / AST traversal at runtime instead — not semantic indexing."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Explicit Plan mode to align on strategy before switching to Act mode to execute."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://docs.cline.bot/features/slash-commands/workflows/quickstart", "https://cline.bot/"],
+      "comment": "Supports reusable Workflows invoked as slash commands (markdown files under .clinerules/workflows) — packaged on-demand capabilities beyond plain instruction files."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://4sysops.com/archives/what-does-supports-images-computer-use-and-prompt-caching-mean-in-the-vs-code-extensions-roo-code-and-cline/"],
+      "comment": "Accepts image input (mockups, bug screenshots) when used with a multimodal model."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://4sysops.com/archives/what-does-supports-images-computer-use-and-prompt-caching-mean-in-the-vs-code-extensions-roo-code-and-cline/"],
+      "comment": "Built-in browser session: clicks, types, scrolls, captures screenshots and console logs (leverages Claude Computer Use) for interactive debugging and e2e checks."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Conversational edits, step-approval supervised runs, full auto-approve autonomy, and headless async runs in CI (GitHub Actions, GitLab) / via Slack/Linear. No tab-style inline completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Agentic chat/edit tool; no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Can run headlessly inside GitHub Actions/GitLab pipelines and be driven from Slack/Discord/Telegram/Linear; cron scheduling for recurring automation."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Project context via .clinerules and a Memory Bank pattern persist guidance across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Built-in checkpoints with one-click undo to restore the working tree to a prior step."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://docs.cline.bot/features/slash-commands/workflows/quickstart"],
+      "comment": "Operates on git via terminal commands and dedicated workflows (e.g. PR review/commit flows); no separate native staging UI beyond running git itself."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://docs.cline.bot/features/slash-commands/workflows/quickstart", "https://cline.bot/"],
+      "comment": "Can create/review PRs via workflows that call the gh/git CLI and through GitHub Actions integration."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Project-level .clinerules files (also reads AGENTS.md-style instructions) encode coding standards."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://github.com/cline/cline", "https://docs.cline.bot/features/slash-commands/workflows/quickstart"],
+      "comment": "Extensible via MCP servers, custom Workflows/slash commands, and an embeddable SDK."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "Approves every step by default; auto-approve can be toggled per action type for autopilot — i.e. configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://cline.ghost.io/introducing-cline-for-enterprise/", "https://docs.cline.bot/enterprise-solutions/monitoring/telemetry"],
+      "comment": "Enterprise offering runs on the customer's own infrastructure/inference; self-hosted deployments are supported (telemetry disabled in self-hosted environments)."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://cline.bot/blog/introducing-cline-for-enterprise"],
+      "comment": "Explicit guarantee: Cline never uploads, indexes, or trains on your codebase; no code or prompts used to train/fine-tune models."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "rbac", "audit-logs"],
+      "source": ["https://cline.bot/blog/introducing-cline-for-enterprise"],
+      "comment": "Enterprise tier offers SSO, RBAC, and OpenTelemetry log export (Datadog/Grafana/Splunk) for audit/governance. VPC not explicitly listed (self-host covers data sovereignty)."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only", "subscription"],
+      "source": ["https://cline.bot/", "https://cline.bot/blog/introducing-cline-for-enterprise"],
+      "comment": "Extension is free + BYOK (pay your LLM provider directly). Team/Enterprise adds a per-seat subscription for governance. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "comment": "The open-source extension is fully free to use with your own API key; LLM usage cost is paid to the provider."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://cline.bot/", "https://cline.bot/blog/introducing-cline-for-enterprise"],
+      "comment": "Core coding use is free (BYOK). The paid Team tier is $20/user/month beyond 10 users, but the free open-source extension covers core use, so entry price is 0."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Stable, polished, widely deployed (8M+ installs, 62k+ GitHub stars) but still rapidly evolving; not a slow-moving GA enterprise product, so 4 rather than 5."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Per RESEARCH.md thresholds medium = Cline scale; large and active (8M+ installs, 62k+ stars) but below Copilot/Cursor 'huge'."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.com/cline/cline", "https://cline.bot/"],
+      "comment": "Meaningful third-party ecosystem: MCP server marketplace, community .clinerules/workflows, and downstream forks (RooCode, Kilo)."
+    }
+  }
 }
