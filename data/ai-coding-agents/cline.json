@@ -107,12 +107,7 @@
     "planning-mode": {
       "value": true,
       "source": ["https://cline.bot/", "https://github.com/cline/cline"],
-      "comment": "Explicit Plan mode to align on strategy before switching to Act mode to execute."
-    },
-    "skills": {
-      "value": true,
-      "source": ["https://docs.cline.bot/features/slash-commands/workflows/quickstart", "https://cline.bot/"],
-      "comment": "Supports reusable Workflows invoked as slash commands (markdown files under .clinerules/workflows) — packaged on-demand capabilities beyond plain instruction files."
+      "comment": "Explicit Plan mode to align on strategy before switching to Act mode to execute; also a /deep-planning command."
     },
     "multimodal-input": {
       "value": true,
@@ -141,7 +136,7 @@
     },
     "persistent-memory": {
       "value": true,
-      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
+      "source": ["https://cline.bot/", "https://docs.cline.bot/features/cline-rules"],
       "comment": "Project context via .clinerules and a Memory Bank pattern persist guidance across sessions."
     },
     "checkpoints-rollback": {
@@ -151,23 +146,23 @@
     },
     "git-integration": {
       "value": true,
-      "source": ["https://cline.bot/", "https://docs.cline.bot/features/slash-commands/workflows/quickstart"],
-      "comment": "Operates on git via terminal commands and dedicated workflows (e.g. PR review/commit flows); no separate native staging UI beyond running git itself."
+      "source": ["https://cline.bot/", "https://docs.cline.bot/core-workflows/using-commands"],
+      "comment": "Operates on git via terminal commands and dedicated commands/workflows (e.g. /explain-changes for git diffs, PR review/commit flows); no separate native staging UI beyond running git itself."
     },
     "pr-creation": {
       "value": true,
-      "source": ["https://docs.cline.bot/features/slash-commands/workflows/quickstart", "https://cline.bot/"],
+      "source": ["https://docs.cline.bot/core-workflows/using-commands", "https://cline.bot/"],
       "comment": "Can create/review PRs via workflows that call the gh/git CLI and through GitHub Actions integration."
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://cline.bot/", "https://github.com/cline/cline"],
-      "comment": "Project-level .clinerules files (also reads AGENTS.md-style instructions) encode coding standards."
+      "source": ["https://docs.cline.bot/features/cline-rules", "https://github.com/cline/cline"],
+      "comment": "Project-level .clinerules files; also auto-detects AGENTS.md, .cursorrules, and .windsurfrules."
     },
     "hooks-extensibility": {
       "value": true,
-      "source": ["https://github.com/cline/cline", "https://docs.cline.bot/features/slash-commands/workflows/quickstart"],
-      "comment": "Extensible via MCP servers, custom Workflows/slash commands, and an embeddable SDK."
+      "source": ["https://github.com/cline/cline", "https://docs.cline.bot/customization/skills"],
+      "comment": "Extensible via MCP servers, custom Workflows/slash commands, Skills (SKILL.md), and an embeddable SDK."
     },
     "permission-model": {
       "value": ["ask-approval", "configurable"],
@@ -218,6 +213,46 @@
       "value": true,
       "source": ["https://github.com/cline/cline", "https://cline.bot/"],
       "comment": "Meaningful third-party ecosystem: MCP server marketplace, community .clinerules/workflows, and downstream forks (RooCode, Kilo)."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "cursorrules", "custom"],
+      "source": ["https://docs.cline.bot/features/cline-rules"],
+      "comment": "Native format is .clinerules (file or directory of .md/.txt) -> 'custom'. Cline also auto-detects AGENTS.md (agents-md), .cursorrules (cursorrules), and .windsurfrules (no matching tag). Verified 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://docs.cline.bot/features/cline-rules"],
+      "comment": "Workspace rules in .clinerules/ at project root (project) and global rules in the system Cline Rules directory (user). No documented enterprise/org-managed rules scope. Per-folder scoping is achieved via path-based conditional rules rather than per-directory rule files (see Scoped Rules); GitHub issue #4642 notes folder-scope placement is not yet fully supported."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "always-on"],
+      "source": ["https://docs.cline.bot/features/cline-rules"],
+      "comment": "Default .clinerules are always-on; conditional rules use YAML frontmatter 'paths' glob patterns to activate only for matching files (path-based). No file-type or agent-requested activation documented."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://docs.cline.bot/features/cline-rules", "https://github.com/nickbaumann98/cline_docs/blob/main/prompting/custom%20instructions%20library/cline-memory-bank.md"],
+      "comment": "The Memory Bank is a user-triggered pattern — Cline updates it only when the user instructs 'update memory bank' (or via /newrule). It does not autonomously write cross-session memory on its own, so unsupported per the guideline (manual instruction updates do not count)."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.cline.bot/customization/skills", "https://cline.ghost.io/cline-3-48-0-skills-and-websearch-make-cline-smarter/"],
+      "comment": "Dedicated Skills feature (SKILL.md directories, added in v3.48) plus reusable Workflows invoked as slash commands — packaged on-demand capabilities beyond plain instruction files."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://docs.cline.bot/customization/skills"],
+      "comment": "Cline auto-activates a skill via the use_skill tool when the request matches the skill's description (model-callable); the user can also force activation with a slash command (user-callable)."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://docs.cline.bot/customization/skills"],
+      "comment": "Progressive disclosure: only skill metadata (name + description, ~100 tokens each) stays in context; the full SKILL.md body (<5k tokens) and bundled resources load on demand when the skill is invoked."
+    },
+    "skill-distribution": {
+      "value": ["manual-files", "git"],
+      "source": ["https://docs.cline.bot/customization/skills"],
+      "comment": "Skills live in ~/.cline/skills (global) or .cline/skills (project); created manually or via the Skills menu and shared with teams by committing to version control (git). No official Cline skills marketplace in the docs, though third-party catalogs (agensi.io/skills, SkillsMP) index community skills. Verified 2026-06-02."
     }
   }
 }
