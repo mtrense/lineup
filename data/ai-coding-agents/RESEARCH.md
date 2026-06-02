@@ -185,7 +185,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Cursor** — AI-native fork of VS Code; leading IDE agent
 - [x] **GitHub Copilot** — The incumbent; agent mode plus completion across VS Code and JetBrains
 - [x] **Windsurf** — Agentic IDE (formerly Codeium) with "Cascade" flow
-- [ ] **Kiro** — AWS's spec-driven agentic IDE
+- [x] **Kiro** — AWS's spec-driven agentic IDE
 - [ ] **Aider** — Open-source CLI pair-programmer with strong git integration
 - [ ] **Cline** — Open-source autonomous coding agent extension for VS Code
 - [ ] **Continue** — Open-source, highly configurable IDE extension agent

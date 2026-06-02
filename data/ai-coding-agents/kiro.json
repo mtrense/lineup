@@ -1,5 +1,222 @@
 {
   "name": "Kiro",
   "description": "AWS's spec-driven agentic IDE",
-  "values": {}
+  "url": "https://kiro.dev/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Amazon Web Services (AWS)",
+      "source": ["https://kiro.dev/blog/general-availability/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Built by AWS / Amazon; runs on Amazon Bedrock."
+    },
+    "first-release": {
+      "value": "2025-07",
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://kiro.dev/blog/general-availability/"],
+      "comment": "Public preview announced 2025-07-14; reached general availability 2025-11-17."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://kiro.dev/blog/general-availability/"],
+      "comment": "Generally available since 2025-11-17 (was in preview from July 2025). Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://github.com/kirodotdev/Kiro"],
+      "comment": "Closed-source product; the public GitHub repo hosts issues/docs only, not the IDE source."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://kiro.dev/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Broad coding agent; spec-driven development is a methodology, not a domain niche, so kept general-purpose per the Specialization guideline."
+    },
+    "website": {
+      "value": "https://kiro.dev/",
+      "source": ["https://kiro.dev/"]
+    },
+    "interface": {
+      "value": ["ide", "cli", "web"],
+      "source": ["https://kiro.dev/blog/general-availability/", "https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Standalone desktop IDE plus a terminal CLI (added at GA) and a cloud/web autonomous agent at app.kiro.dev."
+    },
+    "host-ides": {
+      "value": ["standalone", "terminal", "browser"],
+      "source": ["https://visualstudiomagazine.com/articles/2025/07/21/forked-again-awss-kiro-latest-ai-assistant-based-on-vs-code.aspx", "https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Standalone editor forked from Code OSS (VS Code); also a terminal CLI and a browser-based cloud agent."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/kirodotdev/Kiro"],
+      "comment": "Editor is built on open-source Code OSS, but Kiro's own agent/IDE source is not openly licensed; the GitHub repo is issues/docs only."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["standalone-editor", "cli-tool", "cloud-service"],
+      "source": ["https://kiro.dev/blog/general-availability/", "https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Ships as a standalone editor, a CLI tool, and a hosted cloud autonomous agent."
+    },
+    "default-model-provider": {
+      "value": ["anthropic"],
+      "source": ["https://kiro.dev/docs/models/", "https://kiro.dev/blog/general-availability/"],
+      "comment": "Flagship/default models are Anthropic Claude (Sonnet/Opus/Haiku); also offers open-weight models and an Auto router."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/models/"],
+      "comment": "Model dropdown lets users switch among Claude variants, several open-weight models, and Auto."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/models/"],
+      "comment": "Models are billed via Kiro's credit system on Amazon Bedrock; docs do not document supplying your own provider API key."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/models/"],
+      "comment": "No documented support for local/self-hosted models (Ollama, vLLM, etc.); models run through Bedrock."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/autopilot/"],
+      "comment": "Autopilot makes coordinated changes across multiple files in a single task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/autopilot/", "https://kiro.dev/blog/introducing-kiro-autonomous-agent/"],
+      "comment": "Autopilot completes tasks end-to-end (creates/edits files, runs commands) with minimal per-step intervention."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/terminal/", "https://kiro.dev/docs/cli/chat/permissions/"],
+      "comment": "Can run shell commands as part of its loop, with per-command trust/permission tiers."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/general-availability/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Documented Model Context Protocol support, including remote MCP at GA."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/subagents/"],
+      "comment": "Built-in context-gathering and general-purpose subagents; supports running tasks in parallel, each with its own context window."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/editor/codebase-indexing/"],
+      "comment": "Automatically indexes the codebase and docs for context-aware retrieval; re-indexes on file changes."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://www.infoq.com/news/2025/08/aws-kiro-spec-driven-agent/"],
+      "comment": "Spec-driven workflow generates a requirements/design spec for review and approval before writing code — an explicit plan-then-execute phase."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/subagents/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Custom subagents and agent hooks act as reusable, on-demand packaged capabilities beyond plain instruction files."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://www.devoteam.com/expert-view/aws-kiro-beyond-vibe-coding/", "https://kiro.dev/"],
+      "comment": "Multimodal chat accepts images — screenshots, diagrams, schemas — as context."
+    },
+    "browser-computer-use": {
+      "value": null,
+      "source": ["https://kiro.dev/changelog/ide/0-8/"],
+      "comment": "Has web tools for fetching URLs, but no documented ability to drive a real browser/GUI to act and verify changes. Marked null pending clear confirmation. Checked 2026-06-02."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://kiro.dev/docs/chat/autopilot/", "https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Interactive chat, supervised (per-action approval) and Autopilot autonomous modes in the IDE/CLI, plus an async cloud agent that runs detached in a sandbox. No tab-style inline completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://kiro.dev/", "https://www.morphllm.com/comparisons/kiro-vs-cursor"],
+      "comment": "Positioned around spec-driven and agentic chat; no documented as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Cloud autonomous agent runs tasks asynchronously in isolated sandboxes (e.g. from a GitHub issue) while the developer does other work."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/subagents/", "https://kiro.dev/blog/introducing-kiro/"],
+      "comment": "Steering files store persistent project knowledge (patterns, standards) that persist across sessions and are synced between IDE and CLI."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/general-availability/", "https://kiro.dev/docs/chat/autopilot/"],
+      "comment": "Checkpointing (added at GA) lets you rewind/roll back agent execution steps; Autopilot changes can be reverted as a unit."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Autonomous agent creates feature branches, makes commits, and pushes; IDE is built on Code OSS with native git."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Autonomous agent opens pull requests (via the Kiro Agent GitHub app or as your own user)."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://www.devoteam.com/expert-view/aws-kiro-beyond-vibe-coding/"],
+      "comment": "Steering files provide project-level and global instructions (coding standards, preferred workflows)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://kiro.dev/blog/introducing-kiro/", "https://www.devoteam.com/expert-view/aws-kiro-beyond-vibe-coding/"],
+      "comment": "Agent hooks fire on IDE events (file save/create/delete) to run predefined agent actions; plus MCP and custom subagents."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval", "auto-run"],
+      "source": ["https://kiro.dev/docs/cli/chat/permissions/", "https://kiro.dev/docs/chat/autopilot/"],
+      "comment": "Per-request approval by default with configurable trust tiers; Autopilot can auto-run trusted commands/edits. Cloud agent runs in a sandbox."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/privacy-and-security/data-protection/"],
+      "comment": "No documented self-host/on-prem deployment; runs as a hosted service on Amazon Bedrock infrastructure."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/privacy-and-security/data-protection/"],
+      "comment": "Enterprise users' content is not used for service improvement; free/individual subscribers can opt out via telemetry/content toggles."
+    },
+    "enterprise-controls": {
+      "value": ["sso"],
+      "source": ["https://kiro.dev/docs/enterprise/iam/", "https://kiro.dev/blog/general-availability/"],
+      "comment": "SSO via AWS IAM Identity Center with group-based controls/permission sets and centralized team management. Audit logs/RBAC/VPC not clearly documented as Kiro features. Checked 2026-06-02."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://kiro.dev/pricing/"],
+      "comment": "Free tier (50 credits) plus Pro/Pro+/Power subscriptions, with metered overage at $0.04/credit."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://kiro.dev/pricing/"],
+      "comment": "Free plan: 50 credits/month with open-weight models and Claude Sonnet 4.5."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://kiro.dev/pricing/"],
+      "comment": "Cheapest paid plan is Pro at $20/month (1,000 credits). Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://kiro.dev/blog/general-availability/", "https://caylent.com/blog/kiro-first-impressions"],
+      "comment": "GA since Nov 2025 with team features and CLI, but a young product still rapidly adding capabilities; usable but evolving."
+    },
+    "community-size": {
+      "value": "medium",
+      "source": ["https://siliconangle.com/2025/11/17/aws-launches-kiro-general-availability-team-features-cli-support/", "https://kiro.dev/blog/general-availability/"],
+      "comment": "AWS backing and high visibility, but a newer single-vendor tool; smaller than Cursor/Copilot scale. Checked 2026-06-02."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/guides/migrating-from-vscode/", "https://kiro.dev/blog/general-availability/"],
+      "comment": "Built on Code OSS, supporting Open VSX-compatible extensions; plus MCP servers and custom subagents/hooks."
+    }
+  }
 }
