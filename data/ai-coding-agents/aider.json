@@ -17,12 +17,12 @@
     "status": {
       "value": ["active"],
       "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/"],
-      "comment": "Actively developed and released as of check date 2026-06-02 (~45.7k GitHub stars)."
+      "comment": "Actively developed; last repo push 2026-05-22, ~45.7k GitHub stars as of check date 2026-06-02."
     },
     "license": {
       "value": ["open-source"],
       "source": ["https://github.com/Aider-AI/aider"],
-      "comment": "Apache License 2.0 (OSI-approved)."
+      "comment": "Apache License 2.0 (OSI-approved); confirmed via GitHub repo metadata 2026-06-02."
     },
     "specialization": {
       "value": ["general-purpose"],
@@ -90,8 +90,8 @@
     },
     "mcp-support": {
       "value": false,
-      "source": ["https://github.com/Aider-AI/aider/issues/4506"],
-      "comment": "No native MCP support in core Aider as of check date; only third-party MCP wrappers/servers exist and there is an open feature request."
+      "source": ["https://github.com/Aider-AI/aider/issues/4506", "https://github.com/disler/aider-mcp-server"],
+      "comment": "Re-verified 2026-06-02: still no native MCP in core Aider; only third-party MCP servers/wrappers (e.g. disler/aider-mcp-server) bridge the gap. Open feature request remains."
     },
     "subagents-parallel-agents": {
       "value": false,
@@ -107,11 +107,6 @@
       "value": true,
       "source": ["https://aider.chat/2024/09/26/architect.html", "https://aider.chat/docs/usage/commands.html"],
       "comment": "Architect/editor mode plans the solution with one model then applies edits with another; /ask gives a read-only Q&A mode."
-    },
-    "skills": {
-      "value": false,
-      "source": ["https://aider.chat/docs/usage/conventions.html", "https://aider.chat/docs/usage/commands.html"],
-      "comment": "Has fixed built-in slash commands but no mechanism for user-defined, reusable on-demand skills/recipes; conventions are always-on instruction files, not skills."
     },
     "multimodal-input": {
       "value": true,
@@ -160,13 +155,13 @@
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://aider.chat/docs/usage/conventions.html"],
-      "comment": "Supports project convention files (e.g. CONVENTIONS.md) loaded via /read or .aider.conf.yml; also reads CLAUDE.md-style files."
+      "source": ["https://aider.chat/docs/usage/conventions.html", "https://aider.chat/docs/config/aider_conf.html"],
+      "comment": "Supports project convention files (e.g. CONVENTIONS.md) loaded via /read, --read, or the .aider.conf.yml 'read:' directive. Note: these are NOT auto-discovered — the user must point aider at them explicitly (see project-memory-files)."
     },
     "hooks-extensibility": {
       "value": false,
       "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/docs/usage/conventions.html"],
-      "comment": "Configurable lint/test commands but no programmable event hooks or plugin API for extending agent behavior; null-leaning but marked false on absence of a hooks/plugin mechanism."
+      "comment": "Configurable lint/test commands but no programmable event hooks or plugin API for extending agent behavior."
     },
     "permission-model": {
       "value": ["ask-approval", "configurable"],
@@ -211,12 +206,52 @@
     "community-size": {
       "value": ["large"],
       "source": ["https://github.com/Aider-AI/aider"],
-      "comment": "~45.7k GitHub stars as of check date; per RESEARCH.md thresholds Aider is explicitly a 'large' community example."
+      "comment": "~45.7k GitHub stars (45,680) as of check date; per RESEARCH.md thresholds Aider is explicitly a 'large' community example."
     },
     "extension-plugin-ecosystem": {
       "value": false,
       "source": ["https://github.com/Aider-AI/aider/issues/4506"],
       "comment": "No first-party marketplace/plugin ecosystem; community wrappers exist (e.g. third-party MCP servers, AiderDesk) but there is no official plugin platform."
+    },
+    "project-memory-files": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/usage/conventions.html", "https://github.com/Aider-AI/aider/issues/4395"],
+      "comment": "Aider does NOT auto-load any repo instruction file. Conventions (CONVENTIONS.md, and optionally CLAUDE.md/AGENTS.md) must be listed explicitly under a .aider.conf.yml 'read:' directive or via /read; a contributor confirms aider only warns if a listed file is missing. Third-party blogs claiming aider 'reads AGENTS.md natively' are contradicted by the official docs and the maintainers' own guidance, so the auto-loaded-file convention is 'none'."
+    },
+    "memory-scopes": {
+      "value": ["user", "project", "folder"],
+      "source": ["https://aider.chat/docs/config/aider_conf.html"],
+      "comment": "aider loads .aider.conf.yml from the home directory (user/global), the git repo root (project), and the current directory (folder), in that order with later files taking priority. No enterprise/org-managed policy scope."
+    },
+    "scoped-rules-files": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/usage/conventions.html"],
+      "comment": "No conditional rule activation: convention files configured via 'read:' are always applied to context, with no path/glob, file-type, or agent-requested scoping mechanism."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://aider.chat/docs/usage/conventions.html"],
+      "comment": "Aider never writes cross-session memory on its own; persistent context comes only from user-authored convention files. No automatic memory layer to disable."
+    },
+    "skill-support": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/conventions.html", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Has a fixed set of built-in slash commands but no mechanism for user-defined, reusable on-demand skills/recipes; conventions are always-on instruction files, not skills."
+    },
+    "skill-invocation": {
+      "value": null,
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "Not applicable — aider has no reusable-skill mechanism (skill-support is false)."
+    },
+    "always-on-surface": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "Not applicable — no skills mechanism, so nothing is held in context as a skill surface."
+    },
+    "skill-distribution": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "Not applicable — aider has no skill install/share mechanism (marketplace, registry, etc.)."
     }
   }
 }
