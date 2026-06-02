@@ -3,7 +3,7 @@ name: gather-data-cycle
 description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md, spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash .claude/skills/gather-data-cycle/list-unchecked.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
+allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash .claude/skills/gather-data-cycle/list-unchecked.sh*), Bash(bash .claude/skills/gather-data-cycle/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
 argument-hint: "<comparison-type> [count|all][@workers]   (e.g. `databases 8`, `databases 8@4`, `databases all@3`)"
 ---
 
@@ -128,11 +128,25 @@ First verify the batch as a whole:
    reported `HALTED` should have written nothing). Any unexpected path → halt
    and surface it. Do not commit.
 
+Verify the batch's files in one shot with the bundled helper (never roll your
+own `node -e`, `for`-loop, or `cd ...; ...` compound — those can't be
+allow-listed and will prompt every run):
+
+```
+bash .claude/skills/gather-data-cycle/verify-batch.sh <type> <id1> <id2> ...
+```
+
+It prints one TSV line per id: `<id>  <ok|MISSING|BAD_JSON>  <lastVerified>  <populated>  <null>`.
+Use the `populated`/`null` columns directly for the Step 5/Step 6 notes. As an
+alternative for a single file, the `Read` tool reads the JSON natively — no Bash
+at all. Any line that is not `ok`, or is `ok` with an empty `lastVerified` (`-`)
+or zero populated values, is a halt for that candidate.
+
 Then, for each worker that reported `status: OK`, **one at a time** (commits must
 serialise):
 
-3. Confirm `data/<type>/<candidate>.json` exists and parses as JSON, with a
-   `lastVerified` date and non-empty `values`.
+3. Confirm the helper reported `ok` for `data/<type>/<candidate>.json` with a
+   `lastVerified` date and non-zero populated values (or read the file directly).
 4. Flip that candidate's checkbox in `data/<type>/RESEARCH.md` with `Edit`:
    `- [ ] <Name>` → `- [x] <Name>`. Match the candidate's display name or id;
    touch no other line.
