@@ -189,7 +189,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Aider** — Open-source CLI pair-programmer with strong git integration
 - [x] **Cline** — Open-source autonomous coding agent extension for VS Code
 - [x] **Continue** — Open-source, highly configurable IDE extension agent
-- [ ] **Gemini CLI** — Google's open-source terminal agent
+- [x] **Gemini CLI** — Google's open-source terminal agent
 - [ ] **Devin** — Cognition's autonomous cloud software engineer
 - [ ] **Google Jules** — Google's asynchronous autonomous coding agent
 - [ ] **Amazon Q Developer** — AWS's IDE/CLI coding agent

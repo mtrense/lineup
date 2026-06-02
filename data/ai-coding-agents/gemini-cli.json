@@ -1,5 +1,220 @@
 {
   "name": "Gemini CLI",
   "description": "Google's open-source terminal agent",
-  "values": {}
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Google",
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Built and maintained by Google (google-gemini org)."
+    },
+    "first-release": {
+      "value": "2025-06",
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://techcrunch.com/2025/06/25/google-unveils-gemini-cli-an-open-source-ai-tool-for-terminals/"],
+      "comment": "Announced and open-sourced June 25, 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
+      "comment": "Active as of 2026-06-02, but Google announced (May 19, 2026) it will stop serving requests for free users, AI Pro/Ultra subscribers, and individual Code Assist users on June 18, 2026; enterprise customers retain it. Apache-2.0 repo stays public. A closed-source successor (Antigravity CLI) was introduced."
+    },
+    "license": {
+      "value": ["open-source", "freemium"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://techcrunch.com/2025/06/25/google-unveils-gemini-cli-an-open-source-ai-tool-for-terminals/"],
+      "comment": "Agent itself is Apache-2.0 open source; the hosted service is freemium (free tier plus paid plans)."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Broad coding/agentic terminal tool; not optimized for a single niche."
+    },
+    "website": {
+      "value": "https://github.com/google-gemini/gemini-cli",
+      "source": ["https://github.com/google-gemini/gemini-cli"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Terminal-first command-line agent. (A separate GitHub Action exists for CI, but the product itself is a CLI.)"
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Runs in the terminal; not an IDE plugin (the related Gemini Code Assist IDE integration is a separate product)."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Apache License 2.0."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/google-gemini/gemini-cli"]
+    },
+    "default-model-provider": {
+      "value": ["google"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Defaults to Google's Gemini models (e.g. Gemini 2.5 Pro / latest)."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "User can select among Gemini models via the -m flag (e.g. gemini-2.5-flash vs 2.5-pro). Choice is within Google's model family only; non-Google providers are not natively supported."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Supports a personal Gemini API key or Vertex AI credentials in addition to OAuth sign-in."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli/issues/5938", "https://github.com/google-gemini/gemini-cli/discussions/24166"],
+      "comment": "No official local-model support (no native Ollama/LM Studio/vLLM). Only Google-hosted Gemini models; local use relies on community forks or unofficial base-URL redirection. Checked 2026-06-02."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Analyzes and edits across an entire repository in one task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "Agentic loop chains edit/run/fix steps toward a goal (subject to its permission gating)."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Runs shell commands as part of its loop, with sandbox/trusted-folder controls."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://google-gemini.github.io/gemini-cli/docs/cli/commands.html"],
+      "comment": "Documented MCP server integration; /mcp command lists configured servers."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://developers.googleblog.com/subagents-have-arrived-in-gemini-cli/", "https://geminicli.com/docs/core/subagents/"],
+      "comment": "Subagents defined via markdown + YAML frontmatter in .gemini/agents; built-in research subagents (codebase_investigator, cli_help) run in Plan Mode."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/"],
+      "comment": "Reads files on demand into context (large context window) rather than building a persistent semantic/embeddings index. No documented index store. Checked 2026-06-02."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://geminicli.com/docs/cli/plan-mode/"],
+      "comment": "Documented Plan Mode (read-only plan-then-execute), expanded in 2026 with built-in research subagents."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://geminicli.com/docs/core/subagents/"],
+      "comment": "Supports reusable custom slash commands and packaged subagents loaded on demand, beyond the GEMINI.md instruction file."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Accepts image input (images, PDFs, sketches) per the repo feature list."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Has web search/fetch (grounding) tools but does not drive a real browser/GUI to act and verify its own changes. Checked 2026-06-02."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://geminicli.com/docs/cli/plan-mode/"],
+      "comment": "Conversational REPL with per-action approval; can run multi-step tasks autonomously. No inline tab completion and no detached cloud/async dispatch."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Terminal chat agent; no as-you-type tab autocomplete (that is the separate Gemini Code Assist IDE product)."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Runs interactively in the foreground terminal session; not a fire-and-forget cloud/background dispatcher. (A non-interactive scripted mode exists but requires the session to run.)"
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "Hierarchical project memory from GEMINI.md files loaded across sessions; /memory command manages it."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "/restore reverts project files to the state just before a tool was executed; conversation checkpointing also supported."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Can run git commands and is git-aware via its shell tool and GitHub Action integration."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Via the official GitHub Action / GitHub integration it can open and update pull requests; the CLI itself can also drive git/gh."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "Project-level GEMINI.md context files."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html"],
+      "comment": "Extensions (TypeScript modules adding custom tools/commands), custom slash commands, and MCP servers."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "sandboxed", "configurable"],
+      "source": ["https://github.com/google-gemini/gemini-cli"],
+      "comment": "Prompts for approval before tool/command execution; offers sandbox and trusted-folder controls; auto-accept (YOLO) and policy settings make it configurable."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://github.com/google-gemini/gemini-cli/discussions/24166", "https://docs.cloud.google.com/gemini/docs/codeassist/security-privacy-compliance"],
+      "comment": "The CLI binary is local but depends on Google's hosted Gemini/Vertex backend; no on-prem/self-hosted model deployment. Checked 2026-06-02."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/gemini/docs/codeassist/security-privacy-compliance"],
+      "comment": "With Gemini Code Assist Standard/Enterprise, prompts and code are not collected or used to train models. The free individual tier may use data for training, so the zero-training guarantee is tier-dependent."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac", "vpc"],
+      "source": ["https://docs.cloud.google.com/gemini/docs/codeassist/security-privacy-compliance", "https://docs.cloud.google.com/gemini/enterprise/docs/security-overview"],
+      "comment": "Via Gemini Code Assist Enterprise on Google Cloud: SSO and RBAC through Cloud IAM, Cloud Audit Logs, and VPC Service Controls."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026", "https://geminicli.com/docs/resources/quota-and-pricing/"],
+      "comment": "Free tier (OAuth/free Code Assist), fixed-price subscriptions (Google AI Pro, Code Assist Standard/Enterprise), and pay-as-you-go via Gemini API / Vertex AI. Free individual tier is slated to stop June 18, 2026. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026"],
+      "comment": "Generous free tier (OAuth login: 60 req/min, 1,000 req/day) covering individual use. Note: Google announced this free tier ends June 18, 2026."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026"],
+      "comment": "Genuine free tier covers core coding use (1,000 req/day). Cheapest paid plan is Google AI Pro at ~$19.99/mo; Code Assist Standard ~$22.80/user/mo. Free tier scheduled to end 2026-06-18."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
+      "comment": "Polished, widely deployed GA tool with thousands of contributions, but rated 4 (not 5) given active flux and the May 2026 announced transition off the free/individual tier. Checked 2026-06-02."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
+      "comment": "Google-backed with rapid, broad adoption and 6,000+ merged community PRs."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "Extensions, custom commands, and MCP server ecosystem; numerous community extensions and forks."
+    }
+  }
 }
