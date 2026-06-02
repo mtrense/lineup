@@ -17,7 +17,7 @@
     "status": {
       "value": ["active"],
       "source": ["https://github.com/openai/codex/releases", "https://developers.openai.com/codex/cli"],
-      "comment": "Actively developed (frequent releases); generally available, not labeled beta."
+      "comment": "Actively developed (frequent releases); generally available, not labeled beta. Re-confirmed 2026-06-02."
     },
     "license": {
       "value": ["open-source"],
@@ -57,12 +57,12 @@
     "default-model-provider": {
       "value": ["openai"],
       "source": ["https://developers.openai.com/codex/cli/features"],
-      "comment": "Default/flagship models are OpenAI's GPT (e.g. GPT-5.x); can be pointed at others via custom providers."
+      "comment": "Default/flagship models are OpenAI's GPT; gpt-5.5 is the recommended model as of 2026-06. Can be pointed at others via custom providers."
     },
     "model-choice": {
       "value": true,
       "source": ["https://developers.openai.com/codex/cli/features", "https://developers.openai.com/codex/config-advanced"],
-      "comment": "Mid-session model switching via /model; supports configurable custom model providers."
+      "comment": "Mid-session model switching via /model (or --model at launch); supports configurable custom model providers."
     },
     "bring-your-own-key": {
       "value": true,
@@ -96,8 +96,8 @@
     },
     "subagents-parallel-agents": {
       "value": true,
-      "source": ["https://developers.openai.com/codex/subagents"],
-      "comment": "Subagent workflows spawn specialized agents in parallel (fan-out up to 6 threads by default) and consolidate results."
+      "source": ["https://developers.openai.com/codex/subagents", "https://developers.openai.com/codex/cli/features"],
+      "comment": "Subagent workflows parallelize larger tasks by spawning specialized agents and consolidating results (noted as higher token cost)."
     },
     "codebase-indexing": {
       "value": false,
@@ -107,17 +107,12 @@
     "planning-mode": {
       "value": true,
       "source": ["https://developers.openai.com/codex/cli/features", "https://developers.openai.com/codex/cli/slash-commands"],
-      "comment": "Has a /plan slash command and explains plans before executing; Read-only approval mode supports plan-first work."
-    },
-    "skills": {
-      "value": true,
-      "source": ["https://developers.openai.com/codex/skills", "https://developers.openai.com/codex/cli/slash-commands"],
-      "comment": "Agent Skills package instructions/resources/scripts loaded on demand; also custom slash commands."
+      "comment": "Explains its plan before making changes and approves/rejects steps inline; Read-only approval mode supports plan-first work."
     },
     "multimodal-input": {
       "value": true,
       "source": ["https://developers.openai.com/codex/cli/features"],
-      "comment": "Accepts image input (screenshots, design specs) via the -i flag."
+      "comment": "Accepts image input — attach screenshots or design specs via the -i flag or by pasting into the composer."
     },
     "browser-computer-use": {
       "value": false,
@@ -142,7 +137,7 @@
     "persistent-memory": {
       "value": true,
       "source": ["https://developers.openai.com/codex/cli/features", "https://github.com/openai/codex"],
-      "comment": "Session resume restores prior conversation with repo context; AGENTS.md provides durable per-project guidance across sessions."
+      "comment": "Stores transcripts locally so you can resume prior sessions; AGENTS.md provides durable per-project guidance across sessions."
     },
     "checkpoints-rollback": {
       "value": false,
@@ -161,8 +156,8 @@
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://github.com/openai/codex/blob/main/AGENTS.md", "https://github.com/openai/codex"],
-      "comment": "Reads AGENTS.md (and .codex/ layers) walked up from the working directory for project-level guidance."
+      "source": ["https://developers.openai.com/codex/guides/agents-md", "https://github.com/openai/codex/blob/main/AGENTS.md"],
+      "comment": "Reads AGENTS.md (and AGENTS.override.md / configured fallback filenames) walked from the repo root down to the working directory for project-level guidance."
     },
     "hooks-extensibility": {
       "value": true,
@@ -192,7 +187,7 @@
     "pricing-model": {
       "value": ["free-tier", "subscription", "usage-based"],
       "source": ["https://developers.openai.com/codex/pricing"],
-      "comment": "Codex included in ChatGPT Free, Go ($8), Plus ($20), Pro ($200) etc.; API-key mode is usage-based per token. CLI itself is free/open-source."
+      "comment": "Codex included in ChatGPT Free, Go ($8), Plus ($20), Pro (from $100) etc.; API-key mode is usage-based per token. CLI itself is free/open-source. Checked 2026-06-02."
     },
     "free-tier": {
       "value": true,
@@ -218,6 +213,46 @@
       "value": true,
       "source": ["https://github.com/RoggeOhta/awesome-codex-cli", "https://developers.openai.com/codex/mcp"],
       "comment": "Growing ecosystem of MCP servers, skills, subagents and plugins (e.g. 150+ curated tools); supports MCP and custom skills/commands."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://developers.openai.com/codex/guides/agents-md"],
+      "comment": "Auto-loads AGENTS.md (and AGENTS.override.md plus configured fallback filenames). No CLAUDE.md/.cursorrules convention; AGENTS.md is the native file."
+    },
+    "memory-scopes": {
+      "value": ["user", "project", "folder"],
+      "source": ["https://developers.openai.com/codex/guides/agents-md"],
+      "comment": "Global/user (~/.codex/AGENTS.md), project root, and nested subdirectory/folder AGENTS.md are all discovered and merged root-down. No documented enterprise/admin-managed policy level for AGENTS.md."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://developers.openai.com/codex/guides/agents-md"],
+      "comment": "Discovered AGENTS.md files merge into a single always-applied instruction set; nested files apply when working in that folder, but there is no path/glob, file-type, or agent-requested conditional activation."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Codex stores transcripts locally for manual session resume but does not autonomously write cross-session memories; manual AGENTS.md does not count as auto-memory."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/skills", "https://developers.openai.com/codex/cli/slash-commands"],
+      "comment": "Agent Skills package instructions/resources/scripts loaded on demand (SKILL.md); also supports custom reusable slash commands."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://developers.openai.com/codex/skills"],
+      "comment": "Users invoke explicitly via slash command / $skill-name; the model also selects skills autonomously when a task matches a skill's description."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://developers.openai.com/codex/skills"],
+      "comment": "Progressive disclosure: only each skill's name, description, and file path stay in context (capped ~2% of the window); the full SKILL.md is loaded only when the skill is used."
+    },
+    "skill-distribution": {
+      "value": ["manual-files", "registry"],
+      "source": ["https://developers.openai.com/codex/skills"],
+      "comment": "Skills live in directory hierarchies (.agents/skills at repo/user/admin levels — manual files). Reusable skills are packaged as plugins, and curated skills can be installed via the $skill-installer command (registry-style)."
     }
   }
 }
