@@ -1,5 +1,223 @@
 {
   "name": "Windsurf",
   "description": "Agentic IDE (formerly Codeium) with \"Cascade\" flow",
-  "values": {}
+  "icon": "",
+  "url": "https://windsurf.com",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Cognition (formerly Codeium / Exafunction)",
+      "source": ["https://techcrunch.com/2025/07/14/cognition-maker-of-the-ai-coding-agent-devin-acquires-windsurf/"],
+      "comment": "Originally built by Codeium (founded 2021 as Exafunction by Varun Mohan and Douglas Chen). After a 2025 acqui-hire saga, Cognition (maker of Devin) acquired Windsurf's IP, brand, and product in July 2025 and now develops it."
+    },
+    "first-release": {
+      "value": "2024-11",
+      "source": ["https://techcrunch.com/2025/07/14/cognition-maker-of-the-ai-coding-agent-devin-acquires-windsurf/", "https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "The Windsurf Editor (VS Code fork built around the Cascade agent) launched in November 2024 by Codeium. The Codeium completion product predates it (2022), but Windsurf-the-agentic-IDE is dated from its Nov 2024 release per the rebrand note in RESEARCH.md."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://windsurf.com/pricing", "https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Actively developed under Cognition; shipping ongoing releases including SWE-1.5/1.6 models and Devin cloud-agent integration (checked 2026-06-02)."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://windsurf.com/pricing", "https://windsurf.com/editor"],
+      "comment": "Closed-source product (a VS Code fork) with a free tier plus paid plans. The editor/agent itself is proprietary even though it is built on open-source VS Code."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Broad general-purpose agentic coding IDE."
+    },
+    "website": {
+      "value": "https://windsurf.com",
+      "source": ["https://windsurf.com/editor"]
+    },
+    "interface": {
+      "value": ["ide", "ide-extension"],
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Primarily a standalone agentic IDE (VS Code fork). Also ships IDE plugins (e.g. JetBrains), but those plugins provide only the autocomplete action, not the full Cascade agent."
+    },
+    "host-ides": {
+      "value": ["standalone", "jetbrains"],
+      "source": ["https://windsurf.com/editor"],
+      "comment": "The flagship Windsurf Editor is a standalone forked editor. A JetBrains plugin exists but is limited to autocomplete; the full agent only runs in the standalone editor."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://windsurf.com/editor", "https://windsurf.com/pricing"],
+      "comment": "The agent/editor itself is closed-source despite being built on open-source VS Code."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["standalone-editor", "extension", "cloud-service"],
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Standalone editor at its core; also ships an autocomplete extension/plugin for other IDEs and integrates the Devin cloud agent."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://docs.windsurf.com/windsurf/models"],
+      "comment": "Offers first-class support for every major provider (Anthropic, OpenAI, Google, plus DeepSeek, xAI, Moonshot) and ships its own SWE-1.x family as the recommended default. No single external default provider."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/models"],
+      "comment": "Users select among dozens of models from multiple providers via the model dropdown."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/models"],
+      "comment": "BYOK is supported: BYOK models are labeled in the dropdown and users add their own API key in subscription settings."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://docs.windsurf.com/windsurf/models"],
+      "comment": "No native local/self-hosted model endpoint in the editor. Workarounds (running Ollama separately and copy-pasting, or exposing LM Studio as an OpenAI-compatible server via MCP) exist but are not a supported in-agent local-model feature, so marked false."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Cascade plans and applies coordinated edits across multiple files, creating, modifying, and deleting files in one task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Cascade chains steps: plans actions, edits files, runs commands, reads output, installs packages, runs tests, and iteratively fixes errors toward a goal."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Cascade can run terminal commands, detect packages to install, and monitor output."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/mcp"],
+      "comment": "Cascade natively integrates with the Model Context Protocol; users can add MCP servers and Cascade uses their tools, resources, and prompts."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://windsurf.com/editor", "https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "A specialized planning agent runs alongside the acting model, and the integrated Devin cloud agent can run delegated tasks in parallel while the developer keeps coding locally."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://codeium.com/windsurf"],
+      "comment": "Windsurf builds an AI-aware semantic index (Riptide) of the repository for fast retrieval across large codebases, rather than only reading files ad hoc."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Cascade has built-in planning: a specialized planning agent continuously refines a long-term plan and generates todo lists for complex tasks."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/workflows"],
+      "comment": "Supports reusable, packaged capabilities: Workflows are saved markdown playbooks invoked via /slash-commands, and the docs distinguish them from Skills which can trigger autonomously. Both are reusable on-demand capabilities beyond a plain instruction file."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/image-upload"],
+      "comment": "Cascade accepts image input: users can drag/paste or add an image (e.g. Figma designs, wireframes, screenshots). Available with vision-capable models such as GPT-4o and Claude (the image-upload doc URL 404'd on direct fetch; confirmed via Windsurf docs search snippet)."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Windsurf Previews renders the website live in the IDE; the user can click any element and Cascade reshapes it, letting the agent act on and verify the rendered UI."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://windsurf.com/editor", "https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Spans Tab inline completion, Cascade chat, supervised/autonomous agent runs with human-in-the-loop approval, and async delegation to the integrated Devin cloud agent."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Provides Tab generative autocomplete as you type (unlimited across all plans including Free)."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Devin is built into Windsurf as an autonomous cloud agent: tasks (debugging, testing, deployment) can be delegated and run while the developer keeps coding locally."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://codeium.com/windsurf"],
+      "comment": "Cascade accumulates Memories tailored to the project and the user's style across sessions; users can save Q&As as memories and refine rules."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Cascade supports named snapshots of project state and reverting to them (reverts are irreversible)."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://windsurf.com/editor", "https://docs.windsurf.com/windsurf/cascade/mcp"],
+      "comment": "Built on VS Code's native git tooling; Cascade can run git commands in the terminal and integrate a GitHub MCP server for PR/repo interactions. Spaces bundle PRs and files around a task."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://windsurf.com/editor", "https://docs.windsurf.com/windsurf/cascade/mcp"],
+      "comment": "Via the GitHub MCP server and Cascade workflows, the agent can interact with and open/update pull requests; Spaces explicitly bundle PRs. Not a one-click native PR button outside these integrations."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Supports project-level rules (.windsurf/rules/, formerly .windsurfrules) committed to git to encode team conventions, analogous to .cursorrules / AGENTS.md."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/workflows", "https://docs.windsurf.com/windsurf/cascade/mcp"],
+      "comment": "Extensible via reusable Workflows/Skills, custom slash commands, and MCP servers for custom tools and data sources."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Human-in-the-loop approval by default for agent actions; auto-execution / turbo behavior is configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://windsurf.com/enterprise"],
+      "comment": "Enterprise offers cloud, hybrid, and self-hosted deployment options, with the ability to keep all inference traffic inside customer-owned environments. Self-host is an enterprise tier, not available on consumer plans."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://windsurf.com/security", "https://windsurf.com/enterprise"],
+      "comment": "Zero data retention by default for all paid (team/enterprise) seats; inputs/outputs are not retained or used for training, and code-storing features require explicit opt-in."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac", "vpc"],
+      "source": ["https://windsurf.com/enterprise", "https://windsurf.com/security"],
+      "comment": "Enterprise includes SSO/SCIM, RBAC, audit logs, and self-hosted/hybrid deployment keeping traffic in the customer's private tenant (VPC-equivalent). SOC 2 Type II and FedRAMP High accredited."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://windsurf.com/pricing"],
+      "comment": "Free tier, monthly subscriptions (Pro/Teams/Max), plus extra usage billed at API price beyond plan quotas. Pricing overhauled to daily/weekly quotas in March 2026 (checked 2026-06-02)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://windsurf.com/pricing"],
+      "comment": "Free plan at $0/mo with unlimited Tab autocomplete plus light Cascade/premium-model quota."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://windsurf.com/pricing"],
+      "comment": "Pro is $20/mo (raised from $15 in the March 2026 pricing overhaul). Cheapest paid plan; ~50% student discount available (checked 2026-06-02)."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://windsurf.com/editor", "https://windsurf.com/pricing"],
+      "comment": "GA, polished, and widely deployed since the Nov 2024 editor launch, but knocked from 5 by a turbulent 2025 ownership change (Codeium to Cognition) and a March 2026 pricing/model overhaul still settling."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://windsurf.com/editor"],
+      "comment": "Among the larger AI coding tools (RESEARCH.md places Windsurf at the 'large' tier, below Copilot/Cursor 'huge')."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/mcp", "https://docs.windsurf.com/windsurf/cascade/workflows"],
+      "comment": "Supports an MCP server ecosystem plus shareable Workflows/Skills and rules; built on VS Code so it also leverages that extension base."
+    }
+  }
 }
