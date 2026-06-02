@@ -108,12 +108,7 @@
     "planning-mode": {
       "value": null,
       "source": ["https://zed.dev/docs/ai/agent-panel"],
-      "comment": "No explicit dedicated plan-then-execute or read-only planning mode is documented. The Ask profile is read-only (no edits) but is not framed as a plan-first phase; could not confirm a distinct planning mode."
-    },
-    "skills": {
-      "value": true,
-      "source": ["https://zed.dev/docs/ai/rules"],
-      "comment": "As of v1.4.0 Zed supports Skills — reusable on-demand agent capabilities invoked via /skill-name or @-mention, stored in ~/.agents/skills/."
+      "comment": "No explicit dedicated plan-then-execute or read-only planning mode is documented. The Ask profile is read-only (no edits) but is not framed as a plan-first phase; could not confirm a distinct planning mode. Checked 2026-06-02."
     },
     "multimodal-input": {
       "value": true,
@@ -163,7 +158,7 @@
     "custom-rules-instructions": {
       "value": true,
       "source": ["https://zed.dev/docs/ai/rules"],
-      "comment": "Supports .rules plus .cursorrules, CLAUDE.md, and AGENTS.md auto-included as project-level instructions."
+      "comment": "Supports .rules plus .cursorrules, .windsurfrules, .clinerules, .github/copilot-instructions.md, AGENT(S).md, CLAUDE.md and GEMINI.md auto-included as project-level instructions (first match in priority order)."
     },
     "hooks-extensibility": {
       "value": true,
@@ -219,6 +214,46 @@
       "value": true,
       "source": ["https://zed.dev/docs/ai/agent-panel", "https://zed.dev/docs/ai/rules"],
       "comment": "Has an extensions ecosystem plus MCP server support and shareable Skills."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "claude-md", "cursorrules", "copilot-instructions", "custom"],
+      "source": ["https://zed.dev/docs/ai/rules"],
+      "comment": "Agent auto-includes the first matching file in priority order: .rules, .cursorrules, .windsurfrules, .clinerules, .github/copilot-instructions.md, AGENT.md/AGENTS.md, CLAUDE.md, GEMINI.md. 'custom' covers Zed's own .rules plus .windsurfrules/.clinerules/GEMINI.md which have no dedicated tag. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://zed.dev/docs/ai/rules", "https://zed.dev/docs/ai/skills"],
+      "comment": "Project-level (.rules at project root; project-local skills in <worktree>/.agents/skills/) and user/global (Rules Library defaults; global skills in ~/.agents/skills/). No enterprise-policy or per-folder/subdirectory rule scope is documented."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on", "agent-requested"],
+      "source": ["https://zed.dev/docs/ai/rules", "https://zed.dev/docs/ai/skills"],
+      "comment": "The .rules file is always-on (auto-included in every Agent Panel interaction). Skills are agent-requested — the model sees each skill's name+description and pulls the full body in on demand via the skill tool (or the user @-mentions/slash-invokes it). No path/glob- or file-type-based conditional rule activation is documented."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://zed.dev/docs/ai/rules"],
+      "comment": "No documented mechanism for the agent to automatically write cross-session memories on its own. Memory is via manually-authored .rules and Skills files only. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/skills"],
+      "comment": "Zed Skills (v1.4.0+) are reusable, packaged agent capabilities (SKILL.md + bundled resources) loaded on demand; they replaced the older Rules Library as the recommended way to package reusable instructions."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://zed.dev/docs/ai/skills"],
+      "comment": "User-callable via /skill-name slash command or @-mention; model-callable by default (the agent sees the skill catalog and calls the skill tool when a task matches). Model invocation can be turned off per skill with 'disable-model-invocation: true'."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://zed.dev/docs/ai/skills"],
+      "comment": "Progressive disclosure: only each skill's name + description sit in the system prompt by default; the full SKILL.md body and bundled resources load on activation. Docs advise keeping bodies under 500 lines and delegating detail to reference files."
+    },
+    "skill-distribution": {
+      "value": ["registry", "git", "manual-files"],
+      "source": ["https://zed.dev/docs/ai/skills"],
+      "comment": "Installed by git clone (e.g. from the skills.sh registry), manual folder placement into ~/.agents/skills or <worktree>/.agents/skills, or GitHub-URL import via the command palette; a built-in create-skill skill scaffolds new ones. No curated one-click in-app marketplace."
     }
   }
 }
