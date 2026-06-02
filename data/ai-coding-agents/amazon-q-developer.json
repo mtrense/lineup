@@ -1,5 +1,278 @@
 {
   "name": "Amazon Q Developer",
   "description": "AWS's IDE/CLI coding agent",
-  "values": {}
+  "url": "https://aws.amazon.com/q/developer/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Amazon Web Services (AWS)",
+      "source": ["https://aws.amazon.com/q/developer/"],
+      "comment": "Built by AWS; evolved from Amazon CodeWhisperer."
+    },
+    "first-release": {
+      "value": "2024-04",
+      "source": [
+        "https://aws.amazon.com/about-aws/whats-new/2024/04/amazon-q-developer-generally-available/",
+        "https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/"
+      ],
+      "comment": "Amazon Q Developer reached GA on Apr 30, 2024, rebranding/absorbing CodeWhisperer (previewed 2022, GA Apr 2023). The agentic coding experience in the IDE launched May 2, 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/"],
+      "comment": "Still operational and supported as of 2026-06-02, but AWS announced end-of-support for the IDE plugins and paid subscriptions: new signups blocked from May 15, 2026 and full EoS on Apr 30, 2027, with Kiro positioned as the successor. Console/first-party AWS experiences are unaffected. Not yet discontinued/unusable, so marked active with this caveat."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Closed-source AWS product with a perpetual Free tier plus a paid Pro tier."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://aws.amazon.com/q/developer/features/"],
+      "comment": "Broad coding agent; particularly strong on AWS workflows (IaC, Java/.NET upgrades) but positioned as general-purpose."
+    },
+    "website": {
+      "value": "https://aws.amazon.com/q/developer/",
+      "source": ["https://aws.amazon.com/q/developer/"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web"],
+      "source": [
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/amazon-q-for-github.html"
+      ],
+      "comment": "Ships as IDE extensions (VS Code, JetBrains, Visual Studio, Eclipse), a command-line agent, and web/SCM integrations (AWS Console, GitHub, GitLab). Not a standalone forked editor."
+    },
+    "host-ides": {
+      "value": ["vscode", "jetbrains", "visual-studio", "terminal"],
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-in-IDE.html",
+        "https://plugins.jetbrains.com/plugin/24267-amazon-q",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html"
+      ],
+      "comment": "VS Code, JetBrains family, and Visual Studio extensions plus a terminal CLI. Eclipse plugin also GA'd 2025. The agentic IDE experience first shipped in VS Code."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://aws.amazon.com/q/developer/"],
+      "comment": "The agent itself is proprietary AWS software."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool", "cloud-service"],
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-in-IDE.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/amazon-q-for-github.html"
+      ],
+      "comment": "An IDE extension and CLI tool backed by an AWS cloud service, also offered as a GitHub/GitLab/console integration."
+    },
+    "default-model-provider": {
+      "value": ["anthropic"],
+      "source": [
+        "https://aws.amazon.com/q/developer/pricing/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-defining.html"
+      ],
+      "comment": "Default/flagship models are Anthropic Claude (e.g. claude-sonnet-4) served via AWS; pricing page advertises 'latest Claude models'."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-defining.html"],
+      "comment": "CLI custom agents let you specify a model (e.g. claude-sonnet-4) from the models the Q CLI service offers; model selection is also exposed in the chat UI. Limited to AWS-provided models, not arbitrary providers."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Billed through AWS (Builder ID / IAM Identity Center); no documented way to plug in a third-party provider API key."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Models are served by AWS; no documented local/self-hosted model option."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
+      "comment": "Agentic coding experience reads and writes files across the repo and generates coordinated code diffs."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": [
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/",
+        "https://aws.amazon.com/q/developer/features/"
+      ],
+      "comment": "Chains steps (read repo, edit files, run bash commands, iterate) toward a goal; the GitHub /q dev flow implements features end-to-end into a PR."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
+      "comment": "The agent can execute bash commands as part of its loop."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-defining.html"
+      ],
+      "comment": "Documented Model Context Protocol support; uses native and MCP server-based tools (e.g. Jira, Figma)."
+    },
+    "subagents-parallel-agents": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-overview.html"],
+      "comment": "CLI 'custom agents' are reusable, separately-configured agent profiles (tools/permissions/context), not concurrent sub-tasks or parallel workers spawned within one task. No documented sub-agent orchestration."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/aws/customize-amazon-q-developer-in-your-ide-with-your-private-code-base/"],
+      "comment": "Customization uses Retrieval-Augmented Generation over your private code base; the CLI/IDE also build a local project index for context retrieval."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
+      "comment": "Provides transparent reasoning/status updates and lets you choose step-by-step review before applying changes; spec-driven planning is emphasized in the lineage carried to Kiro."
+    },
+    "skills": {
+      "value": true,
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents.html",
+        "https://aws.amazon.com/blogs/devops/overcome-development-disarray-with-amazon-q-developer-cli-custom-agents/"
+      ],
+      "comment": "CLI custom agents package reusable tool/permission/context/prompt bundles loaded on demand, plus reusable prompts and slash commands — beyond a single always-on rules file."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://aws.amazon.com/blogs/devops/amazon-q-developer-cli-supports-image-inputs-in-your-terminal/"],
+      "comment": "CLI accepts image inputs (JPEG/PNG/WEBP/GIF, up to 10 per request) for screenshots, diagrams, and UI mockups."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://aws.amazon.com/q/developer/features/"],
+      "comment": "No documented ability for the agent to drive a real browser/GUI to act and verify its own changes."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous"],
+      "source": [
+        "https://aws.amazon.com/q/developer/features/",
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/amazon-q-for-github.html"
+      ],
+      "comment": "Tab inline completions, interactive chat, a supervised agent (step-by-step review) that can also run autonomously; the GitHub /q dev integration runs detached on issues, which is async-leaning but driven by SCM rather than a general background-task queue."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://aws.amazon.com/q/developer/features/"],
+      "comment": "Provides as-you-type inline code suggestions (CodeWhisperer heritage)."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/github-feature-development.html"],
+      "comment": "Via the GitHub/GitLab integration, applying a label or /q dev dispatches a task that runs server-side and returns a PR while the developer does other work. The IDE/CLI agent itself runs in-session."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://aws.amazon.com/blogs/devops/april-2025-amazon-q-developer/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-context.html"
+      ],
+      "comment": "Conversation history is preserved between sessions (searchable, exportable), and project-level context rules (.amazonq/rules) persist across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
+      "comment": "No built-in checkpoint/snapshot-restore mechanism documented as of 2026-06-02; users review diffs before applying and otherwise rely on git. Marked null rather than false since not explicitly confirmed either way."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/amazon-q-for-github.html"],
+      "comment": "Native SCM awareness via GitHub/GitLab integrations; the agent works with issues, diffs, and pull/merge requests."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/github-feature-development.html",
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-in-github-now-in-preview-with-code-generation-review-and-legacy-transformation-capabilities/"
+      ],
+      "comment": "The /q dev flow creates a pull request with the changes and iterates on PR feedback; GitLab integration triggers from merge requests."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-context.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-defining.html"
+      ],
+      "comment": "Supports project-level rules via .amazonq/rules/**/*.md and persistent context resources in custom agent configs."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-defining.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-configuration.html"
+      ],
+      "comment": "CLI custom agents support context hooks plus MCP/native tool configuration, providing a documented extensibility mechanism."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval"],
+      "source": ["https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"],
+      "comment": "Granular control: choose between automated modifications or step-by-step review/confirmation per action; custom agents can scope tool permissions and writable paths."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://aws.amazon.com/q/developer/"],
+      "comment": "Delivered as an AWS-hosted SaaS; no on-prem/self-hosted deployment of the agent."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": [
+        "https://aws.amazon.com/blogs/aws/customize-amazon-q-developer-in-your-ide-with-your-private-code-base/",
+        "https://aws.amazon.com/q/developer/features/"
+      ],
+      "comment": "Pro tier content is not used for service improvement / model training (automatic opt-out); private code shared for customization stays in the org and is not used to train the foundation model. Free tier may be used unless you opt out."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac"],
+      "source": [
+        "https://aws.amazon.com/iam/identity-center/q/",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/getting-started-idc.html",
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/security-iam.html"
+      ],
+      "comment": "SSO via IAM Identity Center, IAM-based access control (RBAC), and admin usage dashboards/analytics. VPC-style isolation not confirmed in the docs reviewed, so omitted."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Perpetual Free tier, $19/user/mo Pro subscription, plus usage-based overage (e.g. $0.003 per LOC for transformations beyond included limits)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Perpetual Free tier with monthly limits (e.g. ~50 agentic requests/mo) usable in the IDE or CLI."
+    },
+    "entry-price-usd-mo": {
+      "value": 19,
+      "source": ["https://aws.amazon.com/q/developer/pricing/"],
+      "comment": "Pro tier is $19 per user per month (checked 2026-06-02)."
+    },
+    "maturity": {
+      "value": 4,
+      "source": [
+        "https://aws.amazon.com/q/developer/",
+        "https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/"
+      ],
+      "comment": "Mature, GA, AWS-backed product with broad IDE coverage and enterprise controls; the newer agentic experience evolved quickly through 2025. Knocked from 5 because AWS has announced sunset of the IDE/paid product (EoS Apr 2027) in favor of Kiro."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://aws.amazon.com/q/developer/"],
+      "comment": "Per RESEARCH.md thresholds, Amazon Q sits in the medium band (alongside Cline/Continue) — significant AWS enterprise reach but a smaller dedicated coding-agent community than Copilot/Cursor."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": [
+        "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/",
+        "https://github.com/cremich/awesome-q-developer"
+      ],
+      "comment": "MCP server support plus custom agents and a community ecosystem (e.g. awesome-q-developer); not a large dedicated third-party marketplace of its own."
+    }
+  }
 }

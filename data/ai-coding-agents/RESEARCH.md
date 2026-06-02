@@ -192,7 +192,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Gemini CLI** — Google's open-source terminal agent
 - [x] **Devin** — Cognition's autonomous cloud software engineer
 - [x] **Google Jules** — Google's asynchronous autonomous coding agent
-- [ ] **Amazon Q Developer** — AWS's IDE/CLI coding agent
+- [x] **Amazon Q Developer** — AWS's IDE/CLI coding agent
 - [ ] **Zed (agent)** — Agentic editing inside the Zed editor
 - [ ] **Augment Code** — Codebase-context-focused agent across IDEs
 - [ ] **RooCode** — Open-source autonomous agent extension (Cline fork lineage)
