@@ -18,7 +18,7 @@
     "status": {
       "value": ["active"],
       "source": ["https://cursor.com/pricing"],
-      "comment": "Actively developed; reached 1.0 in June 2025 and shipping ongoing releases (checked 2026-06-02)."
+      "comment": "Actively developed; reached 1.0 in June 2025 and shipping ongoing releases (2.4+ as of check; verified 2026-06-02)."
     },
     "license": {
       "value": ["proprietary", "freemium"],
@@ -109,11 +109,6 @@
       "source": ["https://cursor.com/docs/agent/overview"],
       "comment": "Plan mode researches the codebase and produces an editable plan/to-do document to review and approve before execution."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://cursor.com/docs/skills"],
-      "comment": "Supports Agent Skills (reusable, on-demand packaged instructions/scripts) and custom /-triggered commands."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://cursor.com/docs/agent/overview"],
@@ -142,7 +137,7 @@
     "persistent-memory": {
       "value": true,
       "source": ["https://cursor.com/changelog/1-0"],
-      "comment": "Memories (beta) remembers facts from conversations and references them in the future."
+      "comment": "Memories (shipped 1.0) remembers facts from conversations and references them in the future."
     },
     "checkpoints-rollback": {
       "value": true,
@@ -161,8 +156,8 @@
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://cursor.com/docs"],
-      "comment": "Supports project-level rules (.cursorrules / Cursor Rules, AGENTS.md)."
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Supports project-level rules (.cursor/rules/*.mdc, legacy .cursorrules, AGENTS.md) plus global User Rules."
     },
     "hooks-extensibility": {
       "value": true,
@@ -182,17 +177,17 @@
     "privacy-mode": {
       "value": true,
       "source": ["https://cursor.com/pricing"],
-      "comment": "Privacy Mode guarantees code is never stored by model providers or used for training."
+      "comment": "Privacy Mode guarantees code data is never stored by model providers or used for training (verified 2026-06-02)."
     },
     "enterprise-controls": {
       "value": ["sso", "audit-logs", "rbac"],
       "source": ["https://cursor.com/pricing"],
-      "comment": "Teams adds SAML/OIDC SSO; Enterprise adds audit logs, SCIM seat management (RBAC-style), and access controls. No documented self-hosted VPC."
+      "comment": "Teams adds SAML/OIDC SSO; Enterprise adds audit logs, service accounts, and SCIM seat management (RBAC-style). No documented self-hosted VPC."
     },
     "pricing-model": {
       "value": ["free-tier", "subscription", "usage-based"],
       "source": ["https://cursor.com/pricing"],
-      "comment": "Free Hobby tier, monthly subscriptions, plus usage-based credits for premium model usage (checked 2026-06-02)."
+      "comment": "Free Hobby tier, monthly subscriptions, plus usage-based credits for premium model usage (verified 2026-06-02)."
     },
     "free-tier": {
       "value": true,
@@ -202,7 +197,7 @@
     "entry-price-usd-mo": {
       "value": 20,
       "source": ["https://cursor.com/pricing"],
-      "comment": "Pro (Individual) is $20/mo ($16/mo billed annually). Cheapest paid plan (checked 2026-06-02)."
+      "comment": "Individual (Pro) is $20/mo. Cheapest paid plan; Teams is $40/user/mo (verified 2026-06-02)."
     },
     "maturity": {
       "value": 5,
@@ -217,7 +212,47 @@
     "extension-plugin-ecosystem": {
       "value": true,
       "source": ["https://cursor.com/pricing", "https://cursor.com/docs/skills"],
-      "comment": "MCP server ecosystem plus a team marketplace for internal rules, skills, and plugins."
+      "comment": "MCP server ecosystem plus a Cursor Marketplace bundling rules, skills, subagents, hooks, and plugins."
+    },
+    "project-memory-files": {
+      "value": ["cursorrules", "agents-md"],
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Auto-loads project rules from .cursor/rules/*.mdc (and the legacy .cursorrules file) plus AGENTS.md in the project root and nested subdirectories. Does not use CLAUDE.md or copilot-instructions."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project", "folder"],
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Team Rules (org/enterprise, Team/Enterprise plans), global User Rules, project rules (.cursor/rules), and folder-scoped AGENTS.md / nested rules. Precedence: Team > Project > User."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "agent-requested", "always-on"],
+      "source": ["https://cursor.com/docs/context/rules"],
+      "comment": "Rules activate by glob match (auto-attached when a matching file is in context), by agent relevance detection (description, no globs), or always (alwaysApply: true). Also manual @rule-name mention. No file-type-specific mode beyond globs."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": ["https://cursor.com/changelog/1-0", "https://forum.cursor.com/t/0-51-memories-feature/98509"],
+      "comment": "Memories: a background model proposes cross-session facts (approved before saving), stored per project. Toggle at Cursor Settings → Rules → 'Generate Memories'."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://cursor.com/docs/skills", "https://cursor.com/changelog/2-4"],
+      "comment": "Agent Skills (SKILL.md) — reusable, on-demand packaged instructions/scripts the agent loads when relevant; plus custom /-triggered commands. Shipped in 2.4 with /create-skill and /migrate-to-skills."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://cursor.com/docs/skills"],
+      "comment": "Model autonomously selects relevant skills by default; users can also invoke via the / slash menu. Setting disable-model-invocation: true restricts a skill to explicit slash-command use only."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://cursor.com/docs/skills"],
+      "comment": "Progressive disclosure: skill metadata (name/description) is presented to the agent for relevance decisions, and the full SKILL.md body plus resources load on demand only when needed."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "git", "manual-files"],
+      "source": ["https://cursor.com/docs/skills", "https://cursor.com/changelog/2-4"],
+      "comment": "Manual files in .cursor/skills/ or .agents/skills/ (recursive discovery), import from GitHub repos via Settings, and distribution through the Cursor Marketplace (plugins bundle skills). Built on the open agentskills.io standard."
     }
   }
 }
