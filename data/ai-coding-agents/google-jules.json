@@ -1,5 +1,222 @@
 {
   "name": "Google Jules",
   "description": "Google's asynchronous autonomous coding agent",
-  "values": {}
+  "url": "https://jules.google/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Google",
+      "source": ["https://jules.google/", "https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Built by Google (Google Labs)."
+    },
+    "first-release": {
+      "value": "2025-05",
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/", "https://techcrunch.com/2025/08/06/googles-ai-coding-agent-jules-is-now-out-of-beta/"],
+      "comment": "Public beta announced May 2025 at Google I/O (private preview Dec 2024); reached general availability Aug 6, 2025. Using the public-beta date per the month-year format."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Generally available since Aug 6, 2025 (out of beta). Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://jules.google/", "https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/"],
+      "comment": "Closed-source Google product; offers a free introductory tier plus paid plans, hence freemium."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://jules.google/"],
+      "comment": "Broad coding agent: bug fixing, feature building, version bumps, tests."
+    },
+    "website": {
+      "value": "https://jules.google/",
+      "source": ["https://jules.google/"]
+    },
+    "interface": {
+      "value": ["web", "cli"],
+      "source": ["https://jules.google/", "https://jules.google/docs/cli/reference/"],
+      "comment": "Primarily a web app; Jules Tools CLI/TUI added for terminal management of sessions."
+    },
+    "host-ides": {
+      "value": ["browser", "terminal"],
+      "source": ["https://jules.google/", "https://jules.google/docs/cli/reference/"],
+      "comment": "Runs in the browser (web app) with a companion terminal CLI; not embedded in a desktop IDE."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://jules.google/"],
+      "comment": "Proprietary Google product; the agent's own source is not openly licensed."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cloud-service"],
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Asynchronous cloud agent: clones the repo into a Google Cloud VM and works remotely."
+    },
+    "default-model-provider": {
+      "value": ["google"],
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Powered by Google's Gemini models (Gemini 2.5 Pro at GA; later Gemini 3.x on paid plans)."
+    },
+    "model-choice": {
+      "value": false,
+      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "Uses Gemini only; no documented user-facing switch between providers. Tier determines the Gemini version rather than free model choice."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://jules.google/", "https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "No documented option to supply your own model API key; billing is via Google plans."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "Runs on Google Cloud VMs against Gemini; no local/self-hosted model option."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://jules.google/", "https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Makes coordinated multi-file changes and shows a diff before opening a PR."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Plans, edits across files, installs deps, runs tests in a VM, and opens a PR with minimal per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://jules.google/docs/faq/", "https://jules.google/"],
+      "comment": "Runs setup scripts, installs dependencies, and runs tests/commands in its Cloud VM (long-running processes like dev servers not supported)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://jules.google/docs/changelog/2026-02-02/"],
+      "comment": "Official MCP server support shipped Feb 2, 2026 with hand-selected integrations (Linear, Neon, Supabase, Context7, Tinybird, Stitch); configured via Settings."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/", "https://jules.google/"],
+      "comment": "Supports multiple concurrent tasks (3 free / 15 Pro / 60 Ultra) running in parallel as independent cloud workers."
+    },
+    "codebase-indexing": {
+      "value": null,
+      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "No documented semantic index/embeddings store; it clones and reads the repo in a VM. Whether a true index is built is not stated by Google, so left null."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://jules.google/", "https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Presents a plan and reasoning before executing; the user can modify the plan before/during/after."
+    },
+    "skills": {
+      "value": null,
+      "source": ["https://jules.google/docs/"],
+      "comment": "Supports an AGENTS.md instruction file, but no documented reusable packaged-skill/custom-command mechanism beyond that. Left null pending clearer confirmation."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/", "https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "Accepts image-based context in task descriptions (multimodal support)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://jules.google/"],
+      "comment": "Can visualize web-app output but no documented capability to drive a real browser/GUI to verify its own changes."
+    },
+    "operating-mode": {
+      "value": ["autonomous", "async-background"],
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Fire-and-forget cloud agent: dispatch a task and it works asynchronously, then opens a PR. Plan can be reviewed but it is not an inline/interactive editor."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://jules.google/"],
+      "comment": "No tab-style as-you-type completion; it is an async task agent."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://jules.google/", "https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Core design: tasks run asynchronously in the cloud while the developer does other work."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Reuses previous setups so new tasks run faster (per-repo setup memory carried across sessions)."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "source": ["https://jules.google/docs/faq/"],
+      "comment": "No documented built-in checkpoint/rollback; changes land as a reviewable PR/branch the user can decline. Left null as the explicit feature is not described."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Deep GitHub workflow: clones repo, creates branches, opens pull requests, integrates GitHub Issues."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Opens a pull request on completion with description, modified-file list, and design summary."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://jules.google/docs/", "https://www.theunwindai.com/p/agents-md-for-openai-codex-cursor-google-jules"],
+      "comment": "Reads AGENTS.md at repo root for build/test commands and conventions."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://jules.google/docs/cli/reference/", "https://jules.google/docs/changelog/2026-02-02/"],
+      "comment": "Public REST API and Jules Tools CLI plus MCP server integrations allow programmatic extension and scripting."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "sandboxed"],
+      "source": ["https://jules.google/", "https://www.infoq.com/news/2025/08/google-jules/"],
+      "comment": "Presents a plan for review/approval and changes land as a PR the user must merge; all execution runs in an isolated Cloud VM sandbox."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "Google Cloud-hosted service only; no self-host/on-prem deployment."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://jules.google/docs/faq/"],
+      "comment": "Jules states it does not train on private repository content; privacy is a stated core principle."
+    },
+    "enterprise-controls": {
+      "value": null,
+      "source": ["https://jules.google/docs/faq/"],
+      "comment": "No documented dedicated enterprise governance (SSO/audit-logs/RBAC/VPC) specific to Jules found in primary docs as of 2026-06-02. Left null rather than asserting none."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription"],
+      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/"],
+      "comment": "Free introductory tier plus Google AI Pro and Ultra subscriptions."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/"],
+      "comment": "Free introductory plan: 15 daily tasks, 3 concurrent tasks."
+    },
+    "entry-price-usd-mo": {
+      "value": 19.99,
+      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/"],
+      "comment": "Cheapest paid plan is Google AI Pro at $19.99/mo (Ultra is $124.99/mo). A real free tier also exists. Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/", "https://www.techrepublic.com/article/news-google-jules-ai-coding-agent/"],
+      "comment": "GA since Aug 2025, backed by Google, large usage during beta (140k+ improvements); still rapidly evolving, so 4 rather than 5."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
+      "comment": "Broad Google reach and tens of thousands of beta tasks, but a newer single-vendor cloud agent; estimated medium relative to Copilot/Cursor scale."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://jules.google/docs/changelog/2026-02-02/", "https://github.com/gemini-cli-extensions/jules"],
+      "comment": "MCP server integrations, a public API with community MCP servers, and a Gemini CLI extension form a small but real ecosystem."
+    }
+  }
 }
