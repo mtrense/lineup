@@ -109,11 +109,6 @@
       "source": ["https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes"],
       "comment": "Architect mode is a planning-focused mode with edit restricted to markdown (read + plan, no code edits)."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes", "https://github.com/RooCodeInc/Roo-Code"],
-      "comment": "Custom Modes are reusable, packaged agent configurations beyond plain instruction files; also supports slash commands/recipes."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://www.morphllm.com/comparisons/roo-code-vs-cline"],
@@ -218,6 +213,46 @@
       "value": true,
       "source": ["https://github.com/RooCodeInc/Roo-Code", "https://docs.roocode.com/faq"],
       "comment": "Meaningful ecosystem of MCP servers, community custom modes and rules; spawned forks (Kilo Code, ZooCode)."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "custom"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/custom-instructions"],
+      "comment": "Auto-loads AGENTS.md/AGENT.md (Agent Rules standard) plus Roo's own .roorules file and the preferred .roo/rules/ directory; also reads legacy .clinerules. Mapped to agents-md + custom (the .roo/.roorules/.clinerules conventions). Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/custom-instructions"],
+      "comment": "Global/user scope via ~/.roo/rules/ (%USERPROFILE%\\.roo on Windows) and project/workspace scope via .roo/rules/ or root .roorules; workspace rules take precedence on conflict. No enterprise-admin policy layer or documented per-subfolder scope. Checked 2026-06-02."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/custom-instructions"],
+      "comment": "Rules in .roo/rules/ are always applied. Conditional rule files exist only as mode-specific dirs (.roo/rules-{modeSlug}/), activated by the active mode — not by path/glob or file type. No path-based or file-type-based scoping, so tagged always-on. Checked 2026-06-02."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/custom-instructions", "https://roocodeinc.github.io/Roo-Code/faq"],
+      "comment": "Context comes from user-authored rules/skills files; no feature where the agent autonomously writes cross-session memory. Consistent with persistent-memory=false. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/skills", "https://docs.roocode.com/features/slash-commands"],
+      "comment": "Dedicated Skills feature — task-specific instruction packages (SKILL.md) Roo loads on-demand — plus reusable custom slash commands and packaged custom modes. Beyond plain always-on instruction files. Checked 2026-06-02."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/skills", "https://docs.roocode.com/features/slash-commands"],
+      "comment": "Skills are model-callable — Roo auto-detects when a request matches a skill's description and loads SKILL.md. Custom slash commands provide the user-callable path (typed in chat). Both mechanisms exist. Checked 2026-06-02."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/skills"],
+      "comment": "Progressive disclosure: only skill name + description are indexed by default; the full SKILL.md body is loaded via read_file when a match is detected, and bundled resources load on-demand. Checked 2026-06-02."
+    },
+    "skill-distribution": {
+      "value": ["manual-files", "git"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/skills", "https://docs.roocode.com/features/marketplace"],
+      "comment": "Skills proper are file-based (created in ~/.roo/skills/{name}/SKILL.md or .roo/skills/, shared via version control / symlinks) — no skill marketplace or registry. Note: the Roo Code Marketplace offers one-click install but only for Modes and MCP servers, not Skills. Checked 2026-06-02."
     }
   }
 }
