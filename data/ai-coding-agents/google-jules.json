@@ -17,7 +17,7 @@
     "status": {
       "value": ["active"],
       "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
-      "comment": "Generally available since Aug 6, 2025 (out of beta). Checked 2026-06-02."
+      "comment": "Generally available since Aug 6, 2025 (out of beta); actively shipping (skills, API, Gemini 3.x). Checked 2026-06-02."
     },
     "license": {
       "value": ["proprietary", "freemium"],
@@ -55,13 +55,13 @@
     },
     "default-model-provider": {
       "value": ["google"],
-      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
-      "comment": "Powered by Google's Gemini models (Gemini 2.5 Pro at GA; later Gemini 3.x on paid plans)."
+      "source": ["https://blog.google/technology/google-labs/jules-now-available/", "https://www.digitalapplied.com/blog/google-jules-gemini-async-coding-agent-guide"],
+      "comment": "Powered exclusively by Google's Gemini models. As of 2026, Gemini 3.1 Pro is the default planner tier (Mar 2026) with Gemini 3 Flash as the base model for lighter work (Jan 2026); originally Gemini 2.5 Pro at GA."
     },
     "model-choice": {
       "value": false,
       "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
-      "comment": "Uses Gemini only; no documented user-facing switch between providers. Tier determines the Gemini version rather than free model choice."
+      "comment": "Uses Gemini only; no documented user-facing switch between providers. Tier (free/Pro/Ultra) determines the Gemini version rather than free model choice."
     },
     "bring-your-own-key": {
       "value": false,
@@ -95,23 +95,18 @@
     },
     "subagents-parallel-agents": {
       "value": true,
-      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/", "https://jules.google/"],
-      "comment": "Supports multiple concurrent tasks (3 free / 15 Pro / 60 Ultra) running in parallel as independent cloud workers."
+      "source": ["https://siliconangle.com/2025/08/06/google-makes-jules-ai-coding-agent-available-everyone-free-paid-plans/", "https://github.com/google-labs-code/jules-skills"],
+      "comment": "Supports multiple concurrent tasks (3 free / 15 Pro / 60 Ultra) running in parallel as independent cloud workers; the issue-triage skill dispatches parallel Jules agents to fix multiple issues."
     },
     "codebase-indexing": {
       "value": null,
-      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent"],
-      "comment": "No documented semantic index/embeddings store; it clones and reads the repo in a VM. Whether a true index is built is not stated by Google, so left null."
+      "source": ["https://www.morphllm.com/comparisons/jules-google-coding-agent", "https://www.digitalapplied.com/blog/google-jules-gemini-async-coding-agent-guide"],
+      "comment": "No documented semantic index/embeddings store; it clones the repo into a VM and loads a large chunk of it via Gemini's long context window rather than building an index. Left null since Google does not state whether a true index is built."
     },
     "planning-mode": {
       "value": true,
       "source": ["https://jules.google/", "https://blog.google/technology/google-labs/jules-now-available/"],
       "comment": "Presents a plan and reasoning before executing; the user can modify the plan before/during/after."
-    },
-    "skills": {
-      "value": null,
-      "source": ["https://jules.google/docs/"],
-      "comment": "Supports an AGENTS.md instruction file, but no documented reusable packaged-skill/custom-command mechanism beyond that. Left null pending clearer confirmation."
     },
     "multimodal-input": {
       "value": true,
@@ -140,8 +135,8 @@
     },
     "persistent-memory": {
       "value": true,
-      "source": ["https://blog.google/technology/google-labs/jules-now-available/"],
-      "comment": "Reuses previous setups so new tasks run faster (per-repo setup memory carried across sessions)."
+      "source": ["https://blog.google/innovation-and-ai/models-and-research/google-labs/jules-tools-jules-api/", "https://jules.google/docs/changelog/"],
+      "comment": "Per-repo memory (added Sep 30, 2025) saves preferences, nudges, and corrections across sessions; Jules also remembers user preferences over time and applies them to future tasks."
     },
     "checkpoints-rollback": {
       "value": null,
@@ -161,12 +156,12 @@
     "custom-rules-instructions": {
       "value": true,
       "source": ["https://jules.google/docs/", "https://www.theunwindai.com/p/agents-md-for-openai-codex-cursor-google-jules"],
-      "comment": "Reads AGENTS.md at repo root for build/test commands and conventions."
+      "comment": "Automatically reads AGENTS.md at repo root (since Jun 20, 2025) for build/test commands and conventions; falls back to README.md for environment hints."
     },
     "hooks-extensibility": {
       "value": true,
-      "source": ["https://jules.google/docs/cli/reference/", "https://jules.google/docs/changelog/2026-02-02/"],
-      "comment": "Public REST API and Jules Tools CLI plus MCP server integrations allow programmatic extension and scripting."
+      "source": ["https://developers.google.com/jules/api", "https://github.com/google-labs-code/jules-action"],
+      "comment": "Public Jules API, Jules Tools CLI, a GitHub Action (jules-action), and MCP server integrations allow programmatic extension and scripting (e.g. triggering tasks from Slack or CI/CD)."
     },
     "permission-model": {
       "value": ["ask-approval", "sandboxed"],
@@ -186,7 +181,7 @@
     "enterprise-controls": {
       "value": null,
       "source": ["https://jules.google/docs/faq/"],
-      "comment": "No documented dedicated enterprise governance (SSO/audit-logs/RBAC/VPC) specific to Jules found in primary docs as of 2026-06-02. Left null rather than asserting none."
+      "comment": "No dedicated Jules-specific enterprise governance (SSO/audit-logs/RBAC/VPC) documented in primary docs as of 2026-06-02; access is tied to Google accounts and Google AI Pro/Ultra plans. Left null rather than asserting none."
     },
     "pricing-model": {
       "value": ["free-tier", "subscription"],
@@ -206,7 +201,7 @@
     "maturity": {
       "value": 4,
       "source": ["https://blog.google/technology/google-labs/jules-now-available/", "https://www.techrepublic.com/article/news-google-jules-ai-coding-agent/"],
-      "comment": "GA since Aug 2025, backed by Google, large usage during beta (140k+ improvements); still rapidly evolving, so 4 rather than 5."
+      "comment": "GA since Aug 2025, backed by Google, large usage during beta (140k+ improvements); now has API, CLI, skills and Gemini 3.x, but still rapidly evolving, so 4 rather than 5."
     },
     "community-size": {
       "value": ["medium"],
@@ -215,8 +210,48 @@
     },
     "extension-plugin-ecosystem": {
       "value": true,
-      "source": ["https://jules.google/docs/changelog/2026-02-02/", "https://github.com/gemini-cli-extensions/jules"],
-      "comment": "MCP server integrations, a public API with community MCP servers, and a Gemini CLI extension form a small but real ecosystem."
+      "source": ["https://jules.google/docs/changelog/2026-02-02/", "https://github.com/google-labs-code/jules-skills"],
+      "comment": "MCP server integrations, a public API with community MCP servers, a Gemini CLI extension, and an Agent Skills library form a small but growing ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://jules.google/docs/", "https://www.theunwindai.com/p/agents-md-for-openai-codex-cursor-google-jules"],
+      "comment": "Auto-loads AGENTS.md from the repo root (since Jun 20, 2025); also reads README.md for environment hints, but AGENTS.md is the dedicated instruction-file convention."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://jules.google/docs/changelog/", "https://blog.google/innovation-and-ai/models-and-research/google-labs/jules-tools-jules-api/"],
+      "comment": "Per-repo (project) memory and AGENTS.md, plus user-level preferences Jules remembers over time across tasks. No documented per-folder or enterprise-policy scope."
+    },
+    "scoped-rules-files": {
+      "value": ["none"],
+      "source": ["https://jules.google/docs/"],
+      "comment": "Only a single always-applied AGENTS.md at the repo root is documented; no path/glob, file-type, or agent-requested conditional rule-file mechanism."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": ["https://jules.google/docs/changelog/", "https://blog.google/innovation-and-ai/models-and-research/google-labs/jules-tools-jules-api/"],
+      "comment": "Jules automatically saves preferences, nudges, and corrections per repo and applies them to future tasks (Sep 30, 2025); memory can be toggled on/off per repo in repo settings under 'Knowledge'."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://github.com/google-labs-code/jules-skills", "https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/"],
+      "comment": "Jules Agent Skills: reusable packaged capabilities defined as a SKILL.md plus scripts/resources, following the Agent Skills open standard (compatible with Claude Code, Cursor, Gemini CLI, Antigravity) and working with the Jules SDK. Example: an automate-github-issues skill."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://github.com/google-labs-code/jules-skills"],
+      "comment": "Skills follow the Agent Skills open standard: the agent selects and loads a skill autonomously when relevant (model-callable) and users install/trigger them (user-callable)."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://github.com/google-labs-code/jules-skills"],
+      "comment": "Agent Skills open standard uses progressive disclosure — the SKILL.md acts as 'Mission Control' with name/description loaded by default and the full skill body pulled in on invocation."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://github.com/google-labs-code/jules-skills"],
+      "comment": "Skills are distributed via a public git repository (google-labs-code/jules-skills) and installed with a 'skills' CLI tool that detects active coding agents and places the skill files in the appropriate directory."
     }
   }
 }
