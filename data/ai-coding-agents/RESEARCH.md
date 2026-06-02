@@ -194,7 +194,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Google Jules** — Google's asynchronous autonomous coding agent
 - [x] **Amazon Q Developer** — AWS's IDE/CLI coding agent
 - [x] **Zed (agent)** — Agentic editing inside the Zed editor
-- [ ] **Augment Code** — Codebase-context-focused agent across IDEs
+- [x] **Augment Code** — Codebase-context-focused agent across IDEs
 - [ ] **RooCode** — Open-source autonomous agent extension (Cline fork lineage)
 
 ## Notes for Researchers

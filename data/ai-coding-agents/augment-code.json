@@ -1,5 +1,222 @@
 {
   "name": "Augment Code",
   "description": "Codebase-context-focused agent across IDEs",
-  "values": {}
+  "url": "https://www.augmentcode.com/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Augment (Augment Computing, Inc.)",
+      "source": ["https://www.augmentcode.com/", "https://www.augmentcode.com/blog/augment-inc-raises-227-million"],
+      "comment": "Founded 2022 by Igor Ostrovsky and Guy Gur-Ari; raised $227M Series B announced April 2024."
+    },
+    "first-release": {
+      "value": "2024-04",
+      "source": ["https://www.augmentcode.com/blog/augment-inc-raises-227-million"],
+      "comment": "Emerged from stealth on 2024-04-24 with its public launch. Agent mode reached GA for VS Code later (late 2025)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.augmentcode.com/", "https://marketplace.visualstudio.com/items?itemName=augment.vscode-augment"],
+      "comment": "Actively developed; VS Code extension at ~759k installs as of 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://www.augmentcode.com/", "https://github.com/augmentcode/auggie"],
+      "comment": "Closed-source commercial product. The public auggie CLI repo is only a shell installer/wrapper; the agent core is proprietary."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://www.augmentcode.com/product"],
+      "comment": "Broad coding agent positioned for large/complex enterprise codebases via its Context Engine, but not niche-specialized."
+    },
+    "website": {
+      "value": "https://www.augmentcode.com/",
+      "source": ["https://www.augmentcode.com/"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web", "desktop-app"],
+      "source": ["https://www.augmentcode.com/", "https://www.augmentcode.com/product/CLI", "https://marketplace.visualstudio.com/items?itemName=augment.vscode-augment"],
+      "comment": "VS Code & JetBrains extensions, Auggie CLI, a web app (app.augmentcode.com), and the Intent Mac desktop workspace."
+    },
+    "host-ides": {
+      "value": ["vscode", "jetbrains", "neovim", "terminal"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=augment.vscode-augment", "https://plugins.jetbrains.com/plugin/24072-augment-coding-agent-built-for-large-complex-codebases", "https://www.augmentcode.com/product/CLI"],
+      "comment": "Ships as extensions for VS Code and all JetBrains IDEs, a Vim/Neovim integration, and the Auggie terminal CLI."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/augmentcode/auggie"],
+      "comment": "The agent itself is closed-source; the public auggie GitHub repo is a shell installer/wrapper, not the core implementation."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool", "cloud-service"],
+      "source": ["https://www.augmentcode.com/", "https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Primarily IDE extensions plus the Auggie CLI; Remote Agents run as a cloud service."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://docs.augmentcode.com/models/available-models", "https://www.augmentcode.com/blog/gpt-5-is-here-and-we-now-have-a-model-picker"],
+      "comment": "Model picker offers Claude, GPT, and Gemini families plus the Prism router; no single default provider."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/models/available-models", "https://www.augmentcode.com/blog/gpt-5-is-here-and-we-now-have-a-model-picker"],
+      "comment": "Model dropdown in VS Code/JetBrains and /model in Auggie CLI let users switch among Claude, GPT, Gemini, and Prism."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/guides/byok-enterprise-agent-rollouts"],
+      "comment": "BYOK supported: selecting a key-icon model routes requests through the user's own API key instead of platform credits; falls back to provided models on failure."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://docs.augmentcode.com/models/available-models"],
+      "comment": "No documented support for local/self-hosted models (Ollama, LM Studio, vLLM); model choices are hosted frontier providers."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Agent can create, edit, or delete code across the workspace in a single task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent", "https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Agent breaks requests into a plan and implements each step; Agent Auto and Remote Agents run multi-step tasks with minimal per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Agent can execute terminal commands; standard mode pauses for approval, Agent Auto runs them automatically."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent", "https://www.augmentcode.com/mcp"],
+      "comment": "Documented MCP support across CLI, VS Code, and JetBrains for external tools and integrations."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Remote Agents run multiple cloud agents in parallel, each on its own branch and isolated environment."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/", "https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Proprietary Context Engine maintains a live semantic index of the codebase (structure, dependencies) rather than ad-hoc file reads — a core differentiator."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Agent breaks down requests into a functional plan and implements each step; presents task lists."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://github.com/augmentcode/auggie"],
+      "comment": "Custom slash commands defined as markdown files in .augment/commands/ provide reusable, on-demand capabilities."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Images can be added as context via the paperclip in the agent/chat input."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "No documented capability to drive a real browser/GUI to act and verify its own changes."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://docs.augmentcode.com/using-augment/completions", "https://docs.augmentcode.com/using-augment/agent", "https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Inline completions/Next Edit, interactive chat, supervised Agent (approval) and Agent Auto, plus async Remote Agents."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/completions", "https://www.augmentcode.com/product/completions"],
+      "comment": "Code Completions integrate with the IDE's native autocomplete; Next Edit extends suggestions across the workspace."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Remote Agents run autonomously in the cloud on tasks like bug fixes and PRs, continuing even while the developer is offline."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/setup-augment/guidelines"],
+      "comment": "Augment Memories persist learnings across Chat and Agent sessions; User Guidelines/Rules persist across sessions and workspaces."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Checkpoints are automatically saved workspace snapshots at each step; users can revert to any prior point."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Agent is git-aware — creates branches, commits, and tracks changes."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent", "https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Agent can start and merge pull requests; Remote Agents drive tasks to PRs end-to-end."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/setup-augment/guidelines"],
+      "comment": "Supports User Guidelines, User Rules (~/.augment/rules/), Workspace Rules (.augment/rules), .augment-guidelines, and hierarchical AGENTS.md/CLAUDE.md discovery."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://github.com/augmentcode/auggie", "https://www.augmentcode.com/mcp"],
+      "comment": "Extensible via custom slash commands (.augment/commands), MCP servers, and GitHub Actions integration for the CLI."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "Standard Agent pauses for approval on terminal/integration actions; Agent Auto runs them automatically — the posture is user-configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/"],
+      "comment": "Enterprise self-hosting via VPC single-tenant and on-premises deployment (AWS, GCP)."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/", "https://www.augmentcode.com/pricing"],
+      "comment": "Vendor states it never trains on customer code; all paid plans exclude AI training per Commercial Terms; zero data retention available."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac", "vpc"],
+      "source": ["https://www.augmentcode.com/", "https://www.augmentcode.com/pricing"],
+      "comment": "SAML/OIDC/SCIM SSO, audit logs with SIEM integration, granular RBAC, and VPC/single-tenant deployment; SOC 2 Type II and ISO/IEC 42001 certified."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://www.augmentcode.com/pricing", "https://blog.kilo.ai/p/testing-augment-codes-new-credit"],
+      "comment": "Free Community plan plus paid subscription tiers; usage metered via a credit system. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://apidog.com/blog/use-augment-code-free/", "https://www.augmentcode.com/pricing"],
+      "comment": "Free Community plan available for solo developers (separate from the 14-day Developer trial). Checked 2026-06-02."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://www.augmentcode.com/pricing"],
+      "comment": "Cheapest paid plan: Indie at $20/mo (40,000 credits). Standard $60/user/mo, Max $200/mo. Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://marketplace.visualstudio.com/items?itemName=augment.vscode-augment", "https://venturebeat.com/ai/augment-code-debuts-ai-agent-with-70-win-rate-over-github-copilot-and-record-breaking-swe-bench-score"],
+      "comment": "Well-funded, GA across VS Code/JetBrains with ~759k installs and strong SWE-bench results; solid and widely used but still rapidly evolving (credit model, Cosmos platform shifts)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=augment.vscode-augment"],
+      "comment": "~759k VS Code installs — meaningful but well below Copilot/Cursor scale; single-vendor enterprise focus."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/mcp"],
+      "comment": "Maintains an MCP server registry/directory and supports 100+ MCP tools plus community rules/commands."
+    }
+  }
 }
