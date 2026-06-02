@@ -1,5 +1,223 @@
 {
   "name": "OpenAI Codex (CLI)",
   "description": "OpenAI's open-source terminal coding agent",
-  "values": {}
+  "url": "https://github.com/openai/codex",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "OpenAI",
+      "source": ["https://github.com/openai/codex"],
+      "comment": "Built and maintained by OpenAI; repo under github.com/openai."
+    },
+    "first-release": {
+      "value": "2025-04",
+      "source": ["https://github.com/openai/codex"],
+      "comment": "Open-sourced April 2025 (launched ~Apr 16, 2025); rewritten from TypeScript to Rust in mid-2025. Checked 2026-06-02."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/openai/codex/releases", "https://developers.openai.com/codex/cli"],
+      "comment": "Actively developed (frequent releases); generally available, not labeled beta."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/openai/codex"],
+      "comment": "The CLI agent itself is Apache-2.0 licensed. License of the agent, not the model."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://developers.openai.com/codex/cli"],
+      "comment": "Broad coding agent for writing, refactoring, debugging across codebases."
+    },
+    "website": {
+      "value": "https://developers.openai.com/codex/cli",
+      "source": ["https://developers.openai.com/codex/cli"],
+      "comment": "Official Codex CLI docs; repo at github.com/openai/codex."
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/openai/codex", "https://developers.openai.com/codex/cli"],
+      "comment": "Codex CLI is the terminal product; OpenAI also ships a separate IDE extension and Codex Cloud, but this candidate is the CLI."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://github.com/openai/codex", "https://developers.openai.com/codex/cli"],
+      "comment": "Runs in the terminal; the CLI form factor does not run inside an IDE (the IDE extension is a separate product)."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/openai/codex"],
+      "comment": "Agent source is openly licensed (Apache-2.0), predominantly Rust."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/openai/codex"],
+      "comment": "Standalone terminal CLI tool."
+    },
+    "default-model-provider": {
+      "value": ["openai"],
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Default/flagship models are OpenAI's GPT (e.g. GPT-5.x); can be pointed at others via custom providers."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features", "https://developers.openai.com/codex/config-advanced"],
+      "comment": "Mid-session model switching via /model; supports configurable custom model providers."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/config-advanced", "https://developers.openai.com/codex/pricing"],
+      "comment": "Can authenticate with an OpenAI API key (billed at API rates) or configure custom providers with env_key."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/config-advanced"],
+      "comment": "Built-in support for local models via Ollama and LM Studio (--oss flag / oss_provider; reserved provider IDs include ollama and lmstudio)."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features", "https://github.com/openai/codex"],
+      "comment": "Reads, edits, and applies coordinated changes across files in a task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Chains edit/run/test steps toward a goal; supports Full Access mode and non-interactive exec for end-to-end runs."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Runs shell commands as part of its loop, under approval/sandbox modes."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/mcp", "https://developers.openai.com/codex/cli/features"],
+      "comment": "Documented MCP support (STDIO and streamable HTTP servers) configured in ~/.codex/config.toml or via codex mcp."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/subagents"],
+      "comment": "Subagent workflows spawn specialized agents in parallel (fan-out up to 6 threads by default) and consolidate results."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "No built-in semantic index/embeddings store; it reads files on demand into context. Semantic indexing requires third-party tools."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features", "https://developers.openai.com/codex/cli/slash-commands"],
+      "comment": "Has a /plan slash command and explains plans before executing; Read-only approval mode supports plan-first work."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/skills", "https://developers.openai.com/codex/cli/slash-commands"],
+      "comment": "Agent Skills package instructions/resources/scripts loaded on demand; also custom slash commands."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Accepts image input (screenshots, design specs) via the -i flag."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "The CLI has web search but no documented ability to drive a real browser/GUI to act and verify. Computer-use features appear in the separate Codex App, not the CLI; marked false for the CLI."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Interactive TUI with approval workflows (supervised), Full Access autonomous runs, and codex cloud / exec for async/background; no inline tab completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Terminal agent with no as-you-type tab autocomplete (typical for CLI agents)."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Supports codex cloud task delegation and non-interactive exec for scripted/background runs."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features", "https://github.com/openai/codex"],
+      "comment": "Session resume restores prior conversation with repo context; AGENTS.md provides durable per-project guidance across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "No built-in single-action revert of an agent run in the core CLI; OpenAI recommends using your own git checkpoints to revert. Marked false per guideline that manual git does not count."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://github.com/openai/codex", "https://developers.openai.com/codex/cli/features"],
+      "comment": "Git-aware: surfaces a transcript of actions, can review against branches/commits (/review) and work within the git workflow."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "PR review/creation via GitHub integration and Codex Cloud/GitHub Actions workflows; CLI can run commands to push/open PRs."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://github.com/openai/codex/blob/main/AGENTS.md", "https://github.com/openai/codex"],
+      "comment": "Reads AGENTS.md (and .codex/ layers) walked up from the working directory for project-level guidance."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Programmable lifecycle hooks (hook browser, user-prompt hook), plus MCP servers, custom slash commands, and a Python SDK."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval", "sandboxed"],
+      "source": ["https://developers.openai.com/codex/cli/features"],
+      "comment": "Three approval modes (Auto, Read-only, Full Access) plus sandboxed execution; user configures the posture."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://github.com/openai/codex", "https://developers.openai.com/codex/config-advanced"],
+      "comment": "Open-source CLI runs locally on the user's machine and can be pointed at fully local/self-hosted models (Ollama, LM Studio); using OpenAI's hosted models is the default path."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://openai.com/enterprise-privacy/", "https://developers.openai.com/codex/enterprise/admin-setup"],
+      "comment": "OpenAI does not train on Business/Enterprise/API inputs by default; Zero Data Retention available for eligible orgs. Consumer Free/Plus default may differ."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "rbac", "audit-logs"],
+      "source": ["https://developers.openai.com/codex/enterprise/admin-setup", "https://openai.com/enterprise-privacy/"],
+      "comment": "Via ChatGPT Enterprise: SSO/SCIM, RBAC, admin/workspace controls and compliance/audit capabilities."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://developers.openai.com/codex/pricing"],
+      "comment": "Codex included in ChatGPT Free, Go ($8), Plus ($20), Pro ($200) etc.; API-key mode is usage-based per token. CLI itself is free/open-source."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/pricing"],
+      "comment": "Codex is included in the ChatGPT Free plan for quick coding tasks; CLI is free to install (open-source)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://developers.openai.com/codex/pricing"],
+      "comment": "Genuine free tier covers core use (Codex on ChatGPT Free). Cheapest paid plan with higher limits is Go at $8/mo, then Plus at $20/mo; API-key usage billed per token."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/openai/codex", "https://developers.openai.com/codex/changelog"],
+      "comment": "Widely deployed and polished (millions of users, frequent releases) but APIs/UX still evolve rapidly; ~1 year old. Not yet a 5 due to fast-moving surface."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/openai/codex"],
+      "comment": "~80k+ GitHub stars and millions of monthly users; among the largest CLI agents alongside Claude Code. Checked 2026-06-02."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.com/RoggeOhta/awesome-codex-cli", "https://developers.openai.com/codex/mcp"],
+      "comment": "Growing ecosystem of MCP servers, skills, subagents and plugins (e.g. 150+ curated tools); supports MCP and custom skills/commands."
+    }
+  }
 }
