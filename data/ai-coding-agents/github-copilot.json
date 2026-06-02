@@ -1,5 +1,272 @@
 {
   "name": "GitHub Copilot",
   "description": "The incumbent; agent mode plus completion across VS Code and JetBrains",
-  "values": {}
+  "icon": "github",
+  "url": "https://github.com/features/copilot",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "GitHub (Microsoft)",
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Built by GitHub, a Microsoft subsidiary."
+    },
+    "first-release": {
+      "value": "2022-06",
+      "source": [
+        "https://techcrunch.com/2022/06/21/copilot-githubs-ai-powered-programming-assistant-is-now-generally-available/",
+        "https://en.wikipedia.org/wiki/GitHub_Copilot"
+      ],
+      "comment": "General availability June 21, 2022 (after a technical preview that opened June 2021). Agent mode and the async coding agent came later (2025)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Actively developed and GA; the incumbent AI coding tool. Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://github.com/features/copilot/plans"],
+      "comment": "The agent itself is a proprietary commercial product (a usable free tier exists, but the code is closed)."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Broad general-purpose coding assistant across many languages and IDEs."
+    },
+    "website": {
+      "value": "https://github.com/features/copilot",
+      "source": ["https://github.com/features/copilot"]
+    },
+    "interface": {
+      "value": ["ide-extension", "cli", "web"],
+      "source": [
+        "https://github.com/features/copilot",
+        "https://www.infoq.com/news/2026/04/github-copilot-cli-ga/"
+      ],
+      "comment": "Ships primarily as an IDE extension (VS Code, JetBrains, Visual Studio, Neovim), with a GA Copilot CLI and a web/github.com coding-agent surface."
+    },
+    "host-ides": {
+      "value": ["vscode", "jetbrains", "visual-studio", "neovim", "terminal", "browser"],
+      "source": [
+        "https://github.com/features/copilot",
+        "https://en.wikipedia.org/wiki/GitHub_Copilot"
+      ],
+      "comment": "VS Code, JetBrains suite, Visual Studio, Neovim/Vim, plus the Copilot CLI (terminal) and the github.com cloud coding agent (browser). Also Eclipse/Xcode per the features page."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Proprietary; the agent's own source is not openly licensed (the GitHub MCP server is open source, but the agent is not)."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool", "cloud-service"],
+      "source": [
+        "https://github.com/features/copilot",
+        "https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"
+      ],
+      "comment": "Primarily an IDE extension; also a CLI tool and an async cloud-service coding agent running on GitHub Actions."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": [
+        "https://docs.github.com/en/copilot/reference/ai-models/supported-models",
+        "https://github.com/features/copilot"
+      ],
+      "comment": "No single default; offers a picker spanning OpenAI, Anthropic (Claude), and Google (Gemini) models. Checked 2026-06-02."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.github.com/en/copilot/reference/ai-models/supported-models"],
+      "comment": "Built-in model picker across OpenAI, Anthropic, and Google models."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://docs.github.com/en/copilot/reference/ai-models/supported-models"],
+      "comment": "Standard offering bills through GitHub/AI Credits rather than a user-supplied provider key. VS Code has an experimental 'bring your own key' path for some models, but it is not the documented mainstream flow; marked false. Checked 2026-06-02."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://docs.github.com/en/copilot/reference/ai-models/model-hosting"],
+      "comment": "Models are vendor-hosted (Azure/GCP/Anthropic); no documented Ollama/LM Studio/local-model option."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "Agent mode plans and applies coordinated edits across multiple files."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": [
+        "https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/",
+        "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/"
+      ],
+      "comment": "Agent mode iterates (edit -> run -> self-heal) until a task is complete; the cloud coding agent takes an issue end-to-end and opens a PR."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "Agent mode suggests and runs terminal commands / tool calls as part of its loop."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "Documented Model Context Protocol support in agent mode; GitHub also ships an open-source GitHub MCP server."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": [
+        "https://github.com/features/copilot",
+        "https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"
+      ],
+      "comment": "Tasks can be delegated to multiple agents (Copilot, Claude, OpenAI Codex) and the async coding agent fans out work in its own environment via GitHub Actions."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://docs.github.com/en/copilot/concepts/context/repository-indexing"],
+      "comment": "Builds a semantic code-search index of the repository (shared across the team) for context-enriched answers."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": [
+        "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/",
+        "https://github.com/features/copilot"
+      ],
+      "comment": "The coding agent breaks an issue into a task checklist before/while executing; agents 'plan, explore, and execute'. Not a separate read-only plan toggle but an explicit plan-then-execute phase."
+    },
+    "skills": {
+      "value": true,
+      "source": [
+        "https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot",
+        "https://code.visualstudio.com/docs/copilot/copilot-cloud-agent"
+      ],
+      "comment": "Supports reusable packaged capabilities beyond a single instruction file: custom slash commands / prompt files and path-specific *.instructions.md, plus agent/MCP tooling. Checked 2026-06-02."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://docs.github.com/en/copilot/reference/ai-models/supported-models"],
+      "comment": "Copilot Chat / agent mode accepts image input (screenshots, mockups) when using vision-capable models."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"],
+      "comment": "The cloud coding agent runs in its own environment and can use a Playwright-based browser tool (via MCP) to verify changes; capability is configuration-dependent. Checked 2026-06-02."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": [
+        "https://github.com/features/copilot",
+        "https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/",
+        "https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"
+      ],
+      "comment": "Spans the full spectrum: tab completion, chat, supervised agent mode, autonomous task completion, and the async/background cloud coding agent."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Originated as tab-style inline code completion; remains a core feature (unlimited completions on paid plans)."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/"],
+      "comment": "The cloud coding agent runs detached in its own environment while the developer does other work; opens a draft PR in the background."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://github.com/features/copilot",
+        "https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot"
+      ],
+      "comment": "Persistent project context via repository custom instructions and Copilot Spaces (organizational knowledge), carried across sessions. Checked 2026-06-02."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "VS Code agent mode lets you review and undo/keep agent edits (per-edit accept/discard and restore); the cloud agent works on its own branch/PR so changes are isolated. Checked 2026-06-02."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"],
+      "comment": "Deep native git/GitHub awareness: works on branches, commits, and opens pull requests."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": [
+        "https://docs.github.com/copilot/using-github-copilot/coding-agent/asking-copilot-to-create-a-pull-request",
+        "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/"
+      ],
+      "comment": "The coding agent opens and updates pull requests directly on GitHub."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot"],
+      "comment": "Supports .github/copilot-instructions.md, path-specific *.instructions.md, and AGENTS.md (CLI) project instruction files."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": [
+        "https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/",
+        "https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot"
+      ],
+      "comment": "Extensible via MCP servers, Copilot Extensions, and custom prompt/command files."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "Agent mode asks for approval before running terminal commands/tool calls; auto-approval and allow-lists are configurable. The cloud agent runs in an isolated GitHub Actions environment."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://github.com/features/copilot/plans"],
+      "comment": "SaaS only; no on-prem/self-hosted deployment of the agent (GitHub Enterprise Cloud / models are vendor-hosted)."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": [
+        "https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/",
+        "https://docs.github.com/copilot/how-tos/manage-your-account/managing-copilot-policies-as-an-individual-subscriber"
+      ],
+      "comment": "Copilot Business and Enterprise data is not used to train models; Free/Pro/Pro+ can opt out of training. Checked 2026-06-02."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs"],
+      "source": ["https://github.com/features/copilot/plans"],
+      "comment": "Enterprise plans include SSO, audit logs, usage metrics, IP indemnity, and user management; RBAC/policy management via GitHub orgs."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": [
+        "https://github.com/features/copilot/plans",
+        "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
+      ],
+      "comment": "Free tier plus paid subscriptions; as of June 1, 2026 all plans moved to usage-based AI Credits billing on top of the subscription. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/features/copilot/plans"],
+      "comment": "Copilot Free: 2,000 completions and 50 chat/agent requests per month, no credit card required."
+    },
+    "entry-price-usd-mo": {
+      "value": 10,
+      "source": ["https://github.com/features/copilot/plans"],
+      "comment": "Copilot Pro is the cheapest paid plan at $10/month (Pro+ $39, Max $100; Business/Enterprise contact-sales). Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 5,
+      "source": [
+        "https://github.com/features/copilot",
+        "https://en.wikipedia.org/wiki/GitHub_Copilot"
+      ],
+      "comment": "GA since 2022, polished, massively deployed across major IDEs; the reference incumbent."
+    },
+    "community-size": {
+      "value": ["huge"],
+      "source": ["https://github.com/features/copilot"],
+      "comment": "Largest install base of any AI coding tool (millions of users / enterprise adoption)."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
+      "comment": "Copilot Extensions marketplace plus a broad MCP-server ecosystem and community instruction sharing."
+    }
+  }
 }
