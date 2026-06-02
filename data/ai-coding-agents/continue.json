@@ -108,11 +108,6 @@
       "source": ["https://docs.continue.dev/ide-extensions/agent/how-it-works"],
       "comment": "Has a Plan mode that includes only read-only tools, distinct from Agent (all tools) and Chat (no tools)."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://docs.continue.dev/customize/overview", "https://docs.continue.dev/customize/deep-dives/rules"],
-      "comment": "Supports reusable prompts/slash commands and shareable agents via the Continue Hub, beyond plain instruction files."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://docs.continue.dev/customize/deep-dives/model-capabilities"],
@@ -217,6 +212,46 @@
       "value": true,
       "source": ["https://docs.continue.dev/customize/overview", "https://docs.continue.dev/guides/configuring-models-rules-tools"],
       "comment": "Continue Hub marketplace for shared models, rules, prompts, MCP servers, and agents."
+    },
+    "project-memory-files": {
+      "value": ["custom"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Auto-loads rule files from a vendor-specific .continue/rules folder (workspace) and ~/.continue/rules (global), as plain text/Markdown/YAML. Does not auto-load AGENTS.md, CLAUDE.md, .cursorrules, or copilot-instructions by default; root-AGENTS.md support is only a proposed/open issue (#6716) as of 2026-06-02. Tagged custom for the .continue/rules convention."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Global user rules in ~/.continue/rules (user scope) and per-workspace rules in .continue/rules (project scope). No documented enterprise/org policy scope or per-subfolder rule placement (path scoping is done via globs, not folder location); checked 2026-06-02."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "agent-requested", "always-on"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Rules support glob patterns (e.g. **/*.{ts,tsx}) so they activate on matching file context (path-based, also covers file-type via extension globs); alwaysApply:false lets the agent pull a rule in on demand based on its description (agent-requested); alwaysApply:true / no frontmatter applies to every interaction (always-on)."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/rules"],
+      "comment": "Rules provide always-on project context but are authored manually; no documented mechanism by which Continue writes cross-session memory on its own. Marked unsupported as of 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.continue.dev/customize/deep-dives/prompts", "https://github.com/continuedev/continue/discussions/12127"],
+      "comment": "Reusable prompts/slash commands defined as Markdown-with-frontmatter (invokable:true) plus shareable agents via the Hub; Continue also scans .continue/skills and .claude/skills directories for Claude Code-style skills (checked 2026-06-02)."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/prompts", "https://github.com/continuedev/continue/discussions/12127"],
+      "comment": "Slash-command prompts are user-triggered via /name in Chat/Plan/Agent. Skills loaded from .claude/skills can be model-invoked (the open request to add a disable-model-invocation field implies model invocation is active), though the prompt vs skill UX is currently fragmented per discussion #12127."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/prompts", "https://github.com/continuedev/continue/discussions/12127"],
+      "comment": "Claude Code-style skills carry name + description with the body pulled in on invocation (progressive disclosure); slash-command prompts surface by name in the / menu. Community notes Continue's progressive-disclosure handling is still incomplete vs Claude Code (discussion #12127). Best-fit: description-only."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "manual-files"],
+      "source": ["https://docs.continue.dev/customize/deep-dives/prompts", "https://docs.continue.dev/customize/overview"],
+      "comment": "Continue Hub provides a curated, browsable, one-click registry of prompts/rules/agents (marketplace); skills/prompts can also be dropped into local directories (.continue/skills, .claude/skills, .continue/prompts) by hand (manual-files)."
     }
   }
 }
