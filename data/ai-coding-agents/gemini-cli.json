@@ -15,8 +15,8 @@
     },
     "status": {
       "value": ["active"],
-      "source": ["https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
-      "comment": "Active as of 2026-06-02, but Google announced (May 19, 2026) it will stop serving requests for free users, AI Pro/Ultra subscribers, and individual Code Assist users on June 18, 2026; enterprise customers retain it. Apache-2.0 repo stays public. A closed-source successor (Antigravity CLI) was introduced."
+      "source": ["https://github.com/google-gemini/gemini-cli/discussions/27274", "https://www.theregister.com/ai-ml/2026/05/20/bye-bye-gemini-cli-google-nudges-devs-toward-antigravity/"],
+      "comment": "Active as of 2026-06-02, but Google announced (May 19-20, 2026) it will stop serving requests on June 18, 2026 for free, Google AI Pro, and Ultra tiers plus individual Code Assist users; enterprise (Code Assist Standard/Enterprise) customers retain access. Apache-2.0 repo stays public. A closed-source Go-rewrite successor (Antigravity CLI, `agy`) was introduced. Re-verified 2026-06-02."
     },
     "license": {
       "value": ["open-source", "freemium"],
@@ -106,11 +106,6 @@
       "source": ["https://geminicli.com/docs/cli/plan-mode/"],
       "comment": "Documented Plan Mode (read-only plan-then-execute), expanded in 2026 with built-in research subagents."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://geminicli.com/docs/core/subagents/"],
-      "comment": "Supports reusable custom slash commands and packaged subagents loaded on demand, beyond the GEMINI.md instruction file."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://github.com/google-gemini/gemini-cli"],
@@ -158,8 +153,8 @@
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
-      "comment": "Project-level GEMINI.md context files."
+      "source": ["https://geminicli.com/docs/cli/gemini-md/", "https://github.com/google-gemini/gemini-cli"],
+      "comment": "Project-level GEMINI.md context files; the contextFileName setting can also accept AGENTS.md."
     },
     "hooks-extensibility": {
       "value": true,
@@ -188,33 +183,73 @@
     },
     "pricing-model": {
       "value": ["free-tier", "subscription", "usage-based"],
-      "source": ["https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026", "https://geminicli.com/docs/resources/quota-and-pricing/"],
-      "comment": "Free tier (OAuth/free Code Assist), fixed-price subscriptions (Google AI Pro, Code Assist Standard/Enterprise), and pay-as-you-go via Gemini API / Vertex AI. Free individual tier is slated to stop June 18, 2026. Checked 2026-06-02."
+      "source": ["https://geminicli.com/docs/resources/quota-and-pricing/", "https://github.com/google-gemini/gemini-cli/discussions/27274"],
+      "comment": "Free tier (OAuth/free Code Assist), fixed-price subscriptions (Google AI Pro, Code Assist Standard/Enterprise), and pay-as-you-go via Gemini API / Vertex AI. Free/Pro/Ultra/individual access is slated to stop June 18, 2026 (enterprise retained). Checked 2026-06-02."
     },
     "free-tier": {
       "value": true,
-      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026"],
-      "comment": "Generous free tier (OAuth login: 60 req/min, 1,000 req/day) covering individual use. Note: Google announced this free tier ends June 18, 2026."
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://github.com/google-gemini/gemini-cli/discussions/27274"],
+      "comment": "Generous free tier (OAuth login: 60 req/min, 1,000 req/day) covering individual use. Note: Google announced this free-tier access ends June 18, 2026."
     },
     "entry-price-usd-mo": {
       "value": 0,
-      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://nerova.ai/costs-roi/gemini-cli-pricing-explained-2026"],
-      "comment": "Genuine free tier covers core coding use (1,000 req/day). Cheapest paid plan is Google AI Pro at ~$19.99/mo; Code Assist Standard ~$22.80/user/mo. Free tier scheduled to end 2026-06-18."
+      "source": ["https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/", "https://geminicli.com/docs/resources/quota-and-pricing/"],
+      "comment": "Genuine free tier covers core coding use (1,000 req/day). Cheapest paid plan is Google AI Pro at ~$19.99/mo; Code Assist Standard ~$22.80/user/mo. Free-tier access scheduled to end 2026-06-18."
     },
     "maturity": {
       "value": 4,
-      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
-      "comment": "Polished, widely deployed GA tool with thousands of contributions, but rated 4 (not 5) given active flux and the May 2026 announced transition off the free/individual tier. Checked 2026-06-02."
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.theregister.com/ai-ml/2026/05/20/bye-bye-gemini-cli-google-nudges-devs-toward-antigravity/"],
+      "comment": "Polished, widely deployed GA tool (100,000+ GitHub stars, 6,000+ merged community PRs), but rated 4 (not 5) given active flux and the May 2026 announced transition off the free/individual tier toward Antigravity CLI. Checked 2026-06-02."
     },
     "community-size": {
       "value": ["large"],
-      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"],
-      "comment": "Google-backed with rapid, broad adoption and 6,000+ merged community PRs."
+      "source": ["https://github.com/google-gemini/gemini-cli", "https://www.theregister.com/ai-ml/2026/05/20/bye-bye-gemini-cli-google-nudges-devs-toward-antigravity/"],
+      "comment": "Google-backed with rapid, broad adoption: 100,000+ GitHub stars and 6,000+ merged community PRs."
     },
     "extension-plugin-ecosystem": {
       "value": true,
       "source": ["https://google-gemini.github.io/gemini-cli/docs/cli/commands.html", "https://github.com/google-gemini/gemini-cli"],
-      "comment": "Extensions, custom commands, and MCP server ecosystem; numerous community extensions and forks."
+      "comment": "Extensions, custom commands, Agent Skills, and MCP server ecosystem; numerous community extensions and forks."
+    },
+    "project-memory-files": {
+      "value": ["custom"],
+      "source": ["https://geminicli.com/docs/cli/gemini-md/", "https://github.com/google-gemini/gemini-cli/blob/main/docs/get-started/configuration.md"],
+      "comment": "Default auto-loaded instruction file is GEMINI.md (a vendor-specific filename, hence `custom`). The context.fileName / contextFileName setting can be reconfigured to other names (e.g. AGENTS.md) or a list, but GEMINI.md is the out-of-the-box convention. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project", "folder"],
+      "source": ["https://geminicli.com/docs/cli/gemini-md/", "https://google-gemini.github.io/gemini-cli/docs/cli/enterprise.html"],
+      "comment": "GEMINI.md is loaded hierarchically: system/enterprise (system-wide settings + system GEMINI.md, admin-controlled via GEMINI_CLI_SYSTEM_SETTINGS_PATH), user (~/.gemini/GEMINI.md), project root (./GEMINI.md, stops at the .git root), and subdirectory/folder (e.g. ./src/GEMINI.md). All four levels are concatenated."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://geminicli.com/docs/cli/gemini-md/", "https://geminicli.com/docs/reference/memport/"],
+      "comment": "The GEMINI.md hierarchy is always concatenated and applied (always-on); subdirectory files are location-based but not glob/file-type conditional, and @path imports modularize files rather than gate them. No Cursor-style path-glob or file-type conditional rule activation. (On-demand, agent-requested loading exists for Agent Skills, captured separately in the Skills group.) Checked 2026-06-02."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": ["https://geminicli.com/docs/tools/memory/", "https://geminicli.com/docs/cli/auto-memory/"],
+      "comment": "The model can autonomously persist cross-session facts via the save_memory tool (appended to the '## Gemini Added Memories' section of ~/.gemini/GEMINI.md), e.g. when asked to 'remember' something. An experimental Auto Memory feature (settings flag experimental.autoMemory, default off, toggleable) additionally mines past sessions in the background and proposes durable memories + reusable Agent Skills — review-first via /memory inbox, nothing applied automatically. The save_memory tool can be excluded via tool settings, so the behavior can be turned off. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://geminicli.com/docs/cli/skills/", "https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/skills.md"],
+      "comment": "Ships Agent Skills: self-contained directories with a SKILL.md (metadata + instructions + bundled assets) loaded on demand. Also supports reusable custom slash commands (.toml) — both beyond the always-on GEMINI.md file. Checked 2026-06-02."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://geminicli.com/docs/cli/skills/", "https://geminicli.com/docs/cli/custom-commands/"],
+      "comment": "Model-callable: the agent auto-activates a matching Agent Skill via the activate_skill tool when a task matches its description. User-callable: custom slash commands (e.g. /test, namespaced /git:commit) are explicitly invoked by the user."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://geminicli.com/docs/cli/skills/"],
+      "comment": "Progressive disclosure: only each skill's name and description are injected into the system prompt at session start; the full SKILL.md body and assets are pulled in only when the model activates the skill."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://geminicli.com/docs/cli/skills/", "https://medium.com/google-cloud/your-gemini-cli-extensions-just-got-smarter-introducing-agent-skills-a8fbfa077e7f"],
+      "comment": "Skills live in user (~/.gemini/skills/ or ~/.agents/skills/) or workspace (.gemini/skills/ or .agents/skills/) directories — installed by dropping in files (manual-files) or bundled inside Gemini CLI extensions, which install from GitHub repos via `gemini extensions install` (git). No single curated one-click skills marketplace observed. Checked 2026-06-02."
     }
   }
 }
