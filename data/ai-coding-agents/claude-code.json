@@ -1,5 +1,222 @@
 {
   "name": "Claude Code",
   "description": "Anthropic's terminal-first agentic coding tool; reference CLI agent",
-  "values": {}
+  "url": "https://code.claude.com/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Anthropic",
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Built by Anthropic, the maker of the Claude models."
+    },
+    "first-release": {
+      "value": "2025-02",
+      "source": ["https://medium.com/@lmpo/the-evolution-of-claude-code-in-2025-a7355dcb7f70"],
+      "comment": "Released as a research preview in Feb 2025; reached general availability (v1.0.0) in May 2025 alongside Claude 4. Using the first public release per the guideline."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Actively developed and GA; ships frequent updates across terminal, IDE, desktop, and web. Checked 2026-06-02."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "The Claude Code agent itself is proprietary/closed source; only the separate Agent SDK is published. License of the agent, not the model."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Broad coding agent for building features, fixing bugs, tests, refactors; not optimized for a single niche."
+    },
+    "website": {
+      "value": "https://code.claude.com/",
+      "source": ["https://code.claude.com/docs/en/overview"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web", "desktop-app"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Ships as a terminal CLI, a VS Code and JetBrains extension, a standalone desktop app, and a browser/web version (claude.ai/code)."
+    },
+    "host-ides": {
+      "value": ["terminal", "vscode", "jetbrains", "browser"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Runs in the terminal, as VS Code/Cursor and JetBrains plugins, and in the browser at claude.ai/code; also a standalone desktop app."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "The Claude Code agent is proprietary. The Agent SDK is separately available but the agent's own source is not openly licensed."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool", "extension", "cloud-service"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Primary shape is a CLI tool; also ships as an IDE extension and runs as a hosted cloud/web service for long-running tasks."
+    },
+    "default-model-provider": {
+      "value": ["anthropic"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Drives Anthropic's Claude models (Opus/Sonnet/Haiku tiers)."
+    },
+    "model-choice": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/third-party-integrations"],
+      "comment": "User can pick among Claude model tiers (Opus/Sonnet/Haiku) but cannot switch to other providers' models from within the agent; only Claude models are supported."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/third-party-integrations"],
+      "comment": "Supports Anthropic Console API key (pay-as-you-go) and own cloud accounts via Amazon Bedrock, Google Vertex AI, and Microsoft Foundry."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/third-party-integrations"],
+      "comment": "No documented support for local/self-hosted models (Ollama, vLLM, etc.); third-party options are cloud providers serving Claude, plus optional LLM-gateway proxying of Anthropic traffic."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Plans and applies coordinated edits across multiple files in a single task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Chains edit -> run -> fix loops end-to-end (e.g. 'write tests, run them, and fix any failures') with minimal per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Runs shell commands, builds, and tests as part of its loop via a Bash tool."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Native Model Context Protocol support for external tools/data sources (Jira, Slack, Google Drive, custom servers)."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Spawns multiple agents/subagents that work in parallel with a lead agent coordinating; also background agents for parallel full sessions."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Reads files on demand via agentic search rather than building a persistent semantic/embeddings index of the repo."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Has an explicit plan-then-execute flow; plan review is surfaced in the VS Code extension and the CLI plan mode."
+    },
+    "skills": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Supports packaged, on-demand Skills and custom slash commands (e.g. /review-pr) that the team can share."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://medium.com/@lmpo/the-evolution-of-claude-code-in-2025-a7355dcb7f70"],
+      "comment": "Accepts image input such as screenshots and mockups, leveraging the underlying Claude models' vision capability."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Chrome integration lets it drive and debug live web applications, beyond plain URL fetching."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Conversational edits, supervised multi-step runs with per-action approval, autonomous task completion, and async/background runs via web and background agents. No tab inline-completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Chat/agent-driven; does not provide as-you-type tab autocomplete suggestions."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Long-running tasks can run on the web/cloud and as background agents while the developer does other work."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "CLAUDE.md project memory plus auto memory that saves learnings (build commands, debugging insights) across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/checkpointing"],
+      "comment": "Built-in /rewind checkpoints (since v2.0.0) snapshot edited files automatically and restore code/conversation/both without git."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Works directly with git: stages changes, writes commit messages, creates branches."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Opens pull requests directly and via GitHub Actions / GitLab CI integrations."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Reads CLAUDE.md instruction files at project, repo, and org levels at the start of every session."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Hooks run shell commands before/after actions; plus custom skills/commands and the Agent SDK for programmatic extension."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable", "sandboxed"],
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Asks approval per action by default, is configurable (managed permissions, allow/deny rules), and offers a sandboxing mode (introduced Oct 2025)."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/third-party-integrations"],
+      "comment": "Cannot be deployed fully on-prem; the agent calls Anthropic-hosted or cloud-provider (Bedrock/Vertex/Foundry) model endpoints. Corporate proxy/LLM-gateway routing is supported but the models remain remote."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training", "https://code.claude.com/docs/en/data-usage"],
+      "comment": "Commercial API, Team, and Enterprise tiers do not use inputs/outputs to train models by default; consumer (Free/Pro/Max) usage offers an opt-out toggle. Checked 2026-06-02."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "rbac", "audit-logs"],
+      "source": ["https://code.claude.com/docs/en/third-party-integrations"],
+      "comment": "Claude for Enterprise adds SSO/domain capture, role-based permissions, and compliance/audit (compliance API) controls; managed policy settings org-wide."
+    },
+    "pricing-model": {
+      "value": ["subscription", "usage-based"],
+      "source": ["https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan", "https://www.ssdnodes.com/blog/claude-code-pricing-in-2026-every-plan-explained-pro-max-api-teams/"],
+      "comment": "Included with Pro/Max subscriptions; also usable pay-as-you-go via an Anthropic Console API account. No genuine free tier. Checked 2026-06-02."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan"],
+      "comment": "No free tier; requires a paid Pro/Max subscription or pay-as-you-go API billing."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan", "https://www.ssdnodes.com/blog/claude-code-pricing-in-2026-every-plan-explained-pro-max-api-teams/"],
+      "comment": "Cheapest paid plan including Claude Code is Pro at $20/mo (US), ~$17/mo if billed annually. Checked 2026-06-02."
+    },
+    "maturity": {
+      "value": 5,
+      "source": ["https://www.augmentcode.com/learn/claude-code-github-stars"],
+      "comment": "GA since May 2025, widely deployed and polished across terminal/IDE/desktop/web; reference CLI agent with very large adoption."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://www.augmentcode.com/learn/claude-code-github-stars"],
+      "comment": "Per the guide's thresholds, Claude Code sits at the 'large' tier; widely adopted with a very active developer community."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/overview"],
+      "comment": "Meaningful ecosystem of MCP servers, shareable skills/commands, hooks, and the Agent SDK; integrations across GitHub, GitLab, Slack, Chrome."
+    }
+  }
 }
