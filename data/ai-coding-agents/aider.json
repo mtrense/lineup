@@ -1,5 +1,222 @@
 {
   "name": "Aider",
   "description": "Open-source CLI pair-programmer with strong git integration",
-  "values": {}
+  "url": "https://aider.chat/",
+  "lastVerified": "2026-06-02",
+  "values": {
+    "developer": {
+      "value": "Aider AI / Paul Gauthier (open-source community)",
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/"],
+      "comment": "Created by Paul Gauthier; maintained as a community open-source project under the Aider-AI GitHub org."
+    },
+    "first-release": {
+      "value": "2023-05",
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "GitHub repository created 2023-05-09; used as the first-public-release proxy."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/"],
+      "comment": "Actively developed and released as of check date 2026-06-02 (~45.7k GitHub stars)."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Apache License 2.0 (OSI-approved)."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://aider.chat/"],
+      "comment": "Broad coding pair-programmer; not positioned for a narrower niche."
+    },
+    "website": {
+      "value": "https://aider.chat/",
+      "source": ["https://aider.chat/"]
+    },
+    "interface": {
+      "value": ["cli", "web"],
+      "source": ["https://aider.chat/docs/install.html", "https://aider.chat/"],
+      "comment": "Primarily a terminal/CLI tool; also offers an optional browser-based web chat. Watch mode lets it work alongside any editor but it is not itself an IDE extension."
+    },
+    "host-ides": {
+      "value": ["terminal", "browser"],
+      "source": ["https://aider.chat/docs/install.html", "https://aider.chat/docs/usage/watch.html"],
+      "comment": "Runs in the terminal and a browser web chat. Watch mode monitors files edited in any editor (VS Code, JetBrains, Neovim) via AI comments rather than installing as a host-IDE extension."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Apache-2.0 licensed source on GitHub."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://aider.chat/docs/install.html"],
+      "comment": "Installed and run as a standalone CLI tool (pip/pipx/uv/Docker)."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://aider.chat/docs/llms.html"],
+      "comment": "No single bundled default; works best with top models across providers (Gemini 2.5 Pro, Claude Sonnet, DeepSeek, OpenAI). User picks the model/provider."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://aider.chat/docs/llms.html"],
+      "comment": "Supports 15+ providers (OpenAI, Anthropic, Gemini, DeepSeek, Groq, Azure, Ollama, OpenRouter, etc.)."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://aider.chat/docs/llms.html"],
+      "comment": "Pure BYOK; Aider itself has no vendor billing — users supply their own provider API key."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://aider.chat/docs/llms.html"],
+      "comment": "Runs against local models via Ollama and any OpenAI-compatible endpoint."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://aider.chat/", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Plans and applies coordinated edits across multiple files; uses a repo map for whole-codebase context."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/2024/09/26/architect.html"],
+      "comment": "Can chain edit -> lint/test -> fix loops (auto-lint, auto-test, /test) and architect mode plans then applies; interactive but executes multi-step tasks with limited per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "/run and /test execute shell commands; auto-test/auto-lint can run build/test as part of the loop."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/Aider-AI/aider/issues/4506"],
+      "comment": "No native MCP support in core Aider as of check date; only third-party MCP wrappers/servers exist and there is an open feature request."
+    },
+    "subagents-parallel-agents": {
+      "value": false,
+      "source": ["https://aider.chat/2024/09/26/architect.html"],
+      "comment": "Runs a single linear loop. Architect mode pairs two models (planner + editor) sequentially, not parallel/spawned subagents."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://aider.chat/"],
+      "comment": "Builds a 'repo map' from tree-sitter symbol extraction of files rather than a semantic embeddings index; ad-hoc map, not a vector store."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://aider.chat/2024/09/26/architect.html", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Architect/editor mode plans the solution with one model then applies edits with another; /ask gives a read-only Q&A mode."
+    },
+    "skills": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/conventions.html", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Has fixed built-in slash commands but no mechanism for user-defined, reusable on-demand skills/recipes; conventions are always-on instruction files, not skills."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://aider.chat/", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Accepts images (add image files, /paste image from clipboard) for screenshot/design context."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "/web only scrapes a page to markdown; no ability to drive a real browser/GUI to act and verify changes."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent"],
+      "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/2024/09/26/architect.html"],
+      "comment": "Conversational terminal edits with the user in the loop; runs multi-step edit/test loops with approval. No inline tab completion or detached async runs."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://aider.chat/"],
+      "comment": "CLI/chat tool; no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://aider.chat/"],
+      "comment": "Runs interactively in a focused terminal session; no dispatch-and-walk-away cloud/background execution."
+    },
+    "persistent-memory": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/conventions.html"],
+      "comment": "No cross-session learned memory. Persistent context comes from user-maintained convention files loaded each session, not stored agent memory."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "/undo reverts the last aider-made git commit, restoring the working tree before a change; backed by its automatic git commits."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://aider.chat/", "https://aider.chat/docs/usage/commands.html"],
+      "comment": "Core strength: auto-commits each change with generated messages; /commit, /git, /diff, /undo. Deep native git awareness."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "Commits to local git but has no built-in pull-request creation; PRs are a manual follow-up via git/GitHub."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://aider.chat/docs/usage/conventions.html"],
+      "comment": "Supports project convention files (e.g. CONVENTIONS.md) loaded via /read or .aider.conf.yml; also reads CLAUDE.md-style files."
+    },
+    "hooks-extensibility": {
+      "value": false,
+      "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/docs/usage/conventions.html"],
+      "comment": "Configurable lint/test commands but no programmable event hooks or plugin API for extending agent behavior; null-leaning but marked false on absence of a hooks/plugin mechanism."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://aider.chat/docs/usage/commands.html"],
+      "comment": "Prompts before running shell commands and applying suggested commands; flags like --yes-always and auto-commit settings make the posture configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://aider.chat/docs/install.html", "https://aider.chat/docs/llms.html"],
+      "comment": "Runs entirely on the user's machine and can use fully local models (Ollama/OpenAI-compatible), so it can operate without any external SaaS."
+    },
+    "privacy-mode": {
+      "value": false,
+      "source": ["https://aider.chat/docs/legal/privacy.html", "https://aider.chat/docs/llms.html"],
+      "comment": "Aider itself has no model and does not train on code, but it offers no explicit zero-training guarantee — whether code trains a model depends on the user-chosen provider. Anonymized usage analytics are collected by default (opt-out)."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://aider.chat/"],
+      "comment": "Open-source single-user CLI; no SSO/audit/RBAC/VPC governance offering."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/docs/llms.html"],
+      "comment": "The tool is free and open-source; users pay only their chosen LLM provider for API usage (BYOK). No Aider subscription."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Tool is entirely free; only external model API costs apply (and free model tiers like OpenRouter/Gemini exist)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Aider charges nothing; cost is only the user's own provider API usage."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/"],
+      "comment": "Stable, widely used GA tool with frequent releases and ~45.7k stars; polished CLI though still rapidly evolving."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "~45.7k GitHub stars as of check date; per RESEARCH.md thresholds Aider is explicitly a 'large' community example."
+    },
+    "extension-plugin-ecosystem": {
+      "value": false,
+      "source": ["https://github.com/Aider-AI/aider/issues/4506"],
+      "comment": "No first-party marketplace/plugin ecosystem; community wrappers exist (e.g. third-party MCP servers, AiderDesk) but there is no official plugin platform."
+    }
+  }
 }
