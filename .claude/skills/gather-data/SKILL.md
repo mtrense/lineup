@@ -132,7 +132,9 @@ If the candidate appears in `RESEARCH.md`'s **Candidates** section with an unche
 
 ## Phase 4: Commit
 
-This skill is designed to run unattended (including inside `/research-batch`), so it commits its own work. Do NOT stop early to wait for human review — the commit *is* the handoff.
+This skill is designed to run unattended, so a direct invocation commits its own work. Do NOT stop early to wait for human review — the commit *is* the handoff.
+
+(Exception: when run as a `gather-data-worker` under `/gather-data-cycle`, the worker has no commit tools and skips this phase — the cycle orchestrator flips the RESEARCH.md checkbox and commits each candidate serially. That path is governed by the worker's own instructions, not this section.)
 
 1. Fetch the timestamp: `date +"%Y-%m-%d %H:%M"` via Bash.
 2. Stage the files:
