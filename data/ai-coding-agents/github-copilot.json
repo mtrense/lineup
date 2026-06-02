@@ -133,14 +133,6 @@
       ],
       "comment": "The coding agent breaks an issue into a task checklist before/while executing; agents 'plan, explore, and execute'. Not a separate read-only plan toggle but an explicit plan-then-execute phase."
     },
-    "skills": {
-      "value": true,
-      "source": [
-        "https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot",
-        "https://code.visualstudio.com/docs/copilot/copilot-cloud-agent"
-      ],
-      "comment": "Supports reusable packaged capabilities beyond a single instruction file: custom slash commands / prompt files and path-specific *.instructions.md, plus agent/MCP tooling. Checked 2026-06-02."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://docs.github.com/en/copilot/reference/ai-models/supported-models"],
@@ -267,6 +259,64 @@
       "value": true,
       "source": ["https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"],
       "comment": "Copilot Extensions marketplace plus a broad MCP-server ecosystem and community instruction sharing."
+    },
+    "project-memory-files": {
+      "value": ["copilot-instructions", "agents-md", "claude-md", "custom"],
+      "source": [
+        "https://docs.github.com/en/copilot/reference/custom-instructions-support",
+        "https://github.blog/changelog/2025-08-28-copilot-coding-agent-now-supports-agents-md-custom-instructions/"
+      ],
+      "comment": "Auto-loads .github/copilot-instructions.md (repo-wide), AGENTS.md (also CLAUDE.md and GEMINI.md agent files), and path-specific *.instructions.md files. 'custom' covers GEMINI.md and the *.instructions.md convention. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project", "folder"],
+      "source": [
+        "https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot",
+        "https://docs.github.com/en/copilot/reference/custom-instructions-support"
+      ],
+      "comment": "Organization/enterprise instructions (enterprise), personal $HOME/.copilot/copilot-instructions.md and GitHub.com personal instructions (user), repository instructions (project), and nested AGENTS.md / path-scoped *.instructions.md (folder). Checked 2026-06-02."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "always-on"],
+      "source": ["https://code.visualstudio.com/docs/copilot/customization/custom-instructions"],
+      "comment": "*.instructions.md files use an applyTo glob to scope rules by path (path-based); .github/copilot-instructions.md and root AGENTS.md are always applied (always-on). Checked 2026-06-02."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": [
+        "https://github.blog/changelog/2026-03-04-copilot-memory-now-on-by-default-for-pro-and-pro-users-in-public-preview/",
+        "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory"
+      ],
+      "comment": "Copilot Memory automatically captures repository-scoped insights across sessions/surfaces (on by default for Pro/Pro+ in public preview); memories can be curated, deleted, and the feature turned off, and they auto-expire after 28 days. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": [
+        "https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/",
+        "https://code.visualstudio.com/docs/copilot/customization/agent-skills"
+      ],
+      "comment": "Supports Agent Skills — self-contained SKILL.md folders with bundled scripts/templates/resources, loaded on demand — across VS Code, the CLI, and the cloud agent. GA-announced Dec 2025. Checked 2026-06-02."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": [
+        "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills",
+        "https://code.visualstudio.com/docs/copilot/customization/agent-skills"
+      ],
+      "comment": "Skills appear as slash commands the user can invoke explicitly, and Copilot also selects and loads a relevant skill autonomously based on its description. Checked 2026-06-02."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://code.visualstudio.com/docs/copilot/customization/agent-skills"],
+      "comment": "Progressive three-level loading: the skill name and description stay in context, with the SKILL.md body and bundled files pulled in only when the skill is invoked. Checked 2026-06-02."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "git", "manual-files"],
+      "source": [
+        "https://github.com/github/awesome-copilot",
+        "https://code.visualstudio.com/docs/copilot/customization/agent-skills"
+      ],
+      "comment": "Curated awesome-copilot marketplace (browsable, plugin install) plus git clone and manual placement of SKILL.md folders in the skills directory. Checked 2026-06-02."
     }
   }
 }
