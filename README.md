@@ -78,6 +78,7 @@ Lineup ships with Claude Code skills under `.claude/skills/` that handle each st
 | `/discover-candidates <type> [hint]` | Search the web for candidates that fit the type's scope, filter and deduplicate against the existing roster, present the picks for selection, and scaffold the chosen ones the same way `/add-candidate` does. |
 | `/extend-comparison <type> <description>` | Append one or more new attributes (or a whole new attribute group) to an already-scaffolded type. Updates RESEARCH.md's Attribute Groups tables and `attributes.json` in lockstep. Existing candidates render `—` for the new attribute until filled in. |
 | `/gather-data <type> [candidate] [attribute-or-group]` | Research and populate attribute values for a candidate via web sources. Records `{value, source, comment}` per attribute, stamps `lastVerified`, and ticks the RESEARCH.md checkbox on first research. |
+| `/gather-data-cycle <type> [count\|all][@workers]` | Drive `/gather-data` across many unchecked candidates hands-off. Researches candidates in parallel via isolated fresh-context workers, then serially ticks each RESEARCH.md checkbox and commits its file. Defaults to 5 candidates, 4 parallel workers (e.g. `databases 8@4`, `databases all@3`). |
 
 ### Typical Workflow
 
@@ -85,7 +86,7 @@ Creating a new comparison type end-to-end:
 
 1. **Scope the type.** `/new-type <type> <optional seed>` — iterate on the generated `RESEARCH.md` until purpose, scope, attribute groups, and candidates read well.
 2. **Scaffold schema and stubs.** `/scaffold-type <type>` — generates `attributes.json`, registers the type in `data/index.json`, and creates empty stubs for each Initial Candidate.
-3. **Research each candidate.** `/gather-data <type>` — auto-picks the next under-researched candidate, searches primary sources, and populates the `values` block. Repeat until every candidate is covered.
+3. **Research each candidate.** `/gather-data <type>` — auto-picks the next under-researched candidate, searches primary sources, and populates the `values` block. Repeat until every candidate is covered, or run `/gather-data-cycle <type> [count\|all][@workers]` to research the whole roster hands-off in parallel.
 
 ### Growing an Existing Comparison
 
