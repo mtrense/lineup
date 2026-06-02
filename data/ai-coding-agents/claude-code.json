@@ -108,11 +108,6 @@
       "source": ["https://code.claude.com/docs/en/overview"],
       "comment": "Has an explicit plan-then-execute flow; plan review is surfaced in the VS Code extension and the CLI plan mode."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://code.claude.com/docs/en/overview"],
-      "comment": "Supports packaged, on-demand Skills and custom slash commands (e.g. /review-pr) that the team can share."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://medium.com/@lmpo/the-evolution-of-claude-code-in-2025-a7355dcb7f70"],
@@ -217,6 +212,46 @@
       "value": true,
       "source": ["https://code.claude.com/docs/en/overview"],
       "comment": "Meaningful ecosystem of MCP servers, shareable skills/commands, hooks, and the Agent SDK; integrations across GitHub, GitLab, Slack, Chrome."
+    },
+    "project-memory-files": {
+      "value": ["claude-md"],
+      "source": ["https://code.claude.com/docs/en/memory"],
+      "comment": "Auto-loads CLAUDE.md (and CLAUDE.local.md) at session start; reads CLAUDE.md, not AGENTS.md, though an AGENTS.md can be pulled in via an @AGENTS.md import or a symlink. Checked 2026-06-02."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project", "folder"],
+      "source": ["https://code.claude.com/docs/en/memory"],
+      "comment": "CLAUDE.md scopes span managed policy (org/enterprise), user (~/.claude/CLAUDE.md), project (./CLAUDE.md), and per-folder nested CLAUDE.md files loaded on demand in subdirectories."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "always-on"],
+      "source": ["https://code.claude.com/docs/en/memory"],
+      "comment": "`.claude/rules/*.md` support glob `paths:` frontmatter so a rule loads only when Claude touches matching files (path-based, incl. extension globs like **/*.ts); rules without a paths field load always-on. Agent-requested on-demand material is handled by Skills, not rules."
+    },
+    "auto-memory": {
+      "value": ["supported", "can-be-disabled"],
+      "source": ["https://code.claude.com/docs/en/memory"],
+      "comment": "Auto memory (v2.1.59+) writes cross-session notes itself into ~/.claude/projects/<project>/memory/; on by default and disableable via the /memory toggle, autoMemoryEnabled, or CLAUDE_CODE_DISABLE_AUTO_MEMORY=1."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/skills"],
+      "comment": "Packaged on-demand Skills (SKILL.md) plus custom slash commands; the skill body loads only when used. Follows the Agent Skills open standard."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://code.claude.com/docs/en/skills"],
+      "comment": "By default both: the user invokes via /skill-name and Claude loads a skill automatically when relevant. `disable-model-invocation` makes it user-only; `user-invocable: false` makes it model-only."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://code.claude.com/docs/en/skills"],
+      "comment": "Progressive disclosure: each skill's description stays in context so Claude knows what's available, while the full SKILL.md body loads only when the skill is invoked."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "git", "manual-files"],
+      "source": ["https://code.claude.com/docs/en/skills"],
+      "comment": "Installed by dropping files into .claude/skills/ (manual), shared via git clone/symlink, or bundled in plugins distributed through plugin marketplaces."
     }
   }
 }
