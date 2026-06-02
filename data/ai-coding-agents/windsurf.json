@@ -109,11 +109,6 @@
       "source": ["https://docs.windsurf.com/windsurf/cascade/cascade"],
       "comment": "Cascade has built-in planning: a specialized planning agent continuously refines a long-term plan and generates todo lists for complex tasks."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://docs.windsurf.com/windsurf/cascade/workflows"],
-      "comment": "Supports reusable, packaged capabilities: Workflows are saved markdown playbooks invoked via /slash-commands, and the docs distinguish them from Skills which can trigger autonomously. Both are reusable on-demand capabilities beyond a plain instruction file."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://docs.windsurf.com/windsurf/cascade/image-upload"],
@@ -218,6 +213,46 @@
       "value": true,
       "source": ["https://docs.windsurf.com/windsurf/cascade/mcp", "https://docs.windsurf.com/windsurf/cascade/workflows"],
       "comment": "Supports an MCP server ecosystem plus shareable Workflows/Skills and rules; built on VS Code so it also leverages that extension base."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "custom"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/memories"],
+      "comment": "Auto-loads AGENTS.md (root always-on, subdirectories auto-globbed) and vendor-specific rule files in .windsurf/rules/*.md (the legacy single .windsurfrules is the prior format) — the latter mapped to 'custom'. Also reads a global_rules.md from user config (checked 2026-06-02)."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "user", "project", "folder"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/memories"],
+      "comment": "All four levels: enterprise/system rules in OS dirs deployed read-only by IT; user/global rules in ~/.codeium/windsurf/memories/global_rules.md; project rules in .windsurf/rules/; folder-level via AGENTS.md in subdirectories."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "agent-requested", "always-on"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/memories"],
+      "comment": "Each workspace rule declares a trigger: 'Always On' (always in system prompt), 'Glob' (path-based, applied when Cascade reads/edits a matching file), 'Model Decision' and 'Manual' @rule-name (agent-requested / on-demand). No separate language/file-type mechanism beyond glob, so 'file-type-based' omitted."
+    },
+    "auto-memory": {
+      "value": ["supported"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/memories"],
+      "comment": "Cascade automatically generates and stores cross-session memories when it judges context worth remembering. A global toggle to disable auto-generation is not documented — individual memories can be edited/deleted via the Memories panel, so 'can-be-disabled' is not asserted (checked 2026-06-02)."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.windsurf.com/windsurf/cascade/skills", "https://docs.windsurf.com/windsurf/cascade/workflows"],
+      "comment": "Supports two on-demand packaged-capability mechanisms beyond plain rules: Workflows (markdown step playbooks invoked via /slash-command) and Skills (folders bundling SKILL.md plus reference scripts/templates/checklists that Cascade invokes on demand)."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/skills", "https://docs.windsurf.com/windsurf/cascade/workflows"],
+      "comment": "Skills are both: Cascade autonomously invokes a skill when the request matches its description (model-callable), and the user can force one with @skill-name (user-callable). Workflows are user-callable only via /slash-command — 'Cascade will never invoke a workflow automatically'."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/skills"],
+      "comment": "Skills use progressive disclosure: only each skill's name and description are shown to the model by default; the full SKILL.md body and supporting files load only when Cascade invokes the skill or the user mentions it."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://docs.windsurf.com/windsurf/cascade/skills"],
+      "comment": "No marketplace or registry documented. Skills/Workflows are shared by committing them to the repo (.windsurf/skills/, .windsurf/workflows/) for version-controlled git distribution, or placed manually in global/system directories."
     }
   }
 }
