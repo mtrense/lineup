@@ -108,11 +108,6 @@
       "source": ["https://docs.augmentcode.com/using-augment/agent"],
       "comment": "Agent breaks down requests into a functional plan and implements each step; presents task lists."
     },
-    "skills": {
-      "value": true,
-      "source": ["https://github.com/augmentcode/auggie"],
-      "comment": "Custom slash commands defined as markdown files in .augment/commands/ provide reusable, on-demand capabilities."
-    },
     "multimodal-input": {
       "value": true,
       "source": ["https://docs.augmentcode.com/using-augment/agent"],
@@ -160,7 +155,7 @@
     },
     "custom-rules-instructions": {
       "value": true,
-      "source": ["https://docs.augmentcode.com/setup-augment/guidelines"],
+      "source": ["https://docs.augmentcode.com/setup-augment/guidelines", "https://docs.augmentcode.com/cli/rules"],
       "comment": "Supports User Guidelines, User Rules (~/.augment/rules/), Workspace Rules (.augment/rules), .augment-guidelines, and hierarchical AGENTS.md/CLAUDE.md discovery."
     },
     "hooks-extensibility": {
@@ -217,6 +212,46 @@
       "value": true,
       "source": ["https://www.augmentcode.com/mcp"],
       "comment": "Maintains an MCP server registry/directory and supports 100+ MCP tools plus community rules/commands."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "claude-md", "custom"],
+      "source": ["https://docs.augmentcode.com/setup-augment/guidelines", "https://docs.augmentcode.com/cli/rules"],
+      "comment": "Auto-loads hierarchical AGENTS.md and CLAUDE.md (discovered up the directory tree), plus vendor-specific files: .augment-guidelines and .augment/rules/*.md (mapped to 'custom')."
+    },
+    "memory-scopes": {
+      "value": ["user", "project", "folder"],
+      "source": ["https://docs.augmentcode.com/setup-augment/guidelines", "https://docs.augmentcode.com/cli/rules"],
+      "comment": "User: User Guidelines + ~/.augment/rules/ (global). Project: .augment/rules/ + .augment-guidelines (per workspace). Folder: hierarchical AGENTS.md/CLAUDE.md in subdirectories. No documented enterprise/org-pushed rule scope (enterprise governance exists but not as a rules layer)."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on", "agent-requested"],
+      "source": ["https://docs.augmentcode.com/cli/rules", "https://www.augmentcode.com/changelog/introducing-augment-rules"],
+      "comment": "Rule frontmatter type can be 'always_apply' (always-on) or 'agent_requested' (Auto — agent attaches based on the description field). A 'manual' @-mention type exists IDE-only. CLI docs explicitly state no glob/path-based or file-type matching; directory-hierarchical discovery is the only path-like scoping."
+    },
+    "auto-memory": {
+      "value": ["supported"],
+      "source": ["https://www.augmentcode.com/changelog/memory-review", "https://www.augmentcode.com/blog/how-we-built-memory-review"],
+      "comment": "Augment automatically writes 'Memories' across sessions. Memory Review lets users approve, edit, or discard pending memories in the chat panel, but no documented global on/off toggle to fully disable auto-memory — hence 'supported' without 'can-be-disabled'. Checked 2026-06-02."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/cli/custom-commands", "https://github.com/augmentcode/auggie"],
+      "comment": "Custom slash commands defined as markdown files in .augment/commands/ (and ~/.augment/commands/) are reusable, on-demand capabilities loaded when invoked."
+    },
+    "skill-invocation": {
+      "value": ["user-callable"],
+      "source": ["https://docs.augmentcode.com/cli/custom-commands"],
+      "comment": "Invoked explicitly by the user via /command-name (with namespacing like /frontend:component). No documented mechanism for the model to autonomously select and run a custom command."
+    },
+    "always-on-surface": {
+      "value": ["name-only"],
+      "source": ["https://docs.augmentcode.com/cli/custom-commands"],
+      "comment": "Commands surface by name in the slash-command menu; the full command body is pulled into context only when the user invokes it. A description field exists but commands are user-triggered, not model-auto-selected."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://docs.augmentcode.com/cli/custom-commands"],
+      "comment": "Workspace commands are shared by committing .augment/commands/ to git; otherwise copied manually between machines. No marketplace or package registry for commands is documented."
     }
   }
 }
