@@ -228,7 +228,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] Kilo Code — Open-source agentic coding extension for VS Code/JetBrains (Cline/Roo Code lineage); ide-extension form factor (added 2026-06-05)
 - [x] JetBrains Junie — AI coding agent embedded in JetBrains IDEs (IntelliJ, PyCharm, WebStorm); IDE-integrated form factor (added 2026-06-05)
 - [x] Trae — ByteDance's AI-native IDE (VS Code fork) with autonomous SOLO Builder agent mode; IDE-integrated form factor (added 2026-06-05)
-- [ ] Goose — Open-source on-machine AI agent (CLI + desktop, Rust) under the Linux Foundation's Agentic AI Foundation; CLI/terminal form factor (added 2026-06-05)
+- [x] Goose — Open-source on-machine AI agent (CLI + desktop, Rust) under the Linux Foundation's Agentic AI Foundation; CLI/terminal form factor (added 2026-06-05)
 - [ ] OpenHands — Open-source autonomous agent platform (formerly OpenDevin) completing whole engineering tasks across a codebase; autonomous/cloud form factor (added 2026-06-05)
 - [ ] Amp — Sourcegraph's frontier coding agent driven from terminal, web, CLI, and mobile; CLI/terminal form factor (added 2026-06-05)
 - [ ] Replit Agent — Autonomous in-browser/cloud agent that builds, tests, and deploys apps from prompts; autonomous/cloud form factor (added 2026-06-05)
