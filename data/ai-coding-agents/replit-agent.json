@@ -2,5 +2,253 @@
   "name": "Replit Agent",
   "description": "Autonomous in-browser/cloud agent that builds, tests, and deploys apps from natural-language prompts inside Replit.",
   "url": "https://replit.com/agent4",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Replit",
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Built by Replit, Inc."
+    },
+    "first-release": {
+      "value": "2024-09",
+      "source": ["https://en.wikipedia.org/wiki/Replit", "https://blog.replit.com/agent-v2"],
+      "comment": "Replit Agent first launched September 2024; subsequent versions v2 (Feb 2025), Agent 3 (Sep 2025), Agent 4 (Mar 2026). Checked 2026-06-05."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://replit.com/agent4"],
+      "comment": "Generally available; Agent 4 is the current generation as of mid-2026."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://replit.com/pricing", "https://replit.com/products/agent"],
+      "comment": "Closed-source SaaS; free Starter tier plus paid plans."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Broad app-building agent; also handles mobile (React Native + Expo) but positioned as general full-stack app builder."
+    },
+    "website": {
+      "value": "https://replit.com/products/agent",
+      "source": ["https://replit.com/products/agent"]
+    },
+    "interface": {
+      "value": ["web"],
+      "source": ["https://replit.com/products/agent", "https://replit.com/agent4"],
+      "comment": "Runs in the browser-based Replit workspace; also available via iPhone app (May 2026). No standalone desktop IDE or CLI for the Agent itself."
+    },
+    "host-ides": {
+      "value": ["browser"],
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Operates inside Replit's cloud workspace in the browser (and mobile app)."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Replit Agent is a proprietary, closed-source product."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cloud-service"],
+      "source": ["https://replit.com/products/agent"],
+      "comment": "A hosted cloud development service; provisions databases, runs builds and deploys without the user leaving the browser tab."
+    },
+    "default-model-provider": {
+      "value": ["anthropic"],
+      "source": ["https://claude.com/customers/replit", "https://www.latent.space/p/ainews-replit-agent-4-the-knowledge"],
+      "comment": "Powered by Anthropic Claude since 2024; Agent 4 reportedly uses Sonnet for sustained work and Opus for complex refactoring. Users do not pick the agent's driving model."
+    },
+    "model-choice": {
+      "value": false,
+      "source": ["https://docs.replit.com/replitai/replit-ai-integrations"],
+      "comment": "The agent's own model is fixed (Claude). Replit AI Integrations lets the *built app* call OpenAI/Anthropic/Google/OpenRouter, but that is for the user's app, not switching the agent's driver model."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://docs.replit.com/replitai/replit-ai-integrations"],
+      "comment": "Agent runs on Replit's billing/credits; no documented option to supply your own API key for the agent itself."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Cloud-only hosted service; no local/self-hosted model support."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://replit.com/products/agent", "https://www.latent.space/p/ainews-replit-agent-4-the-knowledge"],
+      "comment": "Scaffolds and edits full multi-file projects; Agent 4 does complex multi-file refactoring."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Plans, scaffolds, writes code, installs dependencies, tests, fixes errors in a reflection loop, and deploys end-to-end from a prompt."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Installs dependencies, runs builds and tests as part of its loop inside the workspace."
+    },
+    "mcp-support": {
+      "value": null,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Replit Agent supports third-party connectors (Stripe, OpenAI, etc.); a community/Replit MCP server exists to control Replit workspaces externally, but Replit does not clearly document the Agent itself consuming MCP servers as tools. Marked null pending primary confirmation (checked 2026-06-05)."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://replit.com/agent4", "https://www.latent.space/p/ainews-replit-agent-4-the-knowledge"],
+      "comment": "Agent 4 runs parallel agents simultaneously on a single project; the agent can also build other agents and workflows."
+    },
+    "codebase-indexing": {
+      "value": null,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "No clear documentation of a built semantic embeddings index of the repo (vs reading files on demand). Marked null rather than guessing."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Agent plans the work and offers an Extended Thinking mode for complex tasks before building."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://blog.replit.com/import"],
+      "comment": "Accepts image/design input (Figma and other design-tool imports into Agent)."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Agent periodically tests the app it builds using a browser, generates a report, and fixes the issues it finds."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://replit.com/products/agent", "https://replit.com/agent4"],
+      "comment": "Conversational prompts drive an autonomous build loop; runs in the cloud so the user can step away. No tab-style inline completion in the Agent surface."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "The Agent is prompt/chat driven. (Replit's separate AI features include code completion, but the Agent product itself is not tab-autocomplete.)"
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Cloud-hosted; the agent builds and tests in the background while the user does other work."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://sourcetoad.com/using-agents-md-in-replit-or-lovable/", "https://docs.replit.com/teams/custom-templates"],
+      "comment": "replit.md is always loaded into the Agent's context as ongoing project memory; checkpoints also preserve conversation context across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://docs.replit.com/core-concepts/agent/checkpoints-and-rollbacks"],
+      "comment": "Automatic checkpoints capture files, packages, config, AI conversation context, and database state; one-click bidirectional rollback/roll-forward."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://blog.replit.com/github", "https://www.lowcode.agency/blog/replit-github-integration"],
+      "comment": "Built-in Git pane with two-way GitHub sync (push commits to GitHub, pull updates), plus repo import/export."
+    },
+    "pr-creation": {
+      "value": null,
+      "source": ["https://blog.replit.com/github"],
+      "comment": "Two-way GitHub sync (commits/push/pull) is documented, but explicit agent-driven pull-request creation is not clearly confirmed in primary docs. Marked null."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.replit.com/teams/custom-templates", "https://sourcetoad.com/using-agents-md-in-replit-or-lovable/"],
+      "comment": "Supports replit.md (always-loaded project memory) and custom_instruction/instructions.md (org-level guidance injected into the system prompt)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Third-party connectors (Stripe, OpenAI, etc.) and the ability to build agents/workflows extend behavior; no programmable event-hook API documented."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "sandboxed"],
+      "source": ["https://replit.com/products/agent", "https://replit.com/products/security"],
+      "comment": "Runs in isolated cloud workspaces; the agent works conversationally with the user reviewing/accepting via checkpoints. Posture is largely autonomous within the sandbox."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://docs.replit.com/teams/information-security/overview"],
+      "comment": "Hosted SaaS on Google Cloud (US, optional India region); no on-prem/self-hosted deployment."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://docs.replit.com/teams/information-security/overview", "https://replit.com/enterprise"],
+      "comment": "Replit states it does not train on customer code; Enterprise tier adds compliance (SOC 2 Type 2), DPA, and stronger data guarantees. Verify the specific zero-training clause for your tier."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac"],
+      "source": ["https://replit.com/enterprise"],
+      "comment": "Enterprise includes SSO (SAML/OIDC), SCIM provisioning, audit logs, and granular role-based permissions. No customer-managed VPC deployment documented."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://replit.com/pricing"],
+      "comment": "Free Starter tier with daily Agent credits; paid subscriptions (Core/Pro) bundle monthly credits with additional usage-based agent consumption. Checked 2026-06-05."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://replit.com/pricing"],
+      "comment": "Starter plan is free with daily Agent credits and up to 1 published project."
+    },
+    "entry-price-usd-mo": {
+      "value": 25,
+      "source": ["https://replit.com/pricing"],
+      "comment": "Replit Core: $25/mo (or $20/mo billed annually), includes $25 monthly credits. Checked 2026-06-05."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://blog.replit.com/2025-replit-in-review", "https://replit.com/agent4"],
+      "comment": "Widely deployed GA product on its 4th generation with large adoption and revenue scale, though the agent capabilities still evolve rapidly."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://blog.replit.com/2025-replit-in-review", "https://www.growthunhinged.com/p/replit-growth-journey"],
+      "comment": "Replit has tens of millions of users overall and strong vibe-coding mindshare; the Agent is a flagship of a large platform."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "Connectors marketplace/integrations (Stripe, OpenAI, etc.) and a large template ecosystem within Replit."
+    },
+    "project-memory-files": {
+      "value": ["custom"],
+      "source": ["https://docs.replit.com/teams/custom-templates", "https://sourcetoad.com/using-agents-md-in-replit-or-lovable/"],
+      "comment": "Vendor-specific replit.md is the always-loaded project memory file; org rules live in custom_instruction/instructions.md. Not the AGENTS.md/CLAUDE.md conventions."
+    },
+    "memory-scopes": {
+      "value": ["enterprise", "project"],
+      "source": ["https://docs.replit.com/teams/custom-templates"],
+      "comment": "Per-project replit.md plus org/enterprise custom_instruction/instructions.md injected for templates. No documented per-user-global or per-folder rule scoping."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://docs.replit.com/teams/custom-templates", "https://sourcetoad.com/using-agents-md-in-replit-or-lovable/"],
+      "comment": "replit.md and custom_instruction/instructions.md are always applied; no documented path/glob or file-type conditional rule activation."
+    },
+    "auto-memory": {
+      "value": ["supported"],
+      "source": ["https://docs.replit.com/teams/custom-templates"],
+      "comment": "Agent auto-generates/updates replit.md project memory; no documented user toggle to disable this behavior."
+    },
+    "skill-support": {
+      "value": false,
+      "source": ["https://replit.com/products/agent"],
+      "comment": "No documented packaged on-demand skill/slash-command mechanism for the Agent beyond instruction files and connectors. Remaining Skills attributes set null."
+    },
+    "skill-invocation": {
+      "value": null,
+      "comment": "Skill Support is false; not applicable."
+    },
+    "always-on-surface": {
+      "value": null,
+      "comment": "Skill Support is false; not applicable."
+    },
+    "skill-distribution": {
+      "value": null,
+      "comment": "Skill Support is false; not applicable."
+    }
+  }
 }
