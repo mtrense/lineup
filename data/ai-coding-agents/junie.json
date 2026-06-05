@@ -2,5 +2,255 @@
   "name": "JetBrains Junie",
   "description": "AI coding agent embedded in IntelliJ IDEA, PyCharm, WebStorm and other JetBrains IDEs; explores the project, plans, writes and tests code.",
   "url": "https://www.jetbrains.com/junie/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "JetBrains",
+      "source": ["https://www.jetbrains.com/junie/", "https://github.com/JetBrains/junie"]
+    },
+    "first-release": {
+      "value": "2025-04",
+      "source": ["https://devclass.com/2025/04/16/jetbrains-goes-live-with-junie-ai-agent-updates-ai-assistant-adds-free-tier/", "https://siliconangle.com/2025/04/16/jetbrains-launches-junie-ai-coding-agent-developers/"],
+      "comment": "Announced/EAP late Jan 2025; reached general availability on 2025-04-16 (in IntelliJ IDEA Ultimate, PyCharm Pro, WebStorm, GoLand)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.jetbrains.com/junie/", "https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "GA since April 2025, now shipped across most JetBrains IDEs plus a CLI. Checked 2026-06-05."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://github.com/JetBrains/junie"],
+      "comment": "Agent is proprietary, governed by JetBrains AI Service Terms; the JetBrains/junie repo is publicly visible (source-available distribution) but not OSI-licensed. Treating as proprietary."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://www.jetbrains.com/junie/"],
+      "comment": "Broad coding agent for bug fixes, feature implementation, refactoring and tests."
+    },
+    "website": {
+      "value": "https://www.jetbrains.com/junie/",
+      "source": ["https://www.jetbrains.com/junie/"]
+    },
+    "interface": {
+      "value": ["ide", "cli"],
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://github.com/JetBrains/junie", "https://junie.jetbrains.com/docs/junie-cli.html"],
+      "comment": "Primary form is an IDE plugin for JetBrains IDEs; JetBrains also ships a Junie CLI (terminal) and a GitHub Action for CI/CD."
+    },
+    "host-ides": {
+      "value": ["jetbrains", "terminal"],
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://github.com/JetBrains/junie"],
+      "comment": "Runs in JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm, GoLand, PhpStorm, RubyMine, RustRover, Rider, CLion, Android Studio) and in the terminal via the Junie CLI. No VS Code plugin (only a feature request as of check)."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/JetBrains/junie"],
+      "comment": "Source is publicly visible on GitHub but governed by proprietary JetBrains AI Service Terms, not an OSI license."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["extension", "cli-tool"],
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://github.com/JetBrains/junie"],
+      "comment": "Ships as a JetBrains IDE plugin (extension) and as a standalone CLI tool; also a GitHub Action for CI/CD."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-model-selection.html"],
+      "comment": "Default is a dynamically selected best price-quality model; users can pick across Anthropic, OpenAI, Google, xAI and OpenRouter. No single fixed provider."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-model-selection.html"],
+      "comment": "Models selectable across providers (Anthropic, OpenAI, Google, xAI, OpenRouter) via JetBrains AI subscription or CLI flags."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-model-selection.html", "https://github.com/JetBrains/junie"],
+      "comment": "BYOK supported for OpenAI, Anthropic, Google, xAI and OpenRouter keys."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://youtrack.jetbrains.com/articles/SUPPORT-A-1830/How-does-Junie-protect-my-data"],
+      "comment": "JetBrains AI/Junie governance includes local/on-premises and offline model options (Enterprise); not as turnkey as Ollama presets, so noted with moderate confidence."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://www.jetbrains.com/help/ai-assistant/junie-agent.html", "https://devclass.com/2025/04/16/jetbrains-goes-live-with-junie-ai-agent-updates-ai-assistant-adds-free-tier/"],
+      "comment": "Can introduce large-scale edits across the project as part of a single task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Code mode breaks a task into a multistep plan, then writes code, runs tests/terminal commands and iterates."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Runs terminal commands and tests; gated by an action allowlist / approval unless Brave Mode is enabled."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://www.jetbrains.com/help/junie/model-context-protocol-mcp.html", "https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "Connects to MCP servers for external tools/data sources."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-subagents.html"],
+      "comment": "Supports custom subagents stored in .junie/agents/; the main agent discovers and delegates focused subtasks to them."
+    },
+    "codebase-indexing": {
+      "value": true,
+      "source": ["https://www.jetbrains.com/junie/", "https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "Leverages the JetBrains IDE's native project index / code intelligence for retrieval rather than only ad-hoc file reads. In the IDE form factor this is the IDE's built index."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "Builds an explicit multistep plan before executing; Ask mode offers read-only analysis/planning."
+    },
+    "multimodal-input": {
+      "value": false,
+      "source": ["https://youtrack.jetbrains.com/projects/JUNIE/issues/JUNIE-61/Feature-Request-Support-Image-Uploads-for-Prompts-Similar-to-VSCode-Augment-Code"],
+      "comment": "Image/screenshot input is an open feature request in JetBrains YouTrack, not yet shipped as of check (2026-06-05)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "No documented capability to drive a real browser/GUI to verify its own changes; MCP can add such tools but it is not built in."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://junie.jetbrains.com/docs/junie-on-github.html"],
+      "comment": "Ask mode (interactive), Code mode with approvals (supervised), Brave Mode (autonomous), and the GitHub Action runs async in CI/CD. No tab inline completion (that is AI Assistant's job)."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://www.jetbrains.com/junie/", "https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
+      "comment": "Junie is the agent; as-you-type tab completion is handled by the separate JetBrains AI Assistant, not Junie."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-on-github.html", "https://github.com/JetBrains/junie-github-action"],
+      "comment": "Junie GitHub Action runs tasks asynchronously in CI/CD (issue-to-PR, fix CI failures) detached from the developer's session."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html"],
+      "comment": "Persistent reusable context via guideline files (.junie/AGENTS.md / AGENTS.md) at project and user-global (~/.junie) scope, added to every task across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Can undo specific file changes or revert the whole project to earlier checkpoints in the conversation."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-on-github.html", "https://github.com/JetBrains/junie-github-action"],
+      "comment": "Native git awareness; runs inside JetBrains IDE VCS and the GitHub Action makes branches/commits."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-on-github.html", "https://github.com/JetBrains/junie-github-action"],
+      "comment": "Junie GitHub Action creates pull requests from issues/comments and posts inline review comments."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html", "https://github.com/JetBrains/junie-guidelines"],
+      "comment": "Project-level guideline files: .junie/AGENTS.md, AGENTS.md, or legacy .junie/guidelines.md."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/custom-slash-commands.html", "https://junie.jetbrains.com/docs/junie-cli-extensions.html", "https://junie.jetbrains.com/docs/agent-skills.html"],
+      "comment": "Extensible via custom slash commands, agent skills, custom subagents, MCP servers, and reusable extension bundles."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Default asks approval per sensitive action (action allowlist); Brave Mode can auto-run all actions, so posture is configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://youtrack.jetbrains.com/articles/SUPPORT-A-1830/How-does-Junie-protect-my-data"],
+      "comment": "AI Enterprise unlocks local/on-premises model options and offline/local-only modes."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://youtrack.jetbrains.com/articles/SUPPORT-A-1830/How-does-Junie-protect-my-data", "https://www.jetbrains.com/privacy-security/"],
+      "comment": "JetBrains states code is never used for AI training and data is not persisted unless the user opts into Detailed Data Collection."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs"],
+      "source": ["https://youtrack.jetbrains.com/articles/SUPPORT-A-1830/How-does-Junie-protect-my-data"],
+      "comment": "JetBrains AI Enterprise provides SSO, audit logs, profile-based policies, provider selection and on-prem/local options."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "subscription", "usage-based"],
+      "source": ["https://www.jetbrains.com/ai-ides/buy/", "https://blog.jetbrains.com/ai/2025/08/a-simpler-more-transparent-model-for-ai-quotas/"],
+      "comment": "AI Free tier with a small monthly credit quota; paid AI Pro/Ultimate subscriptions; credits can be topped up usage-based ($1/credit). BYOK also possible."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.jetbrains.com/ai-ides/buy/", "https://devclass.com/2025/04/16/jetbrains-goes-live-with-junie-ai-agent-updates-ai-assistant-adds-free-tier/"],
+      "comment": "AI Free plan ($0) includes unlimited local AI plus a small cloud credit quota (~3 credits/30 days)."
+    },
+    "entry-price-usd-mo": {
+      "value": 10,
+      "source": ["https://www.jetbrains.com/ai-ides/buy/"],
+      "comment": "AI Pro is $10/mo (10 credits); AI Ultimate $30/mo. Junie is included with the JetBrains AI subscription. Checked 2026-06-05."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://www.jetbrains.com/junie/", "https://blog.jetbrains.com/clion/2025/09/junie-availability/"],
+      "comment": "GA for over a year, backed by JetBrains and shipped across most of its IDEs plus a CLI; stable and widely deployed but still rapidly adding capabilities."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://plugins.jetbrains.com/plugin/26104-junie-the-ai-coding-agent-by-jetbrains", "https://www.jetbrains.com/junie/"],
+      "comment": "Reaches the large JetBrains IDE user base; widely distributed via the Marketplace, though smaller than Copilot/Cursor scale."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-extensions.html", "https://junie.jetbrains.com/docs/agent-skills.html"],
+      "comment": "Marketplace-based extensions and the open Agent Skills format, plus MCP server ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "custom"],
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html", "https://github.com/JetBrains/junie-guidelines"],
+      "comment": "Auto-loads AGENTS.md (and .junie/AGENTS.md); legacy .junie/guidelines.md is the vendor-specific (custom) filename."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html"],
+      "comment": "Project guidelines (repo) plus user-global guidelines at ~/.junie/AGENTS.md, with project taking precedence on conflicts."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html"],
+      "comment": "Guidelines are always-applied; no documented path-based/file-type conditional rule activation for guideline files."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://junie.jetbrains.com/docs/guidelines-and-memory.html"],
+      "comment": "Persistent context relies on user-authored guideline files; no documented autonomous cross-session memory the agent writes itself."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/agent-skills.html"],
+      "comment": "Supports Agent Skills (folders with a SKILL.md) loaded on demand, plus custom slash commands and subagents."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://junie.jetbrains.com/docs/agent-skills.html", "https://junie.jetbrains.com/docs/custom-slash-commands.html"],
+      "comment": "Agent skills are selected and loaded by the model when relevant (model-callable); custom slash commands are explicitly triggered by the user (user-callable)."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://junie.jetbrains.com/docs/agent-skills.html"],
+      "comment": "At startup only skill name+description are loaded; the full SKILL.md is pulled into context only when the relevant skill is invoked (progressive disclosure)."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "git", "manual-files"],
+      "source": ["https://junie.jetbrains.com/docs/agent-skills.html", "https://junie.jetbrains.com/docs/junie-cli-extensions.html"],
+      "comment": "Skills/extensions install via git-based marketplaces, git clone, or by placing the skill folder under .junie/skills manually."
+    }
+  }
 }
