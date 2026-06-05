@@ -1,5 +1,244 @@
 {
   "name": "Void",
   "url": "https://voideditor.com/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Glass Devtools, Inc. (voideditor)",
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "Y Combinator-backed Glass Devtools, Inc.; project published under the voideditor GitHub org."
+    },
+    "first-release": {
+      "value": "2025-01",
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "First public beta release (with autocomplete) Jan 19, 2025 per the changelog. The website/project 'Early Launch' entry is dated Oct 1, 2024; using the first usable editor beta as the public release."
+    },
+    "status": {
+      "value": ["discontinued"],
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Checked 2026-06-05: GitHub repo archived (read-only) on Jun 2, 2026; README states Void is deprecated and no longer accepting contributions. Builds remain downloadable and functional, so it stays in scope, but lifecycle status is discontinued."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Apache-2.0 licensed (VS Code fork). OSI-approved open source."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://voideditor.com/"],
+      "comment": "Broad coding editor; not positioned for a specific niche."
+    },
+    "website": {
+      "value": "https://voideditor.com/",
+      "source": ["https://voideditor.com/"]
+    },
+    "interface": {
+      "value": ["ide"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "Standalone AI-native editor built as a fork of VS Code."
+    },
+    "host-ides": {
+      "value": ["standalone"],
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Forked VS Code editor that runs as its own standalone application."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Agent/editor source is Apache-2.0 on GitHub."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["standalone-editor"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "Full standalone editor (VS Code fork), not an extension."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://voideditor.com/"],
+      "comment": "No single default vendor model; Void is BYO-LLM and connects directly to whichever provider/model the user configures (Anthropic, OpenAI, Google, local, etc.)."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Users choose among many models/providers from within the editor."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Core feature: keys stored locally and used to call providers directly with no middle-layer backend."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Supports local/self-hosted models via Ollama and vLLM (DeepSeek, Llama, Qwen, Gemma, Mistral, etc.)."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "Agent mode can create and edit files across the codebase; multi-file background editing with file syncing."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "Agent mode chains steps — searches the codebase, reads/writes files, and runs terminal commands toward a task."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "Agent mode can control the terminal as part of its loop."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "Native MCP support added in the June 5, 2025 update (v1.4.x)."
+    },
+    "subagents-parallel-agents": {
+      "value": null,
+      "comment": "No documented support for spawning subagents or parallel agent workers; Void runs a single agent loop. Marked null rather than false as the docs do not explicitly address it."
+    },
+    "codebase-indexing": {
+      "value": null,
+      "source": ["https://voideditor.com/"],
+      "comment": "Agent mode searches the codebase, but no documentation confirms a built semantic/embeddings index vs. on-demand file reads. Indeterminate."
+    },
+    "planning-mode": {
+      "value": null,
+      "comment": "Void offers Agent / Gather (read-only) / Chat modes; Gather is read-only exploration but not documented as an explicit plan-then-execute phase. Indeterminate."
+    },
+    "multimodal-input": {
+      "value": null,
+      "comment": "No clear documentation of image/screenshot input. Indeterminate; depends partly on the underlying model selected."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "No built-in browser/GUI driving capability documented; agent acts on files and terminal only."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "inline-completion"],
+      "source": ["https://voideditor.com/", "https://voideditor.com/changelog"],
+      "comment": "Ctrl+L chat, Ctrl+K inline edits, Tab autocomplete, and an Agent mode that edits/runs with the user in the loop."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog"],
+      "comment": "Tab autocomplete (FIM-model based), introduced at the initial beta."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://voideditor.com/"],
+      "comment": "Local desktop editor; the agent runs in the active session rather than dispatching detached/cloud background tasks."
+    },
+    "persistent-memory": {
+      "value": null,
+      "comment": "No documentation of cross-session project memory or learned preferences. Indeterminate."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://voideditor.com/", "https://voideditor.com/changelog"],
+      "comment": "Checkpoints feature lets users jump between / revert LLM edits (added Apr 14, 2025)."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Inherits VS Code's native git integration (staging, diffs, commits)."
+    },
+    "pr-creation": {
+      "value": null,
+      "comment": "No documented native PR-creation feature beyond inherited VS Code git/extension capabilities. Indeterminate."
+    },
+    "custom-rules-instructions": {
+      "value": null,
+      "comment": "No clearly documented project-level instruction-file convention (rules / AGENTS.md style) for Void's agent. Indeterminate."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog", "https://github.com/voideditor/void"],
+      "comment": "Extensible via MCP servers (external tools) and inherits the VS Code extension ecosystem."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://voideditor.com/", "https://voideditor.com/changelog"],
+      "comment": "Agent mode acts on files/terminal with user review; a read-only Gather mode restricts the agent to read operations, giving configurable autonomy."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Runs entirely on the user's machine; can point at fully self-hosted/local models with no vendor backend involved."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Void sends no data through a private backend — keys stored locally and requests go directly to the chosen provider, so the vendor never receives or trains on user code."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://voideditor.com/"],
+      "comment": "Open-source local editor from a small team; no SSO/RBAC/audit/VPC enterprise governance offered."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "The editor itself is free and open source; the user pays only their own LLM provider via BYO-key. No Void subscription."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://voideditor.com/"],
+      "comment": "Editor is entirely free to download and use; only model API costs (if using a paid provider) apply."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://voideditor.com/"],
+      "comment": "No paid plan for the editor; free and open source (BYO model key). 0 per the guideline for a genuine free tier covering core use."
+    },
+    "maturity": {
+      "value": 2,
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "Reached only beta (latest changelog v1.4.x, mid-2025) and development is now paused/archived as of June 2026; usable but never reached polished GA."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/voideditor/void"],
+      "comment": "~28.8k GitHub stars (notable interest) but a single-vendor project that is now deprecated/archived, so the active user community is small."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://voideditor.com/changelog", "https://github.com/voideditor/void"],
+      "comment": "As a VS Code fork it can use VS Code extensions, and supports MCP servers as third-party tooling."
+    },
+    "project-memory-files": {
+      "value": ["none"],
+      "comment": "No documented auto-loaded project instruction-file convention specific to Void's agent. Marked none for the always-on memory surface."
+    },
+    "memory-scopes": {
+      "value": null,
+      "comment": "No documented memory/rules scoping levels. Indeterminate."
+    },
+    "scoped-rules-files": {
+      "value": ["none"],
+      "comment": "No documented conditional/scoped rule-file mechanism."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://voideditor.com/"],
+      "comment": "No automatic cross-session memory the agent writes on its own is documented."
+    },
+    "skill-support": {
+      "value": false,
+      "source": ["https://voideditor.com/"],
+      "comment": "No packaged reusable skill/recipe mechanism beyond MCP tools and built-in modes; remaining Skills attributes left empty/null."
+    },
+    "skill-invocation": {
+      "value": null,
+      "comment": "Skills not supported."
+    },
+    "always-on-surface": {
+      "value": ["none"],
+      "comment": "Skills not supported."
+    },
+    "skill-distribution": {
+      "value": ["none"],
+      "comment": "Skills not supported."
+    }
+  }
 }
