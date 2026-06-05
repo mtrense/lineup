@@ -2,5 +2,257 @@
   "name": "Kimi CLI",
   "description": "Moonshot AI's open-source terminal agent for software-development and terminal tasks; skills and MCP support.",
   "url": "https://github.com/MoonshotAI/kimi-cli",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Moonshot AI",
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Built by Moonshot AI (the team behind the Kimi models). The repo/product is being rebranded from \"Kimi CLI\" to \"Kimi Code CLI\" as of mid-2026; same team and repo (MoonshotAI/kimi-cli). Checked 2026-06-05."
+    },
+    "first-release": {
+      "value": "2025-10",
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Repository created 2025-10-15; earliest published release tag (0.33) on 2025-10-21. First public release October 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Actively developed (release 1.47.0 by Jun 2026; ~8.9k GitHub stars). Repo is being rebranded to \"Kimi Code CLI\" but is not discontinued. Checked 2026-06-05."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Apache-2.0 (per repo licenseInfo and LICENSE file). The agent tool is open source; the default Kimi models it drives are not."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Broad terminal coding/dev agent; not positioned for a narrower niche."
+    },
+    "website": {
+      "value": "https://github.com/MoonshotAI/kimi-cli",
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Docs site at https://moonshotai.github.io/kimi-cli/"
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Terminal CLI agent with a built-in shell mode (Ctrl-X). Can also run as an ACP server for IDE clients, but it is fundamentally a CLI tool, not an IDE/extension of its own."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Runs in the terminal. Via ACP (`kimi acp`) it can be driven from Zed/JetBrains, but it is not itself a host IDE; primary host is the terminal."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Agent source is Apache-2.0 licensed and publicly developed."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Installed as a standalone CLI (uv tool / pip)."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Default/flagship is Moonshot's own Kimi K2 (Moonshot is not a defined tag option), but the tool also configures OpenAI, Anthropic, Gemini, Vertex, and OpenAI-compatible providers, so provider is effectively multiple."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Supports multiple providers (Kimi/Moonshot, OpenAI, Anthropic, Gemini, Vertex) selectable via config or --model."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Can authenticate with a Moonshot AI Open Platform API key or other providers' own API keys (OpenAI/Anthropic/Gemini)."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Supports OpenAI-compatible / custom model endpoints, which covers local servers (e.g. Ollama, vLLM) exposing an OpenAI-compatible API."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Reads and edits code across the codebase as part of a task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Can \"autonomously plan and adjust actions during execution\" — chains edit/run/fix steps toward a goal; supports a --yolo/--afk auto-approve mode for hands-off runs."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Runs shell commands as part of its loop, plus an explicit shell mode (Ctrl-X)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Shipped MCP support; servers managed via `kimi mcp` (add/list/remove/auth/test), HTTP and stdio."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Supports subagents (coder/explore/plan types) launched via an Agent tool for focused subtasks."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No documented semantic index/embeddings store; reads files on demand into context rather than building a repo index."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Explicit plan mode (--plan) restricts the agent to read-only tools for analysis before execution."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "ReadMediaFile tool reads image (and video) files when the selected model declares image input capability."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Can search and fetch web pages (text), but no documented ability to drive a real browser/GUI to act and verify changes."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Interactive terminal chat with per-action approval (supervised) by default; --yolo/--afk enable autonomous hands-off runs. No tab autocomplete or detached cloud/async execution."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Terminal agent; no as-you-type tab completion."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Runs in the foreground terminal session; --afk auto-approves prompts but is not a detached/cloud background dispatch where the user closes the session."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Sessions can be resumed/continued (--session ID / --continue), restoring prior conversation context across runs; AGENTS.md provides persistent project instructions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Provides a checkpoint-rollback mechanism (SendDMail tool described for checkpoint rollback scenarios)."
+    },
+    "git-integration": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No documented dedicated git tooling (staging/diff/commit awareness); git is only reachable by running shell commands, which does not meet the native-git-awareness bar."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No documented native PR creation; could only happen via ad-hoc shell/`gh` invocation, not a built-in feature."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Auto-loads an AGENTS.md project instruction file into the system prompt (the repo itself ships an AGENTS.md)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Extensible via MCP servers, reusable Skills (with a skill-creator), and an Agent SDK / ACP server interface. No dedicated event-hook system documented, but it has clear extension surfaces."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Default interactive mode prompts for file edits, shell commands, and network actions; --yolo bypasses approvals and --afk auto-dismisses them, so the posture is configurable."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Open-source CLI that runs entirely on the user's machine; with a local/OpenAI-compatible endpoint it can run without a vendor cloud. No SaaS control plane required for the agent itself."
+    },
+    "privacy-mode": {
+      "value": null,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No explicit zero-training guarantee documented for the agent/provider. Running against a local or third-party (BYOK) provider avoids Moonshot entirely, but no vendor privacy-mode claim was found; left null. Checked 2026-06-05."
+    },
+    "enterprise-controls": {
+      "value": null,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "No enterprise governance features (SSO/audit/RBAC/VPC) documented for this open-source CLI; could not confirm a 'none' positively from docs, so left null. Checked 2026-06-05."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only", "usage-based"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli", "https://platform.moonshot.ai/"],
+      "comment": "The CLI tool itself is free and open source. Model usage requires a provider: Moonshot Open Platform API keys are pay-as-you-go (usage-based), or any other provider's key / local model (BYOK). No subscription for the tool. Checked 2026-06-05."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "The CLI is free; with a free local/OpenAI-compatible model it is usable at no cost. Moonshot's paid API is needed only for the hosted Kimi models."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "No paid plan for the tool; it is free/open-source and can run on BYOK or a local model. Hosted Moonshot model usage is usage-based, not a fixed monthly plan."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Released Oct 2025, rapidly iterating (1.47.0 by Jun 2026, ~8.9k stars) and mid-rebrand to Kimi Code CLI; usable but still evolving. Checked 2026-06-05."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "~8.9k GitHub stars as of Jun 2026 — a growing but still single-vendor, relatively new tool compared with Aider/Cline-scale communities."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Supports the broader MCP server ecosystem and shareable Skills (including reuse of .claude/skills directories)."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt", "https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "Auto-loads AGENTS.md as the project instruction file (repo ships its own AGENTS.md)."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Config and skills exist at user level (~/.kimi) and project level (.kimi / AGENTS.md). No enterprise or per-folder scoping documented."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "AGENTS.md is an always-applied instruction file; no documented path/glob or file-type conditional rule activation."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Sessions can be resumed and AGENTS.md is a manual instruction file, but no documented mechanism where the agent autonomously writes cross-session memories. Checked 2026-06-05."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "First-class Skills: a skill is a directory with a SKILL.md; built-in skills (kimi-cli-help, skill-creator) plus user/project skills."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Users invoke skills via /skill:<name> and /flow:<name>; skill names and descriptions are injected into the system prompt so the model can also select them autonomously."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "On start, Kimi discovers skills and injects their names, paths, and descriptions into the system prompt; full body is pulled in only when invoked (progressive disclosure)."
+    },
+    "skill-distribution": {
+      "value": ["manual-files"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Skills are directories dropped into user/project skill folders (incl. reuse of .claude/skills); no curated marketplace or package registry documented. Git clone into those folders is possible but not an official distribution channel."
+    }
+  }
 }

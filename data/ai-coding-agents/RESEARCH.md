@@ -236,7 +236,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] Plandex — Open-source plan-first terminal agent with diff-review sandbox and 2M-token context; CLI/terminal form factor (added 2026-06-05)
 - [x] Qwen Code — Alibaba Qwen team's open-source terminal agent for Qwen coder models; CLI/terminal form factor (added 2026-06-05)
 - [x] Factory Droid — Factory's agent-native CLI agent for autonomous multi-model software development; CLI/terminal form factor (added 2026-06-05)
-- [ ] Kimi CLI — Moonshot AI's open-source terminal agent with skills and MCP support; CLI/terminal form factor (added 2026-06-05)
+- [x] Kimi CLI — Moonshot AI's open-source terminal agent with skills and MCP support; CLI/terminal form factor (added 2026-06-05)
 
 ## Notes for Researchers
 
