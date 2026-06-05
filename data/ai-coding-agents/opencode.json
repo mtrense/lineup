@@ -2,5 +2,256 @@
   "name": "opencode",
   "description": "Open-source terminal-based AI coding agent.",
   "url": "https://opencode.ai/docs/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Anomaly (formerly SST / Serverless Stack team)",
+      "source": ["https://github.com/sst/opencode", "https://opencode.ai/docs/"],
+      "comment": "Repo is anomalyco/opencode; project originated with the SST team and was rebranded under Anomaly."
+    },
+    "first-release": {
+      "value": "2025-06",
+      "source": ["https://github.com/sst/opencode/releases"],
+      "comment": "Public terminal release in June 2025 (repo created April 2025); checked 2026-06-05."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/sst/opencode", "https://opencode.ai/docs/"],
+      "comment": "Actively developed, frequent releases; ~170k GitHub stars as of 2026-06-05."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/sst/opencode"],
+      "comment": "MIT License per GitHub repo metadata."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://opencode.ai/docs/"],
+      "comment": "Broad general-purpose coding agent."
+    },
+    "website": {
+      "value": "https://opencode.ai",
+      "source": ["https://opencode.ai/docs/"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web"],
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/ide/"],
+      "comment": "Primary terminal TUI/CLI; IDE extension runs opencode in the integrated terminal of VS Code and forks; web/share interface for sessions. Docs describe a desktop app but the IDE page clarifies the extension is terminal-based rather than a standalone desktop GUI."
+    },
+    "host-ides": {
+      "value": ["terminal", "vscode", "browser"],
+      "source": ["https://opencode.ai/docs/ide/", "https://opencode.ai/docs/share/"],
+      "comment": "Runs in the terminal; VS Code extension also covers Cursor, Windsurf, VSCodium (VS Code forks). Shared sessions viewable in browser. No native JetBrains/Neovim extension."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/sst/opencode"],
+      "comment": "MIT-licensed source on GitHub."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool", "extension"],
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/ide/"],
+      "comment": "Fundamentally a CLI tool; also ships an editor extension that launches it in the integrated terminal."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://opencode.ai/docs/models/", "https://opencode.ai/docs/zen/"],
+      "comment": "No hardcoded default; supports 75+ providers via Models.dev. Recommends models from Anthropic, OpenAI, Google, etc.; optional OpenCode Zen gateway is also available."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/models/"],
+      "comment": "75+ providers; model selected via --model flag, config, or last-used."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/models/", "https://opencode.ai/docs/zen/"],
+      "comment": "Users add provider credentials via /connect; BYOK is the primary usage model."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/models/"],
+      "comment": "Supports local providers such as LM Studio (e.g. lmstudio/... model ids); compatible with local frameworks."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/agents/"],
+      "comment": "Build agent has full edit/file tools to apply coordinated edits across files."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/agents/"],
+      "comment": "Build agent chains edit/run/bash tools to complete multi-step tasks; subagents can be delegated specific tasks."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/agents/", "https://opencode.ai/docs/commands/"],
+      "comment": "Has a bash tool gated by the permission system; commands can also inject shell output."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/mcp-servers/"],
+      "comment": "Documented support for local and remote MCP servers, with OAuth and per-agent enable/disable."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/agents/"],
+      "comment": "Distinguishes primary agents and subagents; subagents are invoked for specific tasks and can be defined per project/global."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/agents/"],
+      "comment": "No documented semantic/embeddings index; the agent reads files on demand via its file/grep tools rather than building a persistent index."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/agents/"],
+      "comment": "Built-in Plan agent restricts edits/bash for planning and analysis before switching to Build."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/"],
+      "comment": "Supports attaching files including images (@file syntax); image input depends on the selected model. Treated as true given documented file-attachment support, though it is model-dependent."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://opencode.ai/docs/mcp-servers/", "https://opencode.ai/docs/"],
+      "comment": "No built-in browser/GUI driving. Browser-style capabilities would require an external MCP server rather than a native feature."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://opencode.ai/docs/agents/", "https://opencode.ai/docs/"],
+      "comment": "Conversational TUI with per-action permission prompts (supervised); permissions can be set to allow for more autonomous runs. No inline tab completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://opencode.ai/docs/"],
+      "comment": "Terminal/TUI agent with no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": null,
+      "source": ["https://opencode.ai/docs/share/"],
+      "comment": "opencode has a client/server architecture and a server mode, but documentation does not clearly establish dispatch-and-walk-away async task execution; left null pending confirmation (checked 2026-06-05)."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/rules/", "https://opencode.ai/docs/"],
+      "comment": "Sessions persist and can be resumed; AGENTS.md project/global rules carry context across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/"],
+      "comment": "Intro docs describe undo/redo functionality to revert agent changes within a session."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/agents/"],
+      "comment": "Agent can run git via the bash tool and is git-aware (AGENTS.md committed to git); diffs shown in TUI."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/agents/", "https://opencode.ai/docs/commands/"],
+      "comment": "No dedicated PR feature, but can open PRs by running gh/git commands via the bash tool or custom commands."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/rules/"],
+      "comment": "Auto-loads AGENTS.md (project and global) plus legacy CLAUDE.md; custom instruction files configurable in opencode.json."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/commands/", "https://opencode.ai/docs/skills/", "https://opencode.ai/docs/mcp-servers/"],
+      "comment": "Extensible via custom commands, agent skills, custom agents, and MCP servers."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://opencode.ai/docs/agents/"],
+      "comment": "Granular per-tool permissions set to ask/allow/deny, with glob patterns; defaults to prompting for approval."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://github.com/sst/opencode", "https://opencode.ai/docs/models/"],
+      "comment": "Open-source tool runs entirely on the user's machine with local models or self-managed provider keys; no vendor backend required."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/models/", "https://github.com/sst/opencode"],
+      "comment": "Runs locally and uses the user's own provider keys (or local models), so the opencode vendor does not collect or train on code; actual training behavior depends on the chosen model provider."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://opencode.ai/docs/", "https://opencode.ai/docs/zen/"],
+      "comment": "No SSO/RBAC/audit-log governance documented for the open-source tool; Zen offers team workspaces (free beta) but not formal enterprise controls."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only", "usage-based"],
+      "source": ["https://github.com/sst/opencode", "https://opencode.ai/docs/zen/"],
+      "comment": "The tool itself is free and open-source; you pay your model provider (BYOK). Optional OpenCode Zen gateway is pay-as-you-go usage-based with some free models."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/sst/opencode", "https://opencode.ai/docs/zen/"],
+      "comment": "The agent is free to run; only model usage costs apply, and Zen offers some free models."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/sst/opencode"],
+      "comment": "Free, open-source tool with no subscription; core coding use is covered at $0 (model API/usage costs are separate)."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/sst/opencode"],
+      "comment": "Polished, widely adopted (~170k stars), frequent releases; still rapidly evolving so not a full 5."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/sst/opencode"],
+      "comment": "~170k GitHub stars as of 2026-06-05; one of the most popular open-source coding agents."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/mcp-servers/", "https://opencode.ai/docs/skills/", "https://opencode.ai/docs/commands/"],
+      "comment": "MCP servers, agent skills, custom commands and custom agents form a meaningful extensibility ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "claude-md"],
+      "source": ["https://opencode.ai/docs/rules/"],
+      "comment": "Auto-loads AGENTS.md (project + global ~/.config/opencode/AGENTS.md); CLAUDE.md supported as legacy for Claude Code compatibility."
+    },
+    "memory-scopes": {
+      "value": ["user", "project", "folder"],
+      "source": ["https://opencode.ai/docs/rules/"],
+      "comment": "Global (per-user) and project-root AGENTS.md; project rules apply in the directory and its sub-directories with hierarchical lookup, covering folder scope. No enterprise-policy scope documented."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "always-on"],
+      "source": ["https://opencode.ai/docs/rules/"],
+      "comment": "AGENTS.md is always-on; additional instruction files can be configured with glob patterns (e.g. packages/*/AGENTS.md), giving path-based scoping."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://opencode.ai/docs/rules/"],
+      "comment": "Memory is via manually maintained AGENTS.md; no documented mechanism for the agent to autonomously write cross-session memories."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/skills/"],
+      "comment": "Native Agent Skills (SKILL.md files) loaded on demand via a skill tool; also custom slash commands."
+    },
+    "skill-invocation": {
+      "value": ["model-callable", "user-callable"],
+      "source": ["https://opencode.ai/docs/skills/", "https://opencode.ai/docs/commands/"],
+      "comment": "Skills are agent/model-callable via the skill tool; custom commands are user-callable via /command in the TUI."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://opencode.ai/docs/skills/"],
+      "comment": "Progressive disclosure: only skill name + description are listed in the skill tool by default; full SKILL.md content is loaded when invoked."
+    },
+    "skill-distribution": {
+      "value": ["manual-files", "git"],
+      "source": ["https://opencode.ai/docs/skills/"],
+      "comment": "Skills are markdown files placed in .opencode/skills/<name>/SKILL.md or the global config dir; no official marketplace/registry, so distributed by manual file copy or git."
+    }
+  }
 }
