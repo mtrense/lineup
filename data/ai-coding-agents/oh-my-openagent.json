@@ -1,5 +1,257 @@
 {
   "name": "Oh My OpenAgent",
+  "description": "Open-source agent harness (formerly oh-my-opencode) that orchestrates multiple specialized agents and models on top of OpenCode (Ultimate Edition) and Codex CLI (Light Edition) for autonomous work on complex codebases",
   "url": "https://omo.dev/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "code-yeongyu (Sisyphus Labs)",
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Built by GitHub user code-yeongyu; skills marketplace published under 'sisyphuslabs'. Open-source community project, not a company."
+    },
+    "first-release": {
+      "value": "2025-12",
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Repository created 2025-12-03; earliest tags are v0.1.x. Previously named 'oh-my-opencode'. Checked 2026-06-05."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Actively developed (v4.7.5 / June 2026, thousands of commits). Checked 2026-06-05."
+    },
+    "license": {
+      "value": ["source-available"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Licensed under SUL-1.0 (Sustainable Use License), a source-available license that restricts commercial/hosted use; GitHub reports license as 'Other' (NOASSERTION). Marketed loosely as 'open-source' but it is not an OSI license."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Positioned as a general harness for complex software engineering across the codebase."
+    },
+    "website": {
+      "value": "https://omo.dev/",
+      "source": ["https://omo.dev/"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Terminal harness/plugin installed onto OpenCode or Codex CLI; ships a tmux-integrated TUI. No standalone IDE or web app."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Runs in the terminal on top of OpenCode (>=1.0.150) or Codex CLI."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Source is public but under SUL-1.0 (source-available, restricts commercial use), not an OSI open-source license, so false per the Open Source guideline."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool", "extension"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "A CLI harness that installs as a plugin/extension onto OpenCode and Codex CLI rather than a self-contained editor."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Orchestrates and routes across many providers (Anthropic, OpenAI, Google, Kimi/Moonshot, GLM/Z.ai, MiniMax) with per-agent model matching."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Core premise is multi-model orchestration; agents are matched to different models, configurable by the user."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Requires the user's own credentials/subscriptions across Anthropic, OpenAI, Google (Antigravity OAuth), GitHub Copilot, Kimi, GLM/Z.ai, MiniMax, Vercel AI Gateway."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Docs reference Ollama integration within provider chains; runs on OpenCode which supports local providers. Marked true but local routing is secondary to subscription-based providers."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Coordinated edits across the codebase via the hash-anchored 'Hashline' edit tooling and parallel workers."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "'ultrawork' mode runs auto-planning, deep research, parallel agents, and self-correction loops end-to-end with minimal per-step prompting."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Runs shell/build/test commands; tmux-integrated execution for parallel agents."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Ships built-in MCP servers (Exa, Context7, Grep.app, LSP, AST-Grep); includes an `mcp oauth` command."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Core feature: Sisyphus orchestration with 10+ specialized agents and Team Mode running up to 8 parallel background workers."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Uses LSP + AST-grep search and a `/init-deep` command that generates hierarchical AGENTS.md docs, plus search MCPs. No semantic embeddings index, so false per the Codebase Indexing guideline."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Explicit plan-then-execute split via a planning agent (Prometheus/Atlas, `/start-work`)."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://omo.dev/"],
+      "comment": "Includes a multimodal 'Looker' agent for image/visual input."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Ships a Playwright skill enabling the agent to drive a browser to verify changes."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Conversational TUI plus autonomous 'ultrawork' execution with parallel background workers. No tab inline completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "CLI harness with no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Spawns parallel background worker agents; the 'boulder' system resumes long-running work across sessions."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Session continuity via the 'boulder' work-state (boulder.json: active plan, session lineage) plus 'wisdom accumulation' across tasks; AGENTS.md project memory persists across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": false,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "The 'boulder' system resumes/checkpoints work-state but is session continuity, not a working-tree snapshot/restore. No documented one-click rollback of an agent run, so false per the guideline."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Includes a 'git-master' skill/agent for atomic commits."
+    },
+    "pr-creation": {
+      "value": null,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "No PR-creation capability documented in the CLI reference or product page. Could be done via shell/gh but not an advertised feature; left null. Checked 2026-06-05."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Auto-loads AGENTS.md project instruction files (a `/init-deep` command generates a hierarchical set)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://a2a-mcp.org/blog/what-is-oh-my-openagent", "https://omo.dev/"],
+      "comment": "Documented '40+ lifecycle hooks' plus a skills system and embeddable MCPs."
+    },
+    "permission-model": {
+      "value": ["configurable"],
+      "source": ["https://a2a-mcp.org/blog/what-is-oh-my-openagent", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Explicit, scoped tool permissions per agent (configurable); inherits OpenCode's permission gating."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Runs entirely on the user's own machine on top of a local OpenCode/Codex CLI install; no vendor backend required beyond the chosen model APIs."
+    },
+    "privacy-mode": {
+      "value": false,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Only anonymous telemetry opt-out (OMO_SEND_ANONYMOUS_TELEMETRY=0) is documented; no zero-training guarantee from the harness itself (training behavior depends on whichever model provider the user supplies). Checked 2026-06-05."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Single-developer open-source CLI harness; no SSO/RBAC/audit/VPC governance features documented."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "The harness itself is free; users pay only for their own model subscriptions/API keys (BYOK)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://omo.dev/"],
+      "comment": "The harness is free to install and use; only the underlying model access costs money."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://omo.dev/"],
+      "comment": "Free, source-available harness; per the guideline, 0 because the tool itself has no paid plan (model API/subscription costs are separate)."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Released Dec 2025, very rapid release cadence (v4.x by mid-2026) and strong GitHub traction (~61k stars), but young, fast-changing, and dependent on OpenCode/Codex. Usable but evolving. Checked 2026-06-05."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "~61k GitHub stars in ~6 months signals strong interest, but as a single-vendor harness layered on OpenCode the active-user base is smaller than mainstream agents; judged medium. Star count is a rough proxy only. Checked 2026-06-05."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md", "https://omo.dev/"],
+      "comment": "Has a skills marketplace ('sisyphuslabs'), bundled MCP servers, and lifecycle hooks; also rides OpenCode's MCP ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Auto-loads AGENTS.md; `/init-deep` generates a hierarchical set of AGENTS.md files across the repo."
+    },
+    "memory-scopes": {
+      "value": ["project", "folder"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Hierarchical AGENTS.md placed per-project and in nested folders. No documented enterprise/user-global rule scope, so those are omitted."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Hierarchical/nested AGENTS.md applies by directory location (path-based). Marked path-based; the per-directory placement is the activation mechanism."
+    },
+    "auto-memory": {
+      "value": ["supported"],
+      "source": ["https://omo.dev/"],
+      "comment": "'Wisdom accumulation' writes cross-task knowledge automatically; no documented toggle to disable it, so 'can-be-disabled' is not added. Checked 2026-06-05."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Has a packaged skills system (e.g. playwright, git-master, frontend-ui-ux) loaded on demand, beyond plain AGENTS.md instructions."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
+      "comment": "Skills are injected/selected autonomously by the orchestrator (model-callable) and also triggered via commands like `ultrawork`/slash commands (user-callable)."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://omo.dev/"],
+      "comment": "Skill-injection assembles capabilities on demand for the relevant domain (progressive disclosure), implying name/description are surfaced and full content loaded when invoked. Inferred from the dynamic skill-injection design; not exhaustively documented."
+    },
+    "skill-distribution": {
+      "value": ["registry", "manual-files"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
+      "comment": "Skills come bundled and via a 'sisyphuslabs' marketplace/registry repo referenced in opencode.json plugin config; also editable as local files. Distribution details are only partially documented."
+    }
+  }
 }
