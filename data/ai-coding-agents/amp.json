@@ -2,5 +2,255 @@
   "name": "Amp",
   "description": "Sourcegraph's frontier coding agent; start an agent in the terminal and control it from web, CLI, and mobile.",
   "url": "https://ampcode.com/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Amp (originally Sourcegraph)",
+      "source": ["https://ampcode.com/", "https://www.producthunt.com/products/amp-free"],
+      "comment": "Built by Sourcegraph; spun off into its own company (Amp Frontier Corp) on Dec 2, 2025. Checked 2026-06-05."
+    },
+    "first-release": {
+      "value": "2025-05",
+      "source": ["https://www.producthunt.com/products/amp-free", "https://ampcode.com/news"],
+      "comment": "Research preview launched May 2025; Amp Free (free for everyone) followed in Oct 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://ampcode.com/"],
+      "comment": "Actively developed; CLI redesigned ('Neo by Amp') in May 2026."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://ampcode.com/pricing", "https://www.producthunt.com/products/amp-free"],
+      "comment": "Closed-source product; usage-based credits with a free tier (Amp Free)."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://ampcode.com/"],
+      "comment": "Positioned as a general-purpose frontier coding agent."
+    },
+    "website": {
+      "value": "https://ampcode.com/",
+      "source": ["https://ampcode.com/"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/"],
+      "comment": "Terminal-first CLI, IDE extensions (VS Code, JetBrains, Neovim, Zed), and a web surface for remote control. Mobile remote control also offered."
+    },
+    "host-ides": {
+      "value": ["terminal", "vscode", "jetbrains", "neovim", "browser"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/news"],
+      "comment": "CLI in terminal; editor extensions for VS Code, JetBrains, Neovim, Zed; web/browser for remote control. Also works inside Cursor/Windsurf forks."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://ampcode.com/pricing"],
+      "comment": "Proprietary; agent source is not openly licensed."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool", "extension", "cloud-service"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/security"],
+      "comment": "CLI tool plus IDE extensions; backend runs as a cloud service (ampcode.com on GCP)."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/"],
+      "comment": "Routes across providers (Claude Opus 4.8 for smart mode, GPT-5.5 for the oracle, plus fast models) rather than a single default."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Offers Deep/Smart/Rush modes mapping to different models; user picks the mode rather than arbitrary models."
+    },
+    "bring-your-own-key": {
+      "value": false,
+      "source": ["https://ampcode.com/pricing", "https://ampcode.com/security"],
+      "comment": "Primarily billed via Amp credits (zero markup); security page mentions limited own-key use but pricing model is credit-based, not general BYOK. Checked 2026-06-05."
+    },
+    "local-model-support": {
+      "value": false,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "No documented local/self-hosted model support; relies on hosted frontier models."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Edits multiple files as part of agentic tasks."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Chains edit-run-fix steps; by default does not ask for approval before running tools."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Runs shell commands, builds, and tests as part of its loop."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Supports local and remote MCP servers (command/args or HTTP), bundlable via mcp.json in skills."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/"],
+      "comment": "Spawns subagents with isolated context for parallel/multi-step work."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "No explicit semantic-index/embeddings layer documented; uses file mention/search and reads files on demand rather than a built index."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Supports a read-only planning approach (e.g. instructing it not to edit files); not a hard-gated dedicated mode."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Accepts image attachments via clipboard (Ctrl+V) or file mention."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Can screenshot localhost URLs and inspect/modify UI from visual feedback."
+    },
+    "operating-mode": {
+      "value": ["inline-completion", "interactive-chat", "autonomous", "async-background"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/news"],
+      "comment": "Interactive CLI/chat plus autonomous execution; Amp Tab provides inline completion; web/mobile enable async remote control of running agents."
+    },
+    "inline-completion": {
+      "value": true,
+      "source": ["https://ampcode.com/news"],
+      "comment": "Amp Tab provides in-editor tab completion in VS Code, Cursor, and Windsurf."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/"],
+      "comment": "Agents can be driven/monitored remotely from web and mobile while running."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Threads persist across sessions with full history; referenceable via URL or @-mention."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "IDE extensions support file editing with undo; thread-based state. Note: relies on editor undo rather than a dedicated whole-run snapshot. Checked 2026-06-05."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Git blame, commit history, diff analysis, and automatic commit trailers (configurable)."
+    },
+    "pr-creation": {
+      "value": null,
+      "comment": "No explicit documented native PR creation found in the docs reviewed; it can run git operations but PR-opening was not confirmed. Checked 2026-06-05."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Auto-loads AGENTS.md guidance files with @-mentions, glob patterns, and per-file YAML frontmatter."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "TypeScript plugins in .amp/plugins/ provide event handling, custom tools, commands, and custom agent modes/subagents."
+    },
+    "permission-model": {
+      "value": ["auto-run", "configurable"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "By default does not ask for approval before running tools; plugins can intercept tool.call events and legacy permission rules can be configured. Workspace MCP servers require explicit approval."
+    },
+    "self-host-on-prem": {
+      "value": false,
+      "source": ["https://ampcode.com/security"],
+      "comment": "Cloud-only at ampcode.com on GCP; no self-hosting/on-prem deployment."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://ampcode.com/security"],
+      "comment": "Enterprise plans guarantee zero data retention / no training on inputs/outputs; non-enterprise users can disable training in settings."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac"],
+      "source": ["https://ampcode.com/security"],
+      "comment": "SSO (Okta), SCIM directory sync, audit logging, and role-based access controls. No self-hosted VPC (cloud-only)."
+    },
+    "pricing-model": {
+      "value": ["free-tier", "usage-based"],
+      "source": ["https://ampcode.com/pricing", "https://www.producthunt.com/products/amp-free"],
+      "comment": "Usage-based credits (zero markup for individuals/teams) plus a free tier (Amp Free). $5 minimum credit purchase; enterprise +50%."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.producthunt.com/products/amp-free"],
+      "comment": "Amp Free launched Oct 2025, free for everyone."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://ampcode.com/pricing"],
+      "comment": "Pure usage-based with no fixed monthly plan ($5 minimum credit purchase, pay-as-you-go); no monthly subscription tier to quote."
+    },
+    "maturity": {
+      "value": 3.5,
+      "source": ["https://ampcode.com/", "https://ampcode.com/news"],
+      "comment": "Usable and actively shipping (major CLI redesign May 2026) but still young (first preview May 2025) and rapidly evolving. Checked 2026-06-05."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://www.producthunt.com/products/amp-free", "https://ampcode.com/"],
+      "comment": "Notable Sourcegraph-backed adoption and active community, but smaller than Cursor/Copilot scale. Rough estimate, checked 2026-06-05."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "TypeScript plugin system plus MCP server support enable a third-party ecosystem."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Auto-loads AGENTS.md files."
+    },
+    "memory-scopes": {
+      "value": ["project", "folder"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "AGENTS.md supports project-level and per-file/folder granular guidance via glob patterns and YAML frontmatter."
+    },
+    "scoped-rules-files": {
+      "value": ["path-based", "always-on"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "AGENTS.md is always-on; per-file/glob frontmatter enables path-based scoped guidance."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "No documented autonomous cross-session memory writing; persistence is via threads and manual AGENTS.md. Checked 2026-06-05."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Skills are task-specific agent instruction packages in .agents/skills/ with bundled resources and optional MCP servers; also custom plugin commands."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Skills/commands can be invoked explicitly and loaded by the agent on demand when relevant."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Skills are loaded on demand (progressive disclosure) rather than keeping full bodies in context. Inferred from skill package design; checked 2026-06-05."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Skills live as files in .agents/skills/ (manual/git-distributed); no curated marketplace documented."
+    }
+  }
 }
