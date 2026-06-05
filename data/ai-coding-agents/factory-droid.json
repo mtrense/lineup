@@ -2,5 +2,256 @@
   "name": "Factory Droid",
   "description": "Factory's agent-native CLI agent (\"Droid\") for autonomous, multi-model software development; enterprise-positioned.",
   "url": "https://factory.ai",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Factory AI",
+      "source": ["https://factory.ai/", "https://www.businesswire.com/news/home/20250925993478/en/Factory-Unleashes-the-Droids-Raises-$50-Million-Series-B-from-NEA-Sequoia-Capital-NVIDIA-and-J.P.-Morgan"],
+      "comment": "Factory AI, San Francisco, founded 2023."
+    },
+    "first-release": {
+      "value": "2025-09",
+      "source": ["https://www.businesswire.com/news/home/20250925993478/en/Factory-Unleashes-the-Droids-Raises-$50-Million-Series-B-from-NEA-Sequoia-Capital-NVIDIA-and-J.P.-Morgan"],
+      "comment": "Droids were publicly launched Sep 25, 2025 alongside the Series B; the Factory platform existed earlier in beta but the Droid agents GA dates to this announcement."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://factory.ai/", "https://docs.factory.ai/pricing"],
+      "comment": "Actively developed and commercially sold (Pro/Plus/Max/Teams/Enterprise plans) as of June 2026."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://github.com/factory-ai/factory"],
+      "comment": "The public Factory-AI/factory repo is docs/issues only and carries an 'All rights reserved' notice; the Droid CLI source is not openly licensed."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://factory.ai/", "https://factory.ai/product/cli"],
+      "comment": "Broad coding/engineering agent (feature dev, refactors, bug fixes, incident triage); enterprise-positioned but not niche-specialized."
+    },
+    "website": {
+      "value": "https://factory.ai",
+      "source": ["https://factory.ai/"]
+    },
+    "interface": {
+      "value": ["cli", "ide-extension", "web"],
+      "source": ["https://github.com/factory-ai/factory", "https://factory.ai/product/cli", "https://factory.ai/"],
+      "comment": "Primary surface is the terminal CLI (Droid); also ships VS Code/JetBrains/Zed extensions and a Web app, plus Slack/Linear/Jira delegation surfaces."
+    },
+    "host-ides": {
+      "value": ["terminal", "vscode", "jetbrains", "browser"],
+      "source": ["https://github.com/factory-ai/factory", "https://factory.ai/"],
+      "comment": "CLI runs in the terminal; extensions for VS Code, JetBrains, and Zed; Web app runs in the browser. Zed has no dedicated tag here."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/factory-ai/factory"],
+      "comment": "Droid CLI is proprietary; the public repo holds docs/issues with 'All rights reserved'."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool", "extension", "cloud-service"],
+      "source": ["https://factory.ai/product/cli", "https://factory.ai/", "https://docs.factory.ai/pricing"],
+      "comment": "Core product is a standalone CLI tool; also distributed as IDE extensions and backed by a cloud service (cloud agents, Droid Computers, Web app)."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://factory.ai/", "https://docs.factory.ai/pricing"],
+      "comment": "Supports leading frontier and open-weight models (GPT-5, Claude Opus/Sonnet, Gemini, etc.); no single default provider — model-agnostic by design."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/configuration/custom-droids"],
+      "comment": "A /model command switches models; per-droid YAML frontmatter sets model selection."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/configuration/custom-droids", "https://docs.factory.ai/pricing"],
+      "comment": "BYOK supported via config.json / custom: model prefixes; pricing page references a BYOK allowance per plan."
+    },
+    "local-model-support": {
+      "value": null,
+      "source": ["https://docs.factory.ai/cli/configuration/custom-droids"],
+      "comment": "BYOK custom model endpoints are documented but the docs make no explicit mention of local runtimes (Ollama/LM Studio/vLLM); local support could not be confirmed (checked 2026-06-05)."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://factory.ai/", "https://factory.ai/product/cli"],
+      "comment": "Handles feature development, refactors, and multi-step missions that edit across a codebase."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run", "https://factory.ai/product/cli"],
+      "comment": "Auto mode runs work to a configurable autonomy level (low/medium/high, plus skip-permissions) chaining edit/run/fix; Droid Exec headless mode runs full tasks non-interactively in CI."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Execute tool runs shell commands with per-command risk levels gated by the autonomy setting."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/configuration/custom-droids"],
+      "comment": "Ships /mcp command and mcp.json config; per-droid tool policies can expose specific MCP servers."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/configuration/custom-droids"],
+      "comment": "Custom Droids are subagents invoked via a Task tool with subagent_type; missions can run multiple worker agents in parallel."
+    },
+    "codebase-indexing": {
+      "value": null,
+      "source": ["https://factory.ai/product/cli"],
+      "comment": "Droid emphasizes persistent context/knowledge across surfaces, but primary docs do not confirm a built semantic embeddings index of the repo (vs ad-hoc file reads); could not be verified (checked 2026-06-05)."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Spec Mode is an explicit read-only planning phase; approved specs are saved as markdown in .factory/docs/ before implementation."
+    },
+    "multimodal-input": {
+      "value": null,
+      "source": ["https://factory.ai/product/cli"],
+      "comment": "No primary-source confirmation that the CLI accepts image/screenshot input; the underlying models are vision-capable but Droid image input could not be verified (checked 2026-06-05)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "No documented capability to drive a real browser/GUI to verify changes; 'Droid Computers' are remote cloud dev environments, not browser-driving agents."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Interactive terminal chat; supervised at lower autonomy (ask-approval); fully autonomous at higher autonomy / Droid Exec; async via delegated missions (Slack/Linear/Jira) and cloud agents. No inline completion."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://factory.ai/product/cli"],
+      "comment": "Terminal/CLI agent with no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/pricing"],
+      "comment": "Tasks can be delegated (Slack/Linear/Jira) and run on cloud agents/Droid Computers while the developer does other work; missions resume across sessions."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli"],
+      "comment": "Persistent sessions/missions retain transcripts, tool calls and context; Droids keep knowledge across surfaces and sessions."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "No documented built-in checkpoint/undo to revert an agent run as a unit; git-based recovery is implied but a dedicated snapshot/rollback feature could not be confirmed (checked 2026-06-05)."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://factory.ai/", "https://github.com/factory-ai/factory"],
+      "comment": "Droid makes git operations conversational (diffs, commits) and integrates with PR workflows via Droid Action."
+    },
+    "pr-creation": {
+      "value": true,
+      "source": ["https://github.com/factory-ai/factory"],
+      "comment": "Droid Action runs on pull requests and @droid can generate PR descriptions; GitHub integration supports PR creation/updating."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli", "https://github.com/iannuttall/droid-factory"],
+      "comment": "Auto-loads AGENTS.md as the primary project context file (Claude Code CLAUDE.md equivalent)."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/configuration/plugins"],
+      "comment": "Supports Skills, MCP, hooks, and plugins; plugins bundle skills/commands/agents/MCP servers into installable packages."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval", "sandboxed", "auto-run"],
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Configurable autonomy levels (off/low/medium/high/skip-permissions) decide when commands auto-run vs ask; denylist and sandbox checks force approval for dangerous patterns."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Enterprise plan offers on-premise deployment and dedicated compute."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Teams plan offers zero data retention options; Enterprise adds full admin/compliance controls."
+    },
+    "enterprise-controls": {
+      "value": ["sso", "audit-logs", "rbac", "vpc"],
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Teams: SSO with SAML/SCIM provisioning; Enterprise: audit logging, on-premise/dedicated compute, full admin controls (RBAC and VPC/on-prem isolation)."
+    },
+    "pricing-model": {
+      "value": ["subscription", "usage-based", "byok-only"],
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Subscription tiers (Pro/Plus/Max) with included usage; Extra Usage prepaid credits ($10 min) for pay-as-you-go; BYOK allowance per plan. No genuine free tier (no free plan listed)."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Pricing page lists no standing free plan; entry is the $20/mo Pro plan (checked 2026-06-05)."
+    },
+    "entry-price-usd-mo": {
+      "value": 20,
+      "source": ["https://docs.factory.ai/pricing"],
+      "comment": "Pro plan at $20/month is the cheapest paid plan (checked 2026-06-05)."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://www.businesswire.com/news/home/20250925993478/en/Factory-Unleashes-the-Droids-Raises-$50-Million-Series-B-from-NEA-Sequoia-Capital-NVIDIA-and-J.P.-Morgan", "https://docs.factory.ai/pricing"],
+      "comment": "GA since Sep 2025, well-funded (Series B/C), enterprise contracts, polished multi-surface product and docs — solid but still rapidly evolving (4/5, not 5)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://factory.ai/", "https://github.com/Factory-AI/skills"],
+      "comment": "Active growing community (Discord, third-party skill/plugin repos) but smaller than Cursor/Copilot/Claude Code scale; single-vendor commercial tool (estimate, checked 2026-06-05)."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/configuration/plugins", "https://github.com/Factory-AI/skills"],
+      "comment": "Official plugin marketplace plus growing third-party skill/plugin/subagent repos and MCP server support."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://factory.ai/product/cli", "https://github.com/iannuttall/droid-factory"],
+      "comment": "Auto-loads AGENTS.md as the standard project context file ingested at the start of each conversation."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://docs.factory.ai/cli/configuration/custom-droids", "https://docs.factory.ai/cli/configuration/plugins"],
+      "comment": "Config/droids/skills can be defined at user scope (~/.factory/) and project scope (<project>/.factory/). Enterprise team settings exist via Teams plan but folder/enterprise rule scoping is not clearly documented."
+    },
+    "scoped-rules-files": {
+      "value": ["agent-requested", "always-on"],
+      "source": ["https://factory.ai/product/cli", "https://docs.factory.ai/cli/configuration/plugins"],
+      "comment": "AGENTS.md is an always-on context file; skills are pulled in on demand (agent-requested). No documented path-glob or file-type-based conditional rule activation."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://factory.ai/product/cli", "https://github.com/iannuttall/droid-factory"],
+      "comment": "Context persists across sessions but no documented mechanism for the agent to autonomously write cross-session memories (manual AGENTS.md only); could not confirm any auto-memory feature (checked 2026-06-05)."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/configuration/plugins", "https://factory.ai/product/cli"],
+      "comment": "Claude Code-compatible .factory/skills system (/skills command); packaged reusable capabilities loaded on demand."
+    },
+    "skill-invocation": {
+      "value": ["model-callable", "user-callable"],
+      "source": ["https://docs.factory.ai/cli/configuration/plugins"],
+      "comment": "Skills are model-invoked automatically based on the task; plugin commands are user-invoked via /command-name slash commands."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://docs.factory.ai/cli/configuration/plugins"],
+      "comment": "Claude Code-compatible skills use progressive disclosure — name/description available for the model to select, full skill body loaded only on invocation."
+    },
+    "skill-distribution": {
+      "value": ["marketplace", "git", "manual-files"],
+      "source": ["https://docs.factory.ai/cli/configuration/plugins", "https://github.com/Factory-AI/skills"],
+      "comment": "Official plugin marketplace plus git-hosted marketplaces (droid plugin marketplace add <git-url>); skills can also be checked into .factory/skills as manual files."
+    }
+  }
 }
