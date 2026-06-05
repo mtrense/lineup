@@ -2,5 +2,255 @@
   "name": "Plandex",
   "description": "Open-source, plan-first terminal agent with a cumulative-diff review sandbox and up to 2M-token context for large multi-file tasks.",
   "url": "https://plandex.ai",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Plandex (plandex-ai)",
+      "source": ["https://github.com/plandex-ai/plandex"],
+      "comment": "Built by Plandex Inc. (plandex-ai on GitHub), founded 2024."
+    },
+    "first-release": {
+      "value": "2024-04",
+      "source": ["https://www.marktechpost.com/2024/04/04/meet-plandex-an-open-source-terminal-based-ai-coding-engine-for-complex-tasks/", "https://github.com/plandex-ai/plandex"],
+      "comment": "First public launch April 2024; v1.0.0 May 2024; v2 (major rewrite) released April 16, 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/plandex-ai/plandex/releases"],
+      "comment": "Actively maintained open-source project (v2.x through 2025). Hosted Plandex Cloud is winding down (Oct 2025) in favor of self-hosted/local mode, but the software itself remains active."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/plandex-ai/plandex", "https://theaiagentindex.com/agents/plandex"],
+      "comment": "MIT-licensed."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://plandex.ai"],
+      "comment": "Broad coding agent, positioned for large multi-file/large-project tasks but general-purpose."
+    },
+    "website": {
+      "value": "https://plandex.ai",
+      "source": ["https://plandex.ai"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/plandex-ai/plandex", "https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "Terminal-only CLI with a REPL; no IDE or editor integration."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "Runs in the terminal (Linux, macOS, WSL on Windows)."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/plandex-ai/plandex"],
+      "comment": "MIT-licensed, written in Go."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/plandex-ai/plandex"],
+      "comment": "Standalone CLI tool with a client/server architecture; server can be self-hosted."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://plandex.ai", "https://docs.plandex.ai/models/model-providers/"],
+      "comment": "Default model packs combine the best models from Anthropic, OpenAI, and Google; no single default provider."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/models/model-providers/", "https://plandex.ai"],
+      "comment": "Curated model packs and custom model packs let users mix models across Anthropic, OpenAI, Google, OpenRouter, and others."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://theaiagentindex.com/agents/plandex", "https://docs.plandex.ai/models/model-providers/"],
+      "comment": "BYOK via direct provider accounts or OpenRouter; self-hosted/local mode is fully BYOK."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/models/ollama/"],
+      "comment": "Built-in Ollama support (ollama-oss and ollama-daily model packs); requires self-hosting. Also accepts OpenAI-compatible custom providers."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://github.com/plandex-ai/plandex"],
+      "comment": "Core capability: plans and applies coordinated changes across dozens of files in one task. (A third-party tracker lists this as No, but the official site explicitly markets multi-file/large-task editing.)"
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://docs.plandex.ai/core-concepts/autonomy/"],
+      "comment": "Full autonomy mode loads context, plans, implements, executes commands, and auto-debugs end-to-end; autonomy is configurable from none to full."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://docs.plandex.ai/core-concepts/execution-and-debugging/"],
+      "comment": "Runs builds, linters, tests, deploys, and scripts and automatically debugs failures."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/plandex-ai/plandex/issues/241", "https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "MCP not shipped as of check (2026-06-05); tracked as an open feature request (issue #241). Checked 2026-06."
+    },
+    "subagents-parallel-agents": {
+      "value": false,
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "Single linear planning/execution loop; no documented sub-agent or parallel-agent orchestration."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/", "https://plandex.ai"],
+      "comment": "Builds tree-sitter project maps (structural, not a semantic embedding index) and the LLM selects context from them; this is not embeddings-based semantic indexing."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://news.ycombinator.com/item?id=43710576"],
+      "comment": "Plan-first design: a project-aware chat/planning mode flesh-out before implementation; plans are a first-class, version-controlled concept."
+    },
+    "multimodal-input": {
+      "value": null,
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/", "https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "Conflicting signals: Plandex docs list 'images' among loadable context types via the load command, but an independent tracker (Terminal Trove, Apr 2026) reports image/multimodal input as No. Left null pending clearer confirmation. Checked 2026-06."
+    },
+    "browser-computer-use": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://docs.plandex.ai/core-concepts/execution-and-debugging/"],
+      "comment": "With Chrome installed, Plandex can launch a browser, read console logs/errors, and automatically debug browser applications as part of its loop."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://plandex.ai"],
+      "comment": "Spans interactive chat/planning, step-by-step supervised execution, and full autonomous task completion (configurable autonomy levels). No inline completion; no detached async/background runner."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/plandex-ai/plandex"],
+      "comment": "Terminal CLI agent; no tab-style as-you-type code completion."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://news.ycombinator.com/item?id=43710576"],
+      "comment": "Runs interactively in the terminal session; no detached cloud/background task dispatch where the user walks away. (Hosted cloud is winding down.)"
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/core-concepts/plans", "https://news.ycombinator.com/item?id=43710576"],
+      "comment": "Plans persist across sessions with version-controlled history and branches; conversation/context for a plan is retained and can be resumed."
+    },
+    "checkpoints-rollback": {
+      "value": true,
+      "source": ["https://plandex.ai", "https://github.com/plandex-ai/plandex"],
+      "comment": "Cumulative diff-review sandbox keeps changes separate until applied; version-controlled plan updates allow rewind/rollback to prior points."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://github.com/plandex-ai/plandex", "https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "Native git awareness with automatic commit-message generation; changes can be applied and committed from the agent."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://github.com/plandex-ai/plandex"],
+      "comment": "No documented pull-request creation; git integration stops at applying/committing changes locally."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/"],
+      "comment": "Supports user 'notes' loaded into a plan's context as sticky instructions (e.g. 'add logging to all generated code'), plus arbitrary files/dirs loaded as context."
+    },
+    "hooks-extensibility": {
+      "value": false,
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "No programmable hooks or plugin API documented."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://plandex.ai"],
+      "comment": "Configurable autonomy from step-by-step approval to full auto; the diff sandbox gates application of changes for review. Sandbox isolates pending changes rather than sandboxing command execution."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://railway.com/deploy/plandex", "https://github.com/plandex-ai/plandex"],
+      "comment": "Self-hostable server (Docker / Railway) and a fully local mode; self-hosting is now the recommended path as Plandex Cloud winds down."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://github.com/plandex-ai/plandex", "https://docs.plandex.ai/models/ollama/"],
+      "comment": "Self-hosted/local mode keeps code on the user's own infrastructure; with local Ollama models no code leaves the machine. Training-data exposure depends on the BYOK provider chosen, not Plandex."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://github.com/plandex-ai/plandex", "https://theaiagentindex.com/agents/plandex"],
+      "comment": "No documented SSO/RBAC/audit-log/VPC governance features; positioned as developer/self-hosted OSS rather than an enterprise product."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://theaiagentindex.com/agents/plandex", "https://railway.com/deploy/plandex"],
+      "comment": "The software is free/open-source; users pay only their own LLM API costs (BYOK). Hosted cloud is winding down; no subscription plan for the tool itself."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://theaiagentindex.com/agents/plandex"],
+      "comment": "Free open-source software; self-hosting has no license fee (only infra + LLM API costs)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://theaiagentindex.com/agents/plandex"],
+      "comment": "No paid plan for the tool; it is free/BYOK. Users incur LLM API costs (~$10-$100/mo for heavy use) but that is provider billing, not a Plandex plan."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://theaiagentindex.com/agents/plandex", "https://news.ycombinator.com/item?id=43710576"],
+      "comment": "Usable and actively maintained (v2 major rewrite Apr 2025), but evolving and described by reviewers as research-grade OSS without commercial backing since cloud wound down."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/plandex-ai/plandex", "https://theaiagentindex.com/agents/plandex"],
+      "comment": "~15K GitHub stars; reviewers describe a smaller, single-vendor ecosystem relative to Aider/Cursor. Checked 2026-06."
+    },
+    "extension-plugin-ecosystem": {
+      "value": false,
+      "source": ["https://theaiagentindex.com/agents/plandex", "https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "No marketplace or meaningful third-party plugin ecosystem; no MCP support to anchor one."
+    },
+    "project-memory-files": {
+      "value": ["none"],
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/"],
+      "comment": "No auto-loaded repo-resident instruction-file convention (no AGENTS.md/CLAUDE.md auto-load). Instructions are added via in-plan 'notes' or by loading files into context explicitly."
+    },
+    "memory-scopes": {
+      "value": ["project"],
+      "source": ["https://docs.plandex.ai/core-concepts/plans", "https://docs.plandex.ai/core-concepts/context-management/"],
+      "comment": "Context/notes are scoped to a plan within a project; no documented enterprise/user-global/per-folder rule scopes."
+    },
+    "scoped-rules-files": {
+      "value": ["none"],
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/"],
+      "comment": "No conditional/path-based or file-type-based rule-file activation mechanism; context is loaded explicitly per plan."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/"],
+      "comment": "No automatic cross-session memory the agent writes on its own; context is user-managed (load/notes)."
+    },
+    "skill-support": {
+      "value": false,
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/", "https://docs.plandex.ai/repl/"],
+      "comment": "No reusable user-authored skill/recipe mechanism; the REPL exposes only built-in CLI commands. No hooks/extensions either."
+    },
+    "skill-invocation": {
+      "value": null,
+      "comment": "Not applicable; Plandex has no skill mechanism (skill-support is false)."
+    },
+    "always-on-surface": {
+      "value": ["none"],
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "No skills supported."
+    },
+    "skill-distribution": {
+      "value": ["none"],
+      "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
+      "comment": "No skills supported, so no distribution mechanism."
+    }
+  }
 }
