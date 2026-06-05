@@ -2,5 +2,255 @@
   "name": "ZeroStack",
   "description": "Minimal, resource-efficient CLI AI coding agent written in Rust with multi-provider LLM support and configurable permission modes.",
   "url": "https://gi-dellav.github.io/zerostack/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Giuseppe Della Vedova (gi-dellav)",
+      "source": ["https://github.com/gi-dellav/zerostack", "https://gi-dellav.github.io/zerostack/"],
+      "comment": "Solo open-source developer; community support via Matrix chat."
+    },
+    "first-release": {
+      "value": "2026-05",
+      "source": ["https://github.com/gi-dellav/zerostack/releases"],
+      "comment": "Repo created 2026-05-12; first tagged release v1.0.1 on 2026-05-16. Rapid versioning (v1.4.5 by 2026-06-04). Checked 2026-06-05."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/gi-dellav/zerostack/releases"],
+      "comment": "Actively developed; releases every few days as of June 2026."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "GPL-3.0-only (OSI-approved)."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://gi-dellav.github.io/zerostack/"],
+      "comment": "Broad coding agent; differentiator is minimal resource footprint, not a niche domain."
+    },
+    "website": {
+      "value": "https://gi-dellav.github.io/zerostack/",
+      "source": ["https://gi-dellav.github.io/zerostack/"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Terminal CLI with a TUI (markdown rendering). Can also act as an ACP server for editor integration, but ships as a CLI tool."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Runs in the terminal. Optional ACP feature lets it serve editors like Zed via JSON-RPC, but it is not itself an IDE."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "GPL-3.0-only; full source on GitHub and crates.io."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/gi-dellav/zerostack"]
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack/blob/main/CONFIG.md"],
+      "comment": "OpenRouter is the default endpoint, but it is a router across many providers; also supports OpenAI-compatible, Anthropic, Gemini, Ollama, and custom endpoints. No single first-party model."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/"],
+      "comment": "Switch models at runtime via the /model command; multiple providers configurable."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack/blob/main/CONFIG.md"],
+      "comment": "BYOK only — user supplies API keys via per-provider environment variables; there is no vendor billing."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Ollama integration plus any OpenAI-compatible local endpoint (custom base URL)."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Full file-access tools (read/write/edit) plus grep/find across the codebase."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/"],
+      "comment": "Iterative 'Ralph Wiggum loops' chain edit/run/fix steps toward a goal; git-worktree branch-per-task workflow."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack", "https://gi-dellav.github.io/zerostack/"],
+      "comment": "Bash execution tool with permission gating and optional Bubblewrap sandbox."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Documented MCP support to connect external tool servers; exposed as an optional compile-time feature, configured in the config file."
+    },
+    "subagents-parallel-agents": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack", "https://gi-dellav.github.io/zerostack/"],
+      "comment": "Subagents for parallel codebase exploration; optional experimental 'multithread' feature for multi-threaded subagents."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "File-based retrieval (grep, find_files, read) with no semantic/embeddings index."
+    },
+    "planning-mode": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Explicit 'Plan' prompt: planning-only mode that explores and produces a plan without writing code."
+    },
+    "multimodal-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "No image input documented as of June 2026."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Has WebFetch/WebSearch tools (via Exa) but cannot drive a browser/GUI to act and verify."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Interactive TUI chat; permission modes range from per-action approval (guarded/restrictive) to fully autonomous (yolo/standard loops). No inline completion or detached async runner."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Terminal CLI agent; no as-you-type tab completion."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Runs in a foreground terminal session; no detached/cloud async dispatch. Sessions can be saved and resumed but the agent does not run while the user walks away."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Optional 'memory' build feature: plain-markdown global MEMORY.md plus per-project daily logs injected into the system prompt each session. Gated (cargo install --features memory)."
+    },
+    "checkpoints-rollback": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack", "https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Session save/load/resume preserves conversation state, and git-worktrees isolate tasks per branch, but there is no built-in working-tree checkpoint/restore that reverts an agent run as a unit (relies on git)."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Native git-worktree integration (/worktree): branch-per-task, automatic merging and cleanup."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "No pull-request creation documented; git integration is worktree/branch-level."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Auto-loads AGENTS.md or CLAUDE.md from project root or any ancestor; optional ARCHITECTURE.md (archmd feature) injected into the system prompt."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack", "https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Extensible via MCP servers, custom providers, and custom prompts placed in $XDG_CONFIG_HOME/zerostack/prompts/. No documented event-hook system."
+    },
+    "permission-model": {
+      "value": ["configurable", "ask-approval", "sandboxed"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Five configurable modes (restrictive, readonly, guarded, standard, yolo) with per-tool glob patterns; optional Bubblewrap sandbox for bash."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Runs entirely on the user's machine; can run fully offline against a local Ollama model."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Local-first BYOK tool: code is only sent to the provider the user configures; with Ollama/local endpoints nothing leaves the machine. No vendor collects or trains on code (open-source, no vendor billing)."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Single-developer OSS CLI; no SSO/RBAC/audit-log/VPC enterprise governance features."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
+      "comment": "The agent is free and open-source; users pay only their own model-provider costs (BYOK), or nothing when running local models."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Entire tool is free (GPL-3.0). Only third-party model API usage may cost money."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Free open-source software; no subscription. BYOK provider costs are separate."
+    },
+    "maturity": {
+      "value": 2,
+      "source": ["https://github.com/gi-dellav/zerostack/releases", "https://news.ycombinator.com/item?id=48164287"],
+      "comment": "Early but fast-moving (first release 2026-05; ~1.1k stars by 2026-06). Single maintainer, frequent breaking-ish releases, several features gated/experimental. Usable but evolving."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "~1,105 GitHub stars as of 2026-06-05; Hacker News and Medium coverage. New single-vendor project."
+    },
+    "extension-plugin-ecosystem": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack"],
+      "comment": "Consumes the MCP ecosystem but has no marketplace or meaningful third-party plugin ecosystem of its own."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "claude-md", "custom"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Auto-loads AGENTS.md or CLAUDE.md from project root or any ancestor; ARCHITECTURE.md (custom, archmd feature) also injected for design context."
+    },
+    "memory-scopes": {
+      "value": ["user", "project", "folder"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Global/user memory in $XDG_DATA_HOME plus per-project daily logs; AGENTS.md/CLAUDE.md loaded from root or any ancestor directory (folder-level). No enterprise/org policy scope."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "AGENTS.md/CLAUDE.md/ARCHITECTURE.md are always-on context files; no path-glob or file-type conditional rule activation documented."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "README states the agent does not automatically generate memory entries; the gated memory feature provides persistent markdown notes but they are not auto-written by the agent."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md", "https://github.com/gi-dellav/zerostack/tree/main/prompts"],
+      "comment": "Ten built-in mode prompts (code, plan, review, debug, ask, brainstorm, frontend-design, review-security, simplify, write-prompt) plus user-defined custom prompts loaded on demand."
+    },
+    "skill-invocation": {
+      "value": ["user-callable"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Prompts are selected by the user via the /prompt slash command; no documented autonomous model-side skill selection."
+    },
+    "always-on-surface": {
+      "value": ["name-only"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Prompts are switchable modes — one active prompt is loaded at a time; only their names are surfaced for selection, not all bodies. Interpreted per Always-On Surface guideline; checked 2026-06-05."
+    },
+    "skill-distribution": {
+      "value": ["manual-files"],
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "Custom prompts are created as files in $XDG_CONFIG_HOME/zerostack/prompts/; no marketplace or registry."
+    }
+  }
 }
