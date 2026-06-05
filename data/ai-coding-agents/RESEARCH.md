@@ -220,6 +220,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] **Zed (agent)** — Agentic editing inside the Zed editor
 - [x] **Augment Code** — Codebase-context-focused agent across IDEs
 - [x] **RooCode** — Open-source autonomous agent extension (Cline fork lineage)
+- [ ] opencode — Open-source terminal-based AI coding agent; CLI/terminal form factor (added 2026-06-05)
 
 ## Notes for Researchers
 
