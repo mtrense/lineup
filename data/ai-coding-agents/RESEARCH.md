@@ -226,6 +226,17 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [ ] Void — Open-source, AI-native editor (VS Code fork) built around an agent; standalone IDE form factor (added 2026-06-05)
 - [ ] ZeroStack — Minimal, resource-efficient Rust CLI coding agent with multi-provider LLM support; CLI/terminal form factor (added 2026-06-05)
 - [ ] Kilo Code — Open-source agentic coding extension for VS Code/JetBrains (Cline/Roo Code lineage); ide-extension form factor (added 2026-06-05)
+- [ ] JetBrains Junie — AI coding agent embedded in JetBrains IDEs (IntelliJ, PyCharm, WebStorm); IDE-integrated form factor (added 2026-06-05)
+- [ ] Trae — ByteDance's AI-native IDE (VS Code fork) with autonomous SOLO Builder agent mode; IDE-integrated form factor (added 2026-06-05)
+- [ ] Goose — Open-source on-machine AI agent (CLI + desktop, Rust) under the Linux Foundation's Agentic AI Foundation; CLI/terminal form factor (added 2026-06-05)
+- [ ] OpenHands — Open-source autonomous agent platform (formerly OpenDevin) completing whole engineering tasks across a codebase; autonomous/cloud form factor (added 2026-06-05)
+- [ ] Amp — Sourcegraph's frontier coding agent driven from terminal, web, CLI, and mobile; CLI/terminal form factor (added 2026-06-05)
+- [ ] Replit Agent — Autonomous in-browser/cloud agent that builds, tests, and deploys apps from prompts; autonomous/cloud form factor (added 2026-06-05)
+- [ ] Crush — Charm's open-source terminal coding agent (Go) with LSP and MCP awareness; CLI/terminal form factor (added 2026-06-05)
+- [ ] Plandex — Open-source plan-first terminal agent with diff-review sandbox and 2M-token context; CLI/terminal form factor (added 2026-06-05)
+- [ ] Qwen Code — Alibaba Qwen team's open-source terminal agent for Qwen coder models; CLI/terminal form factor (added 2026-06-05)
+- [ ] Factory Droid — Factory's agent-native CLI agent for autonomous multi-model software development; CLI/terminal form factor (added 2026-06-05)
+- [ ] Kimi CLI — Moonshot AI's open-source terminal agent with skills and MCP support; CLI/terminal form factor (added 2026-06-05)
 
 ## Notes for Researchers
 
