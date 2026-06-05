@@ -2,5 +2,256 @@
   "name": "Pi",
   "description": "Minimal, extensible terminal harness for AI coding agents.",
   "url": "https://pi.dev/",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Earendil (Mario Zechner)",
+      "source": ["https://github.com/earendil-works/pi", "https://pi.dev/"],
+      "comment": "Built by Earendil Inc. and contributors; created by Mario Zechner (badlogic, of libGDX). Repo earendil-works/pi (formerly badlogic/pi-mono)."
+    },
+    "first-release": {
+      "value": "2025-08",
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "GitHub repo createdAt 2025-08-09; no separate dated public announcement found, so using repo creation as first-release proxy. Checked 2026-06-05."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "Actively developed; latest release v0.78.1 around June 2026 with frequent releases. Checked 2026-06-05."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/earendil-works/pi", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "MIT License per repo metadata and README."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://pi.dev/"],
+      "comment": "Unopinionated general-purpose coding harness; no narrow niche positioning."
+    },
+    "website": {
+      "value": "https://pi.dev/",
+      "source": ["https://pi.dev/"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Terminal coding harness with interactive TUI, print/JSON, RPC, and SDK modes — all terminal/CLI."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://pi.dev/"],
+      "comment": "Runs in the terminal; no IDE host."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "MIT-licensed open source."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://pi.dev/"],
+      "comment": "Standalone terminal CLI tool; not an editor or extension."
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Provider-agnostic; supports 15+ providers (Anthropic, OpenAI, Google, Azure, Bedrock, Mistral, Groq, Cerebras, xAI, OpenRouter, Ollama, etc.). No single default flagship."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://pi.dev/"],
+      "comment": "Switch models mid-session via /model command or keyboard shortcuts; cycle favorites with Ctrl+P."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Authenticate via API keys or OAuth/subscription per provider."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://pi.dev/"],
+      "comment": "Ollama listed among supported providers."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Core tools read/write/edit/bash let the agent edit any number of files across a task."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://pi.dev/"],
+      "comment": "Runs agentic tasks autonomously; user can steer by submitting messages while the agent works."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "bash is one of the four built-in tools."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Explicitly no built-in MCP; the docs suggest building an extension to add MCP support, so not shipped."
+    },
+    "subagents-parallel-agents": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Sub-agents intentionally excluded from core; can be approximated via tmux or a custom extension only."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No semantic index/embeddings; files are read on demand into context."
+    },
+    "planning-mode": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Plan mode intentionally skipped from core; can be built as an extension."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Supports image input (drag image onto terminal)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No built-in browser/computer-use capability."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Interactive TUI chat plus autonomous agentic runs with steering; no inline completion and no detached async/background runner in core."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://pi.dev/"],
+      "comment": "Terminal harness with no as-you-type tab completion."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Runs in the foreground terminal session; no built-in fire-and-forget background/cloud execution."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Sessions persist as JSONL tree files and can be resumed; AGENTS.md/CLAUDE.md project instructions carry across sessions."
+    },
+    "checkpoints-rollback": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md", "https://pi.dev/"],
+      "comment": "Session tree (/tree) navigates conversation history, but working-tree git checkpointing/auto-commit is only available via an extension, not built in. Per guideline, extension-based rollback does not count."
+    },
+    "git-integration": {
+      "value": false,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No native git awareness in core (staging/diff/commit); git checkpointing/auto-commit is an extension. /share exports sessions to GitHub gists but is not git-tree integration."
+    },
+    "pr-creation": {
+      "value": false,
+      "source": ["https://pi.dev/"],
+      "comment": "No documented pull-request creation."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Auto-loads AGENTS.md (or CLAUDE.md) and SYSTEM.md from global and project directories."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Aggressively extensible via TypeScript extensions with access to tools, commands, keyboard shortcuts, events, and the full TUI."
+    },
+    "permission-model": {
+      "value": ["auto-run"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md", "https://github.com/earendil-works/pi"],
+      "comment": "No built-in permission popups; tools run without approval. Docs recommend running in a container; custom confirmation flows must be built via extensions."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/earendil-works/pi"],
+      "comment": "Open-source CLI installed locally (curl/PowerShell/npm/pnpm/bun); runs entirely on the user's machine."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Local open-source harness with no vendor backend; data goes only to the model provider the user configures. Training policy is the chosen provider's, not Pi's."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://pi.dev/", "https://github.com/earendil-works/pi"],
+      "comment": "Single-user open-source CLI; no SSO/RBAC/audit/VPC governance features."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://pi.dev/", "https://github.com/earendil-works/pi"],
+      "comment": "The tool is free and open source; users pay only their own model-provider costs (bring your own key/subscription)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "Entire tool is free (MIT); only model usage is paid by the user."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "Free open-source tool with no paid plan for the agent itself; model API costs are separate."
+    },
+    "maturity": {
+      "value": 2,
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "Young project (repo created Aug 2025), rapid pre-1.0 releases (v0.78.1), usable but evolving and minimal by design. Checked 2026-06-05."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/earendil-works/pi"],
+      "comment": "~60k GitHub stars on the monorepo but a young, single-vendor niche harness with a small user community relative to established agents. Star count checked 2026-06-05."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/earendil-works/pi"],
+      "comment": "Third-party Pi packages, extensions, and skills are distributed via npm; ecosystem is emerging."
+    },
+    "project-memory-files": {
+      "value": ["agents-md", "claude-md"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Auto-loads AGENTS.md (or CLAUDE.md) from global and project directories."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Instruction files loaded from global (user) and project directories. No enterprise or per-folder scoping documented."
+    },
+    "scoped-rules-files": {
+      "value": ["none"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Only always-on AGENTS.md/CLAUDE.md instruction files; no conditional path/file-type/agent-requested rule activation documented."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No automatic cross-session memory the agent writes itself; sessions persist and compaction summarizes, but the agent does not autonomously record durable memories. Could be added via an extension."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Supports skills (Agent Skills standard) — progressive-disclosure capability packages loaded on demand."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Invoked via /skill:name by the user or automatically by the agent."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Skills use progressive disclosure — loaded on demand, with full body pulled in only on invocation."
+    },
+    "skill-distribution": {
+      "value": ["registry", "manual-files"],
+      "source": ["https://github.com/earendil-works/pi", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Third-party Pi packages (skills/extensions) distributed via npm registry; skills can also be placed as local files. No curated marketplace."
+    }
+  }
 }
