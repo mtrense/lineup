@@ -223,6 +223,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [ ] opencode — Open-source terminal-based AI coding agent; CLI/terminal form factor (added 2026-06-05)
 - [ ] Pi — Minimal, extensible terminal harness for AI coding agents; CLI/terminal form factor (added 2026-06-05)
 - [ ] Oh My OpenAgent — Open-source CLI agent harness orchestrating specialized agents for autonomous coding; CLI/terminal form factor (added 2026-06-05)
+- [ ] Void — Open-source, AI-native editor (VS Code fork) built around an agent; standalone IDE form factor (added 2026-06-05)
 
 ## Notes for Researchers
 
