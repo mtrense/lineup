@@ -232,7 +232,7 @@ How the agent engages the developer — from inline pair-programming to fire-and
 - [x] OpenHands — Open-source autonomous agent platform (formerly OpenDevin) completing whole engineering tasks across a codebase; autonomous/cloud form factor (added 2026-06-05)
 - [x] Amp — Sourcegraph's frontier coding agent driven from terminal, web, CLI, and mobile; CLI/terminal form factor (added 2026-06-05)
 - [x] Replit Agent — Autonomous in-browser/cloud agent that builds, tests, and deploys apps from prompts; autonomous/cloud form factor (added 2026-06-05)
-- [ ] Crush — Charm's open-source terminal coding agent (Go) with LSP and MCP awareness; CLI/terminal form factor (added 2026-06-05)
+- [x] Crush — Charm's open-source terminal coding agent (Go) with LSP and MCP awareness; CLI/terminal form factor (added 2026-06-05)
 - [ ] Plandex — Open-source plan-first terminal agent with diff-review sandbox and 2M-token context; CLI/terminal form factor (added 2026-06-05)
 - [ ] Qwen Code — Alibaba Qwen team's open-source terminal agent for Qwen coder models; CLI/terminal form factor (added 2026-06-05)
 - [ ] Factory Droid — Factory's agent-native CLI agent for autonomous multi-model software development; CLI/terminal form factor (added 2026-06-05)

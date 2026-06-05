@@ -2,5 +2,251 @@
   "name": "Crush",
   "description": "Charm's open-source terminal coding agent (Go); multi-provider with LSP and MCP awareness.",
   "url": "https://github.com/charmbracelet/crush",
-  "values": {}
+  "lastVerified": "2026-06-05",
+  "values": {
+    "developer": {
+      "value": "Charm",
+      "source": ["https://github.com/charmbracelet/crush", "https://charm.land/blog/crush-comes-home/"],
+      "comment": "Built by Charm (charmbracelet); originally created by Kujtim Hoxha and brought under Charm."
+    },
+    "first-release": {
+      "value": "2025-07",
+      "source": ["https://charm.land/blog/crush-comes-home/", "https://github.com/charmbracelet/crush/releases"],
+      "comment": "First public release / announcement late July 2025 (announced 2025-07-30)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Actively developed (v0.4.x line as of check 2026-06-05); pre-1.0 but maintained."
+    },
+    "license": {
+      "value": ["source-available"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Licensed FSL-1.1-MIT (Functional Source License): source-available, converts to MIT after 2 years. Marketed as 'open-source' but FSL is not OSI-approved, so tagged source-available per RESEARCH.md."
+    },
+    "specialization": {
+      "value": ["general-purpose"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Broad terminal coding agent; not optimized for a narrower niche."
+    },
+    "website": {
+      "value": "https://github.com/charmbracelet/crush",
+      "source": ["https://github.com/charmbracelet/crush"]
+    },
+    "interface": {
+      "value": ["cli"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Terminal TUI coding agent; runs in any terminal across macOS, Linux, Windows, BSD."
+    },
+    "host-ides": {
+      "value": ["terminal"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Runs in the terminal; not an IDE extension or standalone editor."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Source is public but under FSL-1.1-MIT (source-available, MIT after 2 years), not an OSI-approved open license at release; marked false per RESEARCH.md guidance."
+    },
+    "self-contained-vs-plugin": {
+      "value": ["cli-tool"],
+      "source": ["https://github.com/charmbracelet/crush"]
+    },
+    "default-model-provider": {
+      "value": ["multiple"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "No single default vendor; supports Anthropic, OpenAI, Gemini, Groq, OpenRouter, Bedrock, and 30+ providers, with mid-session switching."
+    },
+    "model-choice": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Switch among many models/providers, including mid-session model switching that preserves context."
+    },
+    "bring-your-own-key": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Requires the user's own provider API keys; also supports custom OpenAI-/Anthropic-compatible endpoints."
+    },
+    "local-model-support": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Local models via Ollama and LM Studio (OpenAI-compatible endpoints)."
+    },
+    "multi-file-editing": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "File editing and multi-file operations within a session."
+    },
+    "autonomous-task-execution": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush", "https://vibecodinghub.org/tools/crush"],
+      "comment": "Agentic loop: edits files and runs shell/build/test commands toward a goal; --yolo can run without per-action approval."
+    },
+    "terminal-command-execution": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Runs shell commands as part of its loop, gated by permission prompts (allowed_tools / --yolo to bypass)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "MCP servers via stdio, HTTP, and SSE transports."
+    },
+    "subagents-parallel-agents": {
+      "value": null,
+      "comment": "No documented subagent/parallel-agent orchestration as of check 2026-06-05; sessions are single linear loops."
+    },
+    "codebase-indexing": {
+      "value": false,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Uses LSP for context and reads files on demand; no semantic embedding index documented (LSP retrieval is not indexing per RESEARCH.md)."
+    },
+    "planning-mode": {
+      "value": null,
+      "comment": "No explicit plan-then-execute / read-only planning mode documented as of check 2026-06-05."
+    },
+    "multimodal-input": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Image and multimodal input support (model-dependent)."
+    },
+    "browser-computer-use": {
+      "value": false,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "No built-in browser/GUI driving for self-verification; capability comes only via external MCP servers if added."
+    },
+    "operating-mode": {
+      "value": ["interactive-chat", "supervised-agent", "autonomous"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Interactive TUI chat; supervised agent with per-tool approval; autonomous when --yolo bypasses prompts. No inline completion or detached async runs."
+    },
+    "inline-completion": {
+      "value": false,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Terminal agent; no as-you-type tab autocomplete."
+    },
+    "background-async-execution": {
+      "value": false,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Sessions persist state and can be reattached by multiple clients, but no fire-and-forget detached task execution is documented."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Session-based conversation management with persistent state; sessions can be resumed across reconnections."
+    },
+    "checkpoints-rollback": {
+      "value": null,
+      "comment": "No built-in checkpoint/rollback of the working tree documented as of check 2026-06-05; relies on user's own git."
+    },
+    "git-integration": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush", "https://vibecodinghub.org/tools/crush"],
+      "comment": "Works inside git repos and can run git via its shell tool; described with git integration capabilities."
+    },
+    "pr-creation": {
+      "value": null,
+      "comment": "No native PR-creation feature documented; could open PRs only by invoking the gh/git CLI through its shell tool. Marked null as of check 2026-06-05."
+    },
+    "custom-rules-instructions": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md", "https://github.com/charmbracelet/crush/blob/main/AGENTS.md"],
+      "comment": "Auto-loads an AGENTS.md initialization file (customizable via initialize_as) for project context/conventions."
+    },
+    "hooks-extensibility": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush", "https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Extensible via MCP servers and Agent Skills (SKILL.md packages); user-invocable skills appear in the command palette."
+    },
+    "permission-model": {
+      "value": ["ask-approval", "configurable"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Prompts before tool execution by default; allowed_tools allow-list and --yolo configure/bypass approval; specific tools can be disabled."
+    },
+    "self-host-on-prem": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Runs entirely on the user's machine; with a local model (Ollama/LM Studio) the whole pipeline can be self-hosted."
+    },
+    "privacy-mode": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Crush itself does not train on code; runs locally and sends code only to the user's chosen provider. Telemetry is pseudonymous and opt-out. Effective privacy depends on the chosen model provider."
+    },
+    "enterprise-controls": {
+      "value": ["none"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Local CLI tool with no vendor backend; no SSO/audit/RBAC/VPC governance layer of its own."
+    },
+    "pricing-model": {
+      "value": ["free", "byok-only"],
+      "source": ["https://github.com/charmbracelet/crush", "https://www.scriptbyai.com/command-line-agent-crush/"],
+      "comment": "The tool is free; users pay only their own LLM provider (BYOK / usage on the provider side). No Charm subscription for Crush."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "The agent is entirely free; only external model API usage costs money."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "Tool is free (BYOK); 0 per RESEARCH.md since the free tool covers core use, with model API billed separately by the provider."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/charmbracelet/crush", "https://github.com/charmbracelet/crush/releases/tag/v0.4.0"],
+      "comment": "Polished Charm UX and 25k+ GitHub stars, but pre-1.0 (v0.4.x) and rapidly evolving; solid but still changing as of check 2026-06-05."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/charmbracelet/crush"],
+      "comment": "25k+ GitHub stars and active Charm following within months of launch; sizable but below Aider/Claude Code scale."
+    },
+    "extension-plugin-ecosystem": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush", "https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Open MCP ecosystem plus Agent Skills (compatible with anthropics/skills community packages)."
+    },
+    "project-memory-files": {
+      "value": ["agents-md"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md", "https://github.com/charmbracelet/crush/blob/main/AGENTS.md"],
+      "comment": "Auto-loads AGENTS.md by default (filename configurable via initialize_as)."
+    },
+    "memory-scopes": {
+      "value": ["user", "project"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Global user config ($HOME/.config/crush/crush.json) and per-project config (.crush.json / crush.json), plus project AGENTS.md."
+    },
+    "scoped-rules-files": {
+      "value": ["always-on"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "AGENTS.md is an always-on project instruction file; no documented path/file-type/agent-requested conditional rule scoping."
+    },
+    "auto-memory": {
+      "value": ["unsupported"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "No autonomous cross-session memory writing documented; instruction files are manually authored. Session state persistence is not auto-memory."
+    },
+    "skill-support": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Implements the open Agent Skills standard: SKILL.md skill folders discovered automatically."
+    },
+    "skill-invocation": {
+      "value": ["user-callable", "model-callable"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "user-invocable: true skills appear in the command palette (user:/project: prefixes); model auto-invocation is on by default and can be disabled per skill."
+    },
+    "always-on-surface": {
+      "value": ["description-only"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Agent Skills standard uses progressive disclosure: name + description discoverable, full SKILL.md body loaded on invocation."
+    },
+    "skill-distribution": {
+      "value": ["git", "manual-files"],
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Skills are folders dropped into skill directories (global ~/.config/crush/skills or project .crush/skills); community examples obtained via git (e.g. anthropics/skills). No curated marketplace."
+    }
+  }
 }
