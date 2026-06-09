@@ -103,7 +103,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] SQLite - Embedded database standard
 - [x] MongoDB - Leading document database
 - [x] Redis - Dominant key-value store
-- [ ] MariaDB - MySQL fork with growing adoption
+- [x] MariaDB - MySQL fork with growing adoption
 - [ ] Microsoft SQL Server - Enterprise RDBMS
 - [ ] Oracle Database - Enterprise RDBMS standard
 - [ ] Cassandra - Wide-column distributed database
