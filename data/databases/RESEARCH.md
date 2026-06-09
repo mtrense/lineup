@@ -107,7 +107,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] Microsoft SQL Server - Enterprise RDBMS
 - [x] Oracle Database - Enterprise RDBMS standard
 - [x] Cassandra - Wide-column distributed database
-- [ ] Neo4j - Leading graph database
+- [x] Neo4j - Leading graph database
 - [ ] CockroachDB - Distributed SQL
 - [ ] DynamoDB - AWS key-value/document
 - [ ] Firestore - Google document database
