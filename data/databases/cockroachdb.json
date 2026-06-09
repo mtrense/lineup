@@ -1,5 +1,151 @@
 {
   "name": "CockroachDB",
   "description": "Distributed SQL",
-  "values": {}
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Cloud-native distributed SQL database providing PostgreSQL-compatible, strongly consistent, horizontally scalable transactional storage for high-availability applications.",
+      "source": ["https://github.com/cockroachdb/cockroach", "https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Self-described as a cloud-native, distributed SQL database designed for high availability and effortless scale."
+    },
+    "website": {
+      "value": "https://www.cockroachlabs.com",
+      "source": ["https://github.com/cockroachdb/cockroach"]
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://github.com/cockroachdb/cockroach/discussions/127140", "https://www.theregister.com/2024/08/19/cockroachdb_abandons_open_core/"],
+      "comment": "As of v24.3 (Nov 2024) released under the source-available CockroachDB Software License (CSL); earlier versions were BSL 1.1 and originally Apache 2.0. No defined tag for CSL/source-available; 'proprietary' is the closest fit since the current license is not OSI open-source (it is free for individuals and small businesses but restricts use). Checked 2026-06-09."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://db-engines.com/en/system/CockroachDB"],
+      "comment": "Cockroach Labs founded 2015; first public beta of CockroachDB released in 2015."
+    },
+    "latest-version": {
+      "value": "v26.2.2",
+      "source": ["https://www.cockroachlabs.com/docs/stable/cockroach-version"],
+      "comment": "Latest stable release shown in the official docs version selector as of 2026-06-09."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://github.com/cockroachdb/cockroach"],
+      "comment": "Repository pushed 2026-06-09; quarterly release cadence with v26.2.x current."
+    },
+    "database-type": {
+      "value": ["relational", "multi-model"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview", "https://db-engines.com/en/system/CockroachDB"],
+      "comment": "Primarily a distributed relational (SQL) DBMS; DB-Engines classifies it as Multi-Model (relational plus JSON/document, spatial, vector)."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "PostgreSQL-compatible SQL dialect, wire-compatible with the PostgreSQL protocol."
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview", "https://db-engines.com/en/system/CockroachDB"],
+      "comment": "Full ACID, serializable distributed transactions by default on top of a Raft-replicated key-value store."
+    },
+    "schema-model": {
+      "value": ["enforced"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Schema-enforced relational tables; JSONB columns allow schemaless data within an enforced schema."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Native: data is automatically range-partitioned and distributed across nodes; no external sharding required."
+    },
+    "replication": {
+      "value": ["multi-primary"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Raft-based synchronous replication (3 replicas by default); every node can serve reads and writes for its ranges (multi-active availability), so there is no single primary."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview"],
+      "comment": "Built-in clustering is the core architecture; nodes form a single distributed cluster without third-party tools."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/releases/cloud", "https://www.cockroachlabs.com/lp/serverless/"],
+      "comment": "CockroachDB Cloud is an official fully-managed service (Basic/serverless, Standard, Advanced plans)."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/full-text-search", "https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Built-in full-text indexes with TSVECTOR/TSQUERY and multiple language dictionaries (PostgreSQL-style)."
+    },
+    "json-support": {
+      "value": ["queryable"],
+      "source": ["https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "JSONB data type with inverted (GIN) index support for querying schemaless data; relational DB, not a document store."
+    },
+    "geospatial": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/spatial-features.html", "https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Native spatial data types, spatial indexes and PostGIS-compatible functions (not the full PostGIS function set)."
+    },
+    "time-series": {
+      "value": false,
+      "source": ["https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "No specialized native time-series engine; time-series data is handled via standard relational tables, not a dedicated time-series feature."
+    },
+    "stored-procedures": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/stored-procedures", "https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Supports stored procedures (SQL and PL/pgSQL); some PostgreSQL feature gaps remain."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/triggers", "https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Supports triggers with documented limitations relative to PostgreSQL."
+    },
+    "views": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Standard views and materialized views supported."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/cockroach-start"],
+      "comment": "Built-in web DB Console served by each node (default http://localhost:8080) for monitoring and administration."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://www.cockroachlabs.com/docs/stable/cockroach-start"],
+      "comment": "Official 'cockroach' command-line binary handles node startup, SQL shell, and cluster operations."
+    },
+    "docker-image": {
+      "value": true,
+      "source": ["https://hub.docker.com/r/cockroachdb/cockroach"],
+      "comment": "Vendor-published official image 'cockroachdb/cockroach' on Docker Hub, regularly updated. Not part of the Docker Official Images (library) program but is the official publisher image."
+    },
+    "primary-language": {
+      "value": "Go",
+      "source": ["https://github.com/cockroachdb/cockroach"],
+      "comment": "~91% Go per GitHub language stats."
+    },
+    "github-stars": {
+      "value": 32194,
+      "source": ["https://github.com/cockroachdb/cockroach"],
+      "comment": "Per GitHub API on 2026-06-09."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "source": [],
+      "comment": "Stack Overflow tag pages were not fetchable in this environment, so the exact 'cockroachdb' tag question count could not be reliably verified. Left null rather than guess."
+    },
+    "db-engines-rank": {
+      "value": 71,
+      "source": ["https://db-engines.com/en/system/CockroachDB"],
+      "comment": "Overall DB-Engines rank #71 (score 4.16); ranks #1 among Multi-Model DBMS. Checked 2026-06-09; rankings change monthly."
+    },
+    "learning-curve": {
+      "value": 3.5,
+      "source": ["https://www.cockroachlabs.com/docs/stable/architecture/overview", "https://www.cockroachlabs.com/docs/stable/sql-feature-support"],
+      "comment": "Uses familiar PostgreSQL-compatible SQL with strong documentation (eases learning), but distributed-systems concepts (ranges, replication, multi-region, consistency tuning) add operational complexity. Mid-range assessment."
+    }
+  }
 }
