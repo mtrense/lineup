@@ -1,5 +1,146 @@
 {
   "name": "Firestore",
   "description": "Google document database",
-  "values": {}
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Fully-managed, serverless NoSQL document database from Google Cloud and Firebase with real-time sync, offline support, and automatic multi-region replication",
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"]
+    },
+    "website": {
+      "value": "https://firebase.google.com/docs/firestore",
+      "source": ["https://firebase.google.com/docs/firestore"]
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://db-engines.com/en/system/Google+Cloud+Firestore"],
+      "comment": "Firestore itself is a closed-source, commercial Google Cloud service. The client SDKs are open source (Apache 2.0) but the database engine is proprietary."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://developers.googleblog.com/en/introducing-cloud-firestore-our-new-document-database-for-apps/"],
+      "comment": "Cloud Firestore was launched in beta on October 3, 2017."
+    },
+    "latest-version": {
+      "value": null,
+      "comment": "Firestore is a fully-managed cloud service with continuous delivery; there is no user-facing version number. Editions (Standard / Enterprise) exist but are not versioned releases."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/firestore/docs/release-notes"],
+      "comment": "Actively developed; ongoing feature releases including the Enterprise edition and new query engine. Checked 2026-06-09."
+    },
+    "database-type": {
+      "value": ["document"],
+      "source": ["https://db-engines.com/en/system/Google+Cloud+Firestore"],
+      "comment": "Primary database model is document store."
+    },
+    "query-language": {
+      "value": ["api-only"],
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview", "https://db-engines.com/en/system/Google+Cloud+Firestore"],
+      "comment": "No SQL support. Queries are issued via client SDKs, REST and gRPC APIs. Enterprise edition adds optional MongoDB-compatible operations, but the core interface is API/SDK only."
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "Supports ACID transactions with strong consistency across multi-region replication."
+    },
+    "schema-model": {
+      "value": ["schemaless"],
+      "source": ["https://db-engines.com/en/system/Google+Cloud+Firestore", "https://firebase.google.com/docs/firestore/data-model"],
+      "comment": "Schema-free; documents can contain arbitrary fields and nested objects."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "Built from the ground up to automatically scale horizontally; sharding and distribution are fully managed by Google."
+    },
+    "replication": {
+      "value": ["multi-primary"],
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview", "https://db-engines.com/en/system/Google+Cloud+Firestore"],
+      "comment": "Automatic multi-region replication with strong consistency; DB-Engines classifies this as multi-source replication."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "As a managed service, data distribution and clustering are built-in and automatic, requiring no third-party tools."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://cloud.google.com/products/firestore"],
+      "comment": "Firestore is itself a fully-managed cloud service; there is no self-hosted production deployment (only a local emulator for development)."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/firestore", "https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "Native full-text search is available in the Enterprise edition; Standard edition historically required external solutions such as Algolia or Elasticsearch."
+    },
+    "json-support": {
+      "value": ["native"],
+      "source": ["https://firebase.google.com/docs/firestore/data-model", "https://firebase.google.com/docs/firestore"],
+      "comment": "Document database storing JSON/BSON-compatible documents natively, fully queryable."
+    },
+    "geospatial": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/firestore", "https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "Native geospatial queries are supported in the Enterprise edition."
+    },
+    "time-series": {
+      "value": false,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "No specialized time-series data type or handling."
+    },
+    "stored-procedures": {
+      "value": false,
+      "source": ["https://firebase.google.com/docs/functions/firestore-events"],
+      "comment": "No native server-side stored procedures; server-side logic is implemented externally via Cloud Functions / Cloud Run functions."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/extend-with-cloud-run-functions", "https://firebase.google.com/docs/functions/firestore-events"],
+      "comment": "No database-internal triggers; document-change events are handled externally by Cloud Functions / Eventarc rather than by the database engine itself."
+    },
+    "views": {
+      "value": false,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/overview"],
+      "comment": "No support for database views (regular or materialized)."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://firebase.google.com/docs/firestore/using-console", "https://docs.cloud.google.com/firestore/native/docs/using-console"],
+      "comment": "Data can be browsed and edited via the Firebase Console, Firestore Studio, and the Google Cloud Console."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/emulator", "https://firebase.google.com/docs/emulator-suite/connect_firestore"],
+      "comment": "Managed via the Firebase CLI and the gcloud CLI."
+    },
+    "docker-image": {
+      "value": false,
+      "source": ["https://docs.cloud.google.com/firestore/native/docs/emulator"],
+      "comment": "Firestore is a hosted service with no official database image on Docker Hub; only a local emulator (via gcloud / Firebase Emulator Suite) is provided for development."
+    },
+    "primary-language": {
+      "value": null,
+      "comment": "Implementation language is not publicly disclosed; Firestore is a proprietary, closed-source Google Cloud service."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source database with no primary GitHub repository; per RESEARCH.md guidelines, null is used for closed-source databases."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Could not reliably determine the question count for the google-cloud-firestore tag; Stack Overflow tag pages were not accessible during this pass."
+    },
+    "db-engines-rank": {
+      "value": 45,
+      "source": ["https://db-engines.com/en/system/Google+Cloud+Firestore"],
+      "comment": "Overall DB-Engines rank #45 (and #7 among document stores). Ranking changes monthly; checked 2026-06-09."
+    },
+    "learning-curve": {
+      "value": 4,
+      "source": ["https://firebase.google.com/docs/firestore"],
+      "comment": "Gentle for common app use cases: simple document model, excellent documentation and SDKs. Slightly tempered by the lack of SQL and by query/indexing constraints that surprise newcomers."
+    }
+  }
 }
