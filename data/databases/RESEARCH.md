@@ -104,7 +104,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] MongoDB - Leading document database
 - [x] Redis - Dominant key-value store
 - [x] MariaDB - MySQL fork with growing adoption
-- [ ] Microsoft SQL Server - Enterprise RDBMS
+- [x] Microsoft SQL Server - Enterprise RDBMS
 - [ ] Oracle Database - Enterprise RDBMS standard
 - [ ] Cassandra - Wide-column distributed database
 - [ ] Neo4j - Leading graph database

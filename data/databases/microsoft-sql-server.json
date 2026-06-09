@@ -1,5 +1,139 @@
 {
   "name": "Microsoft SQL Server",
   "description": "Enterprise RDBMS",
-  "values": {}
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Microsoft's proprietary enterprise relational database management system for transactional and analytical workloads.",
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Enterprise RDBMS supporting on-premises (Windows/Linux) and cloud (Azure SQL)."
+    },
+    "website": {
+      "value": "https://www.microsoft.com/en-us/sql-server",
+      "comment": "Official product page; derived from Microsoft's SQL Server site."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Closed-source commercial product (paid editions plus free Express/Developer editions); not open source."
+    },
+    "first-release": {
+      "value": "1989",
+      "comment": "SQL Server 1.0 (for OS/2) released in 1989; the Microsoft-developed rewrite (SQL Server 4.21 / 6.0 for Windows NT) followed in 1993-1995."
+    },
+    "latest-version": {
+      "value": "SQL Server 2025 (17.x)",
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17", "https://techcommunity.microsoft.com/blog/sqlserver/sql-server-2025-is-now-generally-available/4470570"],
+      "comment": "SQL Server 2025 reached general availability on 2025-11-18; internal version 17.x. Checked 2026-06-09."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "New major release (2025) GA in Nov 2025 with ongoing cumulative updates."
+    },
+    "database-type": {
+      "value": ["relational"],
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Primarily a relational RDBMS; also supports JSON, graph, and vector data, but relational is the core model."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Transact-SQL (T-SQL), Microsoft's SQL dialect."
+    },
+    "acid-compliant": {
+      "value": true,
+      "comment": "Full ACID transaction support with configurable isolation levels by default."
+    },
+    "schema-model": {
+      "value": ["enforced"],
+      "comment": "Schema-enforced relational model; defined table schemas are required."
+    },
+    "horizontal-scaling": {
+      "value": false,
+      "comment": "No native horizontal data sharding built in; scale-out is via read replicas/Always On AGs or external partitioning, not automatic sharding. Per RESEARCH.md, horizontal scaling must be a built-in feature."
+    },
+    "replication": {
+      "value": ["primary-replica"],
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Always On availability groups, log shipping, and transactional/merge/snapshot/peer-to-peer replication. Peer-to-peer offers limited multi-primary, but the primary supported model is primary-replica."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Built-in Always On Failover Cluster Instances and availability groups (requires Windows Server Failover Cluster / cluster manager on the OS side)."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Official Microsoft managed services: Azure SQL Database and Azure SQL Managed Instance, plus SQL Server on Azure VMs."
+    },
+    "full-text-search": {
+      "value": true,
+      "comment": "Built-in Full-Text Search component supporting CONTAINS/FREETEXT queries."
+    },
+    "json-support": {
+      "value": ["native"],
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "SQL Server 2025 adds a native binary JSON data type with built-in functions; earlier versions stored JSON as text with queryable functions."
+    },
+    "geospatial": {
+      "value": true,
+      "comment": "Native geometry and geography spatial data types with spatial indexes and functions."
+    },
+    "time-series": {
+      "value": false,
+      "comment": "No specialized time-series engine; temporal (system-versioned) tables exist but are not dedicated time-series storage."
+    },
+    "stored-procedures": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "T-SQL and CLR stored procedures and functions supported."
+    },
+    "triggers": {
+      "value": true,
+      "comment": "DML, DDL, and logon triggers supported."
+    },
+    "views": {
+      "value": true,
+      "comment": "Standard and indexed (materialized) views supported."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "SQL Server Management Studio (SSMS) and the cross-platform Azure Data Studio / mssql extension are official GUI tools."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Official sqlcmd utility (and bcp) command-line tools."
+    },
+    "docker-image": {
+      "value": true,
+      "source": ["https://hub.docker.com/r/microsoft/mssql-server"],
+      "comment": "Microsoft publishes official images as a Verified Publisher on Docker Hub (microsoft/mssql-server) and via mcr.microsoft.com/mssql/server."
+    },
+    "primary-language": {
+      "value": "C++",
+      "comment": "Core database engine implemented primarily in C++ (with C); not officially published as a precise breakdown, but widely documented."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source; no primary public GitHub source repository. Per RESEARCH.md, use null for closed-source databases."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Stack Overflow tag pages could not be fetched in this environment to obtain a verifiable count; left null rather than cite an unverified number. The 'sql-server' tag has on the order of 300k+ questions historically."
+    },
+    "db-engines-rank": {
+      "value": 3,
+      "source": ["https://db-engines.com/en/ranking"],
+      "comment": "Ranked #3 in the DB-Engines ranking (June 2026, score 698.04), behind Oracle and MySQL. Time-sensitive; checked 2026-06-09."
+    },
+    "learning-curve": {
+      "value": 3,
+      "source": ["https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"],
+      "comment": "Standard SQL (T-SQL) with excellent documentation and mature tooling (moderate), but enterprise features (Always On, editions, licensing, administration) add conceptual complexity; rated middle of the 1-5 scale."
+    }
+  }
 }
