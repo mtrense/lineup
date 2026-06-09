@@ -3,7 +3,7 @@ name: gather-data-cycle
 description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md, spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash .claude/skills/gather-data-cycle/list-unchecked.sh*), Bash(bash .claude/skills/gather-data-cycle/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
+allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
 argument-hint: "<comparison-type> [count|all][@workers]   (e.g. `databases 8`, `databases 8@4`, `databases all@3`)"
 ---
 
@@ -69,10 +69,12 @@ Repeat until a stop condition triggers (cap hit, pool drained, or a halt).
 
 ### Step 1: Enumerate unchecked candidates
 
-Run the bundled helper:
+Run the bundled helper. Invoke it through `${CLAUDE_SKILL_DIR}` — the harness
+substitutes the skill's own directory, so the script resolves no matter what the
+current working directory is (don't hard-code `.claude/skills/...`):
 
 ```
-bash .claude/skills/gather-data-cycle/list-unchecked.sh <type>
+bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh <type>
 ```
 
 It prints one unchecked candidate **name** per line, in declared order. Do NOT
@@ -133,7 +135,7 @@ own `node -e`, `for`-loop, or `cd ...; ...` compound — those can't be
 allow-listed and will prompt every run):
 
 ```
-bash .claude/skills/gather-data-cycle/verify-batch.sh <type> <id1> <id2> ...
+bash ${CLAUDE_SKILL_DIR}/verify-batch.sh <type> <id1> <id2> ...
 ```
 
 It prints one TSV line per id: `<id>  <ok|MISSING|BAD_JSON>  <lastVerified>  <populated>  <null>`.
