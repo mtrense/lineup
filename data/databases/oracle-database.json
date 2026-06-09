@@ -1,5 +1,151 @@
 {
   "name": "Oracle Database",
   "description": "Enterprise RDBMS standard",
-  "values": {}
+  "icon": "🔴",
+  "url": "https://www.oracle.com/database/",
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Multi-model enterprise relational database management system, primarily SQL-based, used for mission-critical OLTP and data-warehousing workloads",
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database", "https://db-engines.com/en/system/Oracle"],
+      "comment": "Primarily a relational DBMS with secondary document, graph, spatial and vector models."
+    },
+    "website": {
+      "value": "https://www.oracle.com/database/",
+      "comment": "Official product page; derived from the vendor's primary domain."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Proprietary/commercial license. A restricted free edition (Oracle Database Free / XE) exists, but the product itself is closed-source proprietary."
+    },
+    "first-release": {
+      "value": "1979",
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Oracle V2 (1979) was the first commercially available SQL-based RDBMS."
+    },
+    "latest-version": {
+      "value": "Oracle AI Database 26ai (23.26)",
+      "source": ["https://blogs.oracle.com/database/ga-of-oracle-ai-database-26ai-for-linux-x86-64-on-premises-platforms", "https://docs.oracle.com/en/database/oracle/oracle-database/26/upgrd/oracle-database-release-numbers.html"],
+      "comment": "Checked 2026-06-09. Oracle AI Database 26ai (formerly 23ai) became GA on-premises for Linux x86-64 in Jan 2026; it continues the internal 23.x version line (e.g. 23.26.x quarterly release updates)."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://blogs.oracle.com/database/ga-of-oracle-ai-database-26ai-for-linux-x86-64-on-premises-platforms"],
+      "comment": "Active quarterly Release Updates in 2026 (e.g. 23.26.1, 23.26.2)."
+    },
+    "database-type": {
+      "value": ["relational", "multi-model"],
+      "source": ["https://db-engines.com/en/system/Oracle"],
+      "comment": "Primary model relational; multi-model with document, graph, spatial and vector capabilities."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "SQL plus the proprietary PL/SQL procedural extension; SQL is the primary query interface."
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Full ACID transactions by default (multi-version read consistency, undo/redo durability)."
+    },
+    "schema-model": {
+      "value": ["enforced"],
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Schema-enforced relational tables; flexible JSON columns are also supported but the default model is fixed-schema."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Native sharding (Oracle Sharding) and Real Application Clusters distribute data/load across nodes without third-party tooling."
+    },
+    "replication": {
+      "value": ["primary-replica", "multi-primary"],
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Primary-replica via Data Guard/Active Data Guard; multi-primary via GoldenGate and the globally distributed (RAFT) database."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Real Application Clusters (RAC) provides built-in shared-database clustering."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://www.oracle.com/database/"],
+      "comment": "Official managed services: Oracle Autonomous Database and Oracle Base Database on Oracle Cloud Infrastructure."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Built-in Oracle Text provides full-text indexing and search."
+    },
+    "json-support": {
+      "value": ["native"],
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database", "https://db-engines.com/en/system/Oracle"],
+      "comment": "Native JSON data type (since 12c, expanded in 21c/23ai) with full SQL/JSON querying and JSON Relational Duality."
+    },
+    "geospatial": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database", "https://db-engines.com/en/system/Oracle"],
+      "comment": "Oracle Spatial provides native geospatial data types and queries."
+    },
+    "time-series": {
+      "value": false,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "No dedicated time-series engine; time-based data is handled with standard tables/partitioning rather than a specialized time-series feature."
+    },
+    "stored-procedures": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "PL/SQL stored procedures (since Oracle7, 1992); also Java stored procedures."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Database triggers supported via PL/SQL."
+    },
+    "views": {
+      "value": true,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Regular and materialized views supported."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://www.oracle.com/database/"],
+      "comment": "Oracle SQL Developer and Enterprise Manager are official graphical tools."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://www.oracle.com/database/"],
+      "comment": "SQL*Plus and SQLcl are official command-line interfaces."
+    },
+    "docker-image": {
+      "value": false,
+      "source": ["https://container-registry.oracle.com/", "https://github.com/oracle/docker-images"],
+      "comment": "Oracle ships official container images via Oracle Container Registry (container-registry.oracle.com) and the oracle/docker-images repo, but these are not part of Docker Hub's curated Docker Official Images program. Strict reading of the attribute = false."
+    },
+    "primary-language": {
+      "value": "C, C++, Assembly",
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Implemented primarily in C and C++ with some assembly, per the Wikipedia infobox."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source proprietary product with no public source repository; per RESEARCH.md, GitHub stars are null for closed-source databases."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Stack Overflow and its API are not fetchable in this environment, so the [oracle]/[oracle-database] tag count could not be verified against a primary source; left null rather than guessed."
+    },
+    "db-engines-rank": {
+      "value": 1,
+      "source": ["https://db-engines.com/en/ranking"],
+      "comment": "Ranked #1 on DB-Engines as of the June 2026 ranking (checked 2026-06-09)."
+    },
+    "learning-curve": {
+      "value": 2,
+      "source": ["https://en.wikipedia.org/wiki/Oracle_Database"],
+      "comment": "Standard SQL lowers entry, but the vast feature set, complex administration (RAC, tablespaces, init parameters), and intricate licensing make it relatively steep to master; rated 2/5 per the Assessment Guidelines."
+    }
+  }
 }
