@@ -1,5 +1,150 @@
 {
   "name": "Cassandra",
   "description": "Wide-column distributed database",
-  "values": {}
+  "icon": "",
+  "url": "https://cassandra.apache.org/",
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Masterless, distributed wide-column NoSQL database designed for linear scalability and high availability across multiple data centers",
+      "source": ["https://cassandra.apache.org/_/index.html"]
+    },
+    "website": {
+      "value": "https://cassandra.apache.org/",
+      "source": ["https://cassandra.apache.org/_/index.html"]
+    },
+    "license": {
+      "value": ["apache2"],
+      "source": ["https://github.com/apache/cassandra", "https://cassandra.apache.org/_/index.html"]
+    },
+    "first-release": {
+      "value": "2008",
+      "source": ["https://db-engines.com/en/system/Cassandra"],
+      "comment": "Initial release in 2008 (originally developed at Facebook, open-sourced via Apache)."
+    },
+    "latest-version": {
+      "value": "5.0.8",
+      "source": ["https://cassandra.apache.org/_/download.html"],
+      "comment": "Latest GA version as of 2026-06-09; 4.1.11 is the prior stable line."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://github.com/apache/cassandra", "https://cassandra.apache.org/_/download.html"],
+      "comment": "Repository pushed 2026-06-09; 5.0.8 released April 2026."
+    },
+    "database-type": {
+      "value": ["wide-column"],
+      "source": ["https://db-engines.com/en/system/Cassandra"],
+      "comment": "Wide-column store based on ideas from BigTable and Dynamo; adds vector support in 5.0."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Uses CQL (Cassandra Query Language), an SQL-like language; no dedicated CQL tag in the schema, so mapped to the closest 'sql' tag."
+    },
+    "acid-compliant": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "AP system with tunable, eventual consistency by default; only lightweight (Paxos) transactions provide limited atomicity. Not full ACID by default per Assessment Guidelines."
+    },
+    "schema-model": {
+      "value": ["enforced"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "CQL tables require column definitions; schema is enforced at the table level."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/_/index.html"],
+      "comment": "Native masterless distribution; linear scalability is a core design goal."
+    },
+    "replication": {
+      "value": ["multi-primary"],
+      "source": ["https://cassandra.apache.org/_/index.html"],
+      "comment": "Masterless architecture; every node accepts writes (peer-to-peer), equivalent to multi-primary replication."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/_/index.html"],
+      "comment": "Built-in peer-to-peer clustering across nodes and data centers without third-party tools."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://www.datastax.com/products/datastax-astra"],
+      "comment": "Managed Cassandra-as-a-service offered via DataStax Astra DB (now IBM) and AWS Keyspaces; not run by the Apache Foundation itself."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Storage-Attached Indexing (SAI) in 5.0 adds full-text/secondary search capabilities."
+    },
+    "json-support": {
+      "value": ["queryable"],
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "CQL supports INSERT JSON and SELECT JSON for reading/writing rows as JSON; not a native document model."
+    },
+    "geospatial": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "No native geospatial data types or queries in core CQL."
+    },
+    "time-series": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Commonly used for time-series workloads via wide rows and clustering keys, but offers no specialized/dedicated time-series engine or functions."
+    },
+    "stored-procedures": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Server-side user-defined functions (UDFs) and aggregates (UDAs) are supported; no traditional stored procedures."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "CQL supports CREATE TRIGGER with custom Java trigger implementations."
+    },
+    "views": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Materialized views are supported (historically flagged experimental)."
+    },
+    "official-gui": {
+      "value": false,
+      "source": ["https://cassandra.apache.org/_/index.html"],
+      "comment": "No official graphical administration tool shipped by the Apache project; third-party tools exist."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "Ships with cqlsh (CQL shell) and nodetool for administration."
+    },
+    "docker-image": {
+      "value": true,
+      "source": ["https://hub.docker.com/_/cassandra"],
+      "comment": "Docker Official Image maintained by the Docker Community."
+    },
+    "primary-language": {
+      "value": "Java",
+      "source": ["https://github.com/apache/cassandra"],
+      "comment": "Java comprises ~97.6% of the codebase."
+    },
+    "github-stars": {
+      "value": 9759,
+      "source": ["https://github.com/apache/cassandra"],
+      "comment": "apache/cassandra star count as of 2026-06-09."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Could not fetch the Stack Overflow 'cassandra' tag question count from a reliable source during this pass (stackoverflow.com not fetchable)."
+    },
+    "db-engines-rank": {
+      "value": 10,
+      "source": ["https://db-engines.com/en/system/Cassandra"],
+      "comment": "Ranked #10 overall and #1 among wide-column stores as of 2026-06-09."
+    },
+    "learning-curve": {
+      "value": 2,
+      "source": ["https://cassandra.apache.org/doc/latest/cassandra/developing/cql/index.html"],
+      "comment": "CQL syntax is SQL-like, but distributed data modeling (partition/clustering keys, denormalization, tunable consistency) adds significant conceptual complexity; rated relatively steep."
+    }
+  }
 }

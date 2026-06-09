@@ -106,7 +106,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] MariaDB - MySQL fork with growing adoption
 - [x] Microsoft SQL Server - Enterprise RDBMS
 - [x] Oracle Database - Enterprise RDBMS standard
-- [ ] Cassandra - Wide-column distributed database
+- [x] Cassandra - Wide-column distributed database
 - [ ] Neo4j - Leading graph database
 - [ ] CockroachDB - Distributed SQL
 - [ ] DynamoDB - AWS key-value/document
