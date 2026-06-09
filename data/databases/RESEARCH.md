@@ -109,7 +109,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] Cassandra - Wide-column distributed database
 - [x] Neo4j - Leading graph database
 - [x] CockroachDB - Distributed SQL
-- [ ] DynamoDB - AWS key-value/document
+- [x] DynamoDB - AWS key-value/document
 - [ ] Firestore - Google document database
 - [ ] ClickHouse - Analytics-focused
 - [ ] ScyllaDB - Cassandra-compatible

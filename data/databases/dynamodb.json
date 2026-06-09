@@ -1,5 +1,148 @@
 {
   "name": "DynamoDB",
   "description": "AWS key-value/document",
-  "values": {}
+  "icon": "",
+  "url": "https://aws.amazon.com/dynamodb/",
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "Fully managed, serverless NoSQL key-value and document database from AWS, offering single-digit millisecond performance at any scale",
+      "source": ["https://aws.amazon.com/dynamodb/"]
+    },
+    "website": {
+      "value": "https://aws.amazon.com/dynamodb/",
+      "source": ["https://aws.amazon.com/dynamodb/"]
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://db-engines.com/en/system/Amazon+DynamoDB"],
+      "comment": "Commercial, closed-source AWS service (free tier available for limited operations)."
+    },
+    "first-release": {
+      "value": "2012",
+      "source": ["https://db-engines.com/en/system/Amazon+DynamoDB"],
+      "comment": "Amazon DynamoDB was launched in January 2012."
+    },
+    "latest-version": {
+      "value": null,
+      "comment": "DynamoDB is a continuously-deployed managed cloud service with no public, user-facing version number. The DynamoDB Local emulator is versioned separately."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "Actively developed AWS service receiving ongoing feature releases (e.g., multi-Region strong consistency for global tables)."
+    },
+    "database-type": {
+      "value": ["key-value", "document"],
+      "source": ["https://db-engines.com/en/system/Amazon+DynamoDB", "https://aws.amazon.com/dynamodb/"],
+      "comment": "Primary models are key-value and document store; DB-Engines classifies it as both."
+    },
+    "query-language": {
+      "value": ["api-only", "sql"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "Native access is via a RESTful HTTP API/SDK. DynamoDB also supports PartiQL, a SQL-compatible query language (subset); mapped to the closest 'sql' tag as there is no PartiQL tag in the schema."
+    },
+    "acid-compliant": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html"],
+      "comment": "TransactWriteItems/TransactGetItems provide all-or-nothing, serializable-isolation ACID transactions within a single AWS Region. Cross-Region transactions on global tables are not ACID."
+    },
+    "schema-model": {
+      "value": ["optional"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "Schemaless except that primary key (partition/sort key) attributes and their types must be declared at table creation; all other attributes are free-form. Treated as schema-optional rather than fully schema-less."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "Automatically partitions and distributes data across nodes for instant scaling; horizontal scaling is intrinsic to the managed service."
+    },
+    "replication": {
+      "value": ["multi-primary"],
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "Global Tables provide multi-Region, active-active replication (every replica accepts writes), equivalent to multi-primary."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "Distribution and clustering are managed automatically by AWS; no third-party tooling required (the cluster is abstracted from the user)."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/"],
+      "comment": "DynamoDB is exclusively an official AWS managed cloud service; there is no self-hosted production deployment."
+    },
+    "full-text-search": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "No built-in full-text search; AWS recommends integrating Amazon OpenSearch Service for full-text search use cases."
+    },
+    "json-support": {
+      "value": ["native"],
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "Document types (Map and List) map directly to JSON objects/arrays, nestable up to 32 levels; items are natively document-structured and queryable via PartiQL and expressions."
+    },
+    "geospatial": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "No native geospatial data types or queries; geohashing must be implemented at the application level (e.g., the geo library)."
+    },
+    "time-series": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"],
+      "comment": "Commonly used for time-series workloads with TTL-based expiry, but offers no specialized/dedicated time-series engine or functions."
+    },
+    "stored-procedures": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html"],
+      "comment": "No server-side stored procedures; server-side logic is handled externally via AWS Lambda triggered by DynamoDB Streams, not inside the database engine."
+    },
+    "triggers": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"],
+      "comment": "DynamoDB Streams + AWS Lambda provide trigger-like, event-driven processing on item-level create/update/delete changes."
+    },
+    "views": {
+      "value": false,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "No SQL-style views or materialized views; secondary indexes (GSIs/LSIs) provide alternate access patterns but are not views."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://aws.amazon.com/dynamodb/", "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "Official AWS Management Console for DynamoDB plus the NoSQL Workbench desktop GUI provided by AWS."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html"],
+      "comment": "Managed via the official AWS Command Line Interface (aws dynamodb commands)."
+    },
+    "docker-image": {
+      "value": false,
+      "source": ["https://hub.docker.com/r/amazon/dynamodb-local"],
+      "comment": "AWS publishes amazon/dynamodb-local (the DynamoDB Local emulator) on Docker Hub, but it is a Verified Publisher image, not a Docker Official Image as the attribute strictly defines."
+    },
+    "primary-language": {
+      "value": null,
+      "comment": "Closed-source AWS service; the implementation language is not publicly documented (DynamoDB's internal storage node has been described as Java-based in talks, but this is not officially confirmed)."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source proprietary service with no public GitHub repository; per Assessment Guidelines, GitHub Stars is null for closed-source databases."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Could not retrieve the Stack Overflow 'amazon-dynamodb' tag question count from a reliable source during this pass (stackoverflow.com not fetchable)."
+    },
+    "db-engines-rank": {
+      "value": 18,
+      "source": ["https://db-engines.com/en/system/Amazon+DynamoDB"],
+      "comment": "Ranked #18 overall (and #2 among key-value stores) as of 2026-06-09."
+    },
+    "learning-curve": {
+      "value": 3,
+      "source": ["https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html"],
+      "comment": "Managed setup is easy and PartiQL is SQL-like, but effective use requires single-table design, partition/sort key modeling, and access-pattern-first thinking that differ from relational habits; rated moderate."
+    }
+  }
 }
