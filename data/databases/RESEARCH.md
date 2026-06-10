@@ -19,7 +19,7 @@ This document provides guidelines for researching and assessing database systems
 | **Name** | text | Official product name |
 | **Description** | text | One-sentence description of the database type and primary use case |
 | **Website** | link | Official website or primary documentation site |
-| **License** | tags | Primary license (MIT, Apache 2.0, GPL, Proprietary, etc.) |
+| **License** | tags | Primary license. Open-source: PostgreSQL, GPL, AGPL, Apache 2.0, MIT, BSD, Public Domain. Source-available (dedicated tag per product — see Assessment Guidelines): SSPL, RSALv2, ScyllaDB SAL. Closed: Proprietary. See the License-tag guideline for picking between source-available and proprietary. |
 | **First Released** | integer | Year of initial public release |
 | **Latest Version** | text | Current stable version number |
 | **Actively Maintained** | boolean | Has had a release or significant commits in the last 12 months |
@@ -86,6 +86,9 @@ This document provides guidelines for researching and assessing database systems
 
 ### Assessment Guidelines
 
+- **License tags**: Source-available licenses (source published but not OSI-approved, e.g. with use restrictions) get a **dedicated tag per product** rather than being collapsed into `proprietary` — following the existing `rsal` (Redis) and `sspl` (MongoDB) precedent. Reserve `proprietary` for closed-source products where source is not published. When a product relicensed, record the **current/forward** license; if both the old OSS license and the new source-available one are notable, tag both. Specific licenses:
+  - `agpl` ("AGPL") — the GNU Affero GPL; a general open-source license, not vendor-specific.
+  - `scylla-sal` ("ScyllaDB SAL") — the ScyllaDB Software License Agreement (source-available, used from ScyllaDB 2025.1 onward). ScyllaDB's last AGPL release was 6.2, so a full record may carry both `agpl` and `scylla-sal`.
 - **ACID Compliance**: Only mark `true` if the database supports all four ACID properties by default or with standard configuration. Partial compliance = `false`
 - **Horizontal Scaling**: Must be a built-in feature, not requiring external sharding solutions
 - **Learning Curve**: Consider:
