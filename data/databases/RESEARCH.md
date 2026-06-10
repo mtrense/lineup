@@ -114,7 +114,7 @@ This document provides guidelines for researching and assessing database systems
 - [x] CockroachDB - Distributed SQL
 - [x] DynamoDB - AWS key-value/document
 - [x] Firestore - Google document database
-- [ ] ClickHouse - Analytics-focused
+- [x] ClickHouse - Analytics-focused
 - [ ] ScyllaDB - Cassandra-compatible
 
 ## Notes for Researchers

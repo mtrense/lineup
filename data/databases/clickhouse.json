@@ -1,5 +1,149 @@
 {
   "name": "ClickHouse",
   "description": "Analytics-focused",
-  "values": {}
+  "lastVerified": "2026-06-09",
+  "values": {
+    "description": {
+      "value": "High-performance, column-oriented SQL database management system designed for real-time online analytical processing (OLAP) over billions of rows with millisecond latency",
+      "source": ["https://clickhouse.com/", "https://db-engines.com/en/system/ClickHouse"]
+    },
+    "website": {
+      "value": "https://clickhouse.com/",
+      "source": ["https://clickhouse.com/"]
+    },
+    "license": {
+      "value": ["apache2"],
+      "source": ["https://github.com/ClickHouse/ClickHouse", "https://api.github.com/repos/ClickHouse/ClickHouse"],
+      "comment": "Apache-2.0 (spdx_id Apache-2.0 reported by the GitHub API)."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://db-engines.com/en/system/ClickHouse"],
+      "comment": "Open-sourced by Yandex in June 2016."
+    },
+    "latest-version": {
+      "value": "26.4.4.38-stable",
+      "source": ["https://github.com/ClickHouse/ClickHouse"],
+      "comment": "Latest stable release v26.4.4.38-stable (June 8, 2026) as of 2026-06-09; ClickHouse uses a CalVer-style YY.M versioning scheme."
+    },
+    "actively-maintained": {
+      "value": true,
+      "source": ["https://api.github.com/repos/ClickHouse/ClickHouse", "https://github.com/ClickHouse/ClickHouse"],
+      "comment": "Repository pushed_at 2026-06-09; stable release on 2026-06-08."
+    },
+    "database-type": {
+      "value": ["relational"],
+      "source": ["https://db-engines.com/en/system/ClickHouse", "https://clickhouse.com/"],
+      "comment": "Column-oriented relational (SQL) OLAP DBMS. DB-Engines classifies it primarily as Relational DBMS; document/spatial/time-series/vector are secondary models. No dedicated 'columnar/OLAP' tag in the schema, so mapped to the closest 'relational' tag."
+    },
+    "query-language": {
+      "value": ["sql"],
+      "source": ["https://clickhouse.com/"],
+      "comment": "Uses SQL (a ClickHouse SQL dialect)."
+    },
+    "acid-compliant": {
+      "value": false,
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional"],
+      "comment": "Not fully ACID by default: only single-block/single-partition MergeTree inserts are atomic/isolated/durable. Full multi-statement BEGIN/COMMIT transactions are experimental, require Keeper/ZooKeeper, and are unavailable in ClickHouse Cloud. Fails the 'full ACID by default' guideline."
+    },
+    "schema-model": {
+      "value": ["enforced"],
+      "source": ["https://clickhouse.com/docs/sql-reference/data-types/newjson"],
+      "comment": "Tables require typed column definitions (schema-enforced). A native dynamic JSON type exists for semi-structured data, but the table schema itself is enforced."
+    },
+    "horizontal-scaling": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/engines/table-engines/mergetree-family/replication", "https://clickhouse.com/"],
+      "comment": "Native sharding via distributed tables and ReplicatedMergeTree distributes data across multiple nodes; scaling to billions of rows is a core design goal."
+    },
+    "replication": {
+      "value": ["multi-primary"],
+      "source": ["https://clickhouse.com/docs/engines/table-engines/mergetree-family/replication"],
+      "comment": "Replication is asynchronous and multi-master: INSERT/ALTER queries can be sent to any replica. Requires ClickHouse Keeper or ZooKeeper for coordination."
+    },
+    "clustering": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/engines/table-engines/mergetree-family/replication"],
+      "comment": "Built-in clustering via shards, ReplicatedMergeTree, and distributed tables, coordinated by the bundled ClickHouse Keeper (or ZooKeeper); no third-party tooling required."
+    },
+    "cloud-offering": {
+      "value": true,
+      "source": ["https://clickhouse.com/"],
+      "comment": "ClickHouse Cloud is the official managed service on AWS, GCP, and Azure."
+    },
+    "full-text-search": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/engines/table-engines/mergetree-family/invertedindexes"],
+      "comment": "Text (inverted) indexes for full-text search became generally available in ClickHouse 26.2, supporting tokenizers across String, Array, Map, and JSON columns."
+    },
+    "json-support": {
+      "value": ["native"],
+      "source": ["https://clickhouse.com/docs/sql-reference/data-types/newjson"],
+      "comment": "Native, queryable JSON data type (production-ready since 25.3) with path-based querying, type inference, and sub-column extraction."
+    },
+    "geospatial": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/sql-reference/functions/geo"],
+      "comment": "Native geo functions (distances on a sphere, geohashes, H3 indexes) and Point/Polygon geometric types."
+    },
+    "time-series": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/engines/table-engines/special/time_series", "https://github.com/ClickHouse/ClickHouse/pull/64183"],
+      "comment": "Dedicated (experimental) TimeSeries table engine for Prometheus remote-write/read protocols, plus general columnar suitability for time-series workloads. Engine is experimental (requires allow_experimental_time_series_table)."
+    },
+    "stored-procedures": {
+      "value": false,
+      "source": ["https://clickhouse.com/docs/guides/developer/stored-procedures-and-prepared-statements"],
+      "comment": "No traditional stored procedures with control flow; ClickHouse offers user-defined functions (UDFs) instead and recommends procedural logic in application code."
+    },
+    "triggers": {
+      "value": false,
+      "source": ["https://clickhouse.com/docs/guides/developer/stored-procedures-and-prepared-statements"],
+      "comment": "No traditional CREATE TRIGGER support; (incremental) materialized views cover some event-driven use cases but are not database triggers."
+    },
+    "views": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/sql-reference/statements/create/view"],
+      "comment": "Supports normal, materialized, refreshable materialized, and window views."
+    },
+    "official-gui": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/interfaces/http"],
+      "comment": "The server ships a built-in web UI ('Play') at the HTTP interface (http://localhost:8123/play) for running queries; ClickHouse Cloud also provides an official web console."
+    },
+    "cli-tool": {
+      "value": true,
+      "source": ["https://clickhouse.com/docs/interfaces/cli"],
+      "comment": "Official clickhouse-client command-line interface (plus clickhouse-local)."
+    },
+    "docker-image": {
+      "value": false,
+      "source": ["https://hub.docker.com/r/clickhouse/clickhouse-server"],
+      "comment": "An official image is published by ClickHouse itself (clickhouse/clickhouse-server), but it is not a Docker Official Image (not in the docker.io/_/ library namespace)."
+    },
+    "primary-language": {
+      "value": "C++",
+      "source": ["https://api.github.com/repos/ClickHouse/ClickHouse", "https://github.com/ClickHouse/ClickHouse"],
+      "comment": "C++ is the primary language (~70% of the codebase)."
+    },
+    "github-stars": {
+      "value": 47905,
+      "source": ["https://api.github.com/repos/ClickHouse/ClickHouse"],
+      "comment": "ClickHouse/ClickHouse stargazers_count as of 2026-06-09."
+    },
+    "stackoverflow-tags": {
+      "value": null,
+      "comment": "Could not fetch the Stack Overflow 'clickhouse' tag question count from a reliable source during this pass (stackoverflow.com is not fetchable in this environment)."
+    },
+    "db-engines-rank": {
+      "value": 26,
+      "source": ["https://db-engines.com/en/system/ClickHouse"],
+      "comment": "Ranked #26 overall on db-engines.com as of 2026-06-09."
+    },
+    "learning-curve": {
+      "value": 3,
+      "source": ["https://clickhouse.com/docs/guides/developer/transactional", "https://clickhouse.com/docs/engines/table-engines/mergetree-family/replication"],
+      "comment": "Standard SQL interface and strong documentation lower the entry barrier, but OLAP-specific concepts (MergeTree engine family, sharding/distributed tables, limited transactions, denormalized data modeling) add moderate complexity. Rated mid-range."
+    }
+  }
 }
