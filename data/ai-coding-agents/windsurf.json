@@ -3,7 +3,7 @@
   "description": "Agentic IDE (formerly Codeium) with \"Cascade\" flow",
   "icon": "",
   "url": "https://windsurf.com",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Cognition (formerly Codeium / Exafunction)",
@@ -253,6 +253,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://docs.windsurf.com/windsurf/cascade/skills"],
       "comment": "No marketplace or registry documented. Skills/Workflows are shared by committing them to the repo (.windsurf/skills/, .windsurf/workflows/) for version-controlled git distribution, or placed manually in global/system directories."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://docs.devin.ai/desktop/terminal", "https://docs.devin.ai/desktop/cascade/hooks"],
+      "comment": "The local Windsurf Editor runs Cascade's terminal commands and edits directly on the user's machine with full user privileges; no kernel sandbox (Seatbelt/Landlock/seccomp), container, or VM isolation is documented for local execution. Confinement is policy-based (allow/deny lists, blocking pre-hooks) rather than a true isolation mechanism. (The integrated Devin cloud agent runs in its own cloud environment, but that is a separate product surface, not local Cascade.) Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "read-write-distinction"],
+      "source": ["https://docs.devin.ai/desktop/terminal", "https://docs.devin.ai/desktop/cascade/hooks"],
+      "comment": "Terminal commands are gated by prefix-matching allow/deny lists (e.g. add 'git' to auto-run all git commands, 'rm' to always require approval) — command-prefix and per-command. Reads, writes, command runs, and MCP tool use are each gated separately (Chat vs Write mode plus distinct pre_read_code / pre_write_code / pre_run_command / pre_mcp_tool_use hooks) — per-tool and read/write distinction. No documented per-network-domain gating. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://docs.devin.ai/desktop/terminal"],
+      "comment": "The declarative allow/deny command lists follow deny-overrides: 'the denylist takes precedence over the allowlist — if a command matches both lists, it will require approval.' No documented specificity-based re-override or user-ordered evaluation, so deny-overrides is the highest rung. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://docs.devin.ai/desktop/cascade/hooks", "https://docs.devin.ai/desktop/terminal"],
+      "comment": "Highest level reached: Cascade Hooks provide a code-level decision point — pre_run_command, pre_write_code, pre_read_code, pre_mcp_tool_use and pre_user_prompt pre-hooks run arbitrary shell commands and block the action by exiting with code 2, 'ideal for implementing security policies.' Below that it also supports presets (four auto-execution levels: Disabled / Allowlist Only / Auto / Turbo) and user-authored declarative allow/deny rule lists. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.devin.ai/desktop/advanced"],
+      "comment": "No built-in default protection for secrets out of the box. Gitignored files are excluded by default ('Cascade Gitignore Access' is off by default), but there is no .env- or key-file-specific deny shipped enabled. The user must author a .codeiumignore (gitignore-style) to exclude .env/keys, or write a blocking pre_write_code/pre_read_code hook. Since nothing secret-specific ships enabled, marked false. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.devin.ai/desktop/terminal"],
+      "comment": "Allow/deny command lists are stored in Windsurf settings (windsurf.cascadeCommandsAllowList / windsurf.cascadeCommandsDenyList) and persist across sessions and restarts; team-level lists can also be enforced and are merged with user lists. So 'always allow git' survives a relaunch. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.devin.ai/desktop/terminal"],
+      "comment": "Turbo mode is a documented full-autonomy switch: 'all commands are auto-executed immediately, except those in your deny list,' with no per-command approval. Workflows can also annotate // turbo / // turbo-all to force auto-run. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://docs.devin.ai/desktop/terminal", "https://docs.devin.ai/desktop/advanced"],
+      "comment": "No documented egress gating for local Cascade — commands run with the user's full network access; there is no built-in domain allowlist, proxy, or block-by-default for outbound traffic during a run. A blocking pre_run_command hook could be used to restrict network commands, but nothing ships enabled. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://docs.devin.ai/desktop/terminal", "https://docs.windsurf.com/windsurf/cascade/cascade"],
+      "comment": "Out of the box (before enabling Turbo/Allowlist), Cascade proposes file edits in Write mode that are applied to a reviewable diff (accept/reject), while terminal command auto-execution defaults to Disabled — every command requires manual approval. So edits flow but commands ask. Checked 2026-06-12."
     }
   }
 }
