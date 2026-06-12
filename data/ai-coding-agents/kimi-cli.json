@@ -2,7 +2,7 @@
   "name": "Kimi CLI",
   "description": "Moonshot AI's open-source terminal agent for software-development and terminal tasks; skills and MCP support.",
   "url": "https://github.com/MoonshotAI/kimi-cli",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Moonshot AI",
@@ -253,6 +253,51 @@
       "value": ["manual-files"],
       "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
       "comment": "Skills are directories dropped into user/project skill folders (incl. reuse of .claude/skills); no curated marketplace or package registry documented. Git clone into those folders is possible but not an official distribution channel."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt", "https://github.com/MoonshotAI/kimi-cli"],
+      "comment": "No OS sandbox, container, VM, or filesystem jail documented. The Shell tool executes commands directly via the system shell with the user's full privileges, relying on per-action approval prompts rather than isolation. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "read-write-distinction"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Approval is requested per individual action: each shell command execution, each file write/edit, each MCP tool call, and each background-task stop. Reads of non-sensitive files are not gated while writes/commands are (read/write distinction). No command-prefix/path/domain allowlist patterns documented. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No declarative allow/deny rule engine documented; the default flow prompts for every gated action, so there is no precedence model. Bypass is only the global --yolo/--afk switch. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Configuration is limited to mode-level presets (default per-action approval vs --yolo/--yes auto-approve vs --afk). No user-authored declarative allow/deny rules and no programmable permission hooks/policy scripts documented. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Built-in by default: the ReadFile tool rejects reading sensitive files (.env, SSH private keys, cloud credentials) and the Grep tool always filters them out (even when include_ignored is set), regardless of mode. No user deny rule required. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No mechanism documented for saving approvals (no 'always allow this command' rule written to durable config); each gated action is approved individually. The only way to stop repeat prompts is the global --yolo/--afk bypass. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Documented full-autonomy bypasses: --yolo (-y/--yes/--auto-approve) auto-approves all tool calls, and --afk additionally auto-dismisses AskUserQuestion for away-from-keyboard runs. Docs warn all file edits and shell commands then run automatically. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No outbound-network gating documented. SearchWeb/FetchURL operate without filtering, allowlisting, or proxy controls; since execution is not sandboxed, shell commands also have unrestricted egress. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "Out of the box (no --yolo/--afk), every shell command, file write/edit, and MCP tool call requires explicit per-action approval. Checked 2026-06-12."
     }
   }
 }
