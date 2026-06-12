@@ -2,7 +2,7 @@
   "name": "Amp",
   "description": "Sourcegraph's frontier coding agent; start an agent in the terminal and control it from web, CLI, and mobile.",
   "url": "https://ampcode.com/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Amp (originally Sourcegraph)",
@@ -251,6 +251,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://ampcode.com/manual"],
       "comment": "Skills live as files in .agents/skills/ (manual/git-distributed); no curated marketplace documented."
+    },
+    "sandboxing-technology": {
+      "value": ["none", "vm"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/security"],
+      "comment": "Local CLI runs tools (Bash) directly on the user's machine with full privileges, relying on permission rules rather than kernel isolation (none). The security page notes e2b provides ephemeral compute instances for 'Amp sandboxes' (e2b uses Firecracker microVMs) for that specific hosted-sandbox feature, not for local CLI command execution. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path"],
+      "source": ["https://ampcode.com/permissions", "https://ampcode.com/manual"],
+      "comment": "amp.permissions rules match by tool name (Bash, Read, mcp__... ), command patterns via --cmd glob/wildcards (e.g. '*git*push*'), file paths via --path globs, and tool parameters. MCP servers can be allow/denylisted per server. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://ampcode.com/permissions", "https://ampcode.com/manual/appendix/legacy-permissions-rules.txt"],
+      "comment": "Rules are checked in sequence until the first matching rule wins; user controls rule order (firewall-style first-match), which is the most expressive rung. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://ampcode.com/permissions", "https://ampcode.com/manual"],
+      "comment": "Beyond declarative amp.permissions allow/ask/reject rules, the 'delegate' action forwards decisions to an external policy helper, and TypeScript plugins can intercept tool.call to allow/reject each action in context (highest level: programmable). Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/security"],
+      "comment": "By default Amp does not ask for approval before running tools (permissionless out of the box), so secrets are not gated without configuration. A built-in guarded-files denylist exists but only takes effect once the legacy permissions plugin is activated (i.e. once amp.permissions/amp.guardedFiles.allowlist is configured or dangerouslyAllowAll set to false). Separately, Amp auto-redacts detected secrets so they never reach the LLM, but that is redaction, not access gating. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://ampcode.com/permissions"],
+      "comment": "Permission rules are stored durably in settings under amp.permissions (edited via 'amp permissions edit' / 'Amp: Edit User Permissions'), so allow rules persist across sessions and restarts. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "amp.dangerouslyAllowAll disables all command-confirmation prompts; this permissionless behavior is in fact the default for users who have not configured permissions. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted", "configurable"],
+      "source": ["https://ampcode.com/manual", "https://ampcode.com/permissions"],
+      "comment": "No built-in default egress block or domain allowlist documented; network access happens through Bash/tools that run unrestricted by default. Permission rules (per-command --cmd patterns) can gate network-using commands, making it configurable. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://ampcode.com/manual"],
+      "comment": "Out of the box 'Amp does not ask for approval before running tools' — it auto-applies edits and runs commands without prompting until the user configures permissions. Checked 2026-06-12."
     }
   }
 }
