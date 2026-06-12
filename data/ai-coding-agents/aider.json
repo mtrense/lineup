@@ -2,7 +2,7 @@
   "name": "Aider",
   "description": "Open-source CLI pair-programmer with strong git integration",
   "url": "https://aider.chat/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Aider AI / Paul Gauthier (open-source community)",
@@ -252,6 +252,51 @@
       "value": ["none"],
       "source": ["https://aider.chat/docs/usage/commands.html"],
       "comment": "Not applicable — aider has no skill install/share mechanism (marketplace, registry, etc.)."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/docs/scripting.html"],
+      "comment": "Runs directly on the user's machine with full privileges; /run and /test execute shell commands in the user's own environment. No kernel sandbox, container, VM, or filesystem jail — safety rests on the confirmation prompt alone. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-command", "read-write-distinction"],
+      "source": ["https://github.com/Aider-AI/aider/issues/3903", "https://aider.chat/docs/config/options.html"],
+      "comment": "Each suggested shell command is gated individually with a (Y)es/(N)o/(D)on't-ask-again prompt (per-command). File edits are auto-applied and auto-committed while commands are prompted, so reads/writes are gated differently from command execution (read-write-distinction). No command-prefix patterns, per-path, or per-domain rules; --yes-always is a single global override, not fine-grained. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://github.com/Aider-AI/aider/issues/3903", "https://aider.chat/docs/config/options.html"],
+      "comment": "No declarative allow/deny rule engine. Commands either prompt each time or are blanket-approved via --yes-always; there are no allow/deny rules to express precedence over. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://aider.chat/docs/config/options.html", "https://aider.chat/docs/scripting.html"],
+      "comment": "Configured via predefined flags/toggles (--yes-always, --suggest-shell-commands, --auto-commits, --auto-lint, --auto-test, --dry-run) rather than user-authored allow/deny rules or a programmable permission hook/callback. These are preset postures, not a declarative rule engine. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://aider.chat/docs/config/dotenv.html"],
+      "comment": "No default gating of secrets. Aider reads .env files for its own config (API keys), but ships no built-in deny pattern or refusal protecting a project's .env/key files from being read or edited; the user must add files to .aiderignore manually. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://github.com/Aider-AI/aider/issues/3903"],
+      "comment": "The command prompt's '(D)on't ask again' choice suppresses further prompts only for the current session; it is not written to durable config and does not survive a restart. No saved per-command allowlist. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://aider.chat/docs/config/options.html", "https://aider.chat/docs/scripting.html"],
+      "comment": "--yes-always (env AIDER_YES_ALWAYS / yes-always in .aider.conf.yml, or yes=True when scripting) auto-approves every confirmation for hands-off runs. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://aider.chat/docs/usage/commands.html", "https://aider.chat/docs/scripting.html"],
+      "comment": "No outbound-network gating during a run. Commands run with the user's full network access; /web fetches arbitrary URLs. No default block, domain allowlist, or proxy mechanism documented. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://github.com/Aider-AI/aider/issues/3903", "https://aider.chat/docs/config/options.html"],
+      "comment": "Out of the box, aider applies and auto-commits file edits without per-edit approval, but prompts before running suggested shell commands ((Y)es/(N)o/(D)on't ask again). Checked 2026-06-12."
     }
   }
 }
