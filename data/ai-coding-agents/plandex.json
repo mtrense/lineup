@@ -2,7 +2,7 @@
   "name": "Plandex",
   "description": "Open-source, plan-first terminal agent with a cumulative-diff review sandbox and up to 2M-token context for large multi-file tasks.",
   "url": "https://plandex.ai",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Plandex (plandex-ai)",
@@ -251,6 +251,51 @@
       "value": ["none"],
       "source": ["https://terminaltrove.com/ai-coding-agents/plandex/"],
       "comment": "No skills supported, so no distribution mechanism."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://plandex.ai", "https://github.com/plandex-ai/plandex"],
+      "comment": "The 'cumulative diff review sandbox' only stages pending file changes (a version-controlled buffer reviewed before applying); it is not execution isolation. Commands run directly with the user's privileges, and the docs recommend a clean git state / an isolated branch before using auto-exec rather than relying on any kernel/container sandbox. Checked 2026-06."
+    },
+    "permission-granularity": {
+      "value": ["all-or-nothing"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://github.com/plandex-ai/plandex"],
+      "comment": "Gating is a single global autonomy level (none/basic/plus/semi/full) plus a diff-review approval step; no per-tool, per-command, command-prefix, or per-path allowlist. Higher autonomy auto-loads context (reads) while still staging writes, but there is no user-configurable read/write rule, so it stays all-or-nothing. Checked 2026-06."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/"],
+      "comment": "No declarative allow/deny permission rule engine; permissioning is a preset autonomy level, so there is no precedence model to express. Checked 2026-06."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://docs.plandex.ai/core-concepts/configuration/"],
+      "comment": "User picks among predefined autonomy presets (none, basic, plus, semi, full) via set-auto, settable per-plan and as a persisted default for new plans. No user-authored allow/deny rules and no programmable permission hooks/callbacks. Checked 2026-06."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.plandex.ai/core-concepts/context-management/", "https://github.com/plandex-ai/plandex"],
+      "comment": "No documented out-of-the-box deny patterns for secrets (.env, key files); files enter context only when explicitly loaded, but there is no shipped built-in refusal/gate for sensitive files. Checked 2026-06."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://docs.plandex.ai/core-concepts/configuration/"],
+      "comment": "No per-action 'always allow this command' allowlist that is remembered. Autonomy/config presets do persist (per-plan and as a default for new plans), but that sets an overall posture rather than recording specific approved actions to skip re-prompting. Checked 2026-06."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://plandex.ai"],
+      "comment": "Full autonomy mode (set-auto full / --auto-exec) auto-applies changes, executes commands, and debugs end-to-end with no approval prompts; docs warn it 'can make many changes quickly without any prompting or review' and run potentially destructive commands. Checked 2026-06."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://docs.plandex.ai/core-concepts/execution-and-debugging/", "https://github.com/plandex-ai/plandex"],
+      "comment": "No documented outbound-network gating; executed commands run with the user's normal, unrestricted network access (no egress block, domain allowlist, or proxy). Checked 2026-06."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://docs.plandex.ai/core-concepts/execution-and-debugging/"],
+      "comment": "Out of the box (autonomy below full), changes are staged in the diff sandbox for review and the user is prompted to approve execution/debugging steps; only the opt-in full mode auto-runs everything. Exact default preset name not confirmed from docs (page unreachable at check), but non-full levels all prompt before applying/running. Checked 2026-06."
     }
   }
 }
