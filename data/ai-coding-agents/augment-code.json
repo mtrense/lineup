@@ -2,7 +2,7 @@
   "name": "Augment Code",
   "description": "Codebase-context-focused agent across IDEs",
   "url": "https://www.augmentcode.com/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Augment (Augment Computing, Inc.)",
@@ -252,6 +252,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://docs.augmentcode.com/cli/custom-commands"],
       "comment": "Workspace commands are shared by committing .augment/commands/ to git; otherwise copied manually between machines. No marketplace or package registry for commands is documented."
+    },
+    "sandboxing-technology": {
+      "value": ["none", "container"],
+      "source": ["https://agent-safehouse.dev/docs/agent-investigations/auggie", "https://www.augmentcode.com/product/remote-agents"],
+      "comment": "Local agent/Auggie CLI uses no OS sandbox: 'No filesystem, network, or process execution sandboxing. The agent runs with the same privileges as the invoking user.' Cloud Remote Agents run each task in its own isolated environment (container-like). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command"],
+      "source": ["https://docs.augmentcode.com/cli/permissions"],
+      "comment": "CLI toolPermissions gate per-tool (view, save-file, launch-process, etc.); launch-process additionally supports per-command regex matching via shellInputRegex (e.g. '^(npm test|git status)'). No documented per-path or per-domain gating."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://docs.augmentcode.com/cli/permissions"],
+      "comment": "Rules are evaluated top-to-bottom, first match wins — user-controlled evaluation order (firewall-style). No deny-overrides semantics; precedence is purely positional."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://docs.augmentcode.com/cli/permissions"],
+      "comment": "Beyond user-authored allow/deny/ask-user declarative rules, advanced webhook-policy and script-policy types delegate each tool call to an external validator that can inspect the action and decide — a programmable decision point."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.augmentcode.com/cli/permissions", "https://agent-safehouse.dev/docs/agent-investigations/auggie"],
+      "comment": "No documented built-in deny patterns for .env, key files, or secrets out of the box; protection must be authored as a deny rule by the user."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/cli/permissions"],
+      "comment": "toolPermissions allow rules written to ~/.augment/settings.json are durable config that applies across sessions and projects. Note: interactive one-off ask-user approvals are not saved — only pre-authored config rules persist. CLI-only (does not apply to the IDE extension)."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/using-augment/agent", "https://agent-safehouse.dev/docs/agent-investigations/auggie"],
+      "comment": "Agent Auto edits files and runs terminal commands automatically without pausing for approval; the Auggie CLI executes tools without confirmation by default, and allow rules can suppress all prompts. Remote Agents are autonomous by design."
+    },
+    "network-access-control": {
+      "value": ["unrestricted", "configurable"],
+      "source": ["https://agent-safehouse.dev/docs/agent-investigations/auggie", "https://docs.augmentcode.com/cli/permissions"],
+      "comment": "Outbound network is unrestricted by default — the web tool can fetch arbitrary HTTP/HTTPS URLs and MCP servers reach arbitrary hosts. Webhook/script policies let users impose custom egress restrictions, hence also 'configurable'. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://docs.augmentcode.com/using-augment/agent"],
+      "comment": "First-run IDE Agent (standard) edits files automatically but pauses for approval before terminal commands or external integrations ('click a blue play button'). The Auggie CLI defaults closer to auto-run; tag reflects the unconfigured IDE Agent experience."
     }
   }
 }
