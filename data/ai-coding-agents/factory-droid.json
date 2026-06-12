@@ -2,7 +2,7 @@
   "name": "Factory Droid",
   "description": "Factory's agent-native CLI agent (\"Droid\") for autonomous, multi-model software development; enterprise-positioned.",
   "url": "https://factory.ai",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Factory AI",
@@ -252,6 +252,51 @@
       "value": ["marketplace", "git", "manual-files"],
       "source": ["https://docs.factory.ai/cli/configuration/plugins", "https://github.com/Factory-AI/skills"],
       "comment": "Official plugin marketplace plus git-hosted marketplaces (droid plugin marketplace add <git-url>); skills can also be checked into .factory/skills as manual files."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "none"],
+      "source": ["https://docs.factory.ai/cli/configuration/sandbox", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "By default Droid runs commands directly on the host (no built-in OS isolation) and relies on the autonomy/denylist prompt system. An opt-in Sandbox (Beta) wraps shell commands in kernel-enforced OS sandboxes — Seatbelt profiles on macOS, bubblewrap+seccomp on Linux (WSL2 on Windows) — confining filesystem writes and routing network through a filtering proxy. Container/VM isolation is recommended externally, not enforced (checked 2026-06-12)."
+    },
+    "permission-granularity": {
+      "value": ["per-command", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://docs.factory.ai/cli/configuration/settings", "https://docs.factory.ai/cli/configuration/sandbox", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Each command/MCP tool carries a per-command risk level gated by autonomy; commandAllowlist/commandDenylist are command-prefix patterns in settings.json. The Beta Sandbox adds per-path write scoping (allowWrite/denyWrite, default = cwd only), per-domain network allowlisting (allowedDomains), and separate read vs write gating (denyRead vs allowWrite/denyWrite)."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run", "https://docs.factory.ai/cli/configuration/settings"],
+      "comment": "Denylist entries override allowlist entries entirely; a command in both lists defaults to denylist behavior. No documented specificity-based re-override or user-ordered evaluation, so deny-overrides is the highest rung reached (org-managed settings also win over local, but that is scope precedence, not rule-syntax expressiveness)."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://docs.factory.ai/cli/configuration/settings", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "Users author declarative allow/deny rules (commandAllowlist/commandDenylist) plus autonomy-level presets in settings.json. Hooks/plugins exist for extensibility but are not documented as a permission-decision callback that inspects and rewrites each action, so declarative-rules is the highest confirmable level (checked 2026-06-12)."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["http://agent-safehouse.dev/docs/agent-investigations/droid", "https://docs.factory.ai/cli/configuration/settings"],
+      "comment": "No default deny pattern for .env/secret files; reads are unrestricted out of the box. Droid Shield (enableDroidShield) offers opt-in secret scanning/git guardrails and the Beta Sandbox supports user-authored denyRead, but neither protects secrets by default (checked 2026-06-12)."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/configuration/settings", "https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "commandAllowlist is stored in ~/.factory/settings.json (user) or <project>/.factory/settings.json and persists across sessions. Note an in-session 'allow always' only raises the current session's autonomy and does not itself write a durable rule."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "High autonomy auto-runs up to high-risk actions, and Factory Missions / non-interactive runs accept --skip-permissions-unsafe which skips all permission checks (documented for disposable containers)."
+    },
+    "network-access-control": {
+      "value": ["unrestricted", "domain-allowlist", "proxy", "configurable"],
+      "source": ["https://docs.factory.ai/cli/configuration/sandbox", "https://docs.factory.ai/cli/configuration/settings", "http://agent-safehouse.dev/docs/agent-investigations/droid"],
+      "comment": "Network is unrestricted by default. The Beta Sandbox routes egress through an HTTP/SOCKS proxy with a domain allowlist (allowedDomains, *.factory.ai always permitted); Enterprise adds a networkPolicy restricting outbound to specified IPs/CIDRs — so the policy is configurable but open out of the box (checked 2026-06-12)."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run", "http://agent-safehouse.dev/docs/agent-investigations/droid"],
+      "comment": "Interactive sessions start at a configured default autonomy where file edits and low-risk commands run but higher-risk commands pause for approval (autonomy = highest-risk work allowed without pausing). The non-interactive droid exec mode is read-only by default until an --auto level is passed (checked 2026-06-12)."
     }
   }
 }
