@@ -3,11 +3,23 @@ name: gather-data-cycle
 description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md (initial research), then candidates missing attributes added later via /extend-comparison (scoped backfill). Spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox (initial only) and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
+allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git rev-parse:*), Bash(date:*)
 argument-hint: "<comparison-type> [count|all][@workers]   (e.g. `databases 8`, `databases 8@4`, `databases all@3`)"
 ---
 
 # Gather-Data Cycle — Parallel Research Over Candidates
+
+## Context
+
+- Repo root: !`git rev-parse --show-toplevel`
+- Current working tree state: !`git status --porcelain`
+
+The repo root is given above — never derive it yourself, and never prefix git
+commands with `git -C <path>`: the allowlist patterns (`git status:*`,
+`git add:*`, …) only match commands that **start** with the verb, so a `-C`
+prefix triggers a permission prompt. Run the plain allow-listed forms; when an
+absolute path is needed (e.g. for `git add`), prefix it with the repo root
+above.
 
 You orchestrate a loop that drives a Lineup comparison type to **fully
 researched** state. Work comes from two pools, drained in order:
@@ -69,7 +81,8 @@ ask the user.
    well-formed result.
 3. Read `data/<type>/index.json` — you need it to resolve candidate **names**
    (as printed by the helper) to candidate **ids** (the JSON file basenames).
-4. Run `git status --porcelain` via Bash. The tree **must** be clean before
+4. Check the working tree state captured in the Context section above. The
+   tree **must** be clean before
    starting — each batch leaves uncommitted candidate files, and you must not
    bundle pre-existing dirty state into a research commit. If it isn't clean,
    stop and ask the user to clean up.
@@ -274,6 +287,10 @@ should review the committed diffs.
   itself as the check; a separate pre-check would only duplicate work.
 - **Never `git add -A` / `git add .`.** Stage only the candidate file and
   RESEARCH.md, per Lineup's commit hygiene.
+- **Never `git -C <path> ...`.** Every git command must start with its
+  allow-listed verb (`git status`, `git add`, `git commit`, `git log`). The
+  repo root is provided in the Context section — use it to anchor path
+  arguments when needed, never as a `-C` prefix.
 - **Do not pre-compute ids and assume them.** Re-enumerate each batch from the
   live RESEARCH.md and candidate files (the user may edit them between batches).
 - **Backfill bumps `lastVerified` by design.** A scoped backfill stamps the file
