@@ -2,7 +2,7 @@
   "name": "ZeroStack",
   "description": "Minimal, resource-efficient CLI AI coding agent written in Rust with multi-provider LLM support and configurable permission modes.",
   "url": "https://gi-dellav.github.io/zerostack/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Giuseppe Della Vedova (gi-dellav)",
@@ -251,6 +251,51 @@
       "value": ["manual-files"],
       "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
       "comment": "Custom prompts are created as files in $XDG_CONFIG_HOME/zerostack/prompts/; no marketplace or registry."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "filesystem-jail", "none"],
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/src/sandbox.rs", "https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
+      "comment": "Optional Bubblewrap sandbox for bash (sandbox=false by default): bwrap unshares IPC/PID/UTS/cgroup namespaces (kernel-level os-sandbox) with a read-only root bind and a writable CWD only (filesystem-jail). With sandbox off (default), commands run with the user's full privileges (none). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md", "https://github.com/gi-dellav/zerostack/blob/main/src/permission/checker.rs"],
+      "comment": "Rules keyed per tool (bash/read/write/edit/grep/...); bash patterns gate per-command and via command-prefix globs ('cargo test', 'git log **'); write/edit take per-path globs ('**/*.rs') plus an external_directory section; read vs write/edit are separately gated (readonly/guarded modes allow reads, gate writes). Network is not host-gated, so no per-domain."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/src/permission/checker.rs", "https://github.com/gi-dellav/zerostack/blob/main/src/permission/mod.rs"],
+      "comment": "Declarative engine resolves by last-matching rule (matched.last()), so user-controlled evaluation order decides — firewall-style ordered precedence. Built-in auto-deny patterns (e.g. 'rm *', dd, mkfs) are appended last so they win, but the general model is ordered."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
+      "comment": "User authors allow/ask/deny rules in config.toml/json via glob (permission / permission-allow/-ask/-deny) or regex (permission-regex) patterns, plus five preset modes. No programmable hook/policy-script decision point that inspects each action in code."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/src/permission/mod.rs"],
+      "comment": "Built-in always-on auto-deny rules cover destructive bash only (rm with globs, dd, mkfs, fdisk, mkswap); there is no shipped default deny pattern for .env or key files. A user could author such a deny rule, but none ships enabled. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/src/ui/permission_handler.rs", "https://github.com/gi-dellav/zerostack/blob/main/src/permission/checker.rs"],
+      "comment": "The 'a' (Allow Always) approval is saved to the session's permission_allowlist and persisted via save_session (unless --no-session); on resume load_session_allowlist restores it, so the same action is not re-prompted across sessions."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
+      "comment": "yolo mode allows everything (asks only on destructive bash), and the --dangerously-skip-permissions flag bypasses all permission checks for fully hands-off runs."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://github.com/gi-dellav/zerostack/blob/main/src/sandbox.rs", "https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
+      "comment": "No outbound network gating during a run. Even the Bubblewrap sandbox does not --unshare-net and binds /etc/resolv.conf, so commands retain full network access; permission rules gate tools/paths, not hosts. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
+      "comment": "Default mode is 'standard': path tools (read/write/edit) auto-allowed within the CWD and a safe-bash allowlist auto-runs, while other/destructive shell commands prompt. So edits within the project apply without asking but most commands are gated. Checked 2026-06-12."
     }
   }
 }
