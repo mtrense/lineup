@@ -1,5 +1,178 @@
 {
   "name": "Rev",
   "description": "Hybrid human + AI transcription and captioning service",
-  "values": {}
+  "icon": "",
+  "url": "https://www.rev.com",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Rev (Rev.com, Inc.)",
+      "source": ["https://en.wikipedia.org/wiki/Rev_(company)"],
+      "comment": "American speech-to-text company based in San Francisco and Austin, founded by Jason Chicola, Josh Bardsley, and Paul Lilley."
+    },
+    "first-release": {
+      "value": "2011",
+      "source": ["https://en.wikipedia.org/wiki/Rev_(company)"],
+      "comment": "Company founded in 2010 and launched its transcription service shortly after; exact month of first public service release not precisely documented, so month omitted. Checked 2026-06-12."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "Actively developed; VoiceHub platform and ongoing Reverb model releases."
+    },
+    "license": {
+      "value": ["freemium"],
+      "source": ["https://sonix.ai/resources/rev-review-pricing/"],
+      "comment": "The Rev product itself is proprietary SaaS with a free tier (freemium). Note: Rev separately open-sourced its Reverb ASR/diarization models under a non-commercial license, but the consumer tool is freemium."
+    },
+    "primary-type": {
+      "value": ["transcription", "meeting-assistant"],
+      "source": ["https://www.rev.com/services/voicehub", "https://www.rev.com/services/human-transcription"],
+      "comment": "Core purpose is recordings/files to text (human + AI transcription and captioning); also offers an AI Notetaker that joins/records meetings, making it a meeting-assistant."
+    },
+    "website": {
+      "value": "https://www.rev.com",
+      "comment": "Official product website. Derived from the vendor's own domain."
+    },
+    "real-time-dictation": {
+      "value": false,
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "Rev is a transcription/meeting tool, not a speak-to-type dictation app. It offers real-time captioning via API but no productivity dictation that types into your apps."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://www.rev.com/services/voicehub", "https://www.rev.com/services/human-transcription"],
+      "comment": "Core feature: upload audio/video files for AI or human transcription and captioning."
+    },
+    "live-meeting-capture": {
+      "value": true,
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "AI Notetaker automatically records and transcribes live meetings from Zoom, Google Meet, and Microsoft Teams."
+    },
+    "streaming-low-latency": {
+      "value": true,
+      "source": ["https://summarizemeeting.com/en/tool/rev-ai"],
+      "comment": "Real-time transcription available via WebSocket for live captioning and interactive applications (Rev AI streaming API)."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload", "system-audio", "meeting-bot", "url-import"],
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "VoiceHub captures from mobile/in-browser recording (microphone), direct file uploads, web URLs, and integrated meeting platforms (Zoom/Meet/Teams) via the AI Notetaker bot."
+    },
+    "underlying-engine": {
+      "value": "Reverb (Rev's own ASR, WeNet framework)",
+      "source": ["https://www.rev.com/blog/introducing-reverb-open-source-asr-diarization"],
+      "comment": "Rev's proprietary Reverb ASR model, trained on ~200,000 hours of human-transcribed English audio; benchmarked against and reported to outperform OpenAI Whisper large-v3. Models also released open-source under a non-commercial license."
+    },
+    "language-count": {
+      "value": 37,
+      "source": ["https://www.rev.com/services/ai-transcription", "https://sonix.ai/resources/rev-review-pricing/"],
+      "comment": "Approx 37+ languages on Pro/Unlimited tiers; Free and Essentials plans limited to English (and Spanish). Rev AI async API cites 58+ languages, but the consumer transcription product states 37."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://www.rev.com/blog/introducing-reverb-open-source-asr-diarization", "https://www.rev.com/services/human-transcription"],
+      "comment": "AI transcription is marketed at 96%+ on clear English; Rev's Reverb engine benchmarks ahead of Whisper large-v3 in independent-style WER tests. Human transcription is 99%+ accurate (near-human). Rated 4 for the AI tool; human service pushes effective accuracy higher."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://www.rev.com/services/ai-transcription"],
+      "comment": "Supports multiple languages including Spanish and code-switched 'Spanglish'; transcription across 37+ languages."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://docs.rev.ai/api/custom-vocabulary/", "https://www.rev.com/services/voicehub"],
+      "comment": "Custom glossary / Custom Vocabulary lets users add special terms (up to ~500 phrases) to improve recognition; available on subscription tiers and via API."
+    },
+    "speaker-diarization": {
+      "value": true,
+      "source": ["https://www.rev.com/services/ai-transcription", "https://summarizemeeting.com/en/tool/rev-ai"],
+      "comment": "Automatic speaker identification/diarization included; Rev also released Pyannote-based diarization models in Reverb."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://www.rev.com/services/ai-transcription"],
+      "comment": "Timestamps included in transcripts."
+    },
+    "ai-summaries-notes": {
+      "value": true,
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "AI Summary automatically generates concise summaries highlighting key points and action items."
+    },
+    "built-in-editor": {
+      "value": true,
+      "source": ["https://www.rev.com/services/ai-transcription"],
+      "comment": "Interactive in-app editor to review and polish transcripts (text correction, not media-by-text editing)."
+    },
+    "translation": {
+      "value": true,
+      "source": ["https://www.rev.com/services/ai-transcription"],
+      "comment": "Side-by-side foreign-language translation for transcripts available on Pro and higher tiers (beta)."
+    },
+    "export-formats": {
+      "value": ["txt", "docx", "pdf", "srt", "vtt"],
+      "source": ["https://support.rev.com/hc/en-us/articles/19135814561677-File-Formats-Rev-Offers", "https://www.rev.com/resources/transcript-file-formats-guide-to-different-transcription-formats"],
+      "comment": "Transcripts export as TXT, DOCX (default), and PDF; captions as SRT and VTT (burned-in captions delivered as MP4 video). No markdown or JSON export documented for the consumer product (JSON is available via the Rev AI API)."
+    },
+    "processing-location": {
+      "value": ["cloud"],
+      "source": ["https://www.rev.com/security", "https://www.rev.com/services/voicehub"],
+      "comment": "Cloud-only SaaS; audio is uploaded and processed on Rev's servers. No on-device processing for the consumer product."
+    },
+    "offline-capable": {
+      "value": false,
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "Cloud service; requires a network connection to upload and transcribe."
+    },
+    "data-used-for-training": {
+      "value": ["yes-default"],
+      "source": ["https://www.rev.com/blog/security-of-rev-transcription-services", "https://www.rev.com/blog/introducing-reverb-open-source-asr-diarization"],
+      "comment": "Rev does not share customer data with third parties or train external LLMs, but it does train its own proprietary ASR models on customer data to improve speech-to-text; no clearly documented consumer opt-out, so recorded as yes-default. Enterprise/API terms may differ."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://support.rev.com/hc/en-us/articles/29708931771661-Privacy-And-Security"],
+      "comment": "Users can delete files from their account at any time via the UI; automated deletion policies can be configured; API data is deleted after 30 days."
+    },
+    "platforms": {
+      "value": ["web", "ios", "android"],
+      "source": ["https://www.rev.com/services/voicehub", "https://summarizemeeting.com/en/tool/rev-ai"],
+      "comment": "Web app plus iOS and Android mobile apps for recording, ordering, and editing. No dedicated desktop (macOS/Windows) app; used via browser."
+    },
+    "system-wide-dictation": {
+      "value": false,
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "Not a dictation tool; no OS-wide speak-to-type. Transcription happens within Rev's own app/web interface."
+    },
+    "integrations": {
+      "value": ["zoom", "google-meet", "teams"],
+      "source": ["https://www.rev.com/services/voicehub"],
+      "comment": "AI Notetaker integrates with Zoom, Google Meet, and Microsoft Teams; Dropbox and Zapier connections also available for file routing."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://docs.rev.ai/api/security", "https://summarizemeeting.com/en/tool/rev-ai"],
+      "comment": "Rev AI provides documented async and streaming (WebSocket) speech-to-text APIs that power-users can automate against."
+    },
+    "pricing-model": {
+      "value": ["freemium", "subscription", "usage-based"],
+      "source": ["https://sonix.ai/resources/rev-review-pricing/", "https://tekpon.com/software/rev/pricing/"],
+      "comment": "Free tier (freemium) plus paid subscriptions; human transcription and pay-as-you-go AI are usage-based (per-minute: $1.99/min human, $0.25/min AI). Checked 2026-06-12."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://sonix.ai/resources/rev-review-pricing/"],
+      "comment": "Genuinely usable free plan with a monthly AI transcription allowance."
+    },
+    "free-allowance": {
+      "value": "45 AI transcription minutes/month (English only)",
+      "source": ["https://sonix.ai/resources/rev-review-pricing/"],
+      "comment": "Free plan: ~45 minutes/month of AI transcription in English only. Checked 2026-06-12."
+    },
+    "entry-price-usd-mo": {
+      "value": 25.49,
+      "source": ["https://sonix.ai/resources/rev-review-pricing/", "https://www.rev.com/services/ai-transcription"],
+      "comment": "Cheapest paid subscription (Essentials) is $25.49/seat/month billed annually (~$29.99 on monthly billing). Human transcription is separately usage-based at $1.99/min. Checked 2026-06-12."
+    }
+  }
 }
