@@ -1,7 +1,7 @@
 {
   "name": "Void",
   "url": "https://voideditor.com/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Glass Devtools, Inc. (voideditor)",
@@ -239,6 +239,51 @@
     "skill-distribution": {
       "value": ["none"],
       "comment": "Skills not supported."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "Local VS Code fork running on the user's machine; agent acts on files and terminal with the user's full privileges. No OS sandbox, container, VM, or filesystem jail documented; safety relies on per-action approval prompts."
+    },
+    "permission-granularity": {
+      "value": ["per-command", "read-write-distinction"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void/issues/629"],
+      "comment": "Checked 2026-06-12: Agent mode prompts for approval on each terminal command individually (per-command). Gather mode is a read-only variant of Agent mode (read/search but no modify/edit), giving a read-vs-write distinction at the mode level. No command-prefix allowlist: the user-defined auto-approve-rules request (Issue #629) was never implemented and the repo is archived."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://github.com/voideditor/void/issues/629"],
+      "comment": "No declarative allow/deny rule engine. The pattern-based auto-approve proposal (Issue #629) remained an open, unimplemented feature request; every command prompts individually."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void/issues/629"],
+      "comment": "User chooses among preset modes — Agent (full), Gather (read-only), and normal Chat — but cannot author declarative allow/deny rules or programmable permission hooks. The proposed user-defined rule engine (Issue #629) was never shipped."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void/issues/629"],
+      "comment": "No documented default deny patterns for secrets (.env, key files); Agent mode can read/write files in the workspace and no built-in secret gating ships. Protection would rely on per-action approval by the user."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://github.com/voideditor/void/issues/629"],
+      "comment": "No saved/remembered approvals. The feature to define persistent auto-approve command rules (Issue #629) was requested but never implemented; the agent re-prompts for each command."
+    },
+    "unsupervised-mode": {
+      "value": false,
+      "source": ["https://voideditor.com/changelog", "https://github.com/voideditor/void/issues/629"],
+      "comment": "No documented full-autonomy / auto-approve / YOLO bypass. Agent mode requires manual approval for each terminal command; the auto-approve request (Issue #629) was never merged before the project was archived."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void"],
+      "comment": "No network gating during agent runs is documented; as a local editor with full user privileges, agent-run commands have unrestricted outbound access. (LLM calls go direct to the user-configured provider via BYO key.)"
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://voideditor.com/", "https://github.com/voideditor/void/issues/629"],
+      "comment": "Checked 2026-06-12: out of the box, Agent mode asks the user to approve each terminal command it wants to run (no shipped auto-approve, per Issue #629). File edits are surfaced for review with checkpoint/revert support. Closest unconfigured posture is prompt-each-action."
     }
   }
 }
