@@ -2,7 +2,7 @@
   "name": "Replit Agent",
   "description": "Autonomous in-browser/cloud agent that builds, tests, and deploys apps from natural-language prompts inside Replit.",
   "url": "https://replit.com/agent4",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Replit",
@@ -249,6 +249,51 @@
     "skill-distribution": {
       "value": null,
       "comment": "Skill Support is false; not applicable."
+    },
+    "sandboxing-technology": {
+      "value": ["container", "vm"],
+      "source": ["https://replit.com/blog/defense-in-depth-how-replit-secures-every-layer-of-the-vibe-coding-stack"],
+      "comment": "Code runs in hardened Linux containers with seccomp-bpf plus additional system hardening; Replit is rolling out microVMs (no shared kernel) for stronger isolation, and Agent 4 coordinates parallel tasks across isolated micro-VMs. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool"],
+      "source": ["https://docs.replit.com/core-concepts/agent", "https://replit.com/blog/introducing-agent-3-our-most-autonomous-agent-yet"],
+      "comment": "Gating is coarse and tool-level: individual Agent capabilities (e.g. App Testing) can be toggled in Agent Tools, and Plan mode gates the whole build behind plan approval. No documented per-command allowlist, command-prefix rules, or per-path/per-domain user gating. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://docs.replit.com/core-concepts/agent"],
+      "comment": "No user-authored declarative allow/deny rule engine documented; control is via autonomy modes and tool toggles rather than precedence rules. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://docs.replit.com/core-concepts/agent", "https://replit.com/blog/introducing-agent-3-our-most-autonomous-agent-yet"],
+      "comment": "Users pick among predefined postures - Plan mode (approve before building), default periodic-testing mode, and Max Autonomy (Beta) - plus toggling Agent Tools. No user-authored allow/deny rules or programmable policy hooks for the agent. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://replit.com/blog/defense-in-depth-how-replit-secures-every-layer-of-the-vibe-coding-stack"],
+      "comment": "Replit handles secrets architecturally - a managed Secrets store and transparent secret proxying so app code never sees raw credentials - but this is not a default agent-level deny pattern that refuses to read .env/key files in the workspace. No shipped sensitive-file deny rule documented. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://docs.replit.com/core-concepts/agent"],
+      "comment": "No documented mechanism to save per-command/per-action approvals that survive sessions; gating is via autonomy modes/tool toggles, not remembered allow rules. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://replit.com/blog/introducing-agent-3-our-most-autonomous-agent-yet", "https://docs.replit.com/core-concepts/agent"],
+      "comment": "Max Autonomy (Beta) lets the Agent run for extended periods (200+ minutes) with minimal supervision, managing its own task list and self-supervising progress. The agent is autonomous by design within its cloud sandbox. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["proxy", "configurable"],
+      "source": ["https://replit.com/blog/defense-in-depth-how-replit-secures-every-layer-of-the-vibe-coding-stack"],
+      "comment": "Cross-application data access is blocked by default (opt-in via Connectors); MCP and connector traffic routes through a transparent proxy/sidecar that injects credentials without exposing them. Outbound network for builds is otherwise available, with access governed by these proxied, opt-in connectors. No documented hard egress block for the agent's own runs. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://docs.replit.com/core-concepts/agent", "https://replit.com/blog/introducing-agent-3-our-most-autonomous-agent-yet"],
+      "comment": "Out of the box the Agent writes code, installs packages, and runs/tests the app without per-action approval; Plan mode (approve-before-build) is an opt-in. Deployment specifically requires an explicit user click, but day-to-day edits and command execution run automatically. Checked 2026-06-12."
     }
   }
 }
