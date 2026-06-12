@@ -2,7 +2,7 @@
   "name": "opencode",
   "description": "Open-source terminal-based AI coding agent.",
   "url": "https://opencode.ai/docs/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Anomaly (formerly SST / Serverless Stack team)",
@@ -252,6 +252,51 @@
       "value": ["manual-files", "git"],
       "source": ["https://opencode.ai/docs/skills/"],
       "comment": "Skills are markdown files placed in .opencode/skills/<name>/SKILL.md or the global config dir; no official marketplace/registry, so distributed by manual file copy or git."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "No kernel sandbox, container, or VM documented; bash/tool actions run with the user's full privileges and safety is enforced purely by the allow/ask/deny permission engine. The external_directory/edit path rules confine writes by glob but provide no OS-level isolation. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "Permission keys are per-tool (read, edit, bash, webfetch, websearch, etc.); bash supports per-command and command-prefix glob rules (e.g. \"git *\": \"allow\", \"rm *\": \"deny\"); edit/external_directory take per-path glob rules; read vs edit are gated separately (read-write distinction). No per-domain network host allowlist is documented. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "Rules are evaluated by pattern match with the last matching rule winning; the recommended pattern is a catch-all \"*\" first and more specific rules after, giving firewall-style user-controlled ordered evaluation. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "User authors allow/ask/deny rules (global, per-tool, per-pattern, per-agent) in opencode.json or via OPENCODE_PERMISSION; no code-level permission hook/callback that inspects an action is documented, so it stops at declarative rules. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "Out of the box read denies *.env and *.env.* (while allowing *.env.example), so secret files are protected by default without the user authoring a deny rule. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "The TUI \"always\" approval whitelists matching patterns only for the rest of the current session and is not persisted across restarts; durable allowlisting requires manually editing opencode.json, which is configuration rather than a remembered approval. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "Setting \"permission\": \"allow\" (globally or via OPENCODE_PERMISSION) runs without any approval prompts, described as the equivalent of Claude Code's --dangerously-skip-permissions for unattended/autonomous use. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "Outbound access via the webfetch/websearch tools is gated by the same allow/ask/deny permission rules (set per-tool, e.g. \"webfetch\": \"ask\"); default is allow and there is no built-in per-domain allowlist, so egress control is user-configurable rather than blocked or host-scoped by default. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
+      "comment": "Out of the box opencode allows all operations without approval - bash commands and file edits run automatically (doom_loop and external_directory default to ask, and *.env reads are denied). The only carve-outs keep this short of fully unrestricted, but edits and commands are not prompted by default. Checked 2026-06-12."
     }
   }
 }
