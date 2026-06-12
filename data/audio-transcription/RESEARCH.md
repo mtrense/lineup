@@ -165,7 +165,7 @@ Users should be able to:
 - [x] MacWhisper — Mac desktop transcription app built on Whisper
 - [x] Trint — Transcription and collaborative editing platform for media teams
 - [x] Sonix — Automated multilingual transcription with editing and export
-- [ ] Happy Scribe — Transcription and subtitle generation, human + AI
+- [x] Happy Scribe — Transcription and subtitle generation, human + AI
 - [ ] Notta — Multilingual transcription and meeting notes app, web + mobile
 - [ ] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding
 - [ ] Vosk — Offline open-source speech-recognition toolkit with small models
