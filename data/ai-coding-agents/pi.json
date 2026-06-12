@@ -2,7 +2,7 @@
   "name": "Pi",
   "description": "Minimal, extensible terminal harness for AI coding agents.",
   "url": "https://pi.dev/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Earendil (Mario Zechner)",
@@ -252,6 +252,51 @@
       "value": ["registry", "manual-files"],
       "source": ["https://github.com/earendil-works/pi", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
       "comment": "Third-party Pi packages (skills/extensions) distributed via npm registry; skills can also be placed as local files. No curated marketplace."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No built-in isolation; tools run with the user's full privileges. Docs explicitly say 'No permission popups - run in a container', i.e. containerization is left to the user, not shipped. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Built-in gating is at the tool level only via --tools/--exclude-tools/--no-builtin-tools/--no-tools allowlists. No per-command, command-prefix, per-path, or per-domain gating in core; finer control requires a custom extension. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No declarative permission rule engine with allow/deny precedence; --tools/--exclude-tools is a flat tool allowlist, not a precedence model. Arbitrary precedence could be built in an extension but, per guideline, programmable hooks do not inflate this value. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No built-in declarative permission policy, but permission gates, path protection, and confirmation flows are implemented as TypeScript extensions — a code-level decision point that can inspect each action. Highest rung reached is programmable. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No default secret/.env protection out of the box; an example extension demonstrates path protection but it is opt-in, not shipped-on. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No built-in approval prompts and thus no remembered/saved allow rules; the only allowlisting is the static --tools flag set per invocation, not interactively remembered approvals. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Pi runs with no approval prompts by default — effectively always unsupervised/auto-run; there is no per-action gate to bypass because none ships. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "No built-in egress control; the bash tool runs with the user's full network access. Any restriction would come from running inside a user-supplied container, not from Pi. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://pi.dev/", "https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md"],
+      "comment": "Out of the box, Pi applies edits and runs bash commands without asking — 'No permission popups'. First-run experience is full auto-run. Checked 2026-06-12."
     }
   }
 }
