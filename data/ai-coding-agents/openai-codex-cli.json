@@ -2,7 +2,7 @@
   "name": "OpenAI Codex (CLI)",
   "description": "OpenAI's open-source terminal coding agent",
   "url": "https://github.com/openai/codex",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "OpenAI",
@@ -253,6 +253,51 @@
       "value": ["manual-files", "registry"],
       "source": ["https://developers.openai.com/codex/skills"],
       "comment": "Skills live in directory hierarchies (.agents/skills at repo/user/admin levels — manual files). Reusable skills are packaged as plugins, and curated skills can be installed via the $skill-installer command (registry-style)."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox"],
+      "source": ["https://developers.openai.com/codex/concepts/sandboxing"],
+      "comment": "Kernel-level OS sandboxing: macOS Seatbelt, Linux/WSL2 bubblewrap (user-namespace isolation), and the Windows sandbox for PowerShell. No container/VM layer in the CLI itself. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-command", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://developers.openai.com/codex/rules", "https://developers.openai.com/codex/concepts/sandboxing", "https://developers.openai.com/codex/config-reference"],
+      "comment": ".rules execution policy matches per-command with prefix_rule() argument-prefix patterns; workspace-write confines writes to writable_roots (per-path) while read-only vs workspace-write distinguishes reads from writes; experimental network proxy gates by domain allowlist (per-domain)."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://developers.openai.com/codex/rules"],
+      "comment": "When multiple .rules match, Codex applies the most restrictive decision (forbidden > prompt > allow), so a deny/forbidden always wins. No specificity-based re-override (nested exceptions) or user-controlled evaluation order documented."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://developers.openai.com/codex/rules", "https://developers.openai.com/codex/config-reference"],
+      "comment": "User-authored .rules (Starlark) declare allow/prompt/forbidden decisions across user/team/project layers, plus approval_policy and sandbox_mode in config.toml. The .rules format is Starlark but functions as a declarative pattern policy, not a per-action permission callback that inspects each concrete action."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/agent-approvals-security"],
+      "comment": "Protected paths (.git, .agents, .codex) stay read-only inside writable roots, but no default .env / secret-file deny pattern ships out of the box; users would author their own forbidden rule. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/rules"],
+      "comment": "Whitelisting a command in the TUI writes an allow rule to the user layer at ~/.codex/rules/default.rules, so it is skipped in current and subsequent sessions."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://developers.openai.com/codex/cli/features", "https://developers.openai.com/codex/config-reference"],
+      "comment": "Full Access mode and --yolo / approval_policy = never run without approval prompts (sandbox_mode danger-full-access removes filesystem and network restrictions); docs advise using it sparingly on trusted repos/tasks."
+    },
+    "network-access-control": {
+      "value": ["blocked", "domain-allowlist", "proxy", "configurable"],
+      "source": ["https://developers.openai.com/codex/concepts/sandboxing", "https://developers.openai.com/codex/config-reference"],
+      "comment": "Network egress is disabled by default in workspace-write mode (Codex asks before using the internet). Experimental network_proxy supports domain policies (exact/subdomain/apex patterns), SOCKS5/upstream proxy chaining, and Unix-socket allow/deny — i.e. user-configurable. danger-full-access lifts the restriction entirely."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://developers.openai.com/codex/concepts/sandboxing", "https://developers.openai.com/codex/agent-approvals-security"],
+      "comment": "Default Auto mode (in version-controlled folders) auto-applies edits AND runs routine local commands inside the workspace sandbox without prompting, asking only before network access or going beyond the workspace boundary — closest to auto-run-all, with the sandbox (not prompts) as the safety net. Non-version-controlled folders start read-only until the directory is trusted. Checked 2026-06-12."
     }
   }
 }
