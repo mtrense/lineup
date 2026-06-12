@@ -170,7 +170,7 @@ Users should be able to:
 - [x] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding
 - [x] Vosk — Offline open-source speech-recognition toolkit with small models
 - [x] Windows Voice Typing — Built-in Windows dictation (Win+H), system-wide
-- [ ] tl;dv — Meeting recorder/transcriber with timestamps and highlights
+- [x] tl;dv — Meeting recorder/transcriber with timestamps and highlights
 - [ ] Fathom — Free-leaning AI meeting notetaker with summaries
 
 ## Notes for Researchers
