@@ -2,7 +2,7 @@
   "name": "Continue",
   "description": "Open-source, highly configurable IDE extension agent",
   "url": "https://www.continue.dev/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Continue Dev, Inc.",
@@ -252,6 +252,51 @@
       "value": ["marketplace", "manual-files"],
       "source": ["https://docs.continue.dev/customize/deep-dives/prompts", "https://docs.continue.dev/customize/overview"],
       "comment": "Continue Hub provides a curated, browsable, one-click registry of prompts/rules/agents (marketplace); skills/prompts can also be dropped into local directories (.continue/skills, .claude/skills, .continue/prompts) by hand (manual-files)."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions", "https://docs.continue.dev/ide-extensions/agent/how-to-customize"],
+      "comment": "No documented OS sandbox, container, or VM isolation for tool/command execution; the Bash and write tools run with the user's full privileges and Continue relies on the permission-prompt handshake alone. Docs warn 'Be careful setting tools to automatic if their behavior is not read-only.' Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "Tool policies match per tool (e.g. Write), by command prefix/glob (e.g. Bash(npm install*)), and by path glob (e.g. Write(**/*.ts)). Read-only tools default to allow while write tools (Edit/MultiEdit/Write) and Bash default to ask, giving a read/write distinction. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "Permissions resolve through an explicit source priority order (mode policies --auto/--readonly > CLI flags > ~/.continue/permissions.yaml > built-in defaults); the highest-priority source wins. Rules are pattern-policy list entries (allow/ask/exclude). Intra-file conflict resolution (specificity vs first-match) is not documented, so single-picked the source-ordered model as the most expressive documented rung. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions", "https://docs.continue.dev/ide-extensions/agent/how-to-customize"],
+      "comment": "Users author allow/ask/exclude tool policies (with tool + command/path glob matching) in ~/.continue/permissions.yaml, via CLI flags, or in the IDE tool settings. No documented programmable permission callback/policy script that inspects each concrete action, so declarative-rules is the highest level reached. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "No shipped default deny patterns for secrets (.env, key files); the user can write exclude rules (e.g. exclude Read of .env) but none ship enabled. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "Approving a tool with 'Continue + don't ask again' writes a policy to ~/.continue/permissions.yaml, which persists across sessions and restarts. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "The CLI (cn) --auto flag allows all tools without prompting ('Allows everything — *: allow'). IDE Agent mode can also set tools to Automatic to skip approval. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "No documented outbound-network gating during a run; Fetch and Bash run with the user's full network access (no domain allowlist, proxy, or block). The user could exclude network tools, but egress is unrestricted by default. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://docs.continue.dev/cli/tool-permissions", "https://docs.continue.dev/ide-extensions/agent/how-to-customize"],
+      "comment": "Out of the box, read-only tools auto-allow but write tools (Edit/MultiEdit/Write) AND Bash default to 'ask' — so every file edit and every command is prompted (Ask First is the IDE default). Best-fit prompt-each-action rather than auto-edit-ask-commands, since edits are not auto-applied. Checked 2026-06-12."
     }
   }
 }
