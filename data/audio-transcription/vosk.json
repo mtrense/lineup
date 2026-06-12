@@ -1,5 +1,177 @@
 {
   "name": "Vosk",
   "description": "Offline open-source speech-recognition toolkit with small models",
-  "values": {}
+  "url": "https://alphacephei.com/vosk/",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Alpha Cephei (Nickolay Shmyrev)",
+      "source": ["https://alphacephei.com/vosk/", "https://github.com/alphacep/vosk-api"],
+      "comment": "Maintained by Alpha Cephei Inc.; vosk-api is the open-source repo."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://github.com/alphacep/vosk-api"],
+      "comment": "vosk-api GitHub repo created 2019-09-03; earliest tagged release available via the API is 0.3.3 (Feb 2020). Using 2019 as first public availability; exact month uncertain."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/alphacep/vosk-api"],
+      "comment": "Repo actively maintained; last push June 2026 (checked 2026-06-12)."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/alphacep/vosk-api"],
+      "comment": "Apache-2.0 license."
+    },
+    "primary-type": {
+      "value": ["model-library", "transcription"],
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "An open-source speech-recognition toolkit/library a technical user runs themselves; used for transcription and command/dictation pipelines."
+    },
+    "website": {
+      "value": "https://alphacephei.com/vosk/",
+      "source": ["https://alphacephei.com/vosk/"]
+    },
+    "real-time-dictation": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Vosk is a recognition library, not an end-user speak-to-type app; it provides a streaming API but no system-wide dictation input method out of the box."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Can transcribe audio files (e.g. WAV) via its API; commonly used for subtitling lectures/interviews."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "No meeting-bot or built-in call/system-audio capture; only processes audio fed to it."
+    },
+    "streaming-low-latency": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Provides a streaming API with zero-latency / continuous large-vocabulary transcription."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload"],
+      "source": ["https://alphacephei.com/vosk/", "https://github.com/alphacep/vosk-api"],
+      "comment": "Accepts microphone/streaming audio and audio files programmatically. No meeting-bot or built-in system-audio capture."
+    },
+    "underlying-engine": {
+      "value": "Vosk (Kaldi-based)",
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Vosk's own engine, built on the Kaldi speech-recognition toolkit with its own acoustic/language models."
+    },
+    "language-count": {
+      "value": 20,
+      "source": ["https://alphacephei.com/vosk/", "https://alphacephei.com/vosk/models"],
+      "comment": "Vendor states 20+ languages and dialects; individual models cover 30+ languages/dialects across the model list. Approx."
+    },
+    "english-accuracy": {
+      "value": 3,
+      "source": ["https://alphacephei.com/vosk/models"],
+      "comment": "Accuracy varies strongly by model: small (~50MB) models are usable but error-prone; large server models are competitive. Generally below Whisper-class models in independent comparisons. No single authoritative independent WER for 'Vosk' as a whole; rating reflects the mixed/medium tier."
+    },
+    "multilingual-auto-detect": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/models"],
+      "comment": "Each model is language-specific; the user selects the model. No automatic language detection across a single multilingual model."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/", "https://alphacephei.com/vosk/adaptation"],
+      "comment": "Supports reconfigurable vocabulary / grammar (restrict recognition to a word list) and model adaptation for domain terms."
+    },
+    "speaker-diarization": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Offers speaker identification (embeddings via a separate speaker model) but not automatic who-said-what diarization producing labeled-speaker transcript segments out of the box."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://github.com/alphacep/vosk-api/issues/2025"],
+      "comment": "Word-level results include start/end times and confidence in the JSON output (word times optional via API)."
+    },
+    "ai-summaries-notes": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Pure recognition toolkit; no summaries or notes generation."
+    },
+    "built-in-editor": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Library/CLI, no GUI transcript editor."
+    },
+    "translation": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Speech-to-text only; no transcript translation feature."
+    },
+    "export-formats": {
+      "value": ["json"],
+      "source": ["https://github.com/alphacep/vosk-api/issues/2025"],
+      "comment": "Native output is JSON (words with confidence and timestamps) plus plain text; other formats (srt/docx/etc.) are left to the calling application."
+    },
+    "processing-location": {
+      "value": ["on-device"],
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Runs fully locally; works offline even on lightweight devices."
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Designed for fully offline operation."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Self-hosted and offline; audio never leaves the device, so it cannot be collected by the vendor for training."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "All data is local; the user fully controls storage and deletion."
+    },
+    "platforms": {
+      "value": ["linux", "windows", "macos", "android", "ios"],
+      "source": ["https://github.com/alphacep/vosk-api", "https://alphacephei.com/vosk/android"],
+      "comment": "Runs on servers/desktops (Linux, Windows, macOS), Android, iOS, and Raspberry Pi. No standalone web app (it is a library)."
+    },
+    "system-wide-dictation": {
+      "value": false,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "No built-in OS-wide text-injection dictation; that would have to be built on top of the library."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "A library, not a meeting/app integration product; no Zoom/Meet/Teams/CRM integrations."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://github.com/alphacep/vosk-api", "https://alphacephei.com/vosk/"],
+      "comment": "It IS an API/library, with bindings for Python, Java, Node.js, C#, C++, Rust, Go and others."
+    },
+    "pricing-model": {
+      "value": ["free", "open-source"],
+      "source": ["https://github.com/alphacep/vosk-api", "https://alphacephei.com/vosk/"],
+      "comment": "Apache-2.0 open source; toolkit and models are free to download and use."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "Fully free and open source; unlimited local use."
+    },
+    "free-allowance": {
+      "value": "Unlimited local use (open source)",
+      "source": ["https://alphacephei.com/vosk/"],
+      "comment": "No usage cap; only practical cost is local compute/setup effort."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://github.com/alphacep/vosk-api"],
+      "comment": "Open-source toolkit with no subscription; free to run locally."
+    }
+  }
 }
