@@ -3,7 +3,7 @@
   "description": "The incumbent; agent mode plus completion across VS Code and JetBrains",
   "icon": "github",
   "url": "https://github.com/features/copilot",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "GitHub (Microsoft)",
@@ -317,6 +317,66 @@
         "https://code.visualstudio.com/docs/copilot/customization/agent-skills"
       ],
       "comment": "Curated awesome-copilot marketplace (browsable, plugin install) plus git clone and manual placement of SKILL.md folders in the skills directory. Checked 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["container", "none"],
+      "source": [
+        "https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent",
+        "https://code.visualstudio.com/docs/copilot/agents/agent-tools"
+      ],
+      "comment": "Two surfaces differ: the async cloud coding agent runs in its own ephemeral GitHub Actions environment (container-grade isolation); the local VS Code/JetBrains agent mode runs with the user's full privileges and relies on approval prompts rather than a kernel sandbox (none). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-domain"],
+      "source": [
+        "https://code.visualstudio.com/docs/agents/reference/copilot-settings",
+        "https://docs.github.com/en/copilot/reference/copilot-allowlist-reference"
+      ],
+      "comment": "Tools can be approved per-tool; terminal commands gate per-command via chat.tools.terminal.autoApprove regex/prefix rules (e.g. allow '^git (status|diff)', deny 'rm') so command-prefix patterns apply; the cloud coding-agent firewall allowlists by network domain (per-domain). Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://code.visualstudio.com/docs/agents/reference/copilot-settings"],
+      "comment": "The chat.tools.terminal.autoApprove map mixes allow (true) and deny (false) regex entries, and a deny match blocks auto-approval (dangerous commands like rm/del/kill/curl ship denied); unmatched commands fall back to the confirmation prompt. No documented gitignore-style nested re-override or user-ordered first-match evaluation, so deny-overrides is the highest rung. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://code.visualstudio.com/docs/agents/reference/copilot-settings"],
+      "comment": "User authors allow/deny rules in settings.json (chat.tools.terminal.autoApprove regex map, allowList/denyList) on top of preset postures (chat.permissions.default: default/autoApprove/autopilot). No documented programmable per-action policy hook/callback that inspects each concrete action, so the engine tops out at declarative-rules. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://code.visualstudio.com/docs/agents/reference/copilot-settings"],
+      "comment": "No documented out-of-the-box deny pattern for secrets (.env, key files); the default auto-approve denylist targets dangerous shell commands (rm, del, kill, curl, chmod), not sensitive file reads. A user could add deny rules, but none ships specifically protecting secret files. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://code.visualstudio.com/docs/agents/reference/copilot-settings"],
+      "comment": "Auto-approve allow rules are written to VS Code settings.json (user or workspace scope) and persist across sessions/restarts; the cloud agent's firewall allowlist additions persist as repo/org GitHub Actions variables. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": [
+        "https://code.visualstudio.com/docs/agents/reference/copilot-settings",
+        "https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"
+      ],
+      "comment": "chat.tools.global.autoApprove (and the 'autopilot' permission preset) approve all tools/commands without prompts for hands-off local runs; the async cloud coding agent is autonomous by design, working unattended in its own environment and opening a PR. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["domain-allowlist", "configurable"],
+      "source": [
+        "https://docs.github.com/copilot/customizing-copilot/customizing-or-disabling-the-firewall-for-copilot-coding-agent",
+        "https://docs.github.com/en/copilot/reference/copilot-allowlist-reference"
+      ],
+      "comment": "The cloud coding agent ships a firewall enabled by default that limits outbound traffic to a recommended domain allowlist (package registries, container registries, CAs); admins can extend the allowlist or disable the firewall (configurable). Applies only to the agent's Bash tool inside the GitHub Actions environment, not MCP servers; the local IDE agent has no comparable network firewall. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": [
+        "https://code.visualstudio.com/docs/copilot/agents/agent-tools",
+        "https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/"
+      ],
+      "comment": "Out of the box, local agent mode applies file edits (reviewable/undoable) but asks for confirmation before running terminal commands and tool calls; auto-approval is opt-in. Reflects the first-run VS Code agent-mode experience. Checked 2026-06-12."
     }
   }
 }
