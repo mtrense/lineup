@@ -160,7 +160,7 @@ Users should be able to:
 - [x] Fireflies.ai — Meeting-bot notetaker with summaries and CRM integrations
 - [x] superwhisper — Mac AI dictation running local Whisper models, system-wide
 - [x] Rev — Hybrid human + AI transcription and captioning service
-- [ ] whisper.cpp — C/C++ local Whisper runtime for offline, on-device transcription
+- [x] whisper.cpp — C/C++ local Whisper runtime for offline, on-device transcription
 - [ ] faster-whisper — Optimized Whisper inference (CTranslate2) for fast local transcription
 - [ ] MacWhisper — Mac desktop transcription app built on Whisper
 - [ ] Trint — Transcription and collaborative editing platform for media teams

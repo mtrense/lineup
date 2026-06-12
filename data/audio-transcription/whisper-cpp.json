@@ -1,5 +1,177 @@
 {
   "name": "whisper.cpp",
   "description": "C/C++ local Whisper runtime for offline, on-device transcription",
-  "values": {}
+  "url": "https://github.com/ggml-org/whisper.cpp",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Georgi Gerganov / ggml-org",
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Community-driven open-source project under the ggml-org organization, originally authored by Georgi Gerganov."
+    },
+    "first-release": {
+      "value": "2022-09",
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Repository created 2022-09-25 (project open-sourced that month). Earliest tagged release available via the GitHub API is v1.0.4 on 2022-12-17; the project itself dates to September 2022."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Actively maintained; recent v1.8.x releases through 2024."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "MIT licensed."
+    },
+    "primary-type": {
+      "value": ["model-library"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "A runnable C/C++ inference runtime (CLI + library) for OpenAI's Whisper model that a technical user drives themselves; its core purpose is transcription via that engine."
+    },
+    "website": {
+      "value": "https://github.com/ggml-org/whisper.cpp",
+      "source": ["https://github.com/ggml-org/whisper.cpp"]
+    },
+    "real-time-dictation": {
+      "value": false,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Not a speak-to-type productivity tool. It can produce a near-real-time microphone transcript via the bundled stream example, but does not inject text into other apps."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Primary use: transcribe audio files (WAV; other formats via ffmpeg)."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "No meeting bot or built-in conference/system-audio capture; only direct microphone or files."
+    },
+    "streaming-low-latency": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "The bundled 'stream' example produces a running transcript of live microphone audio in near-real-time (experimental, sliding-window)."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Microphone via the stream example; files via the main CLI. No native meeting-bot or system-audio capture."
+    },
+    "underlying-engine": {
+      "value": "OpenAI Whisper",
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "It is a C/C++ port of OpenAI's Whisper ASR model running on the ggml tensor library; uses the official Whisper model weights (tiny through large)."
+    },
+    "language-count": {
+      "value": 99,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Approx; inherits Whisper's ~99 supported languages. Effective coverage depends on the model size loaded."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Runs the same Whisper weights as the reference model; large-v3 is near-human on clean English (independent WER typically ~2-4%). Rated 4 rather than 5 because accuracy depends heavily on which model size the user loads (tiny/base are notably weaker)."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Automatic language detection (Whisper feature); also supports forcing a language."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Supports an initial/context prompt (--prompt) that can be used to bias recognition toward specific terms and spellings; not a persistent dictionary UI but a real user-facing mechanism."
+    },
+    "speaker-diarization": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Experimental speaker segmentation via tinydiarize (-tdrz flag), which marks speaker turns; limited compared to named multi-speaker diarization."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Segment-level timestamps by default; experimental word-level timestamps via -ml 1."
+    },
+    "ai-summaries-notes": {
+      "value": false,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Produces transcripts only; no built-in summarization or notes."
+    },
+    "built-in-editor": {
+      "value": false,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Command-line/library tool with no transcript-editing UI."
+    },
+    "translation": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Whisper's translate mode can output English from non-English audio (translation to English only, not arbitrary target languages)."
+    },
+    "export-formats": {
+      "value": ["txt", "srt", "vtt", "json"],
+      "source": ["https://github.com/ggml-org/whisper.cpp", "https://git.sr.ht/~fitzsim/whisper.cpp/commit/a593b932e4233df0d4a9e884ad5847420dfed0f8"],
+      "comment": "CLI flags -otxt, -osrt, -ovtt, -oj. Also supports CSV (-ocsv) and LRC outputs, which have no tag in the defined set."
+    },
+    "processing-location": {
+      "value": ["on-device"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Fully local inference; no cloud component."
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Runs entirely offline once the model weights are downloaded."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Audio never leaves the device; there is no vendor service to collect or train on user data."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "All inputs and outputs are local files fully under the user's control; no server-side retention."
+    },
+    "platforms": {
+      "value": ["macos", "windows", "linux", "ios", "android", "web"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Runs on macOS (Intel/ARM), Windows (MSVC/MinGW), Linux, iOS, Android, and in the browser via WebAssembly; also FreeBSD/Raspberry Pi."
+    },
+    "system-wide-dictation": {
+      "value": false,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Does not inject text into other apps OS-wide; it is an engine/CLI, not a dictation front-end."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "No meeting/app integrations; intended to be embedded or scripted by developers."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "C-style API plus command-line tools and bindings for Rust, Go, Java, Ruby, Python, JavaScript, .NET and more."
+    },
+    "pricing-model": {
+      "value": ["open-source", "free"],
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "MIT open-source; free to use. Only practical cost is local compute and setup effort."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Entirely free."
+    },
+    "free-allowance": {
+      "value": "unlimited local",
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "No usage limits; runs on the user's own hardware."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://github.com/ggml-org/whisper.cpp"],
+      "comment": "Open-source with no subscription; no monthly price applies."
+    }
+  }
 }
