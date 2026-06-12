@@ -2,7 +2,7 @@
   "name": "Google Jules",
   "description": "Google's asynchronous autonomous coding agent",
   "url": "https://jules.google/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Google",
@@ -252,6 +252,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://github.com/google-labs-code/jules-skills"],
       "comment": "Skills are distributed via a public git repository (google-labs-code/jules-skills) and installed with a 'skills' CLI tool that detects active coding agents and places the skill files in the appropriate directory."
+    },
+    "sandboxing-technology": {
+      "value": ["vm"],
+      "source": ["https://jules.google/docs/environment/", "https://jules.google/docs/faq/"],
+      "comment": "Each task runs inside a secure, short-lived Ubuntu Linux virtual machine on Google Cloud; the repo is cloned in and the VM is destroyed after the task. No local OS-sandbox or container layer is documented."
+    },
+    "permission-granularity": {
+      "value": ["all-or-nothing"],
+      "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/faq/"],
+      "comment": "No per-tool/per-command/per-path allowlist mechanism is documented. The only gate is a single up-front plan approval for the whole task; once approved Jules executes all steps in the VM without further per-action gating."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://jules.google/docs/review-plan/"],
+      "comment": "No declarative allow/deny rule engine exists; the user approves (or auto-approves) a whole task plan rather than authoring permission rules with precedence."
+    },
+    "permission-configurability": {
+      "value": ["fixed"],
+      "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/environment/"],
+      "comment": "Built-in policy with no user-authored allow/deny rules or programmable policy hooks. Configuration is limited to setup scripts and per-repo env vars; the permission flow itself (plan approval, then autonomous execution) is not user-tunable beyond the plan gate."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://jules.google/docs/faq/"],
+      "comment": "No default deny patterns or built-in refusal for .env/secret files are documented; the FAQ places responsibility on the user ('Don't commit secrets like API keys, tokens, or credentials to your repo'). Secrets are instead supplied as per-repo env vars."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/changelog/2025-10-01/"],
+      "comment": "No saved per-command allow rules; approval is per-task plan, not a remembered command allowlist. Per-repo env vars persist across tasks but are configuration, not approval allowlists."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://jules.google/docs/faq/", "https://jules.google/docs/review-plan/"],
+      "comment": "Autonomous by design: submit a task and walk away. If the user navigates away, the plan is auto-approved on a timer and Jules runs end-to-end in the VM without per-action prompts, opening a PR when done."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://jules.google/docs/faq/", "https://www.morphllm.com/comparisons/jules-google-coding-agent"],
+      "comment": "The task VM has internet access so Jules can install dependencies and run builds; no documented domain allowlist, proxy, or default egress blocking. Contrasts with strictly network-isolated sandboxes. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/faq/"],
+      "comment": "Out of the box there is a single up-front plan-approval gate (which auto-approves on a timer if the user steps away); after that Jules applies edits and runs commands in the VM without prompting per action, landing the result as a reviewable PR. No per-action prompting posture is offered."
     }
   }
 }
