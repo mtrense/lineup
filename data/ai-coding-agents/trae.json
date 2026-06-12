@@ -2,7 +2,7 @@
   "name": "Trae",
   "description": "ByteDance's free AI-native IDE (VS Code fork) with an autonomous \"SOLO Builder\" agent mode.",
   "url": "https://www.trae.ai/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "ByteDance",
@@ -252,6 +252,51 @@
       "value": ["manual-files"],
       "source": ["https://docs.trae.ai/ide/skills", "https://www.morean.co/2026/03/03/using-trae-skills-to-build-a-real-world-next-js-app/"],
       "comment": "Skills are folders (with SKILL.md) placed in the project; no curated marketplace/registry distribution documented (checked 2026-06-05)."
+    },
+    "sandboxing-technology": {
+      "value": null,
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "Trae's default command-execution mode is 'Sandbox with Allowlist': commands run automatically inside a secure sandbox with risk assessment, allowlisted commands bypass it. A real default sandbox exists, but the underlying isolation primitive (kernel-level OS sandbox vs container) is not documented, so the mechanism is left indeterminate rather than guessed (checked 2026-06-12)."
+    },
+    "permission-granularity": {
+      "value": ["per-command", "read-write-distinction"],
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "Command execution is gated via per-command allowlist/denylist entries; file edits are surfaced as an accept/reject diff while reads are not gated, giving a read/write distinction. No documented per-path or per-domain (network) scoping (checked 2026-06-12)."
+    },
+    "rule-precedence": {
+      "value": null,
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "Trae offers mutually-exclusive command modes (manual / use denylist / use allowlist / auto) where each is a flat list, not a combined allow+deny engine with documented precedence (no deny-overrides, nested exceptions, or user-ordered evaluation). Left indeterminate as no precedence semantics are documented (checked 2026-06-12)."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "User picks among predefined execution modes (Sandbox+Allowlist / Manual / Auto) and authors their own allow/deny command lists. No documented programmable hook/policy-script decision point, so the highest level reached is user-authored declarative rules (checked 2026-06-12)."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://medium.com/@barotdhrumil21/trae-ide-review-a-massive-security-vulnerability-in-disguise-16761a300e8b"],
+      "comment": "Trae performs automatic high-risk command detection, but no shipped default deny pattern that gates secret files (.env, key material) is documented; an independent review notes full code collection with no privacy/local mode. Marked false per the default-protection bar (checked 2026-06-12)."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "Allowlist/denylist command entries are saved in Trae's settings and persist across sessions, so allowlisted commands are not re-prompted (checked 2026-06-12)."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/ide/agent"],
+      "comment": "Auto-Run capability for agents executes all commands automatically (the 'Auto Run' mode runs everything outside the sandbox), suppressing per-command approval for hands-off runs (checked 2026-06-12)."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://medium.com/@barotdhrumil21/trae-ide-review-a-massive-security-vulnerability-in-disguise-16761a300e8b", "https://vibecoding.app/blog/trae-review"],
+      "comment": "No documented gating of outbound network during agent runs; everything routes through ByteDance servers and an independent review reports always-on telemetry with no opt-out and no local-only option. Treated as unrestricted (checked 2026-06-12)."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://docs.trae.ai/ide/ide-settings-overview", "https://docs.trae.ai/plugin/use-ai-capabilities"],
+      "comment": "Out of the box, file edits are applied as an accept/reject diff the user must confirm, while commands run in the default Sandbox+Allowlist mode (auto-executed inside a risk-assessed sandbox). Tagged prompt-each-action for edits; note that commands auto-run sandboxed rather than prompting (checked 2026-06-12)."
     }
   }
 }
