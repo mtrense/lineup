@@ -1,0 +1,381 @@
+{
+  "name": "Audio Transcription & Dictation Tools",
+  "description": "Tools that turn speech into text for an individual user — dictation apps, meeting/media transcribers, and runnable open-source engines, compared across modes, accuracy, transcript features, privacy, platforms, and price",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Vendor, lifecycle status, license, core purpose, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "developer",
+          "name": "Developer",
+          "valueType": "text",
+          "description": "Company, org, or individual behind the tool (Otter.ai, OpenAI, Nuance/Microsoft, Apple, etc.)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "First public release. For built-ins (Apple/Windows dictation), use when the modern dictation feature shipped; note in comment"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "active", "value": "Active", "color": "green" },
+              { "id": "beta", "value": "Beta", "color": "blue" },
+              { "id": "discontinued", "value": "Discontinued", "color": "red" }
+            ]
+          },
+          "description": "Current lifecycle status; one primary status"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "proprietary", "value": "Proprietary", "color": "red" },
+              { "id": "freemium", "value": "Freemium", "color": "blue" },
+              { "id": "open-source", "value": "Open Source", "color": "green" },
+              { "id": "source-available", "value": "Source Available", "color": "orange" }
+            ]
+          },
+          "description": "License of the tool itself"
+        },
+        {
+          "id": "primary-type",
+          "name": "Primary Type",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "dictation", "value": "Dictation", "color": "blue" },
+              { "id": "transcription", "value": "Transcription", "color": "green" },
+              { "id": "meeting-assistant", "value": "Meeting Assistant", "color": "purple" },
+              { "id": "model-library", "value": "Model Library", "color": "orange" }
+            ]
+          },
+          "description": "The tool's core purpose; multi-select when it genuinely does several"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product page or repository"
+        }
+      ]
+    },
+    {
+      "id": "input-modes",
+      "name": "Input & Modes",
+      "description": "What the tool can take in and how it captures speech",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "real-time-dictation",
+          "name": "Real-time Dictation",
+          "valueType": "boolean",
+          "description": "Live speak-to-type — your words appear as text as you talk"
+        },
+        {
+          "id": "file-transcription",
+          "name": "File Transcription",
+          "valueType": "boolean",
+          "description": "Can import/upload an existing audio or video file and transcribe it"
+        },
+        {
+          "id": "live-meeting-capture",
+          "name": "Live Meeting Capture",
+          "valueType": "boolean",
+          "description": "Captures a live meeting — via a meeting bot that joins the call, or by recording system/conference audio"
+        },
+        {
+          "id": "streaming-low-latency",
+          "name": "Streaming / Low-latency",
+          "valueType": "boolean",
+          "description": "Produces a running transcript of ongoing audio in near-real-time (vs batch-processing a finished recording)"
+        },
+        {
+          "id": "audio-sources",
+          "name": "Audio Sources",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "microphone", "value": "Microphone", "color": "blue" },
+              { "id": "file-upload", "value": "File Upload", "color": "green" },
+              { "id": "system-audio", "value": "System Audio", "color": "purple" },
+              { "id": "meeting-bot", "value": "Meeting Bot", "color": "orange" },
+              { "id": "url-import", "value": "URL Import", "color": "gray" }
+            ]
+          },
+          "description": "Where it can take audio from; multi-select"
+        }
+      ]
+    },
+    {
+      "id": "accuracy-languages",
+      "name": "Accuracy & Languages",
+      "description": "Recognition engine, language coverage, and accuracy signals",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "underlying-engine",
+          "name": "Underlying Engine",
+          "valueType": "text",
+          "description": "The recognition engine — Whisper, proprietary, Nuance, platform-native, etc. Name it when known"
+        },
+        {
+          "id": "language-count",
+          "name": "Language Count",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Approximate number of supported languages for transcription. Use the vendor's stated count; note approx in comment. Higher is better"
+        },
+        {
+          "id": "english-accuracy",
+          "name": "English Accuracy",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "Qualitative accuracy on clear English speech, from independent reviews/benchmarks. Note any published WER in the comment. Use null when there is no credible signal"
+        },
+        {
+          "id": "multilingual-auto-detect",
+          "name": "Multilingual / Auto-detect",
+          "valueType": "boolean",
+          "description": "Can detect and transcribe non-English (or mixed-language) audio without manual language selection"
+        },
+        {
+          "id": "custom-vocabulary",
+          "name": "Custom Vocabulary",
+          "valueType": "boolean",
+          "description": "Lets the user add domain terms, names, or acronyms to improve recognition"
+        }
+      ]
+    },
+    {
+      "id": "transcript-features",
+      "name": "Transcript Features",
+      "description": "What the tool does with the transcript once produced",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "speaker-diarization",
+          "name": "Speaker Diarization",
+          "valueType": "boolean",
+          "description": "Labels who said what (Speaker 1/2, or named speakers)"
+        },
+        {
+          "id": "timestamps",
+          "name": "Timestamps",
+          "valueType": "boolean",
+          "description": "Provides word- or segment-level timestamps"
+        },
+        {
+          "id": "ai-summaries-notes",
+          "name": "AI Summaries & Notes",
+          "valueType": "boolean",
+          "description": "Auto-generates summaries, action items, or meeting notes from the transcript"
+        },
+        {
+          "id": "built-in-editor",
+          "name": "Built-in Editor",
+          "valueType": "boolean",
+          "description": "An in-app editor to review and correct the transcript (bonus: edit media by editing text, à la Descript)"
+        },
+        {
+          "id": "translation",
+          "name": "Translation",
+          "valueType": "boolean",
+          "description": "Can translate the transcript into other languages"
+        },
+        {
+          "id": "export-formats",
+          "name": "Export Formats",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "txt", "value": "TXT", "color": "gray" },
+              { "id": "docx", "value": "DOCX", "color": "blue" },
+              { "id": "pdf", "value": "PDF", "color": "red" },
+              { "id": "srt", "value": "SRT", "color": "green" },
+              { "id": "vtt", "value": "VTT", "color": "green" },
+              { "id": "json", "value": "JSON", "color": "orange" },
+              { "id": "markdown", "value": "Markdown", "color": "purple" }
+            ]
+          },
+          "description": "Output formats supported; multi-select"
+        }
+      ]
+    },
+    {
+      "id": "privacy-data",
+      "name": "Privacy & Data",
+      "description": "Where audio is processed and what happens to it",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "processing-location",
+          "name": "Processing Location",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "on-device", "value": "On-device", "color": "green" },
+              { "id": "cloud", "value": "Cloud", "color": "orange" },
+              { "id": "hybrid", "value": "Hybrid", "color": "blue" }
+            ]
+          },
+          "description": "Where audio is actually processed. on-device for fully local; hybrid when local + optional cloud"
+        },
+        {
+          "id": "offline-capable",
+          "name": "Offline Capable",
+          "valueType": "boolean",
+          "description": "Works fully offline with no network connection (implies on-device processing)"
+        },
+        {
+          "id": "data-used-for-training",
+          "name": "Data Used for Training",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "no", "value": "No", "color": "green" },
+              { "id": "opt-out", "value": "Opt-out", "color": "blue" },
+              { "id": "opt-in", "value": "Opt-in", "color": "orange" },
+              { "id": "yes-default", "value": "Yes (default)", "color": "red" }
+            ]
+          },
+          "description": "Whether your audio/transcripts may be used to improve models, and the consent posture"
+        },
+        {
+          "id": "data-deletion-control",
+          "name": "Data Deletion Control",
+          "valueType": "boolean",
+          "description": "User can delete recordings/transcripts and/or set auto-deletion/retention"
+        }
+      ]
+    },
+    {
+      "id": "platforms-integration",
+      "name": "Platforms & Integration",
+      "description": "Where the tool runs and what it connects to",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "platforms",
+          "name": "Platforms",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "macos", "value": "macOS", "color": "gray" },
+              { "id": "windows", "value": "Windows", "color": "blue" },
+              { "id": "ios", "value": "iOS", "color": "purple" },
+              { "id": "android", "value": "Android", "color": "green" },
+              { "id": "web", "value": "Web", "color": "orange" },
+              { "id": "linux", "value": "Linux", "color": "red" }
+            ]
+          },
+          "description": "Where the tool runs; multi-select"
+        },
+        {
+          "id": "system-wide-dictation",
+          "name": "System-wide Dictation",
+          "valueType": "boolean",
+          "description": "Dictation works in any app OS-wide (vs only inside the tool's own window). Relevant mainly for dictation tools"
+        },
+        {
+          "id": "integrations",
+          "name": "Integrations",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "zoom", "value": "Zoom", "color": "blue" },
+              { "id": "google-meet", "value": "Google Meet", "color": "green" },
+              { "id": "teams", "value": "Teams", "color": "purple" },
+              { "id": "slack", "value": "Slack", "color": "orange" },
+              { "id": "notion", "value": "Notion", "color": "gray" },
+              { "id": "google-calendar", "value": "Google Calendar", "color": "red" },
+              { "id": "crm", "value": "CRM", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Meeting/app integrations; multi-select"
+        },
+        {
+          "id": "api-automation",
+          "name": "API / Automation",
+          "valueType": "boolean",
+          "description": "Offers an API, CLI, or scripting hook a power user can automate against"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing",
+      "description": "Cost model, free tier, and entry price",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "free", "value": "Free", "color": "green" },
+              { "id": "freemium", "value": "Freemium", "color": "blue" },
+              { "id": "subscription", "value": "Subscription", "color": "orange" },
+              { "id": "usage-based", "value": "Usage-based", "color": "purple" },
+              { "id": "one-time", "value": "One-time", "color": "red" },
+              { "id": "open-source", "value": "Open Source", "color": "green" }
+            ]
+          },
+          "description": "Select all that apply"
+        },
+        {
+          "id": "free-tier",
+          "name": "Free Tier",
+          "valueType": "boolean",
+          "description": "A genuinely usable free plan (not just a time-limited trial)"
+        },
+        {
+          "id": "free-allowance",
+          "name": "Free Allowance",
+          "valueType": "text",
+          "description": "What the free tier includes (e.g. 300 min/mo, limited live notes, unlimited local). null if no free tier"
+        },
+        {
+          "id": "entry-price-usd-mo",
+          "name": "Entry Price (USD/mo)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Cheapest paid plan billed monthly; lower is better. 0 when a real free tier covers core use, null for one-time/open-source with no subscription"
+        }
+      ]
+    }
+  ]
+}
