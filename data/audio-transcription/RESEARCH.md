@@ -163,7 +163,7 @@ Users should be able to:
 - [x] whisper.cpp — C/C++ local Whisper runtime for offline, on-device transcription
 - [x] faster-whisper — Optimized Whisper inference (CTranslate2) for fast local transcription
 - [x] MacWhisper — Mac desktop transcription app built on Whisper
-- [ ] Trint — Transcription and collaborative editing platform for media teams
+- [x] Trint — Transcription and collaborative editing platform for media teams
 - [ ] Sonix — Automated multilingual transcription with editing and export
 - [ ] Happy Scribe — Transcription and subtitle generation, human + AI
 - [ ] Notta — Multilingual transcription and meeting notes app, web + mobile
