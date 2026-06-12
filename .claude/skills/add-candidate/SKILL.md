@@ -2,7 +2,7 @@
 name: add-candidate
 description: "Add a single new candidate to an existing Lineup comparison type, with a scope-fit check against the comparison's RESEARCH.md before anything is written. Creates the `data/<type>/<candidate>.json` stub, appends the entry to `data/<type>/index.json`, and appends a new `- [ ] <Name> — <reason> (added <date>)` line to RESEARCH.md's Candidates list. Use when the user has a specific candidate in mind (often with URL / description / reasoning provided inline) and wants it vetted against scope before it lands. For bulk scaffolding of candidates already listed in RESEARCH.md, use `/scaffold-type` instead. Arguments: comparison type id (required), candidate name (required), optional free-text context (URL, description, reasoning)."
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), WebFetch, WebSearch
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), Bash(bash .claude/skills/add-candidate/validate-json.sh*), WebFetch, WebSearch
 argument-hint: "<comparison-type> <candidate-name> [url / description / reasoning]"
 ---
 
@@ -132,10 +132,10 @@ Always `shownByDefault: true` for a freshly-added candidate — the user can fli
 After both JSON writes, validate them in one allow-listed call:
 
 ```bash
-bash ${CLAUDE_SKILL_DIR}/validate-json.sh data/<type>/<candidate-id>.json data/<type>/index.json
+bash .claude/skills/add-candidate/validate-json.sh data/<type>/<candidate-id>.json data/<type>/index.json
 ```
 
-The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before moving on to 3.3.
+Run it from the repo root in exactly this relative form — script path and file arguments both repo-relative, never absolute (only the relative form reliably matches the allowlist). The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before moving on to 3.3.
 
 ### 3.3 `data/<type>/RESEARCH.md`
 
@@ -200,7 +200,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT batch multiple candidates in one invocation. Use `/scaffold-type <type> <id> <id> ...` for bulk. This skill is deliberately single-candidate so the scope check stays meaningful.
 - Only ask the user clarifying questions at the well-defined pause points: missing type id, missing candidate name, Phase 2.2 hit on an existing Candidates entry, Phase 2.3 scope mismatch or ambiguity. Everything else resolves to defaults + Phase 4 summary.
 - kebab-case for the candidate id and all other ids. Filenames: lowercase, hyphens, no spaces, no underscores, no numeric prefixes.
-- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments. Verify every written `.json` file with `bash ${CLAUDE_SKILL_DIR}/validate-json.sh <file> [...]` and fix anything it flags before finishing.
+- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments. Verify every written `.json` file with `bash .claude/skills/add-candidate/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
 - Match existing project style: indentation, key ordering inside candidate files (`name`, `description`, `url`, `values`).
 - If a required file is missing (no `CLAUDE.md`, no `data/<type>/`, no `RESEARCH.md`, no `index.json`), abort with a clear message pointing the user at the skill that creates it (`/new-type` or `/scaffold-type`).
 - If the RESEARCH.md Candidates section is malformed (no heading, no existing list to append to), abort and tell the user precisely what to fix.

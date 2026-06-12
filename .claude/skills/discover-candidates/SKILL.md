@@ -2,7 +2,7 @@
 name: discover-candidates
 description: "Search the web for additional candidates that fit an existing Lineup comparison type, present them for the user to pick from, then scaffold the chosen ones (RESEARCH.md Candidates append, data/<type>/index.json append, per-candidate stub files). Use when the comparison type is already scaffolded and you want to expand its candidate roster with items you haven't identified yourself. Complements `/add-candidate` (user brings one name), `/scaffold-type` (bulk-scaffolds names already in RESEARCH.md), and `/new-type` (drafts the research guide). Arguments: comparison type id (required), optional free-text hint narrowing the search (e.g. a niche, region, or characteristic)."
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), WebSearch, WebFetch
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(gh repo *), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), Bash(bash .claude/skills/discover-candidates/validate-json.sh*), WebSearch, WebFetch
 argument-hint: "<comparison-type> [search hint]"
 ---
 
@@ -200,10 +200,10 @@ Append one line per pick to the end of the **Candidates** list:
 After all writes, validate every `.json` file touched this pass in one allow-listed call:
 
 ```bash
-bash ${CLAUDE_SKILL_DIR}/validate-json.sh data/<type>/index.json data/<type>/<candidate-id>.json ...
+bash .claude/skills/discover-candidates/validate-json.sh data/<type>/index.json data/<type>/<candidate-id>.json ...
 ```
 
-The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before presenting the summary.
+Run it from the repo root in exactly this relative form — script path and file arguments both repo-relative, never absolute (only the relative form reliably matches the allowlist). The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before presenting the summary.
 
 ## Phase 6: Summary
 
@@ -259,7 +259,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT modify the top-level `data/index.json` — this skill operates inside an already-registered type.
 - Do NOT weaken the Scope filter to pad the list. A shorter filtered list is better than a longer one with borderline entries — the user is the final filter, but Phase 3's filter has to be defensible on its own terms.
 - kebab-case for the candidate id and all other ids. Filenames: lowercase, hyphens, no spaces, no underscores, no numeric prefixes.
-- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments. Verify every written `.json` file with `bash ${CLAUDE_SKILL_DIR}/validate-json.sh <file> [...]` and fix anything it flags before finishing.
+- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments. Verify every written `.json` file with `bash .claude/skills/discover-candidates/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
 - Match existing project style: indentation, key ordering inside candidate files (`name`, `description`, `url`, `values`).
 - If a required file is missing (no `CLAUDE.md`, no `data/<type>/`, no `RESEARCH.md`, no `index.json`), abort with a clear message pointing the user at the skill that creates it (`/new-type` or `/scaffold-type`).
 - If the RESEARCH.md Candidates section is malformed (no heading, no existing list to append to), abort and tell the user precisely what to fix.

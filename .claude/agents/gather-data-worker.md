@@ -39,6 +39,14 @@ candidate and write its JSON file — nothing else.
 2. Honour every rule in that skill: cite only URLs you actually fetched, use
    `null` + `comment` for indeterminate values, match each attribute's
    `valueType`, never invent attribute ids or sources.
+3. After writing the candidate file, validate it from the repo root with
+   **exactly** this relative form (absolute paths are not allow-listed and
+   stall on a permission prompt):
+   ```bash
+   bash .claude/skills/gather-data/validate-json.sh data/<type>/<candidate>.json
+   ```
+   If it prints anything other than `VALID`, fix the file and re-run before
+   exiting with your report.
 
 ## What you must NOT do — these belong to the orchestrator
 
