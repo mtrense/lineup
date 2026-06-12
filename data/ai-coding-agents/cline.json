@@ -3,7 +3,7 @@
   "description": "Open-source autonomous coding agent extension for VS Code",
   "icon": "🤖",
   "url": "https://cline.bot/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Cline Bot Inc.",
@@ -253,6 +253,51 @@
       "value": ["manual-files", "git"],
       "source": ["https://docs.cline.bot/customization/skills"],
       "comment": "Skills live in ~/.cline/skills (global) or .cline/skills (project); created manually or via the Skills menu and shared with teams by committing to version control (git). No official Cline skills marketplace in the docs, though third-party catalogs (agensi.io/skills, SkillsMP) index community skills. Verified 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/368"],
+      "comment": "No kernel sandbox, container, VM, or filesystem jail. Cline runs in the VS Code/JetBrains extension host and executes terminal commands and edits with the user's full privileges; isolation is provided only by approval prompts, not by an enforced sandbox. Verified 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "read-write-distinction", "per-path"],
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/2253"],
+      "comment": "Auto-approve is toggled per tool category (read / edit / execute commands / browser / MCP) -> per-tool; reads and edits are separate toggles -> read-write-distinction; each has a project-scoped vs all-files variant (Read project files vs Read all files, Edit project files vs Edit all files) -> per-path. Commands are split only into 'safe' vs 'all' via the model's requires_approval flag, not user command-prefix rules: a custom command-prefix allowlist remains unimplemented (discussion #2253), so command-prefix is not tagged. Verified 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/2253"],
+      "comment": "No declarative allow/deny rule engine. Auto-approval is decided by category toggles plus the model's per-command requires_approval flag; user-authored command auto-approval rules (pattern matching, priority ordering) were proposed but remain unimplemented (discussion #2253). With no rule syntax, precedence is none. Verified 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["presets"],
+      "source": ["https://docs.cline.bot/features/auto-approve"],
+      "comment": "Configuration is limited to predefined auto-approve toggles/modes (per-category on/off, project vs all-files, max-requests limit, YOLO mode). No user-authored declarative allow/deny rules and no programmable per-action decision hook for permissioning, so the highest rung reached is presets. Verified 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/2253"],
+      "comment": "No documented out-of-the-box gating of secrets (.env, key files). Cline ships no built-in deny patterns for sensitive paths; protection relies on the user keeping edit/command auto-approve off. Community has requested directory-scoped exclusions (e.g. .git) but none ship enabled. Verified 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/2253"],
+      "comment": "No per-action 'always allow this command' rule that is saved and matched later. Cline only offers broad category auto-approve toggles (which persist as extension settings) and the unimplemented command auto-approval rules of discussion #2253; there is no remembered per-command/per-path allow rule that suppresses re-prompts for a specific approved action, so false. Verified 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.cline.bot/features/auto-approve"],
+      "comment": "YOLO Mode auto-approves everything (file changes, terminal commands, browser, MCP tools, mode transitions) for hands-off runs; Auto Approve with 'Execute all commands' also enables full autopilot. Verified 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://github.com/cline/cline/discussions/368"],
+      "comment": "No outbound-network gating: terminal commands, the built-in browser, and MCP servers reach the network freely once approved (or auto-approved). No domain allowlist, proxy, or default-block egress policy is documented; network egress is only indirectly gated by the per-tool approval prompts. Verified 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://docs.cline.bot/features/auto-approve", "https://cline.bot/"],
+      "comment": "Out of the box auto-approve is off, so Cline asks before every edit, command, browser action, and MCP call; the docs recommend enabling only read auto-approval first. Auto-approve / YOLO are explicit opt-ins, not the default. Verified 2026-06-12."
     }
   }
 }
