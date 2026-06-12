@@ -2,7 +2,7 @@
   "name": "JetBrains Junie",
   "description": "AI coding agent embedded in IntelliJ IDEA, PyCharm, WebStorm and other JetBrains IDEs; explores the project, plans, writes and tests code.",
   "url": "https://www.jetbrains.com/junie/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "JetBrains",
@@ -251,6 +251,51 @@
       "value": ["marketplace", "git", "manual-files"],
       "source": ["https://junie.jetbrains.com/docs/agent-skills.html", "https://junie.jetbrains.com/docs/junie-cli-extensions.html"],
       "comment": "Skills/extensions install via git-based marketplaces, git clone, or by placing the skill folder under .junie/skills manually."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html", "https://junie.jetbrains.com/docs/junie-cli-usage.html"],
+      "comment": "Junie executes commands locally on the developer's machine with the user's own privileges; isolation is by approval/allowlist, not a kernel sandbox, container or VM. The GitHub Action runs on standard CI runners (host infra, not Junie's own isolation), and JetBrains is testing a cloud sandbox but it is not the default. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html", "https://junie.jetbrains.com/docs/action-allowlist.html"],
+      "comment": "allowlist.json gates four action categories (executables, mcpTools, fileEditing, readOutsideProject) = per-tool; per-command approval with prefix/glob pattern rules = per-command + command-prefix; separate readOutsideProject vs fileEditing and an inside/outside-project distinction = read-write-distinction + per-path. No per-network-domain gating documented."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html"],
+      "comment": "allowlist.json rules are evaluated top to bottom, first match taking precedence (e.g. an 'ask' rule for 'npm install *' placed above an 'allow' prefix rule for 'npm' wins) — user-controlled ordered evaluation."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html"],
+      "comment": "User authors allow/ask rules (prefix or glob pattern) in ~/.junie/allowlist.json. No programmable hook/policy-script decision point for permission evaluation documented."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html", "https://junie.jetbrains.com/docs/action-allowlist.html"],
+      "comment": "No default deny patterns for secrets (.env, key files) ship enabled; the docs describe only what users can allow. Users can restrict access via a user-authored .aiignore file, but that is opt-in, so default protection is false. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html"],
+      "comment": "The 'Always allow' / 'Allow this command' / 'Allow similar commands' approval options write the command to the persistent ~/.junie/allowlist.json so it runs without approval in future Junie runs (survives restarts)."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Brave Mode (/brave slash command or Ctrl+B) authorizes Junie to execute all potentially sensitive actions without approval for hands-off runs (documented but not recommended)."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html", "https://junie.jetbrains.com/docs/junie-cli-usage.html"],
+      "comment": "Junie runs locally with full machine network access; no documented outbound-egress gating, domain allowlist or proxy for the agent's own runs (network-touching commands are gated only as terminal commands by the action allowlist, not as a network policy). Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://junie.jetbrains.com/docs/action-allowlist.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
+      "comment": "Out of the box Junie edits files within the project without prompting but asks for approval before running terminal commands, MCP tools, tests/builds, and reading/editing files outside the project (only ls, cd, pwd run without approval)."
     }
   }
 }
