@@ -2,7 +2,7 @@
   "name": "Claude Code",
   "description": "Anthropic's terminal-first agentic coding tool; reference CLI agent",
   "url": "https://code.claude.com/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Anthropic",
@@ -252,6 +252,51 @@
       "value": ["marketplace", "git", "manual-files"],
       "source": ["https://code.claude.com/docs/en/skills"],
       "comment": "Installed by dropping files into .claude/skills/ (manual), shared via git clone/symlink, or bundled in plugins distributed through plugin marketplaces."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "container", "vm"],
+      "source": ["https://code.claude.com/docs/en/sandboxing", "https://code.claude.com/docs/en/sandbox-environments"],
+      "comment": "Built-in sandboxed Bash tool uses kernel-level OS sandboxing: macOS Seatbelt, Linux/WSL2 bubblewrap plus an optional seccomp filter. Anthropic also officially documents running the whole process in a dev/custom Docker container, a VM/microVM, or Anthropic-managed VMs (Claude Code on the web). Native Windows unsupported (use WSL2). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://code.claude.com/docs/en/permissions"],
+      "comment": "Rules take the form Tool or Tool(specifier): bare tool name (per-tool), exact command e.g. Bash(npm run build) (per-command), glob/prefix e.g. Bash(npm run *) (command-prefix), Read/Edit gitignore-style path patterns (per-path), WebFetch(domain:...) and sandbox allowed/deniedDomains (per-domain). Reads run without prompt while writes/commands prompt by default (read/write distinction)."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://code.claude.com/docs/en/permissions"],
+      "comment": "Docs: 'Rules are evaluated in order: deny, then ask, then allow ... rule specificity does not change the order.' Deny from any settings scope always wins and a more-specific allow cannot carve an exception back out, so the declarative engine tops out at deny-overrides (no gitignore-style nested re-override or user-ordered evaluation). Programmable precedence via PreToolUse hooks is scored under Permission Configurability, not here."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://code.claude.com/docs/en/permissions"],
+      "comment": "Highest level reached: beyond presets (permission modes) and user-authored allow/ask/deny declarative rules in settings.json, PreToolUse / PermissionRequest hooks are a code-level decision point that inspects each concrete tool call and can allow, deny, or force a prompt."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://code.claude.com/docs/en/permission-modes", "https://code.claude.com/docs/en/sandboxing"],
+      "comment": "No shipped default deny rule for secrets. The built-in protected-path list guards repo/tooling state (.git, .claude, shell rc files, .npmrc, .mcp.json, etc.) but not .env or key material; docs note the sandbox's default read policy still allows reading ~/.aws/credentials and ~/.ssh unless the user adds denyRead. Protection of secrets requires the user to author a deny rule, so false per the guideline. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/permissions"],
+      "comment": "'Yes, don't ask again' for a Bash command saves an allow rule permanently per project directory and command (written to settings.json), so it survives restarts. Manageable via /permissions. File-edit approvals are session-only, but command allowlisting persists."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/permission-modes"],
+      "comment": "bypassPermissions mode, entered via --dangerously-skip-permissions (or --permission-mode bypassPermissions), skips all prompts except explicit ask rules and rm -rf / | ~ circuit breakers. Also a research-preview 'auto' mode that suppresses routine prompts behind a safety classifier. Admins can lock either off via disableBypassPermissionsMode / disableAutoMode."
+    },
+    "network-access-control": {
+      "value": ["domain-allowlist", "proxy", "configurable"],
+      "source": ["https://code.claude.com/docs/en/sandboxing"],
+      "comment": "With the Bash sandbox enabled, egress goes through an out-of-sandbox proxy: no domains pre-allowed, first use of a new domain prompts, and allowedDomains/deniedDomains define an allowlist; managed allowManagedDomainsOnly blocks non-allowed hosts outright. Custom corporate proxy/gateway supported. Without the sandbox, Bash network is unrestricted, so the policy is fundamentally configurable. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://code.claude.com/docs/en/permission-modes", "https://code.claude.com/docs/en/permissions"],
+      "comment": "Out-of-the-box 'default' mode runs reads without asking but prompts on first use of each editing tool and each Bash command; protected-path writes always prompt. acceptEdits (auto-edit, ask commands) and bypass are opt-in modes, not the default."
     }
   }
 }
