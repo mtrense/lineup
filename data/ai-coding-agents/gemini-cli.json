@@ -1,7 +1,7 @@
 {
   "name": "Gemini CLI",
   "description": "Google's open-source terminal agent",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Google",
@@ -250,6 +250,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://geminicli.com/docs/cli/skills/", "https://medium.com/google-cloud/your-gemini-cli-extensions-just-got-smarter-introducing-agent-skills-a8fbfa077e7f"],
       "comment": "Skills live in user (~/.gemini/skills/ or ~/.agents/skills/) or workspace (.gemini/skills/ or .agents/skills/) directories — installed by dropping in files (manual-files) or bundled inside Gemini CLI extensions, which install from GitHub repos via `gemini extensions install` (git). No single curated one-click skills marketplace observed. Checked 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "container"],
+      "source": ["https://geminicli.com/docs/cli/sandbox/", "https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html"],
+      "comment": "On macOS uses Apple Seatbelt (sandbox-exec) with selectable profiles; cross-platform uses Docker/Podman containers (ghcr.io/google/gemini-cli image or custom .gemini/sandbox.Dockerfile). Sandboxing is OFF by default — must be enabled via -s/--sandbox, GEMINI_SANDBOX env, or settings; otherwise tools run with the user's full privileges. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://geminicli.com/docs/cli/sandbox/"],
+      "comment": "tools.allowed / tools.core allowlist by tool name (per-tool) and by shell command prefix like run_shell_command(git) or run_shell_command(npm test) (command-prefix). The auto_edit approval mode auto-approves edit tools (write_file/replace) while still prompting for other tools (read/write distinction). When the sandbox is enabled, writes are confined to the project directory (per-path). No per-network-domain host allowlist (network is profile-level open vs proxied, not host-specific). Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html"],
+      "comment": "Allow (tools.allowed/tools.core) and exclude (tools.exclude, mcp.excluded) lists; for MCP tool filtering the docs state excludeTools takes precedence over includeTools — i.e. exclusion always wins. No documented specificity-based re-override (nested exceptions) or user-ordered first-match evaluation. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://github.com/google-gemini/gemini-cli/discussions/26966"],
+      "comment": "User-authored allow/exclude rules plus preset approval modes (default/auto_edit/yolo/plan) in settings.json. No native programmable per-action permission callback/hook that inspects each concrete action and allow/deny/rewrites it (the extensibility surface adds tools/commands, not a policy decision point). Highest rung reached is declarative-rules. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html"],
+      "comment": "No documented out-of-the-box deny patterns or built-in refusal for secrets (.env, key files); the user would have to add their own exclude/ignore rules. Sandbox write confinement (when enabled) is path-based, not secret-aware. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://github.com/google-gemini/gemini-cli/discussions/26966", "https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html"],
+      "comment": "tools.allowed entries in user/project .gemini/settings.json persist allowlisted tools/command prefixes across sessions; a per-tool 'Always allow for this session/workspace' option and security.enablePermanentToolApproval remember approvals durably. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://inventivehq.com/knowledge-base/gemini/how-to-use-yolo-mode"],
+      "comment": "YOLO mode auto-approves all tool calls; enabled via --yolo/-y, GEMINI_YOLO_MODE=true, the approval-mode setting, or Ctrl+Y at runtime. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable"],
+      "source": ["https://geminicli.com/docs/cli/sandbox/"],
+      "comment": "Egress is profile-controlled when sandboxing is enabled: '-open' Seatbelt profiles allow unrestricted network, '-proxied' profiles route all traffic through a configured proxy/gateway. Default profile (permissive-open) allows unrestricted network, and with sandboxing off (the default) there is no network gating at all. No built-in per-domain host allowlist. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://geminicli.com/docs/reference/configuration/"],
+      "comment": "Out of the box the default approval mode prompts for confirmation on each tool call (edits and shell commands alike); auto_edit and yolo are opt-in. Checked 2026-06-12."
     }
   }
 }
