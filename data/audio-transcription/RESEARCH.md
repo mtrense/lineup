@@ -169,7 +169,7 @@ Users should be able to:
 - [x] Notta — Multilingual transcription and meeting notes app, web + mobile
 - [x] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding
 - [x] Vosk — Offline open-source speech-recognition toolkit with small models
-- [ ] Windows Voice Typing — Built-in Windows dictation (Win+H), system-wide
+- [x] Windows Voice Typing — Built-in Windows dictation (Win+H), system-wide
 - [ ] tl;dv — Meeting recorder/transcriber with timestamps and highlights
 - [ ] Fathom — Free-leaning AI meeting notetaker with summaries
 
