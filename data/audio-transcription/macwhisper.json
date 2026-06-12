@@ -1,5 +1,179 @@
 {
   "name": "MacWhisper",
   "description": "Mac desktop transcription app built on Whisper",
-  "values": {}
+  "icon": "🎙️",
+  "url": "https://goodsnooze.gumroad.com/l/macwhisper",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Good Snooze (Jordi Bruin)",
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/", "https://www.producthunt.com/products/macwhisper"],
+      "comment": "Independent indie developer Jordi Bruin / Good Snooze, Amsterdam; no external funding."
+    },
+    "first-release": {
+      "value": "2023-01",
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Mac app launched January 17, 2023 on Product Hunt. An iOS companion app launched April 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Actively developed; recent versions (v13.x) shipping in 2026."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Closed-source proprietary app with a permanent free tier and paid Pro; wraps the open-source Whisper engine but the app itself is not open source."
+    },
+    "primary-type": {
+      "value": ["transcription", "dictation"],
+      "source": ["https://macwhisper.helpscoutdocs.com/article/14-how-to-use-the-dictation-feature", "https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Primarily a file/meeting transcription tool; also offers system-wide Whisper dictation (Gumroad version)."
+    },
+    "website": {
+      "value": "https://goodsnooze.gumroad.com/l/macwhisper",
+      "source": ["https://goodsnooze.gumroad.com/l/macwhisper"],
+      "comment": "Official Gumroad product page; also distributed via the Mac App Store."
+    },
+    "real-time-dictation": {
+      "value": true,
+      "source": ["https://macwhisper.helpscoutdocs.com/article/14-how-to-use-the-dictation-feature"],
+      "comment": "System-wide dictation lets you transcribe into any text field via a keyboard shortcut. Available only in the macwhisper.com/Gumroad version, not the App Store build."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Core use case: drag-and-drop audio/video files (mp3, wav, m4a, mp4, mov, ogg, opus) for local transcription. Batch folder transcription is Pro."
+    },
+    "live-meeting-capture": {
+      "value": true,
+      "source": ["https://navi.tools/tools/goodsnooze"],
+      "comment": "Pro can record/transcribe meetings via system-audio capture in Zoom, Teams, Webex, Skype, Chime, Discord. No bot that joins calls; relies on local system-audio recording."
+    },
+    "streaming-low-latency": {
+      "value": false,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Primarily batch-processes finished recordings/files; no live running-transcript streaming mode documented."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload", "system-audio", "url-import"],
+      "source": ["https://navi.tools/tools/goodsnooze", "https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Microphone/input recording, file upload, system-audio recording for meetings, and YouTube URL import (Pro). No meeting-bot that joins calls."
+    },
+    "underlying-engine": {
+      "value": "OpenAI Whisper (whisper.cpp)",
+      "source": ["https://www.producthunt.com/products/macwhisper", "https://github.com/ggml-org/whisper.cpp/discussions/420"],
+      "comment": "Local Whisper models (Tiny/Base/Medium/Large incl. Large-v3) run on-device; built on the whisper.cpp runtime."
+    },
+    "language-count": {
+      "value": 100,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Approx; inherits Whisper's ~100 transcription languages with auto-detection."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://www.producthunt.com/products/macwhisper", "https://daveswift.com/macwhisper/"],
+      "comment": "Accuracy matches the underlying Whisper Large models — strong on clear English in reviews. No tool-specific independent WER published; rating reflects Whisper-class performance."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Inherits Whisper automatic language detection (100+ languages)."
+    },
+    "custom-vocabulary": {
+      "value": false,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Voibe notes the app lacks custom vocabulary injection; no user-facing custom dictionary for boosting terms."
+    },
+    "speaker-diarization": {
+      "value": true,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Pro feature (beta) that auto-labels Speaker 1/2/...; accuracy varies."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Segment-level timestamps; SRT/VTT subtitle export implies timestamped segments."
+    },
+    "ai-summaries-notes": {
+      "value": true,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "AI cleanup/summarization via bring-your-own-key (OpenAI/Anthropic/Google/Groq) or the optional paid Assistant subscription."
+    },
+    "built-in-editor": {
+      "value": true,
+      "source": ["https://navi.tools/tools/goodsnooze"],
+      "comment": "In-app transcript editing and full-text/speaker search across transcripts. Plain-text correction editor, not media-by-text editing like Descript."
+    },
+    "translation": {
+      "value": true,
+      "source": ["https://navi.tools/tools/goodsnooze", "https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Translate full transcripts via a free DeepL API key, translate audio into another language via Whisper, or translate dictated text via ChatGPT/BYOK; cloud translation also in paid Assistant."
+    },
+    "export-formats": {
+      "value": ["txt", "srt", "vtt"],
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "TXT plus SRT/VTT subtitle export (Pro) are well attested. Additional formats (CSV/HTML/JSON/DOCX/PDF) are sometimes mentioned but not clearly confirmed in primary sources."
+    },
+    "processing-location": {
+      "value": ["hybrid"],
+      "source": ["https://www.producthunt.com/products/macwhisper", "https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Transcription runs fully on-device by default; optional cloud features (Assistant transcription/summaries, DeepL/ChatGPT translation) make it hybrid in practice."
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Core local Whisper transcription works fully offline; audio never leaves the device. Only the optional cloud AI/translation features need network."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Local on-device processing — audio stays on the user's Mac, so it is not collected for training. Cloud/BYOK features fall under the respective third-party provider terms."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://www.producthunt.com/products/macwhisper"],
+      "comment": "Transcripts and recordings are stored locally as files the user fully controls and can delete."
+    },
+    "platforms": {
+      "value": ["macos", "ios"],
+      "source": ["https://www.producthunt.com/products/macwhisper", "https://apps.apple.com/us/app/macwhisper/id1668083311"],
+      "comment": "Primarily macOS desktop; an iOS/iPadOS companion app launched in 2025. No Windows/Linux/web."
+    },
+    "system-wide-dictation": {
+      "value": true,
+      "source": ["https://macwhisper.helpscoutdocs.com/article/14-how-to-use-the-dictation-feature"],
+      "comment": "Global keyboard shortcut dictates Whisper text into any focused app, replacing Apple Dictation. Gumroad version only."
+    },
+    "integrations": {
+      "value": ["zoom", "teams"],
+      "source": ["https://navi.tools/tools/goodsnooze"],
+      "comment": "Auto-records meetings in Zoom, Teams, Webex, Skype, Chime, and Discord via system-audio capture; only Zoom and Teams have defined tags. No CRM/Slack/Notion/Calendar integration."
+    },
+    "api-automation": {
+      "value": false,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "GUI app with no documented public API/CLI for automation. It can consume third-party AI APIs (BYOK) but exposes no automation interface of its own."
+    },
+    "pricing-model": {
+      "value": ["freemium", "one-time", "subscription"],
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Free tier; Pro as a one-time purchase (~€59 Gumroad) or App Store lifetime IAP; optional Assistant subscription for cloud AI."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Permanent free tier with local on-device transcription using the smaller Whisper models (Tiny/Base)."
+    },
+    "free-allowance": {
+      "value": "Unlimited local transcription with smaller Whisper models (Tiny/Base)",
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Checked 2026-06-12. Free tier limited to smaller models; larger/most-accurate models and Pro features require a purchase."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://www.getvoibe.com/resources/macwhisper-pricing/"],
+      "comment": "Pro is primarily a one-time purchase (~€59 / ~$69 Gumroad; $99.99 App Store lifetime IAP). An optional Assistant subscription exists ($9.99/mo) but is not the entry path for core transcription, so no representative monthly price."
+    }
+  }
 }
