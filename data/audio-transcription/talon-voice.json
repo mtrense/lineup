@@ -1,5 +1,178 @@
 {
   "name": "Talon Voice",
   "description": "Accessibility-focused voice control and dictation, popular for hands-free coding",
-  "values": {}
+  "icon": "🦅",
+  "url": "https://talonvoice.com/",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Ryan Hileman (lunixbochs)",
+      "source": ["https://blakewatson.com/journal/speaking-in-code-hands-free-input-with-talon/", "https://talonvoice.com/"],
+      "comment": "Independent developer Ryan Hileman, known online as lunixbochs; funded via Patreon."
+    },
+    "first-release": {
+      "value": "2018-01",
+      "source": ["https://x.com/lunixbochs/status/1683530139748155392"],
+      "comment": "Development began in 2017 after the author's RSI; Talon was in open beta (initially macOS-only, requiring Dragon) by early 2018. Exact first public release month is approximate."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://talonvoice.com/", "https://talonvoice.com/docs/"],
+      "comment": "Actively developed; 0.4.0 line with ongoing beta releases as of late 2025."
+    },
+    "license": {
+      "value": ["proprietary", "freemium"],
+      "source": ["https://talonvoice.com/", "https://blakewatson.com/journal/speaking-in-code-hands-free-input-with-talon/"],
+      "comment": "The Talon app/engine itself is closed-source (proprietary) with a free public release plus optional paid Patreon tiers. The community command set (talonhub/community) is open source, but that is separate from the tool."
+    },
+    "primary-type": {
+      "value": ["dictation"],
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Real-time voice control and speak-to-type dictation (hands-free input), not a file/meeting transcriber."
+    },
+    "website": {
+      "value": "https://talonvoice.com/",
+      "source": ["https://talonvoice.com/"]
+    },
+    "real-time-dictation": {
+      "value": true,
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Core function is live speak-to-type with low latency via the bundled Conformer engine."
+    },
+    "file-transcription": {
+      "value": false,
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "No documented audio/video file upload transcription; Talon is a live input tool, not a recording transcriber."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "No meeting-bot or conference-recording capability; designed for controlling your own machine via microphone."
+    },
+    "streaming-low-latency": {
+      "value": true,
+      "source": ["https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Recognizes speech in real time with notably low latency as you speak (live input), per independent review."
+    },
+    "audio-sources": {
+      "value": ["microphone"],
+      "source": ["https://talonvoice.com/"],
+      "comment": "Microphone-only live input; no file upload, system-audio capture, or meeting bot."
+    },
+    "underlying-engine": {
+      "value": "Wav2Letter Conformer (bundled); also supports Dragon, Vosk, Webspeech",
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Bundled free Conformer (wav2letter) engine is recommended for new users; can also drive Dragon (via Draconity), and beta adds Vosk and Webspeech."
+    },
+    "language-count": {
+      "value": 1,
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "As of April 2024 the main bundled Conformer model is English (en_US) only. More languages possible via beta Vosk/Webspeech or via Dragon, but the default engine is single-language."
+    },
+    "english-accuracy": {
+      "value": 3.5,
+      "source": ["https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Independent review: bundled Conformer is 'competitive with Dragon' with low latency, but 'accuracy still lags a bit behind Dragon' for disambiguating unclear speech. No published WER figure found."
+    },
+    "multilingual-auto-detect": {
+      "value": false,
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "Default Conformer model is English-only with no automatic language detection."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Bundled custom vocabulary system lets users add custom words via a simple file; works with both Conformer and Dragon."
+    },
+    "speaker-diarization": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "Single-user live dictation tool; no multi-speaker labeling."
+    },
+    "timestamps": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "Live input tool; does not produce a timestamped transcript document."
+    },
+    "ai-summaries-notes": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "No summary/notes generation; not a meeting/transcription product."
+    },
+    "built-in-editor": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "No in-app transcript editor; text is dictated directly into other applications, and voice commands handle correction/editing in-place."
+    },
+    "translation": {
+      "value": false,
+      "source": ["https://talonvoice.com/"],
+      "comment": "No transcript translation feature."
+    },
+    "export-formats": {
+      "value": null,
+      "source": ["https://talonvoice.com/"],
+      "comment": "Not applicable — Talon types text live into other apps rather than producing an exportable transcript file."
+    },
+    "processing-location": {
+      "value": ["on-device"],
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "Bundled Conformer runs locally with no internet requirement. (Optional beta Webspeech engine is cloud-based, but the default/recommended engine is on-device.)"
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "Conformer operates locally without an internet connection."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "Default recognition runs fully on-device with no upload, so audio is not sent to the vendor for training. No formal privacy policy reviewed; rating reflects the local-processing architecture of the bundled engine."
+    },
+    "data-deletion-control": {
+      "value": null,
+      "source": ["https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "Not applicable in the usual sense — processing is local and Talon does not store a cloud recording/transcript library to delete; any local logs are under the user's own filesystem control."
+    },
+    "platforms": {
+      "value": ["macos", "windows", "linux"],
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Cross-platform desktop app: macOS, Windows, and Linux (X11). No mobile or web version."
+    },
+    "system-wide-dictation": {
+      "value": true,
+      "source": ["https://blakewatson.com/journal/speaking-in-code-hands-free-input-with-talon/"],
+      "comment": "Dictation and voice commands work OS-wide across any focused application, not just within Talon's own window."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://talonvoice.com/"],
+      "comment": "No meeting/app service integrations (Zoom/Meet/Teams etc.); instead extensible via Python and .talon scripting to control any app."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://blakewatson.com/journal/speaking-in-code-hands-free-input-with-talon/", "https://talonvoice.com/docs/"],
+      "comment": "Deeply scriptable via Python and .talon files, with a documented API for custom commands and automation."
+    },
+    "pricing-model": {
+      "value": ["free", "subscription"],
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "Free public release for all platforms; optional Patreon subscription unlocks early-access beta builds and priority support."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://talonvoice.com/", "https://handsfreecoding.org/2021/12/12/talon-in-depth-review/"],
+      "comment": "The full free public release (including the bundled Conformer engine) is genuinely usable indefinitely without payment."
+    },
+    "free-allowance": {
+      "value": "Full free public release with bundled local Conformer engine",
+      "source": ["https://talonvoice.com/", "https://talon.wiki/Resource%20Hub/Speech%20Recognition/speech%20engines/"],
+      "comment": "No usage cap — local processing means unlimited dictation/voice control on the free tier."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://handsfreecoding.org/2021/12/12/talon-in-depth-review/", "https://www.patreon.com/lunixbochs"],
+      "comment": "Core use is fully covered by the free release, so entry price is 0. Optional Patreon support tiers start around $5/mo, with beta early-access at $25/mo (checked 2026-06-12)."
+    }
+  }
 }

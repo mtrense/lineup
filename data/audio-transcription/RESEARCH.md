@@ -167,7 +167,7 @@ Users should be able to:
 - [x] Sonix — Automated multilingual transcription with editing and export
 - [x] Happy Scribe — Transcription and subtitle generation, human + AI
 - [x] Notta — Multilingual transcription and meeting notes app, web + mobile
-- [ ] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding
+- [x] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding
 - [ ] Vosk — Offline open-source speech-recognition toolkit with small models
 - [ ] Windows Voice Typing — Built-in Windows dictation (Win+H), system-wide
 - [ ] tl;dv — Meeting recorder/transcriber with timestamps and highlights
