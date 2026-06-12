@@ -232,8 +232,8 @@ Present a concise summary:
   - Display names auto-cased from sloppy input.
   - Attribute id collided with an existing group name and was merged into it (or vice versa).
 - **Next step**: populate the new attribute(s) on existing candidates. Suggest the concrete commands:
-  - `/gather-data <type>` — auto-picks under-researched candidates, which now includes everyone missing the new attribute(s). Useful if most candidates are under-researched anyway.
-  - `/gather-data <type> <candidate-id> <new-attr-id>` — surgical refill of a single attribute on a specific, already-researched candidate. List a couple of registered candidate ids so the user can copy-paste.
+  - `/gather-data-cycle <type>` — the bulk path: after draining any unchecked candidates, it backfills every researched candidate missing the new attribute(s) with parallel scoped workers, one commit per candidate. The right choice after extending a type with many researched candidates.
+  - `/gather-data <type> <candidate-id> <new-attr-id>[,<new-attr-id>...]` — surgical refill on a single candidate. List a couple of registered candidate ids so the user can copy-paste.
 
 ### Commit hint
 

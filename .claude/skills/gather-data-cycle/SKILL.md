@@ -1,16 +1,26 @@
 ---
 name: gather-data-cycle
-description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md, spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
+description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md (initial research), then candidates missing attributes added later via /extend-comparison (scoped backfill). Spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox (initial only) and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
+allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(date:*)
 argument-hint: "<comparison-type> [count|all][@workers]   (e.g. `databases 8`, `databases 8@4`, `databases all@3`)"
 ---
 
 # Gather-Data Cycle — Parallel Research Over Candidates
 
-You orchestrate a loop that drives a Lineup comparison type's **unchecked
-candidates** to researched state. Each candidate is researched by an isolated
+You orchestrate a loop that drives a Lineup comparison type to **fully
+researched** state. Work comes from two pools, drained in order:
+
+1. **Initial pool** — candidates still unchecked (`- [ ]`) in RESEARCH.md's
+   Candidates section. A worker researches the full attribute set and writes
+   the whole candidate file.
+2. **Backfill pool** — candidates already researched (checked `[x]`) whose
+   files are missing attribute keys, typically because `/extend-comparison`
+   added attributes after the candidate was researched. A worker researches
+   **only the missing attributes** and leaves existing values untouched.
+
+Each candidate is researched by an isolated
 `gather-data-worker` subagent in a **fresh, non-contaminated context**: the
 whole web search-fetch-verify transcript lives inside the worker and is
 discarded on return. Workers run **in parallel** within a batch (every
@@ -38,7 +48,8 @@ provenance.
 
 1. **comparison type id** (required) — must match an existing `data/<type>/` directory.
 2. **count cap** (optional, default `5`) — max candidates to research this cycle.
-   A positive integer, or the literal `all` (drain every unchecked candidate).
+   A positive integer, or the literal `all` (drain every pending candidate —
+   unchecked and incomplete alike).
 3. **worker count** — appended to the count token as `@<W>` (e.g. `8@4`, `all@3`,
    or just `@4` to keep the default count). Positive integer; default `4`. Caps
    parallel workers per batch.
@@ -65,35 +76,61 @@ ask the user.
 
 ## Loop
 
-Repeat until a stop condition triggers (cap hit, pool drained, or a halt).
+Repeat until a stop condition triggers (cap hit, both pools drained, or a halt).
 
-### Step 1: Enumerate unchecked candidates
+### Step 1: Enumerate pending work
 
-Run the bundled helper. Invoke it through `${CLAUDE_SKILL_DIR}` — the harness
-substitutes the skill's own directory, so the script resolves no matter what the
-current working directory is (don't hard-code `.claude/skills/...`):
+Run the bundled helpers. Invoke them through `${CLAUDE_SKILL_DIR}` — the harness
+substitutes the skill's own directory, so the scripts resolve no matter what the
+current working directory is (don't hard-code `.claude/skills/...`). Do NOT
+roll your own enumeration with `Grep` + post-processing — the scripts are the
+single allowed path so the permission surface stays narrow.
+
+**First, the initial pool:**
 
 ```
 bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh <type>
 ```
 
-It prints one unchecked candidate **name** per line, in declared order. Do NOT
-roll your own enumeration with `Grep` + post-processing — the script is the
-single allowed path so the permission surface stays narrow.
-
+It prints one unchecked candidate **name** per line, in declared order.
 Resolve each name to a candidate **id** by matching against `data/<type>/index.json`
 (an entry's `id`, or the candidate file's `name` field — same matching
 `/gather-data` auto-pick uses). If a name can't be resolved to a registered
 candidate, skip it and note it in the final summary.
 
-If the resolved list is empty, exit the loop (success path → Step 6).
+**Only when the initial pool is empty, the backfill pool:**
+
+```
+bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh <type>
+```
+
+It prints one TSV line per incomplete candidate: `<id>\t<comma-separated
+missing attribute ids>`. Filter the lines:
+
+- Drop any candidate still unchecked in RESEARCH.md or unresolvable above —
+  those belong to the initial path (an unchecked stub is "incomplete" too, but
+  it must get a full initial pass, not a backfill). With initial drained this
+  set is normally empty; it only matters when names were skipped as
+  unresolvable.
+- A `MISSING_FILE` or `BAD_JSON` line is a registered candidate with no
+  parseable file — halt and surface it; that's an inconsistency a human must
+  fix, not research work.
+
+What remains is the backfill pool: candidate ids each paired with their list of
+missing attribute ids.
+
+If both pools are empty, exit the loop (success path → Step 6).
 
 ### Step 2: Build the next batch
 
-A **batch** is the next up-to-`<workers>` distinct unchecked candidate ids, in
-order. They are always distinct files, so the whole batch runs in parallel.
-If `<count>` was specified and you're near it, shrink the batch so you don't
-overshoot.
+A **batch** is the next up-to-`<workers>` distinct candidate ids, in order,
+drawn from the initial pool first and the backfill pool only once initial is
+empty. A batch never mixes modes — when the initial pool has fewer candidates
+left than `<workers>`, run a short initial batch and start backfill in the next
+iteration (Step 5's flip/commit handling differs per mode, and homogeneous
+batches keep it simple). Candidates are always distinct files, so the whole
+batch runs in parallel. If `<count>` was specified and you're near it, shrink
+the batch so you don't overshoot — the cap counts candidates of both modes.
 
 ### Step 3: Pre-flight check
 
@@ -105,7 +142,9 @@ dirty paths — do not clean up yourself.
 
 Issue one `Agent` call per candidate in the batch, **all in a single message**
 so workers run concurrently. Each call uses `subagent_type: gather-data-worker`
-with a self-contained prompt:
+with a self-contained prompt matching the batch's mode.
+
+**Initial batch:**
 
 > Research the Lineup candidate **`<candidate-id>`** in comparison type
 > **`<type>`**. Follow `.claude/skills/gather-data/SKILL.md` in `initial` mode:
@@ -113,6 +152,17 @@ with a self-contained prompt:
 > — write the full `data/<type>/<candidate-id>.json`. Do **not** flip the
 > RESEARCH.md checkbox and do **not** commit; the orchestrator owns both. End
 > with the ` ```report ` block defined in your agent instructions.
+
+**Backfill batch:**
+
+> Backfill the Lineup candidate **`<candidate-id>`** in comparison type
+> **`<type>`**. Follow `.claude/skills/gather-data/SKILL.md` in `backfill`
+> mode, scoped to exactly these missing attributes: **`<attr-id-1>,
+> <attr-id-2>, ...`**. Research only those attributes and add their
+> `{value, source, comment}` entries to `data/<type>/<candidate-id>.json`,
+> keeping every existing value and all top-level metadata untouched (update
+> only `lastVerified`). Do **not** commit; the orchestrator owns it. End with
+> the ` ```report ` block defined in your agent instructions.
 
 The `gather-data-worker` agent has no commit tools and standing no-flip /
 no-commit rules, so it cannot violate the contract even if briefed loosely.
@@ -138,7 +188,14 @@ allow-listed and will prompt every run):
 bash ${CLAUDE_SKILL_DIR}/verify-batch.sh <type> <id1> <id2> ...
 ```
 
-It prints one TSV line per id: `<id>  <ok|MISSING|BAD_JSON>  <lastVerified>  <populated>  <null>`.
+For a **backfill batch**, suffix each id with its briefed attribute ids so the
+helper also confirms the gaps were actually filled:
+
+```
+bash ${CLAUDE_SKILL_DIR}/verify-batch.sh <type> <id1>:<attrA>,<attrB> <id2>:<attrC> ...
+```
+
+It prints one TSV line per id: `<id>  <ok|MISSING|BAD_JSON|MISSING_ATTRS>  <lastVerified>  <populated>  <null>  <still-missing-attrs|->`.
 Use the `populated`/`null` columns directly for the Step 5/Step 6 notes. As an
 alternative for a single file, the `Read` tool reads the JSON natively — no Bash
 at all. Any line that is not `ok`, or is `ok` with an empty `lastVerified` (`-`)
@@ -149,17 +206,21 @@ serialise):
 
 3. Confirm the helper reported `ok` for `data/<type>/<candidate>.json` with a
    `lastVerified` date and non-zero populated values (or read the file directly).
-4. Flip that candidate's checkbox in `data/<type>/RESEARCH.md` with `Edit`:
-   `- [ ] <Name>` → `- [x] <Name>`. Match the candidate's display name or id;
-   touch no other line.
-5. Stage exactly the candidate file plus RESEARCH.md (never `git add -A`):
+4. **Initial mode only:** flip that candidate's checkbox in
+   `data/<type>/RESEARCH.md` with `Edit`: `- [ ] <Name>` → `- [x] <Name>`.
+   Match the candidate's display name or id; touch no other line. In backfill
+   mode the box is already `[x]` — touch nothing in RESEARCH.md.
+5. Stage exactly the touched files (never `git add -A`):
    ```bash
-   git add data/<type>/<candidate>.json data/<type>/RESEARCH.md
+   git add data/<type>/<candidate>.json data/<type>/RESEARCH.md   # initial
+   git add data/<type>/<candidate>.json                           # backfill
    ```
 6. Get a timestamp (`date +"%Y-%m-%d %H:%M"`) and commit with Lineup's
-   convention, using the worker's `commit_summary` as the body:
+   convention, using the worker's `commit_summary` as the body. The subject
+   token is `initial` for initial mode, `refresh` for backfill; in backfill
+   mode the body must name the attributes that were filled:
    ```bash
-   git commit -m "data(<type>): CANDIDATE initial <YYYY-MM-DD HH:MM>" \
+   git commit -m "data(<type>): CANDIDATE <initial|refresh> <YYYY-MM-DD HH:MM>" \
      -m "<commit_summary from the worker's report>" \
      -m "🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
      -m "Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
@@ -184,13 +245,15 @@ inside the same run.
 
 When the loop ends — clean exit, cap hit, or halt — print:
 
-- One-line headline: `"Cycle done: X/<planned> candidates committed."`
-- A list, one row per committed candidate: `<id> — <SHA> — <populated>/<null> — <notable note or —>`.
-- Candidates remaining unchecked (count).
+- One-line headline: `"Cycle done: X/<planned> candidates committed (Y initial, Z backfill)."`
+- A list, one row per committed candidate: `<id> — <mode> — <SHA> — <populated>/<null> — <notable note or —>`.
+- Candidates remaining unchecked (count) and candidates remaining incomplete
+  (count, from a final `list-incomplete.sh` run if you didn't just drain it).
 - Any names that couldn't be resolved to a registered candidate.
 - The halt reason, if any, verbatim.
 - Next steps if useful: `"Run /gather-data-cycle <type> again to continue"`
-  (unchecked remain), or `"Run /discover-candidates <type>"` (pool drained).
+  (unchecked or incomplete candidates remain), or
+  `"Run /discover-candidates <type>"` (both pools drained).
 
 The commits already happened in Step 5; do not run `/commit`. Mention the human
 should review the committed diffs.
@@ -212,4 +275,8 @@ should review the committed diffs.
 - **Never `git add -A` / `git add .`.** Stage only the candidate file and
   RESEARCH.md, per Lineup's commit hygiene.
 - **Do not pre-compute ids and assume them.** Re-enumerate each batch from the
-  live RESEARCH.md (the user may edit it between batches).
+  live RESEARCH.md and candidate files (the user may edit them between batches).
+- **Backfill bumps `lastVerified` by design.** A scoped backfill stamps the file
+  with today's date even though pre-existing values weren't re-verified — same
+  behavior as a scoped `/gather-data` run. The commit body names the attributes
+  that were actually researched, which is the precise record.

@@ -7,17 +7,23 @@
 # the Step 5 post-flight check runs through a single allow-listed command instead
 # of an unallowlistable `cd ...; for ...; do node -e ...; done` compound.
 #
+# A candidate argument may carry a required-attribute suffix:
+#   <id>:<attr1>,<attr2>,...
+# Then the named keys must be present in the file's `values` object (a key with
+# a null value counts as present). Used by backfill batches to verify that the
+# attributes a worker was briefed to fill actually landed.
+#
 # Output: one tab-separated line per candidate:
-#   <id>\t<ok|MISSING|BAD_JSON>\t<lastVerified|->\t<populated>\t<null>
+#   <id>\t<ok|MISSING|BAD_JSON|MISSING_ATTRS>\t<lastVerified|->\t<populated>\t<null>\t<missing-attr-ids|->
 # Exit status is 0 even when individual candidates fail — the orchestrator reads
 # the per-line status and decides whether to halt.
 #
-# Usage: ./verify-batch.sh <comparison-type> <candidate-id> [<candidate-id> ...]
+# Usage: ./verify-batch.sh <comparison-type> <candidate-id>[:<attrs>] [...]
 set -euo pipefail
 
 type="${1:-}"
 if [[ -z "$type" ]]; then
-  echo "Error: comparison type id required (usage: verify-batch.sh <type> <id>...)" >&2
+  echo "Error: comparison type id required (usage: verify-batch.sh <type> <id>[:<attrs>]...)" >&2
   exit 1
 fi
 shift
@@ -27,20 +33,25 @@ if [[ $# -eq 0 ]]; then
   exit 1
 fi
 
-for id in "$@"; do
+for arg in "$@"; do
+  id="${arg%%:*}"
+  required=""
+  if [[ "$arg" == *:* ]]; then
+    required="${arg#*:}"
+  fi
   file="data/$type/$id.json"
   if [[ ! -f "$file" ]]; then
-    printf '%s\tMISSING\t-\t0\t0\n' "$id"
+    printf '%s\tMISSING\t-\t0\t0\t-\n' "$id"
     continue
   fi
-  # node is the project's runtime; parse + summarise the file with the path passed
-  # as argv (no inline data interpolation), emitting one TSV line.
+  # node is the project's runtime; parse + summarise the file with the path and
+  # required attrs passed as argv (no inline data interpolation), one TSV line.
   node -e '
     const fs = require("fs");
-    const [id, file] = [process.argv[1], process.argv[2]];
+    const [id, file, required] = [process.argv[1], process.argv[2], process.argv[3]];
     let d;
     try { d = JSON.parse(fs.readFileSync(file, "utf8")); }
-    catch (e) { process.stdout.write(`${id}\tBAD_JSON\t-\t0\t0\n`); process.exit(0); }
+    catch (e) { process.stdout.write(`${id}\tBAD_JSON\t-\t0\t0\t-\n`); process.exit(0); }
     const vals = d && d.values && typeof d.values === "object" ? d.values : {};
     let pop = 0, nul = 0;
     for (const k of Object.keys(vals)) {
@@ -48,6 +59,9 @@ for id in "$@"; do
       if (v === null || v === undefined) nul++; else pop++;
     }
     const lv = d && d.lastVerified ? d.lastVerified : "-";
-    process.stdout.write(`${id}\tok\t${lv}\t${pop}\t${nul}\n`);
-  ' "$id" "$file"
+    const missing = (required ? required.split(",").filter(Boolean) : [])
+      .filter((a) => !Object.prototype.hasOwnProperty.call(vals, a));
+    const status = missing.length > 0 ? "MISSING_ATTRS" : "ok";
+    process.stdout.write(`${id}\t${status}\t${lv}\t${pop}\t${nul}\t${missing.join(",") || "-"}\n`);
+  ' "$id" "$file" "$required"
 done

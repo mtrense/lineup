@@ -3,7 +3,7 @@ name: gather-data
 description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute, then commits the updated candidate file. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
 model: opus
 allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git diff:*)
-argument-hint: "<comparison-type> [candidate] [attribute-id-or-group]"
+argument-hint: "<comparison-type> [candidate] [attribute-id[,attribute-id...]|group-id]"
 ---
 
 # Comparison: Gather Data
@@ -16,7 +16,7 @@ You are researching attribute values for a single Lineup candidate and writing t
 
 1. **comparison type id** — must match an existing `data/<type>/` directory.
 2. **candidate id** (optional) — must match an existing `data/<type>/<candidate>.json` file. When omitted, auto-pick the next under-researched candidate (see **Auto-Pick** below).
-3. **scope filter** (optional) — either an attribute id (`license`, `horizontal-scaling`) or a group id (`general`, `performance`). When omitted, research every attribute defined in `attributes.json`.
+3. **scope filter** (optional) — an attribute id (`license`, `horizontal-scaling`), a comma-separated list of attribute ids (`license,first-release`), or a group id (`general`, `performance`). When omitted, research every attribute defined in `attributes.json`.
 
 If the comparison type is missing, ask the user. If the scope filter doesn't match any known attribute or group, list the valid options and ask. When the candidate is omitted, the scope filter is ignored (auto-pick always runs a full initial pass — pass the candidate explicitly if you want to scope).
 
@@ -43,6 +43,7 @@ Refresh of an already-researched candidate always requires an explicit candidate
 6. Determine **mode**:
    - `initial` — if `values` is empty or missing most attributes, OR the candidate was chosen via auto-pick.
    - `refresh` — if the file already contains substantive values AND the candidate was passed explicitly. In refresh mode, prefer updating values with newer sources and explicitly note in a `comment` when a value changed significantly.
+   - `backfill` — a refresh variant for filling schema gaps: the file already contains substantive values and the scope filter targets exactly the attribute ids *missing* from `values` (typically added later by `/extend-comparison`). Research only the in-scope attributes and add their entries; every pre-existing value stays untouched. Commits as `refresh` in the commit subject.
 
 ## Phase 1: Plan the Research Pass
 
@@ -50,7 +51,7 @@ Before any web search, build a mental (or written-to-user) list of attributes in
 
 - If no scope filter: list every attribute from `attributes.json`, grouped as in RESEARCH.md.
 - If scope is a group id: list attributes in that group only.
-- If scope is a single attribute id: that one attribute.
+- If scope is one or more attribute ids: exactly those attributes.
 
 Briefly announce the plan to the user ("Researching 14 attributes across 3 groups for `postgresql` in `databases`, initial mode.") so they can interrupt if the scope is wrong. Then proceed without further Socratic exchange.
 
@@ -108,6 +109,7 @@ Write the full updated `data/<type>/<candidate>.json`:
 
 - Fetch today's date via `Bash` (`date +%Y-%m-%d`) and set `lastVerified` at the top level (alongside `name`/`description`/`icon`/`url`, above `values`). Do this in both `initial` and `refresh` modes.
 - Preserve top-level metadata (`name`, `description`, `icon`, `url`) unchanged unless the user explicitly asked for a refresh of those too.
+- In a scoped pass (attribute/group filter, including `backfill` mode), out-of-scope entries in `values` stay byte-identical — prefer surgical `Edit` inserts over rewriting the whole file.
 - Order entries inside `values` to match the attribute order in `attributes.json` (improves diffs and readability).
 - Keep JSON strictly valid: double quotes, no trailing commas, no comments.
 

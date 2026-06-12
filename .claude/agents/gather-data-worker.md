@@ -4,7 +4,9 @@ description: >
   Isolated research worker for `/gather-data-cycle`. Hosts the gather-data
   research flow for a SINGLE candidate in a fresh, non-contaminated context:
   runs the web search-fetch-verify loop and writes the candidate JSON, then
-  exits with a structured report block. Deliberately CANNOT commit and does NOT
+  exits with a structured report block. Runs in `initial` mode (full attribute
+  set on a stub) or `backfill` mode (only the missing attributes named in the
+  prompt, existing values untouched). Deliberately CANNOT commit and does NOT
   flip the RESEARCH.md checkbox — the orchestrator owns both so parallel workers
   never race on shared files. Spawned one-per-candidate, in parallel batches, by
   `/gather-data-cycle`.
@@ -21,11 +23,19 @@ candidate and write its JSON file — nothing else.
 ## What to do
 
 1. Read `.claude/skills/gather-data/SKILL.md` and follow it for the candidate
-   id you were given, in **`initial` mode** (the cycle only ever hands you
-   unchecked candidates, whose files are stubs). Execute its **Phase 1
-   (plan)**, **Phase 2 (research loop)**, and the **file-writing part of
-   Phase 3** — i.e. write the full `data/<type>/<candidate>.json` with
-   `{value, source, comment}` per attribute and a fresh `lastVerified`.
+   id you were given, in the mode your prompt names:
+   - **`initial` mode** (the default — an unchecked candidate whose file is a
+     stub): execute its **Phase 1 (plan)**, **Phase 2 (research loop)**, and
+     the **file-writing part of Phase 3** — i.e. write the full
+     `data/<type>/<candidate>.json` with `{value, source, comment}` per
+     attribute and a fresh `lastVerified`.
+   - **`backfill` mode** (an already-researched candidate; the prompt lists the
+     missing attribute ids): research **only the listed attributes** and add
+     their `{value, source, comment}` entries to the existing
+     `data/<type>/<candidate>.json`, slotted in `attributes.json` declaration
+     order. Every pre-existing value and all top-level metadata stay
+     byte-identical — the only other change is the fresh `lastVerified`. Use
+     `Edit` for surgical inserts rather than rewriting the file wholesale.
 2. Honour every rule in that skill: cite only URLs you actually fetched, use
    `null` + `comment` for indeterminate values, match each attribute's
    `valueType`, never invent attribute ids or sources.
@@ -46,7 +56,8 @@ If you hit a **schema contradiction** (a needed tag/attribute is undefined, a
 `valueType` mismatch, a missing Assessment Guideline — see gather-data's
 "Halting on Schema Contradictions"), or a Primary Source contradicts another
 Primary Source, do NOT work around it and do NOT write a stretched value:
-**do not write the candidate file at all**, and exit with a `HALTED` report.
+**do not write the candidate file at all** (in backfill mode: leave the
+existing file byte-identical), and exit with a `HALTED` report.
 A pass that legitimately lands many honest `null` values is NOT a halt — write
 the file and report `OK`.
 
@@ -63,14 +74,17 @@ On success:
 ```report
 candidate: <candidate-id>
 status: OK
-mode: initial
-populated: <count of non-null values written>
-null: <count of null values written>
-commit_summary: <one line summarising findings — used as the commit body>
+mode: <initial|backfill>
+populated: <count of non-null values written THIS pass>
+null: <count of null values written THIS pass>
+commit_summary: <one line summarising findings — used as the commit body; in backfill mode name the attributes filled>
 notes: <notable comments (contested values, tag gaps, time-sensitive notes), or ->
 ```
 
-On halt (no file written):
+In backfill mode `populated`/`null` count only the attributes added this pass,
+not the pre-existing values.
+
+On halt (no file written or changed):
 
 ```report
 candidate: <candidate-id>
