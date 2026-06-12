@@ -2,7 +2,7 @@
   "name": "OpenHands",
   "description": "Open-source autonomous agent platform (formerly OpenDevin) that completes whole engineering tasks across a codebase via CLI and web.",
   "url": "https://www.openhands.dev/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "All Hands AI",
@@ -252,6 +252,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://docs.openhands.dev/usage/prompting/microagents-overview"],
       "comment": "Skills are markdown files dropped into .agents/skills/ (repo or user), shared via git; no curated marketplace/registry documented."
+    },
+    "sandboxing-technology": {
+      "value": ["container", "vm"],
+      "source": ["https://deepwiki.com/OpenHands/OpenHands/5.4-sandbox-configuration", "https://docs.openhands.dev/openhands/usage/v0/runtimes/V0_docker"],
+      "comment": "Default runtime executes all agent actions inside a Docker container (base image nikolaik/python-nodejs); pluggable remote runtimes (Daytona, E2B, Modal) provide microVM-class isolation. A local-process runtime exists for development but is unsandboxed."
+    },
+    "permission-granularity": {
+      "value": ["per-command"],
+      "source": ["https://docs.openhands.dev/sdk/guides/security", "https://docs.openhands.dev/openhands/usage/cli/terminal"],
+      "comment": "Gating is per-action: confirmation policies pause on each action (AlwaysConfirm) or only risk-flagged ones (ConfirmRisky via the security analyzer). No command-prefix allowlists, per-path write scoping, or read/write distinction documented."
+    },
+    "rule-precedence": {
+      "value": ["none"],
+      "source": ["https://docs.openhands.dev/sdk/guides/security"],
+      "comment": "No declarative allow/deny rule engine; gating is driven by confirmation policies and risk-based security analyzers (LLM, pattern, policy-rail), not user-authored allow/deny rules with precedence."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://docs.openhands.dev/sdk/guides/security"],
+      "comment": "SDK exposes programmable decision points: custom confirmation handlers (poll agent_status, reject_pending_actions), pluggable/custom security analyzers (Pattern, PolicyRail, Ensemble), and a security_policy_filename Jinja2 policy template."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/sdk/guides/security"],
+      "comment": "No default deny patterns for .env/secrets documented; protection relies on confirmation policy or a user-authored security analyzer/policy. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/openhands/usage/cli/terminal", "https://docs.openhands.dev/sdk/guides/security"],
+      "comment": "Confirmation is decided per action via policy; no documented 'always allow this command' rule saved to durable config to suppress future prompts. LLM/config settings persist to ~/.openhands/settings.json, but granular per-command approvals do not. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/openhands/usage/cli/terminal", "https://github.com/OpenHands/OpenHands-CLI"],
+      "comment": "CLI --always-approve (alias --yolo) auto-approves all actions; headless mode always runs in always-approve. SDK NeverConfirm() policy executes all actions without approval."
+    },
+    "network-access-control": {
+      "value": ["unrestricted", "configurable"],
+      "source": ["https://deepwiki.com/OpenHands/OpenHands/5.4-sandbox-configuration", "https://docs.openhands.dev/openhands/usage/v0/runtimes/V0_docker"],
+      "comment": "No default outbound egress blocking documented; the sandbox container has network access out of the box. Networking is configurable (e.g. use_host_network, loopback binding) but not an enforced allowlist by default. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://docs.openhands.dev/openhands/usage/cli/terminal", "https://docs.openhands.dev/sdk/guides/security"],
+      "comment": "Documented default is 'Always ask for confirmation' on each action (AlwaysConfirm) before edits and commands; auto-approval is opt-in via --always-approve or headless mode."
     }
   }
 }
