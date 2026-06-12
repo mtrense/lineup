@@ -157,7 +157,7 @@ Users should be able to:
 - [x] Wispr Flow — Popular AI dictation app for fast, formatted speak-to-type
 - [x] Apple Dictation — Built-in on-device dictation across macOS and iOS
 - [x] Dragon (Nuance) — Veteran professional dictation suite, strong custom vocabulary
-- [ ] Fireflies.ai — Meeting-bot notetaker with summaries and CRM integrations
+- [x] Fireflies.ai — Meeting-bot notetaker with summaries and CRM integrations
 - [ ] superwhisper — Mac AI dictation running local Whisper models, system-wide
 - [ ] Rev — Hybrid human + AI transcription and captioning service
 - [ ] whisper.cpp — C/C++ local Whisper runtime for offline, on-device transcription
