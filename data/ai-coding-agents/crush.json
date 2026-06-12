@@ -2,7 +2,7 @@
   "name": "Crush",
   "description": "Charm's open-source terminal coding agent (Go); multi-provider with LSP and MCP awareness.",
   "url": "https://github.com/charmbracelet/crush",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Charm",
@@ -247,6 +247,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://github.com/charmbracelet/crush/blob/main/README.md"],
       "comment": "Skills are folders dropped into skill directories (global ~/.config/crush/skills or project .crush/skills); community examples obtained via git (e.g. anthropics/skills). No curated marketplace."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://deepwiki.com/charmbracelet/crush/3.6-file-system-integration"],
+      "comment": "No OS sandbox, container, VM, or filesystem jail; permissions are enforced by application-level approval checks and commands run with the user's full privileges. Relies on prompts/allowlists, not runtime isolation."
+    },
+    "permission-granularity": {
+      "value": ["per-tool"],
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://deepwiki.com/charmbracelet/crush/3.6-file-system-integration"],
+      "comment": "allowed_tools gates at the tool level (e.g. 'bash') and per-action (e.g. 'bash:execute'); no command-prefix, per-path, per-domain, or read/write-distinction matching. A maintainer notes command/subcommand-prefix permissions are not yet implemented (discussion #2352)."
+    },
+    "rule-precedence": {
+      "value": ["allow-only"],
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://github.com/charmbracelet/crush/discussions/2352"],
+      "comment": "Declarative engine offers only an allowed_tools allowlist (plus a separate disabled_tools that removes tools entirely); no deny-overrides or specificity-based re-override within the permission rule set. Tagged allow-only per RESEARCH.md."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions"],
+      "comment": "User-authored allow/disable lists in JSON config (permissions.allowed_tools, disabled_tools); no programmable hook/policy-script decision point that inspects each action in context."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://deepwiki.com/charmbracelet/crush/3.6-file-system-integration"],
+      "comment": "No default deny patterns for .env or key files documented; protection relies on the user authoring config rather than shipped out-of-the-box gating. Marked false per RESEARCH.md (default-only protection counts)."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://github.com/charmbracelet/crush/discussions/2352"],
+      "comment": "permissions.allowed_tools written to the JSON config (global ~/.config/crush/crush.json or project crush.json) durably suppresses prompts across restarts. The in-session 'always allow' (GrantPersistent) is scoped to the current session only."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush/blob/main/README.md", "https://charmbracelet-crush.mintlify.app/configuration/permissions"],
+      "comment": "--yolo / -y flag (or skip_permission_requests in config; also a Ctrl+P Toggle YOLO Mode) bypasses all permission prompts for hands-off runs. Docs warn never to use it on production or unversioned code."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://deepwiki.com/charmbracelet/crush/3.6-file-system-integration", "https://charmbracelet-crush.mintlify.app/configuration/permissions"],
+      "comment": "No egress gating documented; tools/commands run with the user's full network access. No blocked-by-default, domain-allowlist, or proxy mechanism in the permission system as of check 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "Out of the box Crush asks for permission before each tool call (edits and commands alike) until the user allowlists tools or enables YOLO."
     }
   }
 }
