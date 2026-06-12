@@ -3,7 +3,7 @@
   "description": "Agentic editing inside the Zed editor",
   "icon": "",
   "url": "https://zed.dev/agentic",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Zed Industries",
@@ -254,6 +254,51 @@
       "value": ["registry", "git", "manual-files"],
       "source": ["https://zed.dev/docs/ai/skills"],
       "comment": "Installed by git clone (e.g. from the skills.sh registry), manual folder placement into ~/.agents/skills or <worktree>/.agents/skills, or GitHub-URL import via the command palette; a built-in create-skill skill scaffolds new ones. No curated one-click in-app marketplace."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "No OS sandbox, container, or VM isolation for command/tool execution. The agent runs tools with the user's full privileges; safety is enforced purely by the permission (confirm/allow/deny) regex engine, not by isolation. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-command", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions", "https://zed.dev/docs/ai/agent-profiles"],
+      "comment": "tool_permissions sets a per-tool default plus always_allow/always_deny/always_confirm Rust-regex rules matched against tool-specific inputs: terminal commands (command-prefix / per-command patterns like 'git .*'), file paths (per-path), and fetch URLs (per-domain). Profiles add a read/write distinction (Ask = read_file/grep only, no edit_file/terminal; Write enables editing+commands). Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "Fixed priority ladder: built-in security rules > always_deny > always_confirm > always_allow > tool default > global default. Deny always wins over allow; there is no user-controlled evaluation order or gitignore-style specificity re-override, so deny-overrides (not ordered or nested-exceptions). Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "User authors declarative allow/deny/confirm regex rules in settings.json (tool_permissions). No code-level hook/policy-script decision point that inspects the action and rewrites it, so declarative-rules rather than programmable. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "No default deny patterns for .env or secret files. The only hardcoded built-in rules block recursive deletes (rm -rf / , ~, ., .. etc.) for the terminal tool; docs state 'there are no other built-in rules' and point users to uncomment example deny rules themselves. So secrets are not protected out of the box. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "The 'Always for...' option writes a durable always_allow (or tool-level default) rule into settings.json, which survives restarts and prevents re-prompting for the same action. ('Allow once' is session-only and would not count.) Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "Setting tool_permissions.default to 'allow' bypasses confirmation prompts for most tools (a near-unrestricted, hands-off posture); always_deny, always_confirm, built-in rm -rf rules, and paths in Zed's settings dir still gate. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable", "unrestricted"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "No sandbox-level egress blocking; outbound network is open by default. The fetch tool's URLs can be gated by always_allow/always_deny regex patterns (per-domain), so network is configurable but otherwise unrestricted. No default blocked-egress or proxy enforcement documented. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://zed.dev/docs/ai/tool-permissions"],
+      "comment": "Out of the box tool_permissions.default is 'confirm' — every permission-gated tool call (edits and commands) prompts for approval until the user configures allow rules. Checked 2026-06-12."
     }
   }
 }
