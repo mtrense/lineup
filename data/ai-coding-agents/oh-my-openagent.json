@@ -2,7 +2,7 @@
   "name": "Oh My OpenAgent",
   "description": "Open-source agent harness (formerly oh-my-opencode) that orchestrates multiple specialized agents and models on top of OpenCode (Ultimate Edition) and Codex CLI (Light Edition) for autonomous work on complex codebases",
   "url": "https://omo.dev/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "code-yeongyu (Sisyphus Labs)",
@@ -252,6 +252,51 @@
       "value": ["registry", "manual-files"],
       "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/cli.md"],
       "comment": "Skills come bundled and via a 'sisyphuslabs' marketplace/registry repo referenced in opencode.json plugin config; also editable as local files. Distribution details are only partially documented."
+    },
+    "sandboxing-technology": {
+      "value": ["filesystem-jail", "none"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md"],
+      "comment": "Inherits its host's isolation. On OpenCode the agent stays inside the project root with an `external_directory` gate on paths outside it (a path-restricted filesystem jail; commands still run with the user's privileges, no kernel sandbox). The Codex Light edition's recommended autonomous install sets `sandbox_mode = \"danger-full-access\"`, i.e. full access with no isolation (`none`). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/configuration.md"],
+      "comment": "Rides OpenCode's permission engine: per-tool keys (edit/bash/webfetch/etc.), per-command bash entries (`{\"git\": \"allow\", \"rm\": \"deny\"}`), command-prefix glob patterns (`git *`), per-path control via `external_directory`/path patterns, and a read-vs-write distinction (read may allow while edit denies). Wildcard keys also match MCP/custom tools."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "OpenCode evaluates rules with the last matching rule winning (catch-all `*` placed first, specific rules after) — explicit user-controlled evaluation order, so `ordered`."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/configuration.md"],
+      "comment": "Beyond OpenCode's declarative allow/deny/ask rules, omo ships guard hooks (e.g. `team-tool-gating`, `write-existing-file-guard`, `bash-file-read-guard`) applied during the `applyToolConfig` phase plus 40+/54+ lifecycle hooks that programmatically inspect and gate concrete tool calls — a code-level decision point, so `programmable`."
+    },
+    "sensitive-file-protection": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "OpenCode ships `.env` files as `deny` by default (no user rule required); `doom_loop` and `external_directory` default to `ask`. The protection is inherited from the host harness, not authored by omo. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "Allow/deny rules authored in opencode.json (or omo's `oh-my-openagent.jsonc`) persist across sessions/restarts. Note: the interactive approval 'always' choice only approves matching patterns for the current session; durable suppression comes from writing the config rule."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md", "https://deepwiki.com/code-yeongyu/oh-my-openagent/9.1-ultrawork-mode"],
+      "comment": "The Codex Light edition autonomous install (`npx lazycodex-ai install --no-tui --codex-autonomous`) sets `approval_policy = \"never\"` to eliminate prompts; 'ultrawork' is the headline hands-off multi-agent mode. On OpenCode, prompts can be suppressed by setting tools to `allow`. Autonomous full-permissions is an explicit installer choice, not the default. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable"],
+      "source": ["https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/installation.md", "https://opencode.ai/docs/permissions/"],
+      "comment": "Egress is configurable: Codex exposes `network_access` (the autonomous install recommends `enabled`/unrestricted), and on OpenCode the `webfetch` tool is gated allow/ask/deny like any other tool. No built-in domain allowlist documented. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://opencode.ai/docs/permissions/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/configuration.md"],
+      "comment": "OpenCode's baseline is permissive — most tools default to `allow`, so edits apply and bash runs without prompting out of the box (exceptions: `.env` deny, `doom_loop`/`external_directory` ask). omo layers guard hooks on top, but the unconfigured first-run posture is effectively auto-run-all. Checked 2026-06-12."
     }
   }
 }
