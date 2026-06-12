@@ -155,7 +155,7 @@ Users should be able to:
 - [x] OpenAI Whisper — Reference open-source speech recognition model; the engine many tools wrap
 - [x] Descript — Transcription plus media-by-text audio/video editing
 - [x] Wispr Flow — Popular AI dictation app for fast, formatted speak-to-type
-- [ ] Apple Dictation — Built-in on-device dictation across macOS and iOS
+- [x] Apple Dictation — Built-in on-device dictation across macOS and iOS
 - [ ] Dragon (Nuance) — Veteran professional dictation suite, strong custom vocabulary
 - [ ] Fireflies.ai — Meeting-bot notetaker with summaries and CRM integrations
 - [ ] superwhisper — Mac AI dictation running local Whisper models, system-wide
