@@ -24,8 +24,26 @@ if [[ -z "$type" ]]; then
 fi
 
 dir="data/$type"
-if [[ ! -f "$dir/attributes.json" || ! -f "$dir/index.json" ]]; then
-  echo "Error: $dir/attributes.json or $dir/index.json not found" >&2
+if [[ ! -d "$dir" ]]; then
+  echo "Error: unknown comparison type '$type' — $dir does not exist." >&2
+  echo "Available types:" >&2
+  for d in data/*/; do
+    [[ -d "$d" ]] && echo "  - $(basename "$d")" >&2
+  done
+  exit 1
+fi
+if [[ ! -f "$dir/attributes.json" ]]; then
+  echo "Error: '$type' is not scaffolded yet — $dir/attributes.json is missing." >&2
+  if [[ -f "$dir/RESEARCH.md" ]]; then
+    echo "A RESEARCH.md exists; run /scaffold-type $type to generate attributes.json, index.json, and candidate stubs." >&2
+  else
+    echo "Run /new-type $type to draft the research guide, then /scaffold-type $type." >&2
+  fi
+  exit 1
+fi
+if [[ ! -f "$dir/index.json" ]]; then
+  echo "Error: $dir/index.json is missing — '$type' has attribute definitions but no candidate index." >&2
+  echo "Run /scaffold-type $type to create index.json and candidate stubs from RESEARCH.md." >&2
   exit 1
 fi
 
