@@ -3,7 +3,7 @@
   "description": "Cognition's autonomous cloud software engineer",
   "icon": "",
   "url": "https://devin.ai",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Cognition AI",
@@ -254,6 +254,51 @@
       "value": ["git"],
       "source": ["https://docs.devin.ai/product-guides/skills"],
       "comment": "Git-based: skills are committed to repositories at .agents/skills/<skill-name>/SKILL.md (or .github/skills/, .claude/skills/) and auto-discovered/indexed across connected repos. No marketplace or package registry. Checked 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["vm", "os-sandbox"],
+      "source": ["https://docs.devin.ai/enterprise/deployment/overview", "https://docs.devin.ai/cli/reference/permissions"],
+      "comment": "Cloud Devin runs in 'Devbox', a dedicated cloud VM loaded from a machine snapshot — each session runs on its own isolated machine, with a single-tenant VPC option for Dedicated deployments (vm). The local Devin CLI's --sandbox flag 'enforces the active Read and Write permission scopes at the OS level' (os-sandbox); the docs do not name the kernel mechanism. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://docs.devin.ai/cli/extensibility/configuration", "https://docs.devin.ai/cli/reference/permissions"],
+      "comment": "Devin CLI permissions use allow/deny/ask arrays with patterns: Exec(git), Exec(npm run) (command-prefix / per-tool), Read(**) and Write(.env*) (per-path with read/write distinction), plus sandbox domain filtering (per-domain network). Assessed from the CLI rule engine. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://docs.devin.ai/cli/reference/permissions"],
+      "comment": "CLI permission engine checks deny first, then ask, then allow: 'Because deny is checked before ask, and ask is checked before allow, a deny rule always wins.' Deny-overrides; no documented specificity-based re-override or user-ordered evaluation. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://docs.devin.ai/cli/extensibility/configuration"],
+      "comment": "Beyond user-authored declarative allow/deny rules, the CLI config supports lifecycle 'hooks' for programmable permission logic, the highest rung. Cloud Devin also exposes an Agency on/off setting (presets); CLI hooks set the ceiling. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://docs.devin.ai/cli/reference/permissions", "https://docs.devin.ai/onboard-devin/repo-setup"],
+      "comment": "No built-in default deny for .env/secrets. The CLI documents how an admin *can* author deny: ['Write(.env*)'], but it is not shipped enabled; repo-setup advises gitignoring .envrc so Devin doesn't commit it. Secrets are instead supplied via a Secrets dashboard. Capability exists but no default protection, so false. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://docs.devin.ai/cli/extensibility/configuration"],
+      "comment": "When the agent asks for permission, you can 'save the decision to your project or user config for next time' — written to .devin/config.json, .devin/config.local.json, or ~/.config/devin/config.json, surviving restarts and shared across sessions. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://docs.devin.ai/cli/reference/commands", "https://cognition.ai/blog/dec-24-product-update"],
+      "comment": "CLI Bypass mode (aliases /yolo, /dangerous; --permission-mode dangerous) auto-approves all permission prompts including destructive commands; an Autonomous mode pairs auto-approval with the --sandbox. Cloud Devin's Agency setting likewise proceeds without per-step approval. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable", "domain-allowlist"],
+      "source": ["https://docs.devin.ai/cli/reference/permissions", "https://docs.devin.ai/enterprise/deployment/overview"],
+      "comment": "CLI sandbox enforces 'what they can read, write, and reach over the network' with configurable 'domain filtering' (domain-allowlist). Cloud Devbox defaults to broad internet egress (egress access required / strongly recommended) but enterprise deployments support IP allowlisting and VPC/PrivateLink scoping (configurable). Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://docs.devin.ai/cli/reference/commands", "https://cognition.ai/blog/dec-24-product-update"],
+      "comment": "Cloud Devin is autonomous-by-design — with Agency on it proceeds without waiting for approval, returning a PR. The CLI's default is Normal mode, described as 'full autonomy for complex coding tasks' with the agent reading, writing and executing under normal checks (prompts only on unmatched actions, not edit-by-edit). The unconfigured first-run experience is effectively auto-run. Checked 2026-06-12."
     }
   }
 }
