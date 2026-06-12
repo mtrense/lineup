@@ -152,7 +152,7 @@ Users should be able to:
 ## Candidates
 
 - [x] Otter.ai — Leading meeting transcription and AI-notes assistant; web + mobile
-- [ ] OpenAI Whisper — Reference open-source speech recognition model; the engine many tools wrap
+- [x] OpenAI Whisper — Reference open-source speech recognition model; the engine many tools wrap
 - [ ] Descript — Transcription plus media-by-text audio/video editing
 - [ ] Wispr Flow — Popular AI dictation app for fast, formatted speak-to-type
 - [ ] Apple Dictation — Built-in on-device dictation across macOS and iOS

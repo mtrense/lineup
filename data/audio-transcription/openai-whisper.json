@@ -1,5 +1,191 @@
 {
   "name": "OpenAI Whisper",
   "description": "Reference open-source speech recognition model; the engine many tools wrap",
-  "values": {}
+  "icon": "🎙️",
+  "url": "https://github.com/openai/whisper",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "OpenAI",
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Developed and open-sourced by OpenAI."
+    },
+    "first-release": {
+      "value": "2022-09",
+      "source": [
+        "https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)",
+        "https://techcrunch.com/2022/09/21/openai-open-sources-whisper-a-multilingual-speech-recognition-system/"
+      ],
+      "comment": "First released as open-source on 2022-09-21."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Still maintained; most recent release tag v20250625 (June 2025) per the repo."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Code and model weights released under the MIT License."
+    },
+    "primary-type": {
+      "value": ["model-library", "transcription"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "An open-source ASR model/runtime a user runs themselves (CLI + Python API); core job is file transcription. Not a packaged dictation or meeting product."
+    },
+    "website": {
+      "value": "https://github.com/openai/whisper",
+      "source": ["https://github.com/openai/whisper"]
+    },
+    "real-time-dictation": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "The reference implementation is batch transcription via CLI/Python; no built-in speak-to-type dictation. Third-party apps add this."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Core function: transcribe audio/video files (mp3, wav, flac, etc.) via CLI or whisper.transcribe()."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "No meeting-bot or system-audio capture in the reference tool."
+    },
+    "streaming-low-latency": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Processes audio in a sliding 30-second window in batch; the reference implementation is not designed for live streaming transcription."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Takes local audio files; microphone capture is achievable by scripting against the Python API, but the primary input is file paths."
+    },
+    "underlying-engine": {
+      "value": "Whisper (OpenAI)",
+      "source": ["https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"],
+      "comment": "It IS the Whisper model — an encoder-decoder transformer ASR model. This is the reference engine many other tools wrap."
+    },
+    "language-count": {
+      "value": 99,
+      "source": [
+        "https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"
+      ],
+      "comment": "Approx 99 languages (commonly cited figure); trained on multilingual data including 96 non-English languages plus English."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": [
+        "https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"
+      ],
+      "comment": "Large models are near state-of-the-art on clean English in independent benchmarks (single-digit WER), highly robust to accents/noise; rated 4 rather than 5 because smaller models and overlapping/noisy speech degrade and there is no built-in diarization. WER varies by model size."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Performs spoken language identification automatically (detect_language); transcribes non-English audio without manual language selection."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Supports an initial_prompt parameter to bias recognition toward specific names/terms; not a managed dictionary but a real user-facing mechanism to add context terms."
+    },
+    "speaker-diarization": {
+      "value": false,
+      "source": ["https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"],
+      "comment": "No built-in speaker diarization; requires external tools (e.g. pyannote) to label speakers."
+    },
+    "timestamps": {
+      "value": true,
+      "source": [
+        "https://github.com/openai/whisper",
+        "https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"
+      ],
+      "comment": "Segment-level timestamps by default; word-level timestamps available via --word_timestamps."
+    },
+    "ai-summaries-notes": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Pure transcription model; produces no summaries or action items."
+    },
+    "built-in-editor": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Command-line/library tool with no GUI editor."
+    },
+    "translation": {
+      "value": true,
+      "source": [
+        "https://github.com/openai/whisper",
+        "https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)"
+      ],
+      "comment": "Supports speech translation — translates non-English audio into English text (--task translate). Translation target is English only."
+    },
+    "export-formats": {
+      "value": ["txt", "srt", "vtt", "json"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "CLI writes txt, vtt, srt, tsv and json output formats; tsv has no defined tag."
+    },
+    "processing-location": {
+      "value": ["on-device"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Runs entirely locally; model weights are downloaded and inference happens on the user's machine."
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Fully offline once model weights are downloaded; no network connection required for transcription."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Self-hosted local inference; OpenAI receives no audio or transcripts, so user data is not used to train models."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "All inputs and outputs are local files fully under the user's control."
+    },
+    "platforms": {
+      "value": ["macos", "windows", "linux"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Python package installable via pip; runs on macOS, Windows and Linux. No mobile or web build from the reference repo."
+    },
+    "system-wide-dictation": {
+      "value": false,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Not a dictation tool; no OS-wide text injection."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "No meeting/app integrations in the reference tool."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Provides a command-line tool and a Python API (whisper.load_model / transcribe) a power user can script against."
+    },
+    "pricing-model": {
+      "value": ["open-source", "free"],
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Free and open-source (MIT); no subscription. Practical cost is local compute and setup effort."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Entirely free to run locally."
+    },
+    "free-allowance": {
+      "value": "Unlimited local",
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "No usage cap; limited only by local hardware."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://github.com/openai/whisper"],
+      "comment": "Free/OSS with no subscription; only cost is local compute."
+    }
+  }
 }
