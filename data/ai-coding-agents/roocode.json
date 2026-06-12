@@ -2,7 +2,7 @@
   "name": "RooCode",
   "description": "Open-source autonomous agent extension (Cline fork lineage)",
   "url": "https://github.com/RooCodeInc/Roo-Code",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Roo Code, Inc.",
@@ -253,6 +253,51 @@
       "value": ["manual-files", "git"],
       "source": ["https://roocodeinc.github.io/Roo-Code/features/skills", "https://docs.roocode.com/features/marketplace"],
       "comment": "Skills proper are file-based (created in ~/.roo/skills/{name}/SKILL.md or .roo/skills/, shared via version control / symlinks) — no skill marketplace or registry. Note: the Roo Code Marketplace offers one-click install but only for Modes and MCP servers, not Skills. Checked 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/rooignore"],
+      "comment": "VS Code extension that runs tools with the user's full privileges; docs state .rooignore 'does not create a system-level sandbox' and there is no container/VM/OS-sandbox isolation for command or tool execution. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Auto-approval is gated per action category (read, write, command, MCP, browser, mode-switch, subtasks) = per-tool, with reads and writes toggled separately = read/write distinction; terminal commands use allow/deny prefix patterns (e.g. 'git', 'npm run') = command-prefix; a separate toggle gates file access outside the workspace boundary = per-path. No per-network-domain gating. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Command allow/deny prefix lists: deny rules take precedence when their matching prefix is equally or more specific than the allow match (longest-prefix wins), so a denied prefix wins over a broader allow. No user-controlled evaluation order and no specificity-based re-override to carve an allow back out of a deny, so highest rung is deny-overrides. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions", "https://roocodeinc.github.io/Roo-Code/features/rooignore"],
+      "comment": "User authors allow/deny command prefix lists in settings plus gitignore-style .rooignore/.rooprotected rule files. No code-level policy hook or permission callback that inspects each action, so highest level is declarative-rules (not programmable). Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/rooignore"],
+      "comment": "No default out-of-the-box protection for secrets; the user must create a .rooignore file to block reads of .env/key files (gitignore-style, opt-in). A .rooprotected file and a guard against auto-approving edits of Roo config files exist, but neither ships default secret protection. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Allowed/denied command prefixes and per-MCP-tool 'always allow' approvals are saved to settings and remembered across sessions ('saved and will be remembered next time you use Roo Code'). Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Enabling the global auto-approval toggle plus the write/command (and other) categories — and adding '*' as a command prefix to auto-approve all shell commands — runs hands-off with no prompts. There is no single 'auto-approve all' button (categories are selected individually), but the configuration achieves full-autonomy unsupervised operation. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/rooignore", "https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Runs as a VS Code extension with the user's full privileges and no system-level sandbox; outbound network (model API calls, MCP servers, the browser tool, commands like curl) is not gated by any built-in domain allowlist or proxy. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/auto-approving-actions"],
+      "comment": "Out of the box Roo prompts for each action (reads, writes, commands); auto-approval is off by default and must be explicitly enabled per category. Checked 2026-06-12."
     }
   }
 }
