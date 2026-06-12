@@ -1,7 +1,7 @@
 {
   "name": "Kilo Code",
   "url": "https://kilo.ai/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Kilo Code, Inc.",
@@ -251,6 +251,51 @@
       "value": ["manual-files", "git"],
       "source": ["https://kilo.ai/docs/features/slash-commands/workflows"],
       "comment": "Workflows are markdown files placed in .kilocode/workflows / .kilo/commands; shared via git/manual copy. No dedicated workflow marketplace."
+    },
+    "sandboxing-technology": {
+      "value": ["none"],
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions", "https://kilo.ai/docs/code-with-ai/platforms/cli"],
+      "comment": "The VS Code/JetBrains extension and CLI run commands directly in the user's shell with full user privileges; safety is via approval prompts and allow/deny rules, not kernel/container isolation. No documented OS-sandbox, container, or VM isolation for local execution (Cline/Roo lineage). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "read-write-distinction"],
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions", "https://kilo.ai/docs/customize/context/kilocodeignore"],
+      "comment": "Per-tool auto-approve toggles (read/write/execute/browser/MCP); terminal command-prefix allowlist/denylist (e.g. git, npm, *); per-path glob rules in kilo.jsonc; reads and edits/writes are gated separately. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["ordered"],
+      "source": ["https://kilo.ai/docs/customize/context/kilocodeignore"],
+      "comment": "kilo.jsonc permission rules use last-matching-rule-wins glob evaluation, i.e. user-controlled evaluation order, allowing later patterns to re-override earlier ones. A separate command denylist always overrides the allowlist (deny-wins) for terminal commands. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://kilo.ai/docs/customize/context/kilocodeignore", "https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "User authors allow/ask/deny glob rules per tool in kilo.jsonc plus command allow/deny lists. No documented programmable hook/policy-script decision point that inspects each action in code; highest level reached is declarative-rules. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": true,
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "Reading .env triggers an approval prompt by default, and *.env.local / *.env.production also prompt while *.env.example is pre-allowed — built-in out-of-the-box gating without a user-authored rule. (Note: arbitrary custom secret paths still need user-defined deny rules.) Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "Auto-approve toggles and command allow/deny lists are written to kilo.jsonc config and reflected across UI and CLI, surviving restarts. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://blog.kilo.ai/p/this-week-in-kilo-code-cli-upgrades", "https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "YOLO ('You Only Live Once') mode is a master toggle that auto-approves all actions — reading, writing, and executing commands — for hands-off autonomous runs. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["configurable"],
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "No network firewall/allowlist for the agent's own execution; outbound is unrestricted by default since commands run with full user privileges. Network/HTTP access can be gated indirectly via per-tool command and MCP allow/deny rules (e.g. denying curl/fetch or specific MCP tools), so treated as configurable rather than a dedicated egress control. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://kilo.ai/docs/features/auto-approving-actions"],
+      "comment": "Out of the box, auto-approve is off and Kilo asks before edits and command execution (default fallback is 'ask' when no rule matches); the user opts into auto-approve/YOLO. Checked 2026-06-12."
     }
   }
 }
