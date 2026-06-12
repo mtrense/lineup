@@ -2,7 +2,7 @@
   "name": "Qwen Code",
   "description": "Alibaba Qwen team's open-source terminal agent optimized for Qwen coder models; Apache-2.0.",
   "url": "https://github.com/QwenLM/qwen-code",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Alibaba (Qwen team / QwenLM)",
@@ -252,6 +252,51 @@
       "value": ["manual-files"],
       "source": ["https://github.com/QwenLM/qwen-code/releases"],
       "comment": "Bundled skills ship with the tool and skills/commands are configured via local files; no curated marketplace/registry documented."
+    },
+    "sandboxing-technology": {
+      "value": ["container", "os-sandbox"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "Opt-in Docker/Podman container sandbox (--sandbox / QWEN_SANDBOX / tools.sandbox, configurable image and custom .qwen/sandbox.Dockerfile) plus macOS Seatbelt OS sandbox (SEATBELT_PROFILE: permissive-open restricts writes to the project folder, strict denies by default). Sandbox is off by default; not Linux-kernel (Landlock/seccomp) enforced. Gemini CLI lineage."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "permissions.allow/ask/deny rules support tool names, command-prefix patterns (Bash(git *) with word-boundary matching, Bash(npm run *)), per-path globs (Read(/src/**/*.ts)), per-domain web fetch (WebFetch(api.example.com)), and Read vs Edit meta-categories (read_file/grep/glob/list vs edit/write_file) for separate read/write gating."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "Decision priority deny > ask > allow > default/interactive; deny always wins. No documented specificity-based nested exceptions or user-ordered evaluation."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "User-authored allow/ask/deny rules in settings.json plus approval-mode presets. No documented programmable per-action permission hook/policy callback for the permission decision itself (Gemini CLI lineage)."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "No out-of-the-box deny of .env/secret/key files. advanced.excludedEnvVars only excludes env vars (DEBUG/DEBUG_MODE by default) from context, which is not access gating; users must author their own permissions.deny rule to block secret-file access (checked 2026-06-12)."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "permissions.allow/ask/deny rules are saved in settings.json and persist across sessions, so approved tools/commands are not re-prompted."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/", "https://github.com/QwenLM/qwen-code/blob/main/README.md"],
+      "comment": "Documented yolo approval mode (--approval-mode yolo / --yolo / tools.approvalMode) auto-approves all tool calls for hands-off runs."
+    },
+    "network-access-control": {
+      "value": ["domain-allowlist", "proxy", "configurable"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "Outbound is unrestricted by default but configurable: a top-level proxy setting (or --proxy) routes traffic through a gateway, and WebFetch(domain) permission rules can allowlist/deny specific hosts. No global egress block-by-default for shell commands."
+    },
+    "default-permission-posture": {
+      "value": ["prompt-each-action"],
+      "source": ["https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/"],
+      "comment": "Default approval mode requires approval before modifications/commands (interactive prompt for unspecified tools); auto-edit and yolo are opt-in. First-run posture is prompt-each-action."
     }
   }
 }
