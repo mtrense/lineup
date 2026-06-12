@@ -2,7 +2,7 @@
   "name": "Goose",
   "description": "Open-source, on-machine AI agent (CLI and desktop, Rust) under the Linux Foundation's Agentic AI Foundation; multi-provider and MCP-native.",
   "url": "https://block.github.io/goose/",
-  "lastVerified": "2026-06-05",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Block",
@@ -262,6 +262,51 @@
       "value": ["marketplace", "git", "manual-files"],
       "source": ["https://block.github.io/goose/docs/guides/recipes/", "https://medium.com/@shreyanshrewa/creating-and-sharing-effective-goose-recipes-abf9767d5128"],
       "comment": "Recipes are shared via a community Recipe Cookbook, a GitHub recipe repo (GOOSE_RECIPE_GITHUB_REPO), shareable URLs, and hand-copied YAML files."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "none"],
+      "source": ["https://goose-docs.ai/docs/guides/sandbox/", "https://github.com/aaif-goose/goose"],
+      "comment": "By default (and always on the CLI) Goose executes tools with the user's full privileges, so no isolation (none). Goose Desktop offers an opt-in macOS sandbox (GOOSE_SANDBOX=true) built on Apple sandbox-exec / Seatbelt (os-sandbox) plus an egress proxy; it is disabled by default and macOS-only. Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "read-write-distinction"],
+      "source": ["https://goose-docs.ai/docs/guides/managing-tools/tool-permissions/", "https://deepwiki.com/block/goose/6.1-permission-system-architecture"],
+      "comment": "Permissions are set per tool (always_allow / ask_before / never_allow) and support wildcard patterns over tool names (e.g. */read_*, */write_*) for prefix-style allowlisting. Smart Approval distinguishes read-only operations (file reads, SELECT) from state-changing ones, gating reads and writes differently. Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://deepwiki.com/block/goose/6.1-permission-system-architecture", "https://deepwiki.com/block/goose/6.2-permission-modes-and-tool-approval"],
+      "comment": "Explicit user permissions in permission.yaml take precedence over Smart Approval's automated decisions, and never_allow blocks a tool regardless of read-only annotations. The engine is allow/ask/deny per tool name pattern with no documented specificity-based re-override or user-controlled ordering, so deny-overrides is the highest rung reached. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://goose-docs.ai/docs/guides/managing-tools/tool-permissions/", "https://deepwiki.com/block/goose/6.1-permission-system-architecture"],
+      "comment": "Beyond picking a mode (preset), users author durable per-tool allow/ask/deny rules persisted in permission.yaml (declarative-rules). No code-level permission hook/policy-script decision point documented, so not programmable. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://goose-docs.ai/docs/guides/sandbox/", "https://github.com/aaif-goose/goose"],
+      "comment": "No default deny patterns for secrets/.env in the standard CLI or Desktop config. Protection of ~/.ssh, shell rc files, and goose config exists only inside the opt-in macOS sandbox (GOOSE_SANDBOX_PROTECT_FILES), which is disabled by default, so out-of-the-box there is no built-in secret gating. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://deepwiki.com/block/goose/6.1-permission-system-architecture", "https://goose-docs.ai/docs/guides/managing-tools/tool-permissions/"],
+      "comment": "User permission decisions (always_allow / never_allow) are durably persisted in permission.yaml and survive across sessions, so allowed tools are not re-prompted on restart. Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://goose-docs.ai/docs/guides/managing-tools/tool-permissions/", "https://deepwiki.com/block/goose/6.2-permission-modes-and-tool-approval"],
+      "comment": "Autonomous mode (GooseMode::Auto) allows every tool call without approval prompts for hands-off runs; it is in fact the default mode. Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted", "configurable"],
+      "source": ["https://goose-docs.ai/docs/guides/sandbox/", "https://github.com/aaif-goose/goose"],
+      "comment": "By default outbound network is unrestricted (tools run with full user network access). The opt-in macOS Desktop sandbox adds an egress proxy that denies direct network access and filters traffic via allow/block lists (~/.config/goose/sandbox/blocked.txt, optional LaunchDarkly enterprise policy), making egress configurable when enabled. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://deepwiki.com/block/goose/6.2-permission-modes-and-tool-approval", "https://github.com/block/goose/discussions/4324"],
+      "comment": "Out of the box Goose runs in Autonomous mode, executing file edits and shell commands without asking for per-action approval. Checked 2026-06-12."
     }
   }
 }
