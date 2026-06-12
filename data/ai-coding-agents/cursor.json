@@ -3,7 +3,7 @@
   "description": "AI-native fork of VS Code; leading IDE agent",
   "icon": "",
   "url": "https://cursor.com",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Anysphere",
@@ -253,6 +253,51 @@
       "value": ["marketplace", "git", "manual-files"],
       "source": ["https://cursor.com/docs/skills", "https://cursor.com/changelog/2-4"],
       "comment": "Manual files in .cursor/skills/ or .agents/skills/ (recursive discovery), import from GitHub repos via Settings, and distribution through the Cursor Marketplace (plugins bundle skills). Built on the open agentskills.io standard."
+    },
+    "sandboxing-technology": {
+      "value": ["os-sandbox", "container"],
+      "source": ["https://cursor.com/blog/agent-sandboxing", "https://cursor.com/docs/agent/security"],
+      "comment": "Local agent runs in a kernel-level OS sandbox: macOS Seatbelt via sandbox-exec, Linux Landlock (filesystem) + seccomp (syscall blocking), Windows via WSL2; writes confined to the workspace overlay. Cloud Background Agents run in Docker containers on AWS VMs. Verified 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "command-prefix", "per-path", "per-domain", "read-write-distinction"],
+      "source": ["https://cursor.com/docs/reference/permissions", "https://cursor.com/docs/cli/reference/permissions"],
+      "comment": "permissions.json gates MCP tools (server:tool) and terminal commands by prefix match (e.g. `git`, `npm:install*`). The CLI permissions engine adds Read(path/glob), Write(path/glob) separate read-vs-write gating, and WebFetch(domain) per-network-domain rules. Verified 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://cursor.com/docs/cli/reference/permissions"],
+      "comment": "The CLI permissions engine has explicit allow and deny lists where 'Deny rules take precedence over allow rules'. The in-app permissions.json is allowlist-only; deny-overrides is the most expressive declarative model. No specificity-based re-override or user-ordered evaluation documented. Verified 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["programmable"],
+      "source": ["https://cursor.com/docs/hooks", "https://cursor.com/docs/reference/permissions"],
+      "comment": "Beyond run-mode presets and declarative allow/deny rules, the beforeShellExecution / beforeMCPExecution / beforeReadFile hooks act as a programmable decision point: they receive the concrete action and return allow/deny/ask (or modify input), so policy can be scripted per action. Verified 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://cursor.com/docs/agent/security", "https://cursor.com/docs/cli/reference/permissions"],
+      "comment": "No shipped default deny pattern for .env/key files in the IDE: file access is governed by user-authored .cursorignore blocklists, and the CLI's Read(.env*) / Write(**/*.key) protections appear only as example deny rules the user must add. The sandbox does protect .git/config, .git/hooks and .cursorignore from writes, but generic secret files are not gated by default. Verified 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://cursor.com/docs/reference/permissions"],
+      "comment": "terminalAllowlist / mcpAllowlist in ~/.cursor/permissions.json (per-user) or <workspace>/.cursor/permissions.json (per-repo) persist across sessions; files are read on startup and re-read on change. In-app allowlist entries are likewise saved. Verified 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://cursor.com/docs/agent/security"],
+      "comment": "'Run Everything' run mode executes all terminal commands with no approval prompts and no safety classifier in the loop — a documented full-autonomy/YOLO mode. Verified 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["domain-allowlist", "configurable"],
+      "source": ["https://cursor.com/blog/agent-sandboxing", "https://cursor.com/changelog/2-5", "https://cursor.com/docs/agent/security"],
+      "comment": "The sandbox restricts internet access by default and prompts when the agent needs to step outside it. Network access is configurable to three levels via sandbox.json: domains in the allowlist only, allowlist plus Cursor's built-in defaults, or allow all; Enterprise admins can enforce org-wide allow/deny egress policy. Verified 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-edit-ask-commands"],
+      "source": ["https://cursor.com/docs/agent/security"],
+      "comment": "Out of the box (Auto-review, default in 3.6+): file reads and code searches need no approval and the agent applies edits, but terminal commands require explicit approval unless allowlisted or classified safe; config-file modifications also prompt. Verified 2026-06-12."
     }
   }
 }
