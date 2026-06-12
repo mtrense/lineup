@@ -14,13 +14,51 @@
 # Complete candidates produce no output. Exit status is 0 even when some
 # candidates are incomplete — the orchestrator reads the lines and decides.
 #
-# Usage: ./list-incomplete.sh <comparison-type>
+# Without an argument, prints an overview of all comparison types instead:
+# one tab-separated line per type with its scaffold state and completeness:
+#   <type-id>\t<state>\t<complete>/<registered> complete
+# where <state> is one of: ok, not-scaffolded (RESEARCH.md only), no-research,
+# no-index (attributes.json without index.json).
+#
+# Usage: ./list-incomplete.sh [<comparison-type>]
 set -euo pipefail
 
 type="${1:-}"
 if [[ -z "$type" ]]; then
-  echo "Error: comparison type id required (usage: list-incomplete.sh <type>)" >&2
-  exit 1
+  for d in data/*/; do
+    [[ -d "$d" ]] || continue
+    id="$(basename "$d")"
+    if [[ ! -f "$d/attributes.json" ]]; then
+      if [[ -f "$d/RESEARCH.md" ]]; then
+        printf '%s\tnot-scaffolded\trun /scaffold-type %s\n' "$id" "$id"
+      else
+        printf '%s\tno-research\trun /new-type %s\n' "$id" "$id"
+      fi
+      continue
+    fi
+    if [[ ! -f "$d/index.json" ]]; then
+      printf '%s\tno-index\trun /scaffold-type %s\n' "$id" "$id"
+      continue
+    fi
+    node -e '
+      const fs = require("fs");
+      const dir = process.argv[1], id = process.argv[2];
+      const attrs = JSON.parse(fs.readFileSync(`${dir}/attributes.json`, "utf8"))
+        .groups.flatMap((g) => g.attributes.map((a) => a.id));
+      const index = JSON.parse(fs.readFileSync(`${dir}/index.json`, "utf8"));
+      let complete = 0;
+      for (const entry of index.candidates) {
+        const file = `${dir}/${entry.id}.json`;
+        if (!fs.existsSync(file)) continue;
+        let d;
+        try { d = JSON.parse(fs.readFileSync(file, "utf8")); } catch { continue; }
+        const vals = d && d.values && typeof d.values === "object" ? d.values : {};
+        if (attrs.every((a) => Object.prototype.hasOwnProperty.call(vals, a))) complete++;
+      }
+      process.stdout.write(`${id}\tok\t${complete}/${index.candidates.length} complete\n`);
+    ' "${d%/}" "$id"
+  done
+  exit 0
 fi
 
 dir="data/$type"
