@@ -2,7 +2,7 @@
   "name": "Kiro",
   "description": "AWS's spec-driven agentic IDE",
   "url": "https://kiro.dev/",
-  "lastVerified": "2026-06-02",
+  "lastVerified": "2026-06-12",
   "values": {
     "developer": {
       "value": "Amazon Web Services (AWS)",
@@ -252,6 +252,51 @@
       "value": ["git", "manual-files"],
       "source": ["https://kiro.dev/docs/skills/"],
       "comment": "Skills imported from GitHub (paste a repo/SKILL.md URL) or the local filesystem, then copied into .kiro/skills/ or ~/.kiro/skills/. Portable as community packages via the agentskills.io standard; no curated one-click marketplace documented. Checked 2026-06-02."
+    },
+    "sandboxing-technology": {
+      "value": ["container", "none"],
+      "source": ["https://kiro.dev/docs/privacy-and-security/", "https://kiro.dev/docs/autonomous-agent/github/"],
+      "comment": "Local IDE/CLI runs with the user's full privileges — docs explicitly state there is no sandboxing or isolation; Supervised mode is 'a code review workflow, not a security control.' The cloud autonomous agent instead runs tasks in isolated sandboxes (container-class). Checked 2026-06-12."
+    },
+    "permission-granularity": {
+      "value": ["per-tool", "per-command", "command-prefix", "per-path"],
+      "source": ["https://kiro.dev/docs/cli/chat/permissions/", "https://kiro.dev/docs/chat/terminal/"],
+      "comment": "Five built-in tools gated per-tool (read/write/shell/aws/report); shell trust escalates from exact command to subcommand to base command (command-prefix wildcards like 'git *') to whole tool; read/write outside the working dir is scoped per-path (file/directory/all). Checked 2026-06-12."
+    },
+    "rule-precedence": {
+      "value": ["deny-overrides"],
+      "source": ["https://kiro.dev/docs/chat/terminal/", "https://kiro.dev/docs/cli/chat/permissions/"],
+      "comment": "Command denylist is evaluated before trust settings: 'Even if you trust all commands with [\"*\"], denied commands will still require manual approval.' No specificity-based re-override or user-ordered evaluation documented — deny always wins. Checked 2026-06-12."
+    },
+    "permission-configurability": {
+      "value": ["declarative-rules"],
+      "source": ["https://kiro.dev/docs/chat/terminal/", "https://kiro.dev/docs/cli/chat/permissions/"],
+      "comment": "User authors allow/deny patterns (trusted commands + command denylist, with wildcards/regex) at user and workspace level. No documented programmable hook/policy-script decision point that inspects each action; agent hooks fire on editor events, not as a permission callback. Checked 2026-06-12."
+    },
+    "sensitive-file-protection": {
+      "value": false,
+      "source": ["https://kiro.dev/docs/privacy-and-security/"],
+      "comment": "Default protected write paths cover .vscode/, .git/, .code-workspace, mcp.json and .kiroignore, but .env and credential files are NOT in the shipped protected set — the user must add their own rules. Per the guideline, false. Checked 2026-06-12."
+    },
+    "persistent-allowlist": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/terminal/", "https://kiro.dev/docs/cli/chat/permissions/"],
+      "comment": "IDE 'Run and Trust' writes trusted-command patterns to Kiro Agent settings at user (global) or workspace level that persist across sessions. (The CLI's in-session allowedCommands resets via /tools reset, but the IDE config is durable.) Checked 2026-06-12."
+    },
+    "unsupervised-mode": {
+      "value": true,
+      "source": ["https://kiro.dev/docs/chat/autopilot/", "https://kiro.dev/docs/privacy-and-security/"],
+      "comment": "Autopilot (the default mode) runs autonomously and 'can create files, modify code across multiple locations, run commands, and make architectural decisions without asking for approval at each step.' Checked 2026-06-12."
+    },
+    "network-access-control": {
+      "value": ["unrestricted"],
+      "source": ["https://kiro.dev/docs/privacy-and-security/"],
+      "comment": "Docs explicitly state Kiro provides no network access controls or isolation for local execution; outbound network is unrestricted. Checked 2026-06-12."
+    },
+    "default-permission-posture": {
+      "value": ["auto-run-all"],
+      "source": ["https://kiro.dev/docs/chat/autopilot/", "https://kiro.dev/docs/privacy-and-security/"],
+      "comment": "Autopilot is the default mode out of the box, applying edits immediately and running commands without per-step approval; Supervised is an opt-in toggle. (Within Supervised, commands prompt by default until trusted.) Posture chosen for the unconfigured first-run default = auto-run-all. Checked 2026-06-12."
     }
   }
 }
