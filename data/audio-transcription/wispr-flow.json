@@ -1,5 +1,177 @@
 {
   "name": "Wispr Flow",
   "description": "Popular AI dictation app for fast, formatted speak-to-type",
-  "values": {}
+  "url": "https://wisprflow.ai/",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Wispr AI",
+      "source": ["https://www.businesswire.com/news/home/20240930079034/en/Wispr-Raises-$12M-and-Launches-Wispr-Flow-to-Replace-Keyboards-With-Voice"],
+      "comment": "San Francisco startup Wispr AI (Wispr), founded 2021 by Tanay Kothari and Sahaj Garg; Flow is its software dictation product."
+    },
+    "first-release": {
+      "value": "2024-09",
+      "source": ["https://www.businesswire.com/news/home/20240930079034/en/Wispr-Raises-$12M-and-Launches-Wispr-Flow-to-Replace-Keyboards-With-Voice"],
+      "comment": "Wispr Flow launched Sept 30, 2024 for Mac (Apple Silicon). Windows app followed March 2025, iOS in 2025."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://wisprflow.ai/"],
+      "comment": "Actively developed; expanding platforms and raised $81M to build a 'Voice OS' (checked 2026-06-12)."
+    },
+    "license": {
+      "value": ["freemium"],
+      "source": ["https://wisprflow.ai/pricing"],
+      "comment": "Proprietary closed-source app with a free Basic tier plus paid Pro plan."
+    },
+    "primary-type": {
+      "value": ["dictation"],
+      "source": ["https://tldv.io/blog/wisprflow/", "https://wisprflow.ai/"],
+      "comment": "Pure real-time speak-to-type dictation 'voice keyboard' that types into any app; not a file transcriber or meeting assistant."
+    },
+    "website": {
+      "value": "https://wisprflow.ai/",
+      "source": ["https://wisprflow.ai/"]
+    },
+    "real-time-dictation": {
+      "value": true,
+      "source": ["https://wisprflow.ai/", "https://tldv.io/blog/wisprflow/"],
+      "comment": "Core function: press a hotkey, speak, and formatted text appears at the cursor in any app."
+    },
+    "file-transcription": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/", "https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "No support for importing/uploading audio or video files; reviews recommend other tools (e.g. MacWhisper) for file transcription."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "No meeting bot or system/conference audio recording; it is a dictation keyboard, not a meeting recorder."
+    },
+    "streaming-low-latency": {
+      "value": false,
+      "source": ["https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "Batch-style cloud processing: audio is sent on release of the dictation key and text returns in ~1-2s; it does not produce a live running transcript of ongoing audio in the meeting-captions sense."
+    },
+    "audio-sources": {
+      "value": ["microphone"],
+      "source": ["https://wisprflow.ai/", "https://tldv.io/blog/wisprflow/"],
+      "comment": "Microphone input only; no file upload, system-audio, meeting-bot, or URL import."
+    },
+    "underlying-engine": {
+      "value": "Cloud pipeline (OpenAI transcription subprocessor + fine-tuned Llama cleanup)",
+      "source": ["https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "Vendor does not publish full engine details; reviews describe an OpenAI (Whisper-class) subprocessor for transcription plus a fine-tuned Llama model for filler-word removal, punctuation and formatting."
+    },
+    "language-count": {
+      "value": 100,
+      "source": ["https://wisprflow.ai/", "https://wisprflow.ai/pricing"],
+      "comment": "Vendor states '100+ languages' with auto-detection; approx (exact count not published)."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "Reviews report ~95-97% accuracy on clear English (one review cites ~97.2% WER-equivalent), on par with cloud STT providers, but noticeably degraded by background noise/cross-talk; rated 4."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://wisprflow.ai/"],
+      "comment": "Automatically detects and switches between multiple languages without manual selection."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://wisprflow.ai/", "https://wisprflow.ai/pricing"],
+      "comment": "Personal custom dictionary plus a snippet library for voice shortcuts; included even on the free tier."
+    },
+    "speaker-diarization": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "Single-speaker dictation tool; no speaker labeling."
+    },
+    "timestamps": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "Outputs inline text into the active app; no word/segment timestamps."
+    },
+    "ai-summaries-notes": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "No meeting summaries or notes; Command Mode does AI text edits/assistant tasks, not transcript summarization."
+    },
+    "built-in-editor": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "No in-app transcript editor; text is dictated directly into whatever app the cursor is in. Command Mode allows voice-driven edits but there is no transcript document to review."
+    },
+    "translation": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "Transcribes in the spoken language; no transcript translation feature documented."
+    },
+    "export-formats": {
+      "value": null,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "No transcript export; dictated text is inserted directly into the target app rather than saved as exportable transcript files."
+    },
+    "processing-location": {
+      "value": ["cloud"],
+      "source": ["https://wisprflow.ai/privacy", "https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "Transcription runs in the cloud (AWS us-east-1) for speed/accuracy; not on-device."
+    },
+    "offline-capable": {
+      "value": false,
+      "source": ["https://spokenly.app/blog/wispr-flow-review"],
+      "comment": "Cloud-only with no offline mode at any tier; internet required for all dictation."
+    },
+    "data-used-for-training": {
+      "value": ["opt-out"],
+      "source": ["https://wisprflow.ai/privacy"],
+      "comment": "Without Privacy Mode, data 'may be used to improve Flow's features and AI models'; enabling Privacy Mode stops model training and retention, so consumer default is opt-out."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://wisprflow.ai/privacy"],
+      "comment": "Privacy Mode (Settings > Data & Privacy) gives zero retention — no audio, transcripts, or edits kept on servers."
+    },
+    "platforms": {
+      "value": ["macos", "windows", "ios", "android"],
+      "source": ["https://wisprflow.ai/", "https://wisprflow.ai/pricing"],
+      "comment": "Mac, Windows, iPhone, and Android. No native web or Linux app."
+    },
+    "system-wide-dictation": {
+      "value": true,
+      "source": ["https://wisprflow.ai/", "https://tldv.io/blog/wisprflow/"],
+      "comment": "Global hotkey injects text into any focused app (40+ apps cited: Gmail, Slack, VS Code, Notion, ChatGPT, etc.)."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "Works inside arbitrary apps via OS-level text injection rather than through named meeting/CRM integrations; no Zoom/Meet/Teams/CRM connectors."
+    },
+    "api-automation": {
+      "value": false,
+      "source": ["https://tldv.io/blog/wisprflow/"],
+      "comment": "No public developer API, CLI, or scripting interface; integration is via OS text injection only."
+    },
+    "pricing-model": {
+      "value": ["freemium", "subscription"],
+      "source": ["https://wisprflow.ai/pricing"],
+      "comment": "Free Basic tier plus Flow Pro subscription."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://wisprflow.ai/pricing"],
+      "comment": "Flow Basic is a genuinely usable (not time-limited) free plan."
+    },
+    "free-allowance": {
+      "value": "2,000 words/week on Mac/Windows (1,000/week on iPhone)",
+      "source": ["https://wisprflow.ai/pricing"],
+      "comment": "Includes custom dictionary, 100+ languages, and Privacy Mode. Android temporarily unlimited (limited time). Checked 2026-06-12."
+    },
+    "entry-price-usd-mo": {
+      "value": 15,
+      "source": ["https://wisprflow.ai/pricing"],
+      "comment": "Flow Pro $15/user/month, or $12/month billed annually ($144/yr). Checked 2026-06-12."
+    }
+  }
 }
