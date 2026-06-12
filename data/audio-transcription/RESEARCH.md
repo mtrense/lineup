@@ -164,7 +164,7 @@ Users should be able to:
 - [x] faster-whisper — Optimized Whisper inference (CTranslate2) for fast local transcription
 - [x] MacWhisper — Mac desktop transcription app built on Whisper
 - [x] Trint — Transcription and collaborative editing platform for media teams
-- [ ] Sonix — Automated multilingual transcription with editing and export
+- [x] Sonix — Automated multilingual transcription with editing and export
 - [ ] Happy Scribe — Transcription and subtitle generation, human + AI
 - [ ] Notta — Multilingual transcription and meeting notes app, web + mobile
 - [ ] Talon Voice — Accessibility-focused voice control and dictation, popular for hands-free coding

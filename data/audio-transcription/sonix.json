@@ -1,5 +1,177 @@
 {
   "name": "Sonix",
   "description": "Automated multilingual transcription with editing and export",
-  "values": {}
+  "url": "https://sonix.ai",
+  "lastVerified": "2026-06-12",
+  "values": {
+    "developer": {
+      "value": "Sonix, Inc.",
+      "source": ["https://sonix.ai/"],
+      "comment": "San Francisco-based company founded in 2017."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://sonix.ai/"],
+      "comment": "Company/product founded 2017; only the founding year is disclosed, exact launch month not stated, so recorded at year precision."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "Actively developed and sold as of June 2026."
+    },
+    "license": {
+      "value": ["freemium"],
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "Proprietary SaaS. Borderline freemium vs proprietary: there is no ongoing free plan, only a 30-minute free trial, but it functions as a freemium-style entry. See free-tier note."
+    },
+    "primary-type": {
+      "value": ["transcription"],
+      "source": ["https://sonix.ai/", "https://www.happyscribe.com/blog/sonix-review"],
+      "comment": "Core job is automated transcription and translation of uploaded audio/video files with a browser-based editor. Not a speak-to-type dictation tool and not a meeting-bot assistant."
+    },
+    "website": {
+      "value": "https://sonix.ai",
+      "source": ["https://sonix.ai/"]
+    },
+    "real-time-dictation": {
+      "value": false,
+      "source": ["https://www.happyscribe.com/blog/sonix-review", "https://sonix.ai/features"],
+      "comment": "Sonix is a batch transcriber (upload/record then transcribe); it is not a live speak-to-type input method."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://sonix.ai/", "https://sonix.ai/speech-to-text-all-supported-file-formats"],
+      "comment": "Core feature: upload audio/video files (MP3, WAV, M4A, FLAC, MP4, MOV, etc.) for transcription."
+    },
+    "live-meeting-capture": {
+      "value": false,
+      "source": ["https://help.sonix.ai/en/articles/3983834-how-to-integrate-zoom-with-sonix", "https://sonix.ai/resources/introducing-sonix-recorder-capture-audio-anywhere-get-a-transcript-automatically/"],
+      "comment": "No live meeting bot. Zoom integration transcribes cloud recordings after the meeting ends; Sonix Recorder records audio and transcribes only after you stop. This is post-recording file transcription, not live capture."
+    },
+    "streaming-low-latency": {
+      "value": false,
+      "source": ["https://sonix.ai/features", "https://www.happyscribe.com/blog/sonix-review"],
+      "comment": "Batch processing (~<4 min per hour of audio); no running real-time transcript of ongoing audio."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload", "url-import"],
+      "source": ["https://sonix.ai/", "https://sonix.ai/resources/transcribe-youtube-videos-automatically/", "https://sonix.ai/resources/introducing-sonix-recorder-capture-audio-anywhere-get-a-transcript-automatically/"],
+      "comment": "File upload; in-app/mobile recording via Sonix Recorder (microphone); and URL/web import (e.g. YouTube). No live meeting bot."
+    },
+    "underlying-engine": {
+      "value": "Proprietary ASR",
+      "source": ["https://sonix.ai/"],
+      "comment": "Sonix markets its own AI transcription engine; it does not disclose wrapping a third-party model such as Whisper. Treated as proprietary."
+    },
+    "language-count": {
+      "value": 54,
+      "source": ["https://sonix.ai/", "https://sonix.ai/features"],
+      "comment": "Approx. Vendor states 54+ languages for transcription; translation covers 55+ languages. Counts shift with releases."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://www.happyscribe.com/blog/sonix-review", "https://mediacopilot.ai/sonix-review-the-most-accurate-ai-transcription-tool-for-professionals/"],
+      "comment": "Independent reviews report ~95-99% on clean, clearly-spoken English (vendor claims 99%), but accuracy drops noticeably on accents, overlapping speakers and conversational speech, sometimes needing substantial manual correction. No published WER from a controlled benchmark found; rated 4 on strong clean-audio performance with the accent/cross-talk caveat."
+    },
+    "multilingual-auto-detect": {
+      "value": false,
+      "source": ["https://sonix.ai/", "https://www.happyscribe.com/blog/sonix-review"],
+      "comment": "Supports many languages but the language is selected manually at upload; no documented automatic language detection (review notes accent selection is English-only)."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://sonix.ai/faq", "https://sonix.ai/resources/transcription-tools-medical-dictation/"],
+      "comment": "Custom Dictionary feature lets users add company names, technical terms and jargon to boost recognition."
+    },
+    "speaker-diarization": {
+      "value": true,
+      "source": ["https://sonix.ai/"],
+      "comment": "Automatic speaker identification/labelling ('who said what')."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://sonix.ai/"],
+      "comment": "Time-aligned transcripts with word/segment timestamps synced to playback."
+    },
+    "ai-summaries-notes": {
+      "value": true,
+      "source": ["https://sonix.ai/"],
+      "comment": "Generates AI summaries, chapters and sentiment analysis from transcripts."
+    },
+    "built-in-editor": {
+      "value": true,
+      "source": ["https://sonix.ai/", "https://www.happyscribe.com/blog/sonix-review"],
+      "comment": "Browser-based editor that lets you 'edit audio by editing text' (media-by-text style), with notes, version history and find & replace."
+    },
+    "translation": {
+      "value": true,
+      "source": ["https://sonix.ai/", "https://sonix.ai/features"],
+      "comment": "Translates transcripts into 55+ languages with side-by-side comparison and multi-language subtitle export."
+    },
+    "export-formats": {
+      "value": ["txt", "docx", "pdf", "srt", "vtt"],
+      "source": ["https://help.sonix.ai/en/articles/1978923-how-do-i-export-a-transcript"],
+      "comment": "Word (.docx), TXT, PDF, SRT and VTT documented; also offers FCPXML for video editors. JSON is available via the API rather than as a listed export format."
+    },
+    "processing-location": {
+      "value": ["cloud"],
+      "source": ["https://sonix.ai/security", "https://www.happyscribe.com/blog/sonix-review"],
+      "comment": "Cloud-only SaaS; audio is uploaded and processed on Sonix servers (TLS 1.3 in transit, AES-256 at rest). No on-device option."
+    },
+    "offline-capable": {
+      "value": false,
+      "source": ["https://sonix.ai/security"],
+      "comment": "Cloud service; requires a network connection to upload and transcribe."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://help.sonix.ai/en/articles/9125113-does-sonix-train-data", "https://sonix.ai/security"],
+      "comment": "Sonix states uploaded customer data (audio, transcripts, files) is never used to train its models; 'nothing to opt out of.' Checked June 2026."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://sonix.ai/security", "https://help.sonix.ai/en/articles/9125113-does-sonix-train-data"],
+      "comment": "Users can view, export and delete media/transcripts at any time and set automatic-deletion/retention policies."
+    },
+    "platforms": {
+      "value": ["web"],
+      "source": ["https://sonix.ai/", "https://sonix.ai/resources/introducing-sonix-recorder-capture-audio-anywhere-get-a-transcript-automatically/"],
+      "comment": "Browser-based web app. Sonix Recorder is an installable PWA that adds to the home screen on iOS and Android (same login), but there is no native macOS/Windows desktop app; mobile use is via the web/PWA rather than dedicated App Store/Play Store apps."
+    },
+    "system-wide-dictation": {
+      "value": false,
+      "source": ["https://sonix.ai/"],
+      "comment": "Not a dictation tool; transcription happens within Sonix, not injected OS-wide into other apps."
+    },
+    "integrations": {
+      "value": ["zoom", "google-meet", "teams"],
+      "source": ["https://sonix.ai/", "https://help.sonix.ai/en/articles/3983834-how-to-integrate-zoom-with-sonix"],
+      "comment": "Integrates with Zoom, Microsoft Teams, Google Meet, Webex (post-recording transcription), plus Zapier and Adobe Premiere. Webex/Zapier/Premiere have no dedicated tag in the schema."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://sonix.ai/"],
+      "comment": "Offers a RESTful API for automated transcription and batch processing."
+    },
+    "pricing-model": {
+      "value": ["subscription", "usage-based"],
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "Monthly/annual subscription tiers (Core/Advanced/Pro) plus a usage-based Pay-As-You-Go option at $10/hr. Checked June 2026."
+    },
+    "free-tier": {
+      "value": false,
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "Only a 30-minute free trial (no credit card required), not an ongoing free plan."
+    },
+    "free-allowance": {
+      "value": null,
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "No ongoing free tier; 30 minutes is a one-time trial, not a recurring allowance."
+    },
+    "entry-price-usd-mo": {
+      "value": 10,
+      "source": ["https://sonix.ai/pricing"],
+      "comment": "Cheapest paid option is Pay-As-You-Go at $10/hr with no monthly commitment; cheapest fixed monthly plan is Core at $25/mo (5 hrs, ~$22.92/mo billed annually). Recorded the $10 PAYG entry point. Checked June 2026."
+    }
+  }
 }
