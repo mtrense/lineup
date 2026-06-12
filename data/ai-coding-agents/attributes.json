@@ -588,6 +588,128 @@
           "description": "How skills are installed and shared — marketplace, registry, git clone, or manual file copying"
         }
       ]
+    },
+    {
+      "id": "permission-management-sandboxing",
+      "name": "Permission Management & Sandboxing",
+      "description": "How the agent gates actions and isolates execution — the underlying permission and sandboxing systems that shape day-to-day prompting and unsupervised operation",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "sandboxing-technology",
+          "name": "Sandboxing Technology",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "os-sandbox", "value": "OS Sandbox", "color": "blue" },
+              { "id": "container", "value": "Container", "color": "purple" },
+              { "id": "vm", "value": "VM / MicroVM", "color": "orange" },
+              { "id": "filesystem-jail", "value": "Filesystem Jail", "color": "green" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "The underlying isolation mechanism for command/tool execution — OS sandbox (Seatbelt, Landlock, seccomp), container, VM, a path-restricted filesystem jail, or none"
+        },
+        {
+          "id": "permission-granularity",
+          "name": "Permission Granularity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "all-or-nothing", "value": "All-or-Nothing", "color": "red" },
+              { "id": "per-tool", "value": "Per-Tool", "color": "blue" },
+              { "id": "per-command", "value": "Per-Command", "color": "green" },
+              { "id": "command-prefix", "value": "Command-Prefix Rules", "color": "purple" },
+              { "id": "per-path", "value": "Per-Path", "color": "orange" },
+              { "id": "per-domain", "value": "Per-Domain (Network)", "color": "gray" },
+              { "id": "read-write-distinction", "value": "Read/Write Distinction", "color": "green" }
+            ]
+          },
+          "description": "How finely actions can be gated or allowlisted — a single global toggle, per-tool, per-command, command-prefix patterns, per-path, per-network-domain, or with separate gating for reads vs writes. Multi-select"
+        },
+        {
+          "id": "rule-precedence",
+          "name": "Rule Precedence",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "allow-only", "value": "Allow-Only", "color": "orange" },
+              { "id": "deny-overrides", "value": "Deny Overrides", "color": "blue" },
+              { "id": "nested-exceptions", "value": "Nested Exceptions", "color": "green" },
+              { "id": "ordered", "value": "Ordered Rules", "color": "purple" }
+            ]
+          },
+          "description": "The most expressive precedence model the declarative rule engine supports — no rules, allowlists only, deny-always-wins, specificity-based re-override (allow A*, deny AB*, allow ABC*), or explicit user-ordered evaluation"
+        },
+        {
+          "id": "permission-configurability",
+          "name": "Permission Configurability",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "fixed", "value": "Fixed", "color": "red" },
+              { "id": "presets", "value": "Presets", "color": "orange" },
+              { "id": "declarative-rules", "value": "Declarative Rules", "color": "blue" },
+              { "id": "programmable", "value": "Programmable", "color": "green" }
+            ]
+          },
+          "description": "How deeply the permission engine can be configured — fixed built-in policy, predefined modes only, user-authored allow/deny rules, or a programmable decision point (hooks/policy scripts) that can inspect each action in context"
+        },
+        {
+          "id": "sensitive-file-protection",
+          "name": "Sensitive File Protection",
+          "valueType": "boolean",
+          "description": "Ships default protection for secrets (.env, key files) out of the box — the agent refuses or gates access without the user authoring a deny rule"
+        },
+        {
+          "id": "persistent-allowlist",
+          "name": "Persistent Allowlist",
+          "valueType": "boolean",
+          "description": "Can approvals be remembered (saved allow rules) so the same action is not re-prompted within and across sessions?"
+        },
+        {
+          "id": "unsupervised-mode",
+          "name": "Unsupervised Mode",
+          "valueType": "boolean",
+          "description": "Offers a documented full-autonomy mode that suppresses approval prompts (auto-approve / YOLO / bypass-permissions) for hands-off runs"
+        },
+        {
+          "id": "network-access-control",
+          "name": "Network Access Control",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "blocked", "value": "Blocked by Default", "color": "green" },
+              { "id": "domain-allowlist", "value": "Domain Allowlist", "color": "blue" },
+              { "id": "proxy", "value": "Proxy / Gateway", "color": "purple" },
+              { "id": "unrestricted", "value": "Unrestricted", "color": "red" },
+              { "id": "configurable", "value": "Configurable", "color": "orange" }
+            ]
+          },
+          "description": "How the agent gates outbound network access during a run — blocked by default, restricted to a domain allowlist, routed through a proxy/gateway, unrestricted, or configurable"
+        },
+        {
+          "id": "default-permission-posture",
+          "name": "Default Permission Posture",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "read-only", "value": "Read-Only", "color": "green" },
+              { "id": "prompt-each-action", "value": "Prompt Each Action", "color": "blue" },
+              { "id": "auto-edit-ask-commands", "value": "Auto-Edit, Ask Commands", "color": "purple" },
+              { "id": "auto-run-all", "value": "Auto-Run All", "color": "red" }
+            ]
+          },
+          "description": "Out-of-the-box behavior before any configuration — read-only, prompt on every action, auto-apply edits but ask before commands, or auto-run everything"
+        }
+      ]
     }
   ]
 }
