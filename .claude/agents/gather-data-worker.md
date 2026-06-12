@@ -10,7 +10,7 @@ description: >
   flip the RESEARCH.md checkbox — the orchestrator owns both so parallel workers
   never race on shared files. Spawned one-per-candidate, in parallel batches, by
   `/gather-data-cycle`.
-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(git status:*), Bash(git diff:*)
+tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(bash .claude/skills/gather-data/validate-json.sh*), Bash(git status:*), Bash(git diff:*)
 model: opus
 ---
 

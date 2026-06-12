@@ -2,7 +2,7 @@
 name: scaffold-type
 description: "Scaffold a Lineup comparison type from its RESEARCH.md and/or add candidate stubs to an existing one. First run after /new-type derives data/<type>/attributes.json, registers the type in data/index.json, and scaffolds the Candidates from RESEARCH.md into data/<type>/index.json + per-candidate stub files. Later runs (with or without explicit candidate ids) add more candidate stubs to an existing type. Use between /new-type and /gather-data. Arguments: comparison type id (required), zero or more candidate ids."
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash(date:*)
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*)
 argument-hint: "<comparison-type-id> [candidate-id ...]"
 ---
 
@@ -212,6 +212,16 @@ Per candidate in the batch:
 
   Fetch today's date once via Bash (`date +%Y-%m-%d`) and reuse it for every appended entry in the batch — do not hand-type it. The `(added <date>)` suffix records the post-scoping addition so future audits can distinguish these from candidates that came out of the initial scoping dialogue.
 
+### Validate the JSON files
+
+After all writes, validate every `.json` file touched this pass in one allow-listed call:
+
+```bash
+bash ${CLAUDE_SKILL_DIR}/validate-json.sh data/index.json data/<type>/attributes.json data/<type>/index.json data/<type>/<candidate>.json ...
+```
+
+(Pass only the files you actually created or edited.) The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before presenting the summary.
+
 ## Phase 4: Summary
 
 Present a single summary covering both the schema (if newly scaffolded) and every candidate in the batch (concise — the user did not participate in the decisions, so the summary is their first view of the result):
@@ -278,7 +288,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT overwrite `data/<type>/attributes.json` if it already exists — run in additive mode (candidates only) instead. If the schema is wrong, the user should edit it directly.
 - Do NOT reorder entries in `data/<type>/index.json`; append only.
 - Do NOT reorder entries in the top-level `data/index.json`; append only.
-- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files.
+- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files. Verify every written `.json` file with `bash ${CLAUDE_SKILL_DIR}/validate-json.sh <file> [...]` and fix anything it flags before finishing.
 - kebab-case for all `id` fields (comparison type, group, attribute, tag, candidate).
 - Filenames: lowercase, hyphens, no spaces, no underscores, no numeric prefixes. Must match the candidate id exactly.
 - Match existing project style: indentation, attribute ordering within groups (generic → specific).

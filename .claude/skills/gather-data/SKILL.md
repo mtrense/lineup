@@ -2,7 +2,7 @@
 name: gather-data
 description: "Research and populate attribute values for a Lineup candidate using the comparison type's RESEARCH.md as the guide. Actively searches the web for authoritative sources and records {value, source, comment} per attribute, then commits the updated candidate file. Use for initial research or to refresh stale values. Arguments: comparison type (required), optional candidate id (auto-picked as the next under-researched candidate when omitted), optional attribute id or group id to scope the work."
 model: opus
-allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git diff:*)
+allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git diff:*)
 argument-hint: "<comparison-type> [candidate] [attribute-id[,attribute-id...]|group-id]"
 ---
 
@@ -112,6 +112,11 @@ Write the full updated `data/<type>/<candidate>.json`:
 - In a scoped pass (attribute/group filter, including `backfill` mode), out-of-scope entries in `values` stay byte-identical — prefer surgical `Edit` inserts over rewriting the whole file.
 - Order entries inside `values` to match the attribute order in `attributes.json` (improves diffs and readability).
 - Keep JSON strictly valid: double quotes, no trailing commas, no comments.
+- After the write, validate the file with the allow-listed script:
+  ```bash
+  bash ${CLAUDE_SKILL_DIR}/validate-json.sh data/<type>/<candidate>.json
+  ```
+  It prints `<file>\tVALID` on success and `INVALID` with the parse error otherwise — fix and re-run before proceeding. (When running as a `gather-data-worker` subagent, `${CLAUDE_SKILL_DIR}` is not set; use the repo-relative path `.claude/skills/gather-data/validate-json.sh` instead.)
 
 ### Top-level candidate file shape (for reference)
 
