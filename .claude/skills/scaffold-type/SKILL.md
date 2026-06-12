@@ -2,7 +2,7 @@
 name: scaffold-type
 description: "Scaffold a Lineup comparison type from its RESEARCH.md and/or add candidate stubs to an existing one. First run after /new-type derives data/<type>/attributes.json, registers the type in data/index.json, and scaffolds the Candidates from RESEARCH.md into data/<type>/index.json + per-candidate stub files. Later runs (with or without explicit candidate ids) add more candidate stubs to an existing type. Use between /new-type and /gather-data. Arguments: comparison type id (required), zero or more candidate ids."
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), Bash(bash .claude/skills/scaffold-type/validate-json.sh*)
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(bash .scripts/validate-json.sh *)
 argument-hint: "<comparison-type-id> [candidate-id ...]"
 ---
 
@@ -217,7 +217,7 @@ Per candidate in the batch:
 After all writes, validate every `.json` file touched this pass in one allow-listed call:
 
 ```bash
-bash .claude/skills/scaffold-type/validate-json.sh data/index.json data/<type>/attributes.json data/<type>/index.json data/<type>/<candidate>.json ...
+bash .scripts/validate-json.sh data/index.json data/<type>/attributes.json data/<type>/index.json data/<type>/<candidate>.json ...
 ```
 
 (Pass only the files you actually created or edited.) Run it from the repo root in exactly this relative form — script path and file arguments both repo-relative, never absolute (only the relative form reliably matches the allowlist). The script prints one `<file>\tVALID` / `INVALID` / `MISSING` line per file. If anything is not `VALID`, fix the file and re-run before presenting the summary.
@@ -288,7 +288,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT overwrite `data/<type>/attributes.json` if it already exists — run in additive mode (candidates only) instead. If the schema is wrong, the user should edit it directly.
 - Do NOT reorder entries in `data/<type>/index.json`; append only.
 - Do NOT reorder entries in the top-level `data/index.json`; append only.
-- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files. Verify every written `.json` file with `bash .claude/skills/scaffold-type/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
+- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files. Verify every written `.json` file with `bash .scripts/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
 - kebab-case for all `id` fields (comparison type, group, attribute, tag, candidate).
 - Filenames: lowercase, hyphens, no spaces, no underscores, no numeric prefixes. Must match the candidate id exactly.
 - Match existing project style: indentation, attribute ordering within groups (generic → specific).

@@ -10,7 +10,7 @@ description: >
   flip the RESEARCH.md checkbox — the orchestrator owns both so parallel workers
   never race on shared files. Spawned one-per-candidate, in parallel batches, by
   `/gather-data-cycle`.
-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(bash .claude/skills/gather-data/validate-json.sh*), Bash(git status:*), Bash(git diff:*)
+tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(date:*), Bash(gh repo *), Bash(gh api *), Bash(gh search *), Bash(bash .scripts/validate-json.sh *), Bash(git status:*), Bash(git diff:*)
 model: opus
 ---
 
@@ -43,7 +43,7 @@ candidate and write its JSON file — nothing else.
    **exactly** this relative form (absolute paths are not allow-listed and
    stall on a permission prompt):
    ```bash
-   bash .claude/skills/gather-data/validate-json.sh data/<type>/<candidate>.json
+   bash .scripts/validate-json.sh data/<type>/<candidate>.json
    ```
    If it prints anything other than `VALID`, fix the file and re-run before
    exiting with your report.

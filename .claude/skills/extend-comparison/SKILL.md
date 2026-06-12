@@ -2,7 +2,7 @@
 name: extend-comparison
 description: "Add one or more new attributes to an existing Lineup comparison type. Updates `data/<type>/RESEARCH.md` (a new row in an Attribute Groups table, plus Assessment Guidelines if applicable) and `data/<type>/attributes.json` (appends to an existing `groups[]` entry or creates a new group) in a single pass. Use when the comparison type has already been scaffolded (both files exist) and you want to extend the attribute set. Does not touch candidate files — existing candidates render `—` for the new attribute until `/gather-data` fills values. Arguments: comparison type id (required), free-text description of the new attribute(s) (required)."
 model: opus
-allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(bash ${CLAUDE_SKILL_DIR}/validate-json.sh*), Bash(bash .claude/skills/extend-comparison/validate-json.sh*)
+allowed-tools: Read, Glob, Write, Edit, Bash(date:*), Bash(bash .scripts/validate-json.sh *)
 argument-hint: "<comparison-type> <attribute description>"
 ---
 
@@ -165,7 +165,7 @@ Only run this phase after Phase 2's clarifications (if any) are resolved.
 **Validity**: JSON MUST be valid — ASCII quotes, no trailing commas, no comments. After writing, verify with the allow-listed script:
 
 ```bash
-bash .claude/skills/extend-comparison/validate-json.sh data/<type>/attributes.json
+bash .scripts/validate-json.sh data/<type>/attributes.json
 ```
 
 Run it from the repo root in exactly this relative form — script path and file argument both repo-relative, never absolute (only the relative form reliably matches the allowlist). It prints `<file>\tVALID` on success and `INVALID` with the parse error otherwise — fix and re-run before moving on to 3.2.
@@ -273,7 +273,7 @@ Do NOT commit. Print the exact command the user can run (or they can use the pro
 - Do NOT ask the user more than one consolidated round of clarifying questions. Everything else resolves to defaults + Phase 4 summary.
 - Only ask clarifying questions at the well-defined Phase 2 pause points: unresolved value type, unresolved group placement, missing bounded tag set, non-standard rating range, clear scope mismatch. Plus the Phase 0 hard preconditions (missing type id, missing attribute description, missing files).
 - kebab-case for all `id` fields (group, attribute, tag).
-- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files. Verify every written `.json` file with `bash .claude/skills/extend-comparison/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
+- JSON output MUST be valid: ASCII quotes, no trailing commas, no comments inside `.json` files. Verify every written `.json` file with `bash .scripts/validate-json.sh <file> [...]` (repo-relative paths) and fix anything it flags before finishing.
 - Match existing project style: indentation, blank lines, key ordering within objects, attribute ordering within groups (generic → specific — so new attributes land at the end of the group).
 - If the RESEARCH.md Attribute Groups section is malformed (no `### <N>. Group Name` headings, or tables with unexpected column layouts), abort and tell the user precisely what to fix before retrying. Do not heal silently.
 - If a required file is missing (no `CLAUDE.md`, no `data/<type>/`, no `RESEARCH.md`, no `attributes.json`), abort with a clear message pointing the user at the skill that creates it (`/new-type` or `/scaffold-type`).

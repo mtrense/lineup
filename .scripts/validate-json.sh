@@ -2,8 +2,10 @@
 # Validate that each given file parses as JSON.
 #
 # Replaces ad-hoc `python3 -m json.tool <file> && echo "VALID JSON"` calls with
-# a single command that is allow-listed via ${CLAUDE_SKILL_DIR} in the skill's
-# frontmatter, so post-write validation never triggers a permission prompt.
+# a single allow-listed command. Shared by the JSON-writing skills (add-candidate,
+# discover-candidates, extend-comparison, gather-data, scaffold-type) and the
+# gather-data-worker subagent; also handy to run by hand:
+#   bash .scripts/validate-json.sh data/<type>/<candidate>.json
 #
 # Output: one tab-separated line per file:
 #   <file>\tVALID

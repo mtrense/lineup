@@ -3,7 +3,7 @@ name: gather-data-cycle
 description: "Drive a batch of /gather-data research passes for a Lineup comparison type, fanning out across candidates in PARALLEL. Enumerates unchecked candidates from RESEARCH.md (initial research), then candidates missing attributes added later via /extend-comparison (scoped backfill). Spawns isolated gather-data-worker subagents (fresh context, no commit) one-per-candidate in parallel batches, then SERIALLY flips each candidate's RESEARCH.md checkbox (initial only) and commits its file with the data(<type>): CANDIDATE convention. Use for long-running, hands-off research sessions across many candidates. Arguments: comparison type id (required), optional count cap and worker count."
 disable-model-invocation: true
 model: opus
-allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh*), Bash(bash ${CLAUDE_SKILL_DIR}/verify-batch.sh*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git rev-parse:*), Bash(date:*)
+allowed-tools: Read, Glob, Grep, Edit, Agent, Bash(bash .scripts/list-unchecked.sh *), Bash(bash .scripts/list-incomplete.sh *), Bash(bash .scripts/verify-batch.sh *), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git rev-parse:*), Bash(date:*)
 argument-hint: "<comparison-type> [count|all][@workers]   (e.g. `databases 8`, `databases 8@4`, `databases all@3`)"
 ---
 
@@ -93,16 +93,15 @@ Repeat until a stop condition triggers (cap hit, both pools drained, or a halt).
 
 ### Step 1: Enumerate pending work
 
-Run the bundled helpers. Invoke them through `${CLAUDE_SKILL_DIR}` — the harness
-substitutes the skill's own directory, so the scripts resolve no matter what the
-current working directory is (don't hard-code `.claude/skills/...`). Do NOT
-roll your own enumeration with `Grep` + post-processing — the scripts are the
-single allowed path so the permission surface stays narrow.
+Run the bundled helpers from the repo root via their repo-relative path
+(`.scripts/...` — this exact form is what the allowlist matches; never use an
+absolute path). Do NOT roll your own enumeration with `Grep` + post-processing —
+the scripts are the single allowed path so the permission surface stays narrow.
 
 **First, the initial pool:**
 
 ```
-bash ${CLAUDE_SKILL_DIR}/list-unchecked.sh <type>
+bash .scripts/list-unchecked.sh <type>
 ```
 
 It prints one unchecked candidate **name** per line, in declared order.
@@ -114,7 +113,7 @@ candidate, skip it and note it in the final summary.
 **Only when the initial pool is empty, the backfill pool:**
 
 ```
-bash ${CLAUDE_SKILL_DIR}/list-incomplete.sh <type>
+bash .scripts/list-incomplete.sh <type>
 ```
 
 It prints one TSV line per incomplete candidate: `<id>\t<comma-separated
@@ -198,14 +197,14 @@ own `node -e`, `for`-loop, or `cd ...; ...` compound — those can't be
 allow-listed and will prompt every run):
 
 ```
-bash ${CLAUDE_SKILL_DIR}/verify-batch.sh <type> <id1> <id2> ...
+bash .scripts/verify-batch.sh <type> <id1> <id2> ...
 ```
 
 For a **backfill batch**, suffix each id with its briefed attribute ids so the
 helper also confirms the gaps were actually filled:
 
 ```
-bash ${CLAUDE_SKILL_DIR}/verify-batch.sh <type> <id1>:<attrA>,<attrB> <id2>:<attrC> ...
+bash .scripts/verify-batch.sh <type> <id1>:<attrA>,<attrB> <id2>:<attrC> ...
 ```
 
 It prints one TSV line per id: `<id>  <ok|MISSING|BAD_JSON|MISSING_ATTRS>  <lastVerified>  <populated>  <null>  <still-missing-attrs|->`.
