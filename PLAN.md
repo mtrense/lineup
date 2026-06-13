@@ -118,7 +118,7 @@ tooltip. Filtering parity and a real in-app demo close it out.
   - A fontawesome value with `pack: "devicon"` resolves through the Devicon path.
 - **Commit Message:** `feat(app): render real glyphs for icon value types`
 
-[ ] 3. **Extend `Tag` with an icon and `TagsType` with a display option; render glyphs in `TagsValue`**
+[x] 3. **Extend `Tag` with an icon and `TagsType` with a display option; render glyphs in `TagsValue`**
 - **Files:** `app/src/types/attributes.ts`,
   `app/src/components/values/TagsValue.tsx`,
   `app/src/components/values/ValueRenderer.tsx`,

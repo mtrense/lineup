@@ -1,9 +1,16 @@
 import type { Tag } from "@/types";
+import { Icon } from "@/lib/icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface TagsValueProps {
   value: string[];
   tags: Tag[];
   defaultColor: string;
+  display?: "label" | "icon" | "both";
 }
 
 // Map color names to Tailwind classes
@@ -25,7 +32,12 @@ function getColorClass(color?: string, defaultColor?: string): string {
   return colorClasses[colorKey] || colorClasses.gray;
 }
 
-export function TagsValue({ value, tags, defaultColor }: TagsValueProps) {
+export function TagsValue({
+  value,
+  tags,
+  defaultColor,
+  display = "both",
+}: TagsValueProps) {
   // Create a map of tag IDs to tag definitions
   const tagMap = new Map(tags.map((t) => [t.id, t]));
 
@@ -35,13 +47,57 @@ export function TagsValue({ value, tags, defaultColor }: TagsValueProps) {
         const tag = tagMap.get(tagId);
         const displayValue = tag?.value || tagId;
         const colorClass = getColorClass(tag?.color, defaultColor);
+        const hasIcon = Boolean(tag?.icon);
 
+        if (display === "icon" && hasIcon) {
+          // Icon-only mode: show glyph with accessible label + tooltip
+          return (
+            <Tooltip key={tagId}>
+              <TooltipTrigger asChild>
+                <span
+                  className={`inline-flex items-center justify-center rounded-md px-2 py-0.5 text-xs font-medium ${colorClass}`}
+                  aria-label={displayValue}
+                  tabIndex={0}
+                >
+                  <Icon
+                    name={tag!.icon!.name}
+                    pack={tag!.icon!.pack}
+                    className="h-4 w-4"
+                  />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>{displayValue}</TooltipContent>
+            </Tooltip>
+          );
+        }
+
+        if (display === "icon" && !hasIcon) {
+          // Icon-only mode but no icon available — fall back to text label
+          return (
+            <span
+              key={tagId}
+              className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${colorClass}`}
+            >
+              {displayValue}
+            </span>
+          );
+        }
+
+        // display === "both" or display === "label"
         return (
           <span
             key={tagId}
             className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${colorClass}`}
           >
-            {tag?.icon && <span className="mr-1">{tag.icon}</span>}
+            {display !== "label" && hasIcon && (
+              <span className="mr-1">
+                <Icon
+                  name={tag!.icon!.name}
+                  pack={tag!.icon!.pack}
+                  className="h-3 w-3"
+                />
+              </span>
+            )}
             {displayValue}
           </span>
         );

@@ -127,6 +127,7 @@ function renderValue(
             value={Array.isArray(value) ? value : [String(value)]}
             tags={valueType.tags}
             defaultColor={valueType.defaultColor}
+            display={valueType.display}
           />
         );
 

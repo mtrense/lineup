@@ -48,24 +48,25 @@ export interface RatingType {
   };
 }
 
+export type IconPack = "fa-solid" | "fa-brands" | "fa-regular" | "devicon";
+
+export interface IconRef {
+  name: string;
+  pack?: IconPack;
+}
+
 export interface Tag {
   id: string;
   value: string;
   color?: string;
-  icon?: string;
+  icon?: IconRef;
 }
 
 export interface TagsType {
   type: "tags";
   defaultColor: string;
   tags: Tag[];
-}
-
-export type IconPack = "fa-solid" | "fa-brands" | "fa-regular" | "devicon";
-
-export interface IconRef {
-  name: string;
-  pack?: IconPack;
+  display?: "label" | "icon" | "both";
 }
 
 export interface FontAwesomeIcon {
