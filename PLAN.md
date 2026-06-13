@@ -265,7 +265,7 @@ These are decided once here so individual tasks stay short:
     icons; `expectAllIconsResolve(vt)` passes.
 - **Commit Message:** `data(ai-coding-agents): icon glyphs for interface tags`
 
-[ ] 9. **data: icon glyphs for `sbc` Linux distros**
+[x] 9. **data: icon glyphs for `sbc` Linux distros**
 - **Files:** `data/sbc/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.sbc.test.ts` (new)
 - **Description:** `distros-with-images` (Raspberry Pi OS, Ubuntu, Debian, Armbian,

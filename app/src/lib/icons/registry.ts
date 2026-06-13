@@ -54,6 +54,11 @@ import svelteSvg from "devicon/icons/svelte/svelte-original.svg";
 import rubySvg from "devicon/icons/ruby/ruby-original.svg";
 import viteSvg from "devicon/icons/vite/vite-original.svg";
 import solidjsSvg from "devicon/icons/solidjs/solidjs-original.svg";
+import ubuntuSvg from "devicon/icons/ubuntu/ubuntu-plain.svg";
+import debianSvg from "devicon/icons/debian/debian-plain.svg";
+import fedoraSvg from "devicon/icons/fedora/fedora-plain.svg";
+import raspberrypiSvg from "devicon/icons/raspberrypi/raspberrypi-original.svg";
+import opensuseSvg from "devicon/icons/opensuse/opensuse-original.svg";
 
 // ---- Types ----
 
@@ -141,6 +146,11 @@ const deviconRegistry: Record<string, string> = {
   vitejs: viteSvg,
   solidjs: solidjsSvg,
   solid: solidjsSvg,
+  ubuntu: ubuntuSvg,
+  debian: debianSvg,
+  fedora: fedoraSvg,
+  raspberrypi: raspberrypiSvg,
+  opensuse: opensuseSvg,
 };
 
 // ---- Resolver ----
