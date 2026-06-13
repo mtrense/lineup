@@ -87,7 +87,7 @@ tooltip. Filtering parity and a real in-app demo close it out.
   - `title` prop is applied as `aria-label` (FA) / `alt` (img) on the output.
 - **Commit Message:** `feat(app): add icon registry and Icon component (FontAwesome + Devicon)`
 
-[ ] 2. **Define the `IconRef` schema and rewire `IconValue` onto the registry**
+[x] 2. **Define the `IconRef` schema and rewire `IconValue` onto the registry**
 - **Files:** `app/src/types/attributes.ts`,
   `app/src/components/values/IconValue.tsx`,
   `app/src/components/values/IconValue.test.tsx` (new),

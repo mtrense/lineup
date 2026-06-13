@@ -61,14 +61,21 @@ export interface TagsType {
   tags: Tag[];
 }
 
+export type IconPack = "fa-solid" | "fa-brands" | "fa-regular" | "devicon";
+
+export interface IconRef {
+  name: string;
+  pack?: IconPack;
+}
+
 export interface FontAwesomeIcon {
   type: "icon-fontawesome";
   name: string;
-  pack?: string;
+  pack?: IconPack;
 }
 
 export type IconType =
-  | { type: "icon-fontawesome"; name: string; pack?: string }
+  | { type: "icon-fontawesome"; name: string; pack?: IconPack }
   | { type: "icon-emoji"; emoji: string };
 
 export type ValueType =
