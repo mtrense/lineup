@@ -329,7 +329,7 @@ These are decided once here so individual tasks stay short:
     contains the "Icon audit (Milestone 17)" note.
 - **Commit Message:** `docs(data): record no-icon-worthy audit verdict for 5 comparison types`
 
-[ ] 12. **Verification & roll-up**
+[x] 12. **Verification & roll-up**
 - **Files:** none (verification only; may touch nothing or fix fallout)
 - **Description:** Final regression pass across the whole sweep:
   1. `pnpm --dir app test:run` — all suites green, including the pre-existing
