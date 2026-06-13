@@ -43,7 +43,7 @@ tooltip. Filtering parity and a real in-app demo close it out.
 
 ## Tasks
 
-[ ] 1. **Add icon dependencies and build the icon registry + `<Icon>` component**
+[x] 1. **Add icon dependencies and build the icon registry + `<Icon>` component**
 - **Files:** `app/package.json`, `app/src/lib/icons/registry.ts` (new),
   `app/src/lib/icons/Icon.tsx` (new), `app/src/lib/icons/Icon.test.tsx` (new),
   `app/src/lib/icons/index.ts` (new)

@@ -8,6 +8,8 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: ["./src/test/setup.ts"],
+    // Treat .svg imports as asset URLs (returns the file path string)
+    assetsInclude: ["**/*.svg"],
   },
   resolve: {
     alias: {
