@@ -133,7 +133,7 @@ These are decided once here so individual tasks stay short:
   - `expectAllIconsResolve(vt)` passes (every platform icon resolves).
 - **Commit Message:** `data(audio-transcription): icon glyphs for platforms`
 
-[ ] 3. **data: icon glyphs for `content-management-systems` DB & framework tags**
+[x] 3. **data: icon glyphs for `content-management-systems` DB & framework tags**
 - **Files:** `data/content-management-systems/attributes.json`,
   `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.content-management-systems.test.ts` (new)

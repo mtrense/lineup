@@ -32,6 +32,15 @@ import elmSvg from "devicon/icons/elm/elm-original.svg";
 import linuxSvg from "devicon/icons/linux/linux-original.svg";
 import appleSvg from "devicon/icons/apple/apple-original.svg";
 import windows8Svg from "devicon/icons/windows8/windows8-original.svg";
+import postgresqlSvg from "devicon/icons/postgresql/postgresql-original.svg";
+import mysqlSvg from "devicon/icons/mysql/mysql-original.svg";
+import mongodbSvg from "devicon/icons/mongodb/mongodb-original.svg";
+import sqliteSvg from "devicon/icons/sqlite/sqlite-original.svg";
+import nextjsSvg from "devicon/icons/nextjs/nextjs-original.svg";
+import nuxtjsSvg from "devicon/icons/nuxtjs/nuxtjs-original.svg";
+import gatsbySvg from "devicon/icons/gatsby/gatsby-original.svg";
+import astroSvg from "devicon/icons/astro/astro-original.svg";
+import svelteSvg from "devicon/icons/svelte/svelte-original.svg";
 
 // ---- Types ----
 
@@ -90,6 +99,18 @@ const deviconRegistry: Record<string, string> = {
   apple: appleSvg,
   windows: windows8Svg,
   windows8: windows8Svg,
+  postgresql: postgresqlSvg,
+  postgres: postgresqlSvg,
+  mysql: mysqlSvg,
+  mongodb: mongodbSvg,
+  mongo: mongodbSvg,
+  sqlite: sqliteSvg,
+  nextjs: nextjsSvg,
+  nuxtjs: nuxtjsSvg,
+  nuxt: nuxtjsSvg,
+  gatsby: gatsbySvg,
+  astro: astroSvg,
+  svelte: svelteSvg,
 };
 
 // ---- Resolver ----
