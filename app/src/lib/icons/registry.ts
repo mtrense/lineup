@@ -20,6 +20,14 @@ import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 import rustSvg from "devicon/icons/rust/rust-original.svg";
 import pythonSvg from "devicon/icons/python/python-original.svg";
 import javascriptSvg from "devicon/icons/javascript/javascript-original.svg";
+import typescriptSvg from "devicon/icons/typescript/typescript-original.svg";
+import goSvg from "devicon/icons/go/go-original.svg";
+import kotlinSvg from "devicon/icons/kotlin/kotlin-original.svg";
+import dartSvg from "devicon/icons/dart/dart-original.svg";
+import csharpSvg from "devicon/icons/csharp/csharp-original.svg";
+import scalaSvg from "devicon/icons/scala/scala-original.svg";
+import clojureSvg from "devicon/icons/clojure/clojure-original.svg";
+import elmSvg from "devicon/icons/elm/elm-original.svg";
 import linuxSvg from "devicon/icons/linux/linux-original.svg";
 import appleSvg from "devicon/icons/apple/apple-original.svg";
 import windows8Svg from "devicon/icons/windows8/windows8-original.svg";
@@ -65,6 +73,17 @@ const deviconRegistry: Record<string, string> = {
   python: pythonSvg,
   javascript: javascriptSvg,
   js: javascriptSvg,
+  typescript: typescriptSvg,
+  ts: typescriptSvg,
+  go: goSvg,
+  golang: goSvg,
+  kotlin: kotlinSvg,
+  dart: dartSvg,
+  csharp: csharpSvg,
+  "c#": csharpSvg,
+  scala: scalaSvg,
+  clojure: clojureSvg,
+  elm: elmSvg,
   linux: linuxSvg,
   apple: appleSvg,
   windows: windows8Svg,

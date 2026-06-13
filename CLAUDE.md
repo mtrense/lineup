@@ -105,22 +105,41 @@ type Rating = {
     }
 }
 
+type IconPack = "fa-solid" | "fa-brands" | "fa-regular" | "devicon";
+
+type IconRef = {
+    name: string;   // Registry key (e.g. "rust", "typescript", "linux")
+    pack?: IconPack; // Default: "fa-solid". Use "devicon" for tech/language/OS logos.
+}
+
 type Tag = {
     id: string;
     value: string;
     color?: string;
-    icon?: string;
+    icon?: IconRef;  // Optional glyph for this tag — must be registered in app/src/lib/icons/registry.ts
 }
 
 type Tags = {
     defaultColor: string;
     tags: Tag[];
+    display?: "label" | "icon" | "both"; // Default: "both". "icon" = icon-only with accessible tooltip.
 }
+
+// IMPORTANT: Adding an icon to a tag requires a matching entry in
+// app/src/lib/icons/registry.ts. Icons are NOT free-form strings —
+// each glyph must be explicitly imported and registered there.
+//
+// Convention:
+//   - Use pack: "devicon"  for technology/language/OS logos (Devicon library)
+//   - Use pack: "fa-brands" for brand glyphs available in FontAwesome Free brands
+//   - Use pack: "fa-solid"  for generic UI icons (default when pack is omitted)
+//
+// A tag with no matching registry entry will render its text label as a fallback.
 
 type FaIcon = {
     type: "icon-fontawesome";
     name: string;
-    pack?: string;
+    pack?: IconPack;  // "fa-brands" | "fa-solid" | "fa-regular" | "devicon"
 }
 
 type Icon = FaIcon | Emoji;

@@ -176,7 +176,7 @@ tooltip. Filtering parity and a real in-app demo close it out.
   - Highlighting/ranking behavior on a tag attribute is unchanged by display mode.
 - **Commit Message:** `test(app): assert tag filtering parity across icon display modes`
 
-[ ] 5. **Wire up a working demo comparison and document the schema**
+[x] 5. **Wire up a working demo comparison and document the schema**
 - **Files:** one comparison type's `data/<type>/attributes.json` (+ candidate
   JSON / `RESEARCH.md` only if a value must newly become a tag), `CLAUDE.md`
 - **Description:** Prove the capability end-to-end in the running app and document
