@@ -153,7 +153,7 @@ tooltip. Filtering parity and a real in-app demo close it out.
   - `display: "label"` renders text only, no `<svg>`/`<img>`.
 - **Commit Message:** `feat(app): support per-tag icons and icon-only Tags display`
 
-[ ] 4. **Verify filtering/highlighting parity across display modes**
+[x] 4. **Verify filtering/highlighting parity across display modes**
 - **Files:** `app/src/components/FilterPanel.tsx` (only if the `Tag.icon` type
   change breaks compilation), `app/src/components/FilterPanel.parity.test.ts`
   (new, or extend `FilterPanel.integration.test.ts`)
