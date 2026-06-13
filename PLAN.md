@@ -164,7 +164,7 @@ These are decided once here so individual tasks stay short:
     `colorClasses` map (guard against leftover hex) — assert each color ∈ the named set.
 - **Commit Message:** `data(content-management-systems): icon glyphs for database & framework tags`
 
-[ ] 4. **data: icon glyphs for `website-hosting-providers`**
+[x] 4. **data: icon glyphs for `website-hosting-providers`**
 - **Files:** `data/website-hosting-providers/attributes.json`,
   `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.website-hosting-providers.test.ts` (new)

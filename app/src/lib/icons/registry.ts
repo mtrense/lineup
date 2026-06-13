@@ -12,6 +12,12 @@ import { faLinux } from "@fortawesome/free-brands-svg-icons";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
 import { faWindows } from "@fortawesome/free-brands-svg-icons";
 import { faAndroid } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGitlab } from "@fortawesome/free-brands-svg-icons";
+import { faBitbucket } from "@fortawesome/free-brands-svg-icons";
+import { faNode } from "@fortawesome/free-brands-svg-icons";
+import { faAngular } from "@fortawesome/free-brands-svg-icons";
+import { faVuejs } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
@@ -41,6 +47,8 @@ import nuxtjsSvg from "devicon/icons/nuxtjs/nuxtjs-original.svg";
 import gatsbySvg from "devicon/icons/gatsby/gatsby-original.svg";
 import astroSvg from "devicon/icons/astro/astro-original.svg";
 import svelteSvg from "devicon/icons/svelte/svelte-original.svg";
+import rubySvg from "devicon/icons/ruby/ruby-original.svg";
+import viteSvg from "devicon/icons/vite/vite-original.svg";
 
 // ---- Types ----
 
@@ -69,6 +77,14 @@ const faRegistry: Record<string, IconDefinition> = {
   apple: faApple,
   windows: faWindows,
   android: faAndroid,
+  github: faGithub,
+  gitlab: faGitlab,
+  bitbucket: faBitbucket,
+  node: faNode,
+  nodejs: faNode,
+  angular: faAngular,
+  vuejs: faVuejs,
+  vue: faVuejs,
   // solid
   code: faCode,
   globe: faGlobe,
@@ -111,6 +127,9 @@ const deviconRegistry: Record<string, string> = {
   gatsby: gatsbySvg,
   astro: astroSvg,
   svelte: svelteSvg,
+  ruby: rubySvg,
+  vite: viteSvg,
+  vitejs: viteSvg,
 };
 
 // ---- Resolver ----
