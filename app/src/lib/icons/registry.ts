@@ -16,6 +16,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGitlab } from "@fortawesome/free-brands-svg-icons";
 import { faBitbucket } from "@fortawesome/free-brands-svg-icons";
 import { faNode } from "@fortawesome/free-brands-svg-icons";
+import { faReact } from "@fortawesome/free-brands-svg-icons";
 import { faAngular } from "@fortawesome/free-brands-svg-icons";
 import { faVuejs } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
@@ -49,6 +50,7 @@ import astroSvg from "devicon/icons/astro/astro-original.svg";
 import svelteSvg from "devicon/icons/svelte/svelte-original.svg";
 import rubySvg from "devicon/icons/ruby/ruby-original.svg";
 import viteSvg from "devicon/icons/vite/vite-original.svg";
+import solidjsSvg from "devicon/icons/solidjs/solidjs-original.svg";
 
 // ---- Types ----
 
@@ -82,6 +84,7 @@ const faRegistry: Record<string, IconDefinition> = {
   bitbucket: faBitbucket,
   node: faNode,
   nodejs: faNode,
+  react: faReact,
   angular: faAngular,
   vuejs: faVuejs,
   vue: faVuejs,
@@ -130,6 +133,8 @@ const deviconRegistry: Record<string, string> = {
   ruby: rubySvg,
   vite: viteSvg,
   vitejs: viteSvg,
+  solidjs: solidjsSvg,
+  solid: solidjsSvg,
 };
 
 // ---- Resolver ----

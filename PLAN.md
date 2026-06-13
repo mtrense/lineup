@@ -194,7 +194,7 @@ These are decided once here so individual tasks stay short:
   - `expectAllIconsResolve(vt)` passes for all three attributes.
 - **Commit Message:** `data(website-hosting-providers): icon glyphs for git, runtime & framework tags`
 
-[ ] 5. **data: icon glyphs for `rich-text-editors` framework**
+[x] 5. **data: icon glyphs for `rich-text-editors` framework**
 - **Files:** `data/rich-text-editors/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.rich-text-editors.test.ts` (new)
 - **Description:** `framework` (Vanilla JS, React, Vue, Angular, Svelte, Solid) is the
