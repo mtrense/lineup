@@ -11,6 +11,7 @@ import { faJs } from "@fortawesome/free-brands-svg-icons";
 import { faLinux } from "@fortawesome/free-brands-svg-icons";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
 import { faWindows } from "@fortawesome/free-brands-svg-icons";
+import { faAndroid } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
@@ -58,6 +59,7 @@ const faRegistry: Record<string, IconDefinition> = {
   linux: faLinux,
   apple: faApple,
   windows: faWindows,
+  android: faAndroid,
   // solid
   code: faCode,
   globe: faGlobe,

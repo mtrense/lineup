@@ -113,7 +113,7 @@ These are decided once here so individual tasks stay short:
     and re-pins the existing demo wiring.
 - **Commit Message:** `test(app): add shared helper for icon-attribute data tests`
 
-[ ] 2. **data: icon glyphs for `audio-transcription` platforms**
+[x] 2. **data: icon glyphs for `audio-transcription` platforms**
 - **Files:** `data/audio-transcription/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.audio-transcription.test.ts` (new)
 - **Description:** The `platforms` Tags attribute (macOS, Windows, iOS, Android, Web,
