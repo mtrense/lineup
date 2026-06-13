@@ -83,7 +83,7 @@ These are decided once here so individual tasks stay short:
 
 ## Tasks
 
-[ ] 1. **Shared test helper for icon-attribute data tests**
+[x] 1. **Shared test helper for icon-attribute data tests**
 - **Files:** `app/src/lib/icons/iconAttribute.testutil.ts` (new)
 - **Description:** Factor out the boilerplate that every per-type icon test repeats
   (load `attributes.json`, locate a Tags attribute by group + id, assert it is a tags
