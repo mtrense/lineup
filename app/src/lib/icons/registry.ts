@@ -59,6 +59,7 @@ import debianSvg from "devicon/icons/debian/debian-plain.svg";
 import fedoraSvg from "devicon/icons/fedora/fedora-plain.svg";
 import raspberrypiSvg from "devicon/icons/raspberrypi/raspberrypi-original.svg";
 import opensuseSvg from "devicon/icons/opensuse/opensuse-original.svg";
+import luaSvg from "devicon/icons/lua/lua-original.svg";
 
 // ---- Types ----
 
@@ -151,6 +152,7 @@ const deviconRegistry: Record<string, string> = {
   fedora: fedoraSvg,
   raspberrypi: raspberrypiSvg,
   opensuse: opensuseSvg,
+  lua: luaSvg,
 };
 
 // ---- Resolver ----

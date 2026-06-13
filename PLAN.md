@@ -285,7 +285,7 @@ These are decided once here so individual tasks stay short:
   - `expectAllIconsResolve(vt)` passes (only asserts the tags that *have* icons).
 - **Commit Message:** `data(sbc): icon glyphs for Linux distro tags`
 
-[ ] 10. **data: icon glyphs for `rust-scripting` language family**
+[x] 10. **data: icon glyphs for `rust-scripting` language family**
 - **Files:** `data/rust-scripting/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.rust-scripting.test.ts` (new)
 - **Description:** `language-family` (Custom, Lua-like, JavaScript-like, Rust-like,
