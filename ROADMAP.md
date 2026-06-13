@@ -473,7 +473,7 @@ Comparisons are easier to scan when categorical values carry recognizable marks 
 
 ## Milestone 17: Apply Icon Glyphs Across Comparison Data
 
-**Status:** open
+**Status:** in progress
 
 ### Value / Impact
 The icon capability from Milestone 16 is only useful once the real comparisons adopt it. This milestone is a deliberate sweep: explore each comparison type for attributes whose values would read better as glyphs (Platforms/OS support, programming language, license, package manager, supported databases, etc.), then update that type's `attributes.json` (and candidate files where warranted) to use icon-bearing tags. The work is itemized per comparison so it can be split into independent, individually committable tasks during break-down.
