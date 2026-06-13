@@ -50,19 +50,19 @@ export function TagsValue({
         const hasIcon = Boolean(tag?.icon);
 
         if (display === "icon" && hasIcon) {
-          // Icon-only mode: show glyph with accessible label + tooltip
+          // Icon-only mode: glyph stands alone with no colored chip behind it
           return (
             <Tooltip key={tagId}>
               <TooltipTrigger asChild>
                 <span
-                  className={`inline-flex items-center justify-center rounded-md px-2 py-0.5 text-xs font-medium ${colorClass}`}
+                  className="inline-flex items-center justify-center text-foreground"
                   aria-label={displayValue}
                   tabIndex={0}
                 >
                   <Icon
                     name={tag!.icon!.name}
                     pack={tag!.icon!.pack}
-                    className="h-4 w-4"
+                    className="h-5 w-5"
                   />
                 </span>
               </TooltipTrigger>

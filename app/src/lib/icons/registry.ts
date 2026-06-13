@@ -101,6 +101,15 @@ export function resolveIcon(ref: IconRef): ResolvedIcon | null {
   const name = ref.name;
 
   if (pack === "devicon") {
+    // Prefer a FontAwesome brand glyph when one exists: it fills with
+    // `currentColor`, so it stays legible on both light and dark themes,
+    // whereas a Devicon <img> carries baked-in colors that can vanish against
+    // a matching background (e.g. Rust's solid-black logo on a dark theme).
+    // Logos without an FA equivalent fall back to the full-color Devicon image.
+    const fa = faRegistry[name];
+    if (fa != null) {
+      return { kind: "fa", def: fa };
+    }
     const url = deviconRegistry[name];
     return url != null ? { kind: "svg", url } : null;
   }

@@ -5,7 +5,7 @@
 
 ## Re-iteration: Milestone 16 — Icon Glyphs for Attribute Values
 
-[ ] 1. **Drop the colored pill background for icon-only tags that render a glyph**
+[x] 1. **Drop the colored pill background for icon-only tags that render a glyph**
 - **Files:** `app/src/components/values/TagsValue.tsx`,
   `app/src/components/values/TagsValue.test.tsx`
 - **Description:** In `display: "icon"` mode, a tag that has a glyph still renders

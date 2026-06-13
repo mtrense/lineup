@@ -16,6 +16,11 @@ interface IconProps {
  * - When `title` is provided, it is applied as `aria-label` (FA) or `alt` (img)
  *   so that a bare glyph remains accessible.
  * - Unknown (pack, name) pairs render nothing and do not throw.
+ *
+ * Tech logos that have a FontAwesome brand glyph (e.g. JavaScript, Rust) are
+ * resolved to that monochrome glyph by the registry — it fills with `currentColor`
+ * and therefore stays visible across light and dark themes. Logos without an FA
+ * equivalent fall back to the full-color Devicon `<img>`.
  */
 export function Icon({ name, pack, title, className }: IconProps) {
   const resolved = resolveIcon({ name, pack });

@@ -94,6 +94,47 @@ describe("TagsValue", () => {
       void allText;
     });
 
+    it("renders the icon wrapper with no colored pill background", () => {
+      render(
+        <TagsValue
+          value={["rust"]}
+          tags={[tagWithIcon]}
+          defaultColor="gray"
+          display="icon"
+        />
+      );
+      const wrapper = screen.getByLabelText("Rust");
+      // No bg-* class applied — glyph stands on its own without a chip
+      expect(wrapper.className).not.toMatch(/\bbg-/);
+    });
+
+    it("icon wrapper uses theme foreground color so brand glyphs stay visible", () => {
+      render(
+        <TagsValue
+          value={["rust"]}
+          tags={[tagWithIcon]}
+          defaultColor="gray"
+          display="icon"
+        />
+      );
+      const wrapper = screen.getByLabelText("Rust");
+      // currentColor-filled FA glyphs inherit this, adapting to light/dark theme
+      expect(wrapper.className).toMatch(/\btext-foreground\b/);
+    });
+
+    it("icon wrapper is keyboard focusable", () => {
+      render(
+        <TagsValue
+          value={["rust"]}
+          tags={[tagWithIcon]}
+          defaultColor="gray"
+          display="icon"
+        />
+      );
+      const wrapper = screen.getByLabelText("Rust");
+      expect(wrapper).toHaveAttribute("tabindex", "0");
+    });
+
     it("falls back to the text label when the tag has no icon", () => {
       render(
         <TagsValue
@@ -107,6 +148,21 @@ describe("TagsValue", () => {
       expect(screen.getByText("Other")).toBeInTheDocument();
       // No icon rendered
       expect(document.querySelector("svg")).toBeNull();
+    });
+
+    it("fallback tag (no icon) still renders inside a colored pill", () => {
+      render(
+        <TagsValue
+          value={["other"]}
+          tags={[tagWithoutIcon]}
+          defaultColor="gray"
+          display="icon"
+        />
+      );
+      const spans = Array.from(document.querySelectorAll("span"));
+      const pill = spans.find((s) => s.textContent === "Other");
+      expect(pill).toBeDefined();
+      expect(pill!.className).toMatch(/\bbg-/);
     });
   });
 

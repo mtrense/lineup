@@ -100,3 +100,28 @@ describe("spa-web-frameworks demo: primary-language icon tags", () => {
     }
   });
 });
+
+describe("resolveIcon: FontAwesome preference for devicon tech logos", () => {
+  it("prefers the FA brand glyph for a devicon name that has one (rust)", () => {
+    // Rust's Devicon logo is solid black and vanishes on dark themes; the FA
+    // brand glyph fills with currentColor and stays visible. The registry should
+    // hand back the FA definition even though the ref asks for the devicon pack.
+    const resolved = resolveIcon({ name: "rust", pack: "devicon" });
+    expect(resolved?.kind).toBe("fa");
+  });
+
+  it("prefers the FA brand glyph for javascript (devicon pack)", () => {
+    const resolved = resolveIcon({ name: "javascript", pack: "devicon" });
+    expect(resolved?.kind).toBe("fa");
+  });
+
+  it("falls back to the Devicon image when no FA glyph exists (typescript)", () => {
+    const resolved = resolveIcon({ name: "typescript", pack: "devicon" });
+    expect(resolved?.kind).toBe("svg");
+  });
+
+  it("falls back to the Devicon image for go", () => {
+    const resolved = resolveIcon({ name: "go", pack: "devicon" });
+    expect(resolved?.kind).toBe("svg");
+  });
+});
