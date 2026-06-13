@@ -247,7 +247,7 @@ These are decided once here so individual tasks stay short:
   - npm and shell/script tags carry icons; `expectAllIconsResolve(vt)` passes.
 - **Commit Message:** `data(ai-workflows): icon glyphs for install-mechanism tags`
 
-[ ] 8. **data: icon glyphs for `ai-coding-agents` interface**
+[x] 8. **data: icon glyphs for `ai-coding-agents` interface**
 - **Files:** `data/ai-coding-agents/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.ai-coding-agents.test.ts` (new)
 - **Description:** `interface` (CLI, IDE/Editor, Web, …) maps to UI glyphs: CLI →

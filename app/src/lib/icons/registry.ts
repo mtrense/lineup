@@ -25,6 +25,7 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 import { faTerminal } from "@fortawesome/free-solid-svg-icons";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 
 // --- Devicon SVG imports (resolved to asset URL by Vite, stub string in Vitest) ---
 import rustSvg from "devicon/icons/rust/rust-original.svg";
@@ -97,6 +98,7 @@ const faRegistry: Record<string, IconDefinition> = {
   server: faServer,
   database: faDatabase,
   terminal: faTerminal,
+  desktop: faDesktop,
 };
 
 // ---- Devicon registry ----
