@@ -372,3 +372,11 @@ Users should be able to:
    - **Bosch AMPShare** (Bosch Professional 18V, uses ProCORE batteries)
    - **Metabo CAS** (Metabo 18V LiHD batteries)
    These are **not cross-compatible**. Always verify current membership as brands may join/leave. Note that Metabo HPT (formerly Hitachi) is unrelated to Metabo (German).
+
+---
+
+**Icon audit (Milestone 17):** No icon-worthy attribute. The Tags attributes here describe
+physical product taxonomy (e.g. tool-category, motor-type, markets) rather than
+brand/technology/OS logos. Brand names (Milwaukee, DeWalt, etc.) appear in candidate names,
+not as tag values. There are no recognizable Free/Devicon glyphs that map cleanly to these
+taxonomic tags. Revisit if a future attribute introduces tech/brand values.

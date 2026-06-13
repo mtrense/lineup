@@ -285,3 +285,11 @@ Users should be able to:
 11. **Hot reload varies widely** — Slint reloads `.slint` files; Dioxus has a hot-reload mode for RSX; most imperative-Rust frameworks require a recompile. Classify precisely.
 
 12. **Dioxus targets overlap comparisons** — When researching Dioxus here, focus on `dioxus-desktop` and `dioxus-mobile`. Cross-link to the SPA framework entry in comments where relevant.
+
+---
+
+**Icon audit (Milestone 17):** No icon-worthy attribute. The Tags attributes here classify
+renderer/binding-target and async-runtime taxonomy (e.g. rendering-backend, paradigm,
+platform-support) using terms like "GPU/wgpu", "native toolkit", "webview" that have no
+recognizable Free/Devicon glyphs. Revisit if a future attribute introduces tech/brand
+values that map to available logos.

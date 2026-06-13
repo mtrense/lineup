@@ -252,4 +252,11 @@ For databases with SQL/PostgreSQL/MySQL wire compatibility, note if standard dri
 
 6. **Performance disclaimers**: Always add source/comment for performance figures. Benchmarks are notoriously context-dependent.
 
+---
+
+**Icon audit (Milestone 17):** No icon-worthy attribute. The Tags attributes here capture
+driver-support levels and data-model taxonomy (e.g. consistency-model, data-model,
+wire-protocol) rather than brand/technology logos, so there is no recognizable glyph to
+attach. Revisit if a future attribute introduces tech/brand values.
+
 7. **Commercial bias**: Vendor documentation emphasizes strengths. Cross-reference with independent sources, especially for limitations.

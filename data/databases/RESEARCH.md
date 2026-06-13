@@ -123,4 +123,12 @@ This document provides guidelines for researching and assessing database systems
 2. **Cite sources**: Every value should have at least one source URL
 3. **Admit uncertainty**: Use `null` for values that cannot be reliably determined
 4. **Date sensitivity**: Some values (GitHub stars, rankings) change frequently - note the date in comments
+
+---
+
+**Icon audit (Milestone 17):** No icon-worthy attribute. The Tags attributes here are
+categorical taxonomy (e.g. database-type, query-language) rather than brand/technology/OS
+logos, so there is no recognizable glyph to attach. All candidates already share a uniform
+`faDatabase` icon at the candidate level. Revisit if a future attribute introduces
+tech/brand values.
 5. **Version specificity**: Features may vary by version - document which version was assessed

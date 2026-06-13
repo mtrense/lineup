@@ -303,7 +303,7 @@ These are decided once here so individual tasks stay short:
     passes.
 - **Commit Message:** `data(rust-scripting): icon glyphs for language-family tags`
 
-[ ] 11. **docs: record "no icon-worthy attribute" verdict for the remaining types**
+[x] 11. **docs: record "no icon-worthy attribute" verdict for the remaining types**
 - **Files:** `data/databases/RESEARCH.md`, `data/distributed-databases/RESEARCH.md`,
   `data/rust-gui/RESEARCH.md`, `data/rust-embedded-databases/RESEARCH.md`,
   `data/battery-powertools/RESEARCH.md`

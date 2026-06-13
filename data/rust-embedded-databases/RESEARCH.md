@@ -247,3 +247,11 @@ Users should be able to:
 - "Async support" - verify it's not just sync API wrapped in spawn_blocking
 - "Pure Rust" - check entire dependency tree, not just direct dependencies
 - "Production ready" - look for actual production use reports, not just claims
+
+---
+
+**Icon audit (Milestone 17):** No icon-worthy attribute. The only Tags attribute that
+could carry a glyph is the "Pure Rust" boolean-like tag — but it applies to only a subset
+of candidates and the Rust logo is already used at the comparison level. Partial coverage
+on a single-value tag offers negligible visual benefit. Revisit if a future attribute
+introduces broader tech/brand values.
