@@ -229,7 +229,7 @@ These are decided once here so individual tasks stay short:
     carry icons; `expectAllIconsResolve(vt)` passes.
 - **Commit Message:** `data(ui-component-libraries): icon glyphs for framework tags`
 
-[ ] 7. **data: icon glyphs for `ai-workflows` install mechanism**
+[x] 7. **data: icon glyphs for `ai-workflows` install mechanism**
 - **Files:** `data/ai-workflows/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.ai-workflows.test.ts` (new)
 - **Description:** `install-mechanism` (npm, pip, cargo, shell script, …) maps cleanly

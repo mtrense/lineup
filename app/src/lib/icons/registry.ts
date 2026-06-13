@@ -19,10 +19,12 @@ import { faNode } from "@fortawesome/free-brands-svg-icons";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 import { faAngular } from "@fortawesome/free-brands-svg-icons";
 import { faVuejs } from "@fortawesome/free-brands-svg-icons";
+import { faNpm } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
+import { faTerminal } from "@fortawesome/free-solid-svg-icons";
 
 // --- Devicon SVG imports (resolved to asset URL by Vite, stub string in Vitest) ---
 import rustSvg from "devicon/icons/rust/rust-original.svg";
@@ -88,11 +90,13 @@ const faRegistry: Record<string, IconDefinition> = {
   angular: faAngular,
   vuejs: faVuejs,
   vue: faVuejs,
+  npm: faNpm,
   // solid
   code: faCode,
   globe: faGlobe,
   server: faServer,
   database: faDatabase,
+  terminal: faTerminal,
 };
 
 // ---- Devicon registry ----
