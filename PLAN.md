@@ -213,7 +213,7 @@ These are decided once here so individual tasks stay short:
   - `expectAllIconsResolve(vt)` passes.
 - **Commit Message:** `data(rich-text-editors): icon glyphs for framework tags`
 
-[ ] 6. **data: icon glyphs for `ui-component-libraries` framework**
+[x] 6. **data: icon glyphs for `ui-component-libraries` framework**
 - **Files:** `data/ui-component-libraries/attributes.json`, `app/src/lib/icons/registry.ts`,
   `app/src/lib/icons/icons.ui-component-libraries.test.ts` (new)
 - **Description:** `framework` (React, Vue, Angular, Svelte, Solid, Vanilla, Web
