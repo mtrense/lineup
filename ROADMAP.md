@@ -399,7 +399,7 @@ Users comparing candidates currently have no way to tell how fresh the data is. 
 
 ## Milestone 16: Icon Glyphs for Attribute Values
 
-**Status:** open
+**Status:** in progress
 
 ### Value / Impact
 Comparisons are easier to scan when categorical values carry recognizable marks instead of plain text — a row of OS logos reads faster than "Windows, macOS, Linux", and a Rust or Python glyph is recognized at a glance. Today this is impossible: the `icon-fontawesome` / `icon-emoji` value types render only a *placeholder* (`IconValue.tsx` loads no icon library), and categorical data like Platforms is stored as plain text tags. This milestone delivers a working icon capability so attribute values can show brand/tech glyphs, with FontAwesome as the default and Devicon where it fits tech logos better.
