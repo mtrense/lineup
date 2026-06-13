@@ -397,6 +397,85 @@ Users comparing candidates currently have no way to tell how fresh the data is. 
 
 ---
 
+## Milestone 16: Icon Glyphs for Attribute Values
+
+**Status:** open
+
+### Value / Impact
+Comparisons are easier to scan when categorical values carry recognizable marks instead of plain text — a row of OS logos reads faster than "Windows, macOS, Linux", and a Rust or Python glyph is recognized at a glance. Today this is impossible: the `icon-fontawesome` / `icon-emoji` value types render only a *placeholder* (`IconValue.tsx` loads no icon library), and categorical data like Platforms is stored as plain text tags. This milestone delivers a working icon capability so attribute values can show brand/tech glyphs, with FontAwesome as the default and Devicon where it fits tech logos better.
+
+### Outcome
+- FontAwesome is actually wired up (library loaded, not a CSS-class placeholder), and Devicon is available for technology/language logos.
+- The **Tags** value type is extended so each tag can carry an optional icon (FontAwesome or Devicon), rendered as a glyph alongside or instead of its label.
+- An `attributes.json` display option lets a Tags attribute render **icon-only**; when icon-only, the tag's text label is shown as a **tooltip** on hover/focus.
+- Tag **filtering is unchanged** — it still operates on the underlying tag values regardless of whether the cell displays a glyph, a label, or both.
+- Because the single `icon-fontawesome` / `icon-emoji` value types share the same glyph renderer, they begin rendering real icons too (no longer placeholders).
+- At least one comparison demonstrates the capability end-to-end (e.g. Platforms/OS shown as OS logos and/or a programming-language attribute shown as a brand logo).
+
+### Success Criteria
+- [ ] FontAwesome integration completed: `IconValue.tsx` renders real glyphs (placeholder comment and class-only approach removed), with the icon library/tree-shaking wired into the build.
+- [ ] Devicon support available for technology/language logos, selectable per icon (e.g. a `pack`/source indicator distinguishing FontAwesome vs Devicon).
+- [ ] `Tag` type extended with an optional icon (name + pack/source), documented in the CLAUDE.md schema.
+- [ ] `Tags` type gains a display option (e.g. `display: "icon"` / `iconOnly`) in `attributes.json` to render icon-only vs icon+label.
+- [ ] When a tag renders icon-only, its text value appears as an accessible tooltip (and as an `aria-label` for screen readers).
+- [ ] Existing tag filtering and highlighting continue to operate on tag values irrespective of icon/label display mode.
+- [ ] Existing single `icon-fontawesome` and `icon-emoji` value types render real glyphs (regression of the former placeholder).
+- [ ] CLAUDE.md updated to document the new tag `icon` field, the Tags `display`/icon-only option, and the FontAwesome-vs-Devicon source convention.
+- [ ] One comparison type updated as a working demo (Platforms/OS as logos and/or a language attribute as a logo), visible in the running app.
+- [ ] Test coverage for: glyph rendering, icon-only tooltip/aria-label, and filtering parity between display modes.
+
+### Notes
+- **Icon source policy:** FontAwesome is the default; use Devicon for attributes where it is better suited (programming languages, frameworks, databases, tooling logos). The chosen icon set must be expressible per-tag in `attributes.json`.
+- **Tooltip reuse:** prefer reusing the existing expandable-row / tooltip affordances rather than reintroducing a separate hover-tooltip system, to stay consistent with Milestone 10's UX direction.
+- **Bundle size:** import individual icons / tree-shake rather than loading an entire icon CSS bundle, to keep the static build lean.
+- **Data lives on tag definitions:** icons attach to tag definitions in `attributes.json`, so candidate files that already reference tag ids inherit the glyph without per-candidate edits. Applying icons across the existing comparisons is deferred to Milestone 17.
+- **Accessibility:** every icon-only value must remain legible to assistive tech via label/aria text.
+
+---
+
+## Milestone 17: Apply Icon Glyphs Across Comparison Data
+
+**Status:** open
+
+### Value / Impact
+The icon capability from Milestone 16 is only useful once the real comparisons adopt it. This milestone is a deliberate sweep: explore each comparison type for attributes whose values would read better as glyphs (Platforms/OS support, programming language, license, package manager, supported databases, etc.), then update that type's `attributes.json` (and candidate files where warranted) to use icon-bearing tags. The work is itemized per comparison so it can be split into independent, individually committable tasks during break-down.
+
+### Outcome
+- Every active comparison type has been audited for icon-applicable attributes, and the high-value ones now render glyphs (icon-only or icon+label) instead of plain text.
+- Updates land in each type's `attributes.json` (tag icon mappings and display options) and, where the audit surfaces values that should become tags or new icon attributes, in the relevant candidate JSON and `RESEARCH.md` files.
+- No comparison regresses: rendering, filtering, sorting, and highlighting continue to work.
+
+### Success Criteria
+- [ ] An audit pass identifies, per comparison type, which attributes benefit from icon glyphs (recorded so break-down can scope one task each).
+- [ ] Icon glyphs applied (attributes.json + candidate/RESEARCH.md as needed) for each active comparison type:
+  - [ ] ai-coding-agents
+  - [ ] ai-workflows
+  - [ ] audio-transcription
+  - [ ] battery-powertools
+  - [ ] content-management-systems
+  - [ ] databases
+  - [ ] distributed-databases
+  - [ ] rich-text-editors
+  - [ ] rust-embedded-databases
+  - [ ] rust-gui
+  - [ ] rust-scripting
+  - [ ] sbc
+  - [ ] spa-web-frameworks
+  - [ ] ui-component-libraries
+  - [ ] website-hosting-providers
+- [ ] Where the audit finds no icon-worthy attribute for a type, that is explicitly noted rather than silently skipped.
+- [ ] All updated comparisons render correctly in the running app with glyphs and working tooltips.
+- [ ] Filtering/sorting/highlighting verified unaffected on every touched comparison.
+
+### Notes
+- **Depends on Milestone 16** — the tag icon field, icon-only display option, and FontAwesome/Devicon rendering must exist first.
+- **One task per comparison** during break-down, so each type is an independent commit (`data(<type>): …`).
+- **Source policy carries over:** FontAwesome by default, Devicon for tech/language logos.
+- **Prefer tag-definition edits:** most changes live in `attributes.json` tag definitions; only touch candidate files when a value must become a tag/icon it wasn't before.
+- The `test` sample comparison and the inactive `paas-tools` directory (not registered in `data/index.json`) are out of scope.
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
