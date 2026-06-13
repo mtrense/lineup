@@ -113,8 +113,8 @@ Lineup supports various value types for attributes:
 | `text` | Free-form text | Description, license |
 | `boolean` | Yes/No values | Feature support flags |
 | `rating` | Star ratings or similar | Community rating |
-| `tags` | Labeled categories | Supported platforms |
-| `icon` | Icons or emojis | Logo, status indicator |
+| `tags` | Labeled categories; each tag can carry an icon and a Tags attribute can render label, icon-only (with accessible tooltip), or both | Supported platforms, primary language |
+| `icon` | Real glyphs via FontAwesome or Devicon (tree-shaken through an icon registry), plus emoji | Logo, language/OS badge |
 | `link` | Clickable URLs | Documentation, repository |
 
 ### Example Candidate File
