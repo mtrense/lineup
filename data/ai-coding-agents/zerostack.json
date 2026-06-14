@@ -2,7 +2,7 @@
   "name": "ZeroStack",
   "description": "Minimal, resource-efficient CLI AI coding agent written in Rust with multi-provider LLM support and configurable permission modes.",
   "url": "https://gi-dellav.github.io/zerostack/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Giuseppe Della Vedova (gi-dellav)",
@@ -116,6 +116,11 @@
       "value": false,
       "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack"],
       "comment": "Has WebFetch/WebSearch tools (via Exa) but cannot drive a browser/GUI to act and verify."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/docs/SUBAGENTS.md", "https://github.com/gi-dellav/zerostack"],
+      "comment": "Model-driven: the main agent calls a 'task' tool on its own initiative, spawning one parallel subagent per prompt (via tokio::spawn) to explore the codebase, without the user launching each. (Distinct from the separate user-launched --parallel flag for concurrent agents.) Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous"],
