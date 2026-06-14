@@ -2,7 +2,7 @@
   "name": "OpenAI Codex (CLI)",
   "description": "OpenAI's open-source terminal coding agent",
   "url": "https://github.com/openai/codex",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "OpenAI",
@@ -118,6 +118,11 @@
       "value": false,
       "source": ["https://developers.openai.com/codex/cli/features"],
       "comment": "The CLI has web search but no documented ability to drive a real browser/GUI to act and verify. Computer-use features appear in the separate Codex App, not the CLI; marked false for the CLI."
+    },
+    "autonomous-subagent-spawning": {
+      "value": false,
+      "source": ["https://developers.openai.com/codex/subagents"],
+      "comment": "Subagents exist (subagents-parallel-agents is true) but the docs state 'Codex only spawns a new agent when you explicitly ask it to do so' — delegation is user-initiated, not model-driven mid-task fan-out. False per the guideline. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
