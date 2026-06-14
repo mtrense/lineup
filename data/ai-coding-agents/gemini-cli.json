@@ -1,7 +1,7 @@
 {
   "name": "Gemini CLI",
   "description": "Google's open-source terminal agent",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Google",
@@ -115,6 +115,11 @@
       "value": false,
       "source": ["https://github.com/google-gemini/gemini-cli"],
       "comment": "Has web search/fetch (grounding) tools but does not drive a real browser/GUI to act and verify its own changes. Checked 2026-06-02."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://geminicli.com/docs/core/subagents/", "https://developers.googleblog.com/subagents-have-arrived-in-gemini-cli/"],
+      "comment": "Beyond explicit @agent invocation, the main agent autonomously delegates: its system prompt instructs it to route a task to an expert subagent when the task matches that subagent's description (model-driven automatic delegation), without the user invoking it. Subagents are exposed to the main agent as tools it can call mid-task. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous"],
