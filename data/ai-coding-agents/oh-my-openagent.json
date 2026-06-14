@@ -2,7 +2,7 @@
   "name": "Oh My OpenAgent",
   "description": "Open-source agent harness (formerly oh-my-opencode) that orchestrates multiple specialized agents and models on top of OpenCode (Ultimate Edition) and Codex CLI (Light Edition) for autonomous work on complex codebases",
   "url": "https://omo.dev/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "code-yeongyu (Sisyphus Labs)",
@@ -117,6 +117,11 @@
       "value": true,
       "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent"],
       "comment": "Ships a Playwright skill enabling the agent to drive a browser to verify changes."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://omo.dev/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/guide/orchestration.md"],
+      "comment": "Model-driven fan-out: the Sisyphus orchestrator's 'Smart Delegation' routes to specialist agents without user input, and sub-orchestrators spawn parallel workers on their own initiative (e.g. Hephaestus fires 2-5 parallel explore agents before writing code; Prometheus auto-engages Metis/Momus quality gates). 'ultrawork' triggers full-autonomy delegation with minimal prompting. subagents-parallel-agents is true, so this gates true. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
