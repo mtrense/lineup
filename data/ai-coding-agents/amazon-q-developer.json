@@ -2,7 +2,7 @@
   "name": "Amazon Q Developer",
   "description": "AWS's IDE/CLI coding agent",
   "url": "https://aws.amazon.com/q/developer/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Amazon Web Services (AWS)",
@@ -141,6 +141,14 @@
       "value": false,
       "source": ["https://aws.amazon.com/q/developer/features/"],
       "comment": "No documented ability for the agent to drive a real browser/GUI to act and verify its own changes."
+    },
+    "autonomous-subagent-spawning": {
+      "value": false,
+      "source": [
+        "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-custom-agents-overview.html",
+        "https://aws.amazon.com/blogs/opensource/introducing-cli-agent-orchestrator-transforming-developer-cli-tools-into-a-multi-agent-powerhouse/"
+      ],
+      "comment": "subagents-parallel-agents is false, so this is false per the Assessment Guideline. Custom agents are user-invoked profiles (q chat --agent <name>), not autonomous mid-task fan-out, and the multi-agent CLI Agent Orchestrator (CAO) is a separate user-configured open-source framework layered on top of Q CLI — explicitly not a built-in Q Developer capability. No model-driven delegation where Q itself decides to spawn subagents. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous"],
