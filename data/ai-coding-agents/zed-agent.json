@@ -3,7 +3,7 @@
   "description": "Agentic editing inside the Zed editor",
   "icon": "",
   "url": "https://zed.dev/agentic",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Zed Industries",
@@ -119,6 +119,11 @@
       "value": false,
       "source": ["https://zed.dev/docs/ai/agent-panel"],
       "comment": "No built-in browser/GUI-driving capability for the agent to navigate and verify changes; not documented."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://zed.dev/docs/ai/tools", "https://zed.dev/docs/ai/parallel-agents"],
+      "comment": "Zed ships a model-callable spawn_agent tool: 'Spawns a subagent with its own context window to perform a delegated task. Useful for running parallel investigations, completing self-contained tasks, or performing research where only the outcome matters.' The agent itself decides to delegate mid-task (each subagent inherits the parent's tool access), so this is model-driven fan-out, not just the user-launched parallel threads in the Threads Sidebar. Added ~v0.227 (subagent depth configurable). Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["inline-completion", "interactive-chat", "supervised-agent"],
