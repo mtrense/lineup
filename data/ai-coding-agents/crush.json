@@ -2,7 +2,7 @@
   "name": "Crush",
   "description": "Charm's open-source terminal coding agent (Go); multi-provider with LSP and MCP awareness.",
   "url": "https://github.com/charmbracelet/crush",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Charm",
@@ -114,6 +114,11 @@
       "value": false,
       "source": ["https://github.com/charmbracelet/crush"],
       "comment": "No built-in browser/GUI driving for self-verification; capability comes only via external MCP servers if added."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://github.com/charmbracelet/crush/blob/main/internal/agent/agent_tool.go", "https://deepwiki.com/charmbracelet/crush/6.7-agent-delegation-and-nested-tools"],
+      "comment": "Crush ships an 'agent' tool (internal/agent/agent_tool.go) the model itself calls to offload a task to a child SessionAgent (isSubAgent: true), plus an agentic_fetch research sub-agent. Spawning is model-driven, not user-invoked, so true per RESEARCH.md. Note (check 2026-06-14): this delegation capability post-dates this file's subagents-parallel-agents: null entry, which now appears stale (out of scope for this pass)."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous"],
