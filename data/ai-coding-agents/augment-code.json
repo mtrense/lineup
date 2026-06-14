@@ -2,7 +2,7 @@
   "name": "Augment Code",
   "description": "Codebase-context-focused agent across IDEs",
   "url": "https://www.augmentcode.com/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Augment (Augment Computing, Inc.)",
@@ -117,6 +117,11 @@
       "value": false,
       "source": ["https://docs.augmentcode.com/using-augment/agent"],
       "comment": "No documented capability to drive a real browser/GUI to act and verify its own changes."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/cli/subagents", "https://www.augmentcode.com/changelog/new-cli-subagents"],
+      "comment": "CLI subagents: beyond explicit user invocation ('Use the code-review agent...'), 'Augment will also automatically detect when a task is appropriate for a subagent and offer to use it', and subagents run in parallel with progress summarized in the main thread — model-driven mid-task delegation, not only user-launched. Distinct from the user-launched Remote Agents counted under subagents-parallel-agents. Note: the docs phrase auto-detection as 'offer to use it' (a human-confirmation nuance). Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
