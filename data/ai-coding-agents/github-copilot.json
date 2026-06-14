@@ -3,7 +3,7 @@
   "description": "The incumbent; agent mode plus completion across VS Code and JetBrains",
   "icon": "github",
   "url": "https://github.com/features/copilot",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "GitHub (Microsoft)",
@@ -142,6 +142,14 @@
       "value": true,
       "source": ["https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent"],
       "comment": "The cloud coding agent runs in its own environment and can use a Playwright-based browser tool (via MCP) to verify changes; capability is configuration-dependent. Checked 2026-06-02."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": [
+        "https://code.visualstudio.com/docs/copilot/agents/subagents",
+        "https://docs.github.com/en/copilot/how-tos/copilot-sdk/use-copilot-sdk/custom-agents"
+      ],
+      "comment": "Model-driven: subagents are 'agent-initiated, not directly invoked by users' — the main agent decides when context isolation helps and starts a subagent via the agent/runSubagent tool without the user typing a command. The SDK runtime also auto-delegates to a matching custom agent by intent (unless infer:false). User invocation is also possible but not required. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
