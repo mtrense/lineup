@@ -2,7 +2,7 @@
   "name": "JetBrains Junie",
   "description": "AI coding agent embedded in IntelliJ IDEA, PyCharm, WebStorm and other JetBrains IDEs; explores the project, plans, writes and tests code.",
   "url": "https://www.jetbrains.com/junie/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "JetBrains",
@@ -116,6 +116,11 @@
       "value": false,
       "source": ["https://junie.jetbrains.com/docs/junie-ide-plugin.html"],
       "comment": "No documented capability to drive a real browser/GUI to verify its own changes; MCP can add such tools but it is not built in."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://junie.jetbrains.com/docs/junie-cli-subagents.html"],
+      "comment": "Model-driven delegation: the main agent autonomously discovers all available subagents and selects/runs the relevant one by matching its name and description to the task. Docs state custom subagents cannot be invoked manually via slash commands; they are only called automatically through delegation. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
