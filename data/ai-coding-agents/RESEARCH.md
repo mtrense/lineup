@@ -75,6 +75,7 @@ Users should be able to:
 | **Planning Mode** | boolean | Has an explicit plan-then-execute or read-only planning phase. |
 | **Multimodal Input** | boolean | Accepts images as input — screenshots, mockups, design files (Figma-to-code, screenshot-driven debugging). |
 | **Browser / Computer Use** | boolean | Can drive a real browser or GUI to verify its own changes (navigate, click, run e2e checks, screenshot the result). |
+| **Autonomous Subagent Spawning** | boolean | `true` if the agent decides to spawn subagents on its own initiative (model-driven delegation), not only when the user explicitly invokes one. |
 
 ### 5. Interaction & Autonomy Model
 
@@ -187,6 +188,7 @@ How the agent gates actions and isolates execution — the underlying permission
 - **Autonomous Task Execution**: `true` only if the agent meaningfully chains steps (edit → run → fix → repeat) toward a goal with minimal per-step prompting. A tool that edits one diff per prompt is multi-file but not autonomous.
 - **MCP Support**: `true` only for shipped/documented Model Context Protocol support, not a roadmap promise.
 - **Subagents / Parallel Agents**: `true` if the agent can spawn sub-tasks or run multiple agents/workers. Background "cloud" task runners that fan out count; a single linear loop does not.
+- **Autonomous Subagent Spawning**: `true` only if the agent *itself* decides to delegate to subagents mid-task without the user explicitly invoking them (model-driven fan-out). A tool where subagents exist but must be launched by the user (a slash command, a manual "run these in parallel" action) is `false`. This is the model-driven counterpart to **Subagents / Parallel Agents**, which only asks whether the capability exists at all; mark `false`/`null` here when that attribute is `false`.
 - **Codebase Indexing**: `true` for a built semantic index / embeddings store. Reading files on demand into context is *not* indexing — note the distinction in the comment.
 - **Project Memory Files**: List every repo-resident instruction file the agent auto-loads (`agents-md`, `claude-md`, `cursorrules`, `copilot-instructions`). Use `custom` for a vendor-specific filename not in the list, and `none` only if the agent has no auto-loaded project-file convention at all. This is the always-on memory surface; distinct from `Auto Memory` (which the agent writes itself).
 - **Memory Scopes**: Mark each level at which the user can place memory/rules. `enterprise` = org/admin-managed policy; `user` = per-user global config; `project` = per-repo; `folder` = per-subdirectory/nested. Only tag a scope the product genuinely supports, not one you assume.
