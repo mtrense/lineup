@@ -2,7 +2,7 @@
   "name": "OpenHands",
   "description": "Open-source autonomous agent platform (formerly OpenDevin) that completes whole engineering tasks across a codebase via CLI and web.",
   "url": "https://www.openhands.dev/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "All Hands AI",
@@ -117,6 +117,11 @@
       "value": true,
       "source": ["https://www.openhands.dev/", "https://arxiv.org/abs/2407.16741"],
       "comment": "Agents can use the web/browser as part of their action space."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://docs.openhands.dev/sdk/guides/agent-delegation", "https://arxiv.org/html/2511.03690v1"],
+      "comment": "DelegateTool exposes spawn/delegate to the LLM, so the agent itself decides mid-task when to fan out work to independent sub-agents (model-driven, parallel via threads). Caveat: the delegation tool is opt-in — the developer must add it to the agent's tool list; it is not enabled by default. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous", "async-background"],
