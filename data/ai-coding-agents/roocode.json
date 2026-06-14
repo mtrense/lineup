@@ -2,7 +2,7 @@
   "name": "RooCode",
   "description": "Open-source autonomous agent extension (Cline fork lineage)",
   "url": "https://github.com/RooCodeInc/Roo-Code",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Roo Code, Inc.",
@@ -118,6 +118,11 @@
       "value": true,
       "source": ["https://docs.roocode.com/advanced-usage/local-models"],
       "comment": "Inherits Cline-lineage browser tool; can drive a browser to act/verify when used with a capable model."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://roocodeinc.github.io/Roo-Code/features/boomerang-tasks", "https://roocodeinc.github.io/Roo-Code/basic-usage/using-modes"],
+      "comment": "In Orchestrator (Boomerang) mode the LLM itself analyzes the task, decides on decomposition, and spawns subtasks via the new_task tool delegating to other modes — model-driven fan-out, not user-authored subtasks. Subtask creation is gated by per-action approval by default (auto-approvable via the subtasks category), but the delegation decision is the agent's. User selects the mode; the fan-out within it is autonomous. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous"],
