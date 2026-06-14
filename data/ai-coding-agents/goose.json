@@ -2,7 +2,7 @@
   "name": "Goose",
   "description": "Open-source, on-machine AI agent (CLI and desktop, Rust) under the Linux Foundation's Agentic AI Foundation; multi-provider and MCP-native.",
   "url": "https://block.github.io/goose/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Block",
@@ -127,6 +127,11 @@
       "value": true,
       "source": ["https://blog.marcnuri.com/goose-on-machine-ai-agent-cli-introduction", "https://goose-docs.ai/"],
       "comment": "Can drive a real browser via the Playwright/Computer-Controller MCP extensions (navigate, click, screenshot) rather than only fetching text."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://www.nickyt.co/blog/advent-of-ai-day-11-goose-subagents-2n2/", "https://dev.to/blockopensource/how-to-choose-between-subagents-and-subrecipes-in-goose-553h"],
+      "comment": "Per the official subagents guide, you ask Goose to delegate in natural language and 'Goose automatically decides when to spawn subagents and handles their lifecycle' — the model chooses whether and how many subagents to fan out (e.g. 'build a task app doing these 3 tasks in parallel' → Goose spawns three independent instances) rather than the user launching each one via a fixed command. Model-driven delegation, though prompt-encouraged rather than fully unsolicited. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["interactive-chat", "supervised-agent", "autonomous"],
