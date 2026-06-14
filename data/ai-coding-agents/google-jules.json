@@ -2,7 +2,7 @@
   "name": "Google Jules",
   "description": "Google's asynchronous autonomous coding agent",
   "url": "https://jules.google/",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Google",
@@ -117,6 +117,11 @@
       "value": false,
       "source": ["https://jules.google/"],
       "comment": "Can visualize web-app output but no documented capability to drive a real browser/GUI to verify its own changes."
+    },
+    "autonomous-subagent-spawning": {
+      "value": false,
+      "source": ["https://jules.google/docs/", "https://machinelearningmastery.com/practical-agentic-coding-with-google-jules/"],
+      "comment": "Jules runs as a single linear agent per task (plan -> edit -> test -> PR in one VM); its parallelism comes only from the user launching multiple concurrent tasks (3 free / 15 Pro / 60 Ultra) or an external skill dispatching separate Jules tasks, not from the agent deciding mid-task to spawn subagents. No documented model-driven in-task delegation. (Distinct from Gemini CLI, which does have autonomous subagents.) Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["autonomous", "async-background"],
