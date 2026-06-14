@@ -3,7 +3,7 @@
   "description": "Agentic IDE (formerly Codeium) with \"Cascade\" flow",
   "icon": "",
   "url": "https://windsurf.com",
-  "lastVerified": "2026-06-12",
+  "lastVerified": "2026-06-14",
   "values": {
     "developer": {
       "value": "Cognition (formerly Codeium / Exafunction)",
@@ -118,6 +118,11 @@
       "value": true,
       "source": ["https://windsurf.com/editor"],
       "comment": "Windsurf Previews renders the website live in the IDE; the user can click any element and Cascade reshapes it, letting the agent act on and verify the rendered UI."
+    },
+    "autonomous-subagent-spawning": {
+      "value": true,
+      "source": ["https://docs.devin.ai/cli/subagents", "https://www.digitalapplied.com/blog/windsurf-becomes-devin-desktop-ide-migration-2026"],
+      "comment": "The current default agent (Devin Local, active in Devin Desktop / the former Windsurf since 2026-06-02; the legacy Cascade agent is EOL 2026-07-01) supports model-driven subagent delegation: per the official docs, 'You can ask the agent to use subagents explicitly ... or the agent may decide to delegate on its own when it determines a task would benefit from independent work.' Subagents run in parallel and report back to the parent. Note the older Cascade flow only had a continuous background planning agent plus user-click delegation to the Devin cloud agent (not autonomous fan-out), so this is true on the strength of the now-default Devin Local agent. Checked 2026-06-14."
     },
     "operating-mode": {
       "value": ["inline-completion", "interactive-chat", "supervised-agent", "autonomous", "async-background"],
