@@ -96,7 +96,7 @@
   - Sections render without depending on comparison data (resilient to empty grid).
 - **Commit Message:** `feat(app): add explanatory landing page sections and repo link`
 
-[ ] 5. SVG tile generator skill
+[x] 5. SVG tile generator skill
 - **Files:** `.claude/skills/generate-tile/SKILL.md` (new), `CLAUDE.md`
 - **Description:** Author a new skill that, given a comparison type id, generates one or more candidate `data/<type>/tile.svg` suggestions in the project's visual style (subtle, decorative, theme-neutral, low detail suited to a low-opacity background). Match the existing skill file structure exactly (YAML frontmatter: `name`, `description`, `model: opus`, `allowed-tools`, `argument-hint`; then a markdown body describing inputs, the style contract, where output lands — `data/<type>/tile.svg` — and how it relates to the loader/fallback from Task 2). Document the skill (name, args, output location) in the relevant guide section of `CLAUDE.md`.
 - **Architecture & Decisions:**

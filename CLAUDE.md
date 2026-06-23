@@ -401,6 +401,23 @@ When asked to research a candidate:
 4. Add the candidate to `data/<comparison-type>/index.json`
 5. Commit the gathered information with a commit message of "data(<comparison-type>): CANDIDATE <initial|refresh> <date-and-time> \n <summary or the gathered information>"
 
+### Tile Graphics
+
+Each comparison type may optionally have a `data/<type>/tile.svg` decorative background graphic. When present, it is rendered at low opacity behind the comparison tile on the landing page by the `TileBackground` component (`app/src/components/TileBackground.tsx`). When absent, the tile renders cleanly with no broken image or layout shift.
+
+#### Generating a tile
+
+Use `/generate-tile <comparison-type-id>` to create or regenerate `data/<type>/tile.svg`.
+
+**Style contract** (enforced by the skill):
+- `viewBox="0 0 200 200"` — square canvas.
+- `fill="currentColor"` on all elements — never hardcoded colours; inherits text colour and adapts to light/dark mode.
+- No `<text>` or `<tspan>` — text is illegible at `opacity-10`.
+- Low detail, bold shapes — fine linework disappears at the rendered opacity.
+- Under ~4 KB.
+
+After generating, run the app and verify legibility of the tile's title and description over the background in both light and dark mode.
+
 ## Code Conventions
 - Data files use JSON format
 - Candidate filenames should be lowercase, hyphenated (e.g., `postgresql.json`)
