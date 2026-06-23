@@ -5,54 +5,58 @@
  * build-time glob resolution. The module is re-imported after each mock to get
  * a fresh module with the right stub in place.
  */
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 // We stub the entire tiles module so import.meta.glob works outside Vite.
 // The real implementation uses import.meta.glob with a static literal pattern;
-// here we supply an equivalent resolved map directly.
+// here we supply an equivalent resolved map of raw SVG markup directly.
 
 vi.mock("./tiles", async () => {
-  // Simulate what import.meta.glob resolves to: a Record<path, url>
+  // Simulate what import.meta.glob({ query: "?raw" }) resolves to: a
+  // Record<path, svgSource>.
   const globResult: Record<string, string> = {
-    "../../../data/databases/tile.svg": "/assets/databases-tile.svg",
-    "../../../data/rust-gui/tile.svg": "/assets/rust-gui-tile.svg",
+    "../../../data/databases/tile.svg":
+      '<svg viewBox="0 0 200 200"><rect fill="currentColor"/></svg>',
+    "../../../data/rust-gui/tile.svg":
+      '<svg viewBox="0 0 200 200"><circle fill="currentColor"/></svg>',
   };
 
-  function getTileUrl(comparisonId: string): string | null {
+  function getTileSvg(comparisonId: string): string | null {
     const key = `../../../data/${comparisonId}/tile.svg`;
     return globResult[key] ?? null;
   }
 
-  return { getTileUrl };
+  return { getTileSvg };
 });
 
-import { getTileUrl } from "./tiles";
+import { getTileSvg } from "./tiles";
 
-describe("getTileUrl()", () => {
-  it("returns a URL string for a comparisonId that has a tile.svg", () => {
-    const url = getTileUrl("databases");
-    expect(url).toBeTruthy();
-    expect(typeof url).toBe("string");
+describe("getTileSvg()", () => {
+  it("returns SVG markup for a comparisonId that has a tile.svg", () => {
+    const svg = getTileSvg("databases");
+    expect(svg).toBeTruthy();
+    expect(typeof svg).toBe("string");
+    expect(svg).toContain("<svg");
   });
 
-  it("returns the correct asset URL for 'databases'", () => {
-    expect(getTileUrl("databases")).toBe("/assets/databases-tile.svg");
+  it("returns the raw SVG source for 'databases'", () => {
+    expect(getTileSvg("databases")).toContain("currentColor");
   });
 
-  it("returns a URL string for another comparisonId with a tile.svg (rust-gui)", () => {
-    expect(getTileUrl("rust-gui")).toBe("/assets/rust-gui-tile.svg");
+  it("returns SVG markup for another comparisonId with a tile.svg (rust-gui)", () => {
+    expect(getTileSvg("rust-gui")).toContain("<circle");
   });
 
   it("returns null for a comparisonId without a tile.svg", () => {
-    expect(getTileUrl("nonexistent")).toBeNull();
+    expect(getTileSvg("nonexistent")).toBeNull();
   });
 
   it("returns null for an empty string", () => {
-    expect(getTileUrl("")).toBeNull();
+    expect(getTileSvg("")).toBeNull();
   });
 
   it("returns null for a comparisonId that partially matches a path", () => {
     // 'data' alone should not match 'databases'
-    expect(getTileUrl("data")).toBeNull();
+    expect(getTileSvg("data")).toBeNull();
   });
 });

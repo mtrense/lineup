@@ -19,11 +19,15 @@ vi.mock("@/lib/data", () => ({
 }));
 
 vi.mock("@/lib/tiles", () => ({
-  getTileUrl: vi.fn(),
+  getTileSvg: vi.fn(),
 }));
 
 import { getGroupedComparisons } from "@/lib/data";
-import { getTileUrl } from "@/lib/tiles";
+import { getTileSvg } from "@/lib/tiles";
+
+// A minimal SVG stub standing in for a real tile's raw markup.
+const tileSvg = (id: string) =>
+  `<svg viewBox="0 0 200 200" data-tile="${id}"><rect fill="currentColor"/></svg>`;
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -110,7 +114,7 @@ const compMedia1 = makeComparison(
 
 describe("HomePage", () => {
   beforeEach(() => {
-    vi.mocked(getTileUrl).mockReturnValue(null);
+    vi.mocked(getTileSvg).mockReturnValue(null);
   });
 
   describe("group headings", () => {
@@ -175,9 +179,9 @@ describe("HomePage", () => {
       expect(screen.getByRole("link", { name: "Databases" })).toBeDefined();
     });
 
-    it("renders a TileBackground when a tile URL is available", () => {
-      vi.mocked(getTileUrl).mockImplementation((id) =>
-        id === "databases" ? "/assets/databases-tile.svg" : null
+    it("renders a TileBackground when tile SVG markup is available", () => {
+      vi.mocked(getTileSvg).mockImplementation((id) =>
+        id === "databases" ? tileSvg("databases") : null
       );
       vi.mocked(getGroupedComparisons).mockReturnValue([
         { group: groupDatabases, comparisons: [compDb1] },
@@ -185,28 +189,29 @@ describe("HomePage", () => {
 
       const { container } = renderHomePage();
 
-      // TileBackground renders an img with empty alt (decorative)
-      const img = container.querySelector("img[alt='']");
-      expect(img).not.toBeNull();
-      expect(img!.getAttribute("aria-hidden")).toBe("true");
+      // TileBackground inlines the SVG inside an aria-hidden wrapper
+      const svg = container.querySelector("svg[data-tile='databases']");
+      expect(svg).not.toBeNull();
+      const wrapper = svg!.closest("[aria-hidden='true']");
+      expect(wrapper).not.toBeNull();
     });
 
-    it("renders the tile cleanly with no broken image when no tile URL exists", () => {
-      vi.mocked(getTileUrl).mockReturnValue(null);
+    it("renders the tile cleanly with no broken image when no tile SVG exists", () => {
+      vi.mocked(getTileSvg).mockReturnValue(null);
       vi.mocked(getGroupedComparisons).mockReturnValue([
         { group: groupDatabases, comparisons: [compDb1] },
       ]);
 
       const { container } = renderHomePage();
 
-      // No img element at all when url is null
-      const imgs = container.querySelectorAll("img");
-      expect(imgs.length).toBe(0);
+      // No inlined tile SVG at all when the markup is null
+      const svgs = container.querySelectorAll("svg[data-tile]");
+      expect(svgs.length).toBe(0);
     });
 
-    it("renders TileBackground only for comparisons that have a tile URL (mixed batch)", () => {
+    it("renders TileBackground only for comparisons that have tile SVG (mixed batch)", () => {
       // Simulate the first-batch scenario: one tile per group, others untiled
-      vi.mocked(getTileUrl).mockImplementation((id) => {
+      vi.mocked(getTileSvg).mockImplementation((id) => {
         const tiled = new Set([
           "databases",
           "spa-web-frameworks",
@@ -215,7 +220,7 @@ describe("HomePage", () => {
           "sbc",
           "audio-transcription",
         ]);
-        return tiled.has(id) ? `/assets/${id}-tile.svg` : null;
+        return tiled.has(id) ? tileSvg(id) : null;
       });
       vi.mocked(getGroupedComparisons).mockReturnValue([
         { group: groupDatabases, comparisons: [compDb1, compDb2] },
@@ -229,9 +234,9 @@ describe("HomePage", () => {
       const { container } = renderHomePage();
 
       // databases has a tile but distributed-databases does not
-      // so we expect 6 imgs (one for each tiled comparison)
-      const imgs = container.querySelectorAll("img[alt=''][aria-hidden='true']");
-      expect(imgs.length).toBe(6);
+      // so we expect 6 inlined tile SVGs (one for each tiled comparison)
+      const svgs = container.querySelectorAll("svg[data-tile]");
+      expect(svgs.length).toBe(6);
     });
   });
 

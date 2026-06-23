@@ -2,7 +2,7 @@
  * ComparisonTile — a card-style link to a single comparison type.
  *
  * Wraps the existing Link → Card pattern from the old HomePage but now accepts
- * a tile URL and layers TileBackground behind the card's text content.
+ * raw tile SVG markup and layers TileBackground behind the card's text content.
  *
  * The parent grid must be `relative` or any non-static container for the
  * absolute-positioned TileBackground fill to work correctly — the Card itself
@@ -15,14 +15,14 @@ import type { ComparisonType } from "@/types";
 
 interface ComparisonTileProps {
   comparison: ComparisonType;
-  tileUrl?: string | null;
+  tileSvg?: string | null;
 }
 
-export function ComparisonTile({ comparison, tileUrl }: ComparisonTileProps) {
+export function ComparisonTile({ comparison, tileSvg }: ComparisonTileProps) {
   return (
     <Link to={`/${comparison.id}`} aria-label={comparison.name}>
       <Card className="relative cursor-pointer transition-colors hover:bg-accent h-full overflow-hidden">
-        <TileBackground url={tileUrl} />
+        <TileBackground svg={tileSvg} />
         <CardHeader className="relative">
           <CardTitle>{comparison.name}</CardTitle>
         </CardHeader>

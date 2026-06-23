@@ -1,5 +1,5 @@
 import { getGroupedComparisons } from "@/lib/data";
-import { getTileUrl } from "@/lib/tiles";
+import { getTileSvg } from "@/lib/tiles";
 import { ComparisonTile } from "@/components/ComparisonTile";
 import { LandingSections } from "@/components/LandingSections";
 
@@ -36,7 +36,7 @@ export function HomePage() {
                   <ComparisonTile
                     key={comparison.id}
                     comparison={comparison}
-                    tileUrl={getTileUrl(comparison.id)}
+                    tileSvg={getTileSvg(comparison.id)}
                   />
                 ))}
               </div>
