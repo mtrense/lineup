@@ -62,7 +62,7 @@
   - `TileBackground` with `null`/no url renders nothing.
 - **Commit Message:** `feat(app): add tile SVG loader and decorative TileBackground component`
 
-[ ] 3. Landing page: hero + grouped tile grid
+[x] 3. Landing page: hero + grouped tile grid
 - **Files:** `app/src/pages/HomePage.tsx`, `app/src/components/ComparisonTile.tsx` (new), `app/src/pages/HomePage.test.tsx` (new)
 - **Description:** Rewrite the landing grid to render comparisons grouped under named, ordered headings using `getGroupedComparisons()`. Extract a `ComparisonTile` component that wraps the existing `Link` → `Card` (name + description), layering `TileBackground` behind the content. Render each group as a section with a heading (and optional group description) followed by its tile grid; render the trailing "Other" bucket only when non-empty. Replace the current single flat grid; keep the existing hero block (or lightly restyle it) at the top. The hidden `test` comparison must not appear.
 - **Architecture & Decisions:**
