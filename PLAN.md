@@ -46,7 +46,7 @@
   - Data-integrity: every non-hidden comparison in `index.json` has a `groupId` that matches a defined group.
 - **Commit Message:** `feat(data): add comparison groups, groupId, and hidden flag to index`
 
-[ ] 2. Tile SVG loader + decorative TileBackground component
+[x] 2. Tile SVG loader + decorative TileBackground component
 - **Files:** `app/src/lib/tiles.ts` (new), `app/src/lib/tiles.test.ts` (new), `app/src/components/TileBackground.tsx` (new), `app/src/components/TileBackground.test.tsx` (new), `data/databases/tile.svg` (new, sample)
 - **Description:** Build the tile-graphics pipeline. In `lib/tiles.ts`, use `import.meta.glob` with a static literal pattern (e.g. `import.meta.glob("../../../data/*/tile.svg", { eager: true, query: "?url", import: "default" })`) to map comparison id → asset URL, exposing `getTileUrl(comparisonId: string): string | null` (returns `null` when no `tile.svg` exists). Create `TileBackground`, a presentational component that renders the SVG as a subtle, low-opacity, decorative background (`aria-hidden`, empty/no alt, `pointer-events-none`, absolutely positioned to fill its container) and renders nothing when given a `null`/absent url. Author one real sample `data/databases/tile.svg` (simple, style-consistent, theme-neutral fills) to exercise the pipeline end-to-end.
 - **Architecture & Decisions:**
