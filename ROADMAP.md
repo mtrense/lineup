@@ -554,7 +554,7 @@ The icon capability from Milestone 16 is only useful once the real comparisons a
 
 ## Milestone 18: Landing Page Redesign
 
-**Status:** open
+**Status:** in progress
 
 ### Value / Impact
 First-time visitors currently land on an unstyled flat grid of cards with a one-line tagline and no context. This milestone turns the landing page into a proper front door: comparisons organized into named groups, each tile carrying its own decorative background graphic, and on-page sections that explain what Lineup is, how it's built, where the data comes from, and how to contribute. Benefits anyone arriving without prior context — visitors, prospective contributors, and stakeholders being shown the project.
