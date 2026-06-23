@@ -552,6 +552,44 @@ The icon capability from Milestone 16 is only useful once the real comparisons a
 
 ---
 
+## Milestone 18: Landing Page Redesign
+
+**Status:** open
+
+### Value / Impact
+First-time visitors currently land on an unstyled flat grid of cards with a one-line tagline and no context. This milestone turns the landing page into a proper front door: comparisons organized into named groups, each tile carrying its own decorative background graphic, and on-page sections that explain what Lineup is, how it's built, where the data comes from, and how to contribute. Benefits anyone arriving without prior context — visitors, prospective contributors, and stakeholders being shown the project.
+
+### Outcome
+- `data/index.json` gains a top-level `groups[]` section (each group with `id`, `name`, optional `description`, and ordering), and every comparison is tagged with a `groupId`. Comparisons render on the landing page bucketed under their named group heading, in a sensible order.
+- A `hidden` (or `sample`) flag exists on comparison entries so the `test` sample type no longer appears on the public landing page.
+- Each comparison can supply a decorative `data/<type>/tile.svg`, loaded at build time and rendered as a subtle, low-opacity background behind its tile. Tiles without a bespoke SVG fall back gracefully (no broken/blank tile).
+- A new skill generates SVG tile suggestions for a comparison type, so coverage can grow through tooling rather than authoring all graphics by hand. The skill produces candidate `tile.svg` artwork (or drafts) for a given type, consistent with the visual style.
+- The landing page is visually redesigned: a hero/intro, the grouped tile grid with background graphics, and explanatory sections covering: (1) what Lineup is, (2) how it's built (static React app, JSON data compiled in), (3) where the data comes from, and (4) how to contribute — framed around the AI-assisted research workflow (RESEARCH.md + the gather-data/research skills) with a link to the repository.
+- Existing navigation is preserved: clicking a tile still routes to `/<comparison-id>`; deep links and the comparison view are unaffected.
+
+### Success Criteria
+- [ ] `data/index.json` has a `groups[]` definition (id, name, description, order) and every active comparison carries a `groupId`; the loader/types expose groups to the UI.
+- [ ] Landing page renders comparisons grouped under named, ordered group headings (ungrouped/unknown groupId degrades to a sensible default bucket rather than disappearing).
+- [ ] A `hidden`/`sample` flag is honored: the `test` comparison no longer shows on the landing page but remains reachable/usable for testing.
+- [ ] Comparison tiles render a subtle background SVG from `data/<type>/tile.svg` when present, at low opacity behind the title/description, without harming legibility (light and dark mode) or click target.
+- [ ] Tiles with no `tile.svg` render a graceful fallback — no broken image, no layout shift.
+- [ ] At least a representative first batch of `tile.svg` graphics ship (e.g. one per group), demonstrating the rendering end-to-end; remaining types use the fallback.
+- [ ] A new skill exists that, given a comparison type, generates one or more `tile.svg` suggestions in the project's style, and is documented (name, args, where output lands).
+- [ ] The landing page includes the four explanatory content areas (what it is / how it's built / data sources / how to contribute via the AI-assisted workflow), with a link to the repository.
+- [ ] The page is responsive (mobile → desktop), accessible (headings, alt/ARIA for decorative graphics marked decorative, keyboard nav), and works in dark mode.
+- [ ] Existing routing/behavior unchanged: tiles link to `/<id>`; the comparison view, filtering, and deep links still work.
+- [ ] Tests cover the grouping/hidden-flag data logic and the tile rendering (SVG present vs. fallback); the suite stays green and the production build is clean.
+
+### Notes
+- **Decisions locked in during strategic planning:** grouping lives in a `groups[]` section of `index.json` (not a per-item string or separate file); tile graphics are hand-authored SVGs stored inline at `data/<type>/tile.svg`; explanatory content lives as sections on the landing page (no separate `/about` route); the contribution story is framed around the AI-assisted research workflow; the `test`/sample type is hidden via a flag; full SVG coverage is achieved over time via a generator skill rather than authored all-at-once in this milestone.
+- **Proposed group taxonomy (refine during break-down):** Databases (databases, distributed-databases, rust-embedded-databases); Web & Frontend (spa-web-frameworks, ui-component-libraries, rich-text-editors, content-management-systems, website-hosting-providers); AI & Dev Workflow (ai-coding-agents, ai-workflows); Rust (rust-gui, rust-scripting); Hardware (sbc, battery-powertools); plus audio-transcription. Some types could fit multiple groups — final assignment is a one-per-comparison `groupId` decided in break-down.
+- **Largest risk is the SVG work.** The generator skill plus a fallback de-risk it: the milestone is "done" with the rendering pipeline + a first batch of graphics + the skill, not with all ~16 bespoke illustrations.
+- **Decorative graphics must be marked decorative** (`aria-hidden` / empty alt) so screen readers skip them; legibility over background SVG must hold in both themes.
+- **Out of scope:** changing the comparison view itself; a separate About route; search across comparisons; any live/in-app contribution flow (contribution remains via the repo + research workflow).
+- **Possible split during break-down** if it runs large: (a) data model — groups/hidden flag/types/loader; (b) landing redesign — grouped grid, tiles, SVG rendering + fallback, explanatory sections; (c) the SVG generator skill + first batch of graphics.
+
+---
+
 ## Future Considerations (Not Scheduled)
 
 - **Search**: Find candidates across all comparison types
