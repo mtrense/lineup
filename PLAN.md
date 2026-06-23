@@ -110,7 +110,7 @@
   - (Structural) SKILL.md frontmatter keys match the existing skill schema.
 - **Commit Message:** `feat(skill): add generate-tile skill for comparison tile SVGs`
 
-[ ] 6. First batch of tile graphics + integration verification
+[x] 6. First batch of tile graphics + integration verification
 - **Files:** `data/<type>/tile.svg` (new, one representative per group), `app/src/pages/HomePage.test.tsx` (extend), `README.md`
 - **Description:** Produce a representative first batch of `tile.svg` graphics — at least one per group (databases sample from Task 2 counts) — using the generator skill from Task 5, demonstrating the rendering pipeline across groups while remaining types fall back gracefully. Extend HomePage tests to assert that tiled vs. untiled comparisons both render correctly. Run the full suite and production build; update `README.md` with a short note on tile graphics and the `generate-tile` skill if user-facing docs warrant it.
 - **Architecture & Decisions:**

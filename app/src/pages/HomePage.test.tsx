@@ -56,6 +56,10 @@ function renderHomePage() {
 
 const groupDatabases = makeGroup("databases", "Databases", 1);
 const groupWebFrontend = makeGroup("web-frontend", "Web & Frontend", 2);
+const groupAiDev = makeGroup("ai-dev", "AI & Dev Workflow", 3);
+const groupRust = makeGroup("rust", "Rust", 4);
+const groupHardware = makeGroup("hardware", "Hardware", 5);
+const groupMedia = makeGroup("media", "Audio & Media", 6);
 
 const compDb1 = makeComparison(
   "databases",
@@ -74,6 +78,30 @@ const compWeb1 = makeComparison(
   "SPA Web Frameworks",
   "Frontend frameworks for SPAs",
   "web-frontend"
+);
+const compAi1 = makeComparison(
+  "ai-coding-agents",
+  "AI Coding Agents",
+  "AI-assisted coding tools",
+  "ai-dev"
+);
+const compRust1 = makeComparison(
+  "rust-gui",
+  "Rust GUI",
+  "GUI frameworks for Rust",
+  "rust"
+);
+const compHw1 = makeComparison(
+  "sbc",
+  "Single-board Computers",
+  "Compact computing boards",
+  "hardware"
+);
+const compMedia1 = makeComparison(
+  "audio-transcription",
+  "Audio Transcription",
+  "Speech-to-text tools",
+  "media"
 );
 
 // ---------------------------------------------------------------------------
@@ -174,6 +202,36 @@ describe("HomePage", () => {
       // No img element at all when url is null
       const imgs = container.querySelectorAll("img");
       expect(imgs.length).toBe(0);
+    });
+
+    it("renders TileBackground only for comparisons that have a tile URL (mixed batch)", () => {
+      // Simulate the first-batch scenario: one tile per group, others untiled
+      vi.mocked(getTileUrl).mockImplementation((id) => {
+        const tiled = new Set([
+          "databases",
+          "spa-web-frameworks",
+          "ai-coding-agents",
+          "rust-gui",
+          "sbc",
+          "audio-transcription",
+        ]);
+        return tiled.has(id) ? `/assets/${id}-tile.svg` : null;
+      });
+      vi.mocked(getGroupedComparisons).mockReturnValue([
+        { group: groupDatabases, comparisons: [compDb1, compDb2] },
+        { group: groupWebFrontend, comparisons: [compWeb1] },
+        { group: groupAiDev, comparisons: [compAi1] },
+        { group: groupRust, comparisons: [compRust1] },
+        { group: groupHardware, comparisons: [compHw1] },
+        { group: groupMedia, comparisons: [compMedia1] },
+      ]);
+
+      const { container } = renderHomePage();
+
+      // databases has a tile but distributed-databases does not
+      // so we expect 6 imgs (one for each tiled comparison)
+      const imgs = container.querySelectorAll("img[alt=''][aria-hidden='true']");
+      expect(imgs.length).toBe(6);
     });
   });
 

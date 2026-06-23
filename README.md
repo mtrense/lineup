@@ -79,6 +79,7 @@ Lineup ships with Claude Code skills under `.claude/skills/` that handle each st
 | `/extend-comparison <type> <description>` | Append one or more new attributes (or a whole new attribute group) to an already-scaffolded type. Updates RESEARCH.md's Attribute Groups tables and `attributes.json` in lockstep. Existing candidates render `—` for the new attribute until filled in. |
 | `/gather-data <type> [candidate] [attribute-or-group]` | Research and populate attribute values for a candidate via web sources. Records `{value, source, comment}` per attribute, stamps `lastVerified`, and ticks the RESEARCH.md checkbox on first research. |
 | `/gather-data-cycle <type> [count\|all][@workers]` | Drive `/gather-data` across many unchecked candidates hands-off. Researches candidates in parallel via isolated fresh-context workers, then serially ticks each RESEARCH.md checkbox and commits its file. Defaults to 5 candidates, 4 parallel workers (e.g. `databases 8@4`, `databases all@3`). |
+| `/generate-tile <type>` | Generate a decorative `data/<type>/tile.svg` background graphic for the comparison type's landing-page tile. The SVG uses bold, theme-neutral shapes (no text, no hard-coded colours) that render at low opacity behind the tile card in both light and dark mode. Re-run to regenerate. |
 
 ### Typical Workflow
 
