@@ -210,4 +210,47 @@ describe("HomePage", () => {
       expect(screen.getByRole("heading", { level: 1 })).toBeDefined();
     });
   });
+
+  describe("explanatory sections", () => {
+    it("renders all four LandingSections headings when grid is empty", () => {
+      vi.mocked(getGroupedComparisons).mockReturnValue([]);
+
+      renderHomePage();
+
+      const texts = screen
+        .getAllByRole("heading")
+        .map((h) => h.textContent?.toLowerCase() ?? "");
+      expect(texts.some((t) => t.includes("lineup"))).toBe(true);
+      expect(texts.some((t) => t.includes("built"))).toBe(true);
+      expect(texts.some((t) => t.includes("data"))).toBe(true);
+      expect(texts.some((t) => t.includes("contribute"))).toBe(true);
+    });
+
+    it("renders all four LandingSections headings even when the grid has content", () => {
+      vi.mocked(getGroupedComparisons).mockReturnValue([
+        { group: groupDatabases, comparisons: [compDb1] },
+      ]);
+
+      renderHomePage();
+
+      const texts = screen
+        .getAllByRole("heading")
+        .map((h) => h.textContent?.toLowerCase() ?? "");
+      expect(texts.some((t) => t.includes("lineup"))).toBe(true);
+      expect(texts.some((t) => t.includes("built"))).toBe(true);
+      expect(texts.some((t) => t.includes("data"))).toBe(true);
+      expect(texts.some((t) => t.includes("contribute"))).toBe(true);
+    });
+
+    it("renders the repository link in the page", () => {
+      vi.mocked(getGroupedComparisons).mockReturnValue([]);
+
+      renderHomePage();
+
+      const repoLink = screen.getByRole("link", { name: /github/i });
+      expect(repoLink.getAttribute("href")).toMatch(
+        /github\.com\/[^/]+\/lineup/i
+      );
+    });
+  });
 });

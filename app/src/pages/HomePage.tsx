@@ -1,6 +1,7 @@
 import { getGroupedComparisons } from "@/lib/data";
 import { getTileUrl } from "@/lib/tiles";
 import { ComparisonTile } from "@/components/ComparisonTile";
+import { LandingSections } from "@/components/LandingSections";
 
 export function HomePage() {
   const groups = getGroupedComparisons();
@@ -43,6 +44,9 @@ export function HomePage() {
           ))}
         </div>
       )}
+
+      {/* Explanatory sections */}
+      <LandingSections />
     </main>
   );
 }

@@ -80,7 +80,7 @@
   - Empty-state ("No comparisons available") still handled.
 - **Commit Message:** `feat(app): render landing page comparisons grouped with tile backgrounds`
 
-[ ] 4. Landing page: explanatory content sections
+[x] 4. Landing page: explanatory content sections
 - **Files:** `app/src/pages/HomePage.tsx`, `app/src/components/LandingSections.tsx` (new), `app/src/pages/HomePage.test.tsx`
 - **Description:** Add the four explanatory on-page sections below the grouped grid: (1) what Lineup is, (2) how it's built (static React app, JSON data compiled in at build time), (3) where the data comes from, and (4) how to contribute — framed around the AI-assisted research workflow (`RESEARCH.md` + the gather-data / research skills) with a link to the repository. Implement as a `LandingSections` component composed into `HomePage`. Pull a hero/intro into shape at the top if not finalized in Task 3.
 - **Architecture & Decisions:**
