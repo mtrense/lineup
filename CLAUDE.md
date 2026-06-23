@@ -50,6 +50,40 @@ The web app is placed in the `app/` folder, to keep web app and data separated.
 
 ## Data Format
 
+### data/index.json (root)
+
+Declares all comparison types and the groups they are organised into for the landing page.
+
+```typescript
+interface ComparisonGroup {
+  id: string;         // Unique group identifier (e.g. "databases", "web-frontend")
+  name: string;       // Display name shown as a section heading on the landing page
+  description?: string; // Optional subtitle for the group section
+  order: number;      // Ascending sort order (lower = appears first)
+}
+
+interface ComparisonType {
+  id: string;         // Comparison directory name under data/ (e.g. "databases")
+  name: string;       // Display name
+  description?: string;
+  icon?: string;
+  groupId?: string;   // Must match a ComparisonGroup.id from the groups[] array
+  hidden?: boolean;   // When true, excluded from the landing page grouped grid
+                      // (the comparison remains accessible via its direct URL)
+}
+
+interface ComparisonsIndex {
+  groups: ComparisonGroup[];       // Ordered group definitions
+  comparisons: ComparisonType[];   // All comparison entries (including hidden)
+}
+```
+
+**Rules:**
+- Every visible (non-hidden) comparison should have a `groupId` that matches an entry in `groups[]`.
+- Comparisons without a `groupId`, or whose `groupId` does not match any defined group, are rendered in a trailing "Other" bucket on the landing page.
+- Setting `"hidden": true` hides the entry from the landing page only — direct URL navigation still works.
+- `getComparisons()` returns all entries (including hidden); use `getGroupedComparisons()` for landing-page rendering.
+
 ### attributes.json
 
 Defines the attributes for a comparison type.

@@ -29,7 +29,7 @@
 
 ## Tasks
 
-[ ] 1. Data model: groups, groupId, hidden flag
+[x] 1. Data model: groups, groupId, hidden flag
 - **Files:** `app/src/types/comparison.ts`, `data/index.json`, `app/src/lib/data.ts`, `app/vitest.config.ts`, `app/src/lib/data.test.ts` (new), `CLAUDE.md`
 - **Description:** Introduce the grouping data model end-to-end. Add a `ComparisonGroup` interface (`id`, `name`, `description?`, `order: number`) and extend `ComparisonType` with `groupId?: string` and `hidden?: boolean`; extend `ComparisonsIndex` with `groups: ComparisonGroup[]`. Re-export `ComparisonGroup` through `app/src/types/index.ts`. In `data/index.json`, add the top-level `groups[]` array per the taxonomy table, add `groupId` to every active comparison, and add `"hidden": true` to the `test` entry. In `lib/data.ts` keep `getComparisons()` returning all entries, and add: `getComparisonGroups(): ComparisonGroup[]` (sorted by `order`) and `getGroupedComparisons()` returning an ordered list of `{ group, comparisons }` buckets that (a) excludes `hidden` comparisons, (b) places comparisons with a missing/unknown `groupId` into a trailing default "Other" bucket, (c) preserves index order within each group. Add the `@data` alias to `app/vitest.config.ts` (mirror `vite.config.ts`) so loader logic is testable. Document the `groups[]` / `groupId` / `hidden` schema in the `data/index.json` section of `CLAUDE.md`.
 - **Architecture & Decisions:**
