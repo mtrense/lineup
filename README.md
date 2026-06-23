@@ -5,6 +5,7 @@ A static React application for comparing items side-by-side across shared attrib
 ## Features
 
 - **Side-by-side comparisons** - View multiple candidates simultaneously with their attributes aligned
+- **Grouped landing page** - Comparisons organized into named groups, each tile carrying an optional decorative background graphic, with on-page sections explaining what Lineup is, how it's built, where the data comes from, and how to contribute
 - **Multiple comparison types** - Support for databases, languages, libraries, frameworks, and more
 - **Rich value types** - Display data as text, numbers, ratings, tags, icons, file sizes, durations, and more
 - **Collapsible attribute groups** - Organize related attributes into logical sections
@@ -56,10 +57,11 @@ lineup/
 │   │   └── types/              # TypeScript types
 │   └── package.json
 ├── data/                       # Comparison data
-│   ├── index.json              # List of available comparisons
+│   ├── index.json              # Comparison groups + list of available comparisons
 │   └── <comparison-type>/      # One directory per comparison type
 │       ├── index.json          # List of candidates
 │       ├── attributes.json     # Attribute definitions
+│       ├── tile.svg            # Optional decorative landing-page tile graphic
 │       └── <candidate>.json    # Candidate data files
 └── docs/                       # Documentation
 ```
