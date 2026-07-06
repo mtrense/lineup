@@ -193,7 +193,7 @@ Users should be able to:
 - [x] **Macroquad** — Minimal, extremely fast-compiling cross-platform 2D/3D framework built on miniquad; excellent web support
 - [x] **ggez** — LÖVE-inspired lightweight 2D framework, long-standing and approachable
 - [x] **comfy** — Opinionated, batteries-included 2D game engine built on wgpu, designed for fast iteration
-- [ ] **Nannou** — Creative-coding framework for generative art and interactive visuals, usable for games
+- [x] **Nannou** — Creative-coding framework for generative art and interactive visuals, usable for games
 - [ ] **notan** — Portable, modular multimedia/game framework with strong web support
 - [ ] **Emerald** — Lightweight, portable 2D engine with built-in physics and audio
 - [ ] **bracket-lib** — Roguelike toolkit (formerly RLTK) — virtual terminals, pathfinding, FOV, RNG; the de-facto Rust roguelike engine

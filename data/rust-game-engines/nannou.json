@@ -1,5 +1,302 @@
 {
   "name": "Nannou",
   "description": "Creative-coding framework for generative art and interactive visuals, usable for games",
-  "values": {}
+  "icon": "",
+  "url": "https://nannou.cc",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["creative-coding"],
+      "source": ["https://github.com/nannou-org/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Creative-coding toolkit inspired by Processing / openFrameworks / Cinder; games and interactive visuals are a secondary use of its generative-art focus."
+    },
+    "license": {
+      "value": ["mit-apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per crates.io metadata (the GitHub API license field is unset, but crate metadata and repo LICENSE files confirm the dual license)."
+    },
+    "repository": {
+      "value": "https://github.com/nannou-org/nannou",
+      "source": ["https://github.com/nannou-org/nannou"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/nannou",
+      "source": ["https://crates.io/api/v1/crates/nannou"]
+    },
+    "documentation": {
+      "value": "https://guide.nannou.cc/",
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Official nannou Guide (mdBook) with getting-started and tutorials; API docs also on docs.rs."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "First crates.io publish in October 2017."
+    },
+    "latest-stable-version": {
+      "value": "0.20.0",
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Newest stable on crates.io as of 2026-07-06, released 2026-06-22; 0.20 is a major rewrite that re-bases nannou on the Bevy engine."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/nannou-org/nannou", "https://crates.io/api/v1/crates/nannou"],
+      "comment": "0.20.0 released 2026-06-22 (last push 2026-06-23). Cadence is bursty: there was a ~2.5-year gap between 0.19.0 (Jan 2024) and 0.20.0 (Jun 2026), the latter a large Bevy-based rewrite."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Established (~9 years) and used in real art installations/live visuals, but still pre-1.0 (0.20.x) and the 0.20 rewrite onto Bevy is a significant, still-settling API break."
+    },
+    "backing": {
+      "value": "Community — led by the original authors (Mitchell Nordine et al.) under the nannou-org org; funded via Open Collective",
+      "source": ["https://github.com/nannou-org/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No company/foundation; community project with Open Collective sponsorship."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://crates.io/api/v1/crates/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Pure Rust: built on Bevy and wgpu (both pure Rust) with only platform glue; no engine *-sys bindings."
+    },
+    "architecture": {
+      "value": ["immediate", "ecs"],
+      "source": ["https://crates.io/api/v1/crates/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Nannou's user-facing model is immediate-mode (a Model state redrawn each frame via the Draw API, Processing-style). Since 0.20 its crates are exposed as Bevy plugins, so Bevy's ECS is the underlying foundation; immediate-mode is the dominant nannou-facing surface."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "The primary nannou model is the sketch/app Draw loop, not ECS. Bevy's ECS is available underneath (nannou 0.20 apps are Bevy apps) but is not how a nannou user typically structures work."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://guide.nannou.cc/", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "2D vector drawing is the primary focus; the Draw API also supports basic 3D (meshes, camera), and full 3D is reachable through the underlying Bevy engine."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Sketches/apps are written in Rust; no embedded scripting language."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No nannou scene/prefab file format; visuals are built in code. Bevy's scene serialization is technically accessible underneath but not part of nannou's toolkit."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Nannou exposes no first-class reflection/scene serialization of its own; serde is used for some config. Bevy Reflect exists in the underlying engine but is not surfaced as a nannou feature."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No documented nannou code/asset hot-reload story; the underlying Bevy AssetServer supports asset hot-reload if used directly, but nannou does not advertise it."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Code-first creative-coding toolkit; ships no graphical scene/level editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No first-party runtime world/entity inspector. Because 0.20 apps are Bevy apps, community tools like bevy-inspector-egui could in principle be added, but this is not a nannou feature."
+    },
+    "asset-pipeline": {
+      "value": 3,
+      "source": ["https://guide.nannou.cc/", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Async loading of common formats (images via the image crate, audio, fonts) from an assets folder; on 0.20 this sits atop Bevy's AssetServer. No import/reprocessing pipeline surfaced by nannou itself."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "No official scaffolding CLI; the guide starts projects with plain cargo. Community starter templates exist (e.g. nannou-web-template)."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No first-party profiler/diagnostics overlay. Bevy's diagnostics/Tracy integration is reachable via the underlying engine but is not exposed as a nannou feature."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works)."
+    },
+    "rendering-backend": {
+      "value": ["wgpu"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md", "https://crates.io/api/v1/crates/nannou"],
+      "comment": "Renders through wgpu (nannou_wgpu, and Bevy's wgpu-based renderer since 0.20), which abstracts Vulkan/Metal/DX12/GL/WebGPU."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Nannou's Draw API is unlit; it has no PBR pipeline of its own. PBR is only reachable by dropping down to the underlying Bevy engine directly."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "The Draw API renders unlit 2D/3D; nannou provides no first-party lighting system. Bevy's lighting is accessible if you use Bevy directly."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "No first-party shadow support in nannou's Draw API."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Custom shaders supported: nannou_wgpu gives direct wgpu access for authoring WGSL shaders and render pipelines."
+    },
+    "sprites-tilemaps": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Not a sprite/tilemap-oriented toolkit; images can be drawn via draw.texture, but there is no sprite-batching or tilemap system."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "No built-in particle/VFX system; particle effects are hand-rolled with the Draw API."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "No first-party post-processing stack; effects must be hand-rolled with render targets and custom shaders (or Bevy's pipeline directly)."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Built-in text drawing via the Draw API (draw.text) with font loading and glyph layout."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No physics in nannou; bring-your-own (e.g. rapier), or use a Bevy physics plugin since 0.20 apps are Bevy apps."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md", "https://guide.nannou.cc/"],
+      "comment": "Ships nannou_audio (CPAL-based) for audio hosts, devices, and input/output streams."
+    },
+    "input": {
+      "value": ["keyboard-mouse"],
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "First-party keyboard and mouse events in the app model. Touch and gamepad are reachable through the underlying winit/Bevy input but are not highlighted as nannou features."
+    },
+    "animation": {
+      "value": ["tween"],
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Provides easing/tween helpers (depends on pennereq, i.e. Penner easing equations); no skeletal or sprite-frame animation system."
+    },
+    "ui-system": {
+      "value": ["egui"],
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "UI via egui (0.20 depends on bevy_egui; earlier releases shipped nannou_egui). Historically nannou used conrod."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No game networking/replication. nannou_osc and MIDI crates provide OSC/MIDI messaging for art installations, not multiplayer."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Nannou's Draw API does not import glTF/GLB; standard model loading is only available by using the underlying Bevy engine directly."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Native Windows target supported."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Native macOS target supported (Metal via wgpu)."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Native Linux target supported."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://github.com/nannou-org/nannou/issues/657", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No official/documented WASM support; community templates (e.g. nannou-web-template) exist, and the underlying Bevy engine can target WASM, but nannou does not officially support or test web builds as of 2026-07-06."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No officially supported/tested iOS target."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No officially supported/tested Android target."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No documented console support path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Not independently measured this pass. Since 0.20 nannou depends on the full Bevy engine (bevy 0.19), so a clean release build is expected to be heavy (Bevy-class), well above classic lightweight nannou; no verified number on a stated machine."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Not measured. With the Bevy foundation the dependency graph is large; prefer null over a guess."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Not measured. Bevy-based apps trend moderate-to-large, but no stripped-binary measurement was taken this pass."
+    },
+    "web-bundle-size": {
+      "value": ["n-a"],
+      "source": ["https://github.com/nannou-org/nannou/issues/657"],
+      "comment": "Web is not an officially supported target, so no representative wasm-opt bundle size to report."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Not benchmarked. On the Bevy foundation there is an ECS scheduler/app loop underneath, so idle overhead is higher than classic lightweight frameworks, but no measurement was taken; prefer null over a guess."
+    },
+    "github-stars": {
+      "value": 6717,
+      "source": ["https://api.github.com/repos/nannou-org/nannou"],
+      "comment": "GitHub stargazers as of 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 339756,
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "All-time crates.io downloads of the nannou crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-06-22",
+      "source": ["https://crates.io/api/v1/crates/nannou"],
+      "comment": "Release date of the newest stable version 0.20.0."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "No notable released games widely documented; nannou is used for generative art, live visuals, and interactive installations rather than shipped game titles."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/nannou-org/nannou", "https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Active creative-coding community with a dedicated chat (Slack/Matrix), but a small core development team and bursty contribution cadence. ~6.7k GitHub stars as of 2026-07-06."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/nannou-org/nannou/master/README.md"],
+      "comment": "Companion crates are mostly first-party (nannou_audio, nannou_laser, nannou_osc, nannou_video, nannou_wgpu); little third-party plugin ecosystem. Since 0.20 the broader Bevy plugin ecosystem is technically reachable."
+    },
+    "learning-resources": {
+      "value": 3,
+      "source": ["https://guide.nannou.cc/"],
+      "comment": "Official nannou Guide (mdBook) plus an extensive examples directory and creative-coding tutorials; fewer game-oriented videos, and some material may lag the 0.20 Bevy rewrite."
+    }
+  }
 }
