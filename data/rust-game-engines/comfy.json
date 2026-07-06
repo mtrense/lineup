@@ -1,5 +1,301 @@
 {
   "name": "comfy",
   "description": "Opinionated, batteries-included 2D game engine built on wgpu, designed for fast iteration",
-  "values": {}
+  "url": "https://comfyengine.org/",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Self-describes as a 2D game engine, but it is a code-first, batteries-included game loop (rendering/input/audio via draw_* / play_sound functions) with no editor or scene model — matches RESEARCH.md's 'framework' classification. Explicitly non-modular and opinionated."
+    },
+    "license": {
+      "value": ["mit-apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/comfy", "https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per crate metadata and the README License section. (GitHub's license detector surfaces only Apache-2.0.)"
+    },
+    "repository": {
+      "value": "https://github.com/darthdeus/comfy",
+      "source": ["https://api.github.com/repos/darthdeus/comfy"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/comfy",
+      "source": ["https://crates.io/api/v1/crates/comfy"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/comfy",
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No dedicated docs/book; the README states there is no documentation and points users to the examples/ folder. docs.rs hosts the API docs; project site is https://comfyengine.org/."
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://crates.io/api/v1/crates/comfy", "https://api.github.com/repos/darthdeus/comfy"],
+      "comment": "GitHub repo created Aug 12, 2023; first real crates.io release (0.1.0) Sep 24, 2023."
+    },
+    "latest-stable-version": {
+      "value": "0.4.0",
+      "source": ["https://crates.io/api/v1/crates/comfy"],
+      "comment": "0.4.0 published May 3, 2024 — the newest and max stable version on crates.io (checked 2026-07-06). No release since."
+    },
+    "maintenance-status": {
+      "value": ["archived"],
+      "source": ["https://api.github.com/repos/darthdeus/comfy", "https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "GitHub repo is flagged archived. README (Oct 24, 2025 update) states comfy is archived; the author left Rust gamedev and moved to C++/his own toolchain. No release since 0.4.0 (May 2024)."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Reached only 0.4; README warns the API is not stable and breaking changes will happen, and says 'this doesn't mean the engine is mature'. It did ship a commercial title (Unrelaxing Quacks). Now archived — no path to further stabilization. Scored beta rather than experimental because it was production-usable for small 2D games."
+    },
+    "backing": {
+      "value": "Solo developer — Jakub Arnold (darthdeus) / LogLog Games; JetBrains provided OSS licenses.",
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Single-maintainer side project built alongside LogLog Games' own titles; no company or foundation backing. Now discontinued by the author."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml", "https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Pure Rust: wgpu renderer, winit windowing, kira audio, egui UI, hecs ECS — no non-Rust engine wrapped and no *-sys bindings in the core dependency set."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Immediate-mode by design ('Simple immediate mode APIs for almost everything'): you call draw_circle/draw_sprite each frame and comfy batches + z-sorts. It embeds hecs and offers ECS helpers (ecs_sprite example) but an ECS is explicitly a non-goal and not required, so the dominant model is immediate."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Embeds hecs and provides some helpers, but the README lists 'ECS based engine' as a non-goal and states it is 'by no means required or even optimal for most cases'. Not the primary data model, so false per RESEARCH.md."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Explicitly a 2D engine; 3D is a stated non-goal (AAA 3D not supported, only simple 3D 'possible in the future'). No first-party 3D tooling, so 2D only."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Gameplay is written in Rust; no embedded scripting language. (Low-level APIs are kept FFI-friendly for external callers, but that is not an in-engine scripting layer.)"
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://api.github.com/repos/darthdeus/comfy/contents/comfy/examples"],
+      "comment": "No native scene/prefab format — the game is built in code. There is an LDtk example that loads level data from that third-party map editor's files, but comfy has no first-party serialized scene system."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No engine-provided runtime reflection or game-state (de)serialization system; users can add serde themselves but comfy does not offer it first-party."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/CHANGELOG.md"],
+      "comment": "Scope is shaders only: running with `--features dev` gives hot-reloading of user fragment shaders with in-game error display (added around v0.3). No Rust code or general asset hot reload."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Code-first framework; ships no graphical scene/level editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "egui is bundled so you can build debug/inspector UIs yourself, but there is no first-party or de-facto runtime world/entity inspector."
+    },
+    "asset-pipeline": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "'Parallel asset loading with support for most image and audio formats' plus optional include_dir asset packing — async loading of common formats with reasonable ergonomics (rating 3). No import/reprocessing pipeline or asset hot reload, so short of 5."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No dedicated CLI, cargo plugin, or official starter templates — a plain cargo project depending on the comfy crate."
+    },
+    "debug-profiling-tools": {
+      "value": ["egui-overlay"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml", "https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "egui (and egui_plot) are bundled in the core, giving in-game debug overlays/plots. No integrated external profiler (no Tracy dependency)."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works); no engine-specific IDE integration. (JetBrains sponsored the author with OSS licenses, which is unrelated to end-user IDE support.)"
+    },
+    "rendering-backend": {
+      "value": ["wgpu", "webgl"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Built on wgpu (Vulkan/Metal/DX12/GL on native). On the web it targets WASM through WebGL 2 specifically (not WebGPU), which the README notes is required for its f16/HDR render textures."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "2D engine; no PBR pipeline (3D/PBR is an explicit non-goal)."
+    },
+    "lighting": {
+      "value": ["2d-lighting"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Built-in 2D lighting with HDR, tonemapping and bloom. README notes the lights are basic and flagged for improvement on the (now-archived) roadmap."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No shadow support; '2D shadowcasters with soft shadows' was listed as a roadmap item that never shipped."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/CHANGELOG.md", "https://api.github.com/repos/darthdeus/comfy/contents/comfy/examples"],
+      "comment": "User-defined fragment shaders with custom f32 uniforms landed in v0.3 (see fragment-shader.rs/.wgsl example). API is intentionally low-level/FFI-friendly."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://api.github.com/repos/darthdeus/comfy/contents/comfy/examples"],
+      "comment": "First-party automatic sprite batching and AnimatedSprite are core features. No native tilemap type, but an LDtk example demonstrates loading tile-based levels from that editor's format."
+    },
+    "particle-system": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Built-in particles: simple API for individual particles plus configurable particle systems, and mesh-based trails."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "HDR pipeline with bloom (hard-coded, always on in early versions) and tonemapping built in. Configurable bloom/post-processing was a roadmap item; chromatic-aberration is demonstrated via a custom shader example."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Built-in text rendering (draw_text and friends), currently implemented via egui's painter on a separate layer."
+    },
+    "physics": {
+      "value": ["plugin"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/comfy/examples/physics.rs"],
+      "comment": "No physics in the core crate. The official physics.rs example integrates 'blobs', a simple 2D physics engine by the same author, as a separate crate — closest to a first-party plugin/bring-your-own rather than bundled."
+    },
+    "audio": {
+      "value": ["built-in", "kira"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml"],
+      "comment": "Audio ships in the core crate via a simple play_sound API, implemented on top of the kira crate."
+    },
+    "input": {
+      "value": ["keyboard-mouse"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/src/input.rs", "https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml"],
+      "comment": "Keyboard and mouse via winit. No gamepad backend is present (no gilrs/gamepad dependency); 'Gamepad & touchpad support' was a roadmap item that never shipped. Touch is not first-party either."
+    },
+    "animation": {
+      "value": ["sprite-frame"],
+      "source": ["https://api.github.com/repos/darthdeus/comfy/contents/comfy/examples", "https://raw.githubusercontent.com/darthdeus/comfy/master/CHANGELOG.md"],
+      "comment": "Frame-based sprite animation via AnimatedSprite (animated_sprites example). No skeletal/tween/state-machine animation systems (2D-only, 3D/skeletal is a non-goal)."
+    },
+    "ui-system": {
+      "value": ["built-in", "egui"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml"],
+      "comment": "egui is bundled directly into comfy core (not an optional plugin) and is the built-in UI approach; the README expects it to remain the default 'until a better alternative comes along'."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No multiplayer/replication support, built-in or as an official plugin; bring your own."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "2D engine; no glTF/GLB model import."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Officially supported cross-platform target."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Officially supported ('MacOS') via wgpu/Metal."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://raw.githubusercontent.com/darthdeus/comfy/master/comfy-core/Cargo.toml"],
+      "comment": "Officially supported. winit is built with the x11 feature by default; Wayland is available behind an optional `wayland` cargo feature."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Compiles to WASM and runs in the browser through WebGL 2. Author later expressed lost faith in wgpu/WebGPU for 2D web games, but WASM support was real and shipped."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not listed among supported platforms (Windows/Linux/macOS/WASM); no documented iOS support."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not listed among supported platforms; no documented Android support."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "No documented console support path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not measured on a consistent reference machine this pass; prefer null over a guess per RESEARCH.md. The README notes comfy is slower to compile than macroquad (it pulls the wgpu + egui + kira stack) but aims for 'reasonable' compile times."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess. comfy notably does not require end users to use proc macros, which helps rebuild times."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Web-capable (WASM/WebGL2) but the WASM bundle was not measured on a reference build this pass; prefer null over a guess."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Not measured with a defined methodology; prefer null over a guess."
+    },
+    "github-stars": {
+      "value": 737,
+      "source": ["https://api.github.com/repos/darthdeus/comfy"],
+      "comment": "Snapshot from the GitHub API on 2026-07-06 (repo is archived, so this is effectively final)."
+    },
+    "crates-io-downloads": {
+      "value": 18960,
+      "source": ["https://crates.io/api/v1/crates/comfy"],
+      "comment": "All-time downloads of the comfy crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2024-05-03",
+      "source": ["https://crates.io/api/v1/crates/comfy"],
+      "comment": "0.4.0 published May 3, 2024 on crates.io — the final release before archival."
+    },
+    "shipped-titles": {
+      "value": "Unrelaxing Quacks (LogLog Games) — a fast 'survivors'-style game released on Steam.",
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Built by comfy's own author/studio. Also used for smaller jam entries (e.g. a 1-bit jam game). No third-party commercial titles widely documented."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://api.github.com/repos/darthdeus/comfy"],
+      "comment": "Effectively a single-maintainer project (Jakub Arnold); there is a Discord, but the README states few people ever used or saw the source, and the project is now archived."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md"],
+      "comment": "Explicitly non-modular: 'There is no intention of having a plugin system.' No plugin/asset registry or third-party ecosystem."
+    },
+    "learning-resources": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/darthdeus/comfy/master/README.md", "https://api.github.com/repos/darthdeus/comfy/contents/comfy/examples"],
+      "comment": "Many bundled examples (~40) plus a couple of announcement blog posts, but the README explicitly says there is no documentation and no aim for heavy docs coverage. No book/tutorial/video ecosystem. Scored 2."
+    }
+  }
 }

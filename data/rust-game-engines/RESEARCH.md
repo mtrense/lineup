@@ -192,7 +192,7 @@ Users should be able to:
 - [x] **Fyrox** — Full 3D/2D engine with a native visual scene editor and resource manager (formerly rg3d)
 - [x] **Macroquad** — Minimal, extremely fast-compiling cross-platform 2D/3D framework built on miniquad; excellent web support
 - [x] **ggez** — LÖVE-inspired lightweight 2D framework, long-standing and approachable
-- [ ] **comfy** — Opinionated, batteries-included 2D game engine built on wgpu, designed for fast iteration
+- [x] **comfy** — Opinionated, batteries-included 2D game engine built on wgpu, designed for fast iteration
 - [ ] **Nannou** — Creative-coding framework for generative art and interactive visuals, usable for games
 - [ ] **notan** — Portable, modular multimedia/game framework with strong web support
 - [ ] **Emerald** — Lightweight, portable 2D engine with built-in physics and audio
