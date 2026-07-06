@@ -1,5 +1,301 @@
 {
   "name": "ggez",
   "description": "LÖVE-inspired lightweight 2D framework, long-standing and approachable",
-  "values": {}
+  "url": "https://ggez.rs/",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://github.com/ggez/ggez", "https://crates.io/api/v1/crates/ggez"],
+      "comment": "Code-first game loop inspired by LÖVE (Love2D); no editor or scene model. Pure framework per RESEARCH.md's classification."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/ggez/ggez", "https://github.com/ggez/ggez"],
+      "comment": "MIT (SPDX MIT) per GitHub license metadata and README."
+    },
+    "repository": {
+      "value": "https://github.com/ggez/ggez",
+      "source": ["https://github.com/ggez/ggez"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/ggez",
+      "source": ["https://crates.io/api/v1/crates/ggez"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/ggez",
+      "source": ["https://crates.io/api/v1/crates/ggez"],
+      "comment": "docs.rs API docs are the primary reference; project site is https://ggez.rs/."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://crates.io/api/v1/crates/ggez", "https://api.github.com/repos/ggez/ggez"],
+      "comment": "crates.io crate created Oct 3, 2016; GitHub repo created Jan 30, 2016."
+    },
+    "latest-stable-version": {
+      "value": "0.10.0",
+      "source": ["https://crates.io/api/v1/crates/ggez"],
+      "comment": "0.10.0 released Jun 3, 2026 (max stable version on crates.io as of 2026-07-06)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/ggez", "https://api.github.com/repos/ggez/ggez"],
+      "comment": "Borderline. Repo pushed Jun 22, 2026 and 0.10.0 shipped Jun 3, 2026, but cadence is sporadic — a ~2-year gap sat between 0.9.3 (Jul 2023) and the 0.10.0-rc0 (Aug 2025) / 0.10.0 (Jun 2026) cycle. Alive but slow."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/ggez/ggez", "https://crates.io/api/v1/crates/ggez"],
+      "comment": "Long-standing since 2016 with a settled feature scope, but still pre-1.0 (0.10) with breaking changes across 0.x minor versions."
+    },
+    "backing": {
+      "value": "Community",
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Community-maintained open-source project (ggez org); no company or foundation backing."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Pure Rust; renders on wgpu, audio via rodio, windowing via winit — no non-Rust engine wrapped."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Callback-based game loop: you implement the EventHandler trait (update/draw) and redraw each frame from your own state. No ECS or scene graph — the user structures game state however they like."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "README explicitly lists ECS as a non-feature; bring your own (e.g. hecs)."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Primarily a 2D framework. The wgpu backend can draw raw 3D meshes, but there is no first-party 3D tooling (camera, lighting, model pipeline), so scored 2D per RESEARCH.md's dimensionality guideline."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Gameplay logic is written in Rust; no embedded scripting layer."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No scene/prefab format. There is a conf.toml for engine/window settings, but scenes/entities are built in code, not authored to data files."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No engine-provided reflection or game-state serialization; a user can add serde themselves but the framework does not offer it first-party."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No code or asset hot-reloading in dev."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Code-first framework with no graphical editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No runtime world/entity inspector, first-party or de-facto."
+    },
+    "asset-pipeline": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Filesystem abstraction loads resources (images, .ogg/.wav/.flac audio, TTF fonts) by path from a resource folder or zip — better than raw include_bytes! (rating 1) but synchronous, with no processing/reprocessing pipeline or hot reload (rating 3+ would need async loading; 5 a full import pipeline). Scored 2."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No dedicated CLI, cargo plugin, or official starter templates — plain cargo project."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Ships lightweight timing/FPS-measurement helpers but no profiler integration (no Tracy/egui overlay/diagnostics subsystem)."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works); no engine-specific IDE integration."
+    },
+    "rendering-backend": {
+      "value": ["wgpu"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Hardware-accelerated rendering built on wgpu (since 0.8), which drives Vulkan/Metal/DX/GL underneath. The separate good-web-game sister project renders via a different (miniquad/WebGL) backend for web/mobile."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "2D framework; no PBR pipeline."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No first-party lighting system; custom shaders could implement 2D lighting by hand."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No built-in shadow support."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Users can author custom WGSL shaders and use them with render targets / instanced draws."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "First-party batched sprite drawing (InstanceArray). No built-in tilemap — use an external crate."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No built-in particle/VFX system (roll your own or use an external crate)."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Render targets + custom shaders let you hand-roll effects, but no built-in post-processing (bloom/tonemapping/AA)."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Built-in TTF font rendering via glyph_brush."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "README lists physics as a non-feature; bring your own (e.g. rapier)."
+    },
+    "audio": {
+      "value": ["built-in", "rodio"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Audio ships in the core crate (loading/playing .ogg/.wav/.flac), implemented on top of the rodio crate."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad", "touch"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md", "https://github.com/ggez/ggez"],
+      "comment": "Keyboard and mouse via event callbacks; gamepad via gilrs (behind the `gamepad` feature); touch events are supported through the EventHandler."
+    },
+    "animation": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "README lists animation as a non-feature; no skeletal/sprite-frame/tween system built in."
+    },
+    "ui-system": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "README lists GUI as a non-feature; use an external crate (e.g. egui integration) for in-game UI."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "README lists networking as a non-feature; bring your own."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "2D framework; no glTF/GLB model import."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Fully supported native target."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Fully supported native target."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Fully supported native target."
+    },
+    "web-wasm": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "ggez core (wgpu/winit) does not target WASM. Web is provided by the separate good-web-game project, which reimplements a subset of the ggez API on miniquad — scored false for ggez itself per the platform-verification guideline."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Listed as experimental and routed through good-web-game rather than officially supported/tested in ggez core; scored false per the 'only true if officially supported' guideline."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Listed as experimental and routed through good-web-game rather than officially supported/tested in ggez core; scored false."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "No documented console support path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Not measured on a consistent reference machine this pass; prefer null over a guess per RESEARCH.md. Pulls the wgpu stack, so expected to be moderate, but no reliable figure recorded."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "web-bundle-size": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "ggez core is not web-capable; a web build would go through the separate good-web-game project, so N/A for ggez itself."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "Not measured with a defined methodology; prefer null over a guess."
+    },
+    "github-stars": {
+      "value": 4654,
+      "source": ["https://api.github.com/repos/ggez/ggez"],
+      "comment": "Snapshot from the GitHub API on 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 664204,
+      "source": ["https://crates.io/api/v1/crates/ggez"],
+      "comment": "All-time downloads of the ggez crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-06-03",
+      "source": ["https://crates.io/api/v1/crates/ggez"],
+      "comment": "0.10.0 published Jun 3, 2026 on crates.io."
+    },
+    "shipped-titles": {
+      "value": "Zemeroth — a 2D turn-based tactical game (released on itch.io); ggez maintains a community Projects list of games built with it.",
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Zemeroth migrated to ggez around v0.5 (2019) and shipped for Windows/macOS/Linux/web; it later moved off ggez. Most other ggez users are hobby/jam projects; no large commercial title is widely documented."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Long-established with a dedicated Discord, but contribution/release cadence has slowed and the active contributor base is small. Borderline small/medium; scored small given the slowed activity."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/ggez/ggez/master/README.md"],
+      "comment": "A framework rather than a plugin platform — no formal plugin/asset registry; a handful of compatible community crates exist."
+    },
+    "learning-resources": {
+      "value": 3,
+      "source": ["https://github.com/ggez/ggez"],
+      "comment": "Good bundled examples (astroblasto, snake, etc.) plus docs.rs and community tutorials (e.g. the Rust Sokoban book uses ggez), but no official comprehensive book/video ecosystem. Scored 3."
+    }
+  }
 }
