@@ -1,5 +1,303 @@
 {
   "name": "Turbo",
   "description": "Rust-first retro/fantasy-console-style game engine targeting fast iteration and WASM",
-  "values": {}
+  "url": "https://turbo.computer",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://turbo.computer/faq/"],
+      "comment": "Self-described 'command-line based game engine' for low-res 2D games; in Lineup's taxonomy it's a code-first framework (no visual editor or scene model — you write a Rust update/render loop). Fantasy-console/retro style with an online backend."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/crates/turbo-genesis-sdk"],
+      "comment": "Public Rust SDK (turbo-genesis-sdk) is MIT-licensed on crates.io. The core engine was historically a private repo under AGPL-3.0 (per FAQ); AGPL-3.0 has no tag in this schema, but the developer-facing SDK that users depend on is MIT."
+    },
+    "repository": {
+      "value": "https://github.com/super-turbo-society/turbo-genesis-sdk",
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "Public Rust SDK repo. The engine runtime lives in turbo-cli and a separate (historically private) core engine repo; org also hosts turbo-demos."
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/turbo-genesis-sdk",
+      "source": ["https://crates.io/crates/turbo-genesis-sdk"],
+      "comment": "Top-level Rust crate used by games. The engine/CLI itself is distributed via an install script (curl | sh), not crates.io."
+    },
+    "documentation": {
+      "value": "https://docs.turbo.computer",
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": null
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://crates.io/crates/turbo-genesis-sdk"],
+      "comment": "turbo-genesis-sdk crate first published 2023-08-19 on crates.io."
+    },
+    "latest-stable-version": {
+      "value": "turbo-cli 0.10.0-alpha.0 (SDK crate 5.2.1)",
+      "source": ["https://github.com/super-turbo-society/turbo-cli", "https://crates.io/crates/turbo-genesis-sdk"],
+      "comment": "Project is in alpha — no truly stable release. turbo-cli latest is 0.10.0-alpha.0 (2026-01-05); turbo-genesis-sdk max stable 5.2.1, newest 6.0.0-alpha.0. Checked 2026-07-06."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/orgs/super-turbo-society/repositories?type=all", "https://github.com/super-turbo-society/turbo-cli"],
+      "comment": "Public repos (turbo-cli, turbo-genesis-sdk) last updated 2026-01-05, ~6 months before this check (2026-07-06). Core engine development happens in a separate/private repo, so public commit cadence may understate real activity."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://turbo.computer/faq/", "https://github.com/super-turbo-society/turbo-cli"],
+      "comment": "Explicitly alpha (all releases are pre-1.0 alphas); API still churning, no widely-documented commercial titles. 3D support still planned."
+    },
+    "backing": {
+      "value": "Super Turbo Society (startup; Solana-ecosystem backed)",
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "Developed by Super Turbo Society, a small startup (teams in New York and Massachusetts) with optional Solana blockchain integration."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Engine and SDK are written in Rust; games compile to WebAssembly and run on a Rust/WebGPU runtime. Not a binding to a non-Rust engine."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "Immediate-mode style: a persistent, auto-serialized game-state struct plus a per-frame update/render function that redraws from state. No ECS or scene graph."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "State is a single serialized struct + update loop, not an entity-component-system."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://turbo.computer/faq/", "https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Quad-based pipeline focused solely on low-res 2D games; 3D is planned but not available."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://turbo.computer/faq/", "https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Rust is the only officially supported language today; additional languages are planned."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "No serialized scene/prefab file format — games are authored in code; only sprite/font/audio/shader assets live in files."
+    },
+    "reflection-serialization": {
+      "value": true,
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://turbo.computer/faq/"],
+      "comment": "The game-state struct is automatically serialized (persisted across frames and hot reloads, and enabling headless server-side state verification)."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/super-turbo-society/turbo-cli", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "Live coding: games hot-reload whenever code, shaders, or sprites are modified — a headline feature."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Command-line based; no graphical scene/level editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "No documented runtime world/state inspector UI."
+    },
+    "asset-pipeline": {
+      "value": 3,
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "Assets organized in sprites/fonts/audio/shaders directories with async loading and hot reload, but no reprocessing/import pipeline — rates ~3."
+    },
+    "cli-project-tooling": {
+      "value": ["cli", "templates"],
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://github.com/super-turbo-society/turbo-cli"],
+      "comment": "Dedicated `turbo` CLI (init/run/export) that scaffolds projects from starter templates."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Console logging is available via the system module, but no dedicated profiler, Tracy integration, or egui overlay is documented."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer works as usual); no dedicated IDE integration."
+    },
+    "rendering-backend": {
+      "value": ["webgpu", "wgpu"],
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://turbo.computer/faq/"],
+      "comment": "Powered by WebAssembly + WebGPU; the Rust runtime uses wgpu so it also runs natively on desktop. Quad-based render pipeline."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "2D-only engine; no PBR."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "No first-party lighting system documented (low-res 2D drawing primitives)."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "No built-in shadow support."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Shaders are a first-class asset type (dedicated shaders directory, hot-reloaded); users author custom WGSL shaders."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "First-class sprite support (static and animated) with batching via the quad pipeline. No dedicated first-party tilemap API found — tilemaps would be hand-built from sprites."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "No built-in particle/VFX system documented."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "No named built-in post-processing stack (bloom/tonemapping/TAA); custom shaders exist but there is no documented post-process pipeline."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "Built-in text rendering with font assets, plus text boxes and nine-slice helpers."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://docs.turbo.computer/learn/cheatsheet/", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "No physics engine; only bounds/collision helper utilities are provided — physics is bring-your-own."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Built-in audio module: load/play/loop audio assets (music and sounds)."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad", "touch"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Input module handles keyboard, mouse, touch, and gamepad; the pointer API unifies mouse and touch."
+    },
+    "animation": {
+      "value": ["sprite-frame", "tween"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Animated sprites (frame-based) plus built-in tweening/easing utilities. No skeletal animation (2D engine)."
+    },
+    "ui-system": {
+      "value": ["built-in"],
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Built-in immediate-mode GUI helpers: advanced layout utilities, nine-slices, and text boxes."
+    },
+    "networking": {
+      "value": ["built-in"],
+      "source": ["https://turbo.computer/faq/", "https://github.com/super-turbo-society/turbo-genesis-sdk"],
+      "comment": "First-class online multiplayer via 'Turbo OS' backend (network channels/commands, leaderboards); games can run headlessly for server-side state verification. Optional Solana integration."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "2D-only engine; no 3D model import."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": "Windows supported (docs recommend running the installer via Git Bash as administrator)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": null
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": null
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://docs.turbo.computer/learn/installation/", "https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Compiles to wasm32-unknown-unknown; easy web publishing is a headline feature."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": "No documented native iOS export (desktop + web only). Games can run in mobile browsers via the web build."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": "No documented native Android export (desktop + web only). Games can run in mobile browsers via the web build."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://docs.turbo.computer/learn/installation/"],
+      "comment": "No documented console support."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "Not measured on a stated machine. Turbo advertises fast iteration and small builds, but no reliable clean-build number was verified."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://github.com/super-turbo-society/turbo-cli"],
+      "comment": "Not measured. Live-coding hot reload recompiles only the small game WASM crate and is advertised as near-instant, but no measured rebuild time was verified."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "Not measured for the native runtime; no reliable stripped-binary figure verified."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "source": ["https://docs.turbo.computer/learn/getting-started/"],
+      "comment": "Marketing claims 'small build sizes' for web export, but no measured post-wasm-opt bundle size was verified."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "Not measured; prefer null over a guess for idle CPU/memory of a trivial app."
+    },
+    "github-stars": {
+      "value": 10,
+      "source": ["https://github.com/super-turbo-society/turbo-genesis-sdk", "https://github.com/orgs/super-turbo-society/repositories?type=all"],
+      "comment": "turbo-genesis-sdk repo had 10 stars on 2026-07-06. Star count is fragmented and understates reach: the core engine repo is separate/private, turbo-cli has ~4 stars, and turbo-demos has ~41."
+    },
+    "crates-io-downloads": {
+      "value": 99365,
+      "source": ["https://crates.io/crates/turbo-genesis-sdk"],
+      "comment": "All-time downloads of turbo-genesis-sdk as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-01-05",
+      "source": ["https://crates.io/crates/turbo-genesis-sdk", "https://github.com/super-turbo-society/turbo-cli"],
+      "comment": "turbo-cli 0.10.0-alpha.0 and turbo-genesis-sdk 6.0.0-alpha.0 both released 2026-01-05."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://turbo.computer/faq/"],
+      "comment": "No widely-documented commercially released titles; usage is mostly official demos and game-jam projects."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://turbo.computer/faq/", "https://github.com/orgs/super-turbo-society/repositories?type=all"],
+      "comment": "Small but active community (Discord, small startup team, few external contributors on the public repos)."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://github.com/orgs/super-turbo-society/repositories?type=all"],
+      "comment": "Young project; no third-party plugin/asset registry — batteries-included core with little external ecosystem."
+    },
+    "learning-resources": {
+      "value": 3,
+      "source": ["https://docs.turbo.computer/learn/getting-started/", "https://docs.turbo.computer/learn/cheatsheet/"],
+      "comment": "Official docs site with getting-started, tutorials, a cheatsheet, video tutorials, and a demos repo — solid guides and examples, but no full-length book. Rates ~3."
+    }
+  }
 }
