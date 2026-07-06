@@ -1,5 +1,300 @@
 {
   "name": "raylib-rs",
   "description": "Rust bindings to raylib, the popular simple C game library; large tutorial ecosystem",
-  "values": {}
+  "url": "https://github.com/raylib-rs/raylib-rs",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["bindings"],
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://crates.io/crates/raylib"],
+      "comment": "Safe Rust bindings over the raylib C game library; Rust is the gameplay language while raylib provides the runtime. Secondary character is framework-like (code-first game loop), but its defining trait is being bindings."
+    },
+    "license": {
+      "value": ["zlib"],
+      "source": ["https://crates.io/crates/raylib", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Both the raylib-rs binding and the underlying raylib C library are Zlib/libpng licensed."
+    },
+    "repository": {
+      "value": "https://github.com/raylib-rs/raylib-rs",
+      "source": ["https://crates.io/crates/raylib"],
+      "comment": "Current home of the published `raylib` crate. The project originated at deltaphc/raylib-rs; the 6.0 rework and current releases live in the raylib-rs GitHub org."
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/raylib",
+      "source": ["https://crates.io/crates/raylib"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/raylib",
+      "source": ["https://docs.rs/raylib"],
+      "comment": "API docs on docs.rs; the underlying raylib C API is documented at raylib.com with an extensive cheatsheet and examples."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/api/v1/crates/raylib"],
+      "comment": "First crates.io publish (v0.9.0) on 2019-01-24. The GitHub project (deltaphc/raylib-rs) was created in mid-2018."
+    },
+    "latest-stable-version": {
+      "value": "6.0.0",
+      "source": ["https://crates.io/crates/raylib"],
+      "comment": "Published 2026-06-10; a near-complete rework of the binding tracking raylib 6.0. Checked 2026-07-06."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "raylib-rs/raylib-rs last pushed 2026-07-05, with a 6.0.0 release in June 2026. Checked 2026-07-06."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://crates.io/crates/raylib", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Wraps the mature raylib C library and has existed since 2019, but the Rust binding API still churns across major versions (6.0 was a near-complete rework), so 'stable' rather than 'mature'."
+    },
+    "backing": {
+      "value": "Community",
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://www.raylib.com/index.html"],
+      "comment": "Community-maintained bindings (raylib-rs org, originally by deltaphc). The underlying raylib C library is led by Ramon Santamaria (raysan5) with community and sponsor support."
+    },
+    "implementation": {
+      "value": ["bindings"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Dual-crate design: raylib-sys (raw FFI) plus a safe `raylib` wrapper. The build script compiles vendored raylib C source via CMake."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://www.raylib.com/index.html", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "raylib is an immediate-mode library: you run your own game loop and issue draw calls each frame. No ECS, scene graph, or node tree."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No ECS; game state is plain Rust structs in a user-driven loop."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Genuine first-party 3D tooling: Camera3D, meshes, models, billboards, heightmaps, plus full 2D drawing."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Gameplay is written in Rust; no embedded scripting layer."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No scene/prefab format; everything is constructed in code."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No first-class runtime reflection or scene serialization; users can add serde themselves."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No built-in code or asset hot-reload."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No scene/level editor. raylib has separate standalone tools (rGuiLayout, rTexPacker, etc.) but they are not part of the Rust bindings."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No runtime world/entity inspector."
+    },
+    "asset-pipeline": {
+      "value": 2,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Convenient synchronous loaders for many common formats (textures, fonts/TTF, models/glTF/OBJ, audio WAV/OGG/MP3/FLAC), but no async loading, no processing/reprocessing pipeline, and no hot reload — above manual include_bytes! (1) yet below basic async loading (3)."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No dedicated CLI, cargo plugin, or official project template; you use plain cargo."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Only a DrawFPS helper; no integrated profiler, Tracy, or diagnostics overlay."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer works out of the box)."
+    },
+    "rendering-backend": {
+      "value": ["opengl", "webgl"],
+      "source": ["https://www.raylib.com/index.html", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "raylib renders through its rlgl abstraction over OpenGL (1.1/2.1/3.3/4.3 and ES 2.0). On web it targets HTML5/WebGL via emscripten."
+    },
+    "pbr": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "raylib's material system supports PBR maps and ships a PBR example shader, but PBR is not an automatic turnkey pipeline like Bevy's — it requires wiring up the provided shaders/materials yourself."
+    },
+    "lighting": {
+      "value": ["forward"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Lighting is forward and driven by user/example shaders (the bundled rlights forward Blinn-Phong helper and PBR example), not an automatic engine lighting system."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No built-in shadow system; real-time shadow mapping exists only as an example shader you integrate yourself."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Full GLSL shader support, including model shaders and postprocessing shaders, loadable and slotted into the pipeline."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "First-party 2D sprite drawing (textures and source-rectangle regions, internally batched). No dedicated tilemap abstraction — tilemaps are drawn manually from a texture atlas."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No built-in particle/VFX system; particle effects are hand-rolled (example-level)."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "raylib explicitly supports postprocessing shaders applied to a full-screen RenderTexture; effects like bloom/blur are provided as example shaders."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Built-in font loading (including TTF) with glyph-atlas generation and DrawText/DrawTextEx."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No physics engine in the bindings; raylib offers only collision-check helpers (CheckCollision*). raylib's physac is a separate single-header library not exposed by default."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Built-in audio (raylib's raudio, backed by miniaudio): sound and music streaming for WAV, OGG, MP3, FLAC, XM, MOD."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad", "touch"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "First-party keyboard/mouse, gamepad, and touch/gesture input."
+    },
+    "animation": {
+      "value": ["skeletal"],
+      "source": ["https://www.raylib.com/index.html", "https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Skeletal (bone) animation for 3D models via ModelAnimation (IQM/glTF/M3D); the Rust binding wraps it with a ModelAnimations RAII type. Sprite-frame animation is done manually."
+    },
+    "ui-system": {
+      "value": ["built-in"],
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://www.raylib.com/index.html"],
+      "comment": "raygui, raylib's immediate-mode GUI, is exposed by the bindings (57 functions at 6.0 parity). It is an official raylib companion library rather than a full retained UI framework."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "No networking/multiplayer support; bring your own crate."
+    },
+    "gltf-model-import": {
+      "value": true,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Loads standard 3D model formats including glTF/GLB, OBJ, IQM, and M3D."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/raylib-rs/raylib-rs"]
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/raylib-rs/raylib-rs"]
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Native Linux, with Wayland support available (X11 by default)."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Compiles to the wasm32-unknown-emscripten target and runs in-browser via WebGL; the project publishes a browser gallery of ~229 ported examples."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No official iOS support in the Rust bindings (raylib C has some mobile support, but it is not exposed/tested here)."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Android is explicitly not supported by the Rust bindings."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No documented console path through the Rust bindings. raylib C has community console ports, but there is no verifiable, reproducible route via raylib-rs."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Not measured in this environment (no compile performed). Note: the first build compiles vendored raylib C via CMake, adding one-time C-toolchain cost on top of the small Rust surface."
+    },
+    "incremental-build-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Not directly measured. Estimated fast: the Rust dependency tree is minimal with no heavy proc-macro/codegen crates, so once raylib C is compiled, one-line rebuilds are quick."
+    },
+    "binary-size": {
+      "value": ["small"],
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://www.raylib.com/index.html"],
+      "comment": "Not directly measured. Estimated small: statically links the compact raylib C library into a minimal Rust binary; typical raylib apps land in the low single-digit-to-low-double-digit MB range."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "Not measured; emscripten output size for a minimal app was not built in this environment."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://www.raylib.com/index.html"],
+      "comment": "Not measured. raylib is a lightweight immediate-mode C library, so overhead is expected to be low, but idle CPU/memory was not profiled here; prefer null over a guess."
+    },
+    "github-stars": {
+      "value": 336,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "raylib-rs/raylib-rs (current home of the crate) as of 2026-07-06. The original deltaphc/raylib-rs repo, where the project started, carries ~927 stars but no longer publishes the crate."
+    },
+    "crates-io-downloads": {
+      "value": 266422,
+      "source": ["https://crates.io/api/v1/crates/raylib"],
+      "comment": "All-time downloads of the `raylib` crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-06-10",
+      "source": ["https://crates.io/api/v1/crates/raylib"],
+      "comment": "raylib 6.0.0 published 2026-06-10."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "No widely-documented commercial game shipped specifically with the Rust bindings. The underlying raylib C library has many shipped games, but that is not attributable to raylib-rs."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/raylib-rs/raylib-rs"],
+      "comment": "The Rust-binding community itself is small (a handful of active contributors). The broader raylib ecosystem community (Discord, forums) is large but centers on the C library."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://www.raylib.com/index.html"],
+      "comment": "No third-party plugin registry for the bindings. raylib bundles official companion libraries (raygui, raymath, rlgl), but there is minimal Rust-side plugin ecosystem."
+    },
+    "learning-resources": {
+      "value": 4,
+      "source": ["https://github.com/raylib-rs/raylib-rs", "https://www.raylib.com/index.html"],
+      "comment": "Very large raylib tutorial/example ecosystem (cheatsheet, ~229 examples ported to Rust, abundant C tutorials and videos that transfer directly), but no dedicated Rust-specific book — hence 4 rather than 5."
+    }
+  }
 }

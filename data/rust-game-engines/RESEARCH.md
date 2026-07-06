@@ -198,7 +198,7 @@ Users should be able to:
 - [x] **Emerald** — Lightweight, portable 2D engine with built-in physics and audio
 - [x] **bracket-lib** — Roguelike toolkit (formerly RLTK) — virtual terminals, pathfinding, FOV, RNG; the de-facto Rust roguelike engine
 - [x] **godot-rust (gdext)** — Official Rust bindings for Godot 4; drive the mature Godot engine and editor with Rust gameplay code
-- [ ] **raylib-rs** — Rust bindings to raylib, the popular simple C game library; large tutorial ecosystem
+- [x] **raylib-rs** — Rust bindings to raylib, the popular simple C game library; large tutorial ecosystem
 - [ ] **Turbo** — Rust-first retro/fantasy-console-style game engine targeting fast iteration and WASM
 
 ### Not Including (with reasons)
