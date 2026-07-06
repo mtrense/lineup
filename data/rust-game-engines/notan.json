@@ -1,5 +1,302 @@
 {
   "name": "notan",
   "description": "Portable, modular multimedia/game framework with strong web support",
-  "values": {}
+  "icon": "",
+  "url": "https://github.com/Nazariglez/notan",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Self-described as a portable multimedia layer — \"not an engine\". A code-first framework: window/graphics/input/audio with a state + update/draw loop and no editor."
+    },
+    "license": {
+      "value": ["mit-apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per crates.io version metadata (GitHub's single detected license shows Apache-2.0)."
+    },
+    "repository": {
+      "value": "https://github.com/Nazariglez/notan",
+      "source": ["https://github.com/Nazariglez/notan"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/notan",
+      "source": ["https://crates.io/api/v1/crates/notan"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/notan/latest/notan/",
+      "source": ["https://docs.rs/notan/latest/notan/", "https://github.com/Nazariglez/notan"],
+      "comment": "API docs on docs.rs; runnable examples are hosted at nazariglez.github.io/notan-web. No dedicated book/guide."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "First crates.io publish in February 2022; the GitHub repo dates back to 2019-10 (earlier iterations predate the crates.io crate)."
+    },
+    "latest-stable-version": {
+      "value": "0.14.0",
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "Newest stable on crates.io as of 2026-07-06 (released 2026-01-17)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/notan", "https://github.com/Nazariglez/notan"],
+      "comment": "Described by the author as in slow maintenance mode while focusing on other projects; roughly yearly releases (0.13 in 2025-03, 0.14 in 2026-01) and last push 2026-01-17."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "Pre-1.0 (0.14.x) after ~4 years on crates.io; usable and reasonably stable for 2D apps/demos but still evolving with occasional breaking changes between minor series."
+    },
+    "backing": {
+      "value": "Community — solo lead maintainer (Nazarí González / @Nazariglez)",
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No company or foundation backing; effectively a single-maintainer project."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Pure Rust; renders through glow (OpenGL/WebGL) with only platform glue — no engine *-sys bindings."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Code-first: a user State plus update/draw callbacks each frame, with a modular plugin/graphics-extension system. No scene graph or ECS."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No ECS; game state is plain Rust structs held in the app State."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "2D focus (draw2d API). The low-level graphics API lets you issue custom GL draw calls/shaders for 3D by hand, but there is no first-party 3D tooling (camera, meshes, lighting)."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Gameplay is written in Rust; no embedded scripting language."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No scene/prefab file format; everything is constructed in code."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No first-party runtime reflection or scene serialization; users bring serde themselves."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No built-in code or asset hot-reloading in the framework."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Code-first framework; ships no graphical scene/level editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No runtime world/entity inspector; the built-in egui integration can be used to hand-roll debug panels."
+    },
+    "asset-pipeline": {
+      "value": 3,
+      "source": ["https://docs.rs/notan/latest/notan/", "https://nazariglez.github.io/notan-web/"],
+      "comment": "Async asset loading of common formats (textures, audio, etc.) via an AssetList/asset-loading API; no import/processing pipeline or reprocessing."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No dedicated project-scaffolding CLI or cargo plugin; you add notan as a normal dependency."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No first-party profiler/diagnostics integrations; the egui plugin can be used to build ad-hoc debug overlays."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works)."
+    },
+    "rendering-backend": {
+      "value": ["opengl", "webgl"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Renders via glow: OpenGL 3.3 on desktop and WebGL2 in the browser. Not wgpu-based."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "2D-focused; no PBR pipeline."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No first-party lighting system; any lighting is hand-rolled via custom shaders."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No built-in shadow support."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "First-class custom shaders (GLSL, cross-compiled for the GL/WebGL backends) slotted into pipelines via the graphics API."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan", "https://nazariglez.github.io/notan-web/"],
+      "comment": "Built-in batched 2D sprite/image drawing via the draw2d API; no first-party tilemap system."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No built-in particle/VFX system in core."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No built-in post-processing stack; effects can be hand-rolled with render textures and custom shaders."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/notan/latest/notan/"],
+      "comment": "Built-in text rendering (notan_text / glyph modules with font loading and a glyph atlas)."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No physics in core; bring-your-own (e.g. rapier)."
+    },
+    "audio": {
+      "value": ["built-in", "oddio"],
+      "source": ["https://docs.rs/notan/latest/notan/audio/", "https://github.com/Nazariglez/notan"],
+      "comment": "Audio ships with the framework (notan::audio) for loading and playing sounds; the backend is built on oddio."
+    },
+    "input": {
+      "value": ["keyboard-mouse"],
+      "source": ["https://lib.rs/crates/notan_input", "https://github.com/Nazariglez/notan"],
+      "comment": "First-party keyboard and mouse input. notan_input also exposes gamepad and touch, but both are marked work-in-progress, so only keyboard/mouse is tagged as solid."
+    },
+    "animation": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No first-party animation system; the repo has animation examples but they are hand-rolled (advancing frames/tweening manually)."
+    },
+    "ui-system": {
+      "value": ["egui"],
+      "source": ["https://docs.rs/notan/latest/notan/", "https://github.com/Nazariglez/notan"],
+      "comment": "First-party egui integration (notan::egui) is the de-facto in-game/tooling UI approach."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No built-in networking or replication."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "2D-focused; no standard glTF/GLB model importer."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Native Windows target (OpenGL 3.3)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Native macOS target (OpenGL 3.3)."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Native Linux target (OpenGL 3.3)."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/Nazariglez/notan", "https://nazariglez.github.io/notan-web/"],
+      "comment": "First-class web target: compiles to wasm32 and runs via WebGL2; the web is treated as a first-class platform, with a hosted examples gallery."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not officially supported/tested; mobile is mentioned as a goal but not a documented, shipped target."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not officially supported/tested; mobile is mentioned as a goal but not a documented, shipped target."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No documented console support."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not independently measured this pass. notan's dependency tree is moderate (glow/GL stack plus optional plugins) — heavier than macroquad but far lighter than Bevy — but no verified clean-build number on a stated machine was captured."
+    },
+    "incremental-build-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not benchmarked this pass; estimate based on the modest dependency tree (a one-line change mainly relinks a small binary). Estimate, not a measurement."
+    },
+    "binary-size": {
+      "value": ["small"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not measured this pass; a minimal notan app produces a small stripped release binary (single-digit to low-double-digit MB). Estimate."
+    },
+    "web-bundle-size": {
+      "value": ["small"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Not measured this pass; minimal notan WASM bundles are typically a few MB after wasm-opt. Estimate."
+    },
+    "runtime-overhead": {
+      "value": ["low"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Subjective: a thin multimedia layer with no ECS/scheduler, so idle overhead is low. Not benchmarked."
+    },
+    "github-stars": {
+      "value": 971,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "GitHub stargazers as of 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 71156,
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "All-time crates.io downloads of the notan crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-01-17",
+      "source": ["https://crates.io/api/v1/crates/notan"],
+      "comment": "Release date of the newest stable version 0.14.0."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "No widely documented released games; notan is used mostly for demos, tools, and multimedia apps rather than notable shipped titles."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "Small community (~1k GitHub stars) centred on the solo lead maintainer; a handful of contributors."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://github.com/Nazariglez/notan"],
+      "comment": "A few first-party plugins/extensions (egui, text, extra) but no significant third-party plugin registry."
+    },
+    "learning-resources": {
+      "value": 2,
+      "source": ["https://github.com/Nazariglez/notan", "https://nazariglez.github.io/notan-web/"],
+      "comment": "A broad examples/ directory and a hosted examples gallery, plus partial docs.rs API docs (~60% documented); no official book, tutorials, or notable video ecosystem."
+    }
+  }
 }
