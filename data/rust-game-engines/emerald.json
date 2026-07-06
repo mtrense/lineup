@@ -1,5 +1,301 @@
 {
   "name": "Emerald",
   "description": "Lightweight, portable 2D engine with built-in physics and audio",
-  "values": {}
+  "url": "https://github.com/Bombfuse/emerald",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Code-first 2D game library with a render+input+audio+physics loop and no editor — classified as `framework` per RESEARCH.md, even though it uses an ECS (hecs) internally."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/Bombfuse/emerald", "https://github.com/Bombfuse/emerald"],
+      "comment": "MIT per GitHub license metadata (SPDX MIT) and README."
+    },
+    "repository": {
+      "value": "https://github.com/Bombfuse/emerald",
+      "source": ["https://github.com/Bombfuse/emerald"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/emerald",
+      "source": ["https://crates.io/api/v1/crates/emerald"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/emerald",
+      "source": ["https://docs.rs/emerald/latest/emerald/", "https://crates.io/api/v1/crates/emerald"],
+      "comment": "docs.rs is the primary API reference (only ~10% of the crate is documented). No separate book or docs site; README covers usage."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/emerald", "https://api.github.com/repos/Bombfuse/emerald"],
+      "comment": "crates.io crate created Apr 4, 2020; GitHub repo created the same day."
+    },
+    "latest-stable-version": {
+      "value": "0.3.214",
+      "source": ["https://crates.io/api/v1/crates/emerald"],
+      "comment": "0.3.214 is the max stable (and newest) version on crates.io, published Jun 4, 2023. No release since."
+    },
+    "maintenance-status": {
+      "value": ["archived"],
+      "source": ["https://api.github.com/repos/Bombfuse/emerald", "https://github.com/Bombfuse/emerald"],
+      "comment": "GitHub repository is archived (read-only) as of ~Nov 2024; last push Nov 24, 2024 and last crates.io release Jun 2023. No longer maintained."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://crates.io/api/v1/crates/emerald", "https://github.com/Bombfuse/emerald"],
+      "comment": "Pre-1.0 (0.3.x) with a rapidly churning patch version scheme, no widely documented shipped titles, and now archived. Scored experimental per the maturity-vs-stars guideline."
+    },
+    "backing": {
+      "value": "Community",
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Solo hobby project by a single developer (Bombfuse); no company or foundation backing. Now archived."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://docs.rs/emerald/latest/emerald/", "https://github.com/Bombfuse/emerald"],
+      "comment": "Pure Rust; latest versions render via wgpu with winit windowing, physics via rapier2d, ECS via hecs — no non-Rust engine wrapped. (Earlier versions rendered via miniquad.)"
+    },
+    "architecture": {
+      "value": ["ecs"],
+      "source": ["https://docs.rs/emerald/latest/emerald/", "https://github.com/Bombfuse/emerald"],
+      "comment": "Entity-Component-System model built on hecs; entities live in an EmeraldWorld and are iterated ECS-style. Games are driven by a code-first update/draw loop (no scene graph)."
+    },
+    "built-in-ecs": {
+      "value": true,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Ships hecs as the primary way to structure game entities via the EmeraldWorld — ECS is the default data model, not an optional add-on."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "2D-only engine (\"A 2D rust game engine focused on portability\"); no first-party 3D tooling."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Gameplay is written in Rust; no embedded scripting language."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Entities/worlds are built in code; no first-party serialized scene/prefab format documented. Assets (sprites, aseprite, sounds, fonts) are loaded by path, but scenes are not authored to data files."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://docs.rs/emerald/latest/emerald/", "https://github.com/Bombfuse/emerald"],
+      "comment": "No first-party runtime reflection or engine-provided game-state (de)serialization documented; hecs itself provides no reflection. A user could add serde manually."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "No code or asset hot-reloading documented. The portability design packs assets into the binary for WASM, which runs counter to a watch/reload workflow."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Code-first framework with no graphical editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No runtime world/entity inspector, first-party or de-facto."
+    },
+    "asset-pipeline": {
+      "value": 2,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "AssetStore loads and caches common formats (sprites/textures, aseprite, sounds, fonts) by path, and can pack assets into the binary for WASM. Better than raw include_bytes! (1) but synchronous with no processing/reprocessing pipeline or hot reload (3+). Scored 2."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No dedicated CLI, cargo plugin, or official starter templates — plain cargo project."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "No profiler integration (no Tracy/egui overlay/diagnostics subsystem) documented."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works); no engine-specific IDE integration."
+    },
+    "rendering-backend": {
+      "value": ["wgpu"],
+      "source": ["https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Latest stable (0.3.214) renders via wgpu (^0.14) with winit (^0.27) for windowing. Earlier versions of Emerald rendered via miniquad; the tag reflects the current/last-released backend."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "2D-only engine; no PBR pipeline."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No first-party lighting system documented."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No built-in shadow support."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "No documented first-party API for authoring/slotting custom shaders into the pipeline. A render_to_texture example exists but user-authored shaders are not surfaced as a feature."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "First-party sprite/texture loading and rendering, including aseprite files and sheets. Built-in tilemap support is not clearly documented; scored true on the strength of first-party sprites."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "No built-in particle/VFX system documented."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No built-in post-processing (bloom/tonemapping/AA) documented."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/emerald/latest/emerald/", "https://github.com/Bombfuse/emerald"],
+      "comment": "Built-in font/label rendering via the fontdue dependency."
+    },
+    "physics": {
+      "value": ["built-in", "rapier"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Physics ships in the core engine (rigid bodies + colliders exposed on the world), built on rapier2d under the hood."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "In-core audio mixer with looping/playback exposed via the engine API; no separate bring-your-own audio crate required."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad"],
+      "source": ["https://docs.rs/emerald/latest/emerald/"],
+      "comment": "First-party keyboard/mouse (Button enum) and gamepad (re-exports the `gamepad` crate) input. Touch may be reachable through the web/mobile layer but is not clearly documented as first-party; omitted."
+    },
+    "animation": {
+      "value": ["sprite-frame"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Sprite-frame animation via built-in aseprite support (load an aseprite file and play named animations). No skeletal/state-machine animation."
+    },
+    "ui-system": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "No first-party in-game UI system documented; bring your own (e.g. egui)."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No built-in or first-party networking/multiplayer support documented."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "2D-only engine; no glTF/GLB model import."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Listed under supported platforms in the README."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Listed under supported platforms in the README."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Listed under supported platforms in the README (also lists Raspberry Pi)."
+    },
+    "web-wasm": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "Conflicting signals: portability to WASM is Emerald's stated design goal (assets are packed into the WASM binary to avoid network requests), and early miniquad-based versions reportedly ran on the web — but the README lists HTML5 under a 'work in progress / probably broken' section, and the latest wgpu+winit-based releases don't document a verified browser path. Could not confirm it actually runs in a browser, so null per the conflict guideline."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "iOS is not listed as a supported or in-progress target in the README."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "README lists Android only under a 'work in progress / probably broken' section, not as officially supported/tested; scored false per the platform-verification guideline."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No documented console support path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Not measured on a consistent reference machine this pass; prefer null over a guess per RESEARCH.md."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Web support could not be verified (see Web (WASM)) and no bundle was measured; null rather than a guess or N/A."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Not measured with a defined methodology; prefer null over a guess."
+    },
+    "github-stars": {
+      "value": 550,
+      "source": ["https://api.github.com/repos/Bombfuse/emerald"],
+      "comment": "Snapshot from the GitHub API on 2026-07-06 (repository archived)."
+    },
+    "crates-io-downloads": {
+      "value": 68531,
+      "source": ["https://crates.io/api/v1/crates/emerald"],
+      "comment": "All-time downloads of the emerald crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2023-06-04",
+      "source": ["https://crates.io/api/v1/crates/emerald"],
+      "comment": "0.3.214 published Jun 4, 2023 on crates.io — the most recent release."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No notable released commercial games widely documented as built with Emerald; usage appears to be hobby/jam projects."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "Single-maintainer hobby project, now archived; small handful of contributors and no active community hub."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["none"],
+      "source": ["https://github.com/Bombfuse/emerald"],
+      "comment": "No third-party plugin/asset ecosystem or registry around Emerald."
+    },
+    "learning-resources": {
+      "value": 2,
+      "source": ["https://github.com/Bombfuse/emerald", "https://docs.rs/emerald/latest/emerald/"],
+      "comment": "README plus a set of examples in the repo; docs.rs is sparse (~10% documented) and there is no official book/tutorial/video ecosystem. Scored 2."
+    }
+  }
 }

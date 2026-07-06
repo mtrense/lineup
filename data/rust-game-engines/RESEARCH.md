@@ -195,7 +195,7 @@ Users should be able to:
 - [x] **comfy** — Opinionated, batteries-included 2D game engine built on wgpu, designed for fast iteration
 - [x] **Nannou** — Creative-coding framework for generative art and interactive visuals, usable for games
 - [x] **notan** — Portable, modular multimedia/game framework with strong web support
-- [ ] **Emerald** — Lightweight, portable 2D engine with built-in physics and audio
+- [x] **Emerald** — Lightweight, portable 2D engine with built-in physics and audio
 - [ ] **bracket-lib** — Roguelike toolkit (formerly RLTK) — virtual terminals, pathfinding, FOV, RNG; the de-facto Rust roguelike engine
 - [ ] **godot-rust (gdext)** — Official Rust bindings for Godot 4; drive the mature Godot engine and editor with Rust gameplay code
 - [ ] **raylib-rs** — Rust bindings to raylib, the popular simple C game library; large tutorial ecosystem
