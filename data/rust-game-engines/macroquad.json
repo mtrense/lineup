@@ -1,5 +1,302 @@
 {
   "name": "Macroquad",
   "description": "Minimal, extremely fast-compiling cross-platform 2D/3D framework built on miniquad; excellent web support",
-  "values": {}
+  "icon": "",
+  "url": "https://macroquad.rs",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Code-first game library with a render+input+audio loop and no editor; inspired by raylib."
+    },
+    "license": {
+      "value": ["mit-apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/macroquad", "https://github.com/not-fl3/macroquad"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per crates.io metadata."
+    },
+    "repository": {
+      "value": "https://github.com/not-fl3/macroquad",
+      "source": ["https://github.com/not-fl3/macroquad"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/macroquad",
+      "source": ["https://crates.io/api/v1/crates/macroquad"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/macroquad/latest/macroquad/",
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "API docs on docs.rs; the project also hosts tutorials/articles at macroquad.rs."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/macroquad"],
+      "comment": "First crates.io publish (0.2.7) in June 2020; repo created January 2020."
+    },
+    "latest-stable-version": {
+      "value": "0.4.15",
+      "source": ["https://crates.io/api/v1/crates/macroquad"],
+      "comment": "Newest stable on crates.io as of 2026-07-06 (released 2026-05-20)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/not-fl3/macroquad", "https://crates.io/api/v1/crates/macroquad"],
+      "comment": "Last push 2026-06-15 and a 0.4.15 release 2026-05-20; ongoing commits from the lead maintainer."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/macroquad"],
+      "comment": "Still pre-1.0 (0.4.x) after ~6 years; API is stable in practice for 2D and used in shipped games, but occasional breaking changes between minor series."
+    },
+    "backing": {
+      "value": "Community — solo lead maintainer (Fedor Logachev / @not-fl3), Patreon-supported",
+      "source": ["https://api.github.com/repos/not-fl3/macroquad"],
+      "comment": "No company/foundation backing; primarily a single maintainer."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Pure Rust on top of the pure-Rust miniquad backend; only thin platform glue (no engine *-sys bindings)."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Immediate-mode: draw-from-state game loop each frame; no scene graph or ECS."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No ECS; game state is plain Rust structs in an immediate loop."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "2D is the primary focus; first-party 3D exists (Camera3D, draw_cube/sphere/grid, meshes, first-person example) but is basic — no PBR, lighting, or material pipeline."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Gameplay is written in Rust; no embedded scripting language."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No scene/prefab file format; scenes are constructed in code."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No first-party runtime reflection or scene serialization; users bring serde themselves."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No built-in code or asset hot-reloading in the core framework."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Code-first framework; ships no graphical scene/level editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No runtime world/entity inspector; the built-in immediate-mode UI can be used to hand-roll debug panels."
+    },
+    "asset-pipeline": {
+      "value": 3,
+      "source": ["https://docs.rs/macroquad/latest/macroquad/"],
+      "comment": "Async loading of common formats (load_texture, load_sound, load_ttf_font) with ergonomic await; no import/processing pipeline or reprocessing."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No project-scaffolding CLI; a separate cargo-quad-apk cargo plugin exists for Android packaging but not for project setup."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No first-party profiler/diagnostics overlay integrations in core."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works)."
+    },
+    "rendering-backend": {
+      "value": ["miniquad", "opengl", "webgl", "metal"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Renders through miniquad, which abstracts OpenGL/GLES on desktop, WebGL in browsers, and Metal on Apple platforms."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No PBR pipeline; 3D support is limited to unlit primitives and meshes."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No first-party lighting system (2D or 3D); users implement lighting via custom shaders."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No built-in shadow mapping or 2D shadow support."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://docs.rs/macroquad/latest/macroquad/"],
+      "comment": "Custom GLSL shaders via the Material/shader API, slotted into the render pipeline."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Sprite drawing with automatic geometry batching is built in; tilemaps come from the companion macroquad-tiled crate (Tiled maps), not core."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Not in core; a companion macroquad-particles crate by the same author provides a particle system."
+    },
+    "post-processing": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No built-in post-processing stack; effects can be hand-rolled with render targets and custom shaders."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://docs.rs/macroquad/latest/macroquad/"],
+      "comment": "Built-in text rendering: draw_text plus TTF font loading and a glyph atlas."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No physics in core; repo ships a hand-rolled platformer collision example, otherwise bring-your-own (e.g. rapier)."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Built-in audio module (macroquad::audio) for loading and playing sounds."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "touch"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "First-party keyboard, mouse, and touch input; native gamepad support is still work-in-progress per the docs (\"gamepads soon\")."
+    },
+    "animation": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No first-party animation system; sprite-frame animation is done manually by advancing source rects."
+    },
+    "ui-system": {
+      "value": ["built-in"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Ships a built-in immediate-mode UI library (macroquad::ui)."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No built-in networking; the Fish Game demo used the external Nakama server."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "3D is limited to primitives and simple meshes; no standard glTF/GLB importer in core."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Native Windows target officially supported."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Native macOS target officially supported (Metal via miniquad)."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Native Linux target officially supported (requires alsa-lib for audio)."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "First-class HTML5/WebAssembly target via WebGL; single-command WASM deployment is a headline feature."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "iOS listed among officially supported platforms."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Officially supported; single-command APK deployment (cargo-quad-apk). Zemeroth shipped to Google Play with macroquad."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "No documented, officially supported console path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Not independently measured. The project README reports a clean build of ~16s on an old ThinkPad X230; fast compilation is macroquad's headline differentiator, but no verified measurement on a stated modern machine was made."
+    },
+    "incremental-build-time": {
+      "value": ["fast"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Not measured this pass; inferred from macroquad's very small dependency tree (a one-line change mainly relinks the minimal binary). Estimate, not a benchmark."
+    },
+    "binary-size": {
+      "value": ["tiny"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Not measured this pass; minimal-dependency macroquad apps produce small stripped release binaries (a few MB). Estimate."
+    },
+    "web-bundle-size": {
+      "value": ["small"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Not measured this pass; minimal macroquad WASM bundles are typically a few MB. Estimate."
+    },
+    "runtime-overhead": {
+      "value": ["minimal"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Subjective: macroquad is a thin immediate-mode layer over miniquad with no ECS/scheduler, so idle overhead is very low. Not benchmarked."
+    },
+    "github-stars": {
+      "value": 4527,
+      "source": ["https://api.github.com/repos/not-fl3/macroquad"],
+      "comment": "GitHub stargazers as of 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 1548822,
+      "source": ["https://crates.io/api/v1/crates/macroquad"],
+      "comment": "All-time crates.io downloads of the macroquad crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-05-20",
+      "source": ["https://crates.io/api/v1/crates/macroquad"],
+      "comment": "Release date of the newest stable version 0.4.15."
+    },
+    "shipped-titles": {
+      "value": "Zemeroth (turn-based tactics, on Google Play); Fish Game (online multiplayer demo)",
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "Zemeroth is the most notable released macroquad game; Fish Game is a widely-cited multiplayer demo built with macroquad."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/not-fl3/macroquad"],
+      "comment": "Active but small: development is centred on the solo lead maintainer with a modest contributor base and Discord community."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://github.com/not-fl3/macroquad"],
+      "comment": "A handful of companion crates (macroquad-tiled, macroquad-particles, egui-macroquad, etc.), mostly from the author; no large third-party plugin registry."
+    },
+    "learning-resources": {
+      "value": 3,
+      "source": ["https://github.com/not-fl3/macroquad", "https://docs.rs/macroquad/latest/macroquad/"],
+      "comment": "Solid examples/ directory, docs.rs API docs, and tutorial articles on macroquad.rs; no full official book, and fewer videos/guides than Bevy."
+    }
+  }
 }
