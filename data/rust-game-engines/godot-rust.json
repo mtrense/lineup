@@ -1,5 +1,296 @@
 {
   "name": "godot-rust (gdext)",
   "description": "Official Rust bindings for Godot 4; drive the mature Godot engine and editor with Rust gameplay code",
-  "values": {}
+  "url": "https://godot-rust.github.io",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["bindings"],
+      "source": ["https://github.com/godot-rust/gdext", "https://godot-rust.github.io/book/"],
+      "comment": "Rust bindings (via GDExtension) that let you write gameplay logic in Rust for the Godot 4 engine; Rust is a first-class scripting/gameplay language over a non-Rust engine."
+    },
+    "license": {
+      "value": ["mpl-2-0"],
+      "source": ["https://github.com/godot-rust/gdext", "https://crates.io/crates/godot"],
+      "comment": "The gdext binding is licensed MPL-2.0. The underlying Godot engine itself is MIT-licensed."
+    },
+    "repository": {
+      "value": "https://github.com/godot-rust/gdext",
+      "source": ["https://github.com/godot-rust/gdext"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/godot",
+      "source": ["https://crates.io/crates/godot"],
+      "comment": "Top-level crate is `godot`."
+    },
+    "documentation": {
+      "value": "https://godot-rust.github.io/book/",
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Official godot-rust book (mdBook); API docs at docs.rs/godot."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://godot-rust.github.io/dev/godot-rust-2023-review/", "https://crates.io/crates/godot"],
+      "comment": "gdext was open-sourced as experimental Godot 4 bindings in November 2022; the `godot` crate's first real gdext release (0.1.1) was published to crates.io in June 2024."
+    },
+    "latest-stable-version": {
+      "value": "0.5.4",
+      "source": ["https://crates.io/crates/godot"],
+      "comment": "0.5.4 published to crates.io 2026-06-23; verified 2026-07-06. Still pre-1.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/godot-rust/gdext", "https://crates.io/crates/godot"],
+      "comment": "Latest release 2026-06-23; regular releases and active development led by Jan Haller (Bromeon)."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/godot-rust/gdext", "https://godot-rust.github.io/book/"],
+      "comment": "Binding is pre-1.0 (0.5.x) with periodic breaking changes and migration guides, though it drives the fully mature Godot 4 engine. Anchored to the binding's API churn per the guide."
+    },
+    "backing": {
+      "value": "Community (godot-rust organization; lead maintainer Jan Haller / Bromeon) + GitHub Sponsors",
+      "source": ["https://github.com/godot-rust/gdext", "https://godot-rust.github.io/dev/godot-rust-2023-review/"],
+      "comment": "Community open-source project under the godot-rust org, funded via sponsorships/donations; Godot itself is stewarded by the Godot Foundation."
+    },
+    "implementation": {
+      "value": ["bindings"],
+      "source": ["https://github.com/godot-rust/gdext", "https://godot-rust.github.io/book/"],
+      "comment": "Binds to the C++ Godot 4 engine through the GDExtension C API; the engine (rendering, physics, audio, editor) is not Rust."
+    },
+    "architecture": {
+      "value": ["scene-graph", "object-oriented"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Inherits Godot's node/scene-tree model; dominant model is the scene graph of object-oriented nodes. Not ECS."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot is node-based, not ECS; per the guide, node-based engines driven via bindings are false."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://crates.io/crates/godot"],
+      "comment": "Godot 4 has full first-party 2D and 3D tooling; both are exposed through the bindings."
+    },
+    "scripting": {
+      "value": ["gdscript", "c-sharp"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "gdext itself makes Rust the gameplay language; within the same Godot project you can additionally use GDScript and C# alongside Rust."
+    },
+    "data-driven-scenes": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot scenes (.tscn/.scn) are authored in the editor, serialized to files, and loaded at runtime; Rust classes can be attached to nodes."
+    },
+    "reflection-serialization": {
+      "value": true,
+      "source": ["https://crates.io/crates/godot", "https://godot-rust.github.io/book/"],
+      "comment": "Rust classes register properties with Godot's runtime object/property system; Godot Resources serialize to disk, and a `serde` feature is available."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext/issues/434", "https://godot-rust.github.io/dev/godot-rust-2023-review/"],
+      "comment": "Since Godot 4.2, GDExtensions hot-reload: recompiled Rust code is picked up without restarting the editor (use the `reloadable` setting; cargo watch to auto-rebuild)."
+    },
+    "visual-editor": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Uses Godot's full graphical scene/level editor; the editor comes from Godot, not the Rust binding."
+    },
+    "live-inspector": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot editor's Inspector and remote scene tree show exported properties of Rust-registered classes at edit and run time; provided by Godot."
+    },
+    "asset-pipeline": {
+      "value": 5,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Inherits Godot's full import/processing pipeline with reimport and a broad format set."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "No dedicated gdext CLI or cargo plugin; projects are set up with Godot's own project manager plus a normal cargo crate. Community starter templates exist."
+    },
+    "debug-profiling-tools": {
+      "value": ["built-in-profiler"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot editor ships a built-in debugger/profiler and monitors; Rust-side debugging uses standard tooling (gdb/lldb)."
+    },
+    "ide-support": {
+      "value": "Godot editor for scenes/inspector; standard rust-analyzer for the Rust code",
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "No dedicated Rust-in-Godot IDE plugin; rust-analyzer works out of the box and the Godot editor handles scenes."
+    },
+    "rendering-backend": {
+      "value": ["vulkan", "directx", "metal", "opengl", "webgl"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Rendering is Godot's: Vulkan (Forward+/Mobile), Direct3D 12 and Metal backends, and an OpenGL/WebGL2 Compatibility renderer (used for web). Godot does not use wgpu."
+    },
+    "pbr": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot's 3D renderer is physically based."
+    },
+    "lighting": {
+      "value": ["clustered", "forward", "baked-gi", "realtime-gi", "2d-lighting"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot 4 Forward+ is a clustered forward renderer; baked lightmaps plus realtime GI (SDFGI/VoxelGI) and full 2D lighting are available."
+    },
+    "shadows": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot provides real-time shadow mapping (3D) and 2D shadows."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot shading language plus a visual shader graph."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot ships Sprite2D batching and a first-party TileMap system."
+    },
+    "particle-system": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot has built-in GPU/CPU particle systems for 2D and 3D."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot's WorldEnvironment provides glow/bloom, tonemapping, SSAO, etc."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot has built-in font/text rendering and Label/RichTextLabel nodes."
+    },
+    "physics": {
+      "value": ["built-in"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot ships built-in 2D and 3D physics (Godot Physics; Jolt-based 3D in recent versions)."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot's built-in audio engine (AudioStreamPlayer, buses)."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad", "touch"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot's input system supports keyboard/mouse, gamepad, and touch, exposed through the bindings."
+    },
+    "animation": {
+      "value": ["skeletal", "sprite-frame", "tween", "state-machine"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot provides AnimationPlayer (incl. skeletal), AnimatedSprite (sprite-frame), Tween, and AnimationTree state machines."
+    },
+    "ui-system": {
+      "value": ["built-in"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot's built-in Control-node UI system."
+    },
+    "networking": {
+      "value": ["built-in"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot ships high-level multiplayer/replication (MultiplayerAPI) over ENet."
+    },
+    "gltf-model-import": {
+      "value": true,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Godot imports glTF/GLB (and other) 3D model formats."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "Primary supported desktop platform."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "Primary supported desktop platform (Apple Silicon + Intel)."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "Primary supported desktop platform."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext", "https://crates.io/crates/godot"],
+      "comment": "Web/WASM export is supported but marked experimental (gated behind the `experimental-wasm` feature); tooling is still maturing."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "iOS is listed as supported but experimental in the repo; documentation and tooling are still in development."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "Android is listed as supported but experimental in the repo; documentation and tooling are still in development."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "No publicly reproducible first-party console path for gdext; Godot console ports are handled by third-party porting companies (e.g. W4 Games) and are not documented for the Rust bindings."
+    },
+    "clean-build-time": {
+      "value": null,
+      "comment": "Not measured on a standard machine this pass. The first gdext build code-generates the whole Godot API, which is a known multi-minute cost; the guide requires a measured number, so left null."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "comment": "Not measured. Incremental rebuilds of gameplay code are generally fast once the binding codegen is cached, but no consistent measurement was taken this pass."
+    },
+    "binary-size": {
+      "value": null,
+      "comment": "Not measured. The Rust GDExtension library is separate from the Godot runtime/export template (~tens of MB), so a single stripped-binary figure isn't directly comparable; left null."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "comment": "Not measured. Godot web exports (engine wasm + pck) are large, and gdext web support is experimental; no reliable current post-wasm-opt figure available."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "comment": "Not measured; the guide says to prefer null over a guess for idle CPU/memory."
+    },
+    "github-stars": {
+      "value": 5000,
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "GitHub displays the count as \"5k\" (approximate); snapshot 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 318271,
+      "source": ["https://crates.io/crates/godot"],
+      "comment": "All-time downloads of the top-level `godot` crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-06-23",
+      "source": ["https://crates.io/crates/godot"],
+      "comment": "godot 0.5.4 published to crates.io 2026-06-23."
+    },
+    "shipped-titles": {
+      "value": null,
+      "comment": "No widely documented commercial titles are known to use the Rust bindings specifically. Godot itself has shipped many games, but those overwhelmingly use GDScript/C#, not gdext."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "Dedicated godot-rust Discord and regular contributions; smaller than Godot's own or Bevy's community."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["growing"],
+      "source": ["https://github.com/godot-rust/gdext"],
+      "comment": "A growing set of Rust crates/helpers around gdext; Godot's own AssetLib is large but is overwhelmingly GDScript addons rather than Rust plugins."
+    },
+    "learning-resources": {
+      "value": 4,
+      "source": ["https://godot-rust.github.io/book/"],
+      "comment": "Official godot-rust book, API docs, in-repo examples, and a growing set of tutorials/videos; not yet the volume of Godot's own (GDScript-focused) learning ecosystem."
+    }
+  }
 }
