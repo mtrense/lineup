@@ -1,5 +1,296 @@
 {
   "name": "Fyrox",
   "description": "Full 3D/2D engine with a native visual scene editor and resource manager (formerly rg3d)",
-  "values": {}
+  "url": "https://fyrox.rs",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["full-engine"],
+      "source": ["https://fyrox.rs/", "https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Full 2D/3D engine with a native scene editor and resource manager; markets itself as \"like Godot/Unity, but in Rust\"."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/FyroxEngine/Fyrox"],
+      "comment": "MIT licensed (GitHub repo license)."
+    },
+    "repository": {
+      "value": "https://github.com/FyroxEngine/Fyrox",
+      "source": ["https://github.com/FyroxEngine/Fyrox"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/fyrox",
+      "source": ["https://crates.io/api/v1/crates/fyrox"]
+    },
+    "documentation": {
+      "value": "https://fyrox-book.github.io/",
+      "source": ["https://fyrox-book.github.io/"],
+      "comment": "Official Fyrox Book (mdBook); API docs also at docs.rs/fyrox."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/api/v1/crates/rg3d", "https://github.com/FyroxEngine/Fyrox"],
+      "comment": "First published on crates.io as rg3d on 2019-11-02; renamed to Fyrox, first fyrox crate published 2022-01-10."
+    },
+    "latest-stable-version": {
+      "value": "1.0.1",
+      "source": ["https://crates.io/api/v1/crates/fyrox"],
+      "comment": "Latest stable on crates.io as of 2026-07-06; 1.0.0 was the milestone release on 2026-03-29."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/", "https://github.com/FyroxEngine/Fyrox"],
+      "comment": "1.0 released March 2026 after seven years of continuous development; regular commits and releases."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/", "https://www.prismnews.com/hobbies/rust-programming/fyrox-game-engine-hits-10-after-seven-years-of-rust"],
+      "comment": "Reached a 1.0 \"production-ready\" release in 2026 after seven years; API stabilized, but few widely-documented commercially shipped titles, so stable rather than mature."
+    },
+    "backing": {
+      "value": "Small team led by a single lead maintainer (Dmitry Stepanov), funded via donations/Patreon; described as having little to no funding",
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "1.0 blog notes the team is \"quite small with little to no funding\"."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://github.com/FyroxEngine/Fyrox"],
+      "comment": "Written in Rust (~98%); no wrapped non-Rust engine. Rendering via OpenGL bindings (glow) as platform glue."
+    },
+    "architecture": {
+      "value": ["scene-graph"],
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Dominant model is a classic node-based scene graph (node tree with prefabs), not ECS."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Node/scene-graph based with Rust script components attached to nodes; not an ECS-first engine."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://fyrox.rs/", "https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "First-party tooling for both 2D and 3D."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Gameplay logic written in Rust as script components / dynamic plugins; supports hot-reloading. No Lua/visual scripting."
+    },
+    "data-driven-scenes": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Scenes and prefabs are authored in the editor, serialized to native scene files, and loaded at runtime."
+    },
+    "reflection-serialization": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "First-class reflection system plus the Visit trait for (de)serialization of game/engine state; powers the editor property inspector."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Hot-reloading of scripts / dynamic plugins, plus asset hot-reload via the resource manager."
+    },
+    "visual-editor": {
+      "value": true,
+      "source": ["https://fyrox.rs/", "https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Ships FyroxEd, a native graphical scene editor plus a project manager (PC only)."
+    },
+    "live-inspector": {
+      "value": true,
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "First-party editor property inspector; can inspect/edit node properties while the scene runs in the editor."
+    },
+    "asset-pipeline": {
+      "value": 5,
+      "source": ["https://fyrox-book.github.io/resources/model.html", "https://fyrox.rs/"],
+      "comment": "Resource manager with async import of many formats (FBX/glTF/GLB models, textures, sound), reimport and hot reload — matches the guideline's level-5 (Fyrox resource manager)."
+    },
+    "cli-project-tooling": {
+      "value": ["cli", "templates"],
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html", "https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "fyrox-template CLI scaffolds new projects from templates; 1.0 added a CLI for project export (PC/WASM/Android) for CI/CD."
+    },
+    "debug-profiling-tools": {
+      "value": ["diagnostics"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Editor exposes rendering/frame statistics and diagnostics; no first-party Tracy or dedicated built-in profiler integration documented."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Nothing beyond standard Rust tooling — rust-analyzer works; no dedicated IDE plugin. The Fyrox editor is a scene editor, not a code IDE."
+    },
+    "rendering-backend": {
+      "value": ["opengl", "webgl"],
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html", "https://github.com/FyroxEngine/Fyrox"],
+      "comment": "OpenGL 3.3+ backend (fyrox-graphics-gl / glow) on desktop and Android; WebGL 2.0 on the web (WASM). Not wgpu-based."
+    },
+    "pbr": {
+      "value": true,
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/", "https://fyrox.rs/"],
+      "comment": "Physically-based rendering pipeline with a material system."
+    },
+    "lighting": {
+      "value": ["deferred", "forward"],
+      "source": ["https://fyrox.rs/", "https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Deferred shading renderer with a forward pass for transparent objects; dynamic lights with PCF-filtered shadows."
+    },
+    "shadows": {
+      "value": true,
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Real-time PCF-filtered shadow mapping (1.0 increased the PCF kernel size for smoother shadows)."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://fyrox.rs/"],
+      "comment": "Custom materials/shaders via the engine's shader/material system."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://fyrox.rs/"],
+      "comment": "Built-in 2D sprites and a tile map system/editor."
+    },
+    "particle-system": {
+      "value": true,
+      "source": ["https://fyrox.rs/"],
+      "comment": "Built-in particle system."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://fyrox.rs/", "https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Post effects including bloom, HDR tonemapping and FXAA."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://fyrox.rs/"],
+      "comment": "Built-in font/text rendering via the fyrox-ui system."
+    },
+    "physics": {
+      "value": ["built-in", "rapier"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Rapier (3D + 2D) integrated natively into the scene graph as built-in physics; 1.0 upgraded to Rapier 0.32."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://fyrox.rs/", "https://github.com/FyroxEngine/Fyrox"],
+      "comment": "Built-in Rust audio engine (fyrox-sound) with spatial/HRTF sound."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "touch"],
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "Keyboard/mouse on desktop and touch on mobile/web via raw window events; no prominent first-party gamepad abstraction documented."
+    },
+    "animation": {
+      "value": ["skeletal", "sprite-frame", "state-machine"],
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Skeletal animation with an Animation Blending State Machine (ABSM) editor; also sprite-sheet animation for 2D."
+    },
+    "ui-system": {
+      "value": ["built-in"],
+      "source": ["https://fyrox.rs/", "https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Built-in retained-mode UI framework (fyrox-ui) used for both in-game UI and the editor itself."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "No first-party networking/replication; multiplayer projects (e.g. RustCycles) use standard Rust networking crates."
+    },
+    "gltf-model-import": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/resources/model.html"],
+      "comment": "Loads FBX natively and glTF/GLB via the gltf feature."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "First-class support (engine + editor)."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "Supported (engine + editor); docs note poor GPU performance on Intel Macs, M1+ works well."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "First-class support (engine + editor)."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "Compiles to WebAssembly (WebGL 2.0) and runs in the browser; engine only, no editor on web."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "Only theoretical support per the docs — untested and not officially supported."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "Official build target (engine only, no editor); android is one of the supported export targets."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://fyrox-book.github.io/introduction/requirements.html"],
+      "comment": "No documented console (Switch/PlayStation/Xbox) support path; docs cover only PC, web and mobile."
+    },
+    "clean-build-time": {
+      "value": null,
+      "comment": "Not measured in this pass; RESEARCH.md requires a consistent measured build to record a value."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "comment": "Not measured in this pass; prefer null over an unverified estimate. Note: script/plugin hot-reload reduces the need for full rebuilds."
+    },
+    "binary-size": {
+      "value": null,
+      "comment": "Not measured in this pass (no stripped minimal-app build performed)."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "comment": "Web-capable (WASM/WebGL2) but the minimal-app WASM bundle was not measured in this pass."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "comment": "Not measured; RESEARCH.md says prefer null over a guess for idle CPU/memory."
+    },
+    "github-stars": {
+      "value": 9400,
+      "source": ["https://github.com/FyroxEngine/Fyrox"],
+      "comment": "~9.4k stars on the FyroxEngine/Fyrox repo as of 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 67756,
+      "source": ["https://crates.io/api/v1/crates/fyrox"],
+      "comment": "All-time downloads of the fyrox crate as of 2026-07-06; the predecessor rg3d crate has ~33k additional downloads."
+    },
+    "last-release": {
+      "value": "2026-03-29",
+      "source": ["https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/", "https://github.com/FyroxEngine/Fyrox"],
+      "comment": "Fyrox 1.0.0 released 2026-03-29; a 1.0.1 patch has since been published on crates.io (exact date not confirmed)."
+    },
+    "shipped-titles": {
+      "value": "Mostly tech demos and open-source projects: Station Iapetus (sci-fi horror demo by the engine author), RustCycles, Fish Folly, rusty-shooter",
+      "source": ["https://fyrox.rs/games.html"],
+      "comment": "No major commercially shipped title is widely documented; listed titles are largely tech demos / open-source games, several by the engine author."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://fyrox.rs/", "https://fyrox.rs/blog/post/fyrox-game-engine-1-0-0/"],
+      "comment": "Active Discord and steady contributions, but development is dominated by a single lead maintainer with a small team — borderline small/medium."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://fyrox-book.github.io/introduction/introduction.html"],
+      "comment": "Batteries-included engine, but a limited third-party plugin/asset ecosystem compared with Bevy."
+    },
+    "learning-resources": {
+      "value": 4,
+      "source": ["https://fyrox-book.github.io/", "https://fyrox.rs/"],
+      "comment": "Official Fyrox Book with tutorials (e.g. RPG series) and many examples, plus some video coverage; video ecosystem is modest compared to Bevy's, so 4 rather than 5."
+    }
+  }
 }
