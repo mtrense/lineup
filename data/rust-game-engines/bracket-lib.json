@@ -1,5 +1,302 @@
 {
   "name": "bracket-lib",
   "description": "Roguelike toolkit (formerly RLTK) — virtual terminals, pathfinding, FOV, RNG; the de-facto Rust roguelike engine",
-  "values": {}
+  "url": "https://github.com/amethyst/bracket-lib",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["framework"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md", "https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "Code-first game library with a virtual-terminal render + input game loop (GameState trait, main_loop), specialized for roguelikes. No editor or scene model — classified framework per RESEARCH.md's genre-specialized-toolkit inclusion."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/thebracket/bracket-lib"],
+      "comment": "MIT (SPDX MIT) per GitHub license metadata."
+    },
+    "repository": {
+      "value": "https://github.com/amethyst/bracket-lib",
+      "source": ["https://api.github.com/repos/thebracket/bracket-lib"],
+      "comment": "Repo now lives under the amethyst org (github.com/thebracket/bracket-lib redirects there)."
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/bracket-lib",
+      "source": ["https://crates.io/api/v1/crates/bracket-lib"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/bracket-lib",
+      "source": ["https://crates.io/api/v1/crates/bracket-lib", "https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "docs.rs API docs are the primary reference. The README also points to the published 'Hands-on Rust' book and a free multi-chapter 'Roguelike Tutorial - In Rust'."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://api.github.com/repos/thebracket/bracket-lib", "https://crates.io/api/v1/crates/rltk"],
+      "comment": "GitHub repo created Jul 2, 2019; the predecessor `rltk` crate was first published Dec 6, 2019, with the renamed `bracket-lib` crate following Feb 22, 2020."
+    },
+    "latest-stable-version": {
+      "value": "0.8.7",
+      "source": ["https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "0.8.7 is the max stable version on crates.io, published Oct 4, 2022. The repo has newer unreleased work (dependency/backend updates through Dec 2025) not yet cut as a crates.io release."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://api.github.com/repos/amethyst/bracket-lib/commits?per_page=10", "https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "As of 2026-07-06: commits are sporadic — a long gap between Jan 2023 and Sep 2025, then dependency/backend update commits in Sep and Dec 2025 (last push 2025-12-05). No new crates.io release since Oct 2022. Alive but slow-moving; scored passively-maintained."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md", "https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "Feature-settled toolkit in use since 2019 and the basis of a published book, but still pre-1.0 (0.8.x) with breaking changes across minor versions. Scored stable rather than mature given the pre-1.0 API and niche scope."
+    },
+    "backing": {
+      "value": "Amethyst Foundation (originally by Herbert Wolverson / thebracket)",
+      "source": ["https://api.github.com/repos/thebracket/bracket-lib"],
+      "comment": "Created and long maintained by Herbert Wolverson (thebracket); the repository now sits under the amethyst GitHub organisation (Amethyst Foundation)."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Pure Rust core; renders via OpenGL (glutin/winit), an optional wgpu backend, or WebGL for WASM. An optional `curses` feature wraps pancurses (C), but the default and web/desktop-GL paths are pure Rust."
+    },
+    "architecture": {
+      "value": ["immediate"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Immediate-mode game loop: you implement a GameState trait whose tick() is called each frame and redraw virtual consoles from your own state. No built-in ECS or scene graph — tutorials commonly pair it with specs/legion, but that is user choice, not part of the library."
+    },
+    "built-in-ecs": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No first-class ECS. The 'Roguelike Tutorial' and 'Hands-on Rust' book bring in an external ECS (specs/legion), but bracket-lib itself does not provide one."
+    },
+    "dimensionality": {
+      "value": ["2d"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "2D tile/terminal rendering only; no 3D tooling."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Gameplay logic is written in Rust; no embedded scripting layer."
+    },
+    "data-driven-scenes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No scene/prefab format. It can load REX Paint (.xp) console art files as assets, but game scenes/entities are built in code, not authored to a runtime-loaded scene format."
+    },
+    "reflection-serialization": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No engine-provided runtime reflection or game-state serialization; users can add serde themselves."
+    },
+    "hot-reload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No code or asset hot-reloading in dev."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Code-first library with no graphical editor."
+    },
+    "live-inspector": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No runtime world/entity inspector, first-party or de-facto."
+    },
+    "asset-pipeline": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Loads bitmap fonts and REX Paint art, and offers an embedded_resource macro to bake assets into the binary — beyond raw include_bytes! (rating 1) but synchronous, with no processing/reprocessing pipeline or hot reload (rating 3+ needs async loading; 5 a full import pipeline). Scored 2."
+    },
+    "cli-project-tooling": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No dedicated CLI, cargo plugin, or official starter templates — plain cargo project."
+    },
+    "debug-profiling-tools": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Exposes a built-in FPS/frame-time counter (ctx.fps / ctx.frame_time_ms) but no profiler integration (no Tracy / egui overlay / diagnostics subsystem)."
+    },
+    "ide-support": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer just works); no engine-specific IDE integration."
+    },
+    "rendering-backend": {
+      "value": ["opengl", "webgl", "wgpu", "custom"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "OpenGL (default, via glutin) on desktop; WebGL for WASM/web; an optional wgpu backend (Vulkan/Metal/WebGPU); plus crossterm and pancurses (curses) text-terminal backends, tagged custom. Selected via feature flags."
+    },
+    "pbr": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "2D tile/terminal renderer; no PBR pipeline."
+    },
+    "lighting": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No rendering-level lighting system. It ships field-of-view / visibility algorithms, but that is roguelike gameplay logic (which tiles are visible), not a graphics lighting technique."
+    },
+    "shadows": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No rendering shadow support."
+    },
+    "custom-shaders": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Uses internal shaders to draw its virtual consoles but exposes no user-facing custom-shader authoring API."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Virtual console tile grids are the core abstraction; supports code-page-437 and graphical tile sheets plus multi-tile sprite consoles. Tilemaps/sprites are first-party by design."
+    },
+    "particle-system": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No built-in particle/VFX system."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Ships a built-in retro CRT-style post-processing pass (scanlines + screen-burn) toggled via ctx.with_post_scanlines. There is no general HDR bloom/tonemapping/AA pipeline, so this is a narrow, genre-flavoured post effect."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Bitmap-font glyph rendering on virtual terminals is the library's core purpose (fixed-grid consoles, code page 437 and custom font sheets). No vector/TTF layout engine."
+    },
+    "physics": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No physics system; bring your own."
+    },
+    "audio": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No audio subsystem; bring your own (e.g. rodio/kira)."
+    },
+    "input": {
+      "value": ["keyboard-mouse"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Keyboard and mouse handled first-party (ctx.key, mouse position, click state). No first-party gamepad or touch input."
+    },
+    "animation": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No animation system. Frame-based sprite animation can be hand-rolled by swapping glyphs/tiles, but there is no skeletal/sprite-frame/tween/state-machine facility built in."
+    },
+    "ui-system": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "In-game UI is drawn manually to virtual consoles (boxes, bars, printed text helpers); no widget/retained UI framework."
+    },
+    "networking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No multiplayer/networking support."
+    },
+    "gltf-model-import": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "2D tile/terminal toolkit; no 3D model import."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Supported native desktop target via the OpenGL backend."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Supported native desktop target via the OpenGL/wgpu backend."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md", "https://api.github.com/repos/amethyst/bracket-lib/commits?per_page=10"],
+      "comment": "Supported native desktop target; a 2023 commit fixed a Wayland crash, so both X11 and Wayland work."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Compiles to wasm32-unknown-unknown and runs in the browser via the WebGL backend (the roguelike tutorial ships playable web builds)."
+    },
+    "ios": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No documented, officially supported iOS target."
+    },
+    "android": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No documented, officially supported Android target."
+    },
+    "consoles": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "No documented console support path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Not measured on a consistent reference machine this pass; prefer null over a guess per RESEARCH.md. Its default OpenGL/glutin stack is lighter than the full wgpu engines, but no reliable figure recorded."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "binary-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Not measured this pass; prefer null over a guess."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Web-capable via the WebGL backend, but the WASM bundle size was not measured this pass; prefer null over a guess (not N/A, since it does target web)."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Not measured with a defined methodology this pass; prefer null over a guess. Expected low given the lightweight fixed-grid console renderer, but no measurement recorded."
+    },
+    "github-stars": {
+      "value": 1684,
+      "source": ["https://api.github.com/repos/thebracket/bracket-lib"],
+      "comment": "Snapshot from the GitHub API on 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 287291,
+      "source": ["https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "All-time downloads of the bracket-lib crate as of 2026-07-06. The predecessor `rltk` crate adds a further ~173,900 downloads under the old name."
+    },
+    "last-release": {
+      "value": "2022-10-04",
+      "source": ["https://crates.io/api/v1/crates/bracket-lib"],
+      "comment": "0.8.7 published Oct 4, 2022 on crates.io. The repository has later unreleased commits (through Dec 2025) but no newer crates.io release."
+    },
+    "shipped-titles": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Primarily used for learning: it backs the published 'Hands-on Rust' book and the free 'Roguelike Tutorial - In Rust'. No widely-documented commercially released title relies on it; the author's own Nox Futura used RLTK but is not a released commercial game. Set null per RESEARCH.md rather than list learning material as shipped titles."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/amethyst/bracket-lib/commits?per_page=10", "https://api.github.com/repos/thebracket/bracket-lib"],
+      "comment": "Single-author origin (now under the Amethyst org); a modest contributor base with open issues/PRs but no large dedicated chat community of its own. Scored small."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Ships as a family of focused crates (bracket-color, bracket-geometry, bracket-noise, bracket-pathfinding, bracket-random), but there is no third-party plugin/asset registry around it."
+    },
+    "learning-resources": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/amethyst/bracket-lib/master/README.md"],
+      "comment": "Strong for its niche: a dedicated published book ('Hands-on Rust', Pragmatic Bookshelf) plus a comprehensive free multi-chapter 'Roguelike Tutorial - In Rust' and bundled examples. Short of 5 (no official mdBook for the library itself and little video ecosystem). Scored 4."
+    }
+  }
 }
