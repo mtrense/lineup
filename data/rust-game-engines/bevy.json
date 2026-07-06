@@ -1,5 +1,287 @@
 {
   "name": "Bevy",
   "description": "Flagship pure-Rust engine; ECS-first, data-driven, wgpu renderer, huge community and plugin ecosystem",
-  "values": {}
+  "url": "https://bevy.org",
+  "lastVerified": "2026-07-06",
+  "values": {
+    "kind": {
+      "value": ["full-engine"],
+      "source": ["https://bevy.org/"],
+      "comment": "ECS-first full engine with a data-driven scene system and asset pipeline; note it does not yet ship an official visual editor."
+    },
+    "license": {
+      "value": ["mit-apache-2-0"],
+      "source": ["https://bevy.org/", "https://github.com/bevyengine/bevy"],
+      "comment": "Dual-licensed: \"Open Source under the permissive MIT or Apache 2.0 licenses.\""
+    },
+    "repository": {
+      "value": "https://github.com/bevyengine/bevy",
+      "source": ["https://github.com/bevyengine/bevy"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/bevy",
+      "source": ["https://crates.io/crates/bevy"]
+    },
+    "documentation": {
+      "value": "https://bevy.org/learn/",
+      "source": ["https://bevy.org/"],
+      "comment": "Official Learn section (Quick Start guide + examples); API docs at docs.rs/bevy."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/crates/bevy"],
+      "comment": "Bevy 0.1 was first announced/published in August 2020."
+    },
+    "latest-stable-version": {
+      "value": "0.19.0",
+      "source": ["https://crates.io/crates/bevy", "https://github.com/bevyengine/bevy/releases"],
+      "comment": "0.19.0 published to crates.io 2026-06-19; verified 2026-07-06."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/bevyengine/bevy"],
+      "comment": "Repository last pushed 2026-07-06; roughly quarterly releases with a large contributor base."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://bevy.org/news/bevy-0-19/"],
+      "comment": "Still pre-1.0 (0.19) with breaking changes and a migration guide every release, but production titles have shipped; anchored to API churn per the guide rather than popularity."
+    },
+    "backing": {
+      "value": "Bevy Foundation (nonprofit) + donations/sponsors",
+      "source": ["https://bevy.org/"],
+      "comment": "Developed as a community open-source project stewarded by the nonprofit Bevy Foundation; funded by donations and sponsorships."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://bevy.org/"],
+      "comment": "Everything is implemented in Rust with only platform glue; no bundled non-Rust engine."
+    },
+    "architecture": {
+      "value": ["ecs"],
+      "source": ["https://bevy.org/"],
+      "comment": "ECS is the dominant and primary data model; there is no scene-graph node tree."
+    },
+    "built-in-ecs": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "bevy_ecs is the primary way games are structured; a headline feature."
+    },
+    "dimensionality": {
+      "value": ["2d", "3d"],
+      "source": ["https://bevy.org/"],
+      "comment": "First-party 2D (sprites, texture atlases) and 3D (PBR, glTF, lighting) renderers."
+    },
+    "scripting": {
+      "value": ["rust-only"],
+      "source": ["https://bevy.org/"],
+      "comment": "Core gameplay logic is written in Rust; Lua/Rhai/WASM scripting exists only via community plugins, not first-party."
+    },
+    "data-driven-scenes": {
+      "value": true,
+      "source": ["https://bevy.org/news/bevy-0-19/"],
+      "comment": "RON-serialized scenes plus the new Bevy Scene Notation (BSN, bsn! macro) introduced in 0.19 for authoring scenes as data."
+    },
+    "reflection-serialization": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "First-class runtime reflection via bevy_reflect, underpinning the scene (de)serialization system."
+    },
+    "hot-reload": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Built-in hot asset reloading and scene hot reloading; experimental code hot-patching also exists."
+    },
+    "visual-editor": {
+      "value": false,
+      "source": ["https://bevy.org/"],
+      "comment": "No official graphical scene/level editor ships yet; long planned but not released."
+    },
+    "live-inspector": {
+      "value": true,
+      "comment": "No first-party inspector; the de-facto community tool bevy-inspector-egui provides a runtime entity/component/world inspector."
+    },
+    "asset-pipeline": {
+      "value": 5,
+      "source": ["https://bevy.org/"],
+      "comment": "AssetServer offers async loading of many formats plus an asset processing pipeline and hot reloading."
+    },
+    "cli-project-tooling": {
+      "value": ["cli", "templates"],
+      "comment": "Official bevy_cli (bevy new) plus maintained starter templates (e.g. bevy_new_2d)."
+    },
+    "debug-profiling-tools": {
+      "value": ["tracy", "diagnostics"],
+      "source": ["https://bevy.org/"],
+      "comment": "Built-in diagnostics plugins (FrameTimeDiagnostics) and Tracy integration; egui-based overlays available via community plugins."
+    },
+    "ide-support": {
+      "value": null,
+      "comment": "Nothing beyond standard Rust tooling (rust-analyzer works out of the box); no dedicated IDE plugin."
+    },
+    "rendering-backend": {
+      "value": ["wgpu", "vulkan", "metal", "directx", "webgl", "webgpu"],
+      "source": ["https://bevy.org/"],
+      "comment": "Renders through wgpu, which targets Vulkan, Metal, DirectX 12, WebGL2 and WebGPU."
+    },
+    "pbr": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "3D renderer supports physically-based rendering."
+    },
+    "lighting": {
+      "value": ["forward", "clustered", "deferred", "baked-gi"],
+      "source": ["https://bevy.org/", "https://bevy.org/news/bevy-0-19/"],
+      "comment": "Clustered forward is the default; a deferred path and lightmap-based baked GI are available; experimental raytraced GI (Solari) is in progress in 0.19."
+    },
+    "shadows": {
+      "value": true,
+      "source": ["https://bevy.org/", "https://bevy.org/news/bevy-0-19/"],
+      "comment": "Real-time shadow mapping; 0.19 added contact shadows."
+    },
+    "custom-shaders": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Custom WGSL shaders and render pipelines via the composable Render Graph."
+    },
+    "sprites-tilemaps": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Sprite batching and texture atlases are built-in; tilemaps are provided by de-facto community plugins (e.g. bevy_ecs_tilemap)."
+    },
+    "particle-system": {
+      "value": false,
+      "comment": "No built-in particle/VFX system; provided by community plugins such as bevy_hanabi and bevy_enoki."
+    },
+    "post-processing": {
+      "value": true,
+      "source": ["https://bevy.org/news/bevy-0-19/"],
+      "comment": "Bloom, tonemapping, TAA/FXAA and, as of 0.19, vignette and lens distortion effects."
+    },
+    "text-rendering": {
+      "value": true,
+      "source": ["https://bevy.org/news/bevy-0-19/"],
+      "comment": "Built-in font/text rendering with layout, variable fonts and font-family selection."
+    },
+    "physics": {
+      "value": ["plugin"],
+      "comment": "No physics in core; de-facto choices are the Avian plugin and bevy_rapier."
+    },
+    "audio": {
+      "value": ["built-in"],
+      "source": ["https://bevy.org/"],
+      "comment": "bevy_audio ships in core (rodio-based); Kira is a popular alternative via the bevy_kira_audio plugin."
+    },
+    "input": {
+      "value": ["keyboard-mouse", "gamepad", "touch"],
+      "source": ["https://bevy.org/"],
+      "comment": "First-party keyboard/mouse, gamepad and touch input."
+    },
+    "animation": {
+      "value": ["skeletal"],
+      "source": ["https://bevy.org/"],
+      "comment": "Skeletal rigging with blending and morph targets via the animation graph; sprite-frame and tween animation come from community plugins."
+    },
+    "ui-system": {
+      "value": ["bevy-ui"],
+      "source": ["https://bevy.org/", "https://bevy.org/news/bevy-0-19/"],
+      "comment": "Built-in bevy_ui (flexbox layout) plus the growing Feathers widget set; egui is available via a plugin."
+    },
+    "networking": {
+      "value": ["plugin"],
+      "comment": "No networking in core; de-facto plugins are Lightyear, renet and bevy_replicon."
+    },
+    "gltf-model-import": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "3D renderer loads glTF/GLB models."
+    },
+    "windows": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Listed among \"all major platforms: Windows, MacOS, Linux, Web, iOS, Android\"."
+    },
+    "macos": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Officially supported (Apple Silicon + Intel via Metal/wgpu)."
+    },
+    "linux": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Officially supported on both X11 and Wayland."
+    },
+    "web-wasm": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Compiles to WebAssembly and runs in the browser (WebGL2/WebGPU)."
+    },
+    "ios": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Officially listed as a supported platform; a mobile example is maintained in-repo."
+    },
+    "android": {
+      "value": true,
+      "source": ["https://bevy.org/"],
+      "comment": "Officially listed as a supported platform; a mobile example is maintained in-repo."
+    },
+    "consoles": {
+      "value": ["none"],
+      "comment": "No official console support; console ports exist only as unofficial/NDA-gated community forks (e.g. Switch), with no publicly reproducible first-party path."
+    },
+    "clean-build-time": {
+      "value": null,
+      "comment": "Not measured on a standard machine this pass. A cold release build of a minimal Bevy app is a well-known multi-minute cost; the guide requires a measured number, so left null."
+    },
+    "incremental-build-time": {
+      "value": null,
+      "comment": "Not measured. Highly config-dependent: fast (~2-10s) with Bevy's dynamic-linking feature plus a fast linker (mold/lld), noticeably slower with the default static build."
+    },
+    "binary-size": {
+      "value": null,
+      "comment": "Not measured this pass. Minimal Bevy native binaries are known to be large, but no reliable current stripped-release measurement was available."
+    },
+    "web-bundle-size": {
+      "value": null,
+      "comment": "Not measured this pass. A minimal Bevy WASM bundle is multi-MB and grows quickly with features; no reliable current post-wasm-opt figure was available."
+    },
+    "runtime-overhead": {
+      "value": null,
+      "comment": "Not measured; the guide says to prefer null over a guess for idle CPU/memory."
+    },
+    "github-stars": {
+      "value": 47033,
+      "source": ["https://github.com/bevyengine/bevy"],
+      "comment": "Snapshot from the GitHub API on 2026-07-06."
+    },
+    "crates-io-downloads": {
+      "value": 6141099,
+      "source": ["https://crates.io/crates/bevy"],
+      "comment": "All-time downloads of the top-level bevy crate as of 2026-07-06."
+    },
+    "last-release": {
+      "value": "2026-06-19",
+      "source": ["https://crates.io/crates/bevy", "https://github.com/bevyengine/bevy/releases"],
+      "comment": "0.19.0 published to crates.io 2026-06-19."
+    },
+    "shipped-titles": {
+      "value": "Tiny Glade (2024)",
+      "comment": "Tiny Glade is the widely-documented commercial title built with Bevy; numerous indie and jam games also use it."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/bevyengine/bevy"],
+      "comment": "Very active Discord and forum plus hundreds of GitHub contributors."
+    },
+    "plugin-asset-ecosystem": {
+      "value": ["rich"],
+      "comment": "The Bevy Assets registry catalogs hundreds of third-party plugins and crates covering physics, audio, UI, networking, tilemaps and more."
+    },
+    "learning-resources": {
+      "value": 5,
+      "source": ["https://bevy.org/"],
+      "comment": "Official Quick Start guide, a large examples directory, and an active tutorial/video community; the guide names Bevy as the exemplar for a 5."
+    }
+  }
 }
