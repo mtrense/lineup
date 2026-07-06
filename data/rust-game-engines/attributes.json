@@ -1,0 +1,699 @@
+{
+  "name": "Rust Game Engines",
+  "description": "Game engines and game-development frameworks for Rust developers — full ECS engines, code-first frameworks, creative-coding toolkits, and bindings to non-Rust engines — compared across architecture, editor tooling, rendering, engine systems, platform reach, build-time cost, and ecosystem health",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Basic identifying information, licensing, and maintenance status",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "kind",
+          "name": "Kind",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "full-engine", "value": "Full Engine", "color": "green" },
+              { "id": "framework", "value": "Framework", "color": "blue" },
+              { "id": "creative-coding", "value": "Creative Coding", "color": "purple" },
+              { "id": "bindings", "value": "Bindings", "color": "orange" }
+            ]
+          },
+          "description": "Primary character of the tool; may list a secondary in a comment"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "blue" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "mit-apache-2-0", "value": "MIT/Apache-2.0", "color": "green" },
+              { "id": "zlib", "value": "Zlib", "color": "purple" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" }
+            ]
+          },
+          "description": "Primary open-source license(s); note bindings whose underlying engine differs in a comment"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository (usually GitHub)"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Main crates.io package page for the top-level crate"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Primary docs site — book, mdBook, or docs.rs"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release or first crates.io publish"
+        },
+        {
+          "id": "latest-stable-version",
+          "name": "Latest Stable Version",
+          "valueType": "text",
+          "description": "Current stable version from crates.io / releases page"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively Maintained", "color": "green" },
+              { "id": "passively-maintained", "value": "Passively Maintained", "color": "blue" },
+              { "id": "seeking-maintainer", "value": "Seeking Maintainer", "color": "orange" },
+              { "id": "archived", "value": "Archived", "color": "gray" }
+            ]
+          },
+          "description": "Maintenance signals based on commit cadence over the last 6 months"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "experimental", "value": "Experimental", "color": "orange" },
+              { "id": "beta", "value": "Beta", "color": "yellow" },
+              { "id": "stable", "value": "Stable", "color": "blue" },
+              { "id": "mature", "value": "Mature", "color": "green" }
+            ]
+          },
+          "description": "API stability, shipped games, and years since first release; most Rust engines are pre-1.0"
+        },
+        {
+          "id": "backing",
+          "name": "Backing",
+          "valueType": "text",
+          "description": "Company, foundation, or funding model (or \"Community\" if none)"
+        }
+      ]
+    },
+    {
+      "id": "architecture-programming-model",
+      "name": "Architecture & Programming Model",
+      "description": "Implementation, data model, scene authoring, and reload story",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pure-rust", "value": "Pure Rust", "color": "green" },
+              { "id": "bindings", "value": "Bindings", "color": "orange" }
+            ]
+          },
+          "description": "Verify with cargo tree — bindings pull in *-sys crates or a bundled engine"
+        },
+        {
+          "id": "architecture",
+          "name": "Architecture",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ecs", "value": "ECS", "color": "green" },
+              { "id": "scene-graph", "value": "Scene Graph", "color": "blue" },
+              { "id": "object-oriented", "value": "Object-Oriented", "color": "purple" },
+              { "id": "immediate", "value": "Immediate", "color": "orange" }
+            ]
+          },
+          "description": "Select all that apply; note the dominant one in a comment"
+        },
+        {
+          "id": "built-in-ecs",
+          "name": "Built-in ECS",
+          "valueType": "boolean",
+          "description": "Ships a first-class ECS as the primary data model"
+        },
+        {
+          "id": "dimensionality",
+          "name": "Dimensionality",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "2d", "value": "2D", "color": "blue" },
+              { "id": "3d", "value": "3D", "color": "green" }
+            ]
+          },
+          "description": "Select all supported with real first-party tooling (not just hand-rolled)"
+        },
+        {
+          "id": "scripting",
+          "name": "Scripting",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rust-only", "value": "Rust Only", "color": "orange" },
+              { "id": "lua", "value": "Lua", "color": "blue" },
+              { "id": "rhai", "value": "Rhai", "color": "green" },
+              { "id": "wasm", "value": "WASM", "color": "purple" },
+              { "id": "gdscript", "value": "GDScript", "color": "blue" },
+              { "id": "c-sharp", "value": "C#", "color": "green" },
+              { "id": "visual", "value": "Visual", "color": "purple" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "What gameplay logic can be written in besides core Rust"
+        },
+        {
+          "id": "data-driven-scenes",
+          "name": "Data-driven Scenes",
+          "valueType": "boolean",
+          "description": "Scenes/prefabs can be authored, serialized to files, and loaded at runtime — not only built in code"
+        },
+        {
+          "id": "reflection-serialization",
+          "name": "Reflection / Serialization",
+          "valueType": "boolean",
+          "description": "First-class runtime reflection or (de)serialization of game state"
+        },
+        {
+          "id": "hot-reload",
+          "name": "Hot Reload",
+          "valueType": "boolean",
+          "description": "Code or asset hot-reloading in dev; clarify scope in a comment"
+        }
+      ]
+    },
+    {
+      "id": "editor-tooling",
+      "name": "Editor & Tooling",
+      "description": "Visual editor, inspector, asset pipeline, and dev tooling",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "visual-editor",
+          "name": "Visual Editor",
+          "valueType": "boolean",
+          "description": "Ships a graphical scene/level editor"
+        },
+        {
+          "id": "live-inspector",
+          "name": "Live Inspector",
+          "valueType": "boolean",
+          "description": "Runtime entity/component/world inspector; note first-party vs de-facto in a comment"
+        },
+        {
+          "id": "asset-pipeline",
+          "name": "Asset Pipeline",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=import/processing pipeline with reprocessing + hot reload; 3=basic async loading; 1=manual file loading only"
+        },
+        {
+          "id": "cli-project-tooling",
+          "name": "CLI / Project Tooling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "cli", "value": "CLI", "color": "green" },
+              { "id": "cargo-plugin", "value": "Cargo Plugin", "color": "blue" },
+              { "id": "templates", "value": "Templates", "color": "purple" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Project scaffolding and command-line tooling; select all"
+        },
+        {
+          "id": "debug-profiling-tools",
+          "name": "Debug / Profiling Tools",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in-profiler", "value": "Built-in Profiler", "color": "green" },
+              { "id": "tracy", "value": "Tracy", "color": "blue" },
+              { "id": "egui-overlay", "value": "egui Overlay", "color": "purple" },
+              { "id": "diagnostics", "value": "Diagnostics", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Debugging and profiling integrations; select all"
+        },
+        {
+          "id": "ide-support",
+          "name": "IDE Support",
+          "valueType": "text",
+          "description": "Notable editor/IDE integrations beyond standard Rust tooling"
+        }
+      ]
+    },
+    {
+      "id": "rendering-graphics",
+      "name": "Rendering & Graphics",
+      "description": "Rendering backends, lighting, shaders, and 2D/3D graphics features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "rendering-backend",
+          "name": "Rendering Backend",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "wgpu", "value": "wgpu", "color": "orange" },
+              { "id": "opengl", "value": "OpenGL", "color": "blue" },
+              { "id": "vulkan", "value": "Vulkan", "color": "red" },
+              { "id": "metal", "value": "Metal", "color": "gray" },
+              { "id": "directx", "value": "DirectX", "color": "green" },
+              { "id": "webgl", "value": "WebGL", "color": "blue" },
+              { "id": "webgpu", "value": "WebGPU", "color": "purple" },
+              { "id": "miniquad", "value": "miniquad", "color": "orange" },
+              { "id": "custom", "value": "Custom", "color": "purple" }
+            ]
+          },
+          "description": "Supported rendering backends; select all"
+        },
+        {
+          "id": "pbr",
+          "name": "PBR",
+          "valueType": "boolean",
+          "description": "Physically-based rendering pipeline available for 3D (false for 2D-only tools)"
+        },
+        {
+          "id": "lighting",
+          "name": "Lighting",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "forward", "value": "Forward", "color": "blue" },
+              { "id": "deferred", "value": "Deferred", "color": "green" },
+              { "id": "clustered", "value": "Clustered", "color": "purple" },
+              { "id": "baked-gi", "value": "Baked GI", "color": "orange" },
+              { "id": "realtime-gi", "value": "Realtime GI", "color": "red" },
+              { "id": "2d-lighting", "value": "2D Lighting", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "First-party lighting techniques supported; select all"
+        },
+        {
+          "id": "shadows",
+          "name": "Shadows",
+          "valueType": "boolean",
+          "description": "Real-time shadow mapping (3D) or 2D shadow support"
+        },
+        {
+          "id": "custom-shaders",
+          "name": "Custom Shaders",
+          "valueType": "boolean",
+          "description": "User can author custom shaders (WGSL/GLSL/shader graph) and slot them into the pipeline"
+        },
+        {
+          "id": "sprites-tilemaps",
+          "name": "Sprites & Tilemaps",
+          "valueType": "boolean",
+          "description": "First-party or de-facto sprite batching and tilemap support; note plugin vs built-in in a comment"
+        },
+        {
+          "id": "particle-system",
+          "name": "Particle System",
+          "valueType": "boolean",
+          "description": "Built-in or well-integrated particle/VFX system"
+        },
+        {
+          "id": "post-processing",
+          "name": "Post-processing",
+          "valueType": "boolean",
+          "description": "Post-processing effects (bloom, tonemapping, FXAA/TAA) available"
+        },
+        {
+          "id": "text-rendering",
+          "name": "Text Rendering",
+          "valueType": "boolean",
+          "description": "Built-in font/text rendering (glyph atlas, layout)"
+        }
+      ]
+    },
+    {
+      "id": "engine-systems",
+      "name": "Engine Systems",
+      "description": "Physics, audio, input, animation, UI, networking, and model import",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "physics",
+          "name": "Physics",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "rapier", "value": "Rapier", "color": "blue" },
+              { "id": "avian", "value": "Avian", "color": "purple" },
+              { "id": "box2d", "value": "Box2D", "color": "orange" },
+              { "id": "plugin", "value": "Plugin", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "How physics is provided — bundled, official plugin, or bring-your-own"
+        },
+        {
+          "id": "audio",
+          "name": "Audio",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "kira", "value": "Kira", "color": "blue" },
+              { "id": "rodio", "value": "Rodio", "color": "purple" },
+              { "id": "oddio", "value": "Oddio", "color": "orange" },
+              { "id": "plugin", "value": "Plugin", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "How audio is provided — bundled, official plugin, or bring-your-own"
+        },
+        {
+          "id": "input",
+          "name": "Input",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "keyboard-mouse", "value": "Keyboard & Mouse", "color": "blue" },
+              { "id": "gamepad", "value": "Gamepad", "color": "green" },
+              { "id": "touch", "value": "Touch", "color": "purple" }
+            ]
+          },
+          "description": "First-party input support; select all"
+        },
+        {
+          "id": "animation",
+          "name": "Animation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "skeletal", "value": "Skeletal", "color": "green" },
+              { "id": "sprite-frame", "value": "Sprite Frame", "color": "blue" },
+              { "id": "tween", "value": "Tween", "color": "purple" },
+              { "id": "state-machine", "value": "State Machine", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Animation techniques supported; select all"
+        },
+        {
+          "id": "ui-system",
+          "name": "UI System",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "egui", "value": "egui", "color": "blue" },
+              { "id": "bevy-ui", "value": "bevy_ui", "color": "purple" },
+              { "id": "plugin", "value": "Plugin", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "In-game/tooling UI approach"
+        },
+        {
+          "id": "networking",
+          "name": "Networking",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "plugin", "value": "Plugin", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Multiplayer/replication support; name the de-facto plugin in a comment"
+        },
+        {
+          "id": "gltf-model-import",
+          "name": "glTF / Model Import",
+          "valueType": "boolean",
+          "description": "Loads standard 3D model formats (glTF/GLB); false for 2D-only tools"
+        }
+      ]
+    },
+    {
+      "id": "platform-support",
+      "name": "Platform Support",
+      "description": "Officially supported and tested deployment targets",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "windows",
+          "name": "Windows",
+          "valueType": "boolean",
+          "description": "Native Windows target"
+        },
+        {
+          "id": "macos",
+          "name": "macOS",
+          "valueType": "boolean",
+          "description": "Native macOS (Apple Silicon + Intel)"
+        },
+        {
+          "id": "linux",
+          "name": "Linux",
+          "valueType": "boolean",
+          "description": "Native Linux (X11 and/or Wayland); note if only one in a comment"
+        },
+        {
+          "id": "web-wasm",
+          "name": "Web (WASM)",
+          "valueType": "boolean",
+          "description": "Compiles to WebAssembly and runs in a browser"
+        },
+        {
+          "id": "ios",
+          "name": "iOS",
+          "valueType": "boolean",
+          "description": "Ships to iOS; only true if officially supported/tested"
+        },
+        {
+          "id": "android",
+          "name": "Android",
+          "valueType": "boolean",
+          "description": "Ships to Android"
+        },
+        {
+          "id": "consoles",
+          "name": "Consoles",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "switch", "value": "Switch", "color": "red" },
+              { "id": "playstation", "value": "PlayStation", "color": "blue" },
+              { "id": "xbox", "value": "Xbox", "color": "green" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Only mark a console with a verifiable path; explain any unofficial routes in a comment"
+        }
+      ]
+    },
+    {
+      "id": "performance-footprint",
+      "name": "Performance & Footprint",
+      "description": "Build times, binary and bundle sizes, and runtime overhead",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "clean-build-time",
+          "name": "Clean Build Time",
+          "valueType": {
+            "type": "duration",
+            "direction": "descending"
+          },
+          "description": "Cold release build of a minimal \"hello window\" project from a clean target dir; record host CPU + date in a comment"
+        },
+        {
+          "id": "incremental-build-time",
+          "name": "Incremental Build Time",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "instant", "value": "Instant (<2s)", "color": "green" },
+              { "id": "fast", "value": "Fast (2-10s)", "color": "blue" },
+              { "id": "moderate", "value": "Moderate (10-30s)", "color": "orange" },
+              { "id": "slow", "value": "Slow (>30s)", "color": "red" }
+            ]
+          },
+          "description": "Rebuild after a one-line gameplay change; note dynamic linking / mold / cranelift use"
+        },
+        {
+          "id": "binary-size",
+          "name": "Binary Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "tiny", "value": "Tiny (<5MB)", "color": "green" },
+              { "id": "small", "value": "Small (5-20MB)", "color": "blue" },
+              { "id": "moderate", "value": "Moderate (20-60MB)", "color": "orange" },
+              { "id": "large", "value": "Large (>60MB)", "color": "red" }
+            ]
+          },
+          "description": "Stripped release build of a minimal app"
+        },
+        {
+          "id": "web-bundle-size",
+          "name": "Web Bundle Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "tiny", "value": "Tiny (<2MB)", "color": "green" },
+              { "id": "small", "value": "Small (2-8MB)", "color": "blue" },
+              { "id": "moderate", "value": "Moderate (8-20MB)", "color": "orange" },
+              { "id": "large", "value": "Large (>20MB)", "color": "red" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "WASM binary of a minimal app (post-wasm-opt); only for web-capable tools"
+        },
+        {
+          "id": "runtime-overhead",
+          "name": "Runtime Overhead",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "minimal", "value": "Minimal", "color": "green" },
+              { "id": "low", "value": "Low", "color": "blue" },
+              { "id": "moderate", "value": "Moderate", "color": "orange" },
+              { "id": "heavy", "value": "Heavy", "color": "red" }
+            ]
+          },
+          "description": "Subjective idle CPU/memory of a trivial app; note methodology in a comment, prefer null over a guess"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-community",
+      "name": "Ecosystem & Community",
+      "description": "Adoption signals, shipped titles, community size, and learning resources",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Snapshot star count; record the date in a comment"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "All-time downloads of the top-level crate; null for editor-first engines not on crates.io"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of the most recent tagged/crates.io release"
+        },
+        {
+          "id": "shipped-titles",
+          "name": "Shipped Titles",
+          "valueType": "text",
+          "description": "Notable released games known to use this engine; avoid listing jam prototypes"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "large", "value": "Large", "color": "green" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "solo", "value": "Solo", "color": "gray" }
+            ]
+          },
+          "description": "Approximate community scale (Discord/forum members, contributor count)"
+        },
+        {
+          "id": "plugin-asset-ecosystem",
+          "name": "Plugin / Asset Ecosystem",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rich", "value": "Rich", "color": "green" },
+              { "id": "growing", "value": "Growing", "color": "blue" },
+              { "id": "minimal", "value": "Minimal", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Availability of third-party plugins/crates"
+        },
+        {
+          "id": "learning-resources",
+          "name": "Learning Resources",
+          "valueType": {
+            "type": "rating",
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": {
+              "empty": "☆",
+              "full": "★"
+            }
+          },
+          "description": "5=official book + tutorials + videos + examples; 3=decent examples + some guides; 1=README + sparse examples only"
+        }
+      ]
+    }
+  ]
+}
