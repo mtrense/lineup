@@ -1,5 +1,201 @@
 {
   "name": "Augment Context Engine",
   "description": "Augment Code's proprietary large-codebase context/retrieval engine",
-  "values": {}
+  "icon": "augment",
+  "url": "https://www.augmentcode.com/context-engine",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Augment Code (Augment Computing, Inc.)",
+      "source": ["https://www.augmentcode.com/blog/augment-inc-raises-227-million", "https://siliconangle.com/2024/04/24/secretive-ai-coding-assistant-startup-augment-raises-227m-rival-githubs-copilot/"],
+      "comment": "Augment (Augment Computing, Inc.), a San Francisco AI-coding startup founded in 2022; emerged from stealth April 2024 with a $227M Series B."
+    },
+    "implementation-language": {
+      "value": null,
+      "comment": "Closed, proprietary engine with a custom inference/embedding stack; the implementation language is not publicly disclosed. The distributed Auggie CLI that fronts it is shipped as an npm package, but the engine core's stack is undisclosed."
+    },
+    "first-release": {
+      "value": "2024-04",
+      "source": ["https://siliconangle.com/2024/04/24/secretive-ai-coding-assistant-startup-augment-raises-227m-rival-githubs-copilot/", "https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "First public unveiling of the Context Engine accompanied Augment's April 2024 stealth exit (the 'real-time index for your codebase' blog); general availability of the Augment Agent for VS Code followed in November 2024. Month reflects first announcement. Checked 2026-07-09."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.augmentcode.com/pricing", "https://www.augmentcode.com/product/context-engine-mcp"],
+      "comment": "Actively sold and developed; the Context Engine is the core of Augment's product line and now also ships as a standalone MCP."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "The Context Engine is a proprietary, closed-source component of Augment's commercial product."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://github.com/augmentcode/auggie"],
+      "comment": "Engine core is proprietary. The public github.com/augmentcode/auggie repo is a distribution/docs/examples repo for the CLI (binary shipped via npm), not the engine source."
+    },
+    "website": {
+      "value": "https://www.augmentcode.com/context-engine",
+      "source": ["https://www.augmentcode.com/context-engine"]
+    },
+    "repository": {
+      "value": null,
+      "source": ["https://github.com/augmentcode/auggie"],
+      "comment": "No public source repository for the engine. The github.com/augmentcode/auggie repo distributes the CLI (npm binary) and hosts docs/examples; the Context Engine itself is closed."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://github.com/augmentcode/auggie"],
+      "comment": "Engine is closed-source with no representative repo. The auggie CLI distribution repo had ~249 stars on 2026-07-09, but it is the client, not the engine."
+    },
+    "form-factor": {
+      "value": ["agent-bundled", "mcp-server", "cli", "ide-extension"],
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "Originally bundled inside the Augment Agent (VS Code / JetBrains extension). As of 2026 the engine also ships as a standalone Context Engine MCP — either via the local Auggie CLI (stdio MCP server) or an Augment-hosted HTTP endpoint. Checked 2026-07-09."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "Now usable outside Augment's own agent: 'Plug our Context Engine into Claude Code, Cursor, Zed, and any MCP-compatible agent.' This supersedes the older bundled-only positioning (RESEARCH.md's example still lists Augment as standalone:false). Checked 2026-07-09."
+    },
+    "bundled-host": {
+      "value": "Augment Agent (VS Code / JetBrains extension); also Auggie CLI",
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp"],
+      "comment": "The engine's original home is Augment's own agent/IDE extensions; it is no longer exclusively bundled since the Context Engine MCP release."
+    },
+    "install-mechanism": {
+      "value": ["npm", "editor-extension", "hosted"],
+      "source": ["https://docs.augmentcode.com/context-services/mcp/overview", "https://github.com/augmentcode/auggie"],
+      "comment": "Auggie CLI (local MCP server) installs via npm (@augmentcode/auggie); the Augment Agent installs as a VS Code / JetBrains editor extension; the remote Context Engine is an Augment-hosted HTTP service."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings"],
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable", "https://www.augmentcode.com/blog/repo-scale-100M-line-codebase-quantized-vector-search"],
+      "comment": "Semantic retrieval over custom-trained embedding/context models with (quantized) vector search; Augment explicitly builds proprietary embeddings rather than generic OpenAI/Pinecone stacks. Marketing describes mapping relationships across files, but the documented core mechanism is embedding-based semantic search. Checked 2026-07-09."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://docs.augmentcode.com/context-services/mcp/overview", "https://www.augmentcode.com/context-engine"],
+      "comment": "Queried semantically with natural-language task context; exposed to agents as MCP retrieval tool calls."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://www.augmentcode.com/context-engine"],
+      "comment": "Retrieves the relevant slice(s) of code ('the right slice before the model spends tokens exploring') to feed as context, rather than whole files or a repo blob."
+    },
+    "structural-awareness": {
+      "value": null,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Augment describes semantic mapping of relationships between files but does not publicly document tree-sitter/LSP/AST-based structural parsing. Internals undisclosed for this closed engine — left null rather than guessing."
+    },
+    "chunking-strategy": {
+      "value": null,
+      "comment": "How code is split before embedding is not disclosed for this closed engine."
+    },
+    "reranking": {
+      "value": null,
+      "source": ["https://www.augmentcode.com/context-engine"],
+      "comment": "Augment describes ranking/curating and compressing candidates (e.g. '4,456 sources -> 682 relevant'), which implies a selection stage, but a distinct second-stage rerank mechanism is not documented. Left null."
+    },
+    "index-location": {
+      "value": ["both"],
+      "source": ["https://docs.augmentcode.com/context-services/mcp/overview", "https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Augment-hosted remote index on Google Cloud (BigTable/PubSub) for repos connected via the GitHub App; the local Auggie CLI can instead index the working directory locally as a stdio MCP server. Both paths exist. Checked 2026-07-09."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Maintains a real-time, per-developer index that updates within seconds of a file change rather than rebuilding from scratch."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://docs.augmentcode.com/context-services/mcp/overview", "https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Local Auggie CLI 'indexes in real-time as you edit — no manual sync required'; the hosted index auto-syncs when commits are pushed to the default branch."
+    },
+    "vector-store": {
+      "value": ["proprietary"],
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable", "https://www.augmentcode.com/blog/repo-scale-100M-line-codebase-quantized-vector-search"],
+      "comment": "Custom in-house vector search (quantized) backed by Google Cloud infrastructure (BigTable); Augment explicitly avoids third-party vector stores like Pinecone."
+    },
+    "embedding-model": {
+      "value": "Custom-trained proprietary Augment context/embedding models (not publicly named)",
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Augment trains its own context models rather than calling generic embedding APIs; the specific model is not disclosed. Checked 2026-07-09."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "Shipped Context Engine MCP — available as a local Auggie CLI stdio MCP server or an Augment-hosted HTTP MCP endpoint."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "codex", "copilot", "any-mcp-client"],
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "Documented MCP integrations include Claude Code, Cursor, Codex, GitHub Copilot, Zed, Gemini CLI, OpenCode, Kilo Code, Kiro, Roo Code, AntiGravity and Droid — i.e. any MCP-compatible agent. Checked 2026-07-09."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "jetbrains", "terminal"],
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://github.com/augmentcode/auggie"],
+      "comment": "Augment Agent surfaces in VS Code and JetBrains IDEs; the Auggie CLI brings the engine to the terminal."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "Embedding/semantic indexing operates over the whole codebase with no documented parser-support restriction; positioned for large polyglot codebases. Language list not officially enumerated — treated as broadly multi-language. Checked 2026-07-09."
+    },
+    "supported-languages": {
+      "value": "Not officially enumerated; positioned as broadly multi-language (embedding-based indexing across the whole repo)",
+      "source": ["https://www.augmentcode.com/context-engine"],
+      "comment": "Augment does not publish a supported-language list; the engine is marketed for large polyglot codebases."
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "In the default/hosted configuration, code is sent to Augment's Google Cloud servers to be embedded and indexed (Augment states it self-hosts inference on GCP and uses Proof-of-Possession to guard file access). The local Auggie CLI indexes on-machine, but retrieval/model inference remains Augment-hosted, so code/queries still egress. Checked 2026-07-09."
+    },
+    "local-only-option": {
+      "value": false,
+      "source": ["https://docs.augmentcode.com/context-services/mcp/overview", "https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable"],
+      "comment": "No fully offline path: even the local Auggie indexer depends on Augment's hosted embedding/inference stack and account. There is no documented local-embedding-model + local-only mode."
+    },
+    "self-hostable": {
+      "value": false,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable", "https://www.augmentcode.com/pricing"],
+      "comment": "The engine runs on Augment's own Google Cloud infrastructure (SaaS); no on-prem/self-managed deployment of the indexer is offered. Enterprise adds CMEK and compliance controls but not self-hosting. Checked 2026-07-09."
+    },
+    "telemetry": {
+      "value": ["opt-out"],
+      "source": ["https://www.augmentcode.com/pricing", "https://www.augmentcode.com/blog/augment-is-now-more-affordable-introducing-our-usd20-per-month-indie-plan"],
+      "comment": "As a hosted SaaS, usage data is collected for billing/service; Augment states it does not train AI on your code by default and offers SOC 2 Type II. Treated as opt-out. Checked 2026-07-09."
+    },
+    "max-repo-scale": {
+      "value": ["monorepo-scale"],
+      "source": ["https://www.augmentcode.com/blog/repo-scale-100M-line-codebase-quantized-vector-search", "https://www.augmentcode.com/context-engine"],
+      "comment": "Explicitly engineered for very large repos — Augment cites 100M+ line codebases and indexing/mapping relationships across hundreds of thousands of files."
+    },
+    "pricing-model": {
+      "value": ["paid-saas", "bundled"],
+      "source": ["https://www.augmentcode.com/pricing", "https://docs.augmentcode.com/context-services/mcp/overview"],
+      "comment": "The Context Engine has no standalone price — it is included in Augment's paid plans (bundled), which are token/credit-based SaaS. Standalone MCP use is billed via token-based usage (list price + 40% service fee)."
+    },
+    "entry-price-usd-mo": {
+      "value": 100,
+      "source": ["https://www.augmentcode.com/pricing"],
+      "comment": "Cheapest published paid plan on 2026-07-09 is Business at $100/mo flat (up to 50 seats, $100 of usage included). The earlier $20/mo Indie and $60/mo Standard individual plans were retired in mid-2026. Time-sensitive; checked 2026-07-09."
+    },
+    "maturity": {
+      "value": 4.5,
+      "source": ["https://www.augmentcode.com/blog/a-real-time-index-for-your-codebase-secure-personal-scalable", "https://www.augmentcode.com/blog/repo-scale-100M-line-codebase-quantized-vector-search"],
+      "comment": "Production-grade engine developed over ~2.5 years, well-funded ($227M), GA since late 2024, deployed on large enterprise codebases — very mature. Slightly below 5 because the standalone Context Engine MCP form is comparatively new/evolving."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://www.augmentcode.com/product/context-engine-mcp", "https://github.com/augmentcode/auggie"],
+      "comment": "Actively shipping — recent product releases (e.g. Context Engine MCP, Code Review agent Dec 2025) and ongoing CLI updates well within 90 days of the research date."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://www.augmentcode.com/blog/augment-inc-raises-227-million", "https://github.com/augmentcode/auggie"],
+      "comment": "Well-funded with notable enterprise adoption, but a smaller developer community than Cursor/Copilot-scale tools (auggie CLI repo ~249 stars). Judged medium."
+    }
+  }
 }
