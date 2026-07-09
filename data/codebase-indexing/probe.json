@@ -1,5 +1,199 @@
 {
   "name": "Probe",
   "description": "Local semantic + lexical code search built for AI agents; no cloud, AST-aware",
-  "values": {}
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Probe Labs (probelabs)",
+      "source": ["https://github.com/probelabs/probe", "https://probelabs.com/features"],
+      "comment": "Open-source project under the probelabs GitHub org."
+    },
+    "implementation-language": {
+      "value": ["rust", "javascript"],
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "Search engine core is Rust (~73%); the CLI, MCP server, and agent SDK layer are JavaScript/Node (~26%), per GitHub language breakdown 2026-07-09."
+    },
+    "first-release": {
+      "value": "2025-03",
+      "source": ["https://api.github.com/repos/probelabs/probe"],
+      "comment": "GitHub repo created 2025-03-05; no earlier public announcement found, so month-of-repo-creation used as first-release proxy."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/probelabs/probe/releases?page=1"],
+      "comment": "Latest release v0.6.0-rc327 on 2026-06-27; actively developed (pre-1.0, still on release candidates)."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/probelabs/probe", "https://api.github.com/repos/probelabs/probe"],
+      "comment": "Apache-2.0 per GitHub license metadata."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "Apache-2.0 (OSI-approved)."
+    },
+    "website": {
+      "value": "https://probelabs.com/",
+      "source": ["https://probelabs.com/features"],
+      "comment": "probeai.dev 301-redirects to probelabs.com."
+    },
+    "repository": {
+      "value": "https://github.com/probelabs/probe",
+      "source": ["https://github.com/probelabs/probe"]
+    },
+    "github-stars": {
+      "value": 659,
+      "source": ["https://api.github.com/repos/probelabs/probe"],
+      "comment": "Captured 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["mcp-server", "cli", "library"],
+      "source": ["https://github.com/probelabs/probe", "https://probelabs.com/features"],
+      "comment": "Ships as a CLI, an MCP server (agent and raw-tools modes), and a Node.js SDK/library exposing search()/extract()/query() and a ProbeAgent class."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://probelabs.com/features"],
+      "comment": "Pluggable into any MCP-capable agent or used directly as a CLI/library; not welded to a single host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool, not a bundled engine."
+    },
+    "install-mechanism": {
+      "value": ["npm", "cargo", "binary"],
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "Primary install via npm; curl (macOS/Linux) / PowerShell (Windows) install scripts fetch a prebuilt binary; cargo build from source also supported."
+    },
+    "retrieval-technique": {
+      "value": ["lexical", "ast-structural", "hybrid"],
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md", "https://probelabs.com/features"],
+      "comment": "Fuses ripgrep-speed lexical search (Elasticsearch-style boolean queries + BM25/TF-IDF) with tree-sitter AST parsing in a single retrieval path to return complete code blocks — hybrid tagged for that lexical+AST fusion. No embeddings/vector search ('zero indexing, no embedding models, no vector databases')."
+    },
+    "query-interface": {
+      "value": ["regex-lexical", "natural-language", "tool-call"],
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "Core query is Elasticsearch-style boolean/lexical syntax (AND/OR/NOT, exact phrases, ext:/file:/dir: filters, plus AST metavariable patterns). Exposed as MCP tool calls; the built-in Probe Agent accepts natural-language questions."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://probelabs.com/features"],
+      "comment": "Returns complete functions, classes, or structs (whole syntax blocks) rather than fixed-size text windows."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/probelabs/probe", "https://probelabs.com/features"],
+      "comment": "Uses tree-sitter AST parsing to understand code structure and return complete syntax nodes."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware", "symbol-level"],
+      "source": ["https://probelabs.com/features"],
+      "comment": "Extraction boundaries follow AST syntax nodes; results are whole functions/classes/structs (symbol-level)."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "Configurable ranking (bm25/tfidf/hybrid/hybrid2) plus an optional second-stage BERT reranker via --reranker."
+    },
+    "index-location": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "Zero indexing — searches on-the-fly like ripgrep; nothing persistent is built."
+    },
+    "incremental-updates": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "No persistent index, so incremental re-indexing does not apply; every query searches the live tree directly."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "No index/watcher; on-the-fly search always reads current files, so there is nothing to auto-update."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "No embeddings, so no vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "n-a — non-embedding technique (lexical + AST). Optional BERT model is used only for reranking, not embedding retrieval."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/probelabs/probe", "https://probelabs.com/features"],
+      "comment": "Ships an MCP server (agent mode and raw-tools mode)."
+    },
+    "agent-compatibility": {
+      "value": ["cursor", "cline", "windsurf", "any-mcp-client"],
+      "source": ["https://probelabs.com/features"],
+      "comment": "Documented integrations with Cline, Roo, Cursor, Windsurf, or any MCP-compatible AI assistant."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "terminal"],
+      "source": ["https://probelabs.com/features"],
+      "comment": "CLI runs in the terminal; surfaces in VS Code-based editors via MCP-capable extensions (Cline, Roo, Cursor, Windsurf)."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://probelabs.com/features"],
+      "comment": "AST-aware block extraction depends on tree-sitter parser support for the listed languages; ripgrep-style text search works on any file, but the structural retrieval that defines the tool is language-limited."
+    },
+    "supported-languages": {
+      "value": "Rust, JavaScript, TypeScript, Python, Go, C/C++, Java, Ruby, PHP, Swift, Solidity, Crystal, C#, Markdown (tree-sitter parsers)",
+      "source": ["https://github.com/probelabs/probe"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://probelabs.com/features", "https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "Search is fully local — 'your code never leaves your machine, no API calls for search.' (The optional Probe Agent mode calls an external LLM, but the search/extract engine itself is offline.)"
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://probelabs.com/features"],
+      "comment": "Core search runs fully offline with no external API and no embedding service."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "OSS tool that runs entirely on the user's machine."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/probelabs/probe/main/README.md"],
+      "comment": "No telemetry documented for this local OSS tool."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://probelabs.com/", "https://probelabs.com/features"],
+      "comment": "Positioned for enterprise-scale codebases; ripgrep-based on-the-fly search scales to large repos. No hard size limit stated (marketing claim, not benchmarked)."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "Apache-2.0, self-run; no paid tier."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/probelabs/probe"],
+      "comment": "Free/OSS."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/probelabs/probe/releases?page=1"],
+      "comment": "Usable but evolving — still pre-1.0 (v0.6.0 release candidates), ~659 stars, single-org project as of 2026-07-09."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/probelabs/probe", "https://github.com/probelabs/probe/releases?page=1"],
+      "comment": "Repo pushed 2026-06-27 and release v0.6.0-rc327 dated 2026-06-27, well within 90 days of the 2026-07-09 research date."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/probelabs/probe"],
+      "comment": "~659 GitHub stars (2026-07-09), single-org project — small relative to major tools in this space."
+    }
+  }
 }
