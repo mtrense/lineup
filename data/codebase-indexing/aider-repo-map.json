@@ -1,5 +1,203 @@
 {
   "name": "Aider Repo Map",
   "description": "tree-sitter repo map ranked by graph/PageRank to feed the most relevant symbols",
-  "values": {}
+  "url": "https://aider.chat/docs/repomap.html",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Aider-AI (Paul Gauthier)",
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "The repo map is a built-in component of Aider, the terminal AI pair-programming tool created by Paul Gauthier and now maintained under the Aider-AI org."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "Aider is a Python tool (~80% Python); the repo map is built with the py-tree-sitter-languages Python module."
+    },
+    "first-release": {
+      "value": "2023-10",
+      "source": ["https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "The tree-sitter + graph-ranked repo map described here was announced Oct 2023, replacing Aider's earlier ctags-based map that shipped with Aider in mid-2023."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://aider.chat/HISTORY.html"],
+      "comment": "Actively developed; latest tagged release v0.86.1 with ongoing main-branch development as of 2026-07-09."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Aider (and thus the repo map) is Apache-2.0 licensed."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Fully open source under Apache-2.0."
+    },
+    "website": {
+      "value": "https://aider.chat/docs/repomap.html",
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Official repo map documentation page; main site is aider.chat."
+    },
+    "repository": {
+      "value": "https://github.com/Aider-AI/aider",
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "The repo map lives inside the main Aider repository (aider/repomap.py); it has no separate repo."
+    },
+    "github-stars": {
+      "value": 47200,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "~47.2k stars for the Aider repository as a whole (captured 2026-07-09); the repo map is a bundled feature with no standalone star count."
+    },
+    "form-factor": {
+      "value": ["agent-bundled"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "The repo map is a retrieval engine welded into the Aider CLI agent, not shipped as a separate product; third-party re-implementations (e.g. RepoMapper) exist but are not this tool."
+    },
+    "standalone-usable": {
+      "value": false,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "The repo map is auto-generated inside Aider and cannot be bolted onto another agent; independent ports exist but Aider's own repo map is not exposed as a reusable component."
+    },
+    "bundled-host": {
+      "value": "Aider",
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Ships inside the Aider terminal agent."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Installed as part of Aider via pip (python -m pip install aider-install / aider); no separate install for the repo map."
+    },
+    "retrieval-technique": {
+      "value": ["llm-repo-map", "ast-structural", "code-graph"],
+      "source": ["https://aider.chat/docs/repomap.html", "https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "A repo-map technique: tree-sitter (AST-structural) extracts symbol definitions/references, a dependency graph over files is built and ranked (PageRank-style) to select the most central symbols within a token budget."
+    },
+    "query-interface": {
+      "value": ["none"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Not queried by the caller; the map is generated automatically each turn and re-ranked based on which files are in the chat, rather than answering a query."
+    },
+    "returns": {
+      "value": ["symbols", "file-list"],
+      "source": ["https://aider.chat/docs/repomap.html", "https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "Outputs a compact map of files with their key symbols and critical definition lines (signatures, class/function definitions)."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "Uses tree-sitter to parse code and extract structural symbols (functions, classes, signatures)."
+    },
+    "chunking-strategy": {
+      "value": ["symbol-level"],
+      "source": ["https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "Rather than chunking for an index, it extracts per-symbol definitions (function/class signatures) and includes the most important ones; boundaries follow syntax symbols."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "A graph ranking algorithm (PageRank-style over the file dependency graph) reorders symbols so the most-referenced identifiers surface — the reranking example cited in the guide."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "tree-sitter tags are cached locally in the repo (.aider.tags.cache); nothing is stored in the cloud."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Parsed tags are cached per file and only re-parsed when a file changes, rather than re-parsing the whole repo each time."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "The map is regenerated on demand at prompt time reflecting current file state; there is no background file-watcher daemon."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "No embeddings are used, so there is no vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "n-a — the repo map is a tree-sitter + graph-ranking technique, not embedding-based."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "The repo map is internal to Aider and is not exposed as an MCP server."
+    },
+    "agent-compatibility": {
+      "value": ["aider", "self-contained"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Usable only within its host agent, Aider."
+    },
+    "ide-integrations": {
+      "value": ["terminal"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Aider is a terminal tool; the repo map surfaces only inside Aider's CLI prompt context."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://aider.chat/2023/10/22/repomap.html", "https://github.com/Aider-AI/aider"],
+      "comment": "Symbol extraction depends on a tree-sitter parser for the language; files without a supported parser get no structural map."
+    },
+    "supported-languages": {
+      "value": "tree-sitter parsers; 100+ languages (grep-ast / tree-sitter-language-pack)",
+      "source": ["https://github.com/Aider-AI/aider", "https://aider.chat/2023/10/22/repomap.html"],
+      "comment": "The 2023 blog listed 17 languages; Aider's README now states 100+ programming languages via its tree-sitter language pack."
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "The map itself is built entirely locally, but its content (code symbols and signature lines) is inserted into the prompt sent to the configured LLM, which is a cloud provider by default — so code egresses unless a local model is used."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "Map construction (tree-sitter parsing, ranking) is fully offline; combined with a local LLM, Aider can run with no external calls."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Open-source tool that runs entirely on the user's own machine."
+    },
+    "telemetry": {
+      "value": ["opt-in"],
+      "source": ["https://aider.chat/docs/more/analytics.html"],
+      "comment": "Aider's analytics are opt-in (you must agree on first prompt) and never collect source code, chats, or keys."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://aider.chat/docs/repomap.html"],
+      "comment": "A token budget (default ~1k, --map-tokens) plus graph ranking lets it summarize sizable repos, but the whole-repo PageRank computation grows with repo size, so very large monorepos can be slow to map."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "The repo map is free and OSS; Aider itself is BYO-LLM-key, but the repo map component consumes no paid embedding/model API of its own."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "Free / open source."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://aider.chat/HISTORY.html"],
+      "comment": "A polished, widely used core feature of a mature tool, still evolving with frequent releases."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://aider.chat/HISTORY.html"],
+      "comment": "Aider is one of the most actively developed OSS coding tools; latest tagged release v0.86.1 with continued main-branch development (checked 2026-07-09)."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/Aider-AI/aider"],
+      "comment": "~47k GitHub stars and a large active user base put Aider among the more widely adopted OSS coding tools."
+    }
+  }
 }

@@ -162,7 +162,7 @@ Users should be able to:
 - [x] Probe — local semantic + lexical code search built for AI agents; no cloud, AST-aware
 - [x] claude-context (Zilliz) — MCP server that indexes a repo into Milvus/Zilliz for embedding-based retrieval
 - [x] Continue @codebase — Continue's built-in embeddings indexing of the open repository
-- [ ] Aider Repo Map — tree-sitter repo map ranked by graph/PageRank to feed the most relevant symbols
+- [x] Aider Repo Map — tree-sitter repo map ranked by graph/PageRank to feed the most relevant symbols
 - [ ] Sourcegraph / Cody context — code search engine and context API serving repo-scale retrieval to agents
 - [ ] Greptile — cloud codebase-understanding API answering questions and providing context over a repo
 - [ ] Potpie — codebase knowledge-graph platform providing structural context and agents over a repo
