@@ -1,5 +1,220 @@
 {
   "name": "Zoekt",
   "description": "fast trigram code search engine (Sourcegraph); lexical retrieval at monorepo scale",
-  "values": {}
+  "url": "https://github.com/sourcegraph/zoekt",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Sourcegraph (originally created by Han-Wen Nienhuys at Google)",
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/README.md",
+        "https://sourcegraph.com/blog/zoekt-creating-internal-tools-at-google"
+      ],
+      "comment": "Created by Han-Wen Nienhuys (based on Google's internal Code Search); the original google/zoekt repo was archived Mar 2025 and Sourcegraph now maintains the active fork."
+    },
+    "implementation-language": {
+      "value": ["go"],
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "GitHub reports the repo as ~88% Go."
+    },
+    "first-release": {
+      "value": "2016-06",
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/README.md",
+        "https://sourcegraph.com/blog/zoekt-creating-internal-tools-at-google"
+      ],
+      "comment": "Earliest public commits to the original google/zoekt date to June 2016 (a Han-Wen Nienhuys commit of 2016-06-28 is on record); exact month approximate. Sourcegraph fork maintained since ~2017/2021."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/sourcegraph/zoekt/commits/main"],
+      "comment": "Active development; latest commits dated July 2026 as of check on 2026-07-09."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "GitHub reports Apache-2.0."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "Apache-2.0, fully open source."
+    },
+    "website": {
+      "value": null,
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "No dedicated product landing page; the GitHub repository serves as the home."
+    },
+    "repository": {
+      "value": "https://github.com/sourcegraph/zoekt",
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "Active fork; original at github.com/google/zoekt is archived/read-only."
+    },
+    "github-stars": {
+      "value": 1800,
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "~1.8k stars on sourcegraph/zoekt as displayed on 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/README.md"
+      ],
+      "comment": "Ships as a Go library plus CLI commands (zoekt-index, zoekt) and an indexserver/webserver you self-host; it is the search backend inside Sourcegraph."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Can be run and queried independently via CLI, web UI, JSON/gRPC API, though most widely deployed as Sourcegraph's search backend."
+    },
+    "bundled-host": {
+      "value": null,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Standalone engine; also embedded as the search backend inside Sourcegraph, but usable on its own so no single bundled host."
+    },
+    "install-mechanism": {
+      "value": ["binary", "docker"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Installed via `go get`/`go install` (produces binaries) or the Docker image ghcr.io/sourcegraph/zoekt."
+    },
+    "retrieval-technique": {
+      "value": ["lexical"],
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/README.md",
+        "https://github.com/sourcegraph/zoekt/blob/main/doc/design.md"
+      ],
+      "comment": "Positional trigram (n=3) indexing for substring and regexp matching; purely lexical, no embeddings."
+    },
+    "query-interface": {
+      "value": ["regex-lexical", "symbol-lookup"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Rich query language with boolean operators, substring/regexp matching, and a sym: atom for symbol search (backed by Universal ctags)."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Returns matching lines/fragments within files with match locations."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Core matching is trigram/text-based, but it uses Universal ctags to extract symbol information as a key ranking signal and to power sym: symbol queries; not tree-sitter/LSP AST retrieval."
+    },
+    "chunking-strategy": {
+      "value": ["none"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/doc/design.md"],
+      "comment": "Trigram index over file contents; code is not split into chunks."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Ranks results in a single pass using signals like symbol matches; no documented second-stage cross-encoder/LLM rerank."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/doc/design.md"],
+      "comment": "Builds on-disk shard files on the host running the indexer; no hosted index."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "The indexserver re-indexes only repositories that have changed rather than the whole corpus; granularity is per-repo shard (a changed repo's shard is rebuilt), not per-file."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "The indexserver automatically syncs repositories from a code host and re-indexes them without manual action; polling-based, not an instantaneous on-save file watcher."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/doc/design.md"],
+      "comment": "No embeddings; uses its own trigram shard files, not a vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/doc/design.md"],
+      "comment": "n-a; lexical trigram engine with no embedding model."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "No MCP server; queried via CLI, web UI, JSON API, or gRPC."
+    },
+    "agent-compatibility": {
+      "value": ["other"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Not a native agent tool; it is a code-search backend queried via API/gRPC and reached by agents indirectly through Sourcegraph/Cody rather than integrated with named agents directly."
+    },
+    "ide-integrations": {
+      "value": ["web", "terminal"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Ships a web UI (webserver at localhost:6070) and CLI/terminal search; no first-party editor extensions."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Trigram index works over any text/source regardless of language; ctags-based symbol ranking additionally covers many languages."
+    },
+    "supported-languages": {
+      "value": "Any (text-based); symbol ranking via Universal ctags covers many programming languages",
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Core search is language-agnostic text; ctags improves ranking for the languages it parses."
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Self-hosted OSS; index and search run entirely on your own infrastructure, nothing is sent to a third party."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Runs fully offline; no external API dependency."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "OSS engine you deploy yourself."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/sourcegraph/zoekt/blob/main/README.md"],
+      "comment": "Self-hosted OSS with no documented usage-data collection."
+    },
+    "max-repo-scale": {
+      "value": ["monorepo-scale"],
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/doc/design.md",
+        "https://sourcegraph.com/blog/zoekt-creating-internal-tools-at-google"
+      ],
+      "comment": "Designed for very large corpora; powers Sourcegraph's code search across huge multi-repo/monorepo deployments. Positional trigrams need ~1.2x corpus size in RAM."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "Apache-2.0, free to self-host."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "Free OSS; no paid plan for the engine itself."
+    },
+    "maturity": {
+      "value": 4,
+      "source": [
+        "https://github.com/sourcegraph/zoekt/blob/main/README.md",
+        "https://sourcegraph.com/blog/zoekt-creating-internal-tools-at-google"
+      ],
+      "comment": "Stable and battle-tested as Sourcegraph's production search backend for years, but primarily an infrastructure component rather than an end-user polished product."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt/commits/main"],
+      "comment": "Commits dated July 2026 on main as of check on 2026-07-09; actively maintained by Sourcegraph."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "~1.8k stars; a niche infrastructure component with a modest direct user base, though widely deployed indirectly via Sourcegraph."
+    }
+  }
 }

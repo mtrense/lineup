@@ -167,7 +167,7 @@ Users should be able to:
 - [x] Greptile — cloud codebase-understanding API answering questions and providing context over a repo
 - [x] Potpie — codebase knowledge-graph platform providing structural context and agents over a repo
 - [x] Blarify — builds a code knowledge graph (AST + LSP) into a graph DB for structural retrieval
-- [ ] Zoekt — fast trigram code search engine (Sourcegraph); lexical retrieval at monorepo scale
+- [x] Zoekt — fast trigram code search engine (Sourcegraph); lexical retrieval at monorepo scale
 - [ ] repomix — packs an entire repository into a single AI-friendly context file
 - [ ] gitingest — turns a git repo (or URL) into a prompt-ready digest of its contents
 - [ ] code2prompt — CLI that serializes a codebase into a structured prompt with token counting
