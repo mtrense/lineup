@@ -1,5 +1,199 @@
 {
   "name": "Windsurf (Codeium) Indexing",
   "description": "Windsurf's bundled codebase indexing/retrieval engine",
-  "values": {}
+  "icon": "windsurf",
+  "url": "https://windsurf.com",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Cognition AI (formerly Codeium)",
+      "source": ["https://devin.ai/blog/windsurf-launch", "https://aiwiki.ai/wiki/windsurf"],
+      "comment": "Built by Codeium; Codeium/Windsurf was acquired by Cognition AI in July 2025 and the product was later renamed Devin Desktop (June 2026). Checked 2026-07-09."
+    },
+    "implementation-language": {
+      "value": null,
+      "comment": "Closed, bundled engine — the backend indexing/retrieval stack is not publicly disclosed. The Windsurf editor is a VS Code fork, but the indexing engine's implementation language is undocumented."
+    },
+    "first-release": {
+      "value": "2024-11",
+      "source": ["https://devin.ai/blog/windsurf-launch", "https://www.forbes.com/sites/richardnieva/2024/11/13/codeium-windsurf/"],
+      "comment": "Windsurf Editor (with its bundled indexing/context engine) launched November 2024. Codeium's underlying context-awareness engine predates this, but the bundled Windsurf indexing dates to the editor launch."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/remote-indexing"],
+      "comment": "Actively developed and sold; product renamed Devin Desktop in 2026 but remains active. Checked 2026-07-09."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://windsurf.com"],
+      "comment": "Closed, bundled commercial engine."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://windsurf.com"],
+      "comment": "Bundled proprietary engine; source not published."
+    },
+    "website": {
+      "value": "https://windsurf.com",
+      "source": ["https://windsurf.com"]
+    },
+    "repository": {
+      "value": null,
+      "comment": "Closed-source bundled engine — no public source repository."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source bundled engine — no public repository to star."
+    },
+    "form-factor": {
+      "value": ["agent-bundled"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "The retrieval engine lives inside the Windsurf editor / Cascade agent; not shipped as a standalone MCP server, library, or CLI."
+    },
+    "standalone-usable": {
+      "value": false,
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "Welded into Windsurf/Cascade (and Codeium extensions) — cannot be bolted onto your own agent as an independent context provider."
+    },
+    "bundled-host": {
+      "value": "Windsurf",
+      "source": ["https://devin.ai/blog/windsurf-launch"],
+      "comment": "Ships inside the Windsurf editor (now Devin Desktop) and Codeium IDE extensions."
+    },
+    "install-mechanism": {
+      "value": ["binary", "editor-extension"],
+      "source": ["https://windsurf.com", "https://devin.ai/blog/windsurf-launch"],
+      "comment": "Obtained by downloading the Windsurf editor app (binary); the same context engine also surfaces via Codeium editor extensions for VS Code / JetBrains."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview", "https://markaicode.com/windsurf-flow-context-engine/"],
+      "comment": "RAG over an embeddings index, augmented by Windsurf's proprietary 'M-Query' LLM-based retrieval/ranking that the vendor says outperforms plain cosine-similarity search. Tagged embeddings; the M-Query LLM stage is captured under Reranking."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "The Cascade agent issues natural-language / tool-call retrieval against the index; no user-facing regex query surface for the index itself."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "Returns relevant code snippets/chunks retrieved for the agent's prompt context."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Vendor/secondary sources state the index is built over files, functions, classes, and type definitions, implying parser/structure awareness. Internals are not fully documented; based on stated behaviour."
+    },
+    "chunking-strategy": {
+      "value": ["symbol-level"],
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Reported to embed functions, classes, and type definitions as units. Exact chunking algorithm is undocumented; inferred from stated indexing granularity."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://markaicode.com/windsurf-flow-context-engine/"],
+      "comment": "'M-Query' applies an LLM-based retrieval/ranking stage over first-pass results to improve precision beyond raw embedding similarity."
+    },
+    "index-location": {
+      "value": ["both"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/remote-indexing", "https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Local indexing (index stored on the machine) by default; Teams/Enterprise can use a server-side Remote Indexing Service that indexes repos on Windsurf's isolated-tenant servers."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Only changed files are re-processed after the initial index build."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Index updates incrementally as files change during editing rather than requiring a manual re-index."
+    },
+    "vector-store": {
+      "value": ["proprietary"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/remote-indexing"],
+      "comment": "Backing store for the embeddings index is a proprietary, undisclosed component."
+    },
+    "embedding-model": {
+      "value": null,
+      "comment": "Uses Codeium/Windsurf's own proprietary embedding model; the specific model is not publicly documented."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "Windsurf is an MCP client (it can call external MCP servers), but its own indexing engine is not exposed as an MCP server for other agents to consume."
+    },
+    "agent-compatibility": {
+      "value": ["self-contained"],
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "Usable only by its host (Windsurf/Cascade and Codeium extensions); not consumable by third-party agents."
+    },
+    "ide-integrations": {
+      "value": ["standalone", "vscode", "jetbrains"],
+      "source": ["https://windsurf.com", "https://devin.ai/blog/windsurf-launch"],
+      "comment": "Primary surface is the standalone Windsurf editor (a VS Code fork); the Codeium context engine also ships in VS Code and JetBrains extensions."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Embedding-based retrieval indexes arbitrary code/text; Codeium advertises support for 70+ languages, with best structural handling on well-supported languages."
+    },
+    "supported-languages": {
+      "value": "70+ languages (embeddings index arbitrary text; Codeium advertises 70+ supported languages)",
+      "source": ["https://aiwiki.ai/wiki/codeium"],
+      "comment": "Codeium historically advertises 70+ programming languages; exact parsed-language set for indexing is not separately documented."
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://docs.devin.ai/desktop/context-awareness/remote-indexing"],
+      "comment": "By default AI features send code/context to Windsurf's servers for inference. Enterprise Remote Indexing clones repositories to Windsurf's isolated-tenant servers to build embeddings, then deletes the code/snippets once embeddings are created (unless Store Snippets is enabled). No fully offline path for the AI retrieval."
+    },
+    "local-only-option": {
+      "value": false,
+      "source": ["https://docs.devin.ai/desktop/context-awareness/overview"],
+      "comment": "The local index sits on disk, but retrieval/generation requires Windsurf's hosted models/services — there is no fully offline, no-external-call mode."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://www.mindstudio.ai/blog/what-is-windsurf"],
+      "comment": "Enterprise offering includes on-premise / self-managed (hybrid) deployment options for organizations that must control where code is processed; not available on consumer plans."
+    },
+    "telemetry": {
+      "value": ["opt-out"],
+      "source": ["https://windsurf.com"],
+      "comment": "Usage data is collected by default with settings/privacy options to opt out (and enterprise zero-data-retention options). Checked 2026-07-09."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://www.arsturn.com/blog/maximizing-productivity-with-windsurf-local-indexing"],
+      "comment": "Handles large codebases (docs cite 50,000+ files); very large monorepos (100,000+ files) require configuring include/exclude scope. Enterprise remote indexing targets multi-repo scale."
+    },
+    "pricing-model": {
+      "value": ["bundled"],
+      "source": ["https://www.nocode.mba/articles/windsurf-pricing"],
+      "comment": "Indexing has no standalone price — it is bundled into Windsurf's plans (Free, Pro, Max, Teams, Enterprise)."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://www.nocode.mba/articles/windsurf-pricing"],
+      "comment": "No standalone price for the indexing engine; it is included in Windsurf plans (bundled). The Windsurf editor itself has a $0 Free tier and a $20/mo Pro tier as of the March 2026 pricing revamp, but that prices the whole product, not the indexer."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://devin.ai/blog/windsurf-launch"],
+      "comment": "Widely deployed, polished bundled engine inside a mature commercial IDE; not a full 5 given ongoing product churn (ownership change, rename to Devin Desktop) and undocumented, evolving internals."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://www.nocode.mba/articles/windsurf-pricing"],
+      "comment": "Product actively developed — pricing/model updates through 2026 and continued integration under Cognition. Checked 2026-07-09."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://aiwiki.ai/wiki/windsurf"],
+      "comment": "Large user base (Windsurf is a widely adopted AI IDE), though below Cursor-scale ('huge')."
+    }
+  }
 }

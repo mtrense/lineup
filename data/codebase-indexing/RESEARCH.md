@@ -173,7 +173,7 @@ Users should be able to:
 - [x] code2prompt — CLI that serializes a codebase into a structured prompt with token counting
 - [x] VectorCode — CLI/library that builds a local vector index of a repo for RAG-style code retrieval
 - [x] Cursor Codebase Index — Cursor's bundled embeddings index of the open workspace
-- [ ] Windsurf (Codeium) Indexing — Windsurf's bundled codebase indexing/retrieval engine
+- [x] Windsurf (Codeium) Indexing — Windsurf's bundled codebase indexing/retrieval engine
 - [ ] Augment Context Engine — Augment Code's proprietary large-codebase context/retrieval engine
 - [ ] Coraline — 100% local, Rust code-intelligence MCP server combining embeddings, lexical search, and a code knowledge graph; installs a git hook to auto-sync its index on commit
 
