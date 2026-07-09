@@ -1,5 +1,199 @@
 {
   "name": "repomix",
   "description": "packs an entire repository into a single AI-friendly context file",
-  "values": {}
+  "url": "https://repomix.com",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "yamadashy (Kazuki Yamada), open-source community project",
+      "source": ["https://github.com/yamadashy/repomix", "https://dev.to/yamadashy/repopack-a-simple-nodejs-tool-for-combining-repository-files-4o0d"],
+      "comment": "Created and maintained by individual developer yamadashy (Kazuki Yamada) with community contributions."
+    },
+    "implementation-language": {
+      "value": ["typescript"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Built with TypeScript on Node.js; distributed as an npm package."
+    },
+    "first-release": {
+      "value": "2024-07",
+      "source": ["https://dev.to/yamadashy/repopack-a-simple-nodejs-tool-for-combining-repository-files-4o0d", "https://github.com/yamadashy/repomix/discussions/188"],
+      "comment": "Originally announced as 'Repopack' on 2024-07-16; renamed to 'Repomix' on 2024-12-01 for legal reasons."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/yamadashy/repomix/releases"],
+      "comment": "Actively developed; latest release v1.16.0 dated 2026-06-29 (checked 2026-07-09)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "MIT-licensed."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Fully open source under MIT."
+    },
+    "website": {
+      "value": "https://repomix.com",
+      "source": ["https://repomix.com/guide/code-compress"]
+    },
+    "repository": {
+      "value": "https://github.com/yamadashy/repomix",
+      "source": ["https://github.com/yamadashy/repomix"]
+    },
+    "github-stars": {
+      "value": 27000,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "~27k stars as checked 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["cli", "library", "mcp-server", "cloud-service"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com"],
+      "comment": "Primarily a CLI; also usable as a Node.js library, ships an MCP server (--mcp), and a hosted web version at repomix.com. A community-maintained VS Code extension also exists."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Standalone tool runnable from any toolchain; not welded into a single host agent."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool — not bundled inside a host agent/IDE."
+    },
+    "install-mechanism": {
+      "value": ["npm", "docker", "editor-extension", "hosted"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com"],
+      "comment": "Install via npm/npx (also yarn, bun, Homebrew); Docker image at ghcr.io/yamadashy/repomix; community VS Code editor extension; and a hosted browser version at repomix.com."
+    },
+    "retrieval-technique": {
+      "value": ["whole-repo-pack"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/code-compress"],
+      "comment": "Serializes the whole repository (or a glob-filtered slice) into one output blob with no query-time selection. Optional --compress uses Tree-sitter to reduce code to function/class signatures, but it is still whole-repo packing, not query-driven retrieval."
+    },
+    "query-interface": {
+      "value": ["none", "tool-call", "regex-lexical"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/mcp-server"],
+      "comment": "The core packer takes no query (none). Its MCP server exposes tool calls (pack_codebase, pack_remote_repository) and a grep_repomix_output tool for regex/lexical search over the packed output."
+    },
+    "returns": {
+      "value": ["repo-blob", "file-list"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Emits a single packed repository blob (XML/Markdown/JSON/plain text) that includes a directory-structure file list plus concatenated file contents."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://repomix.com/guide/code-compress"],
+      "comment": "Default packing is plain-text concatenation, but the opt-in --compress mode uses Tree-sitter to extract and preserve function/class/interface signatures — genuine AST parsing."
+    },
+    "chunking-strategy": {
+      "value": ["file-level"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/code-compress"],
+      "comment": "Whole files are packed as units. With --compress, Tree-sitter reduces each file to symbol signatures (effectively symbol-level), but no separate index chunking occurs."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "No retrieval/ranking stage — it packs, it does not rank."
+    },
+    "index-location": {
+      "value": ["none"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Stateless packer — builds no persistent index; regenerates the output on each run."
+    },
+    "incremental-updates": {
+      "value": false,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "No index to update — each invocation re-reads and re-packs the repository from scratch."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Manual invocation; no file-watcher auto-repack."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "No embeddings, so no vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "n-a — repomix does not use embeddings."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/mcp-server"],
+      "comment": "Ships an MCP server (repomix --mcp) exposing pack/read/grep tools."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "any-mcp-client"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/mcp-server"],
+      "comment": "Generic MCP server usable by any MCP-capable agent; docs call out Claude and Cursor. Output file can also be pasted into any LLM chat (ChatGPT, Gemini, etc.)."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "terminal", "web"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com"],
+      "comment": "Primarily a terminal CLI; community-maintained VS Code extension; hosted web app at repomix.com."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Default packing works on any text-based files regardless of language. The optional --compress and comment-removal features are limited to Tree-sitter-supported languages."
+    },
+    "supported-languages": {
+      "value": "any (text-based) for packing; Tree-sitter compression/comment-removal supports ~15+ languages (JS/TS, Python, Java, Go, Rust, C/C++, Ruby, PHP, and more)",
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/code-compress"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "The CLI/library runs fully locally; no source is sent anywhere by repomix itself (the user then feeds the output to whatever LLM they choose). The optional hosted repomix.com web version is a separate opt-in path."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Runs entirely offline; no external API required."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "OSS you run locally; the web version can also be self-hosted from the repo (website/ app)."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "No telemetry documented in the CLI/library (checked 2026-07-09)."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://github.com/yamadashy/repomix", "https://repomix.com/guide/code-compress"],
+      "comment": "Can process large repos, but the practical ceiling is the target LLM's context window since it packs everything into one blob; glob filtering and --compress extend usable scale. Not monorepo-scale retrieval infrastructure."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Free and open source; hosted web version is also free."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "Free/OSS."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/yamadashy/repomix/releases"],
+      "comment": "Past v1.0 (v1.16.0), widely adopted (~27k stars), stable and polished, still actively iterating."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/yamadashy/repomix/releases"],
+      "comment": "v1.16.0 released 2026-06-29, well within 90 days of the research date (checked 2026-07-09)."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/yamadashy/repomix"],
+      "comment": "RESEARCH.md anchors repomix as large; ~27k GitHub stars and broad ecosystem (Homebrew, Docker, browser extensions) support this."
+    }
+  }
 }
