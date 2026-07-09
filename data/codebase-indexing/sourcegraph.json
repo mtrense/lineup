@@ -1,5 +1,199 @@
 {
   "name": "Sourcegraph / Cody context",
   "description": "code search engine and context API serving repo-scale retrieval to agents",
-  "values": {}
+  "url": "https://sourcegraph.com",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Sourcegraph, Inc.",
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph"],
+      "comment": "Founded 2013 by Quinn Slack and Beyang Liu."
+    },
+    "implementation-language": {
+      "value": ["go", "typescript"],
+      "source": ["https://github.com/sourcegraph/zoekt", "https://github.com/sourcegraph/cody-public-snapshot"],
+      "comment": "Search backend and the Zoekt trigram engine are Go; the Cody clients and web frontend are TypeScript (cody-public-snapshot is 85% TypeScript)."
+    },
+    "first-release": {
+      "value": null,
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph"],
+      "comment": "Merged entity with no single clean date: Sourcegraph code search first released 2013 (exact month unclear), rebranded 'Code Search' in 2023; the Cody AI context layer was unveiled in 2023 and reached GA in December 2023."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://sourcegraph.com/mcp", "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans"],
+      "comment": "Sourcegraph Code Search, the MCP server, and Cody Enterprise are actively developed. Cody Free and Pro were discontinued July 2025; individual devs are steered to the newer Amp agent. Checked 2026-07-09."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph"],
+      "comment": "Core platform was Apache-2.0 until June 2023, moved to a proprietary 'Sourcegraph Enterprise' license, and the source repo became private in August 2024. The archived Cody client snapshot remains Apache-2.0 but the living product is proprietary."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph", "https://www.devclass.com/development/2024/08/21/sourcegraph-makes-core-repository-private-co-founder-complains-open-source-means-extra-work-and-risk/1623688"],
+      "comment": "Core repository was made private in August 2024; no longer open source. Only an archived, read-only Cody client snapshot stays Apache-2.0."
+    },
+    "website": {
+      "value": "https://sourcegraph.com",
+      "source": ["https://sourcegraph.com/mcp"]
+    },
+    "repository": {
+      "value": "https://github.com/sourcegraph/cody-public-snapshot",
+      "source": ["https://github.com/sourcegraph/cody-public-snapshot"],
+      "comment": "Only an archived (read-only since Aug 1, 2025) public snapshot of the Cody client remains; the primary Sourcegraph platform repo went private in August 2024."
+    },
+    "github-stars": {
+      "value": 3800,
+      "source": ["https://github.com/sourcegraph/cody-public-snapshot"],
+      "comment": "3.8k stars on the archived cody-public-snapshot repo (captured 2026-07-09). Not representative of the whole platform, whose core repo is private."
+    },
+    "form-factor": {
+      "value": ["cloud-service", "mcp-server", "ide-extension", "cli"],
+      "source": ["https://sourcegraph.com/mcp", "https://sourcegraph.com/docs/self-hosted"],
+      "comment": "Ships as a hosted/self-hosted code-search platform, an MCP server for agents, IDE extensions (Cody for VS Code, JetBrains, Visual Studio), and the src CLI."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://sourcegraph.com/mcp"],
+      "comment": "The Sourcegraph MCP server exposes search/navigation/Deep Search to any MCP-capable agent (Claude Code, Cursor, Amp, Codex), so it is not welded to a single host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Not a bundled engine; it is a standalone platform consumable by many agents."
+    },
+    "install-mechanism": {
+      "value": ["hosted", "docker", "editor-extension"],
+      "source": ["https://sourcegraph.com/docs/self-hosted", "https://sourcegraph.com/mcp"],
+      "comment": "Managed cloud (hosted), self-hosted via Docker/Kubernetes/Helm, plus editor extensions for the Cody clients."
+    },
+    "retrieval-technique": {
+      "value": ["lexical", "ast-structural", "hybrid"],
+      "source": ["https://sourcegraph.com/blog/how-cody-understands-your-codebase", "https://sourcegraph.com/mcp", "https://github.com/sourcegraph/zoekt"],
+      "comment": "Core is lexical: Zoekt trigram indexing plus an adapted BM25 ranking. Precise code navigation (go-to-def, references via SCIP/ctags) adds structural retrieval. Hybrid because a single search fuses keyword/regex/semantic signals and Cody globally ranks local + remote results together. Embeddings were used earlier but were deprecated ~2024."
+    },
+    "query-interface": {
+      "value": ["natural-language", "symbol-lookup", "regex-lexical", "tool-call"],
+      "source": ["https://sourcegraph.com/mcp"],
+      "comment": "Natural-language queries via Cody/Deep Search, symbol lookup via go-to-definition/find-references, keyword/regex lexical search, and MCP tool calls."
+    },
+    "returns": {
+      "value": ["code-chunks", "whole-files", "symbols", "call-graph", "summaries"],
+      "source": ["https://sourcegraph.com/mcp", "https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "Search returns ranked code snippets and file ranges; navigation returns symbols plus find-all-references (call-graph-like); Deep Search returns multi-step investigation summaries."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://sourcegraph.com/mcp", "https://github.com/sourcegraph/zoekt"],
+      "comment": "Precise code navigation uses SCIP/LSIF indexing and universal-ctags syntactic parsing for go-to-definition and references."
+    },
+    "chunking-strategy": {
+      "value": ["file-level"],
+      "source": ["https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "The current lexical trigram index does not chunk; retrieval returns file snippets (line ranges), so results are effectively file-level extracts. The deprecated embeddings path previously chunked code."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "Cody applies an adapted BM25 plus 'other signals learned and tuned' and globally re-ranks combined local and remote snippets before packaging the prompt."
+    },
+    "index-location": {
+      "value": ["both"],
+      "source": ["https://sourcegraph.com/docs/self-hosted"],
+      "comment": "Index lives on a Sourcegraph server, either the managed cloud instance or a self-hosted on-prem deployment; not on the developer's laptop."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt", "https://sourcegraph.com/docs/self-hosted"],
+      "comment": "The index server periodically fetches and reindexes repositories from the connected code hosts."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt"],
+      "comment": "Auto-syncs by periodically polling and reindexing repositories from the code host, rather than a manual re-index. Not a local file watcher."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "Cody moved off embeddings to keyword/BM25 search, so there is no vector store in the current retrieval path; earlier versions used an embeddings index."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "N/A for the current retrieval path — embeddings (previously OpenAI text-embedding-ada-002) were deprecated in favor of keyword/BM25 search."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://sourcegraph.com/mcp", "https://sourcegraph.com/blog/cody-supports-anthropic-model-context-protocol"],
+      "comment": "Ships a dedicated Sourcegraph MCP server exposing search, navigation, history, and Deep Search; Cody also supports MCP tools via agentic context fetching."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "codex", "any-mcp-client"],
+      "source": ["https://sourcegraph.com/mcp"],
+      "comment": "MCP server works with MCP-compatible agents including Claude Code, Cursor, Amp, and Codex."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "jetbrains", "web"],
+      "source": ["https://github.com/sourcegraph/cody-public-snapshot", "https://github.com/sourcegraph/cody-vs", "https://sourcegraph.com/mcp"],
+      "comment": "Cody clients for VS Code, JetBrains, and Visual Studio; the Sourcegraph platform also surfaces via its web UI."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/sourcegraph/zoekt", "https://en.wikipedia.org/wiki/Sourcegraph"],
+      "comment": "Trigram/text search indexes any text-based file regardless of language; precise code navigation is limited to the 30+ languages with SCIP/ctags support."
+    },
+    "supported-languages": {
+      "value": "Search: any text-based file; precise code navigation supports 30+ languages via SCIP/universal-ctags",
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph"]
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://sourcegraph.com/docs/self-hosted"],
+      "comment": "On the managed cloud, your code is indexed on Sourcegraph's servers (code egresses). A self-hosted deployment keeps source, user data, and indexes entirely within your own network (false in that mode); AI features still send snippets to LLM providers."
+    },
+    "local-only-option": {
+      "value": false,
+      "source": ["https://sourcegraph.com/docs/self-hosted", "https://sourcegraph.com/blog/how-cody-understands-your-codebase"],
+      "comment": "No fully offline laptop-local path: requires a Sourcegraph server (cloud or on-prem), and AI/context features call external LLM providers. Self-hostable on-prem but not air-gapped-local by default."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://sourcegraph.com/docs/self-hosted"],
+      "comment": "Enterprise self-hosted deployment runs entirely within your infrastructure via Docker/Kubernetes/Helm; source and indexes never leave your network."
+    },
+    "telemetry": {
+      "value": null,
+      "comment": "Telemetry posture not confirmed in the sources fetched this pass; self-hosted deployments keep data in-network per the self-hosted docs."
+    },
+    "max-repo-scale": {
+      "value": ["monorepo-scale"],
+      "source": ["https://sourcegraph.com/docs/self-hosted", "https://sourcegraph.com/blog/why-code-search-at-scale-is-essential-when-you-grow-beyond-one-repository"],
+      "comment": "Explicitly built for very large multi-repo/monorepo estates, indexing every repository into a unified corpus with sub-second queries over billions of lines of code."
+    },
+    "pricing-model": {
+      "value": ["paid-saas"],
+      "source": ["https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans"],
+      "comment": "Cody Free and Pro were discontinued July 2025, leaving Cody Enterprise ($59/user/mo) and the broader Sourcegraph Enterprise platform (from ~$16K) as paid offerings. Checked 2026-07-09."
+    },
+    "entry-price-usd-mo": {
+      "value": 59,
+      "source": ["https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans"],
+      "comment": "Cody Enterprise is $59/user/month on an annual contract; the cheapest remaining paid plan after Free/Pro were discontinued. Checked 2026-07-09."
+    },
+    "maturity": {
+      "value": 5,
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph", "https://sourcegraph.com/docs/self-hosted"],
+      "comment": "Stable, widely deployed, enterprise-grade code search platform (a decade+ old) with polished self-hosted tooling."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://sourcegraph.com/mcp", "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans"],
+      "comment": "Actively developed in 2025 (MCP server, Amp, plan changes), though the core repository is private so commit history is not publicly visible."
+    },
+    "community-size": {
+      "value": ["huge"],
+      "source": ["https://en.wikipedia.org/wiki/Sourcegraph"],
+      "comment": "Enterprise-scale adoption; one of the best-known code-search platforms."
+    }
+  }
 }
