@@ -1,5 +1,199 @@
 {
   "name": "Coraline",
   "description": "100% local, Rust code-intelligence MCP server combining embeddings, lexical search, and a code knowledge graph; installs a git hook to auto-sync its index on commit",
-  "values": {}
+  "url": "https://greysquirr3l.github.io/coraline/",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "greysquirr3l (Nick Campbell)",
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Single-maintainer open-source project by GitHub user greysquirr3l; releases signed off by Nick Campbell."
+    },
+    "implementation-language": {
+      "value": ["rust"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Rust core (~84% of repo, with small C/C++ portions from vendored deps like ONNX/tree-sitter). Installed via `cargo install coraline`."
+    },
+    "first-release": {
+      "value": "2025-02",
+      "source": ["https://github.com/greysquirr3l/coraline/releases?page=3"],
+      "comment": "v0.1.0 published 14 Feb 2025 (earliest tag on the releases history)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/greysquirr3l/coraline/releases"],
+      "comment": "Actively released; latest v0.10.2 (18 Jun 2026), 24 releases total. No beta/preview labeling."
+    },
+    "license": {
+      "value": ["mit", "apache-2"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Dual-licensed 'Apache License 2.0 or MIT license at your option'."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Source openly available under OSI licenses (MIT/Apache-2.0)."
+    },
+    "website": {
+      "value": "https://greysquirr3l.github.io/coraline/",
+      "source": ["https://greysquirr3l.github.io/coraline/"]
+    },
+    "repository": {
+      "value": "https://github.com/greysquirr3l/coraline",
+      "source": ["https://github.com/greysquirr3l/coraline"]
+    },
+    "github-stars": {
+      "value": 14,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "14 stars as of 2026-07-09 (2 forks); small single-maintainer project."
+    },
+    "form-factor": {
+      "value": ["mcp-server", "cli", "library", "hook"],
+      "source": ["https://github.com/greysquirr3l/coraline", "https://greysquirr3l.github.io/coraline/"],
+      "comment": "Ships as an MCP server (`coraline serve --mcp`), a CLI, and a Rust library/crate; `coraline hooks install` adds a git post-commit hook to auto-sync the index."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Runs independently as CLI/MCP server; can be bolted onto any MCP-capable agent, not welded into one host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool, not an engine bundled inside a specific agent/IDE."
+    },
+    "install-mechanism": {
+      "value": ["cargo", "binary"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "`cargo install coraline` or pre-built binaries from GitHub releases. (The git hook is a feature, not the install path.)"
+    },
+    "retrieval-technique": {
+      "value": ["embeddings", "lexical", "code-graph", "ast-structural", "hybrid"],
+      "source": ["https://github.com/greysquirr3l/coraline", "https://greysquirr3l.github.io/coraline/"],
+      "comment": "Combines local ONNX vector embeddings (semantic search), lexical/symbol search, and a tree-sitter-built code/knowledge graph (call graphs, impact analysis). 'hybrid' reflects the tool's own positioning of blending these; separate MCP tools (`coraline_search` vs `coraline_semantic_search`) also exist per-mode."
+    },
+    "query-interface": {
+      "value": ["natural-language", "symbol-lookup", "regex-lexical", "tool-call"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Exposes ~33 MCP tools (tool-call); supports semantic natural-language search, symbol/signature lookup, and text/lexical search."
+    },
+    "returns": {
+      "value": ["code-chunks", "symbols", "call-graph"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Returns symbol references, call hierarchies/impact analysis, and contextual code snippets; a 'compact' output mode reduces tokens."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Uses tree-sitter to parse code into symbols and a graph rather than treating it as plain text."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware", "symbol-level"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "tree-sitter parsing yields symbol-level units (functions/classes) for find/edit/embed operations."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://greysquirr3l.github.io/coraline/"],
+      "comment": "No documented second-stage rerank (cross-encoder/LLM/graph-rank) over first-pass hits as of 2026-07-09."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://greysquirr3l.github.io/coraline/", "https://github.com/greysquirr3l/coraline"],
+      "comment": "SQLite-backed index stored locally; '100% local', no cloud index."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "`coraline sync` performs incremental updates of changed files rather than a full rebuild."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Auto-syncs on git commit via the installed hook; trigger is the commit, not a continuous file watcher."
+    },
+    "vector-store": {
+      "value": ["sqlite"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Embeddings and graph stored in a local SQLite database."
+    },
+    "embedding-model": {
+      "value": "nomic-embed-text-v1.5 (local ONNX)",
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Runs a local ONNX embedding model; nomic-embed-text-v1.5 is the documented default in .coraline/config.json (downloaded via `coraline model download`). Verified 2026-07-09."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Ships an MCP server exposing ~33 code-intelligence tools (`coraline serve --mcp`)."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "any-mcp-client", "other"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Documented integrations: Claude Code, Claude Desktop, and OpenCode; works with any MCP client. 'other' covers Claude Desktop / OpenCode which lack dedicated tags."
+    },
+    "ide-integrations": {
+      "value": ["terminal"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Surfaces as a CLI/terminal tool and MCP server (configured via `.claude/mcp.json` / `.opencode/config.json`); no dedicated VS Code/JetBrains extension."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Retrieval depends on tree-sitter parser support; limited to the ~33 supported languages."
+    },
+    "supported-languages": {
+      "value": "~33 languages via tree-sitter (TypeScript, Rust, Python, Go, C#, Java, C/C++, Ruby, Bash, PHP, Swift, Kotlin, Haskell, Scala, Lua, Markdown, and more)",
+      "source": ["https://github.com/greysquirr3l/coraline"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://greysquirr3l.github.io/coraline/", "https://github.com/greysquirr3l/coraline"],
+      "comment": "'100% local — all processing happens on your machine'; local ONNX embeddings mean neither code nor embeddings egress."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://greysquirr3l.github.io/coraline/"],
+      "comment": "Fully offline: local embedding model + local SQLite index, no external API required."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "OSS tool that runs entirely on the user's own machine."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://greysquirr3l.github.io/coraline/", "https://github.com/greysquirr3l/coraline"],
+      "comment": "No telemetry documented; consistent with the 100%-local positioning. Marked none based on absence of any usage-data collection in docs/README (checked 2026-07-09)."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://greysquirr3l.github.io/coraline/"],
+      "comment": "Docs position it to 'index and incrementally sync large codebases'; no explicit monorepo-scale claim."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Free/OSS; local ONNX embeddings mean no required paid embedding API."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "Free and open source; no paid plan."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/greysquirr3l/coraline/releases"],
+      "comment": "24 releases over ~1.5 years, reaching v0.10.x with OpenSSF Baseline certification, but still pre-1.0, single-maintainer, and low adoption — usable but evolving."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/greysquirr3l/coraline/releases"],
+      "comment": "Latest release v0.10.2 on 18 Jun 2026, within ~90 days of the 2026-07-09 research date."
+    },
+    "community-size": {
+      "value": ["niche"],
+      "source": ["https://github.com/greysquirr3l/coraline"],
+      "comment": "~14 GitHub stars, 2 forks; single-maintainer, very small user base."
+    }
+  }
 }

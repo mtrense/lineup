@@ -175,7 +175,7 @@ Users should be able to:
 - [x] Cursor Codebase Index — Cursor's bundled embeddings index of the open workspace
 - [x] Windsurf (Codeium) Indexing — Windsurf's bundled codebase indexing/retrieval engine
 - [x] Augment Context Engine — Augment Code's proprietary large-codebase context/retrieval engine
-- [ ] Coraline — 100% local, Rust code-intelligence MCP server combining embeddings, lexical search, and a code knowledge graph; installs a git hook to auto-sync its index on commit
+- [x] Coraline — 100% local, Rust code-intelligence MCP server combining embeddings, lexical search, and a code knowledge graph; installs a git hook to auto-sync its index on commit
 
 ## Notes for Researchers
 
