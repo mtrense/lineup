@@ -52,7 +52,7 @@ URL persistence, per milestone scope).
   - `comparisonExists("databases")` is `true`; `comparisonExists("nope")` is `false`.
 - **Commit Message:** `feat(export): add fs-based comparison-data loader for the HTML export`
 
-[ ] 2. Export root component + SSR render function + client hydration entry
+[x] 2. Export root component + SSR render function + client hydration entry
 - **Files:** `app/src/export/ExportRoot.tsx`, `app/src/export/render.tsx`, `app/src/export/entry-client.tsx`, `app/src/export/render.test.tsx`
 - **Description:** Create the reusable render surface shared by SSR and hydration.
   - `ExportRoot.tsx`: a component `ExportRoot({ data })` that renders `<ComparisonView>` with `attributes`/`candidates`/`candidateEntries` from `data`, an initial selection derived from `candidateEntries` where `shownByDefault` is true (fall back to all when none), a no-op `onBack`, and omitted/no-op change callbacks (state stays in `ComparisonView`'s internal `useState`; nothing is persisted). No router, no `ComparisonPage`.
