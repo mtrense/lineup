@@ -1,5 +1,197 @@
 {
   "name": "Cursor Codebase Index",
   "description": "Cursor's bundled embeddings index of the open workspace",
-  "values": {}
+  "icon": "cursor",
+  "url": "https://cursor.com",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Anysphere (Cursor)",
+      "source": ["https://en.wikipedia.org/wiki/Cursor_(code_editor)"],
+      "comment": "Cursor is developed by Anysphere, Inc. (San Francisco), founded 2022."
+    },
+    "implementation-language": {
+      "value": null,
+      "comment": "The codebase-index engine is a closed, bundled component with no disclosed stack. The Cursor client itself is a VS Code fork (TypeScript/JavaScript on Electron), but the indexing/embedding backend's implementation language is not publicly documented."
+    },
+    "first-release": {
+      "value": "2023-03",
+      "source": ["https://en.wikipedia.org/wiki/Cursor_(code_editor)"],
+      "comment": "Cursor publicly launched around March 2023 per secondary reporting; Anysphere was founded in 2022. Codebase indexing shipped as a built-in feature of the editor. Month approximate; checked 2026-07-09."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Cursor is actively sold and developed; indexing is a standard bundled feature."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://cursor.com/security"],
+      "comment": "Cursor is a proprietary commercial product; the codebase-index engine is closed-source."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://cursor.com/security"],
+      "comment": "Bundled proprietary engine inside a closed-source IDE."
+    },
+    "website": {
+      "value": "https://cursor.com",
+      "source": ["https://cursor.com/pricing"]
+    },
+    "repository": {
+      "value": null,
+      "comment": "Closed, bundled engine — no public source repository for the indexer."
+    },
+    "github-stars": {
+      "value": null,
+      "comment": "Closed-source bundled engine; no representative public repository to count stars for."
+    },
+    "form-factor": {
+      "value": ["agent-bundled"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "The retrieval engine lives inside the Cursor IDE/agent; it is not shipped as a separate MCP server, library, or CLI."
+    },
+    "standalone-usable": {
+      "value": false,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "The index is only consumable by Cursor's own agent/editor; it cannot be bolted onto another agent or toolchain."
+    },
+    "bundled-host": {
+      "value": "Cursor",
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"]
+    },
+    "install-mechanism": {
+      "value": ["binary"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Not separately installed — it ships inside the downloaded Cursor desktop application (a standalone binary/app)."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing", "https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Semantic retrieval over vector embeddings of code chunks. Some secondary write-ups describe newer hybrid/graph augmentation, but Cursor's own documented mechanism is embedding-based semantic search; kept conservative as embeddings only. Checked 2026-07-09."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "The agent queries the index with natural-language semantic search (surfaced to users via @codebase / semantic search); invoked internally as a retrieval tool call."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Retrieval yields relevant code chunks (with line-number metadata) to feed the agent's context."
+    },
+    "structural-awareness": {
+      "value": false,
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Cursor does not publicly document tree-sitter/LSP/AST-based chunking for its index; reported implementations use token-window chunking. Marked false absent documented structural parsing; internals undisclosed."
+    },
+    "chunking-strategy": {
+      "value": ["fixed-size"],
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Reported to chunk files into token-size windows before embedding; exact strategy not officially documented (bundled engine). Checked 2026-07-09."
+    },
+    "reranking": {
+      "value": null,
+      "comment": "Whether a second-stage rerank is applied over embedding hits is not disclosed for this closed engine."
+    },
+    "index-location": {
+      "value": ["cloud"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing", "https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Embeddings and obfuscated metadata are stored in Cursor's remote vector database (reported as Turbopuffer). Only a local Merkle tree of hashes is kept client-side; the searchable index itself lives in the cloud."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing", "https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "A Merkle tree of file hashes lets Cursor detect and re-upload only changed files rather than rebuilding the whole index."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "The client automatically checks for hash mismatches on a periodic interval (reported ~every 10 minutes) and syncs changed files without a manual re-index."
+    },
+    "vector-store": {
+      "value": ["proprietary"],
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Embeddings are stored in Cursor's remote vector database, reported to be Turbopuffer (not one of the listed OSS stores)."
+    },
+    "embedding-model": {
+      "value": "Not officially disclosed; historically OpenAI text-embedding-3-large / custom models",
+      "source": ["https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Cursor does not officially publish its embedding model. Secondary reporting attributes it to OpenAI's embedding API or a custom model (candidates cited include Voyage code models); unverified against primary docs. Checked 2026-07-09."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "The codebase index is not exposed as an MCP server. Cursor is an MCP client (can consume external MCP servers), but its own index is not offered over MCP."
+    },
+    "agent-compatibility": {
+      "value": ["self-contained"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "Only Cursor's own agent can use the index; it is not consumable by external agents."
+    },
+    "ide-integrations": {
+      "value": ["standalone"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Cursor is a standalone desktop IDE (a VS Code fork); the index surfaces only within that app."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "Embedding-based indexing operates on text and is not restricted to parser-supported languages; Cursor indexes files across the workspace (respecting .gitignore/.cursorignore)."
+    },
+    "supported-languages": {
+      "value": "Any text-based files in the workspace (respects .gitignore / .cursorignore)",
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"]
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing", "https://read.engineerscodex.com/p/how-cursor-indexes-codebases-fast"],
+      "comment": "Code chunks are sent to Cursor's servers to be embedded, and the resulting embeddings plus obfuscated (encrypted-segment) file paths are stored in the cloud vector DB. Cursor states raw source code is not persisted ('gone after the life of the request'), but code and embeddings do egress by default."
+    },
+    "local-only-option": {
+      "value": false,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "Indexing requires Cursor's hosted embedding pipeline and remote vector store; there is no fully offline/local-only indexing path."
+    },
+    "self-hostable": {
+      "value": false,
+      "source": ["https://cursor.com/security"],
+      "comment": "The indexing service is Cursor-hosted (embeddings stored in Cursor's cloud); no on-prem/self-managed deployment of the indexer is offered."
+    },
+    "telemetry": {
+      "value": ["opt-out"],
+      "source": ["https://cursor.com/security"],
+      "comment": "Cursor collects usage data by default; enabling Privacy Mode prevents training on your data and tightens data handling. Treated as opt-out. Checked 2026-07-09."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://cursor.com/blog/secure-codebase-indexing"],
+      "comment": "Positioned to index large real-world codebases (blog cites ~50,000-file examples); very large monorepos historically stressed the embedding-only approach. Judged 'large'."
+    },
+    "pricing-model": {
+      "value": ["bundled"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Indexing has no standalone price — it is included in Cursor's plans, available on the free Hobby tier and paid tiers alike."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "No standalone price for the index; it is bundled. Cursor offers a free Hobby tier (indexing included) and a paid Individual/Pro plan at $20/mo. Checked 2026-07-09."
+    },
+    "maturity": {
+      "value": 5,
+      "source": ["https://cursor.com/blog/secure-codebase-indexing", "https://cursor.com/pricing"],
+      "comment": "Shipped inside one of the most widely deployed AI IDEs; polished, stable, and heavily used."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Cursor ships frequent product releases; the bundled index is actively maintained (no separate public commit history, but clear ongoing releases)."
+    },
+    "community-size": {
+      "value": ["huge"],
+      "source": ["https://cursor.com/pricing"],
+      "comment": "Cursor has a very large user base; among the most popular AI coding tools."
+    }
+  }
 }
