@@ -1,5 +1,230 @@
 {
   "name": "Continue @codebase",
   "description": "Continue's built-in embeddings indexing of the open repository",
-  "values": {}
+  "icon": "continue",
+  "url": "https://www.continue.dev",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Continue Dev, Inc. (acquired by Cursor, June 2026)",
+      "source": [
+        "https://github.com/continuedev/continue",
+        "https://www.bodegaone.ai/blog/cursor-acquires-continue-dev"
+      ],
+      "comment": "Founded June 2023 by Ty Dunn and Nate Sesti (YC S23). Acquired by Cursor in June 2026; the open-source repo is now read-only."
+    },
+    "implementation-language": {
+      "value": ["typescript"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Core is TypeScript/JavaScript (~92% of the repo); the JetBrains plugin adds a Kotlin shell. The indexing pipeline itself is TypeScript. Checked Jul 2026."
+    },
+    "first-release": {
+      "value": "2023-07",
+      "source": [
+        "https://github.com/continuedev/continue/releases",
+        "https://www.ycombinator.com/companies/continue"
+      ],
+      "comment": "Approximate. Continue was started June 2023 (YC Summer 2023) and the first public VS Code extension shipped mid-2023; the @codebase embeddings feature was added later in 2023. v1.0 in Feb 2025, final v2.0.0 in Jun 2026."
+    },
+    "status": {
+      "value": ["discontinued"],
+      "source": [
+        "https://github.com/continuedev/continue/issues/12629",
+        "https://pondero.ai/coding/guides/continue-dev-shutdown-alternatives-june-2026/"
+      ],
+      "comment": "Cursor acquired Continue mid-June 2026; the team shipped a final v2.0.0 and set the repo read-only. Cloud data is being deleted after 2026-07-15. The @codebase feature itself was also marked deprecated in the docs prior to shutdown."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Apache-2.0; remains under that license after the acquisition."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "Apache-2.0 OSI license (repo is now archived/read-only but still openly licensed)."
+    },
+    "website": {
+      "value": "https://www.continue.dev",
+      "source": ["https://www.continue.dev/"]
+    },
+    "repository": {
+      "value": "https://github.com/continuedev/continue",
+      "source": ["https://github.com/continuedev/continue"]
+    },
+    "github-stars": {
+      "value": 34800,
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "~34.8k stars as read from the repo on 2026-07-09. Repo is read-only, so the count is effectively frozen."
+    },
+    "form-factor": {
+      "value": ["ide-extension", "agent-bundled"],
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "@codebase is the indexing/retrieval engine bundled inside the Continue IDE assistant (VS Code + JetBrains extension); it is not shipped as a separate product."
+    },
+    "standalone-usable": {
+      "value": false,
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "The index and @codebase retrieval are welded into Continue; you cannot bolt Continue's index onto another agent or toolchain."
+    },
+    "bundled-host": {
+      "value": "Continue",
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"]
+    },
+    "install-mechanism": {
+      "value": ["editor-extension"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=Continue.continue"],
+      "comment": "Installed as the Continue VS Code extension or JetBrains plugin; @codebase indexing runs inside that extension."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings", "lexical", "hybrid"],
+      "source": [
+        "https://docs.continue.dev/reference/deprecated-codebase",
+        "https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"
+      ],
+      "comment": "Combines embeddings-based vector retrieval with keyword (SQLite FTS5) search in one retrieval path, hence hybrid. Also extracts tree-sitter symbols into a code-snippets index."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "You type @codebase plus a natural-language question in chat; in agent mode the codebase retrieval is invoked as a tool call."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": [
+        "https://docs.continue.dev/reference/deprecated-codebase",
+        "https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"
+      ],
+      "comment": "Returns the most relevant code snippets/chunks (nFinal, default 5) to inject as context; also has an extracted-symbols table backing it."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"],
+      "comment": "Uses tree-sitter AST parsing for symbol extraction and for language-aware code chunking (falls back to basic text chunking for unsupported languages)."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware", "fixed-size"],
+      "source": ["https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"],
+      "comment": "chunkDocument uses a tree-sitter code chunker for supported languages (respecting the embedding model's maxEmbeddingChunkSize) and a basic size-bounded chunker as fallback."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "useReranking defaults to true: first-pass nRetrieve (25) candidates are reranked down to nFinal (5) via an LLM/reranker (cohere, voyage, llm, or free-trial)."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "Index is stored locally under ~/.continue/index (LanceDB vectors + SQLite)."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"],
+      "comment": "Compares filesystem state against a SQLite tag_catalog table (per-file timestamp + hash) so only changed files are re-indexed."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"],
+      "comment": "A background indexer keeps the index in sync as workspace files change, rather than requiring a manual re-index."
+    },
+    "vector-store": {
+      "value": ["lancedb", "sqlite"],
+      "source": [
+        "https://deepwiki.com/continuedev/continue/3.4-codebase-indexing",
+        "https://blog.continue.dev/building-a-semantic-code-history-search-with-lancedb/"
+      ],
+      "comment": "Embeddings stored in a local LanceDB index; SQLite (FTS5 + tag_catalog + code-snippets) backs the keyword/metadata side."
+    },
+    "embedding-model": {
+      "value": "all-MiniLM-L6-v2 (local, via transformers.js) by default; configurable (e.g. voyage-code-3, nomic-embed-text via Ollama)",
+      "source": [
+        "https://docs.continue.dev/reference/deprecated-codebase",
+        "https://docs.continue.dev/customize/model-roles/embeddings"
+      ],
+      "comment": "Default embeddings are computed locally with all-MiniLM-L6-v2. Continue recommends voyage-code-3 for best accuracy; local embeddings were unavailable in the JetBrains IDE historically."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "@codebase is an internal context provider, not exposed as an MCP server. Continue can consume external MCP servers, but its own index is not offered over MCP."
+    },
+    "agent-compatibility": {
+      "value": ["self-contained"],
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "The @codebase index is usable only by the Continue assistant itself; no other agent can query it."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "jetbrains"],
+      "source": ["https://marketplace.visualstudio.com/items?itemName=Continue.continue"],
+      "comment": "Ships as the Continue VS Code extension and JetBrains plugin. Local @codebase embedding/indexing was historically VS Code-only (unavailable in JetBrains)."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "Embeddings + keyword search index arbitrary text files (respecting .gitignore/.continueignore). Tree-sitter symbol extraction and AST chunking, however, only cover parser-supported languages."
+    },
+    "supported-languages": {
+      "value": "Any text-based files for embedding/keyword retrieval; tree-sitter AST symbol extraction and code chunking limited to parser-supported languages (~20+)",
+      "source": ["https://deepwiki.com/continuedev/continue/3.4-codebase-indexing"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "Default configuration computes embeddings locally (all-MiniLM-L6-v2) and stores the index locally, so nothing leaves the machine. If you configure a hosted embedding provider (Voyage/OpenAI) or a hosted reranker (cohere/voyage), chunk text is then sent to that provider."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": [
+        "https://docs.continue.dev/reference/deprecated-codebase",
+        "https://ollama.com/blog/continue-code-assistant"
+      ],
+      "comment": "Fully offline path exists: local embeddings (transformers.js or nomic-embed-text via Ollama) + local LanceDB index. Reranking can be disabled or done by a local LLM."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "OSS extension that runs entirely on the developer's own machine; no server component required for @codebase indexing."
+    },
+    "telemetry": {
+      "value": ["opt-out"],
+      "source": ["https://pondero.ai/coding/guides/continue-dev-shutdown-alternatives-june-2026/"],
+      "comment": "Historically collected anonymous usage telemetry on by default (can be disabled in config). The final v2.0.0 release removed anonymous telemetry, so current builds effectively collect none."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://docs.continue.dev/reference/deprecated-codebase"],
+      "comment": "Positioned for high-level questions and folder/pattern context rather than exhaustive whole-repo review; local indexing of very large monorepos is slow. Handles typical to moderately large repos well; not marketed as monorepo-scale."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "byok"],
+      "source": [
+        "https://github.com/continuedev/continue",
+        "https://www.continue.dev/pricing"
+      ],
+      "comment": "The extension and @codebase indexing are free/OSS with local embeddings. If you opt into cloud embedding/rerank/LLM providers you pay those API costs (BYOK)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://www.continue.dev/pricing"],
+      "comment": "Solo plan (the IDE extension, including @codebase indexing) was free forever; you only pay for any cloud model/embedding APIs you choose to use."
+    },
+    "maturity": {
+      "value": 4,
+      "source": [
+        "https://github.com/continuedev/continue",
+        "https://pondero.ai/coding/guides/continue-dev-shutdown-alternatives-june-2026/"
+      ],
+      "comment": "Reached v1.0 (2025) and v2.0.0 (2026) with ~34k stars and 2.4M+ installs — stable and widely deployed. Not a 5 because the @codebase feature was marked deprecated and the whole project was discontinued after the Cursor acquisition."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://github.com/continuedev/continue/issues/12629"],
+      "comment": "Final v2.0.0 shipped 2026-06-19, after which the repo went read-only (no new issues/PRs) following the Cursor acquisition. No active maintenance as of 2026-07-09."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/continuedev/continue"],
+      "comment": "~34.8k GitHub stars, 2.4M+ VS Code installs, and 21k+ Discord members at peak, though the community is now dispersing after the shutdown."
+    }
+  }
 }
