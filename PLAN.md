@@ -36,7 +36,7 @@ URL persistence, per milestone scope).
 
 ## Tasks
 
-[ ] 1. Node-side comparison-data loader (fs-based)
+[x] 1. Node-side comparison-data loader (fs-based)
 - **Files:** `app/scripts/lib/load-comparison.ts`, `app/scripts/lib/load-comparison.test.ts`
 - **Description:** A pure Node module exporting `loadComparison(comparisonId): { attributes, candidates, candidateEntries }` that reads, via `node:fs`/`node:path`, `data/<id>/attributes.json`, `data/<id>/index.json`, and one file per entry in that index (`data/<id>/<candidateId>.json`), returning the exact shape `ComparisonView` expects (mirroring `getComparisonData` in `app/src/lib/data.ts`, but synchronous and `fs`-based). Resolve the `data/` directory relative to the repo root (`app/..`). Also export `comparisonExists(comparisonId): boolean` (checks the id against `data/index.json`'s `comparisons[]` and/or directory existence). On a missing directory or missing/malformed files, throw a typed `ComparisonNotFoundError` (or a plain `Error` with a stable, clear message like `Unknown comparison type "<id>"`). Reuse the shared `@/types` interfaces via a relative import or a local type import — do not redefine the shapes.
 - **Architecture & Decisions:**
