@@ -1,5 +1,200 @@
 {
   "name": "VectorCode",
   "description": "CLI/library that builds a local vector index of a repo for RAG-style code retrieval",
-  "values": {}
+  "url": "https://github.com/Davidyz/VectorCode",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Davidyz (David Zhang)",
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "Independent single-maintainer open-source project."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "Core CLI/library is Python (Python 3.11-3.13). The bundled Neovim plugin is written in Lua, but the indexing/retrieval engine itself is Python."
+    },
+    "first-release": {
+      "value": "2025-01",
+      "source": ["https://pypi.org/project/VectorCode/"],
+      "comment": "First PyPI release 0.0.1 on 2025-01-11."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/Davidyz/VectorCode/releases"],
+      "comment": "Pre-1.0 but functional; latest release 0.7.20 (2025-12-15). Not archived/discontinued as of 2026-07-09 check."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "MIT license per repository."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "MIT-licensed, OSI-approved."
+    },
+    "website": {
+      "value": "https://github.com/Davidyz/VectorCode",
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "GitHub repo serves as the primary landing page; a docs site (docs.vectorcode.davidyz.com) also exists but was not independently verifiable at check time."
+    },
+    "repository": {
+      "value": "https://github.com/Davidyz/VectorCode",
+      "source": ["https://github.com/Davidyz/VectorCode"]
+    },
+    "github-stars": {
+      "value": 871,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "871 stars as captured 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["cli", "library", "mcp-server", "ide-extension", "hook"],
+      "source": ["https://github.com/Davidyz/VectorCode", "https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Ships as a CLI, a Python library/API, an MCP server (vectorcode-mcp-server), a Neovim plugin, and optional git hooks (pre-commit/post-checkout) that auto-update the index."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "General-purpose tool usable from any agent via its CLI or MCP server; not welded to a single host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool, not bundled inside a specific agent/IDE."
+    },
+    "install-mechanism": {
+      "value": ["pip"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://pypi.org/project/VectorCode/"],
+      "comment": "Distributed on PyPI; recommended install via uv/pipx (pip ecosystem)."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"],
+      "comment": "Semantic vector retrieval over ChromaDB embeddings. Tree-sitter is used for chunking, not as a separate retrieval path, so not tagged hybrid."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Free-text query via the `query` command; also callable as MCP tool calls."
+    },
+    "returns": {
+      "value": ["code-chunks", "file-list"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Returns matching document paths by default; a chunk-only output mode returns the retrieved code chunks."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"],
+      "comment": "Uses py-tree-sitter (tree-sitter-language-pack) for syntax-aware AST chunking on supported languages."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware", "fixed-size"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Tree-sitter AST-aware chunking for detected languages (since 0.4.11); falls back to fixed-size string chunking (default 2500 chars) for unsupported languages."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Offers NaiveReranker (vector-distance sort) and CrossEncoderReranker (sentence-transformer cross-encoder) as a second-stage reorder."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "ChromaDB index lives locally; a self-hosted remote Chroma server is optionally supported but that is still user-run, not a vendor cloud."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "`update` subcommand refreshes only indexed files and removes entries for deleted files."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Optional git hooks (pre-commit, post-checkout) auto-update the index on commit/branch switch; not a continuous file watcher."
+    },
+    "vector-store": {
+      "value": ["chroma"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"],
+      "comment": "ChromaDB is the backing store (bundled local, optional standalone Chroma server)."
+    },
+    "embedding-model": {
+      "value": "SentenceTransformer (default; configurable)",
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"],
+      "comment": "Defaults to a local SentenceTransformer model; any ChromaDB embedding function works (Ollama and sentence-transformers tested; OpenAI configurable)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "Ships a vectorcode-mcp-server; repo topics include mcp and mcp-server."
+    },
+    "agent-compatibility": {
+      "value": ["any-mcp-client"],
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "Consumable by any MCP-capable agent via its MCP server; also integrates with Neovim's codecompanion.nvim."
+    },
+    "ide-integrations": {
+      "value": ["neovim", "terminal"],
+      "source": ["https://github.com/Davidyz/VectorCode", "https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "First-class Neovim plugin (with LSP mode) plus the terminal CLI; no VS Code/JetBrains extension."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"],
+      "comment": "Indexes arbitrary text via string-chunking fallback; retrieval quality is better on tree-sitter-supported languages but any file can be embedded."
+    },
+    "supported-languages": {
+      "value": "Any text-based file; AST chunking for languages in tree-sitter-language-pack, string-chunking fallback otherwise",
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md", "https://deepwiki.com/Davidyz/VectorCode"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Default configuration uses local SentenceTransformer embeddings and a local ChromaDB, so nothing leaves the machine. Egress only occurs if the user configures a hosted embedding provider (e.g. OpenAI)."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Fully offline path exists: local embedding model + bundled ChromaDB, no external API required."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "OSS tool that runs entirely on the user's own machine/infrastructure; optional standalone Chroma server is also self-hosted."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "No telemetry collection by VectorCode itself is documented."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Positioned as a per-project local RAG tool with an optional standalone server to reduce IO overhead; no monorepo-scale positioning. Judged medium; no explicit hard limit documented."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "byok"],
+      "source": ["https://github.com/Davidyz/VectorCode/blob/main/docs/cli.md"],
+      "comment": "Free OSS run locally; BYOK applies if you opt into a paid hosted embedding provider."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "Free/open-source; no paid plan."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/Davidyz/VectorCode/releases"],
+      "comment": "Usable and actively developed through 2025 with frequent releases, but pre-1.0 (0.7.x), single-maintainer, and Neovim-centric; release cadence slowed after Dec 2025."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://github.com/Davidyz/VectorCode/commits/main", "https://github.com/Davidyz/VectorCode/releases"],
+      "comment": "Latest visible commit 2025-12-26 and latest release 0.7.20 (2025-12-15) are both >90 days before the 2026-07-09 check date, so outside the ~90-day active-maintenance window."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/Davidyz/VectorCode"],
+      "comment": "~871 GitHub stars, single maintainer, primarily a Neovim/MCP niche audience."
+    }
+  }
 }

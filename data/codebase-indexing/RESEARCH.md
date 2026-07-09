@@ -171,7 +171,7 @@ Users should be able to:
 - [x] repomix — packs an entire repository into a single AI-friendly context file
 - [x] gitingest — turns a git repo (or URL) into a prompt-ready digest of its contents
 - [x] code2prompt — CLI that serializes a codebase into a structured prompt with token counting
-- [ ] VectorCode — CLI/library that builds a local vector index of a repo for RAG-style code retrieval
+- [x] VectorCode — CLI/library that builds a local vector index of a repo for RAG-style code retrieval
 - [ ] Cursor Codebase Index — Cursor's bundled embeddings index of the open workspace
 - [ ] Windsurf (Codeium) Indexing — Windsurf's bundled codebase indexing/retrieval engine
 - [ ] Augment Context Engine — Augment Code's proprietary large-codebase context/retrieval engine
