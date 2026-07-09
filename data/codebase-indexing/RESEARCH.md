@@ -165,7 +165,7 @@ Users should be able to:
 - [x] Aider Repo Map — tree-sitter repo map ranked by graph/PageRank to feed the most relevant symbols
 - [x] Sourcegraph / Cody context — code search engine and context API serving repo-scale retrieval to agents
 - [x] Greptile — cloud codebase-understanding API answering questions and providing context over a repo
-- [ ] Potpie — codebase knowledge-graph platform providing structural context and agents over a repo
+- [x] Potpie — codebase knowledge-graph platform providing structural context and agents over a repo
 - [ ] Blarify — builds a code knowledge graph (AST + LSP) into a graph DB for structural retrieval
 - [ ] Zoekt — fast trigram code search engine (Sourcegraph); lexical retrieval at monorepo scale
 - [ ] repomix — packs an entire repository into a single AI-friendly context file

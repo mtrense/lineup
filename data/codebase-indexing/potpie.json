@@ -1,5 +1,196 @@
 {
   "name": "Potpie",
   "description": "codebase knowledge-graph platform providing structural context and agents over a repo",
-  "values": {}
+  "url": "https://potpie.ai/",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Potpie AI",
+      "source": ["https://potpie.ai/", "https://github.com/potpie-ai/potpie"],
+      "comment": "Startup founded by Aditi Kothari and Dhiren Mathur; raised a $2.2M pre-seed round."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "GitHub language breakdown ~97% Python (checked 2026-07-09)."
+    },
+    "first-release": {
+      "value": "2025-01",
+      "source": ["https://potpie.ai/", "https://github.com/potpie-ai/potpie"],
+      "comment": "Founders describe launching Potpie publicly in January 2025 after ~2 years of development; exact repo-open date not pinned in primary docs."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "v2.0.0 released 2026-07-03; actively developed (checked 2026-07-09)."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "Apache-2.0 per repo license."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "Apache-2.0 licensed open source."
+    },
+    "website": {
+      "value": "https://potpie.ai/",
+      "source": ["https://potpie.ai/"]
+    },
+    "repository": {
+      "value": "https://github.com/potpie-ai/potpie",
+      "source": ["https://github.com/potpie-ai/potpie"]
+    },
+    "github-stars": {
+      "value": 5500,
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "~5.5k stars captured 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["cli", "mcp-server", "ide-extension", "cloud-service"],
+      "source": ["https://github.com/potpie-ai/potpie", "https://docs.potpie.ai/concepts/context-engine.md", "https://potpie.ai/"],
+      "comment": "v2.0 is CLI-first and also exposes an MCP server and HTTP surface; a 'Potpie for VS Code' extension and an account-backed managed/cloud offering exist."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/potpie-ai/potpie", "https://docs.potpie.ai/concepts/context-engine.md"],
+      "comment": "Standalone CLI/MCP server that plugs into external agents (Claude Code, Cursor, Codex, OpenCode); not welded into one host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool, not an engine bundled inside a single host agent."
+    },
+    "install-mechanism": {
+      "value": ["pip", "docker", "hosted"],
+      "source": ["https://potpie.ai/", "https://github.com/potpie-ai/potpie"],
+      "comment": "v2.0 CLI installs via pip / uv tool install; self-host has historically used Docker; managed cloud is hosted."
+    },
+    "retrieval-technique": {
+      "value": ["code-graph", "ast-structural"],
+      "source": ["https://docs.potpie.ai/concepts/parsing.md", "https://github.com/potpie-ai/potpie"],
+      "comment": "Parses each file into an AST, matches against the language grammar, and stores symbol definitions as nodes and references as edges in a knowledge graph. Secondary write-ups also describe an embedding-based fuzzy node lookup over the graph, but this is not confirmed in the primary docs fetched."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call", "symbol-lookup"],
+      "source": ["https://docs.potpie.ai/concepts/context-engine.md", "https://potpie.ai/"],
+      "comment": "Agents call typed tools (resolve, search, record, status) against the context engine; humans ask natural-language questions; symbol/node resolution is a core operation."
+    },
+    "returns": {
+      "value": ["code-chunks", "symbols", "call-graph", "summaries"],
+      "source": ["https://docs.potpie.ai/concepts/parsing.md", "https://docs.potpie.ai/concepts/context-engine.md"],
+      "comment": "Returns code for graph nodes, symbols and their relationships/call chains, and agent-generated summaries/answers over the graph."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://docs.potpie.ai/concepts/parsing.md"],
+      "comment": "AST parsing with a symbol/reference graph — genuinely structure-aware."
+    },
+    "chunking-strategy": {
+      "value": ["symbol-level"],
+      "source": ["https://docs.potpie.ai/concepts/parsing.md"],
+      "comment": "Graph nodes are symbol definitions (functions, classes) extracted from the AST rather than fixed-size windows."
+    },
+    "reranking": {
+      "value": null,
+      "comment": "No documented second-stage reranker (cross-encoder / LLM judge / graph PageRank) found in the primary docs fetched; multi-hop graph traversal is used but not described as a rerank stage."
+    },
+    "index-location": {
+      "value": ["both"],
+      "source": ["https://potpie.ai/", "https://docs.potpie.ai/concepts/context-engine.md", "https://github.com/potpie-ai/potpie"],
+      "comment": "Graph persists locally for the self-hosted CLI/daemon; a managed cloud offering also hosts the index."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://docs.potpie.ai/concepts/parsing.md"],
+      "comment": "Graph is keyed per commit; repeat queries for the same commit skip re-parsing, and a change-detection capability targets changed code."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://docs.potpie.ai/concepts/parsing.md"],
+      "comment": "Parsing is triggered on request / per commit rather than by an automatic file-change watcher in the docs fetched."
+    },
+    "vector-store": {
+      "value": null,
+      "comment": "Primary docs fetched describe a graph store (nodes/edges) but do not name a vector store; secondary write-ups mention embedding fuzzy lookup and Neo4j graph storage, unconfirmed here."
+    },
+    "embedding-model": {
+      "value": null,
+      "comment": "No default embedding model named in the primary docs fetched; LLMs are model-agnostic via LiteLLM but the embedding model is undisclosed."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.potpie.ai/concepts/context-engine.md"],
+      "comment": "Docs state users and agents interact via 'the CLI, MCP server, or HTTP surface'."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "codex", "any-mcp-client", "other"],
+      "source": ["https://github.com/potpie-ai/potpie", "https://docs.potpie.ai/concepts/context-engine.md"],
+      "comment": "Integrates with Claude Code, Cursor, OpenAI Codex, and OpenCode (other); the MCP server works with any MCP-capable client."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "terminal", "web"],
+      "source": ["https://potpie.ai/", "https://github.com/potpie-ai/potpie"],
+      "comment": "'Potpie for VS Code' extension, CLI in the terminal, and a managed web UI (potpie ui / login)."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://docs.potpie.ai/concepts/parsing.md", "https://potpie.ai/"],
+      "comment": "Marketing describes it as 'language agnostic', but structural parsing matches files against per-language grammars, so retrieval quality depends on grammar/parser support."
+    },
+    "supported-languages": {
+      "value": "Parses via per-language grammars; Python and JavaScript/TypeScript among supported languages — exact set not enumerated in the docs fetched",
+      "source": ["https://docs.potpie.ai/concepts/parsing.md"],
+      "comment": "Docs describe grammar-based symbol extraction without publishing a definitive language list."
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://potpie.ai/", "https://docs.potpie.ai/concepts/context-engine.md"],
+      "comment": "In the default managed/cloud configuration code is uploaded and sent to LLM providers; a self-hosted deployment with local models can keep code on-prem."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/potpie-ai/potpie", "https://potpie.ai/"],
+      "comment": "Self-hostable and model-agnostic via LiteLLM (e.g. local ollama models), enabling an offline path; full offline still depends on a local embedding provider."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/potpie-ai/potpie", "https://potpie.ai/"],
+      "comment": "Apache-2.0 OSS with documented self-hosting; enterprise offers on-prem deployment."
+    },
+    "telemetry": {
+      "value": null,
+      "comment": "Telemetry posture not documented in the primary sources fetched."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://potpie.ai/"],
+      "comment": "Positioned for large codebases; independent write-ups suggest it works well up to roughly single-language repos of ~500k LOC (secondary, not confirmed in primary docs)."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "freemium", "byok"],
+      "source": ["https://potpie.ai/"],
+      "comment": "OSS/self-host is free; managed Pro has a free tier (50 requests/mo, or unlimited with your own API keys — BYOK); Enterprise is custom-priced."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://potpie.ai/"],
+      "comment": "Free OSS/self-host and a free managed Pro tier; only Enterprise sits above it at custom (non-published) pricing."
+    },
+    "maturity": {
+      "value": 3.5,
+      "source": ["https://github.com/potpie-ai/potpie", "https://potpie.ai/"],
+      "comment": "Funded, ~5.5k stars and 22 releases, but a recent v2.0 re-architecture (July 2026) means the surface is still evolving."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "v2.0.0 released 2026-07-03 with recent commits (checked 2026-07-09)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/potpie-ai/potpie"],
+      "comment": "~5.5k GitHub stars and a funded startup community."
+    }
+  }
 }
