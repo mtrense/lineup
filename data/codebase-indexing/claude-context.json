@@ -1,5 +1,197 @@
 {
   "name": "claude-context (Zilliz)",
   "description": "MCP server that indexes a repo into Milvus/Zilliz for embedding-based retrieval",
-  "values": {}
+  "url": "https://github.com/zilliztech/claude-context",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Zilliz",
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Built by Zilliz Tech, the company behind the Milvus vector database."
+    },
+    "implementation-language": {
+      "value": ["typescript"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Core and MCP server are TypeScript (~72% of repo); a smaller Python share exists but the installable/runnable core is TypeScript (npm @zilliz/claude-context-mcp / @zilliz/claude-context-core)."
+    },
+    "first-release": {
+      "value": "2025-06",
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Repository created / project announced June 2025; no tagged GitHub releases exist, so this is the public-launch month."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Actively developed as of 2026-07-09."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "MIT license per repository."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"]
+    },
+    "website": {
+      "value": "https://github.com/zilliztech/claude-context",
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "GitHub repo serves as the primary landing/product page; no separate marketing site."
+    },
+    "repository": {
+      "value": "https://github.com/zilliztech/claude-context",
+      "source": ["https://github.com/zilliztech/claude-context"]
+    },
+    "github-stars": {
+      "value": 12100,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "~12.1k stars captured 2026-07-09; one of the most-starred tools in this category."
+    },
+    "form-factor": {
+      "value": ["mcp-server", "ide-extension", "library"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Ships as an MCP server (@zilliz/claude-context-mcp), a VS Code extension, and a reusable core library (@zilliz/claude-context-core)."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Any MCP-capable agent can add it; not welded to a single host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool, not a bundled engine."
+    },
+    "install-mechanism": {
+      "value": ["npm", "editor-extension"],
+      "source": ["https://github.com/zilliztech/claude-context", "https://www.npmjs.com/package/@zilliz/claude-context-mcp"],
+      "comment": "npm for the MCP server/core; VS Code Marketplace for the editor extension. Milvus backend can be run via Docker separately."
+    },
+    "retrieval-technique": {
+      "value": ["hybrid", "embeddings", "lexical"],
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "Hybrid retrieval fuses BM25 sparse (lexical) with dense-vector (embeddings) search in one path."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Agents call an MCP search tool with a natural-language query."
+    },
+    "returns": {
+      "value": ["code-chunks"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Returns relevant code snippets/chunks rather than whole files."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "Uses tree-sitter / AST parsing to chunk around functions, classes and methods."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware"],
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "AST-based chunking around semantic units; falls back to LangChain RecursiveCharacterTextSplitter when AST parsing fails."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "Uses hybrid (BM25 + dense) fusion but no documented separate second-stage cross-encoder/LLM reranker."
+    },
+    "index-location": {
+      "value": ["both"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Index lives in a self-hosted local Milvus or in managed Zilliz Cloud."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Merkle-tree change detection re-indexes only changed files."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "Re-index/sync is triggered (Merkle-based), not a continuous file watcher, per docs as of 2026-07-09."
+    },
+    "vector-store": {
+      "value": ["milvus"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Milvus (open-source, self-hosted) or Zilliz Cloud (managed Milvus)."
+    },
+    "embedding-model": {
+      "value": "Configurable: OpenAI (default, e.g. text-embedding-3), VoyageAI (code-oriented), Gemini, or Ollama (local)",
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"]
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Ships a full MCP server implementation."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "cline", "windsurf", "any-mcp-client"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Primarily targets Claude Code; documented to work with Cursor, Cline, Windsurf and other MCP clients (15+)."
+    },
+    "ide-integrations": {
+      "value": ["vscode"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Official VS Code extension; otherwise surfaces through MCP-capable agents."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "AST chunking depends on tree-sitter parser support; falls back to a generic text splitter for unsupported languages, so quality is language-dependent."
+    },
+    "supported-languages": {
+      "value": "tree-sitter: TypeScript, JavaScript, Python, Java, C++, C#, Go, Rust, PHP, Ruby, Swift, Kotlin, Scala, Markdown; generic text-splitter fallback otherwise",
+      "source": ["https://github.com/zilliztech/claude-context"]
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "In the default setup code chunks are sent to a hosted embedding API (OpenAI) and optionally to Zilliz Cloud; only embeddings/snippets leave, not necessarily the whole repo. A fully local Ollama + self-hosted Milvus path avoids any egress."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context", "https://github.com/zilliztech/claude-context/issues/162"],
+      "comment": "Ollama local embeddings + self-hosted Milvus enable a fully offline configuration."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "OSS core plus self-hosted Milvus can run entirely on the user's own infrastructure."
+    },
+    "telemetry": {
+      "value": null,
+      "comment": "No telemetry posture documented in the repo as of 2026-07-09."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://github.com/zilliztech/claude-context", "https://milvus.io/blog/claude-context-reduce-claude-code-token-usage.md"],
+      "comment": "Positioned for large/whole codebases; Milvus/Zilliz Cloud backing supports scaling, though no explicit monorepo-scale benchmark is published."
+    },
+    "pricing-model": {
+      "value": ["free-oss", "byok"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Tool is free OSS; you supply/pay for the embedding API and optionally a Zilliz Cloud plan (free serverless tier available)."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Core is free/OSS; costs are external embedding API usage and optional Zilliz Cloud (which has a free tier)."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Popular and active (~12k stars) but ~1 year old, rapidly evolving, and without tagged stable releases."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "Frequent commits and open PRs within the last 90 days as of 2026-07-09."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/zilliztech/claude-context"],
+      "comment": "~12k stars, 800+ forks; among the most-adopted tools in this category."
+    }
+  }
 }
