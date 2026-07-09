@@ -1,5 +1,199 @@
 {
   "name": "Serena",
   "description": "LSP-based semantic code toolkit exposed as an MCP server; symbol-level structural retrieval for any agent",
-  "values": {}
+  "url": "https://github.com/oraios/serena",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Oraios AI",
+      "source": ["https://github.com/oraios/serena", "https://oraios.github.io/serena/01-about/000_intro.html"],
+      "comment": "Built by Oraios AI (oraios GitHub org)."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Repo is ~90% Python; installed/run via the serena-agent Python package."
+    },
+    "first-release": {
+      "value": "2025-03",
+      "source": ["https://github.com/oraios/serena", "https://pypi.org/project/serena-agent/"],
+      "comment": "Repository created March 2025; MCP server first released early April 2025. v1.0.0 followed in 2026."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Actively developed; latest release v1.5.x as of mid-2026 (checked 2026-07)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "MIT-licensed core."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "MIT open source; optional paid JetBrains plugin backend is a separate closed component."
+    },
+    "website": {
+      "value": "https://oraios.github.io/serena/",
+      "source": ["https://oraios.github.io/serena/01-about/000_intro.html"]
+    },
+    "repository": {
+      "value": "https://github.com/oraios/serena",
+      "source": ["https://github.com/oraios/serena"]
+    },
+    "github-stars": {
+      "value": 26300,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "~26.3k stars as checked 2026-07-09."
+    },
+    "form-factor": {
+      "value": ["mcp-server", "cli"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Primarily an MCP server; also ships a `serena` CLI (mcp, project index) and an Agno agent integration."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Generic MCP server usable from any MCP-capable agent/toolchain."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool — not welded into a single host agent."
+    },
+    "install-mechanism": {
+      "value": ["pip", "docker", "git"],
+      "source": ["https://github.com/oraios/serena", "https://pypi.org/project/serena-agent/"],
+      "comment": "Recommended install via uv/uvx (Python/pip ecosystem, serena-agent on PyPI); commonly run with `uvx --from git+https://github.com/oraios/serena`; a Docker image is also provided."
+    },
+    "retrieval-technique": {
+      "value": ["ast-structural", "lexical"],
+      "source": ["https://github.com/oraios/serena", "https://oraios.github.io/serena/01-about/000_intro.html"],
+      "comment": "Core retrieval is LSP-driven symbol/structure lookup (find_symbol, find_referencing_symbols); also offers regex/pattern search (search_for_pattern) for lexical hits. No embeddings."
+    },
+    "query-interface": {
+      "value": ["symbol-lookup", "regex-lexical", "tool-call"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Agents call MCP tools: find_symbol / get_symbols_overview (symbol lookup), search_for_pattern (regex/lexical)."
+    },
+    "returns": {
+      "value": ["symbols", "code-chunks", "call-graph"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Returns symbol overviews and symbol bodies (code chunks) plus referencing symbols (reference/call relationships)."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena", "https://oraios.github.io/serena/01-about/000_intro.html"],
+      "comment": "Uses language servers (LSP) to operate at the symbol level, respecting real code structure rather than plain text."
+    },
+    "chunking-strategy": {
+      "value": ["symbol-level"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Operates at the symbol granularity (functions, classes, methods) via LSP; no fixed-size chunking."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "No documented second-stage rerank; results come directly from LSP symbol resolution and pattern matching."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Runs locally; symbol cache stored under the project's .serena directory. No cloud index."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "`serena project index` pre-computes a symbol cache; the LSP backend re-reads changed files rather than rebuilding everything. Cannot fully confirm per-file cache invalidation from docs."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "No documented persistent file-watcher auto-reindex; the language server refreshes files on access/edit during a session rather than on external saves."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "No embeddings, so no vector store — retrieval is LSP/AST-based."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "n-a — Serena is not an embedding-based tool."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena", "https://www.pulsemcp.com/servers/oraios-serena"],
+      "comment": "Ships as a native MCP server."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "codex", "copilot", "any-mcp-client"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Generic MCP server; docs list Claude Code, Claude Desktop, Cursor, VSCode, Codex CLI, Copilot CLI among clients. Works with any MCP-capable agent (e.g. Cline, Continue)."
+    },
+    "ide-integrations": {
+      "value": ["vscode", "jetbrains", "terminal"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Surfaces via MCP in VSCode/Cursor and terminal CLI agents; optional paid JetBrains plugin backend for JetBrains IDEs."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Retrieval quality depends on a language server existing for the language; not arbitrary text."
+    },
+    "supported-languages": {
+      "value": "40+ languages via language servers (Python, Java, JavaScript/TypeScript, Go, Rust, C/C++, and many more)",
+      "source": ["https://github.com/oraios/serena"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Runs locally against local language servers; no source or embeddings are sent to a third-party service by Serena itself (the consuming LLM still sees whatever context the agent passes it)."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Fully local — LSP-based, no external embedding API required."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "OSS you run yourself; also offers an HTTP/SSE server mode."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "No usage-telemetry mechanism documented in the repo/docs (checked 2026-07); local OSS tool."
+    },
+    "max-repo-scale": {
+      "value": ["large"],
+      "source": ["https://github.com/oraios/serena", "https://oraios.github.io/serena/01-about/000_intro.html"],
+      "comment": "Positioned for large, complex codebases; LSP-backed symbol retrieval scales to large repos but is not marketed as monorepo-scale search infrastructure."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Free/OSS core (MIT). Optional JetBrains plugin backend is a separate paid add-on with a free trial."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Core is free; only the optional JetBrains plugin backend is paid."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Past v1.0, widely adopted (~26k stars) and stable, but still actively evolving."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "Releases within the last 90 days (v1.5.x mid-2026); checked 2026-07-09."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/oraios/serena"],
+      "comment": "RESEARCH.md anchors Serena as medium; ~26.3k GitHub stars indicate a sizeable and growing community."
+    }
+  }
 }

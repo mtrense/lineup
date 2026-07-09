@@ -158,7 +158,7 @@ Users should be able to:
 
 ## Candidates
 
-- [ ] Serena — LSP-based semantic code toolkit exposed as an MCP server; symbol-level structural retrieval for any agent
+- [x] Serena — LSP-based semantic code toolkit exposed as an MCP server; symbol-level structural retrieval for any agent
 - [ ] Probe — local semantic + lexical code search built for AI agents; no cloud, AST-aware
 - [ ] claude-context (Zilliz) — MCP server that indexes a repo into Milvus/Zilliz for embedding-based retrieval
 - [ ] Continue @codebase — Continue's built-in embeddings indexing of the open repository
