@@ -70,7 +70,7 @@ URL persistence, per milestone scope).
   - `ExportRoot` renders under `@testing-library/react` without a `Router` provider (no "useNavigate outside Router" error), confirming router independence.
 - **Commit Message:** `feat(export): add ExportRoot, SSR render, and client hydration entry`
 
-[ ] 3. Rewrite Devicon SVG imports to CDN URLs for the export build
+[x] 3. Rewrite Devicon SVG imports to CDN URLs for the export build
 - **Files:** `app/scripts/lib/devicon-cdn.ts`, `app/scripts/lib/devicon-cdn.test.ts`
 - **Description:** Provide the mechanism that turns bundled Devicon `<img src>` assets into remote CDN URLs so the export emits no separate asset files and needs no local Devicon assets at runtime. Two parts:
   - A pure helper `deviconCdnUrl(importPath): string` mapping a `devicon/icons/<name>/<file>.svg` import specifier to its jsdelivr URL (pin the installed devicon version, e.g. `https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/<name>/<file>.svg`). Export a small Vite plugin factory `deviconCdnPlugin()` that resolves `devicon/icons/**/*.svg` import ids and returns `export default "<cdnUrl>"` for each, leaving all other modules untouched.
