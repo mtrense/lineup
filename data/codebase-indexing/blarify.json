@@ -1,5 +1,199 @@
 {
   "name": "Blarify",
   "description": "builds a code knowledge graph (AST + LSP) into a graph DB for structural retrieval",
-  "values": {}
+  "url": "https://github.com/blarApp/blarify",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Blar (blarApp)",
+      "source": ["https://github.com/blarApp/blarify", "https://pypi.org/project/blarify/"],
+      "comment": "Open-source graph builder maintained by Blar, the team behind the blar.io code-review platform."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "Repo is ~98.6% Python; requires Python 3.11-3.14."
+    },
+    "first-release": {
+      "value": "2024-11",
+      "source": ["https://pypi.org/project/blarify/"],
+      "comment": "First PyPI release 0.1.2 in Nov 2024; latest 1.3.9 on 2025-10-20."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/blarApp/blarify/commits/main"],
+      "comment": "Actively developed; latest commit on main dated 2026-05-25 (checked 2026-07-09)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/blarApp/blarify", "https://pypi.org/project/blarify/"]
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "MIT-licensed on GitHub."
+    },
+    "website": {
+      "value": "https://blar.io",
+      "source": ["https://pypi.org/project/blarify/"],
+      "comment": "Homepage listed on PyPI; blar.io is the parent product page."
+    },
+    "repository": {
+      "value": "https://github.com/blarApp/blarify",
+      "source": ["https://github.com/blarApp/blarify"]
+    },
+    "github-stars": {
+      "value": 231,
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "~231 stars, 43 forks (checked 2026-07-09; GitHub cached figures ranged 199-231 during the check)."
+    },
+    "form-factor": {
+      "value": ["library", "mcp-server"],
+      "source": ["https://github.com/blarApp/blarify", "https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Ships as a Python library (GraphBuilder / Neo4jManager API) and an optional MCP server (pip install 'blarify[mcp]')."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Usable from any Python project or added to any MCP-capable agent; not welded into a single host."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone OSS tool, not a bundled engine."
+    },
+    "install-mechanism": {
+      "value": ["pip", "docker"],
+      "source": ["https://pypi.org/project/blarify/", "https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "pip install blarify (or 'blarify[mcp]'); optional Docker to run a local Neo4j for the graph store."
+    },
+    "retrieval-technique": {
+      "value": ["code-graph", "ast-structural"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "Parses code with tree-sitter (syntax) plus LSP/SCIP (semantic references) into a Neo4j/FalkorDB knowledge graph of files, classes, functions and CALLS/IMPORTS/INHERITS edges. No embeddings."
+    },
+    "query-interface": {
+      "value": ["tool-call", "symbol-lookup"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "MCP tools (find_nodes_by_name_and_type, find_nodes_by_path, find_nodes_by_code, get_code_by_id, etc.); also queryable directly via graph DB (Cypher). find_nodes_by_code offers text-based lookup."
+    },
+    "returns": {
+      "value": ["code-chunks", "symbols", "call-graph"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Returns node code (get_code_by_id / get_file_context_by_id), matching symbols, and relationship/workflow graphs (get_relationship_flowchart emits Mermaid diagrams)."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "Built on tree-sitter parsing and LSP; nodes are folders/files/classes/functions."
+    },
+    "chunking-strategy": {
+      "value": ["symbol-level", "file-level"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "Graph nodes map to files, classes and functions rather than fixed-size windows."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "No documented second-stage rerank; retrieval is graph traversal / structural lookup."
+    },
+    "index-location": {
+      "value": ["local"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Graph is stored in a Neo4j or FalkorDB instance the user runs (locally via Docker or self-hosted)."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "ProjectGraphDiffCreator detects changes and compares against previous node states (MODIFIED/DELETED tracking) rather than full rebuilds."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "Re-indexing is invoked manually; no file-watcher/auto-sync. README lists graceful auto-update on file changes as future work."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "Graph-based; no embeddings, so no vector store. Backing stores are graph DBs (Neo4j / FalkorDB)."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "n-a — non-embedding, structural graph retrieval technique."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Ships an MCP server exposing ~10 tools; installed via pip install 'blarify[mcp]'."
+    },
+    "agent-compatibility": {
+      "value": ["any-mcp-client", "claude-code"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Generic MCP server; docs give Claude Desktop config explicitly and reference other MCP-compatible assistants."
+    },
+    "ide-integrations": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "No dedicated IDE extension; surfaces through MCP clients (e.g. Claude Desktop) and direct library/DB use."
+    },
+    "language-agnostic": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "Retrieval quality depends on tree-sitter/LSP parser support; limited to the languages with parsers."
+    },
+    "supported-languages": {
+      "value": "Python, JavaScript, TypeScript, Ruby, Go, C# (tree-sitter + LSP); Java and PHP via tree-sitter",
+      "source": ["https://github.com/blarApp/blarify", "https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/blarApp/blarify", "https://raw.githubusercontent.com/blarApp/blarify/main/docs/architecture.md"],
+      "comment": "The OSS graph builder runs locally against a self-hosted graph DB; no source or embeddings sent to a third party by default. (The separate blar.io hosted product is out of scope.)"
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/blarApp/blarify/main/docs/mcp-installation-guide.md"],
+      "comment": "Fully offline path: local Neo4j/FalkorDB, tree-sitter/LSP parsing, no external API required (no embeddings)."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "MIT OSS run on your own infrastructure with your own graph DB."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "No telemetry/analytics documented in the repo (checked 2026-07-09)."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "No explicit scale claim; batch node creation and SCIP support (up to 330x faster reference resolution) target performance on larger repos, but LSP-based graph building bounds very-large monorepo use. Judged medium."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/blarApp/blarify", "https://pypi.org/project/blarify/"],
+      "comment": "MIT open source, self-run; no cost for the tool itself. (The blar.io hosted platform is a separate product.)"
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "Free OSS."
+    },
+    "maturity": {
+      "value": 3,
+      "source": ["https://pypi.org/project/blarify/", "https://github.com/blarApp/blarify/commits/main"],
+      "comment": "At v1.3.x with steady releases and active commits, but single-org and still evolving (auto-update, more language servers on the roadmap)."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/blarApp/blarify/commits/main"],
+      "comment": "Latest commit on main dated 2026-05-25, within ~90 days of the 2026-07-09 check."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/blarApp/blarify"],
+      "comment": "~231 GitHub stars, single-company maintainer base."
+    }
+  }
 }
