@@ -87,7 +87,7 @@ URL persistence, per milestone scope).
   - (If feasible without a full build) the plugin's `resolveId`/`load` returns `export default "<url>"` for a devicon id and `null`/undefined for an unrelated id.
 - **Commit Message:** `feat(export): resolve Devicon icons to CDN URLs in the export bundle`
 
-[ ] 4. Vite export build: single inlined JS + CSS bundle
+[x] 4. Vite export build: single inlined JS + CSS bundle
 - **Files:** `app/vite.export.config.ts`, `app/scripts/lib/build-bundle.ts`, `app/scripts/lib/build-bundle.test.ts`
 - **Description:** Produce the client-side artifacts to inline into the HTML.
   - `vite.export.config.ts`: a Vite build config with entry `src/export/entry-client.tsx`, reusing the `@`/`@data` aliases and the `react`/`tailwindcss` plugins from `vite.config.ts`, plus the `deviconCdnPlugin()` from Task 3. Set `build.cssCodeSplit: false`, `build.assetsInlineLimit: Infinity`, `build.rollupOptions.output.inlineDynamicImports: true`, and a fixed output dir (e.g. `dist-export/`) with predictable filenames (no content hash) so the CLI can locate them. Target a single JS chunk + single CSS file.
