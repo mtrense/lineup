@@ -1,5 +1,199 @@
 {
   "name": "gitingest",
   "description": "turns a git repo (or URL) into a prompt-ready digest of its contents",
-  "values": {}
+  "url": "https://gitingest.com",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Coderamp Labs (created by Filip Christiansen / cyclotruc)",
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "Originally cyclotruc/gitingest by Filip Christiansen; repo now lives under the coderamp-labs org."
+    },
+    "implementation-language": {
+      "value": ["python"],
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "Core CLI/library and processing engine are Python (>=3.8); the hosted web UI adds some Jinja/JavaScript, but what you install/run is Python."
+    },
+    "first-release": {
+      "value": "2024-12",
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Earliest PyPI release v0.1.1 on 2024-12-22; project went public around late 2024."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/coderamp-labs/gitingest/releases"],
+      "comment": "Active; latest release v0.3.1 (2025-07-31)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "MIT licensed per repo."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "Fully open source under MIT."
+    },
+    "website": {
+      "value": "https://gitingest.com",
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "Official hosted web app; replace 'hub' with 'ingest' in a GitHub URL to get a digest."
+    },
+    "repository": {
+      "value": "https://github.com/coderamp-labs/gitingest",
+      "source": ["https://github.com/coderamp-labs/gitingest"]
+    },
+    "github-stars": {
+      "value": 15000,
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "Repo header displays ~15k stars (1.1k forks) as of 2026-07-09; approximate."
+    },
+    "form-factor": {
+      "value": ["cli", "library", "cloud-service"],
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "Ships as a CLI, an importable Python package, and a hosted web app (gitingest.com); also distributes browser extensions, which have no dedicated form-factor tag."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Standalone tool; not welded into any single agent."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Not a bundled engine — standalone tool with no host agent/IDE."
+    },
+    "install-mechanism": {
+      "value": ["pip", "docker", "hosted"],
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "pip/pipx for CLI+library; Docker/compose for self-hosting the web app; also usable directly via the hosted gitingest.com with no install."
+    },
+    "retrieval-technique": {
+      "value": ["whole-repo-pack"],
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "Serializes the whole repo (respecting .gitignore, with include/exclude and size filters) into a single text digest; no query-time selection, embeddings, or graph."
+    },
+    "query-interface": {
+      "value": ["none"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "A packer: input is a repo URL/local path plus filters, not a search query."
+    },
+    "returns": {
+      "value": ["repo-blob", "file-list"],
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "Output is a (summary, directory tree, file contents) digest with token counts — a single repo blob including a full file tree."
+    },
+    "structural-awareness": {
+      "value": false,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Treats code as plain text; no tree-sitter/AST/LSP parsing — only file/directory filtering."
+    },
+    "chunking-strategy": {
+      "value": ["file-level"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Concatenates whole files into the digest; no sub-file chunking or embeddings."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "No retrieval ranking stage; it packs everything not excluded."
+    },
+    "index-location": {
+      "value": ["none"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Stateless packer — builds no persistent index; produces a digest on demand."
+    },
+    "incremental-updates": {
+      "value": false,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "No index to update; every run regenerates the full digest."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Manual, on-demand invocation; no file watcher."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "No embeddings, so no vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "comment": "n-a — non-embedding, whole-repo-packing technique."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "No official MCP server; several third-party gitingest MCP wrappers exist (e.g. puravparab/Gitingest-MCP, narumiruna/gitingest-mcp) but are not first-party."
+    },
+    "agent-compatibility": {
+      "value": ["other"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Produces model-agnostic text meant to be pasted/fed into any LLM or agent; no first-party agent integration. Community MCP wrappers can expose it to any MCP client."
+    },
+    "ide-integrations": {
+      "value": ["terminal", "web"],
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "CLI in the terminal and the gitingest.com web app; also ships browser extensions (surfaced as web)."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Processes any text-based repository regardless of language; no parser dependency."
+    },
+    "supported-languages": {
+      "value": "any (text-based); language-agnostic, no per-language parsing",
+      "source": ["https://pypi.org/project/gitingest/"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/coderamp-labs/gitingest", "https://pypi.org/project/gitingest/"],
+      "comment": "The installed CLI/library run fully locally — nothing leaves the machine. The hosted gitingest.com processes repos server-side (typically public repos supplied by URL); self-host with Docker to avoid that."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "CLI/library work fully offline on a local path with no external API."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "OSS runs locally; the web app self-hosts via the included compose.yml / Docker."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "The distributed CLI/library carry no telemetry; the hosted gitingest.com web app uses PostHog analytics plus optional Sentry error tracking."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://pypi.org/project/gitingest/"],
+      "comment": "Output size is bounded by the target LLM's context — large repos produce unwieldy digests; include/exclude patterns and a max-file-size limit help, but it is not built for monorepo-scale selection. Judgement, checked 2026-07-09."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "Free and open source; hosted web app is also free."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "No paid tier."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://github.com/coderamp-labs/gitingest/releases", "https://github.com/coderamp-labs/gitingest"],
+      "comment": "Popular (~15k stars), polished across CLI/library/web/extensions, but still pre-1.0 (v0.3.1) with a deliberately narrow packing scope."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://github.com/coderamp-labs/gitingest/commits/main", "https://github.com/coderamp-labs/gitingest/releases"],
+      "comment": "Latest observed commit was 2025-08-16 and latest release v0.3.1 was 2025-07-31 (commits page fetched 2026-07-09) — both outside the ~90-day window; no more recent activity was visible at check time."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/coderamp-labs/gitingest"],
+      "comment": "~15k stars, browser extensions, and an active Discord; comparable reach to repomix among repo packers."
+    }
+  }
 }

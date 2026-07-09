@@ -169,7 +169,7 @@ Users should be able to:
 - [x] Blarify — builds a code knowledge graph (AST + LSP) into a graph DB for structural retrieval
 - [x] Zoekt — fast trigram code search engine (Sourcegraph); lexical retrieval at monorepo scale
 - [x] repomix — packs an entire repository into a single AI-friendly context file
-- [ ] gitingest — turns a git repo (or URL) into a prompt-ready digest of its contents
+- [x] gitingest — turns a git repo (or URL) into a prompt-ready digest of its contents
 - [ ] code2prompt — CLI that serializes a codebase into a structured prompt with token counting
 - [ ] VectorCode — CLI/library that builds a local vector index of a repo for RAG-style code retrieval
 - [ ] Cursor Codebase Index — Cursor's bundled embeddings index of the open workspace
