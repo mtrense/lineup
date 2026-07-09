@@ -1,5 +1,200 @@
 {
   "name": "Greptile",
   "description": "cloud codebase-understanding API answering questions and providing context over a repo",
-  "values": {}
+  "url": "https://www.greptile.com/",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Greptile, Inc. (YC W24)",
+      "source": ["https://www.ycombinator.com/companies/greptile"],
+      "comment": "Founded 2023 by Daksh Gupta, Soohoon Choi, and Vaishant Kameswaran; YC Winter 2024 batch."
+    },
+    "implementation-language": {
+      "value": null,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Closed-source SaaS; the backend implementation stack is not publicly disclosed. The community MCP wrapper is TypeScript, but that is not the core engine."
+    },
+    "first-release": {
+      "value": "2024-03",
+      "source": ["https://news.ycombinator.com/item?id=39604961", "https://www.ycombinator.com/companies/greptile"],
+      "comment": "Company founded 2023; public Launch HN / YC W24 launch in late Feb–March 2024 ('RAG on codebases that actually works'). Checked 2026-07-09."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://www.greptile.com/blog/greptile-v4"],
+      "comment": "Actively developed; v4 shipped with new pricing. Checked 2026-07-09."
+    },
+    "license": {
+      "value": ["proprietary"],
+      "source": ["https://www.greptile.com/pricing"],
+      "comment": "Commercial SaaS / self-host license; no open-source license for the core product."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Core product is closed-source proprietary."
+    },
+    "website": {
+      "value": "https://www.greptile.com/",
+      "source": ["https://www.greptile.com/"]
+    },
+    "repository": {
+      "value": null,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "No public source repository for the core engine (closed-source)."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Closed-source; no public core repository to count stars on."
+    },
+    "form-factor": {
+      "value": ["cloud-service", "mcp-server"],
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Ships primarily as a cloud GitHub/GitLab review app + query API; also offers an official MCP server. Self-hosted via Docker/Kubernetes for enterprise."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Consumable outside any single host agent via its API and official MCP server."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Not an agent-bundled engine; it is a standalone service."
+    },
+    "install-mechanism": {
+      "value": ["hosted", "npm", "docker"],
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.greptile.com/docs/deployment-options"],
+      "comment": "Primary use is the hosted SaaS (GitHub/GitLab app); official MCP server distributed via npm; self-hosting via Docker Compose or Kubernetes."
+    },
+    "retrieval-technique": {
+      "value": ["embeddings", "lexical", "ast-structural", "code-graph", "hybrid"],
+      "source": ["https://www.greptile.com/blog/semantic-codebase-search", "https://www.zenml.io/llmops-database/improving-ai-code-review-bot-comment-quality-through-vector-embeddings"],
+      "comment": "Parses the AST with tree-sitter, generates natural-language docstrings per node and embeds them; retrieval fuses vector search with keyword search (hybrid) plus an agentic step that follows references through the code (graph-like). Company positions it as building 'a complete graph of your codebase'."
+    },
+    "query-interface": {
+      "value": ["natural-language", "tool-call"],
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Natural-language questions over the codebase via API; exposed as MCP tool calls for agents."
+    },
+    "returns": {
+      "value": ["code-chunks", "summaries"],
+      "source": ["https://www.greptile.com/blog/semantic-codebase-search"],
+      "comment": "Retrieval yields per-function code chunks and their natural-language docstring summaries as context; the product surface also produces PR review comments."
+    },
+    "structural-awareness": {
+      "value": true,
+      "source": ["https://www.greptile.com/blog/semantic-codebase-search"],
+      "comment": "Uses tree-sitter AST parsing to respect code structure before embedding."
+    },
+    "chunking-strategy": {
+      "value": ["ast-aware", "symbol-level"],
+      "source": ["https://www.greptile.com/blog/semantic-codebase-search"],
+      "comment": "Chunks at the per-function level following AST nodes rather than per-file."
+    },
+    "reranking": {
+      "value": true,
+      "source": ["https://www.zenml.io/llmops-database/improving-ai-code-review-bot-comment-quality-through-vector-embeddings"],
+      "comment": "An agentic step evaluates the relevance of first-pass search results and follows references to pull related context — a second-stage reorder beyond raw vector similarity."
+    },
+    "index-location": {
+      "value": ["cloud"],
+      "source": ["https://www.greptile.com/docs/deployment-options"],
+      "comment": "Default cloud SaaS index; enterprise self-hosted (Docker/Kubernetes, air-gapped) can run the index on the customer's own infrastructure instead."
+    },
+    "incremental-updates": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Index is maintained in real time and updated as the code changes rather than fully rebuilt."
+    },
+    "real-time-watch": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Index auto-updates as the repository changes so reviews reflect current state."
+    },
+    "vector-store": {
+      "value": null,
+      "source": ["https://www.zenml.io/llmops-database/improving-ai-code-review-bot-comment-quality-through-vector-embeddings"],
+      "comment": "Vector store for the code index is not disclosed. A case study names ChromaDB, but for the review-comment feedback embeddings, not necessarily the code retrieval index."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://www.greptile.com/blog/semantic-codebase-search"],
+      "comment": "Embeds natural-language docstrings of code, but the specific embedding model is not publicly named."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Official MCP server exposing ~11 tools (custom context, PRs, reviews, comments)."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "codex", "any-mcp-client"],
+      "source": ["https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Official MCP server documented for Claude Code, Cursor, VS Code, and Codex CLI; any MCP-capable client can consume it. 'Fix with your Agent' also targets Claude Code/Cursor/Devin."
+    },
+    "ide-integrations": {
+      "value": ["web", "vscode", "terminal"],
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.greptile.com/docs/mcp/overview"],
+      "comment": "Primary surface is the web dashboard and GitHub/GitLab PRs; MCP integration reaches VS Code and the Codex CLI (terminal)."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/introduction"],
+      "comment": "Documented to work with any programming language in the codebase."
+    },
+    "supported-languages": {
+      "value": "Any programming language (tree-sitter-based parsing)",
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.greptile.com/blog/semantic-codebase-search"]
+    },
+    "code-leaves-machine": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/deployment-options"],
+      "comment": "In the default cloud SaaS, source code is uploaded and indexed in Greptile's cloud. Self-hosted/air-gapped deployments keep code on-prem."
+    },
+    "local-only-option": {
+      "value": false,
+      "source": ["https://www.greptile.com/docs/deployment-options"],
+      "comment": "Even self-hosted/air-gapped deployments require an external LLM provider (OpenAI/Anthropic/Bedrock, or a customer-provided model); no fully-offline, no-external-API path is bundled."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://www.greptile.com/docs/deployment-options"],
+      "comment": "Enterprise self-hosting via Docker Compose (single VM) or Kubernetes (100+ devs), including air-gapped."
+    },
+    "telemetry": {
+      "value": null,
+      "source": ["https://www.greptile.com/pricing"],
+      "comment": "Usage-data collection posture not clearly documented for the SaaS; not determinable from public docs."
+    },
+    "max-repo-scale": {
+      "value": ["monorepo-scale"],
+      "source": ["https://www.greptile.com/docs/introduction", "https://www.ycombinator.com/companies/greptile"],
+      "comment": "Positioned for large, complex, and multi-repo codebases; Kubernetes deployment for 100+ developers with horizontal scaling."
+    },
+    "pricing-model": {
+      "value": ["freemium", "paid-saas"],
+      "source": ["https://www.greptile.com/pricing"],
+      "comment": "Free Starter tier + paid Pro seats + custom Enterprise (with self-host license). Checked 2026-07-09."
+    },
+    "entry-price-usd-mo": {
+      "value": 30,
+      "source": ["https://www.greptile.com/pricing"],
+      "comment": "Pro plan $30 per seat/month (50 credits included per seat). Checked 2026-07-09."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://www.greptile.com/blog/greptile-v4", "https://www.greptile.com/pricing"],
+      "comment": "Funded, widely adopted (many YC/startup teams), shipping since 2024 with a v4 release; polished but still a fast-moving young product."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://www.greptile.com/blog/greptile-v4"],
+      "comment": "Recent v4 release and pricing changes; active commercial development. Checked 2026-07-09."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://www.ycombinator.com/companies/greptile"],
+      "comment": "Per RESEARCH.md sizing guide, Greptile is a 'medium' community-scale tool."
+    }
+  }
 }
