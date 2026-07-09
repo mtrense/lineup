@@ -1,0 +1,505 @@
+{
+  "name": "Codebase Indexing & Context",
+  "description": "Tools that give AI coding agents accurate, tailored context about a specific repository — semantic, lexical, structural, graph, repo-map, and whole-repo-packing retrieval layers between agent and model",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Vendor, lifecycle status, license, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "developer-org",
+          "name": "Developer / Org",
+          "valueType": "text",
+          "description": "Company, individual, or org that builds the tool"
+        },
+        {
+          "id": "implementation-language",
+          "name": "Implementation Language",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "blue" },
+              { "id": "typescript", "value": "TypeScript", "color": "blue" },
+              { "id": "javascript", "value": "JavaScript", "color": "orange" },
+              { "id": "python", "value": "Python", "color": "green" },
+              { "id": "java", "value": "Java", "color": "red" },
+              { "id": "cpp", "value": "C++", "color": "purple" },
+              { "id": "csharp", "value": "C#", "color": "purple" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Major language/framework the tool itself is built in — what you install/run, not the languages it indexes"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "First public release or announcement"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "active", "value": "Active", "color": "green" },
+              { "id": "beta", "value": "Beta", "color": "blue" },
+              { "id": "preview", "value": "Preview", "color": "orange" },
+              { "id": "discontinued", "value": "Discontinued", "color": "red" }
+            ]
+          },
+          "description": "Current lifecycle status; one primary status"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "green" },
+              { "id": "apache-2", "value": "Apache-2.0", "color": "green" },
+              { "id": "gpl", "value": "GPL", "color": "blue" },
+              { "id": "bsd", "value": "BSD", "color": "green" },
+              { "id": "mpl", "value": "MPL", "color": "blue" },
+              { "id": "source-available", "value": "Source Available", "color": "orange" },
+              { "id": "proprietary", "value": "Proprietary", "color": "red" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "License of the tool itself"
+        },
+        {
+          "id": "open-source",
+          "name": "Open Source",
+          "valueType": "boolean",
+          "description": "Is the tool's own source openly (OSI) licensed?"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product page or landing page"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repo; null for closed/bundled engines"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "neutral"
+          },
+          "description": "Star count; record the capture date in the comment. null for closed-source/bundled"
+        }
+      ]
+    },
+    {
+      "id": "form-distribution",
+      "name": "Form & Distribution",
+      "description": "What shape the product ships in and how it is installed",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "form-factor",
+          "name": "Form Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mcp-server", "value": "MCP Server", "color": "purple" },
+              { "id": "library", "value": "Library", "color": "blue" },
+              { "id": "cli", "value": "CLI", "color": "green" },
+              { "id": "ide-extension", "value": "IDE Extension", "color": "orange" },
+              { "id": "cloud-service", "value": "Cloud Service", "color": "red" },
+              { "id": "agent-bundled", "value": "Agent-Bundled", "color": "gray" },
+              { "id": "hook", "value": "Hook", "color": "blue" }
+            ]
+          },
+          "description": "What shape the product ships in; multi-select"
+        },
+        {
+          "id": "standalone-usable",
+          "name": "Standalone Usable",
+          "valueType": "boolean",
+          "description": "Can it be used outside a single host agent — added to your own agent/toolchain?"
+        },
+        {
+          "id": "bundled-host",
+          "name": "Bundled Host",
+          "valueType": "text",
+          "description": "For bundled engines, which agent/IDE it ships inside; null for standalone tools"
+        },
+        {
+          "id": "install-mechanism",
+          "name": "Install Mechanism",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "npm", "value": "npm", "color": "red" },
+              { "id": "pip", "value": "pip", "color": "blue" },
+              { "id": "cargo", "value": "cargo", "color": "orange" },
+              { "id": "docker", "value": "Docker", "color": "blue" },
+              { "id": "binary", "value": "Binary", "color": "gray" },
+              { "id": "editor-extension", "value": "Editor Extension", "color": "orange" },
+              { "id": "hosted", "value": "Hosted", "color": "purple" },
+              { "id": "git", "value": "git", "color": "green" }
+            ]
+          },
+          "description": "Primary install path(s); multi-select"
+        }
+      ]
+    },
+    {
+      "id": "retrieval-approach",
+      "name": "Retrieval Approach",
+      "description": "How the tool finds relevant code and what a query returns",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "retrieval-technique",
+          "name": "Retrieval Technique",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "embeddings", "value": "Embeddings", "color": "purple" },
+              { "id": "lexical", "value": "Lexical", "color": "blue" },
+              { "id": "ast-structural", "value": "AST-Structural", "color": "green" },
+              { "id": "code-graph", "value": "Code Graph", "color": "orange" },
+              { "id": "llm-repo-map", "value": "LLM Repo Map", "color": "red" },
+              { "id": "whole-repo-pack", "value": "Whole-Repo Pack", "color": "gray" },
+              { "id": "hybrid", "value": "Hybrid", "color": "purple" }
+            ]
+          },
+          "description": "The core method for finding relevant code; multi-select"
+        },
+        {
+          "id": "query-interface",
+          "name": "Query Interface",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "natural-language", "value": "Natural Language", "color": "purple" },
+              { "id": "symbol-lookup", "value": "Symbol Lookup", "color": "green" },
+              { "id": "regex-lexical", "value": "Regex / Lexical", "color": "blue" },
+              { "id": "tool-call", "value": "Tool Call", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "How a caller queries it; multi-select. none for packers that take no query"
+        },
+        {
+          "id": "returns",
+          "name": "Returns",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "code-chunks", "value": "Code Chunks", "color": "blue" },
+              { "id": "whole-files", "value": "Whole Files", "color": "green" },
+              { "id": "symbols", "value": "Symbols", "color": "orange" },
+              { "id": "call-graph", "value": "Call Graph", "color": "purple" },
+              { "id": "summaries", "value": "Summaries", "color": "red" },
+              { "id": "file-list", "value": "File List", "color": "gray" },
+              { "id": "repo-blob", "value": "Repo Blob", "color": "gray" }
+            ]
+          },
+          "description": "What a retrieval yields; multi-select"
+        },
+        {
+          "id": "structural-awareness",
+          "name": "Structural Awareness",
+          "valueType": "boolean",
+          "description": "Uses tree-sitter / LSP / AST to respect code structure rather than treating code as plain text"
+        },
+        {
+          "id": "chunking-strategy",
+          "name": "Chunking Strategy",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ast-aware", "value": "AST-Aware", "color": "green" },
+              { "id": "symbol-level", "value": "Symbol-Level", "color": "blue" },
+              { "id": "fixed-size", "value": "Fixed-Size", "color": "orange" },
+              { "id": "file-level", "value": "File-Level", "color": "purple" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "How code is split before indexing. none for graph/lexical tools that don't chunk"
+        },
+        {
+          "id": "reranking",
+          "name": "Reranking",
+          "valueType": "boolean",
+          "description": "Applies a second-stage rerank over first-pass hits before returning"
+        }
+      ]
+    },
+    {
+      "id": "indexing",
+      "name": "Indexing",
+      "description": "Where the index lives and how it stays current",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "index-location",
+          "name": "Index Location",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "local", "value": "Local", "color": "green" },
+              { "id": "cloud", "value": "Cloud", "color": "red" },
+              { "id": "both", "value": "Both", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Where the built index lives. none for stateless packers/on-the-fly tools"
+        },
+        {
+          "id": "incremental-updates",
+          "name": "Incremental Updates",
+          "valueType": "boolean",
+          "description": "Re-indexes only changed files rather than rebuilding the whole index"
+        },
+        {
+          "id": "real-time-watch",
+          "name": "Real-Time / Watch",
+          "valueType": "boolean",
+          "description": "Auto-updates the index as files change vs manual re-index"
+        },
+        {
+          "id": "vector-store",
+          "name": "Vector Store",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "qdrant", "value": "Qdrant", "color": "red" },
+              { "id": "milvus", "value": "Milvus", "color": "blue" },
+              { "id": "chroma", "value": "Chroma", "color": "purple" },
+              { "id": "lancedb", "value": "LanceDB", "color": "orange" },
+              { "id": "pgvector", "value": "pgvector", "color": "blue" },
+              { "id": "faiss", "value": "FAISS", "color": "green" },
+              { "id": "sqlite", "value": "SQLite", "color": "blue" },
+              { "id": "proprietary", "value": "Proprietary", "color": "gray" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Backing store for embeddings; none for non-embedding tools. Multi-select if pluggable"
+        },
+        {
+          "id": "embedding-model",
+          "name": "Embedding Model",
+          "valueType": "text",
+          "description": "Which embedding model powers semantic retrieval; null / n-a for non-embedding techniques"
+        }
+      ]
+    },
+    {
+      "id": "integration",
+      "name": "Integration",
+      "description": "How the tool plugs into agents, IDEs, and languages",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "mcp-support",
+          "name": "MCP Support",
+          "valueType": "boolean",
+          "description": "Exposed as an MCP server / MCP tools that any MCP-capable agent can call"
+        },
+        {
+          "id": "agent-compatibility",
+          "name": "Agent Compatibility",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "claude-code", "value": "Claude Code", "color": "orange" },
+              { "id": "cursor", "value": "Cursor", "color": "blue" },
+              { "id": "cline", "value": "Cline", "color": "green" },
+              { "id": "continue", "value": "Continue", "color": "purple" },
+              { "id": "copilot", "value": "Copilot", "color": "gray" },
+              { "id": "windsurf", "value": "Windsurf", "color": "blue" },
+              { "id": "aider", "value": "Aider", "color": "red" },
+              { "id": "codex", "value": "Codex", "color": "gray" },
+              { "id": "any-mcp-client", "value": "Any MCP Client", "color": "green" },
+              { "id": "self-contained", "value": "Self-Contained", "color": "gray" },
+              { "id": "other", "value": "Other", "color": "gray" }
+            ]
+          },
+          "description": "Agents that can consume it; multi-select. self-contained for bundled engines usable only by their host"
+        },
+        {
+          "id": "ide-integrations",
+          "name": "IDE Integrations",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "vscode", "value": "VS Code", "color": "blue" },
+              { "id": "jetbrains", "value": "JetBrains", "color": "orange" },
+              { "id": "neovim", "value": "Neovim", "color": "green" },
+              { "id": "standalone", "value": "Standalone", "color": "purple" },
+              { "id": "terminal", "value": "Terminal", "color": "gray" },
+              { "id": "web", "value": "Web", "color": "red" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Where it surfaces to the developer; multi-select"
+        },
+        {
+          "id": "language-agnostic",
+          "name": "Language-Agnostic",
+          "valueType": "boolean",
+          "description": "Indexes any text/language, vs limited to languages with parser support"
+        },
+        {
+          "id": "supported-languages",
+          "name": "Supported Languages",
+          "valueType": "text",
+          "description": "Short note: 'any (text-based)', or the parsed-language set"
+        }
+      ]
+    },
+    {
+      "id": "privacy-deployment",
+      "name": "Privacy & Deployment",
+      "description": "Whether code leaves the machine and how the tool can be deployed",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "code-leaves-machine",
+          "name": "Code Leaves Machine",
+          "valueType": "boolean",
+          "description": "Does source or its embeddings get sent to a third-party service by default? Note what leaves in the comment"
+        },
+        {
+          "id": "local-only-option",
+          "name": "Local-Only Option",
+          "valueType": "boolean",
+          "description": "Can it run fully offline — local embeddings/index, no external API call required?"
+        },
+        {
+          "id": "self-hostable",
+          "name": "Self-Hostable",
+          "valueType": "boolean",
+          "description": "Can the cloud/service variant be deployed on the user's own infrastructure?"
+        },
+        {
+          "id": "telemetry",
+          "name": "Telemetry",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "green" },
+              { "id": "opt-in", "value": "Opt-In", "color": "blue" },
+              { "id": "opt-out", "value": "Opt-Out", "color": "orange" },
+              { "id": "required", "value": "Required", "color": "red" }
+            ]
+          },
+          "description": "Usage-data collection posture"
+        }
+      ]
+    },
+    {
+      "id": "scale-pricing-ecosystem",
+      "name": "Scale, Pricing & Ecosystem",
+      "description": "Scale limits, cost, maturity, and community",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "max-repo-scale",
+          "name": "Max Repo Scale",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "small", "value": "Small", "color": "gray" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "large", "value": "Large", "color": "green" },
+              { "id": "monorepo-scale", "value": "Monorepo-Scale", "color": "purple" }
+            ]
+          },
+          "description": "Largest codebase size the tool handles well per docs/positioning"
+        },
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "free-oss", "value": "Free / OSS", "color": "green" },
+              { "id": "freemium", "value": "Freemium", "color": "blue" },
+              { "id": "paid-saas", "value": "Paid SaaS", "color": "red" },
+              { "id": "byok", "value": "BYOK", "color": "orange" },
+              { "id": "bundled", "value": "Bundled", "color": "gray" }
+            ]
+          },
+          "description": "Multi-select. byok = free tool, you pay the embedding/model API; bundled = cost folded into a host agent's plan"
+        },
+        {
+          "id": "entry-price-usd-mo",
+          "name": "Entry Price (USD/mo)",
+          "valueType": {
+            "type": "decimal",
+            "direction": "descending"
+          },
+          "description": "Cheapest paid plan's monthly price; lower is better. 0 for free/OSS; null for usage-based or bundled"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = stable, widely deployed, polished; 3 = usable but evolving; 1 = early/experimental"
+        },
+        {
+          "id": "active-maintenance",
+          "name": "Active Maintenance",
+          "valueType": "boolean",
+          "description": "Commit or release within ~90 days of the research date. null for closed/bundled with no visible history"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "huge", "value": "Huge", "color": "purple" },
+              { "id": "large", "value": "Large", "color": "green" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "niche", "value": "Niche", "color": "gray" }
+            ]
+          },
+          "description": "Relative scale of users/community"
+        }
+      ]
+    }
+  ]
+}
