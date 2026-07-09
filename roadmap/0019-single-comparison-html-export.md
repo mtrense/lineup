@@ -1,6 +1,6 @@
 # Milestone: Single-comparison self-contained HTML export
 
-**Status:** open
+**Status:** in progress
 
 **Value / Impact:**
 Anyone with a comparison they care about can hand off a single `.html` file — over

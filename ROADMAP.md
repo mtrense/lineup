@@ -29,7 +29,7 @@
 0016-icon-glyphs-for-attribute-values.md — [completed] Working FontAwesome/Devicon icon glyphs for tag and icon attribute values.
 0017-apply-icon-glyphs-across-comparison-data.md — [completed] Sweep applying icon glyphs across every active comparison type's data.
 0018-landing-page-redesign.md — [completed] Landing page redesign: grouped tiles, decorative background SVGs, and explanatory sections.
-0019-single-comparison-html-export.md — [open] `pnpm export <type>` produces a self-contained, interactive single-comparison HTML file reusing the app's components.
+0019-single-comparison-html-export.md — [in progress] `pnpm export <type>` produces a self-contained, interactive single-comparison HTML file reusing the app's components.
 
 ---
 
