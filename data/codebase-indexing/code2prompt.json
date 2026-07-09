@@ -1,5 +1,199 @@
 {
   "name": "code2prompt",
   "description": "CLI that serializes a codebase into a structured prompt with token counting",
-  "values": {}
+  "url": "https://code2prompt.dev",
+  "lastVerified": "2026-07-09",
+  "values": {
+    "developer-org": {
+      "value": "Mufeed VH (mufeedvh), open-source community project",
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Created and maintained by individual developer Mufeed VH (GitHub mufeedvh) with community contributions."
+    },
+    "implementation-language": {
+      "value": ["rust"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://crates.io/crates/code2prompt"],
+      "comment": "Core is written in Rust (the code2prompt/code2prompt_core crates); a Python SDK (code2prompt-rs) ships as bindings to that Rust core, so the build stack is Rust."
+    },
+    "first-release": {
+      "value": "2024-03",
+      "source": ["https://crates.io/api/v1/crates/code2prompt", "https://crates.io/crates/code2prompt/2.0.0"],
+      "comment": "First crates.io release (v1.0.0) published 2024-03-11."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://crates.io/api/v1/crates/code2prompt/versions"],
+      "comment": "Actively developed; latest release v4.3.0 dated 2026-06-13 (checked 2026-07-09)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "MIT-licensed."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Fully open source under MIT."
+    },
+    "website": {
+      "value": "https://code2prompt.dev",
+      "source": ["https://code2prompt.dev/docs/welcome/"]
+    },
+    "repository": {
+      "value": "https://github.com/mufeedvh/code2prompt",
+      "source": ["https://github.com/mufeedvh/code2prompt"]
+    },
+    "github-stars": {
+      "value": 7500,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "~7.5k stars as shown on the repo (checked 2026-07-09)."
+    },
+    "form-factor": {
+      "value": ["cli", "library", "mcp-server"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Primarily a CLI (with an interactive TUI); also ships as a Rust core library with a Python SDK (code2prompt-rs), and an MCP server built on the core (odancona/code2prompt-mcp) is referenced in the official docs ecosystem."
+    },
+    "standalone-usable": {
+      "value": true,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Standalone CLI/library runnable from any toolchain; not welded into a single host agent."
+    },
+    "bundled-host": {
+      "value": null,
+      "comment": "Standalone tool — not bundled inside a host agent/IDE."
+    },
+    "install-mechanism": {
+      "value": ["cargo", "pip", "binary"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/how_to/install/"],
+      "comment": "cargo install code2prompt; Homebrew (brew install code2prompt, delivered as a prebuilt binary); pip install code2prompt-rs for the Python SDK; and prebuilt binary releases on GitHub."
+    },
+    "retrieval-technique": {
+      "value": ["whole-repo-pack"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Serializes the whole repository (or a glob/gitignore-filtered slice) into one structured prompt with no query-time selection; a Handlebars template controls layout. No embeddings, graph, or query-driven retrieval."
+    },
+    "query-interface": {
+      "value": ["none", "tool-call"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://github.com/odancona/code2prompt-mcp"],
+      "comment": "The core CLI takes no query — it packs a filtered file set (none). The companion MCP server exposes a tool call that generates a prompt from a path plus include/exclude globs."
+    },
+    "returns": {
+      "value": ["repo-blob", "file-list"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Emits a single prompt blob containing a source-tree/directory file list plus concatenated file contents (optionally with git diffs/logs), rendered via Handlebars."
+    },
+    "structural-awareness": {
+      "value": false,
+      "source": ["https://github.com/mufeedvh/code2prompt/blob/main/README.md", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "No tree-sitter/AST/LSP use — files are filtered by glob/.gitignore and concatenated as plain text; the source tree is a directory listing, not a parsed symbol map."
+    },
+    "chunking-strategy": {
+      "value": ["file-level"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Whole files are included as units; no sub-file chunking."
+    },
+    "reranking": {
+      "value": false,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "No retrieval/ranking stage — it packs, it does not rank."
+    },
+    "index-location": {
+      "value": ["none"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Stateless packer — builds no persistent index; regenerates the prompt on each run."
+    },
+    "incremental-updates": {
+      "value": false,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "No index to update — each invocation re-reads and re-packs the repository from scratch."
+    },
+    "real-time-watch": {
+      "value": false,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Manual invocation; no file-watcher auto-repack."
+    },
+    "vector-store": {
+      "value": ["none"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "No embeddings, so no vector store."
+    },
+    "embedding-model": {
+      "value": null,
+      "source": ["https://code2prompt.dev/docs/welcome/"],
+      "comment": "n-a — code2prompt does not use embeddings. It counts tokens locally via tiktoken encodings (o200k/cl100k) but performs no semantic retrieval."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://code2prompt.dev/docs/welcome/", "https://github.com/odancona/code2prompt-mcp"],
+      "comment": "An MCP server (odancona/code2prompt-mcp) built on the code2prompt-rs core is part of the official docs ecosystem; it exposes a prompt-generation tool. Not a first-party module in the main repo but the sanctioned MCP path."
+    },
+    "agent-compatibility": {
+      "value": ["claude-code", "cursor", "any-mcp-client"],
+      "source": ["https://github.com/odancona/code2prompt-mcp", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Via the MCP server it works with any MCP-capable client; docs/README call out Claude Desktop and Cursor configuration. The CLI output can also be pasted into any LLM chat."
+    },
+    "ide-integrations": {
+      "value": ["terminal"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Primarily a terminal CLI with an interactive TUI; no first-party VS Code/JetBrains extension."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/mufeedvh/code2prompt/blob/main/README.md"],
+      "comment": "Works on any text-based files regardless of language; filtering is by glob/.gitignore, not parser support."
+    },
+    "supported-languages": {
+      "value": "any (text-based files) — no per-language parsing; selection via glob patterns and .gitignore, with special handling for formats like Jupyter notebooks",
+      "source": ["https://github.com/mufeedvh/code2prompt/blob/main/README.md"]
+    },
+    "code-leaves-machine": {
+      "value": false,
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "Runs fully locally; token counting uses local tiktoken encodings and no source is transmitted by code2prompt itself (the user then feeds the generated prompt to whatever LLM they choose)."
+    },
+    "local-only-option": {
+      "value": true,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Runs entirely offline; no external API required."
+    },
+    "self-hostable": {
+      "value": true,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "OSS you run locally — inherently self-hostable."
+    },
+    "telemetry": {
+      "value": ["none"],
+      "source": ["https://github.com/mufeedvh/code2prompt/blob/main/README.md"],
+      "comment": "No telemetry documented in the CLI/library (checked 2026-07-09)."
+    },
+    "max-repo-scale": {
+      "value": ["medium"],
+      "source": ["https://github.com/mufeedvh/code2prompt", "https://code2prompt.dev/docs/welcome/"],
+      "comment": "The Rust core is fast, but the practical ceiling is the target LLM's context window since it packs a whole (filtered) repo into one prompt; glob filtering and token counting help manage this. Not monorepo-scale retrieval infrastructure."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Free and open source under MIT."
+    },
+    "entry-price-usd-mo": {
+      "value": 0,
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "Free/OSS."
+    },
+    "maturity": {
+      "value": 4,
+      "source": ["https://crates.io/api/v1/crates/code2prompt/versions", "https://github.com/mufeedvh/code2prompt"],
+      "comment": "Past v4.x (v4.3.0), ~7.5k stars, stable and polished CLI still actively iterating; not yet at the ubiquity/scale of the largest tools."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://crates.io/api/v1/crates/code2prompt/versions"],
+      "comment": "v4.3.0 released 2026-06-13, well within 90 days of the research date (checked 2026-07-09)."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://github.com/mufeedvh/code2prompt"],
+      "comment": "~7.5k GitHub stars — a well-known packer, below repomix's scale (large) but a solid mid-size community."
+    }
+  }
 }
