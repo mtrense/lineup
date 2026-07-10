@@ -103,7 +103,7 @@ URL persistence, per milestone scope).
   - The produced `js` contains no `import(` for a separate chunk (single-file / inlined dynamic imports).
 - **Commit Message:** `feat(export): add Vite export build producing inlined JS and CSS`
 
-[ ] 5. CLI orchestration, HTML assembly, and `pnpm export` wiring
+[x] 5. CLI orchestration, HTML assembly, and `pnpm export` wiring
 - **Files:** `app/scripts/export.ts`, `app/scripts/export.test.ts`, `app/package.json`, `.scripts/export.sh`
 - **Description:** Tie the pieces into the user-facing command.
   - `export.ts`: parse `process.argv` for the comparison-type id. If missing or `!comparisonExists(id)`, write a clear message to `stderr` and `process.exit(1)` (emit nothing to stdout). Otherwise: `loadComparison(id)` (Task 1) → SSR render via Vite (`createServer(...).ssrLoadModule("src/export/render.tsx")` then call `renderExportHtml(data)`) → `buildExportBundle()` (Task 4) → assemble a complete HTML document and write it to `stdout`. Close the Vite server before exiting.
