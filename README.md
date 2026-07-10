@@ -12,6 +12,7 @@ A static React application for comparing items side-by-side across shared attrib
 - **Value ranking** - Visual indicators for best/worst values based on configurable direction (higher or lower is better)
 - **Source citations** - Every data point can include sources and comments, shown in tooltips on hover
 - **Responsive design** - Works on desktop and mobile devices
+- **Self-contained HTML export** - Export any single comparison to one portable `.html` file that renders and stays fully interactive (filter, sort, toggle candidates, dark mode) with no server, build step, or repo access — see [Exporting a Comparison](#exporting-a-comparison)
 
 ## Getting Started
 
@@ -45,6 +46,29 @@ pnpm build
 ```
 
 The built files will be in `app/dist/` and can be served by any static file server.
+
+### Exporting a Comparison
+
+Export a single comparison type to one self-contained HTML file — everything (application
+JS, CSS, and the comparison's data) inlined, so the file opens directly in a browser with
+no server, build step, or repo access on the recipient's side:
+
+```bash
+# From the repo root
+.scripts/export.sh databases > databases.html
+
+# …or directly via the app package
+pnpm --dir app export databases > databases.html
+```
+
+Open the resulting file in a browser: it server-side-renders on first paint, then hydrates
+into the fully interactive comparison view — filtering, sorting, candidate toggles,
+expandable rows, ranking/best-value highlighting, and `prefers-color-scheme` dark mode all
+work offline. The export reuses the app's own React components, so formatting and rankings
+always match the live app. The only possible network request is Devicon icon glyphs from a
+CDN; FontAwesome icons and all application logic and data are inlined. Passing an unknown
+comparison-type id fails with a clear error on stderr and a non-zero exit (no file is written
+to stdout). Interactive state is in-session only and is not persisted to the URL.
 
 ## Project Structure
 
@@ -155,11 +179,12 @@ Lineup supports various value types for attributes:
 ### Available Scripts
 
 ```bash
-pnpm dev      # Start development server
-pnpm build    # Build for production
-pnpm preview  # Preview production build
-pnpm lint     # Run linter
-pnpm format   # Format code
+pnpm dev             # Start development server
+pnpm build           # Build for production
+pnpm preview         # Preview production build
+pnpm export <type>   # Export one comparison to a self-contained HTML file (stdout)
+pnpm lint            # Run linter
+pnpm format          # Format code
 ```
 
 ## Contributing
