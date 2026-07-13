@@ -188,6 +188,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Intent** — Augment Code's commercial spec-driven workspace with a Coordinator agent that delegates to parallel specialist agents around living specs (added 2026-04-21)
 - [x] **Superpowers** — Jesse Vincent / Prime Radiant's agentic skills framework and methodology bundling TDD, debugging, and planning skills across Claude Code, Cursor, Codex, OpenCode, Copilot CLI, and Gemini CLI (added 2026-04-23)
 - [x] **HumanLayer** — open-source IDE (CodeLayer) orchestrating AI coding agents with battle-tested workflows for parallel sessions and context engineering (added 2026-04-23)
+- [x] **Agentheim** — opinionated domain-driven, multi-agent orchestration framework (Claude Code plugin) turning ideas into modeled backlogs of bounded contexts executed as parallel dependency-aware tasks (added 2026-07-13)
 
 ## Notes for Researchers
 

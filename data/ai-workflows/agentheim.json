@@ -1,0 +1,257 @@
+{
+  "name": "Agentheim",
+  "url": "https://github.com/heimeshoff/Agentheim",
+  "lastVerified": "2026-07-13",
+  "values": {
+    "description": {
+      "value": "A DDD-flavored, opinionated agentic harness for Claude Code that turns a raw idea into a modeled backlog of bounded contexts, then into parallel, dependency-aware execution.",
+      "source": ["https://github.com/heimeshoff/Agentheim"]
+    },
+    "website": {
+      "value": null,
+      "comment": "No dedicated website; the GitHub repository serves as the project home (repo homepage field is null)."
+    },
+    "repository": {
+      "value": "https://github.com/heimeshoff/Agentheim",
+      "source": ["https://github.com/heimeshoff/Agentheim"]
+    },
+    "creator": {
+      "value": "heimeshoff (independent developer)",
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "GitHub user heimeshoff; no organization affiliation stated."
+    },
+    "first-release": {
+      "value": "2026",
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim/releases", "https://api.github.com/repos/heimeshoff/Agentheim"],
+      "comment": "Repo created 2026-04-24; first tagged release v0.1.0 on 2026-05-14."
+    },
+    "latest-release": {
+      "value": "2026-07",
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim/releases"],
+      "comment": "v0.9.1 published 2026-07-09 (checked 2026-07-13). Still pre-1.0."
+    },
+    "license": {
+      "value": ["apache-2"],
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim"]
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Free and open source (Apache-2.0); no commercial tier."
+    },
+    "open-source": {
+      "value": true,
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim"],
+      "comment": "Apache-2.0, an OSI-approved license."
+    },
+    "covered-phases": {
+      "value": ["discovery", "architecture", "planning", "tasks", "implementation", "testing", "review"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Five skills map to phases: Brainstorm (discovery: vision + context map), Modeling (architecture: bounded contexts, aggregates, events; and tasks), Capture/Modeling backlog + dependency DAG (planning, tasks), Work (implementation with TDD red-green-refactor, so testing), and a verifier gate that audits worker code before commit (review). Research skill also contributes to discovery."
+    },
+    "methodology-style": {
+      "value": ["spec-centric", "multi-agent", "plan-and-execute", "strict-tdd"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "DDD domain model / bounded-context backlog is the central driving artifact (spec-centric); an orchestrator routes to specialist agents incl. a verifier and research-reviewer (multi-agent); idea -> modeled backlog -> execution (plan-and-execute); Work skill enforces TDD red-green-refactor (strict-tdd)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Self-described as an 'opinionated' harness with a prescribed brainstorm -> model -> work loop."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "DDD bounded-context modeling, per-context READMEs/INDEXes, ADRs, a protocol diary, and verifier/research gates make the default workflow document- and gate-heavy, though a lightweight Capture path exists for quick intake."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Skills auto-trigger on natural-language phrasing and workers execute code and commit end-to-end; not a fully managed hosted pipeline (runs inside local Claude Code)."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Explicitly human-in-the-loop: 'you think out loud, the harness captures and models, and only then does it write code.' Plus agent verifier/research-reviewer gates before commits/reports."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Interpretive: the human owns the conversational modeling (spec) and backlog refinement (plan) before autonomous work begins. The verifier gate before each commit is an agent (agent-review), not human approval."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Deliberately not idea-to-merge autonomous: modeling requires human dialogue. Once a backlog is modeled, parallel workers can execute it dependency-aware, but the framework is designed around the human-in-the-loop gate."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Phase-level: human drives brainstorm/modeling, then workers execute the modeled backlog autonomously with an agent verifier gate before each commit."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No dedicated undo/rollback command documented. One-task-one-commit is a deliberate convention that facilitates manual git revert, but that is git, not a framework feature."
+    },
+    "supported-agents": {
+      "value": ["claude-code"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Distributed and run as a Claude Code plugin; explicitly coupled to Claude Code."
+    },
+    "editor-integrations": {
+      "value": ["vscode", "web"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Runs in Claude Code (terminal CLI); ships an optional VS Code bridge extension to seed sessions, plus a local read-only web dashboard (Node-stdlib server)."
+    },
+    "model-agnostic": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Locked to Claude Code / Anthropic Claude as the runtime."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No Model Context Protocol integration documented in the README."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Vision, context maps, ADRs, research reports and tasks are Markdown; task files carry YAML frontmatter (id, status, depends_on, type)."
+    },
+    "artifacts-covered": {
+      "value": ["architecture", "decisions", "plans", "tasks"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Produces vision + context maps and per-bounded-context domain docs (architecture), ADRs under knowledge/decisions (decisions), a dependency-ordered backlog (plans), and task markdown files (tasks). Also a chronological protocol log and verified research reports, which have no dedicated tag."
+    },
+    "project-layout": {
+      "value": "All state lives under a per-project .agentheim/ directory: vision.md, context-map.md, contexts/<bounded-context>/ (README.md, INDEX.md, backlog/todo/doing/done task folders, concepts/), and knowledge/ (index.md, protocol.md, decisions/, research/).",
+      "source": ["https://github.com/heimeshoff/Agentheim"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "All artifacts live in-repo under .agentheim/ and are committed (one commit per completed task)."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Artifacts are language-neutral markdown; workers execute code in any language. The harness itself is JavaScript."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates", "agent-review"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Skills auto-trigger via natural-language phrasing (instructional); Work enforces TDD red-green-refactor (test-gates); a fresh-context verifier audits worker code before commit and a research-reviewer re-verifies claims before publication (agent-review)."
+    },
+    "strict-phase-ordering": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Task execution respects a depends_on dependency DAG, but the brainstorm -> model -> work phases are not hard-gated: Capture and other skills can be entered directly."
+    },
+    "artifact-validation": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Tasks use structured YAML frontmatter and INDEX files are auto-maintained, but no explicit schema validation of artifacts is documented."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "A 'memory layer' of per-BC INDEX.md files and a top-level knowledge/index.md, maintained incrementally and consulted for prior-art lookup and dependency hints."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "knowledge/ indexes, protocol log, decisions and per-BC docs persist in-repo across sessions with no manual handoff."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Produces and maintains project-scoped context files under .agentheim/ (vision.md, INDEX.md, knowledge/index.md)."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No token or cost tracking features documented."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "knowledge/protocol.md is a chronological diary (newest on top) recording what happened across the workflow."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No telemetry collection is documented; as a local OSS Claude Code plugin there is nothing to disclose or opt out of, so the attribute is not meaningfully applicable."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No user-facing artifact/prompt template customization documented."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No user-defined lifecycle hooks documented for Agentheim itself."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Ships fixed specialist agents/skills (modeler, architect, researcher, worker, verifier); no documented mechanism for users to define their own roles or skills."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Distributed via the Claude Code plugin marketplace, but there is no marketplace or community repository of shared Agentheim templates/skills."
+    },
+    "install-mechanism": {
+      "value": ["editor-extension"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Installed as a Claude Code plugin (/plugin marketplace add heimeshoff/agentheim; /plugin install). Mapped to editor-extension as the closest tag; none of the tags cleanly cover 'Claude Code plugin'."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "A few /plugin marketplace and /plugin install commands inside Claude Code."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Runs entirely locally; all state in-repo, dashboard is a Node-stdlib server with no hosted service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Agentheim itself needs no vendor account. Its runtime (Claude Code) requires an Anthropic account, but that is the runtime, not the workflow."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Parallel workers claim tasks from the doing/ folder respecting the dependency DAG, but no explicit git worktree usage is documented."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "Detailed README covering install, all five skills, dashboard and VS Code bridge; a visual workflow PDF/HTML; in-repo ADRs; subsystem READMEs; CHANGELOG/RELEASE. No case studies or tutorials beyond the reference repo."
+    },
+    "github-stars": {
+      "value": 26,
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim"],
+      "comment": "26 stars as of 2026-07-13; young project, count stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim", "https://api.github.com/repos/heimeshoff/Agentheim/releases"],
+      "comment": "Last push 2026-07-09 and release v0.9.1 on 2026-07-09, well within 90 days of the 2026-07-13 research date."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://github.com/heimeshoff/Agentheim"],
+      "comment": "No separate example projects or documented case studies; the repository itself is the reference implementation."
+    },
+    "community-channel": {
+      "value": null,
+      "source": ["https://api.github.com/repos/heimeshoff/Agentheim"],
+      "comment": "No dedicated community channel; GitHub Discussions is disabled and no Discord/Slack/forum is listed. Only GitHub issues (2 open)."
+    }
+  }
+}
