@@ -1,5 +1,222 @@
 {
   "name": "Router5",
   "description": "Framework-agnostic, state-machine-style router with a React binding",
-  "values": {}
+  "url": "https://router5.js.org",
+  "lastVerified": "2026-07-14",
+  "values": {
+    "name": {
+      "value": "Router5"
+    },
+    "description": {
+      "value": "Flexible and powerful universal routing solution",
+      "source": ["https://api.github.com/repos/router5/router5", "https://router5.js.org/llms-full.txt"],
+      "comment": "GitHub tagline. A view-agnostic router that processes routing instructions and outputs state updates; framework bindings (react-router5, redux-router5) consume that state."
+    },
+    "website": {
+      "value": "https://router5.js.org",
+      "source": ["https://api.github.com/repos/router5/router5"]
+    },
+    "repository": {
+      "value": "https://github.com/router5/router5",
+      "source": ["https://github.com/router5/router5"]
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://api.github.com/repos/router5/router5"]
+    },
+    "category": {
+      "value": ["standalone-router"],
+      "comment": "A drop-in, view-agnostic routing engine you add to an existing app; not a build/server framework. The React binding (react-router5) layers on top."
+    },
+    "active-maintenance": {
+      "value": false,
+      "source": ["https://api.github.com/repos/router5/router5", "https://security.snyk.io/package/npm/router5"],
+      "comment": "Last repository push was 2023-01-07 and the last npm release (8.0.1) was 2020-03-19 — no commits or releases in the last ~6 months as of 2026-07-14. Snyk classifies the package as Inactive."
+    },
+    "initial-release": {
+      "value": "2015",
+      "source": ["https://api.github.com/repos/router5/router5"],
+      "comment": "Repository created 2015-06-29; first public releases in 2015."
+    },
+    "latest-release": {
+      "value": "2020-03-19",
+      "source": ["https://security.snyk.io/package/npm/router5", "https://registry.npmjs.org/router5"],
+      "comment": "router5 8.0.1, published 2020-03-19; still the latest version as of 2026-07-14. The repo publishes no GitHub Releases, so the npm publish date is used."
+    },
+    "github-stars": {
+      "value": 1696,
+      "source": ["https://api.github.com/repos/router5/router5"],
+      "comment": "Stars on router5/router5, checked 2026-07-14 via GitHub API."
+    },
+    "npm-weekly-downloads": {
+      "value": 25526,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/router5"],
+      "comment": "Last-week downloads of the core `router5` package (2026-07-07 to 2026-07-13). The React binding `react-router5` adds ~6,647/week."
+    },
+    "routing-paradigm": {
+      "value": ["config-object", "hook-based"],
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Routes are declared as plain config objects with name/path (optionally nested as a tree). The React binding (react-router5 v8) exposes useRoute/useRouter hooks plus a RouteNode component to consume router state; there is no component-based route declaration or file-based routing."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Routes can be nested into a tree with names relative to their parent; react-router5's RouteNode component renders per active route segment, enabling shared parent layouts."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "URL path params via the :param syntax, e.g. /users/:id."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Supports splat parameters (*splat) spanning multiple segments plus matrix (;param) and optional query (?param) parameters."
+    },
+    "search-params-api": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "First-class query-params handling with configurable arrayFormat, booleanFormat and nullFormat serialization options."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Imperative navigation via router.navigate(routeName, routeParams, opts)."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://router5.js.org/advanced/middleware", "https://router5.js.org/llms-full.txt"],
+      "comment": "Per-segment canActivate/canDeactivate lifecycle guards plus a global middleware pipeline and plugin system for transition side effects."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://api.github.com/repos/router5/router5", "https://router5.js.org/llms-full.txt"],
+      "comment": "All packages were rewritten in TypeScript as of v7 and ship first-class type definitions."
+    },
+    "type-safe-paths-links": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Routes are referenced by plain string names (router.navigate('users.view')); names are not checked against the defined route tree."
+    },
+    "type-safe-params": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Params are typed as a generic Record; there is no per-route inference of param names or types at usage sites."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Query params share the same untyped generic params object; no schema-based typing or validation."
+    },
+    "codegen-required": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No route-type generation step exists; types are hand-written generics rather than inferred or generated."
+    },
+    "type-safety-rating": {
+      "value": 2,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "TS type definitions exist (v7 rewrite) but route names, path params, and query params are not checked against the route configuration — matches rubric level 2."
+    },
+    "route-data-loaders": {
+      "value": false,
+      "source": ["https://router5.js.org/advanced/middleware", "https://router5.js.org/llms-full.txt"],
+      "comment": "No loader/useLoaderData-style primitive that fetches data before render and hands it to the view. Data loading is DIY inside canActivate/middleware; the router only outputs route state."
+    },
+    "actions-mutations": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No built-in action/mutation or form-handling primitive tied to routes."
+    },
+    "prefetching": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No route code/data prefetching on hover or intent."
+    },
+    "pending-transition-ui": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Exposes transition start/success/error events, but ships no pending-state UI or React useTransition integration."
+    },
+    "scroll-restoration": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No built-in scroll restoration across navigations; left to the application."
+    },
+    "per-route-code-splitting": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No native per-route lazy loading; splitting is DIY with React.lazy on your components."
+    },
+    "per-route-error-handling": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Transition errors surface via events/callbacks, but there are no route-scoped error elements or error boundaries."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Router is universal — the same route logic runs client- and server-side, and there is a dedicated universal-routing guide. React rendering (renderToString/hydrate) is DIY, not turnkey."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No streaming/suspenseful SSR support documented."
+    },
+    "react-server-components": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No RSC support; the library predates React Server Components and is a client/universal state router."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "No built-in static pre-rendering/SSG feature."
+    },
+    "client-only-usable": {
+      "value": true,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "The browser plugin enables a pure client-side SPA router with no server required."
+    },
+    "framework-bound": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Drop-in library with no build/server toolchain of its own; view-agnostic core with optional React/Redux/etc. bindings."
+    },
+    "bundle-size": {
+      "value": 9280,
+      "source": ["https://bundlephobia.com/package/router5@8.0.1"],
+      "comment": "Minified + gzipped size of the core router5@8.0.1 per Bundlephobia (9,280 bytes; ~30 KB minified). The react-router5 binding is a separate small package."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/router5/8.0.1", "https://bundlephobia.com/package/router5@8.0.1"],
+      "comment": "Depends on three runtime packages: route-node, router5-transition-path, and symbol-observable."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://bundlephobia.com/package/router5@8.0.1"],
+      "comment": "Package reports hasSideEffects: false, enabling dead-code elimination."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://router5.js.org/", "https://router5.js.org/llms-full.txt"],
+      "comment": "Dedicated docs site with guides (routing, middleware, plugins, universal routing, preventing navigation), integration guides (React, Redux), migration guides, and a full API reference with examples. Not a 5 (no interactive playground)."
+    },
+    "official-devtools": {
+      "value": false,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Ships a loggerPlugin that logs transitions to the console, but no dedicated devtools/inspector UI."
+    },
+    "data-fetching-integration": {
+      "value": ["none"],
+      "source": ["https://router5.js.org/advanced/middleware", "https://router5.js.org/llms-full.txt"],
+      "comment": "No first-class data-fetching integration; data loading is done DIY inside middleware/canActivate. Official bindings exist for Redux/observables (state, not data-fetching), which are outside the defined tag set."
+    },
+    "predecessor-lineage": {
+      "value": null,
+      "source": ["https://router5.js.org/llms-full.txt"],
+      "comment": "Independent project with no predecessor router."
+    }
+  }
 }
