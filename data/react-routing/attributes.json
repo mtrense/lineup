@@ -1,0 +1,380 @@
+{
+  "name": "React Routing",
+  "description": "Routing options for React apps — from drop-in routing libraries to full meta-frameworks — compared across paradigm, type safety, data loading, rendering, and maturity",
+  "groups": [
+    {
+      "id": "general",
+      "name": "General Info",
+      "description": "Basic information about the routing library or framework",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "name",
+          "name": "Name",
+          "valueType": "text",
+          "description": "Official name"
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "One-line value proposition"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official docs or homepage"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "GitHub/GitLab repository URL"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": "text",
+          "description": "SPDX identifier (MIT, Apache-2.0, etc.)"
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "standalone-router", "value": "Standalone Router", "color": "blue" },
+              { "id": "meta-framework", "value": "Meta-Framework", "color": "purple" }
+            ]
+          },
+          "description": "Kind of thing it is: a drop-in router or a full framework"
+        },
+        {
+          "id": "active-maintenance",
+          "name": "Active Maintenance",
+          "valueType": "boolean",
+          "description": "Commits/releases within the last ~6 months"
+        },
+        {
+          "id": "initial-release",
+          "name": "Initial Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of most recent stable release"
+        },
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Current star count; higher is more popular"
+        },
+        {
+          "id": "npm-weekly-downloads",
+          "name": "npm Weekly Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Weekly downloads of the primary package"
+        }
+      ]
+    },
+    {
+      "id": "routing-model",
+      "name": "Routing Model",
+      "description": "How routes are declared and navigated",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "routing-paradigm",
+          "name": "Routing Paradigm",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "component-based", "value": "Component-Based", "color": "blue" },
+              { "id": "config-object", "value": "Config Object", "color": "green" },
+              { "id": "file-based", "value": "File-Based", "color": "orange" },
+              { "id": "hook-based", "value": "Hook-Based", "color": "purple" }
+            ]
+          },
+          "description": "How routes are declared; multiple may apply"
+        },
+        {
+          "id": "nested-layout-routes",
+          "name": "Nested / Layout Routes",
+          "valueType": "boolean",
+          "description": "Supports nested routes with shared parent layouts"
+        },
+        {
+          "id": "dynamic-params",
+          "name": "Dynamic Params",
+          "valueType": "boolean",
+          "description": "Path params like /users/:id"
+        },
+        {
+          "id": "optional-catch-all-params",
+          "name": "Optional / Catch-All Params",
+          "valueType": "boolean",
+          "description": "Optional segments and splat/wildcard routes"
+        },
+        {
+          "id": "search-params-api",
+          "name": "Search Params API",
+          "valueType": "boolean",
+          "description": "First-class API for query string state beyond raw URLSearchParams"
+        },
+        {
+          "id": "programmatic-navigation",
+          "name": "Programmatic Navigation",
+          "valueType": "boolean",
+          "description": "Imperative navigation via a hook or function"
+        },
+        {
+          "id": "route-guards-middleware",
+          "name": "Route Guards / Middleware",
+          "valueType": "boolean",
+          "description": "Built-in per-route guards, middleware, or beforeLoad-style hooks"
+        }
+      ]
+    },
+    {
+      "id": "type-safety",
+      "name": "Type Safety",
+      "description": "How well routes, params, and search params are typed",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "written-in-typescript",
+          "name": "Written in TypeScript",
+          "valueType": "boolean",
+          "description": "Ships first-class type definitions authored in TS"
+        },
+        {
+          "id": "type-safe-paths-links",
+          "name": "Type-Safe Paths / Links",
+          "valueType": "boolean",
+          "description": "Link/navigate calls are checked against known routes"
+        },
+        {
+          "id": "type-safe-params",
+          "name": "Type-Safe Params",
+          "valueType": "boolean",
+          "description": "Path params inferred with correct types at usage sites"
+        },
+        {
+          "id": "type-safe-search-params",
+          "name": "Type-Safe Search Params",
+          "valueType": "boolean",
+          "description": "Query/search params typed and validated"
+        },
+        {
+          "id": "codegen-required",
+          "name": "Codegen Required",
+          "valueType": "boolean",
+          "description": "Requires a generation/build step to produce route types (vs. pure inference)"
+        },
+        {
+          "id": "type-safety-rating",
+          "name": "Type Safety Rating",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "Overall end-to-end type safety; see Assessment Guidelines"
+        }
+      ]
+    },
+    {
+      "id": "data-navigation",
+      "name": "Data & Navigation",
+      "description": "Data loading and navigation ergonomics",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "route-data-loaders",
+          "name": "Route Data Loaders",
+          "valueType": "boolean",
+          "description": "Route-level data loading before render (loader / useLoaderData-style)"
+        },
+        {
+          "id": "actions-mutations",
+          "name": "Actions / Mutations",
+          "valueType": "boolean",
+          "description": "Built-in write/mutation primitive tied to routes"
+        },
+        {
+          "id": "prefetching",
+          "name": "Prefetching",
+          "valueType": "boolean",
+          "description": "Prefetch route code and/or data on hover/intent"
+        },
+        {
+          "id": "pending-transition-ui",
+          "name": "Pending / Transition UI",
+          "valueType": "boolean",
+          "description": "Built-in pending states or React transition integration during navigation"
+        },
+        {
+          "id": "scroll-restoration",
+          "name": "Scroll Restoration",
+          "valueType": "boolean",
+          "description": "Restores scroll position across navigations"
+        },
+        {
+          "id": "per-route-code-splitting",
+          "name": "Per-Route Code Splitting",
+          "valueType": "boolean",
+          "description": "Lazy-load route components/bundles per route"
+        },
+        {
+          "id": "per-route-error-handling",
+          "name": "Per-Route Error Handling",
+          "valueType": "boolean",
+          "description": "Route-scoped error boundaries / error elements"
+        }
+      ]
+    },
+    {
+      "id": "rendering-ssr",
+      "name": "Rendering & SSR",
+      "description": "Server rendering, streaming, and RSC capabilities",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "ssr-support",
+          "name": "SSR Support",
+          "valueType": "boolean",
+          "description": "Server-side rendering supported (built-in or documented)"
+        },
+        {
+          "id": "streaming-ssr",
+          "name": "Streaming SSR",
+          "valueType": "boolean",
+          "description": "Supports streaming/suspenseful SSR"
+        },
+        {
+          "id": "react-server-components",
+          "name": "React Server Components",
+          "valueType": "boolean",
+          "description": "First-class RSC support"
+        },
+        {
+          "id": "static-site-generation",
+          "name": "Static Site Generation",
+          "valueType": "boolean",
+          "description": "Can pre-render routes to static HTML"
+        },
+        {
+          "id": "client-only-usable",
+          "name": "Client-Only Usable",
+          "valueType": "boolean",
+          "description": "Can run as a pure CSR SPA router with no server"
+        },
+        {
+          "id": "framework-bound",
+          "name": "Framework-Bound",
+          "valueType": "boolean",
+          "description": "Requires its own build/framework toolchain rather than dropping into any React app"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Bundle footprint and dependency profile",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "bundle-size",
+          "name": "Bundle Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Router core, minified + gzipped; null for meta-frameworks"
+        },
+        {
+          "id": "zero-runtime-dependencies",
+          "name": "Zero Runtime Dependencies",
+          "valueType": "boolean",
+          "description": "Ships with no (or effectively no) third-party runtime deps"
+        },
+        {
+          "id": "tree-shakeable",
+          "name": "Tree Shakeable",
+          "valueType": "boolean",
+          "description": "Supports dead-code elimination"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-dx",
+      "name": "Ecosystem & DX",
+      "description": "Documentation, tooling, and lineage",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "See Assessment Guidelines"
+        },
+        {
+          "id": "official-devtools",
+          "name": "Official Devtools",
+          "valueType": "boolean",
+          "description": "Dedicated devtools/inspector for routes and navigation"
+        },
+        {
+          "id": "data-fetching-integration",
+          "name": "Data-Fetching Integration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-In", "color": "green" },
+              { "id": "react-query", "value": "React Query", "color": "red" },
+              { "id": "swr", "value": "SWR", "color": "blue" },
+              { "id": "trpc", "value": "tRPC", "color": "purple" },
+              { "id": "rsc", "value": "RSC", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Documented/first-class data-fetching integrations"
+        },
+        {
+          "id": "predecessor-lineage",
+          "name": "Predecessor / Lineage",
+          "valueType": "text",
+          "description": "Where it came from; null if none"
+        }
+      ]
+    }
+  ]
+}
