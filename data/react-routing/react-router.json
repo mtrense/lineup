@@ -1,5 +1,227 @@
 {
   "name": "React Router",
   "description": "The de-facto React router; v7 unifies the library and Remix's framework features",
-  "values": {}
+  "lastVerified": "2026-07-14",
+  "values": {
+    "name": {
+      "value": "React Router",
+      "source": ["https://reactrouter.com"],
+      "comment": "Official name."
+    },
+    "description": {
+      "value": "The de-facto React router; v8 unifies the routing library and Remix's framework features (loaders, actions, SSR) with always-on middleware.",
+      "source": ["https://reactrouter.com", "https://remix.run/blog/react-router-v8"],
+      "comment": "Evaluated at v8.2.0 (July 2026); v7 merged Remix's framework capabilities and v8 makes middleware and other v7 future flags the default."
+    },
+    "website": {
+      "value": "https://reactrouter.com",
+      "source": ["https://reactrouter.com", "https://api.github.com/repos/remix-run/react-router"],
+      "comment": "Official docs/homepage (repo homepage field)."
+    },
+    "repository": {
+      "value": "https://github.com/remix-run/react-router",
+      "source": ["https://api.github.com/repos/remix-run/react-router"],
+      "comment": "Official GitHub repository under the remix-run org."
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://api.github.com/repos/remix-run/react-router", "https://registry.npmjs.org/react-router/latest"],
+      "comment": "SPDX MIT per GitHub license metadata and npm package manifest."
+    },
+    "category": {
+      "value": ["standalone-router"],
+      "source": ["https://reactrouter.com", "https://remix.run/blog/react-router-v8"],
+      "comment": "Drop-in router you add to an existing React app; offers an optional framework mode but is not framework-bound, so per the guideline it gets the standalone-router tag."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/remix-run/react-router", "https://github.com/remix-run/react-router/releases"],
+      "comment": "Repo pushed 2026-07-14; v8.2.0 released 2026-07-08 — clearly active."
+    },
+    "initial-release": {
+      "value": "2014",
+      "source": ["https://api.github.com/repos/remix-run/react-router"],
+      "comment": "Repository created May 2014; first public releases that year."
+    },
+    "latest-release": {
+      "value": "2026-07-08",
+      "source": ["https://api.github.com/repos/remix-run/react-router/releases/latest", "https://registry.npmjs.org/react-router/latest"],
+      "comment": "react-router@8.2.0, published 2026-07-08 (v8.0 GA was 2026-06-17)."
+    },
+    "github-stars": {
+      "value": 56495,
+      "source": ["https://api.github.com/repos/remix-run/react-router"],
+      "comment": "Stargazers count as of 2026-07-14."
+    },
+    "npm-weekly-downloads": {
+      "value": 38821342,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/react-router"],
+      "comment": "Weekly downloads of the primary `react-router` package for the week of 2026-07-07 to 2026-07-13. v8 dropped the separate react-router-dom shim, making `react-router` the primary package."
+    },
+    "routing-paradigm": {
+      "value": ["component-based", "config-object", "file-based", "hook-based"],
+      "source": ["https://reactrouter.com/start/library/routing", "https://reactrouter.com/start/framework/routing"],
+      "comment": "Supports JSX <Route> declarations, createBrowserRouter route objects, and file-based routes in framework mode; navigation and route data via hooks (useNavigate, useLoaderData)."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/routing"],
+      "comment": "Nested routes with shared parent layouts via <Outlet> are a core feature."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/routing"],
+      "comment": "Dynamic segments like /users/:id, read via useParams."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/routing"],
+      "comment": "Optional segments (:lang?) and splat/wildcard (*) routes are supported."
+    },
+    "search-params-api": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/url-values"],
+      "comment": "useSearchParams hook provides a first-class read/write API for query string state."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/navigating"],
+      "comment": "useNavigate hook plus redirect() in loaders/actions."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://remix.run/blog/react-router-v8", "https://medium.com/@roman_fedyskyi/react-router-v8-makes-middleware-a-baseline-bb36a2596d40"],
+      "comment": "Route-level middleware pipeline is always-on in v8 (the v7 future.v8_middleware flag was lifted and made default); every loader/action/middleware receives a RouterContextProvider."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://github.com/remix-run/react-router", "https://registry.npmjs.org/react-router/latest"],
+      "comment": "Authored in TypeScript with first-class type definitions."
+    },
+    "type-safe-paths-links": {
+      "value": true,
+      "source": ["https://reactrouter.com/explanation/type-safety", "https://remix.run/blog/react-router-v8"],
+      "comment": "Framework mode generates route types and offers a type-safe href() helper so link/navigate targets are checked; requires the typegen step."
+    },
+    "type-safe-params": {
+      "value": true,
+      "source": ["https://reactrouter.com/explanation/type-safety"],
+      "comment": "Route module type generation infers loader/action and params types per route (framework mode)."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://reactrouter.com/start/library/url-values", "https://reactrouter.com/explanation/type-safety"],
+      "comment": "useSearchParams returns URLSearchParams (string values); no built-in schema-based typing/validation of search params, unlike TanStack Router."
+    },
+    "codegen-required": {
+      "value": true,
+      "source": ["https://reactrouter.com/explanation/type-safety"],
+      "comment": "Full path/param type safety relies on the `react-router typegen` step (types emitted to .react-router/types) in framework mode; library mode is largely inference-only with less path checking."
+    },
+    "type-safety-rating": {
+      "value": 3,
+      "source": ["https://reactrouter.com/explanation/type-safety"],
+      "comment": "Typed paths (via href) and typed params/loaders through codegen, but search params remain untyped — matches the guideline's rating 3 (typed params/links with gaps)."
+    },
+    "route-data-loaders": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/data-loading", "https://reactrouter.com/start/library/data"],
+      "comment": "Route loaders with useLoaderData; available in both data (library) and framework modes."
+    },
+    "actions-mutations": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/actions"],
+      "comment": "Route actions and <Form>/useFetcher provide a built-in mutation primitive."
+    },
+    "prefetching": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/route-module"],
+      "comment": "<Link prefetch=\"intent|render|viewport\"> prefetches route code and data (framework mode)."
+    },
+    "pending-transition-ui": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/pending-ui"],
+      "comment": "useNavigation exposes pending navigation state; integrates with React transitions for pending/optimistic UI."
+    },
+    "scroll-restoration": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/navigating"],
+      "comment": "<ScrollRestoration> component restores scroll position across navigations."
+    },
+    "per-route-code-splitting": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/route-object", "https://reactrouter.com/start/framework/route-module"],
+      "comment": "route.lazy in data mode and automatic per-route module splitting in framework mode."
+    },
+    "per-route-error-handling": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/route-module", "https://reactrouter.com/start/library/route-object"],
+      "comment": "Per-route ErrorBoundary / errorElement scopes errors to a route subtree."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/rendering", "https://remix.run/blog/react-router-v8"],
+      "comment": "Turnkey SSR in framework mode (Vite plugin + server runtime); library mode can also do manual SSR."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/framework/rendering"],
+      "comment": "Streaming SSR via deferred data and Suspense/Await (framework mode)."
+    },
+    "react-server-components": {
+      "value": true,
+      "source": ["https://reactrouter.com/how-to/react-server-components", "https://remix.run/blog/react-router-and-react-server-components", "https://remix.run/blog/react-router-v8"],
+      "comment": "First-class RSC APIs are documented for both Framework and Data modes, but as of v8.2.0 support is still marked unstable/opt-in (team plans to stabilize in a later minor)."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://reactrouter.com/how-to/pre-rendering", "https://remix.run/blog/react-router-v8"],
+      "comment": "Pre-rendering / prerender config in framework mode emits static HTML for chosen routes; SPA mode also supported."
+    },
+    "client-only-usable": {
+      "value": true,
+      "source": ["https://reactrouter.com/start/library/installation", "https://reactrouter.com/how-to/spa"],
+      "comment": "Runs as a pure CSR SPA router in library/data mode or framework SPA mode with no server."
+    },
+    "framework-bound": {
+      "value": false,
+      "source": ["https://reactrouter.com/start/library/installation", "https://remix.run/blog/react-router-v8"],
+      "comment": "Can be dropped into any React app as a library; the Vite-based framework mode is optional, so per the guideline it is not framework-bound."
+    },
+    "bundle-size": {
+      "value": 59011,
+      "source": ["https://bundlephobia.com/package/react-router@8.2.0"],
+      "comment": "min+gzip of the full `react-router` package (8.2.0) per bundlephobia; this bundles the library plus framework runtime and is tree-shakeable, so a library-only SPA ships considerably less than this figure."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://bundlephobia.com/package/react-router@8.2.0", "https://registry.npmjs.org/react-router/latest"],
+      "comment": "Ships with a small runtime dependency (cookie); not dependency-free, though the footprint is minimal."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/react-router/latest", "https://remix.run/blog/react-router-v8"],
+      "comment": "ESM-only in v8 with side-effect-free modules, supporting dead-code elimination."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://reactrouter.com", "https://reactrouter.com/how-to/react-server-components"],
+      "comment": "Comprehensive docs: tutorials, library vs framework guides, how-to recipes, full API reference, and migration/upgrade guides — matches rating 5."
+    },
+    "official-devtools": {
+      "value": false,
+      "source": ["https://reactrouter.com"],
+      "comment": "No dedicated official route/navigation devtools inspector (unlike TanStack Router); debugging relies on standard React tooling."
+    },
+    "data-fetching-integration": {
+      "value": ["built-in", "rsc"],
+      "source": ["https://reactrouter.com/start/framework/data-loading", "https://reactrouter.com/how-to/react-server-components"],
+      "comment": "Built-in loaders/actions are the primary data mechanism; documented (unstable) RSC/server-function integration in v8."
+    },
+    "predecessor-lineage": {
+      "value": "Successor to Reach Router (merged back in); Remix's framework features were folded into React Router in v7, and v8 makes those defaults. Built on the history library.",
+      "source": ["https://remix.run/blog/react-router-v8", "https://reactrouter.com"],
+      "comment": "Remix v2 framework capabilities live on inside React Router v7/v8 rather than as a separate product."
+    }
+  }
 }
