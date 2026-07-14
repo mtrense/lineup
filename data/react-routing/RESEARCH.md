@@ -150,7 +150,7 @@ Users should be able to:
 ## Candidates
 
 - [x] React Router — the de-facto React router; v7 unifies the library and Remix's framework features
-- [ ] TanStack Router — type-safe-first router with typed search params and built-in data loading; basis for TanStack Start
+- [x] TanStack Router — type-safe-first router with typed search params and built-in data loading; basis for TanStack Start
 - [ ] Wouter — minimalist ~2KB hook-based router for small SPAs
 - [ ] Type-Route — type-safe routing library focused on inference, framework-agnostic core with React bindings
 - [ ] Router5 — framework-agnostic, state-machine-style router with a React binding
