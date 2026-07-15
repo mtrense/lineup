@@ -1,5 +1,227 @@
 {
   "name": "Waku",
   "description": "Minimal React Server Components framework with file-based routing",
-  "values": {}
+  "icon": "waku",
+  "url": "https://waku.gg",
+  "lastVerified": "2026-07-15",
+  "values": {
+    "name": {
+      "value": "Waku",
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Official name; ⛩️ the minimal React framework. 'Waku' (わく) means 'framework' in Japanese."
+    },
+    "description": {
+      "value": "The minimal React framework — a lightweight, Vite-based framework built around React Server Components",
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Value proposition from homepage; targets marketing sites, headless commerce, and small/medium web apps."
+    },
+    "website": {
+      "value": "https://waku.gg",
+      "source": ["https://waku.gg/"]
+    },
+    "repository": {
+      "value": "https://github.com/wakujs/waku",
+      "source": ["https://github.com/wakujs/waku"]
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://github.com/wakujs/waku", "https://api.github.com/repos/wakujs/waku"],
+      "comment": "SPDX MIT per GitHub license metadata."
+    },
+    "category": {
+      "value": ["meta-framework"],
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Owns its build/server toolchain (Vite + Hono); routing is one part of a full framework."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/wakujs/waku", "https://api.github.com/repos/wakujs/waku"],
+      "comment": "Repo last pushed 2026-07-15; 1.0 beta released mid-2026. Actively developed by Daishi Kato. Checked 2026-07-15."
+    },
+    "initial-release": {
+      "value": "2023",
+      "source": ["https://x.com/dai_shi/status/1660660331528728578", "https://api.github.com/repos/wakujs/waku"],
+      "comment": "Repo created 2023-03-03; first public announcement was v0.10.0 on 2023-05-22."
+    },
+    "latest-release": {
+      "value": "2026-06-28",
+      "source": ["https://github.com/wakujs/waku"],
+      "comment": "v1.0.0-beta.6, released 2026-06-28. Waku 1.0 reached beta (May 2026); the 1.0 line is not yet marked fully stable. Checked 2026-07-15."
+    },
+    "github-stars": {
+      "value": 6363,
+      "source": ["https://api.github.com/repos/wakujs/waku"],
+      "comment": "~6.4k stars on wakujs/waku. Checked 2026-07-15."
+    },
+    "npm-weekly-downloads": {
+      "value": 21321,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/waku"],
+      "comment": "Last-week downloads of the 'waku' package (Jul 8-14, 2026). Checked 2026-07-15."
+    },
+    "routing-paradigm": {
+      "value": ["file-based", "config-object"],
+      "source": ["https://waku.gg/", "https://waku.gg/blog/introducing-pages-router", "https://waku.gg/blog/introducing-createpages"],
+      "comment": "Default file-based pages router (./src/pages) plus a programmatic config-object API via createPages."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Nested routes with shared _layout.tsx layouts; group (parentheses) folders share layouts without affecting URLs."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Dynamic segments via [slug] bracket notation, passed as props."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Catch-all routes via [...catchAll] receive an array of path segments."
+    },
+    "search-params-api": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "useRouter exposes query; structured navigation supports search objects: router.push({ to, search: { q } })."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "useRouter() provides push, replace, reload, back, forward, prefetch."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Hono-based middleware (./src/middleware) and handler interceptors (_interceptors) wrap renders/API handlers for auth, logging, request scoping."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://github.com/wakujs/waku"],
+      "comment": "Authored in TypeScript (~94% of repo); ships first-class type definitions."
+    },
+    "type-safe-paths-links": {
+      "value": true,
+      "source": ["https://waku.gg/blog/type-safe-routing"],
+      "comment": "Generated pages.gen.ts gives type checks and autocompletion for <Link to> and useRouter().push() paths; invalid paths are compile errors."
+    },
+    "type-safe-params": {
+      "value": true,
+      "source": ["https://waku.gg/blog/type-safe-routing", "https://waku.gg/"],
+      "comment": "PageProps<'/blog/[slug]'> infers typed path params for dynamic segments."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://waku.gg/blog/type-safe-routing", "https://waku.gg/"],
+      "comment": "Query is exposed as a plain string; no schema-based typing/validation of search params (unlike TanStack Router)."
+    },
+    "codegen-required": {
+      "value": true,
+      "source": ["https://waku.gg/blog/type-safe-routing"],
+      "comment": "Type-safe routing relies on a generated pages.gen.ts file (checked into VCS), not pure inference."
+    },
+    "type-safety-rating": {
+      "value": 3,
+      "source": ["https://waku.gg/blog/type-safe-routing"],
+      "comment": "Typed paths/links and typed path params via codegen, but search params are not schema-typed/validated — matches the 'typed params or links with gaps' tier."
+    },
+    "route-data-loaders": {
+      "value": false,
+      "source": ["https://waku.gg/"],
+      "comment": "No loader/useLoaderData primitive; data is fetched directly inside async React Server Components rather than a route-level loader."
+    },
+    "actions-mutations": {
+      "value": true,
+      "source": ["https://waku.gg/blog/server-actions-are-here", "https://waku.gg/"],
+      "comment": "First-class React server actions/functions callable directly from components without manual API wiring."
+    },
+    "prefetching": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "router.prefetch(path) and Link prefetching for route code/data."
+    },
+    "pending-transition-ui": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Integrates with React 19 useTransition and useActionState for pending/transition states during navigation and actions."
+    },
+    "scroll-restoration": {
+      "value": null,
+      "source": ["https://waku.gg/"],
+      "comment": "Scroll restoration is not explicitly documented; could not confirm a built-in feature."
+    },
+    "per-route-code-splitting": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://waku.gg/blog/introducing-slice-components"],
+      "comment": "Server components keep heavy deps out of client bundles; slices/lazy slices load on demand with per-page splitting."
+    },
+    "per-route-error-handling": {
+      "value": false,
+      "source": ["https://waku.gg/"],
+      "comment": "A default error boundary exists at the app root and server errors replay to the client; no dedicated per-route error-element primitive is documented (custom boundaries must be placed manually in layouts)."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Server-side rendering via getConfig render: 'dynamic'."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "RSC streaming (rsc-html-stream dependency); homepage cites progressive/streaming rendering."
+    },
+    "react-server-components": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://waku.gg/blog/introducing-waku"],
+      "comment": "RSC is the core purpose of Waku; built specifically to explore and productionize React Server Components."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Static prerendering via getConfig render: 'static' with staticPaths."
+    },
+    "client-only-usable": {
+      "value": false,
+      "source": ["https://waku.gg/"],
+      "comment": "RSC-first framework requiring its own build/server toolchain; not a pure CSR SPA router you drop into any React app."
+    },
+    "framework-bound": {
+      "value": true,
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "Requires its own Vite + Hono toolchain and build; not a drop-in router for an arbitrary React app."
+    },
+    "bundle-size": {
+      "value": null,
+      "source": ["https://waku.gg/"],
+      "comment": "Meta-framework — a single 'router bundle' figure isn't meaningful; framework runtime size isn't comparable to a standalone router."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/wakujs/waku/main/packages/waku/package.json"],
+      "comment": "Ships runtime deps including hono, vite, @vitejs/plugin-rsc, rsc-html-stream, magic-string, dotenv, picocolors."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://waku.gg/"],
+      "comment": "Server components tree-shake server-only code out of client bundles; per-page/slice code splitting."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://waku.gg/", "https://waku.gg/blog"],
+      "comment": "Adequate, concise docs plus a practices guide and a steady blog covering routing, RSC, SSR/SSG, server actions and type safety; some areas thin, consistent with a minimal framework still stabilizing at 1.0."
+    },
+    "official-devtools": {
+      "value": false,
+      "source": ["https://waku.gg/", "https://github.com/wakujs/waku"],
+      "comment": "No dedicated route/navigation devtools found in docs or repo."
+    },
+    "data-fetching-integration": {
+      "value": ["rsc", "react-query"],
+      "source": ["https://waku.gg/"],
+      "comment": "Primary data fetching is via async React Server Components (RSC); docs note compatibility with client libraries like React Query."
+    },
+    "predecessor-lineage": {
+      "value": null,
+      "source": ["https://waku.gg/blog/introducing-waku", "https://newsletter.daishikato.com/p/why-i-started-developing-waku-the-minimal-react-framework"],
+      "comment": "No predecessor router; an original framework by Daishi Kato (author of Zustand/Jotai/Valtio), created to explore RSC on Vite."
+    }
+  }
 }

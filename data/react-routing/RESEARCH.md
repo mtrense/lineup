@@ -158,7 +158,7 @@ Users should be able to:
 - [x] TanStack Start — full-stack React framework built on TanStack Router, SSR + streaming + server functions
 - [x] Vike — flexible, framework-agnostic SSR/SSG meta-framework (formerly vite-plugin-ssr) with React support
 - [x] One — React (and React Native) meta-framework from the Tamagui team, file-based routing across web and native
-- [ ] Waku — minimal React Server Components framework with file-based routing
+- [x] Waku — minimal React Server Components framework with file-based routing
 
 ## Notes for Researchers
 
