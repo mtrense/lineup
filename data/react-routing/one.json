@@ -1,5 +1,227 @@
 {
   "name": "One",
   "description": "React (and React Native) meta-framework from the Tamagui team, file-based routing across web and native",
-  "values": {}
+  "icon": "one",
+  "url": "https://onestack.dev",
+  "lastVerified": "2026-07-15",
+  "values": {
+    "name": {
+      "value": "One",
+      "source": ["https://onestack.dev/", "https://onestack.dev/docs/introduction"],
+      "comment": "Official name; single Vite plugin React framework for web and native."
+    },
+    "description": {
+      "value": "React framework targeting web and native with a single Vite plugin and fully shared code",
+      "source": ["https://onestack.dev/", "https://github.com/onejs/one"],
+      "comment": "Value proposition from the homepage and GitHub description."
+    },
+    "website": {
+      "value": "https://onestack.dev",
+      "source": ["https://onestack.dev/"]
+    },
+    "repository": {
+      "value": "https://github.com/onejs/one",
+      "source": ["https://github.com/onejs/one"]
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://github.com/onejs/one/blob/main/LICENSE"],
+      "comment": "Primarily MIT (Nate Wienert); the LICENSE also acknowledges a BSD-3-Clause portion from Expo Router derivative work."
+    },
+    "category": {
+      "value": ["meta-framework"],
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Owns the build/server toolchain (Vite plugin + production Hono server); routing is one part."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://github.com/onejs/one"],
+      "comment": "Latest stable release v1.21.1 on 2026-07-14; actively released. Checked 2026-07-15."
+    },
+    "initial-release": {
+      "value": "2024",
+      "source": ["https://news.ycombinator.com/item?id=41742278"],
+      "comment": "Publicly announced via Show HN on 2024-10-04 by Nate Wienert."
+    },
+    "latest-release": {
+      "value": "2026-07-14",
+      "source": ["https://github.com/onejs/one"],
+      "comment": "v1.21.1, released 2026-07-14. Checked 2026-07-15."
+    },
+    "github-stars": {
+      "value": 4500,
+      "source": ["https://github.com/onejs/one"],
+      "comment": "~4.5k stars on onejs/one. Checked 2026-07-15."
+    },
+    "npm-weekly-downloads": {
+      "value": 18539,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/one"],
+      "comment": "Last-week downloads of the 'one' package. Checked 2026-07-15."
+    },
+    "routing-paradigm": {
+      "value": ["file-based"],
+      "source": ["https://onestack.dev/docs/routing", "https://onestack.dev/docs/routing-modes"],
+      "comment": "File-system routing: every file in the app dir becomes a route; render modes set via filename suffixes."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing", "https://onestack.dev/docs/routing-layouts"],
+      "comment": "Nested layouts via _layout.tsx; route groups via (parentheses) folders."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing"],
+      "comment": "[slug].tsx dynamic segments, read via useParams() or loaders."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing"],
+      "comment": "Catch-all/splat via [...rest].tsx which yields an array of segments."
+    },
+    "search-params-api": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "useRouter().setParams() updates typed route query params; useParams reads them."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "useRouter exposes push/navigate/replace/back/dismiss."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing-middlewares"],
+      "comment": "_middleware.tsx files; nested middlewares run top-to-bottom with a next() chain, used for auth/request interception."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://github.com/onejs/one", "https://onestack.dev/docs/introduction"],
+      "comment": "Authored in TypeScript; ships fully-typed file-system routes."
+    },
+    "type-safe-paths-links": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing"],
+      "comment": "Auto-generated app/routes.d.ts gives typed Link/navigation against known routes."
+    },
+    "type-safe-params": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing", "https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "Route params typed via generated route types; useParams and setParams take typed param objects."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "setParams params are typed but there is no first-class schema validation of search params (unlike TanStack Router)."
+    },
+    "codegen-required": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing"],
+      "comment": "Route types are generated into app/routes.d.ts during dev (or via 'one generate-routes'), not pure inference."
+    },
+    "type-safety-rating": {
+      "value": 3,
+      "source": ["https://onestack.dev/docs/routing", "https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "Typed paths/links and typed params via codegen, but search params are not schema-typed/validated — matches the 'typed params or links with gaps' tier."
+    },
+    "route-data-loaders": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction", "https://onestack.dev/docs/routing-modes"],
+      "comment": "Remix-style 'export loader' data loading that tree-shakes out of client bundles."
+    },
+    "actions-mutations": {
+      "value": false,
+      "source": ["https://onestack.dev/docs/routing-middlewares", "https://onestack.dev/docs/routing"],
+      "comment": "No Remix-style route action primitive; mutations are handled via API routes (route+api.tsx) and middleware."
+    },
+    "prefetching": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Preloads all JS for initial load and on link hover, without needing a route map."
+    },
+    "pending-transition-ui": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction", "https://onestack.dev/docs/hooks-useRouter"],
+      "comment": "Built-in loading progress bar; useRouter exposes onLoadState/subscribe for navigation loading state."
+    },
+    "scroll-restoration": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Listed among built-in features."
+    },
+    "per-route-code-splitting": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction", "https://onestack.dev/docs/routing-modes"],
+      "comment": "Per-page bundles; server-only loader code tree-shakes out of client bundles."
+    },
+    "per-route-error-handling": {
+      "value": null,
+      "source": ["https://onestack.dev/docs/routing"],
+      "comment": "Custom 404 via +not-found.tsx is documented, but a route-scoped error-boundary primitive for general errors is not clearly documented; could not confirm."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing-modes", "https://onestack.dev/docs/faq"],
+      "comment": "SSR render mode supported (route+ssr.tsx / global ssr mode), but docs note SSR 'just landed' and is less stable than SSG/SPA."
+    },
+    "streaming-ssr": {
+      "value": null,
+      "source": ["https://onestack.dev/docs/routing-modes"],
+      "comment": "Streaming/suspenseful SSR is not explicitly documented; SSR itself is early-stage, so could not confirm."
+    },
+    "react-server-components": {
+      "value": false,
+      "source": ["https://onestack.dev/docs/faq"],
+      "comment": "FAQ explicitly declines RSC: 'we find the complexity trade-off not worth it.'"
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing-modes"],
+      "comment": "SSG is the default render mode; pre-renders pages at build time."
+    },
+    "client-only-usable": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/routing-modes", "https://onestack.dev/docs/faq"],
+      "comment": "SPA render mode runs pure client-side rendering with no server."
+    },
+    "framework-bound": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Requires its own Vite-plugin toolchain and build; not a drop-in router for an arbitrary React app."
+    },
+    "bundle-size": {
+      "value": null,
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Meta-framework — a single 'router bundle' figure isn't meaningful; framework runtime size isn't comparable to a standalone router."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Ships a full framework runtime (Vite plugin, Hono production server, React Native tooling) with many dependencies."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/introduction", "https://onestack.dev/docs/routing-modes"],
+      "comment": "Server-only loader code tree-shakes out of client bundles; per-page code splitting."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://onestack.dev/docs/introduction", "https://onestack.dev/docs/routing"],
+      "comment": "Comprehensive docs: routing, render modes, middleware, guides (Tamagui, CRA migration, MDX) and API references, with some newer areas thinner."
+    },
+    "official-devtools": {
+      "value": true,
+      "source": ["https://onestack.dev/docs/faq"],
+      "comment": "Built-in dev tools (Alt+Space): SEO preview, route debugging, loader timing, error tracking, source inspector."
+    },
+    "data-fetching-integration": {
+      "value": ["built-in"],
+      "source": ["https://onestack.dev/docs/faq", "https://onestack.dev/docs/introduction"],
+      "comment": "Built-in Remix-style loaders; docs also recommend pairing with a sync engine like Zero for real-time data. No RSC."
+    },
+    "predecessor-lineage": {
+      "value": "Started as an experiment porting Expo Router to the vxrn library; built by the Tamagui team",
+      "source": ["https://onestack.dev/docs/introduction"],
+      "comment": "Docs credit the Expo team; internals were then substantially rewritten."
+    }
+  }
 }

@@ -157,7 +157,7 @@ Users should be able to:
 - [x] Next.js (App Router) — the dominant React meta-framework; file-based App Router with RSC and streaming
 - [x] TanStack Start — full-stack React framework built on TanStack Router, SSR + streaming + server functions
 - [x] Vike — flexible, framework-agnostic SSR/SSG meta-framework (formerly vite-plugin-ssr) with React support
-- [ ] One — React (and React Native) meta-framework from the Tamagui team, file-based routing across web and native
+- [x] One — React (and React Native) meta-framework from the Tamagui team, file-based routing across web and native
 - [ ] Waku — minimal React Server Components framework with file-based routing
 
 ## Notes for Researchers
