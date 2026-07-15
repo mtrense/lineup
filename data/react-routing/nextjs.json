@@ -1,5 +1,227 @@
 {
   "name": "Next.js (App Router)",
   "description": "The dominant React meta-framework; file-based App Router with RSC and streaming",
-  "values": {}
+  "lastVerified": "2026-07-15",
+  "values": {
+    "name": {
+      "value": "Next.js (App Router)",
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Official name; the App Router is the current default routing model (introduced in Next.js 13, evaluated here at v16)."
+    },
+    "description": {
+      "value": "The dominant React meta-framework; file-based App Router with React Server Components, streaming, and server actions, built on React 19.2.",
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Evaluated at Next.js 16.2.10 (July 2026); App Router uses React 19.2 canary features and Turbopack as the default bundler."
+    },
+    "website": {
+      "value": "https://nextjs.org",
+      "source": ["https://api.github.com/repos/vercel/next.js", "https://nextjs.org/blog/next-16"],
+      "comment": "Official homepage/docs (repo homepage field)."
+    },
+    "repository": {
+      "value": "https://github.com/vercel/next.js",
+      "source": ["https://api.github.com/repos/vercel/next.js"],
+      "comment": "Official GitHub repository under the vercel org."
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://api.github.com/repos/vercel/next.js", "https://registry.npmjs.org/next/latest"],
+      "comment": "SPDX MIT per GitHub license metadata and the npm `next` package manifest."
+    },
+    "category": {
+      "value": ["meta-framework"],
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Owns the build/server toolchain (Turbopack, server runtime); routing is one part of a full-stack framework, so per the guideline it gets the single meta-framework tag."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/vercel/next.js", "https://api.github.com/repos/vercel/next.js/releases/latest"],
+      "comment": "Repo pushed 2026-07-15; v16.2.10 released 2026-07-01 — very actively maintained by Vercel."
+    },
+    "initial-release": {
+      "value": "2016",
+      "source": ["https://api.github.com/repos/vercel/next.js"],
+      "comment": "Repository created October 2016; Next.js 1.0 shipped that month. (The App Router itself arrived in Next.js 13, 2022, but the framework's initial release is 2016.)"
+    },
+    "latest-release": {
+      "value": "2026-07-01",
+      "source": ["https://api.github.com/repos/vercel/next.js/releases/latest", "https://registry.npmjs.org/next/latest"],
+      "comment": "next@16.2.10, published 2026-07-01; npm dist-tag `latest` also points to 16.2.10."
+    },
+    "github-stars": {
+      "value": 141102,
+      "source": ["https://api.github.com/repos/vercel/next.js"],
+      "comment": "Stargazers count as of 2026-07-15."
+    },
+    "npm-weekly-downloads": {
+      "value": 42319226,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/next"],
+      "comment": "Weekly downloads of the `next` package for the week of 2026-07-08 to 2026-07-14."
+    },
+    "routing-paradigm": {
+      "value": ["file-based"],
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "The App Router is purely file-system based: routes are defined by folders under app/ with page.tsx/layout.tsx conventions. No JSX <Route> tree or route-config array."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Nested layout.tsx files provide shared parent layouts that persist across child routes — a core App Router feature."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "Dynamic segments via [id] folders (e.g. /details/[slotId]); params are read from the awaited params prop."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Catch-all [...slug] and optional catch-all [[...slug]] segment folder conventions are supported."
+    },
+    "search-params-api": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "First-class access via the async searchParams prop in Server Components and the useSearchParams hook in Client Components."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "useRouter().push/replace and redirect() provide imperative navigation beyond the <Link> component."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "proxy.ts (formerly middleware.ts) intercepts matching requests for redirects/rewrites/auth guards before rendering; runs on every matching request including prefetches."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/next/latest", "https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "Authored in TypeScript (with a Rust/Turbopack core) and ships first-class type definitions; TypeScript 5.1+ is required."
+    },
+    "type-safe-paths-links": {
+      "value": true,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "typedRoutes (stable since 15.5, no longer experimental) generates route types in .next/types so <Link href> and router calls are checked against existing routes; non-literal hrefs need an `as Route` cast."
+    },
+    "type-safe-params": {
+      "value": true,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "Global PageProps<\"/details/[slotId]\">/LayoutProps helper types (auto-generated by next typegen) infer params keys from the route path; values are still typed as strings, not domain types."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "searchParams is typed as a generic { [key: string]: string | string[] | undefined } record; there is no built-in schema-based validation/typing of query params (unlike TanStack Router)."
+    },
+    "codegen-required": {
+      "value": true,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "Typed links and PageProps helpers rely on generated types in .next/types, produced during next dev/next build or on demand via `next typegen`; it is a generation step rather than pure inference."
+    },
+    "type-safety-rating": {
+      "value": 3,
+      "source": ["https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"],
+      "comment": "Typed links (typedRoutes) and route-aware params via PageProps, but search params are unvalidated and param values are plain strings — matches the guideline's rating 3 (typed params/links with gaps)."
+    },
+    "route-data-loaders": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16", "https://nextjs.org/docs/app/getting-started/fetching-data"],
+      "comment": "Async Server Components fetch data on the server before render (the App Router's loader-equivalent); fetch requests are memoized/deduped within a render."
+    },
+    "actions-mutations": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Server Actions ('use server') are a first-class write/mutation primitive tied to forms and route data, paired with cache APIs like updateTag()."
+    },
+    "prefetching": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "<Link> prefetches route code/data on viewport/hover; Next.js 16 rewrote prefetching with layout deduplication and incremental prefetching."
+    },
+    "pending-transition-ui": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16", "https://nextjs.org/docs/app/guides/streaming"],
+      "comment": "loading.tsx (Suspense-backed) shows instant pending UI on navigation; integrates with React 19.2 transitions and View Transitions."
+    },
+    "scroll-restoration": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "The App Router restores and manages scroll position across navigations automatically (opt-in smooth scrolling via data-scroll-behavior in v16)."
+    },
+    "per-route-code-splitting": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Automatic per-route code splitting: each route segment is bundled and loaded independently."
+    },
+    "per-route-error-handling": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16", "https://nextjs.org/docs/app/guides/streaming"],
+      "comment": "error.tsx files define route-scoped error boundaries; during streaming the nearest error boundary catches errors and replaces only the affected section."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Turnkey server-side rendering is the default; dynamic code runs at request time out of the box (opt into caching via Cache Components / use cache)."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://nextjs.org/docs/app/guides/streaming", "https://nextjs.org/blog/next-16"],
+      "comment": "Suspense boundaries and loading.tsx stream the static shell immediately and progressively send chunks via HTTP chunked transfer; each boundary streams independently."
+    },
+    "react-server-components": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16", "https://nextjs.org/docs/app/getting-started/fetching-data"],
+      "comment": "First-class RSC: App Router components are Server Components by default, with 'use client' marking client boundaries; the reference implementation of RSC in production."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Routes can be statically prerendered (generateStaticParams for dynamic segments, output: 'export' for a fully static build) and Partial Prerendering/Cache Components stream dynamic holes within a static shell."
+    },
+    "client-only-usable": {
+      "value": false,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Next.js is server-first: routes are rendered/prerendered through the Next build, not a drop-in client SPA router. output: 'export' yields a serverless static site (prerendered HTML), not a pure CSR-only router you add to an existing app."
+    },
+    "framework-bound": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Requires the Next.js toolchain (Turbopack/webpack build + server runtime); the App Router cannot be used outside Next.js, so per the guideline it is framework-bound."
+    },
+    "bundle-size": {
+      "value": null,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Null per the guideline: Next.js is a meta-framework, so a single min+gzip 'router bundle' figure isn't meaningful or comparable to a standalone router package."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/next/latest"],
+      "comment": "The `next` package ships runtime dependencies including postcss, styled-jsx, @swc/helpers and caniuse-lite (plus optional platform SWC bindings and sharp)."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Automatic per-route code splitting and dead-code elimination via Turbopack (default) / webpack; unused server-only code is not shipped to the client."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://nextjs.org/blog/next-16", "https://nextjs.org/docs/app/guides/streaming"],
+      "comment": "Extensive docs: getting-started tutorials, App Router API reference, guides, migration/upgrade guides, interactive learn courses and codemods — matches rating 5."
+    },
+    "official-devtools": {
+      "value": true,
+      "source": ["https://nextjs.org/blog/next-16"],
+      "comment": "Next.js 16 ships a route-aware in-browser dev overlay plus Next.js DevTools MCP (Model Context Protocol) exposing routing/cache/render insight and unified logs."
+    },
+    "data-fetching-integration": {
+      "value": ["built-in", "rsc"],
+      "source": ["https://nextjs.org/docs/app/getting-started/fetching-data", "https://nextjs.org/blog/next-16"],
+      "comment": "Built-in server-side data fetching in Server Components (deduped fetch, use cache) is the primary mechanism, with RSC as first-class; docs also point to SWR/React Query for client-component fetching but those are optional, not built-in integrations."
+    },
+    "predecessor-lineage": {
+      "value": "The App Router (Next.js 13, 2022) is the successor to the Pages Router; Next.js itself was created by Vercel (then Zeit) in 2016.",
+      "source": ["https://nextjs.org/blog/next-16", "https://api.github.com/repos/vercel/next.js"],
+      "comment": "The App Router coexists with the older Pages Router but is the recommended, default routing model as of Next.js 13+."
+    }
+  }
 }

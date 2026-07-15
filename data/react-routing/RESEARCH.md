@@ -154,7 +154,7 @@ Users should be able to:
 - [x] Wouter — minimalist ~2KB hook-based router for small SPAs
 - [x] Type-Route — type-safe routing library focused on inference, framework-agnostic core with React bindings
 - [x] Router5 — framework-agnostic, state-machine-style router with a React binding
-- [ ] Next.js (App Router) — the dominant React meta-framework; file-based App Router with RSC and streaming
+- [x] Next.js (App Router) — the dominant React meta-framework; file-based App Router with RSC and streaming
 - [ ] TanStack Start — full-stack React framework built on TanStack Router, SSR + streaming + server functions
 - [ ] Vike — flexible, framework-agnostic SSR/SSG meta-framework (formerly vite-plugin-ssr) with React support
 - [ ] One — React (and React Native) meta-framework from the Tamagui team, file-based routing across web and native
