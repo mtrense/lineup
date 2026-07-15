@@ -1,5 +1,227 @@
 {
   "name": "Vike",
   "description": "Flexible, framework-agnostic SSR/SSG meta-framework (formerly vite-plugin-ssr) with React support",
-  "values": {}
+  "lastVerified": "2026-07-15",
+  "values": {
+    "name": {
+      "value": "Vike",
+      "source": ["https://vike.dev"],
+      "comment": "Official name; formerly vite-plugin-ssr."
+    },
+    "description": {
+      "value": "A flexible, framework-agnostic Vite-based SSR/SSG meta-framework (formerly vite-plugin-ssr) with a React integration via vike-react.",
+      "source": ["https://vike.dev", "https://github.com/vikejs/vike"],
+      "comment": "Positions itself as a do-one-thing-well alternative to Next.js/Nuxt, built on Vite. Evaluated at v0.4.260 (July 2026)."
+    },
+    "website": {
+      "value": "https://vike.dev",
+      "source": ["https://vike.dev", "https://api.github.com/repos/vikejs/vike"],
+      "comment": "Official docs/homepage (repo homepage field)."
+    },
+    "repository": {
+      "value": "https://github.com/vikejs/vike",
+      "source": ["https://api.github.com/repos/vikejs/vike"],
+      "comment": "Official GitHub repository under the vikejs org."
+    },
+    "license": {
+      "value": "MIT",
+      "source": ["https://api.github.com/repos/vikejs/vike", "https://registry.npmjs.org/vike/latest"],
+      "comment": "SPDX MIT per GitHub license metadata and the npm package manifest."
+    },
+    "category": {
+      "value": ["meta-framework"],
+      "source": ["https://vike.dev", "https://vike.dev/why"],
+      "comment": "Vike owns the Vite-based build/server toolchain and routing is one part of it; per the guideline a full framework gets the meta-framework tag."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/vikejs/vike", "https://github.com/vikejs/vike/releases"],
+      "comment": "Repo pushed 2026-07-09 and releases ship very frequently (v0.4.260 on 2026-06-28) — clearly active."
+    },
+    "initial-release": {
+      "value": "2021",
+      "source": ["https://api.github.com/repos/vikejs/vike"],
+      "comment": "Repository created 2021-01-28 as vite-plugin-ssr; first public releases that year. Renamed to Vike in 2023."
+    },
+    "latest-release": {
+      "value": "2026-06-28",
+      "source": ["https://api.github.com/repos/vikejs/vike/releases/latest", "https://registry.npmjs.org/vike/latest"],
+      "comment": "vike@0.4.260, the latest GitHub release (published 2026-06-28) and current npm `latest`. Vike is pre-1.0 and releases many patch versions."
+    },
+    "github-stars": {
+      "value": 5781,
+      "source": ["https://api.github.com/repos/vikejs/vike"],
+      "comment": "Stargazers count as of 2026-07-15."
+    },
+    "npm-weekly-downloads": {
+      "value": 69195,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/vike"],
+      "comment": "Weekly downloads of the primary `vike` package for the week of 2026-07-08 to 2026-07-14."
+    },
+    "routing-paradigm": {
+      "value": ["file-based", "config-object", "hook-based"],
+      "source": ["https://vike.dev/routing", "https://vike.dev/route"],
+      "comment": "Filesystem routing by default (pages/**/+Page.js); Route Strings/Route Functions declared via +route/+config objects; navigation and pageContext via functions/hooks (navigate(), usePageContext()). Routes are not declared as JSX components."
+    },
+    "nested-layout-routes": {
+      "value": true,
+      "source": ["https://vike.dev/Layout", "https://vike.dev/routing"],
+      "comment": "Shared/nested layouts via the +Layout setting and config inheritance across page groups."
+    },
+    "dynamic-params": {
+      "value": true,
+      "source": ["https://vike.dev/routing", "https://vike.dev/route-string"],
+      "comment": "Dynamic segments like /movie/@id, read via pageContext.routeParams."
+    },
+    "optional-catch-all-params": {
+      "value": true,
+      "source": ["https://vike.dev/route-string", "https://vike.dev/route-function"],
+      "comment": "Catch-all/glob segments (e.g. /@*rest) in Route Strings, and full wildcard/regex matching via Route Functions."
+    },
+    "search-params-api": {
+      "value": false,
+      "source": ["https://vike.dev/pageContext", "https://vike.dev/navigate"],
+      "comment": "pageContext.urlParsed exposes parsed search/searchAll (read-only), but there is no first-class reactive read/write query-state API like useSearchParams; writing query state means navigating to a new URL."
+    },
+    "programmatic-navigation": {
+      "value": true,
+      "source": ["https://vike.dev/navigate"],
+      "comment": "navigate('/some/url') plus reload() (Client Routing); redirect() available in guard()/hooks."
+    },
+    "route-guards-middleware": {
+      "value": true,
+      "source": ["https://vike.dev/guard", "https://vike.dev/routing"],
+      "comment": "Built-in guard() hook (+guard.js) runs before render to protect pages and can redirect/throw render()."
+    },
+    "written-in-typescript": {
+      "value": true,
+      "source": ["https://github.com/vikejs/vike", "https://registry.npmjs.org/vike/latest"],
+      "comment": "Authored in TypeScript with first-class type definitions (vike/types)."
+    },
+    "type-safe-paths-links": {
+      "value": false,
+      "source": ["https://github.com/vikejs/vike/issues/698", "https://vike.dev/routing"],
+      "comment": "Type-safe links checked against route definitions are still a work-in-progress feature (tracked in issue #698); links are plain <a>/navigate() strings today."
+    },
+    "type-safe-params": {
+      "value": false,
+      "source": ["https://vike.dev/routeParams", "https://github.com/vikejs/vike/discussions/1369"],
+      "comment": "pageContext.routeParams is typed as a generic string-keyed record, not inferred from the route string; you must narrow/cast it yourself."
+    },
+    "type-safe-search-params": {
+      "value": false,
+      "source": ["https://vike.dev/pageContext"],
+      "comment": "No built-in schema-based typing/validation of query/search params."
+    },
+    "codegen-required": {
+      "value": false,
+      "source": ["https://vike.dev/pageContext", "https://github.com/vikejs/vike/discussions/1369"],
+      "comment": "No route-type codegen step; pageContext typing is done manually by extending the global Vike.PageContext interface via declare global."
+    },
+    "type-safety-rating": {
+      "value": 2,
+      "source": ["https://github.com/vikejs/vike/issues/698", "https://vike.dev/pageContext"],
+      "comment": "Fully written in TS with typed pageContext, but paths, params, and search are not checked against routes (params are generic strings, typed links WIP) — matches the guideline's rating 2."
+    },
+    "route-data-loaders": {
+      "value": true,
+      "source": ["https://vike.dev/data", "https://vike.dev/data-fetching"],
+      "comment": "Route-level +data() hook runs before render; components read it via useData() (vike-react)."
+    },
+    "actions-mutations": {
+      "value": false,
+      "source": ["https://vike.dev/data-fetching"],
+      "comment": "No built-in route action/mutation primitive; docs recommend external RPC/mutation tools (Telefunc, tRPC, TanStack Query). RSC-style server actions exist only in the experimental vike-react-rsc extension."
+    },
+    "prefetching": {
+      "value": true,
+      "source": ["https://vike.dev/prefetchStaticAssets", "https://vike.dev/prefetch"],
+      "comment": "prefetchStaticAssets ('hover' default, 'viewport' option) and programmatic prefetch() prefetch route code/static assets on intent; note it prefetches static assets, not the page's pageContext/data."
+    },
+    "pending-transition-ui": {
+      "value": true,
+      "source": ["https://vike.dev/onPageTransitionStart", "https://vike.dev/client-routing"],
+      "comment": "Built-in +onPageTransitionStart / +onPageTransitionEnd hooks let you show a loading/pending indicator during Client Routing navigations."
+    },
+    "scroll-restoration": {
+      "value": true,
+      "source": ["https://vike.dev/keepScrollPosition", "https://vike.dev/client-routing"],
+      "comment": "Client Routing restores scroll on back/forward and scrolls to top on navigation by default; +keepScrollPosition / keep-scroll-position preserve position across groups."
+    },
+    "per-route-code-splitting": {
+      "value": true,
+      "source": ["https://vike.dev/vike-react", "https://vike.dev/routing"],
+      "comment": "Automatic per-page code splitting via filesystem routing and Vite."
+    },
+    "per-route-error-handling": {
+      "value": true,
+      "source": ["https://vike.dev/error-page", "https://vike.dev/onError"],
+      "comment": "Error handling via the +error-page setting and +onError() hook; error pages can be scoped through config inheritance per page group, though it is closer to a configurable error page than React Router's nested per-route error elements."
+    },
+    "ssr-support": {
+      "value": true,
+      "source": ["https://vike.dev/ssr", "https://vike.dev/vike-react"],
+      "comment": "Turnkey SSR is a core feature, enabled by default via the vike-react extension with a per-page +ssr toggle."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://vike.dev/streaming", "https://vike.dev/stream"],
+      "comment": "First-class HTML streaming via the +stream setting (react-streaming), with progressive/Suspense rendering and Node + Web Stream support."
+    },
+    "react-server-components": {
+      "value": false,
+      "source": ["https://github.com/vikejs/vike/issues/735", "https://github.com/nitedani/vike-react-rsc"],
+      "comment": "RSC is not first-class in core vike-react; it is available only through the separate, experimental (in-progress) vike-react-rsc extension. Standard vike-react users are steered toward RPC (Telefunc) instead of server actions."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://vike.dev/pre-rendering", "https://vike.dev/prerender"],
+      "comment": "Built-in pre-rendering (SSG) via the +prerender setting emits static HTML at build time; can be mixed with SSR/SPA per page."
+    },
+    "client-only-usable": {
+      "value": true,
+      "source": ["https://vike.dev/ssr", "https://vike.dev/spa"],
+      "comment": "SSR can be disabled globally or per page (+ssr: false) to run as a pure client-side SPA — but still requires the Vike/Vite build toolchain."
+    },
+    "framework-bound": {
+      "value": true,
+      "source": ["https://vike.dev/why", "https://vike.dev"],
+      "comment": "Vike requires its own Vite-based build/framework toolchain; it cannot be dropped into an arbitrary React app as a plain library, so per the guideline it is framework-bound."
+    },
+    "bundle-size": {
+      "value": null,
+      "source": ["https://vike.dev/why"],
+      "comment": "Vike is a meta-framework, not a standalone router package; a single min+gzip 'router bundle' figure isn't comparable to library routers, so per the guideline this is null."
+    },
+    "zero-runtime-dependencies": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/vike/latest"],
+      "comment": "The vike package ships many runtime/build dependencies (vite, esbuild, @babel/core, cac, magic-string, sirv, etc.)."
+    },
+    "tree-shakeable": {
+      "value": true,
+      "source": ["https://vike.dev/why", "https://vike.dev/routing"],
+      "comment": "Built on Vite/Rollup with automatic per-page code splitting and dead-code elimination for the app bundle."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://vike.dev", "https://vike.dev/routing", "https://vike.dev/tools"],
+      "comment": "Comprehensive per-setting API reference, guides, migration notes, and tool-integration examples; organization can be dense/fragmented across many +setting pages — matches rating 4."
+    },
+    "official-devtools": {
+      "value": false,
+      "source": ["https://vike.dev"],
+      "comment": "No dedicated official route/navigation devtools inspector; Vike offers build-time DX warnings and hook timing but no browser inspector panel."
+    },
+    "data-fetching-integration": {
+      "value": ["built-in", "react-query"],
+      "source": ["https://vike.dev/data-fetching", "https://github.com/vikejs/vike-react/tree/main/packages/vike-react-query"],
+      "comment": "Built-in +data() loader is the primary mechanism; official vike-react-query extension provides first-class TanStack Query integration. tRPC/Telefunc are documented as recommended tools, and RSC integration exists only via the experimental vike-react-rsc extension."
+    },
+    "predecessor-lineage": {
+      "value": "Formerly vite-plugin-ssr; renamed to Vike in 2023.",
+      "source": ["https://vike.dev", "https://api.github.com/repos/vikejs/vike"],
+      "comment": "Same project and repository (created 2021 as vite-plugin-ssr), rebranded to Vike."
+    }
+  }
 }
