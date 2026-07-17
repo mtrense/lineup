@@ -2,7 +2,7 @@
   "name": "OpenAI Codex (CLI)",
   "description": "OpenAI's open-source terminal coding agent",
   "url": "https://github.com/openai/codex",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-17",
   "values": {
     "developer": {
       "value": "OpenAI",
@@ -303,6 +303,11 @@
       "value": ["auto-run-all"],
       "source": ["https://developers.openai.com/codex/concepts/sandboxing", "https://developers.openai.com/codex/agent-approvals-security"],
       "comment": "Default Auto mode (in version-controlled folders) auto-applies edits AND runs routine local commands inside the workspace sandbox without prompting, asking only before network access or going beyond the workspace boundary — closest to auto-run-all, with the sandbox (not prompts) as the safety net. Non-version-controlled folders start read-only until the directory is trusted. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://learn.chatgpt.com/docs/agent-approvals-security", "https://developers.openai.com/codex/cli/reference"],
+      "comment": "The Auto preset (--sandbox workspace-write --ask-for-approval on-request) auto-applies edits and runs commands in the workspace without per-action prompts, asking only for out-of-workspace or network actions — the intermediate rung. It is quickly toggled in-session via the /permissions command (older /approvals). Distinct from the full skip-all bypass (Full Access / --dangerously-bypass-approvals-and-sandbox), captured under unsupervised-mode. Checked 2026-07-17."
     }
   }
 }
