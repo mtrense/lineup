@@ -2,7 +2,7 @@
   "name": "Claude Code",
   "description": "Anthropic's terminal-first agentic coding tool; reference CLI agent",
   "url": "https://code.claude.com/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-17",
   "values": {
     "developer": {
       "value": "Anthropic",
@@ -302,6 +302,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://code.claude.com/docs/en/permission-modes", "https://code.claude.com/docs/en/permissions"],
       "comment": "Out-of-the-box 'default' mode runs reads without asking but prompts on first use of each editing tool and each Bash command; protected-path writes always prompt. acceptEdits (auto-edit, ask commands) and bypass are opt-in modes, not the default."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://code.claude.com/docs/en/permission-modes"],
+      "comment": "acceptEdits mode is the in-session middle rung: press Shift+Tab from Manual mode (status bar shows '⏵⏵ accept edits on') and Claude creates/edits files in the working directory plus common filesystem commands (mkdir, touch, mv, cp, rm, sed) without per-action prompts, while other Bash commands and protected-path writes still prompt. Reversible by cycling Shift+Tab again; distinct from the full bypassPermissions/--dangerously-skip-permissions switch (Unsupervised Mode). Checked 2026-07-17."
     }
   }
 }
