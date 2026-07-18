@@ -2,7 +2,7 @@
   "name": "Goose",
   "description": "Open-source, on-machine AI agent (CLI and desktop, Rust) under the Linux Foundation's Agentic AI Foundation; multi-provider and MCP-native.",
   "url": "https://block.github.io/goose/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Block",
@@ -312,6 +312,11 @@
       "value": ["auto-run-all"],
       "source": ["https://deepwiki.com/block/goose/6.2-permission-modes-and-tool-approval", "https://github.com/block/goose/discussions/4324"],
       "comment": "Out of the box Goose runs in Autonomous mode, executing file edits and shell commands without asking for per-action approval. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://goose-docs.ai/docs/guides/managing-tools/goose-permissions/", "https://deepwiki.com/block/goose/6.2-permission-modes-and-tool-approval"],
+      "comment": "Goose has a fast in-session mode toggle (CLI /mode auto|smart_approve|approve|chat, Desktop mode button), but no distinct intermediate 'auto-accept edits' rung: the only mode that auto-applies edits without prompts is Auto, which is the full skip-all-permissions bypass already captured under unsupervised-mode (and is in fact the default). The intermediate mode, Smart Approve, auto-runs only low-risk/read-only actions and still shows Allow/Deny prompts for file writes and edits, so it gates edits rather than auto-accepting them. Per the guideline, a tool whose only edit-auto-applying option is the full bypass is false here. Checked 2026-07-18."
     }
   }
 }
