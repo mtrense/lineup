@@ -2,7 +2,7 @@
   "name": "opencode",
   "description": "Open-source terminal-based AI coding agent.",
   "url": "https://opencode.ai/docs/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Anomaly (formerly SST / Serverless Stack team)",
@@ -302,6 +302,11 @@
       "value": ["auto-run-all"],
       "source": ["https://opencode.ai/docs/permissions/", "https://opencode.ai/docs/config/"],
       "comment": "Out of the box opencode allows all operations without approval - bash commands and file edits run automatically (doom_loop and external_directory default to ask, and *.env reads are denied). The only carve-outs keep this short of fully unrestricted, but edits and commands are not prompted by default. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/"],
+      "comment": "In-session middle rung exists: the TUI command palette offers 'Enable auto-approve permissions' / 'Disable auto-approve permissions' to toggle modes without editing config, and each permission prompt offers 'always' (allow matching patterns for the rest of the session). This is distinct from the full skip-all-permissions bypass (permission: allow / OPENCODE_PERMISSION) captured in unsupervised-mode. Toggle is via command palette rather than a dedicated Shift+Tab keybind (a Shift+Tab-style cycle is an open feature request, issue #7928). Checked 2026-07-18."
     }
   }
 }
