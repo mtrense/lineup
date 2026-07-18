@@ -2,7 +2,7 @@
   "name": "Factory Droid",
   "description": "Factory's agent-native CLI agent (\"Droid\") for autonomous, multi-model software development; enterprise-positioned.",
   "url": "https://factory.ai",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Factory AI",
@@ -302,6 +302,11 @@
       "value": ["auto-edit-ask-commands"],
       "source": ["https://docs.factory.ai/cli/user-guides/auto-run", "http://agent-safehouse.dev/docs/agent-investigations/droid"],
       "comment": "Interactive sessions start at a configured default autonomy where file edits and low-risk commands run but higher-risk commands pause for approval (autonomy = highest-risk work allowed without pausing). The non-interactive droid exec mode is read-only by default until an --auto level is passed (checked 2026-06-12)."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://docs.factory.ai/cli/user-guides/auto-run"],
+      "comment": "In-session autonomy is quickly toggled with Ctrl+L, which cycles Off/Low/Medium/High. At Low (or higher) Droid auto-applies file edits and low-risk commands without per-action prompts — an intermediate rung distinct from the full --skip-permissions-unsafe bypass (Unsupervised Mode). Shift+Tab toggles Auto vs read-only Spec Mode (checked 2026-07-18)."
     }
   }
 }
