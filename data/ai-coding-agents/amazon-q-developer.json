@@ -2,7 +2,7 @@
   "name": "Amazon Q Developer",
   "description": "AWS's IDE/CLI coding agent",
   "url": "https://aws.amazon.com/q/developer/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Amazon Web Services (AWS)",
@@ -392,6 +392,14 @@
         "https://aws.amazon.com/blogs/aws/amazon-q-developer-elevates-the-ide-experience-with-new-agentic-coding-experience/"
       ],
       "comment": "Two surfaces differ. CLI out-of-the-box: fs_read trusted, but fs_write and execute_bash both prompt per request — i.e. `prompt-each-action`. The IDE agentic experience lets you choose between automated modifications and step-by-step confirmation, defaulting toward applying file diffs for review while gating actions; tagged `auto-edit-ask-commands` for that surface. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": [
+        "https://dev.to/zhizhiarv/how-to-persist-tool-permissions-in-amazon-q-developer-cli-18fl",
+        "https://aws.github.io/amazon-q-developer-cli/built-in-tools.html"
+      ],
+      "comment": "Middle rung between per-action prompting and full bypass. In the CLI, fs_write prompts per edit by default, but the in-session `/tools trust fs_write` command trusts just that tool for the rest of the session so file edits auto-apply without prompts while execute_bash still prompts — the analog of Claude Code's Shift+Tab auto-accept edits. This is distinct from the full `/tools trust-all` (formerly `/acceptall`) / `--trust-all-tools` bypass recorded under unsupervised-mode. The IDE agentic experience similarly applies edits directly (reviewable via diff) and auto-runs low-risk commands while gating higher-risk ones. Checked 2026-07-18."
     }
   }
 }
