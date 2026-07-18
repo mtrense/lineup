@@ -2,7 +2,7 @@
   "name": "OpenHands",
   "description": "Open-source autonomous agent platform (formerly OpenDevin) that completes whole engineering tasks across a codebase via CLI and web.",
   "url": "https://www.openhands.dev/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "All Hands AI",
@@ -302,6 +302,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://docs.openhands.dev/openhands/usage/cli/terminal", "https://docs.openhands.dev/sdk/guides/security"],
       "comment": "Documented default is 'Always ask for confirmation' on each action (AlwaysConfirm) before edits and commands; auto-approval is opt-in via --always-approve or headless mode."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://docs.openhands.dev/openhands/usage/cli/terminal", "https://github.com/OpenHands/OpenHands/issues/5762"],
+      "comment": "No quick in-session 'auto-accept edits'-style toggle. An intermediate risk-based approval mode exists (--llm-approve / ConfirmRisky auto-approves safe actions, asks on risky ones) but only as a launch flag, not a quickly-toggled in-session switch; mid-session toggling of confirmation mode is still an open feature request (#5762/#6161). The only in-session non-prompting path is the full --always-approve/--yolo bypass, which is captured under Unsupervised Mode. Checked 2026-07-18."
     }
   }
 }
