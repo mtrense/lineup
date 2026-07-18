@@ -1,0 +1,664 @@
+{
+  "name": "Rust SPA Frameworks",
+  "description": "Frameworks and libraries for building Single Page Applications and full-stack web apps in Rust, compared across reactivity model, WASM toolchain, rendering and full-stack story, routing, styling, and ecosystem",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Basic identifying information, licensing, and maintenance status",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "description",
+          "name": "Description",
+          "valueType": "text",
+          "description": "One-line value proposition of the framework"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "blue" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" }
+            ]
+          },
+          "description": "Primary open-source license(s); note dual-licensing in a comment"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository (GitHub, GitLab)"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Top-level framework crate page on crates.io"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Primary documentation site (book, docs.rs, or custom guide)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release or first crates.io publish"
+        },
+        {
+          "id": "latest-stable-version",
+          "name": "Latest Stable Version",
+          "valueType": "text",
+          "description": "Current stable version from crates.io"
+        },
+        {
+          "id": "latest-release",
+          "name": "Latest Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of the most recent crates.io release"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively Maintained", "color": "green" },
+              { "id": "passively-maintained", "value": "Passively Maintained", "color": "blue" },
+              { "id": "seeking-maintainer", "value": "Seeking Maintainer", "color": "orange" },
+              { "id": "archived", "value": "Archived", "color": "red" },
+              { "id": "abandoned", "value": "Abandoned", "color": "red" }
+            ]
+          },
+          "description": "Based on commits/releases in the last 6 months"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "experimental", "value": "Experimental", "color": "red" },
+              { "id": "beta", "value": "Beta", "color": "orange" },
+              { "id": "stable", "value": "Stable", "color": "blue" },
+              { "id": "mature", "value": "Mature", "color": "green" }
+            ]
+          },
+          "description": "Based on API stability, production usage, and 1.0 status"
+        },
+        {
+          "id": "corporate-foundation-backing",
+          "name": "Corporate/Foundation Backing",
+          "valueType": "text",
+          "description": "Company or org funding development, or \"Community\" if none"
+        }
+      ]
+    },
+    {
+      "id": "architecture-reactivity",
+      "name": "Architecture & Reactivity",
+      "description": "Reactivity model, component and view authoring, and state management",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "reactivity-model",
+          "name": "Reactivity Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "signals", "value": "Signals", "color": "green" },
+              { "id": "virtual-dom", "value": "Virtual DOM", "color": "blue" },
+              { "id": "elm", "value": "Elm", "color": "purple" },
+              { "id": "compiler-driven", "value": "Compiler-Driven", "color": "orange" }
+            ]
+          },
+          "description": "Primary mechanism by which state changes propagate; tag all that apply"
+        },
+        {
+          "id": "component-model",
+          "name": "Component Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "function-components", "value": "Function Components", "color": "blue" },
+              { "id": "struct-components", "value": "Struct Components", "color": "green" },
+              { "id": "hybrid", "value": "Hybrid", "color": "purple" }
+            ]
+          },
+          "description": "How components are defined"
+        },
+        {
+          "id": "view-authoring",
+          "name": "View Authoring",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rsx-macro", "value": "RSX Macro", "color": "blue" },
+              { "id": "html-macro", "value": "HTML Macro", "color": "green" },
+              { "id": "builder-api", "value": "Builder API", "color": "orange" },
+              { "id": "dsl", "value": "DSL", "color": "purple" }
+            ]
+          },
+          "description": "How views are written; tag all supported"
+        },
+        {
+          "id": "fine-grained-updates",
+          "name": "Fine-Grained Updates",
+          "valueType": "boolean",
+          "description": "Updates target the exact DOM nodes affected (no full-subtree re-render/diff)"
+        },
+        {
+          "id": "uses-virtual-dom",
+          "name": "Uses Virtual DOM",
+          "valueType": "boolean",
+          "description": "Maintains a virtual DOM and diffs it against the previous render"
+        },
+        {
+          "id": "async-await-in-components",
+          "name": "Async/Await in Components",
+          "valueType": "boolean",
+          "description": "Components/resources can natively .await async data loading"
+        },
+        {
+          "id": "global-state-solution",
+          "name": "Global State Solution",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "context", "value": "Context", "color": "blue" },
+              { "id": "signals", "value": "Signals", "color": "green" },
+              { "id": "external-crate", "value": "External Crate", "color": "orange" },
+              { "id": "none-built-in", "value": "None Built-in", "color": "gray" }
+            ]
+          },
+          "description": "How app-wide shared state is handled"
+        }
+      ]
+    },
+    {
+      "id": "wasm-build-toolchain",
+      "name": "WASM & Build Toolchain",
+      "description": "Compilation target, build tooling, bundle size, and JS interop",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "compiles-to",
+          "name": "Compiles To",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "wasm", "value": "WASM", "color": "purple" },
+              { "id": "js", "value": "JS", "color": "orange" },
+              { "id": "both", "value": "Both", "color": "blue" }
+            ]
+          },
+          "description": "Compilation target"
+        },
+        {
+          "id": "primary-build-tool",
+          "name": "Primary Build Tool",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "trunk", "value": "Trunk", "color": "blue" },
+              { "id": "wasm-pack", "value": "wasm-pack", "color": "green" },
+              { "id": "dioxus-cli", "value": "Dioxus CLI", "color": "orange" },
+              { "id": "cargo-leptos", "value": "cargo-leptos", "color": "purple" },
+              { "id": "custom-cli", "value": "Custom CLI", "color": "gray" },
+              { "id": "wasm-bindgen-cli", "value": "wasm-bindgen CLI", "color": "gray" }
+            ]
+          },
+          "description": "Officially recommended build toolchain"
+        },
+        {
+          "id": "official-cli",
+          "name": "Official CLI",
+          "valueType": "boolean",
+          "description": "First-party scaffolding/build/dev-server CLI"
+        },
+        {
+          "id": "dev-server-hmr",
+          "name": "Dev Server / HMR",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "hot-reload", "value": "Hot Reload", "color": "green" },
+              { "id": "live-reload", "value": "Live Reload", "color": "blue" },
+              { "id": "manual", "value": "Manual", "color": "orange" }
+            ]
+          },
+          "description": "Dev-server reload capability"
+        },
+        {
+          "id": "minimal-wasm-bundle-size",
+          "name": "Minimal WASM Bundle Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Release build of a minimal hello-world app, .wasm gzipped; smaller is better. Record version/profile/date in a comment"
+        },
+        {
+          "id": "js-interop",
+          "name": "JS Interop",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "wasm-bindgen", "value": "wasm-bindgen", "color": "blue" },
+              { "id": "web-sys", "value": "web-sys", "color": "green" },
+              { "id": "js-sys", "value": "js-sys", "color": "purple" },
+              { "id": "custom-bindings", "value": "Custom Bindings", "color": "orange" }
+            ]
+          },
+          "description": "Mechanisms exposed for talking to browser/JS APIs"
+        },
+        {
+          "id": "js-interop-ergonomics",
+          "name": "JS Interop Ergonomics",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = calling JS / using web APIs is smooth and well-documented; 1 = awkward, poorly documented"
+        },
+        {
+          "id": "no-std-minimal-runtime",
+          "name": "no_std / Minimal Runtime",
+          "valueType": "boolean",
+          "description": "Can build without full std or with a deliberately minimal runtime footprint"
+        }
+      ]
+    },
+    {
+      "id": "rendering-full-stack",
+      "name": "Rendering & Full-Stack",
+      "description": "Client and server rendering, hydration, and full-stack server-function story",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "client-side-rendering-spa",
+          "name": "Client-Side Rendering (SPA)",
+          "valueType": "boolean",
+          "description": "Supports a pure client-rendered SPA mode (baseline requirement for inclusion)"
+        },
+        {
+          "id": "server-side-rendering",
+          "name": "Server-Side Rendering",
+          "valueType": "boolean",
+          "description": "Can render HTML on the server for first paint"
+        },
+        {
+          "id": "static-site-generation",
+          "name": "Static Site Generation",
+          "valueType": "boolean",
+          "description": "Can pre-render routes to static HTML at build time"
+        },
+        {
+          "id": "hydration",
+          "name": "Hydration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "full", "value": "Full", "color": "blue" },
+              { "id": "progressive", "value": "Progressive", "color": "green" },
+              { "id": "islands", "value": "Islands", "color": "purple" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Hydration modes supported"
+        },
+        {
+          "id": "server-functions",
+          "name": "Server Functions",
+          "valueType": "boolean",
+          "description": "Integrated, isomorphic server-function mechanism (call server logic from client code, wiring generated)"
+        },
+        {
+          "id": "streaming-ssr",
+          "name": "Streaming SSR",
+          "valueType": "boolean",
+          "description": "Supports streaming server-rendered HTML"
+        },
+        {
+          "id": "backend-integration",
+          "name": "Backend Integration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "axum", "value": "Axum", "color": "blue" },
+              { "id": "actix-web", "value": "Actix Web", "color": "green" },
+              { "id": "warp", "value": "Warp", "color": "orange" },
+              { "id": "viz", "value": "Viz", "color": "purple" },
+              { "id": "standalone", "value": "Standalone", "color": "gray" },
+              { "id": "any", "value": "Any", "color": "gray" }
+            ]
+          },
+          "description": "Server frameworks it integrates with for full-stack mode"
+        },
+        {
+          "id": "isomorphic-routing",
+          "name": "Isomorphic Routing",
+          "valueType": "boolean",
+          "description": "The same router resolves routes identically on server and client"
+        }
+      ]
+    },
+    {
+      "id": "routing-navigation",
+      "name": "Routing & Navigation",
+      "description": "First-party routing and navigation capabilities",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "official-router",
+          "name": "Official Router",
+          "valueType": "boolean",
+          "description": "First-party routing solution shipped or maintained by the core team"
+        },
+        {
+          "id": "router-name",
+          "name": "Router Name",
+          "valueType": "text",
+          "description": "Name of the router crate/module, or null"
+        },
+        {
+          "id": "nested-routes",
+          "name": "Nested Routes",
+          "valueType": "boolean",
+          "description": "Supports nested/child route layouts"
+        },
+        {
+          "id": "dynamic-route-params",
+          "name": "Dynamic Route Params",
+          "valueType": "boolean",
+          "description": "Parameterized routes (e.g. /user/:id)"
+        },
+        {
+          "id": "typed-routes",
+          "name": "Typed Routes",
+          "valueType": "boolean",
+          "description": "Routes are type-checked (enum/derive-based) rather than string-matched"
+        },
+        {
+          "id": "route-guards",
+          "name": "Route Guards",
+          "valueType": "boolean",
+          "description": "Navigation guards / redirect hooks before entering a route"
+        },
+        {
+          "id": "lazy-code-split-routes",
+          "name": "Lazy / Code-Split Routes",
+          "valueType": "boolean",
+          "description": "Routes can be code-split and loaded on demand"
+        }
+      ]
+    },
+    {
+      "id": "ui-styling",
+      "name": "UI & Styling",
+      "description": "Styling approaches, component ecosystem, forms, and UI primitives",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "styling-approach",
+          "name": "Styling Approach",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "plain-css", "value": "Plain CSS", "color": "blue" },
+              { "id": "scoped-css", "value": "Scoped CSS", "color": "green" },
+              { "id": "css-in-rust", "value": "CSS-in-Rust", "color": "purple" },
+              { "id": "tailwind-friendly", "value": "Tailwind-Friendly", "color": "orange" },
+              { "id": "inline-style", "value": "Inline Style", "color": "gray" },
+              { "id": "external-only", "value": "External Only", "color": "gray" }
+            ]
+          },
+          "description": "First-class styling approaches"
+        },
+        {
+          "id": "scoped-styles",
+          "name": "Scoped Styles",
+          "valueType": "boolean",
+          "description": "Built-in component-scoped styling (styles don't leak globally)"
+        },
+        {
+          "id": "component-library-ecosystem",
+          "name": "Component Library Ecosystem",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = several mature UI component libraries; 3 = a few community kits; 1 = essentially none"
+        },
+        {
+          "id": "forms-inputs",
+          "name": "Forms & Inputs",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "two-way-binding", "value": "Two-Way Binding", "color": "blue" },
+              { "id": "controlled", "value": "Controlled", "color": "green" },
+              { "id": "uncontrolled", "value": "Uncontrolled", "color": "orange" },
+              { "id": "form-helpers", "value": "Form Helpers", "color": "purple" }
+            ]
+          },
+          "description": "How form state is handled"
+        },
+        {
+          "id": "svg-canvas-support",
+          "name": "SVG / Canvas Support",
+          "valueType": "boolean",
+          "description": "First-class SVG authoring in the view macro / interop for canvas"
+        },
+        {
+          "id": "suspense-loading-ui",
+          "name": "Suspense / Loading UI",
+          "valueType": "boolean",
+          "description": "Declarative loading boundaries for async resources"
+        },
+        {
+          "id": "error-boundaries",
+          "name": "Error Boundaries",
+          "valueType": "boolean",
+          "description": "Catch and render fallback UI for errors in the component tree"
+        }
+      ]
+    },
+    {
+      "id": "developer-experience",
+      "name": "Developer Experience",
+      "description": "Documentation, ergonomics, tooling, and testing support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = book + tutorials + API docs + examples; 3 = adequate API docs with some examples; 1 = minimal/outdated"
+        },
+        {
+          "id": "api-ergonomics",
+          "name": "API Ergonomics",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = idiomatic Rust, minimal boilerplate, good error messages; 3 = functional but verbose; 1 = heavy boilerplate or lifetime friction"
+        },
+        {
+          "id": "compile-times",
+          "name": "Compile Times",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "fast", "value": "Fast", "color": "green" },
+              { "id": "moderate", "value": "Moderate", "color": "blue" },
+              { "id": "slow", "value": "Slow", "color": "red" }
+            ]
+          },
+          "description": "Relative to peer Rust web frameworks for a small app"
+        },
+        {
+          "id": "examples-count",
+          "name": "Examples Count",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "extensive", "value": "Extensive", "color": "green" },
+              { "id": "good", "value": "Good", "color": "blue" },
+              { "id": "limited", "value": "Limited", "color": "orange" },
+              { "id": "minimal", "value": "Minimal", "color": "red" }
+            ]
+          },
+          "description": "Official repo examples: extensive >20, good 10-20, limited 3-10, minimal <3"
+        },
+        {
+          "id": "interactive-playground",
+          "name": "Interactive Playground",
+          "valueType": "link",
+          "description": "URL to an online playground/REPL/example gallery, or null"
+        },
+        {
+          "id": "browser-devtools",
+          "name": "Browser DevTools",
+          "valueType": "boolean",
+          "description": "Dedicated devtools/inspector (component tree, signals) beyond generic browser tools"
+        },
+        {
+          "id": "testing-support",
+          "name": "Testing Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "wasm-bindgen-test", "value": "wasm-bindgen-test", "color": "blue" },
+              { "id": "component-testing", "value": "Component Testing", "color": "green" },
+              { "id": "e2e-friendly", "value": "E2E-Friendly", "color": "purple" },
+              { "id": "none-official", "value": "None Official", "color": "gray" }
+            ]
+          },
+          "description": "Test story the framework documents/supports"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-community",
+      "name": "Ecosystem & Community",
+      "description": "Adoption metrics, community health, and surrounding ecosystem",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Snapshot star count; note the date"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "All-time downloads of the top-level crate"
+        },
+        {
+          "id": "contributors",
+          "name": "Contributors",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Approximate GitHub contributor count"
+        },
+        {
+          "id": "community-size",
+          "name": "Community Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "large", "value": "Large", "color": "green" },
+              { "id": "medium", "value": "Medium", "color": "blue" },
+              { "id": "small", "value": "Small", "color": "orange" },
+              { "id": "solo", "value": "Solo", "color": "gray" }
+            ]
+          },
+          "description": "Rough size of the active community"
+        },
+        {
+          "id": "ecosystem-crates",
+          "name": "Ecosystem Crates",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rich", "value": "Rich", "color": "green" },
+              { "id": "growing", "value": "Growing", "color": "blue" },
+              { "id": "minimal", "value": "Minimal", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Availability of routers, component kits, and integrations"
+        },
+        {
+          "id": "notable-production-users",
+          "name": "Notable Production Users",
+          "valueType": "text",
+          "description": "Shipping apps/companies known to use it; null if none widely documented"
+        },
+        {
+          "id": "meta-framework-full-stack-kit",
+          "name": "Meta-Framework / Full-Stack Kit",
+          "valueType": "text",
+          "description": "Name of the associated full-stack layer, or null"
+        }
+      ]
+    }
+  ]
+}
