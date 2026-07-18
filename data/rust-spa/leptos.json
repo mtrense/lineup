@@ -1,5 +1,315 @@
 {
   "name": "Leptos",
   "description": "Fine-grained signals, full-stack with server functions and islands, one of the most active Rust web frameworks",
-  "values": {}
+  "url": "https://leptos.dev/",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "Full-stack, fine-grained reactive Rust web framework with signals, server functions, and islands, inspired by SolidJS",
+      "source": ["https://github.com/leptos-rs/leptos", "https://leptos.dev/"],
+      "comment": "GitHub description: \"Build fast web applications with Rust.\""
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/api/v1/crates/leptos/0.8.20"],
+      "comment": "crates.io version metadata reports license MIT (not dual-licensed)."
+    },
+    "repository": {
+      "value": "https://github.com/leptos-rs/leptos",
+      "source": ["https://github.com/leptos-rs/leptos"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/leptos",
+      "source": ["https://crates.io/api/v1/crates/leptos"]
+    },
+    "documentation": {
+      "value": "https://book.leptos.dev/",
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Official Leptos book; API docs also at docs.rs/leptos."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://crates.io/api/v1/crates/leptos"],
+      "comment": "Crate first published 2022-10-07."
+    },
+    "latest-stable-version": {
+      "value": "0.8.20",
+      "source": ["https://crates.io/api/v1/crates/leptos"],
+      "comment": "Latest stable per crates.io as of 2026-07-19; a 0.9.0-beta prerelease was published 2026-07-18."
+    },
+    "latest-release": {
+      "value": "2026-06-25",
+      "source": ["https://crates.io/api/v1/crates/leptos"],
+      "comment": "Date of the 0.8.20 stable release. Most recent crates.io publish overall is 0.9.0-beta on 2026-07-18 (prerelease)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/leptos-rs/leptos", "https://crates.io/api/v1/crates/leptos"],
+      "comment": "Frequent releases (multiple in 2026) and commits pushed within the last day as of 2026-07-19."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/leptos", "https://book.leptos.dev/"],
+      "comment": "Still pre-1.0 (0.8.x stable line, 0.9 in beta); API stabilizing and production-usable but not yet 1.0."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "Open-source community project (leptos-rs org) funded largely via GitHub Sponsors; no single corporate owner."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "Fine-grained reactivity via signals (SolidJS-inspired); a signal change updates the exact affected node without re-running components."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Components are functions annotated with #[component]."
+    },
+    "view-authoring": {
+      "value": ["rsx-macro", "builder-api"],
+      "source": ["https://github.com/leptos-rs/leptos", "https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Primary authoring is the JSX-like view! macro; a builder API also exists (counter_without_macros example)."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "Signal changes target exact DOM nodes; no full-subtree re-render."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "No virtual DOM; fine-grained reactive updates instead of diffing."
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Async data via Resource + <Suspense>; server functions and resources are awaitable."
+    },
+    "global-state-solution": {
+      "value": ["context", "signals"],
+      "source": ["https://book.leptos.dev/"],
+      "comment": "provide_context/use_context plus shared signals/stores for app-wide state."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen for the client."
+    },
+    "primary-build-tool": {
+      "value": ["cargo-leptos", "trunk"],
+      "source": ["https://github.com/leptos-rs/leptos", "https://book.leptos.dev/"],
+      "comment": "cargo-leptos is the official full-stack build tool; Trunk is recommended for pure client-side (CSR) apps."
+    },
+    "official-cli": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "cargo-leptos is a first-party CLI for scaffolding, building, and serving full-stack apps."
+    },
+    "dev-server-hmr": {
+      "value": ["hot-reload", "live-reload"],
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "cargo-leptos watch provides live reload; experimental subsecond hot-patching (subsecond_hot_patch example) plus view/HTML hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "No independently reproduced hello-world .wasm gzipped measurement under a consistent profile; omitted per RESEARCH.md rather than citing unmethodical numbers."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Standard wasm-bindgen stack (web-sys/js-sys) for browser and JS interop."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Works through the standard wasm-bindgen/web-sys stack with the usual boilerplate; no bespoke ergonomic layer."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://crates.io/api/v1/crates/leptos"],
+      "comment": "Requires std; not a no_std framework."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Pure CSR mode supported (e.g. counter, todo_app_sqlite_csr, tailwind_csr examples), built with Trunk."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos", "https://book.leptos.dev/"],
+      "comment": "First-class SSR with hydration."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Static rendering supported (static_routing example; ssr_modes include static routes)."
+    },
+    "hydration": {
+      "value": ["full", "progressive", "islands"],
+      "source": ["https://book.leptos.dev/", "https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Full hydration plus out-of-order/in-order streaming (progressive) and an islands mode (book Section 18; islands and hackernews_islands_axum examples)."
+    },
+    "server-functions": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos", "https://book.leptos.dev/"],
+      "comment": "Isomorphic #[server] functions callable from client code with wiring generated (book Section 15.1)."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "HTTP streaming of HTML with out-of-order or in-order streaming of Suspense components."
+    },
+    "backend-integration": {
+      "value": ["axum", "actix-web"],
+      "source": ["https://github.com/leptos-rs/leptos", "https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "First-party leptos_axum and leptos_actix integrations; Axum and Actix starter templates."
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "leptos_router runs identically on server and client."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "leptos_router is maintained in-tree by the core team."
+    },
+    "router-name": {
+      "value": "leptos_router",
+      "source": ["https://book.leptos.dev/"]
+    },
+    "nested-routes": {
+      "value": true,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Book Section 9 covers nested routing with <Outlet/>."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Parameterized routes with params/queries (book Section 9)."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Routes are path-based; the path! macro helps but routes are not enum/derive-based compile-checked in the sense of an invalid route being a type error."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "No dedicated navigation-guard hook; access control is done via redirects/<Redirect> inside route views."
+    },
+    "lazy-code-split-routes": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Lazy/code-split route loading demonstrated in the lazy_routes example (wasm code splitting)."
+    },
+    "styling-approach": {
+      "value": ["plain-css", "tailwind-friendly"],
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Plain CSS via <Stylesheet>; Tailwind first-class (tailwind_csr, tailwind_axum, tailwind_actix examples). Scoped CSS available via community crates (e.g. stylance), not built-in."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "No built-in component-scoped styling; achievable via third-party crates like stylance."
+    },
+    "component-library-ecosystem": {
+      "value": 3,
+      "source": ["https://leptos.dev/"],
+      "comment": "A few community UI kits (e.g. Thaw UI, Leptonic) plus leptos-use utilities; not as broad as mature JS ecosystems."
+    },
+    "forms-inputs": {
+      "value": ["controlled", "two-way-binding", "form-helpers"],
+      "source": ["https://book.leptos.dev/", "https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "Controlled inputs, bind: two-way binding, and <ActionForm>/<Form> helpers (book Section 16.1; action-form example)."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "SVG elements authored directly in the view! macro; canvas via web-sys interop."
+    },
+    "suspense-loading-ui": {
+      "value": true,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "<Suspense> and <Transition> loading boundaries (book Section 6.2)."
+    },
+    "error-boundaries": {
+      "value": true,
+      "source": ["https://book.leptos.dev/", "https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "<ErrorBoundary> for fallback UI (book Section 3.8; error_boundary example)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Comprehensive official book (CSR through deployment), API docs on docs.rs, and 40+ examples; occasionally trails the newest release."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Idiomatic signals-based API with the view! macro; some learning curve around reactive ownership, but low boilerplate overall."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://book.leptos.dev/"],
+      "comment": "Macro-heavy full-stack builds are non-trivial but comparable to peer Rust web frameworks for a small app."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "42 example projects in the official repo examples/ directory as of 2026-07-19."
+    },
+    "interactive-playground": {
+      "value": null,
+      "source": ["https://leptos.dev/"],
+      "comment": "No official online REPL/playground; the repo examples/ gallery serves that role."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://book.leptos.dev/"],
+      "comment": "No dedicated first-party component/signal inspector beyond generic browser devtools."
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test", "e2e-friendly"],
+      "source": ["https://github.com/leptos-rs/leptos/tree/main/examples"],
+      "comment": "wasm-bindgen-test for unit tests; end-to-end examples use Playwright (e.g. counter, todo examples ship e2e/ dirs)."
+    },
+    "github-stars": {
+      "value": 21090,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "GitHub stargazers as of 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 3839288,
+      "source": ["https://crates.io/api/v1/crates/leptos"],
+      "comment": "All-time downloads of the leptos crate as of 2026-07-19."
+    },
+    "contributors": {
+      "value": 380,
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "Approximate; GitHub contributors API pagination reports ~381 (including anonymous) as of 2026-07-19."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/leptos-rs/leptos", "https://leptos.dev/"],
+      "comment": "Active Discord community and 380+ contributors; one of the most active Rust web frameworks."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://leptos.dev/"],
+      "comment": "Routers in-tree plus community crates (leptos-use, Thaw UI, Leptonic, leptos-query); expanding but still maturing."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://leptos.dev/"],
+      "comment": "No widely-documented named production users verified from primary sources; omitted rather than citing marketing/demos."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": "Built-in full-stack mode via cargo-leptos (leptos_axum / leptos_actix)",
+      "source": ["https://github.com/leptos-rs/leptos"],
+      "comment": "Full-stack is first-party rather than a separate meta-framework; cargo-leptos orchestrates SSR + server functions."
+    }
+  }
 }
