@@ -1,7 +1,7 @@
 {
   "name": "Void",
   "url": "https://voideditor.com/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Glass Devtools, Inc. (voideditor)",
@@ -289,6 +289,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://voideditor.com/", "https://github.com/voideditor/void/issues/629"],
       "comment": "Checked 2026-06-12: out of the box, Agent mode asks the user to approve each terminal command it wants to run (no shipped auto-approve, per Issue #629). File edits are surfaced for review with checkpoint/revert support. Closest unconfigured posture is prompt-each-action."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/voideditor/void/main/src/vs/workbench/contrib/void/common/voidSettingsTypes.ts", "https://github.com/voideditor/void/issues/419"],
+      "comment": "Checked 2026-07-18: Void ships in-session auto-accept toggles distinct from a full YOLO bypass. Global settings expose autoAcceptLLMChanges (auto-apply LLM edits, default off) and a per-type autoApprove map keyed by ToolApprovalType = edits | terminal | MCP tools, so the user can flip on auto-approval for edits (the middle rung) while still being prompted for other actions. Issue #419 shows a user with 'fast apply' and 'auto-approve' enabled in the config, confirming these are toggle-able settings. This coarse per-type auto-approve is separate from the never-shipped per-command-prefix rules of Issue #629 (which is why unsupervised-mode / persistent command allowlist remain absent)."
     }
   }
 }
