@@ -2,7 +2,7 @@
   "name": "Oh My OpenAgent",
   "description": "Open-source agent harness (formerly oh-my-opencode) that orchestrates multiple specialized agents and models on top of OpenCode (Ultimate Edition) and Codex CLI (Light Edition) for autonomous work on complex codebases",
   "url": "https://omo.dev/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "code-yeongyu (Sisyphus Labs)",
@@ -302,6 +302,11 @@
       "value": ["auto-run-all"],
       "source": ["https://opencode.ai/docs/permissions/", "https://github.com/code-yeongyu/oh-my-openagent/blob/dev/docs/reference/configuration.md"],
       "comment": "OpenCode's baseline is permissive — most tools default to `allow`, so edits apply and bash runs without prompting out of the box (exceptions: `.env` deny, `doom_loop`/`external_directory` ask). omo layers guard hooks on top, but the unconfigured first-run posture is effectively auto-run-all. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://opencode.ai/docs/permissions/", "https://github.com/anomalyco/opencode/issues/7928"],
+      "comment": "On the OpenCode (Ultimate) edition, omo inherits OpenCode's in-session auto-approve toggle: the command palette 'Enable/Disable auto-approve permissions' flips a reversible `auto` mode (also settable at startup via `--auto`) that stops per-action prompts while still enforcing explicit deny rules — the middle-rung auto-apply, distinct from the full Codex `approval_policy=never` bypass counted under Unsupervised Mode. There is no Claude-Code-style Shift+Tab cycle (that is an open OpenCode feature request), but the palette toggle is a quick in-session switch. Checked 2026-07-18."
     }
   }
 }
