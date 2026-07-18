@@ -2,7 +2,7 @@
   "name": "Continue",
   "description": "Open-source, highly configurable IDE extension agent",
   "url": "https://www.continue.dev/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Continue Dev, Inc.",
@@ -302,6 +302,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://docs.continue.dev/cli/tool-permissions", "https://docs.continue.dev/ide-extensions/agent/how-to-customize"],
       "comment": "Out of the box, read-only tools auto-allow but write tools (Edit/MultiEdit/Write) AND Bash default to 'ask' — so every file edit and every command is prompted (Ask First is the IDE default). Best-fit prompt-each-action rather than auto-edit-ask-commands, since edits are not auto-applied. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://docs.continue.dev/ide-extensions/agent/how-to-customize", "https://docs.continue.dev/cli/tool-permissions"],
+      "comment": "IDE Agent mode exposes tool policies (Ask First / Automatic / Excluded) adjustable in-session via the tools icon, with groups toggled on/off — so edit/write tools can be set to Automatic (auto-apply edits) while Bash stays on Ask First, giving the intermediate auto-accept-edits middle rung distinct from full bypass. In the CLI (cn), Shift+Tab cycles Normal/Plan/Auto but its only non-prompting rung is full --auto bypass (counted under Unsupervised Mode). True on the strength of the IDE's granular in-session auto-approval, though it is per-tool configuration rather than a single named one-keystroke 'auto-accept' toggle. Checked 2026-07-18."
     }
   }
 }
