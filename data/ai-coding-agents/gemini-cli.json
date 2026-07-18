@@ -1,7 +1,7 @@
 {
   "name": "Gemini CLI",
   "description": "Google's open-source terminal agent",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Google",
@@ -300,6 +300,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://geminicli.com/docs/reference/configuration/"],
       "comment": "Out of the box the default approval mode prompts for confirmation on each tool call (edits and shell commands alike); auto_edit and yolo are opt-in. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html", "https://github.com/google-gemini/gemini-cli/issues/17433"],
+      "comment": "auto_edit approval mode auto-approves edit tools (write_file/replace) while still prompting for other tools — the middle rung between per-action prompting and full YOLO bypass. Toggled in-session by cycling approval modes with Shift+Tab (shows 'accepting edits'), or set at launch via --approval-mode auto_edit. Distinct from the separate full-bypass YOLO mode (Unsupervised Mode). Checked 2026-07-18."
     }
   }
 }
