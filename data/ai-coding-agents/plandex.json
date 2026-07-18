@@ -2,7 +2,7 @@
   "name": "Plandex",
   "description": "Open-source, plan-first terminal agent with a cumulative-diff review sandbox and up to 2M-token context for large multi-file tasks.",
   "url": "https://plandex.ai",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Plandex (plandex-ai)",
@@ -301,6 +301,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://docs.plandex.ai/core-concepts/execution-and-debugging/"],
       "comment": "Out of the box (autonomy below full), changes are staged in the diff sandbox for review and the user is prompted to approve execution/debugging steps; only the opt-in full mode auto-runs everything. Exact default preset name not confirmed from docs (page unreachable at check), but non-full levels all prompt before applying/running. Checked 2026-06."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://docs.plandex.ai/core-concepts/autonomy/", "https://github.com/plandex-ai/plandex"],
+      "comment": "Auto-apply is a distinct, independently-toggleable middle rung between per-action prompting and full bypass. `set-config auto-apply true` (or `\\set-config` in the REPL, or a per-command `--apply`/`-a` flag) auto-applies edits from the diff sandbox while auto-exec stays off by default, so commands still prompt. This is lighter than full-auto/unsupervised mode (`set-auto full`, which additionally auto-execs and auto-debugs). Checked 2026-07."
     }
   }
 }
