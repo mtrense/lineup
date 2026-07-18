@@ -1,5 +1,313 @@
 {
   "name": "Percy",
   "description": "Isomorphic web apps with a virtual DOM (html! macro) and SSR, an early entrant",
-  "values": {}
+  "icon": "rust",
+  "url": "https://chinedufn.github.io/percy/",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A collection of Rust + WebAssembly libraries for building isomorphic (client- and server-rendered) frontend web apps with a virtual DOM and an html! macro",
+      "source": ["https://github.com/chinedufn/percy", "https://chinedufn.github.io/percy/"],
+      "comment": "Repo tagline 'Build frontend browser apps with Rust + WebAssembly. Supports server side rendering.'; the book frames Percy as a collection of libraries, not a single crate."
+    },
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://crates.io/crates/percy-dom", "https://github.com/chinedufn/percy"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per crates.io metadata for percy-dom."
+    },
+    "repository": {
+      "value": "https://github.com/chinedufn/percy",
+      "source": ["https://github.com/chinedufn/percy"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/percy-dom",
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "percy-dom is the top-level virtual-DOM crate; the project also publishes html-macro and percy-router in the same workspace."
+    },
+    "documentation": {
+      "value": "https://chinedufn.github.io/percy/",
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "The Percy Book; API docs also at https://chinedufn.github.io/percy/api/percy_dom/. The book states it is a work in progress with some placeholder chapters."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/crates/virtual-dom-rs", "https://github.com/chinedufn/percy"],
+      "comment": "Project's first crates.io publish was as virtual-dom-rs on 2018-07-25; the crate was later renamed/refocused to percy-dom (first published 2021-07-11)."
+    },
+    "latest-stable-version": {
+      "value": "0.10.2",
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "percy-dom 0.10.2; checked 2026-07-19."
+    },
+    "latest-release": {
+      "value": "2026-07-06",
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "crates.io publish date of percy-dom 0.10.2; checked 2026-07-19."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/chinedufn/percy/commits/master", "https://crates.io/crates/percy-dom"],
+      "comment": "Latest commit 2026-07-07 and 0.10.2 released 2026-07-06 (both within 6 months); development is sporadic and essentially single-maintainer but ongoing."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Still pre-1.0 (0.10.2) and the book intro states Percy 'is not yet ready for production (unless you're incredibly brave)'; long-lived but self-described as not production-ready."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "No corporate/foundation sponsor; effectively driven by a single maintainer (chinedufn) with occasional contributors."
+    },
+    "reactivity-model": {
+      "value": ["virtual-dom"],
+      "source": ["https://chinedufn.github.io/percy/", "https://crates.io/crates/percy-dom"],
+      "comment": "percy-dom is a standalone virtual-DOM with diff/patch; no fine-grained signals. App state updates are wired manually (Elm-like Store pattern in the isomorphic example) but the core render path is VDOM diffing."
+    },
+    "component-model": {
+      "value": ["hybrid"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/html-macro/custom-components/README.md"],
+      "comment": "Components can be plain functions returning a VirtualNode or structs implementing the View trait (render)."
+    },
+    "view-authoring": {
+      "value": ["html-macro"],
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Views are written with the html! macro."
+    },
+    "fine-grained-updates": {
+      "value": false,
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Uses virtual-DOM diff/patch rather than fine-grained signal-targeted updates."
+    },
+    "uses-virtual-dom": {
+      "value": true,
+      "source": ["https://crates.io/crates/percy-dom", "https://chinedufn.github.io/percy/"],
+      "comment": "percy-dom is 'A standalone Virtual DOM creation, diffing and patching implementation'."
+    },
+    "async-await-in-components": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No async component / resource-style .await data loading documented in the book."
+    },
+    "global-state-solution": {
+      "value": ["none-built-in"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md"],
+      "comment": "No first-party global-state primitive; the isomorphic example implements its own app-state Store passed through the app crate."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://crates.io/crates/percy-dom", "https://github.com/chinedufn/percy"],
+      "comment": "Client compiles to WebAssembly via wasm-bindgen; the same view code renders to a String on the native server side."
+    },
+    "primary-build-tool": {
+      "value": ["wasm-pack"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md"],
+      "comment": "Examples build the client crate with wasm-pack; no Trunk or first-party build tool."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "The book intro says a CLI for generating a starter project is planned 'once the tools have stabilized' but none is published yet."
+    },
+    "dev-server-hmr": {
+      "value": ["manual"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md"],
+      "comment": "Examples use a wasm-pack build plus a hand-written server script; no first-party hot-reload or live-reload dev server."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably documented, methodically-measured hello-world gzipped .wasm size available; per RESEARCH.md, prefer null over an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "percy-dom builds on wasm-bindgen with web-sys/js-sys for browser/JS API access (these deps are optional for server-only virtual-node use)."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "Standard wasm-bindgen/web-sys path with the usual boilerplate; no dedicated JS-interop conveniences or documentation beyond the underlying crates."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/commit/8fcb21b61d157d2688ebfb8949f1c806276e6919"],
+      "comment": "Recent work made virtual-node's wasm-bindgen/web-sys optional for non-browser (SSR) use, but there is no no_std mode."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Client crate compiles to WASM and renders/patches the DOM in the browser (baseline SPA mode)."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://chinedufn.github.io/percy/", "https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "SSR out of the box: html! views render to a String on the server (dedicated 'Server Side Rendering' book chapter)."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No first-party static-site-generation tooling; render-to-string could be scripted at build time but there is no dedicated SSG feature."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md"],
+      "comment": "No documented DOM-hydration mode; the isomorphic example serializes initial state to JSON so the client boots with the same state and renders client-side, rather than hydrating the server-rendered DOM."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No integrated isomorphic server-function mechanism; client/server communication is written manually."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/views/server-side-rendering/how-to-ssr.md"],
+      "comment": "SSR renders a complete String; no streaming SSR documented."
+    },
+    "backend-integration": {
+      "value": ["any"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md"],
+      "comment": "SSR produces a String usable with any server; the isomorphic example ships its own small server crate rather than integrating a specific framework."
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://github.com/chinedufn/percy/blob/master/examples/isomorphic/README.md", "https://chinedufn.github.io/percy/router/type-safe-url-param/README.html"],
+      "comment": "percy-router is used both server-side (to render the matching view for SSR) and client-side in the isomorphic example."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://chinedufn.github.io/percy/router/type-safe-url-param/README.html", "https://crates.io/crates/percy-dom"],
+      "comment": "percy-router is maintained in-tree by the core team as part of the Percy workspace."
+    },
+    "router-name": {
+      "value": "percy-router",
+      "source": ["https://chinedufn.github.io/percy/router/type-safe-url-param/README.html"]
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "Router docs cover type-safe URL params and an on-visit callback only; no nested/child route layouts documented."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://chinedufn.github.io/percy/router/type-safe-url-param/README.html"],
+      "comment": "Routes support parameterized segments parsed into typed handler arguments (type-safe URL params)."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://chinedufn.github.io/percy/router/type-safe-url-param/README.html"],
+      "comment": "Route path is a string literal in the #route(path = \"...\") macro; parameters are type-safe, but routes are not enum/derive-based, so an invalid path is not a compile error (per RESEARCH.md's strict typed-routes bar)."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://chinedufn.github.io/percy/router/on-visit/README.html"],
+      "comment": "The router offers an on_visit callback (side effects on entering a route) but no blocking navigation guard / redirect hook."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No first-party lazy / code-split route loading documented."
+    },
+    "styling-approach": {
+      "value": ["css-in-rust", "plain-css"],
+      "source": ["https://chinedufn.github.io/percy/", "https://github.com/chinedufn/percy/blob/master/book/src/css-in-rust.md"],
+      "comment": "First-class CSS-in-Rust via the css! macro (write styles next to html! components); external/plain CSS also works. The book's CSS-in-Rust chapter is still a TODO placeholder."
+    },
+    "scoped-styles": {
+      "value": true,
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "The css! macro generates a unique class name per invocation, so CSS-in-Rust styles are effectively component-scoped and do not leak globally."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "Essentially no ready-made UI component-library crates; users build their own components."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Inputs are wired manually via events (e.g. oninput) reading/writing app state; no two-way-binding directive or dedicated form helpers."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/chinedufn/percy/blob/master/crates/html-validation/src/svg_namespace.rs"],
+      "comment": "The html! macro handles the SVG namespace (dedicated svg_namespace handling in html-validation), so SVG elements can be authored in views; canvas is reachable via web-sys."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No declarative suspense / loading-boundary primitive documented."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No error-boundary component documented."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://chinedufn.github.io/percy/", "https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "The Percy Book covers the html! macro, router, and SSR, but is self-described as a work in progress with placeholder chapters (e.g. CSS-in-Rust is 'TODO'); API docs exist on the docs site but examples and tutorials are thin."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://chinedufn.github.io/percy/", "https://github.com/chinedufn/percy/blob/master/book/src/html-macro/custom-components/README.md"],
+      "comment": "The html! macro is a familiar JSX-like API, but the manual state/Store wiring and multi-crate (app/client/server) isomorphic layout add boilerplate."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://chinedufn.github.io/percy/"],
+      "comment": "Macro-based html! views; comparable to peer macro-driven Rust web frameworks for a small app."
+    },
+    "examples-count": {
+      "value": ["limited"],
+      "source": ["https://github.com/chinedufn/percy/tree/master/examples"],
+      "comment": "About 4-5 example projects in the repo (component-preview, embed-non-percy-node, isomorphic, unit-testing-components, css-in-rust), i.e. the 3-10 'limited' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No online playground/REPL or hosted example gallery; the isomorphic example README notes a live demo host is still a TODO."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/SUMMARY.md"],
+      "comment": "No dedicated Percy devtools/inspector."
+    },
+    "testing-support": {
+      "value": ["component-testing", "wasm-bindgen-test"],
+      "source": ["https://github.com/chinedufn/percy/blob/master/book/src/virtual-dom/unit-testing-views.md", "https://github.com/chinedufn/percy/tree/master/examples"],
+      "comment": "The book has a 'Unit Testing your Views' chapter and a unit-testing-components example (render views and assert); browser tests use wasm-bindgen-test."
+    },
+    "github-stars": {
+      "value": 2311,
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "~2.3k stars; checked 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 51904,
+      "source": ["https://crates.io/crates/percy-dom"],
+      "comment": "All-time downloads of percy-dom; checked 2026-07-19. The predecessor crate virtual-dom-rs adds ~43k more."
+    },
+    "contributors": {
+      "value": 25,
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "~25 contributors per the GitHub contributors API; checked 2026-07-19. Development is dominated by the maintainer chinedufn."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "Effectively single-maintainer with ~25 historical contributors and ~2.3k stars; no dedicated chat/community hub advertised."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/chinedufn/percy"],
+      "comment": "First-party router and html! macro live in-tree, but there are essentially no third-party component kits or integrations."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely-documented production users; the book itself calls Percy not yet production-ready."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No separate meta-framework / full-stack kit; the isomorphic SSR story is assembled from the core Percy libraries (app/client/server crates) rather than a dedicated fullstack layer."
+    }
+  }
 }
