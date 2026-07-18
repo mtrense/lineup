@@ -1,5 +1,308 @@
 {
   "name": "Dioxus",
   "description": "Cross-platform (web/desktop/mobile) RSX framework with a strong web/SPA and fullstack story",
-  "values": {}
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "Cross-platform Rust framework for building web, desktop, and mobile apps from a single codebase using an RSX macro, signals, and an integrated fullstack server-function story",
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://dioxuslabs.com/learn/0.7/"]
+    },
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://lib.rs/crates/dioxus", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "Dual-licensed MIT OR Apache-2.0."
+    },
+    "repository": {
+      "value": "https://github.com/DioxusLabs/dioxus",
+      "source": ["https://github.com/DioxusLabs/dioxus"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/dioxus",
+      "source": ["https://crates.io/crates/dioxus"]
+    },
+    "documentation": {
+      "value": "https://dioxuslabs.com/learn/0.7/",
+      "source": ["https://dioxuslabs.com/learn/0.7/"]
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/crates/dioxus"],
+      "comment": "First crates.io publish (dioxus 0.1.0) was January 2021."
+    },
+    "latest-stable-version": {
+      "value": "0.7.9",
+      "source": ["https://crates.io/crates/dioxus", "https://lib.rs/crates/dioxus"],
+      "comment": "Latest stable as of 2026-07-19; a 0.8.0-alpha.0 prerelease was published 2026-05-19."
+    },
+    "latest-release": {
+      "value": "2026-05-08",
+      "source": ["https://crates.io/crates/dioxus"],
+      "comment": "Release date of stable 0.7.9 (2026-05-08); the newest overall publish is the 0.8.0-alpha.0 prerelease on 2026-05-19."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Frequent commits and releases; repository last pushed July 2026, full-time core team."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://www.ycombinator.com/companies/dioxus-labs"],
+      "comment": "Pre-1.0 (0.7.x) with breaking changes still expected before 1.0, but shipped in production by several organizations."
+    },
+    "corporate-foundation-backing": {
+      "value": "Dioxus Labs (Y Combinator S23); development supported by FutureWei, Satellite.im, and the GitHub Accelerator program",
+      "source": ["https://www.ycombinator.com/companies/dioxus-labs", "https://github.com/DioxusLabs/dioxus"]
+    },
+    "reactivity-model": {
+      "value": ["signals", "virtual-dom"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Signals-based state management (0.5+) layered over a VirtualDom that diffs and patches; a state change marks the owning component dirty and re-renders + diffs its subtree."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Components are `fn(...) -> Element` with the #[component] macro."
+    },
+    "view-authoring": {
+      "value": ["rsx-macro"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Views are declared with the rsx! {} macro; the docs state only rsx!-declared markup is supported."
+    },
+    "fine-grained-updates": {
+      "value": false,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Default render path uses VirtualDom diffing; signals trigger a scoped component re-render + diff rather than updating exact DOM nodes directly."
+    },
+    "uses-virtual-dom": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"]
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "use_resource / use_future plus suspense allow awaiting async data loading."
+    },
+    "global-state-solution": {
+      "value": ["context", "signals"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Shared state via context (use_context/provide_context) and global signals (Signal / GlobalSignal)."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Web target compiles to WebAssembly via wasm-bindgen (dioxus-web); non-web targets are native, out of scope here."
+    },
+    "primary-build-tool": {
+      "value": ["dioxus-cli"],
+      "source": ["https://github.com/DioxusLabs/dioxus", "https://dioxuslabs.com/learn/0.7/"],
+      "comment": "The first-party `dx` CLI (dioxus-cli)."
+    },
+    "official-cli": {
+      "value": true,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "`dx` CLI provides dx new/serve/build/bundle."
+    },
+    "dev-server-hmr": {
+      "value": ["hot-reload", "live-reload"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Subsecond Rust hot-patching plus RSX/asset hot reload; falls back to rebuild + browser refresh."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reproducible gzipped minimal hello-world measurement under a documented build profile (opt-level, LTO, wasm-opt) available; omitted per RESEARCH guidance rather than recording an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Built on wasm-bindgen; web-sys/js-sys are accessible, and document::eval runs JS snippets from Rust."
+    },
+    "js-interop-ergonomics": {
+      "value": 4,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "document::eval helper plus wasm-bindgen/web-sys make calling JS and web APIs fairly smooth, though some boilerplate remains for raw web-sys work."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Requires the full std runtime."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "dioxus-web provides a pure client-rendered SPA mode."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"]
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "SSG / incremental static generation supported via the fullstack layer."
+    },
+    "hydration": {
+      "value": ["full"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Full-tree hydration of server-rendered HTML; no islands mode."
+    },
+    "server-functions": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "Integrated isomorphic #[server] functions callable directly from client code."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Streaming SSR with suspense boundaries (0.6+)."
+    },
+    "backend-integration": {
+      "value": ["axum"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Fullstack integrates primarily with Axum; ships its own server wrapper around it."
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "The same Routable enum resolves routes identically on server and client."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "First-party dioxus-router, enabled via the \"router\" feature."
+    },
+    "router-name": {
+      "value": "dioxus-router",
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"]
+    },
+    "nested-routes": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "#[nest] and #[layout] attributes with Outlet render nested layouts."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "Dynamic segments such as /user/:id."
+    },
+    "typed-routes": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "Routes are a #[derive(Routable)] enum checked at compile time; an invalid route is a compile error."
+    },
+    "route-guards": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "No dedicated guard attribute; redirects via #[redirect] and global guards via RouterConfig on_update / navigator.replace."
+    },
+    "lazy-code-split-routes": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/essentials/router/"],
+      "comment": "Automatic per-route bundle splitting via the wasm-split feature on dioxus-router."
+    },
+    "styling-approach": {
+      "value": ["plain-css", "tailwind-friendly", "inline-style"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Standard HTML/CSS styling; asset!()-bundled stylesheets, Tailwind-friendly, and inline style attributes. No built-in component-scoped CSS."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "No first-party component-scoped CSS; styles are authored as plain global CSS."
+    },
+    "component-library-ecosystem": {
+      "value": 3,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "First-party component primitives (shadcn/ui-inspired) plus a few community kits (e.g. dioxus-free-icons, daisyui ports); not yet several mature full UI libraries."
+    },
+    "forms-inputs": {
+      "value": ["controlled", "uncontrolled"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Controlled inputs via value + oninput handlers; onsubmit exposes aggregated FormData for uncontrolled-style handling. No automatic two-way binding."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "SVG elements are authorable directly in rsx!; canvas via web-sys interop."
+    },
+    "suspense-loading-ui": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "SuspenseBoundary for declarative loading UI around async resources."
+    },
+    "error-boundaries": {
+      "value": true,
+      "source": ["https://dioxuslabs.com/learn/0.7/", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "ErrorBoundary component catches and renders fallback UI."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Structured guide/book with tutorials, essentials, and reference plus API docs and many examples; some pages lag behind fast-moving releases."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Idiomatic rsx! + function components and Copy signals keep boilerplate low; occasional macro/lifetime friction."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Macro-heavy but comparable to peer Rust web frameworks; hot-patching mitigates iteration cost during development."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "The examples/ directory is organized into 10 numbered category folders (UI, state, async, routing, fullstack, integrations, etc.) containing well over 20 examples."
+    },
+    "interactive-playground": {
+      "value": "https://dioxuslabs.com/play/",
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Official Dioxus playground (server-compiled, shareable) hosted from the docsite."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "dioxus-devtools powers hot-reload tooling, but there is no dedicated component-tree/signal inspector browser extension beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["component-testing", "wasm-bindgen-test"],
+      "source": ["https://dioxuslabs.com/learn/0.7/"],
+      "comment": "Components can be exercised via VirtualDom in native tests; wasm-bindgen-test works for in-browser WASM tests."
+    },
+    "github-stars": {
+      "value": 36807,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "As of 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 1963383,
+      "source": ["https://crates.io/crates/dioxus"],
+      "comment": "All-time downloads of the top-level dioxus crate as of 2026-07-19."
+    },
+    "contributors": {
+      "value": 449,
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Approximate GitHub contributor count (incl. anonymous) as of 2026-07-19."
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Active Discord, ~450 contributors, and ~37k stars."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://github.com/DioxusLabs/dioxus"],
+      "comment": "Official router, fullstack, signals/stores, and CLI plus a growing set of community integrations and component kits."
+    },
+    "notable-production-users": {
+      "value": "Airbus & the European Space Agency (collision-avoidance system), Huawei, and Satellite.im (Uplink)",
+      "source": ["https://www.ycombinator.com/companies/dioxus-labs"],
+      "comment": "Per Dioxus Labs' Y Combinator profile."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": "Dioxus Fullstack (dioxus-fullstack)",
+      "source": ["https://dioxuslabs.com/learn/0.7/", "https://github.com/DioxusLabs/dioxus"],
+      "comment": "First-party fullstack layer with server functions, SSR/SSG, and hydration."
+    }
+  }
 }

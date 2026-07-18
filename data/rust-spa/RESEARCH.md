@@ -185,7 +185,7 @@ Users should be able to:
 
 - [x] Leptos — Fine-grained signals, full-stack with server functions and islands, one of the most active Rust web frameworks
 - [x] Yew — Mature, React-like virtual-DOM framework with the largest ecosystem and community
-- [ ] Dioxus — Cross-platform (web/desktop/mobile) RSX framework with a strong web/SPA and fullstack story; deliberate cross-listing with `rust-gui`
+- [x] Dioxus — Cross-platform (web/desktop/mobile) RSX framework with a strong web/SPA and fullstack story; deliberate cross-listing with `rust-gui`
 - [ ] Sycamore — Fine-grained reactive library inspired by SolidJS, lean and signal-based
 - [ ] Percy — Isomorphic web apps with a virtual DOM (`html!` macro) and SSR, an early entrant
 - [ ] Sauron — Elm-inspired, minimal virtual-DOM library with SSR support
