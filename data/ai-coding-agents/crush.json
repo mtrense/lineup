@@ -2,7 +2,7 @@
   "name": "Crush",
   "description": "Charm's open-source terminal coding agent (Go); multi-provider with LSP and MCP awareness.",
   "url": "https://github.com/charmbracelet/crush",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Charm",
@@ -297,6 +297,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://github.com/charmbracelet/crush/blob/main/README.md"],
       "comment": "Out of the box Crush asks for permission before each tool call (edits and commands alike) until the user allowlists tools or enables YOLO."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://charmbracelet-crush.mintlify.app/configuration/permissions", "https://github.com/charmbracelet/crush/blob/main/README.md"],
+      "comment": "No intermediate in-session auto-accept-edits toggle. Crush's only quick in-session non-prompting toggle is full YOLO mode (Ctrl+P Toggle YOLO / --yolo), which is the complete skip-all-permissions bypass (already captured under unsupervised-mode). The per-prompt 'always allow' is a per-tool grant made during a prompt, not a mode that auto-applies edits while still gating commands. Per RESEARCH.md, a tool whose only non-prompting option is the full bypass is false here. Checked 2026-07-18."
     }
   }
 }
