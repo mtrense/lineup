@@ -1,5 +1,307 @@
 {
   "name": "Yew",
   "description": "Mature, React-like virtual-DOM framework with the largest ecosystem and community",
-  "values": {}
+  "url": "https://yew.rs",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "Rust/Wasm framework for creating reliable and efficient web applications with a React-like component model and html! macro",
+      "source": ["https://github.com/yewstack/yew"]
+    },
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://raw.githubusercontent.com/yewstack/yew/master/packages/yew/Cargo.toml"],
+      "comment": "Dual-licensed MIT OR Apache-2.0 per packages/yew/Cargo.toml"
+    },
+    "repository": {
+      "value": "https://github.com/yewstack/yew",
+      "source": ["https://github.com/yewstack/yew"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/yew",
+      "source": ["https://crates.io/api/v1/crates/yew"]
+    },
+    "documentation": {
+      "value": "https://yew.rs/docs",
+      "source": ["https://yew.rs"]
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://crates.io/api/v1/crates/yew"],
+      "comment": "Crate first published 2017-12-24"
+    },
+    "latest-stable-version": {
+      "value": "0.23.0",
+      "source": ["https://crates.io/api/v1/crates/yew"],
+      "comment": "Still pre-1.0; checked 2026-07-19"
+    },
+    "latest-release": {
+      "value": "2026-03-10",
+      "source": ["https://crates.io/api/v1/crates/yew"],
+      "comment": "0.23.0 released 2026-03-10; preceded by 0.22.0 (2025-12) after a long gap since 0.21.0 (2023-09)"
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/yewstack/yew", "https://crates.io/api/v1/crates/yew"],
+      "comment": "Repo pushed 2026-07-17; 0.22 and 0.23 released within the last ~8 months after a slower 2023-2025 period"
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://crates.io/api/v1/crates/yew", "https://yew.rs"],
+      "comment": "8+ years old with the largest Rust web ecosystem and a stable, well-documented API, but still 0.x with breaking changes between minor releases"
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/yewstack/yew"],
+      "comment": "Maintained by the community-run yewstack organization; no single corporate sponsor"
+    },
+    "reactivity-model": {
+      "value": ["virtual-dom"],
+      "source": ["https://yew.rs/docs/advanced-topics/how-it-works"],
+      "comment": "Builds a virtual DOM and diffs it against the previous render, React-style"
+    },
+    "component-model": {
+      "value": ["hybrid"],
+      "source": ["https://yew.rs/docs/concepts/function-components", "https://yew.rs/docs/advanced-topics/struct-components"],
+      "comment": "Both function components (with hooks, the recommended style) and legacy struct components implementing the Component trait"
+    },
+    "view-authoring": {
+      "value": ["html-macro"],
+      "source": ["https://yew.rs/docs/concepts/html"],
+      "comment": "Views authored with the html! macro"
+    },
+    "fine-grained-updates": {
+      "value": false,
+      "source": ["https://yew.rs/docs/advanced-topics/how-it-works"],
+      "comment": "Uses virtual-DOM diffing, not fine-grained signal updates"
+    },
+    "uses-virtual-dom": {
+      "value": true,
+      "source": ["https://yew.rs/docs/advanced-topics/how-it-works"]
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/suspense", "https://yew.rs/docs/concepts/function-components/pre-defined-hooks"],
+      "comment": "Async data loading supported via Suspense plus use_future/use_future_with hooks; components themselves are not async fns"
+    },
+    "global-state-solution": {
+      "value": ["context"],
+      "source": ["https://yew.rs/docs/concepts/contexts"],
+      "comment": "Built-in context (provide/consume); third-party crates like yewdux are commonly used for larger stores"
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://yew.rs"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen"
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://yew.rs/docs/getting-started/build-a-sample-app"],
+      "comment": "Trunk is the recommended build tool; wasm-pack also usable"
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://yew.rs/docs/getting-started/introduction"],
+      "comment": "No first-party CLI; relies on the third-party Trunk toolchain"
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://trunkrs.dev"],
+      "comment": "Trunk provides rebuild + browser auto-refresh (live reload); no view-level hot reload"
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably reproducible gzipped hello-world measurement under a documented opt-level=z/LTO/wasm-opt profile available; Yew is generally on the heavier end among Rust web frameworks but a methodical number was not obtained"
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://yew.rs/docs/concepts/wasm-bindgen"],
+      "comment": "Interops through the standard wasm-bindgen / web-sys / js-sys stack; gloo wrappers commonly used on top"
+    },
+    "js-interop-ergonomics": {
+      "value": 4,
+      "source": ["https://yew.rs/docs/concepts/wasm-bindgen", "https://gloo-rs.web.app"],
+      "comment": "Well-documented wasm-bindgen usage with the gloo helper crates smoothing common browser APIs; still some boilerplate"
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/yewstack/yew/master/packages/yew/Cargo.toml"],
+      "comment": "Requires std"
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://yew.rs/docs/getting-started/introduction"]
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://yew.rs/docs/advanced-topics/server-side-rendering"],
+      "comment": "ServerRenderer renders components to HTML; docs note SSR is still experimental"
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://yew.rs/docs/advanced-topics/server-side-rendering"],
+      "comment": "No first-party build-time route pre-rendering; SSR renders on request rather than generating static files"
+    },
+    "hydration": {
+      "value": ["full"],
+      "source": ["https://yew.rs/docs/advanced-topics/server-side-rendering"],
+      "comment": "Renderer::hydrate rehydrates the whole tree from server-rendered HTML"
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://yew.rs/docs/advanced-topics/server-side-rendering"],
+      "comment": "No integrated isomorphic server-function macro; server logic must be wired via manual endpoints"
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://docs.rs/yew/latest/yew/struct.ServerRenderer.html"],
+      "comment": "ServerRenderer::render_stream returns a stream of HTML chunks"
+    },
+    "backend-integration": {
+      "value": ["any"],
+      "source": ["https://yew.rs/docs/advanced-topics/server-side-rendering"],
+      "comment": "SSR is server-framework-agnostic; examples exist for Axum and Actix Web but Yew does not bind to a specific backend"
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "yew-router runs on both client and (for SSR) server"
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "yew-router is maintained in-tree by the core team"
+    },
+    "router-name": {
+      "value": "yew-router",
+      "source": ["https://crates.io/crates/yew-router"]
+    },
+    "nested-routes": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "Supports nested routers/child routes"
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "Path segments like /post/:id captured via the Routable derive"
+    },
+    "typed-routes": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "Routes defined as an enum with #[derive(Routable)], type-checked at compile time"
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "No built-in navigation guard/redirect hook API; redirects done manually in component logic"
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://yew.rs/docs/concepts/router"],
+      "comment": "No first-party route-level code splitting; the app ships as a single wasm bundle"
+    },
+    "styling-approach": {
+      "value": ["plain-css", "tailwind-friendly", "inline-style"],
+      "source": ["https://yew.rs/docs/more/css"],
+      "comment": "No built-in styling system; use external/plain CSS, Tailwind, or inline styles. The community stylist crate adds CSS-in-Rust/scoped styles"
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://yew.rs/docs/more/css"],
+      "comment": "No built-in component-scoped styling; scoping requires the third-party stylist crate"
+    },
+    "component-library-ecosystem": {
+      "value": 3,
+      "source": ["https://github.com/jetli/awesome-yew"],
+      "comment": "Several community UI kits exist (e.g. yew-bootstrap, patternfly-yew, material-yew) but no single dominant mature library"
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://yew.rs/docs/concepts/html/events"],
+      "comment": "Controlled inputs driven by state + oninput callbacks; no built-in two-way binding or form-helper library"
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/html/elements"],
+      "comment": "SVG elements authored directly in the html! macro; canvas via web-sys/NodeRef"
+    },
+    "suspense-loading-ui": {
+      "value": true,
+      "source": ["https://yew.rs/docs/concepts/suspense"],
+      "comment": "Built-in Suspense component with fallback UI for async resources"
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://yew.rs/docs"],
+      "comment": "No dedicated error-boundary component in the framework"
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://yew.rs/docs"],
+      "comment": "Structured docs site with tutorial, concept guides, and API docs on docs.rs; some SSR/advanced areas thinner"
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://yew.rs/docs/concepts/function-components"],
+      "comment": "Function components with hooks feel idiomatic and React-like; legacy struct components are more verbose"
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://yew.rs/docs/concepts/html"],
+      "comment": "Macro-heavy html! adds overhead but comparable to peer Rust web frameworks for small apps"
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/yewstack/yew/tree/master/examples"],
+      "comment": "The examples directory contains well over 20 sample apps"
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No official online playground/REPL; learning happens via local examples"
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://yew.rs/docs"],
+      "comment": "No dedicated component/state inspector beyond generic browser wasm debugging"
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test"],
+      "source": ["https://yew.rs/docs/more/testing"],
+      "comment": "Documents testing with wasm-bindgen-test in a headless browser"
+    },
+    "github-stars": {
+      "value": 32737,
+      "source": ["https://github.com/yewstack/yew"],
+      "comment": "Snapshot 2026-07-19"
+    },
+    "crates-io-downloads": {
+      "value": 4620638,
+      "source": ["https://crates.io/api/v1/crates/yew"],
+      "comment": "All-time downloads of the yew crate; snapshot 2026-07-19"
+    },
+    "contributors": {
+      "value": 453,
+      "source": ["https://github.com/yewstack/yew"],
+      "comment": "Approximate GitHub contributor count (including anonymous); snapshot 2026-07-19"
+    },
+    "community-size": {
+      "value": ["large"],
+      "source": ["https://github.com/yewstack/yew"],
+      "comment": "Largest Rust web framework community by stars/contributors with an active Discord"
+    },
+    "ecosystem-crates": {
+      "value": ["rich"],
+      "source": ["https://github.com/jetli/awesome-yew"],
+      "comment": "Mature surrounding crates: yew-router, yewdux, stylist, gloo, plus multiple UI kits"
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely and reliably documented production users beyond demos; not asserting specific companies"
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No official full-stack meta-framework; SSR/hydration are built into yew itself rather than a separate kit"
+    }
+  }
 }
