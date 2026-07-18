@@ -63,7 +63,7 @@ Users should be able to:
 | **Type-Safe Paths / Links** | boolean | `<Link>`/navigate calls are checked against known routes |
 | **Type-Safe Params** | boolean | Path params inferred with correct types at usage sites |
 | **Type-Safe Search Params** | boolean | Query/search params typed and validated (often via a schema) |
-| **Codegen Required** | boolean | Requires a generation/build step to produce route types (vs. pure inference); note the step in a comment |
+| **Codegen Optional** | boolean | true when route types come from pure inference; false when a generation/build step is required to produce them — note the step in a comment |
 | **Type Safety Rating** | rating (1-5, ascending) | Overall end-to-end type safety; see Assessment Guidelines |
 
 ### 4. Data & Navigation
@@ -85,7 +85,7 @@ Users should be able to:
 | **React Server Components** | boolean | First-class RSC support |
 | **Static Site Generation** | boolean | Can pre-render routes to static HTML |
 | **Client-Only Usable** | boolean | Can run as a pure CSR SPA router with no server |
-| **Framework-Bound** | boolean | Requires its own build/framework toolchain rather than dropping into any React app. true for meta-frameworks |
+| **Framework-Agnostic** | boolean | Drops into any React app rather than requiring its own build/framework toolchain. false for meta-frameworks |
 
 ### 6. Performance
 | Attribute | Type | Research Notes |
@@ -123,7 +123,7 @@ Users should be able to:
 ## Assessment Guidelines
 
 - **Category**: `standalone-router` = you add it to an existing React app and control the rest of the stack; `meta-framework` = it owns the build/server and routing is one part. A candidate gets exactly one tag.
-- **Framework-Bound**: `true` when the router cannot be used without its own toolchain/framework (Next.js, TanStack Start, Vike, One, Waku). `false` for drop-in routers even if they *offer* an optional framework mode (e.g. React Router can run library-only).
+- **Framework-Agnostic**: `false` when the router cannot be used without its own toolchain/framework (Next.js, TanStack Start, Vike, One, Waku). `true` for drop-in routers even if they *offer* an optional framework mode (e.g. React Router can run library-only).
 - **Type Safety Rating**:
   | Rating | Criteria |
   |--------|----------|
