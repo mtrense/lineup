@@ -3,7 +3,7 @@
   "description": "Agentic editing inside the Zed editor",
   "icon": "",
   "url": "https://zed.dev/agentic",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Zed Industries",
@@ -304,6 +304,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://zed.dev/docs/ai/tool-permissions"],
       "comment": "Out of the box tool_permissions.default is 'confirm' — every permission-gated tool call (edits and commands) prompts for approval until the user configures allow rules. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/zed-industries/zed/main/docs/src/ai/tool-permissions.md", "https://raw.githubusercontent.com/zed-industries/zed/main/docs/src/ai/agent-panel.md"],
+      "comment": "No quick, session-scoped 'accept edits' toggle (nothing like Claude Code's Shift+Tab). The only ways to stop per-action prompting are persistent config: setting tool_permissions.default to 'allow' (the full bypass captured by Unsupervised Mode) or using the per-tool 'Always for...' menu, which writes durable always_allow/tool-default rules to settings.json rather than a reversible in-session mode. Per the guideline, a tool whose only non-prompting option is the full bypass is false here. Checked 2026-07-18."
     }
   }
 }
