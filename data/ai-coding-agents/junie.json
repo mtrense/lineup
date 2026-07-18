@@ -2,7 +2,7 @@
   "name": "JetBrains Junie",
   "description": "AI coding agent embedded in IntelliJ IDEA, PyCharm, WebStorm and other JetBrains IDEs; explores the project, plans, writes and tests code.",
   "url": "https://www.jetbrains.com/junie/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "JetBrains",
@@ -301,6 +301,11 @@
       "value": ["auto-edit-ask-commands"],
       "source": ["https://junie.jetbrains.com/docs/action-allowlist.html", "https://www.jetbrains.com/help/ai-assistant/junie-agent.html"],
       "comment": "Out of the box Junie edits files within the project without prompting but asks for approval before running terminal commands, MCP tools, tests/builds, and reading/editing files outside the project (only ls, cd, pwd run without approval)."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://www.jetbrains.com/help/ai-assistant/junie-agent.html", "https://junie.jetbrains.com/docs/action-allowlist-junie-cli.html"],
+      "comment": "Junie already auto-applies in-project file edits by default, so no separate edit-auto-accept toggle exists; the only in-session switch that stops per-action command prompts is Brave Mode, which is the full skip-all-permissions bypass (recorded under Unsupervised Mode), not a lighter intermediate rung. The persistent Action Allowlist is a durable declarative rule mechanism, not a quick in-session autonomy toggle. Per the guideline, a tool whose only non-prompting option is the full bypass is false here. Checked 2026-07-18."
     }
   }
 }
