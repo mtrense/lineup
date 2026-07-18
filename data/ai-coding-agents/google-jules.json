@@ -2,7 +2,7 @@
   "name": "Google Jules",
   "description": "Google's asynchronous autonomous coding agent",
   "url": "https://jules.google/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Google",
@@ -302,6 +302,11 @@
       "value": ["auto-run-all"],
       "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/faq/"],
       "comment": "Out of the box there is a single up-front plan-approval gate (which auto-approves on a timer if the user steps away); after that Jules applies edits and runs commands in the VM without prompting per action, landing the result as a reviewable PR. No per-action prompting posture is offered."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://jules.google/docs/review-plan/", "https://jules.google/docs/code/"],
+      "comment": "No quickly-toggled in-session intermediate auto-accept toggle (nothing like Claude Code's Shift+Tab). Jules' only autonomy control is the up-front plan gate, which auto-approves on a timer (web) or by default (API, unless requirePlanApproval=true); once approved it runs full-autonomy in the VM with no per-action prompts to suppress. That full-bypass path is captured by unsupervised-mode=true, so per the guideline ('a tool whose only non-prompting option is the full bypass is false here') this is false. Code edits themselves land as a reviewable diff/PR, not an auto-apply toggle. Checked 2026-07-18."
     }
   }
 }
