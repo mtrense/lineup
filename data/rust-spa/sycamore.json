@@ -1,5 +1,313 @@
 {
   "name": "Sycamore",
   "description": "Fine-grained reactive library inspired by SolidJS, lean and signal-based",
-  "values": {}
+  "icon": "rust",
+  "url": "https://sycamore.dev",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A library for creating reactive web apps in Rust and WebAssembly, powered by fine-grained reactivity without a virtual DOM",
+      "source": ["https://github.com/sycamore-rs/sycamore", "https://sycamore.dev/"],
+      "comment": "Official tagline from the repo README and website."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/api/v1/crates/sycamore", "https://raw.githubusercontent.com/sycamore-rs/sycamore/main/Cargo.toml"],
+      "comment": "Workspace Cargo.toml and crates.io both list MIT only (not the common MIT/Apache dual)."
+    },
+    "repository": {
+      "value": "https://github.com/sycamore-rs/sycamore",
+      "source": ["https://github.com/sycamore-rs/sycamore"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/sycamore",
+      "source": ["https://crates.io/crates/sycamore"]
+    },
+    "documentation": {
+      "value": "https://sycamore.dev/book/introduction",
+      "source": ["https://sycamore.dev/book/introduction", "https://docs.rs/sycamore"],
+      "comment": "Official book at sycamore.dev/book; API docs at docs.rs/sycamore."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/sycamore"],
+      "comment": "Earliest crates.io publish was 0.5.0-beta.0 on 2021-06-08."
+    },
+    "latest-stable-version": {
+      "value": "0.9.2",
+      "source": ["https://crates.io/api/v1/crates/sycamore", "https://raw.githubusercontent.com/sycamore-rs/sycamore/main/Cargo.toml"],
+      "comment": "Checked 2026-07-19."
+    },
+    "latest-release": {
+      "value": "2025-09-23",
+      "source": ["https://crates.io/api/v1/crates/sycamore"],
+      "comment": "crates.io release date of 0.9.2; checked 2026-07-19."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/sycamore-rs/sycamore/commits/main"],
+      "comment": "Commits as recent as 2026-06-15 (Edition 2024 migration, bug fixes); checked 2026-07-19. Note the last published crates.io release (0.9.2) is from 2025-09."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/crates/sycamore", "https://sycamore.dev/book/introduction"],
+      "comment": "Still pre-1.0 (0.9.2) with an evolving API (reactive primitives were reworked in 0.9); usable and established but not yet 1.0 stable."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://lib.rs/crates/sycamore"],
+      "comment": "No corporate/foundation sponsor; primarily driven by maintainer lukechu10 with community contributors."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://sycamore.dev/", "https://sycamore.dev/book/introduction"],
+      "comment": "Fine-grained reactivity via signals, inspired by SolidJS; explicitly avoids a virtual DOM."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "Components are functions annotated with #[component]."
+    },
+    "view-authoring": {
+      "value": ["dsl", "builder-api"],
+      "source": ["https://sycamore.dev/book/guide/view-dsl", "https://sycamore.dev/book/guide/view-builder"],
+      "comment": "Custom view! macro DSL plus a Builder API (v2); both are type-checked at compile time."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://sycamore.dev/", "https://sycamore.dev/book/introduction"],
+      "comment": "Only the parts of the app that depend on a changed signal update; no full-subtree diff."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://sycamore.dev/"],
+      "comment": "Explicitly designed without a virtual DOM."
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/guide/resources-and-suspense"],
+      "comment": "Async components plus resources/suspense API with first-class async/await support."
+    },
+    "global-state-solution": {
+      "value": ["context", "signals"],
+      "source": ["https://sycamore.dev/book/guide/contexts"],
+      "comment": "Provide/inject contexts plus shared reactive signals."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://github.com/sycamore-rs/sycamore", "https://lib.rs/crates/sycamore"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen."
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://sycamore.dev/book/introduction", "https://github.com/sycamore-rs/sycamore/tree/main/examples"],
+      "comment": "Trunk is the recommended toolchain; examples are built with Trunk."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "No first-party CLI; relies on Trunk for scaffolding/build/dev-server."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "Dev workflow via Trunk's auto-rebuild + browser refresh; no view/RSX hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably documented, methodically-measured hello-world gzipped .wasm size available; per RESEARCH.md, prefer null over an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://sycamore.dev/book/guide/js-interop", "https://lib.rs/crates/sycamore"],
+      "comment": "Built on wasm-bindgen; web-sys and js-sys used for browser/JS API access."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://sycamore.dev/book/guide/js-interop"],
+      "comment": "Standard wasm-bindgen path with some boilerplate; the dedicated JS interop doc page is explicitly marked incomplete."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://lib.rs/crates/sycamore"],
+      "comment": "Depends on std / wasm-bindgen / web-sys; no no_std mode documented."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://sycamore.dev/"],
+      "comment": "SPA mode works as the baseline; SSR is optional."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/server-side-rendering", "https://sycamore.dev/"],
+      "comment": "render_to_string for server-side rendering, supported out of the box."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/server-side-rendering"],
+      "comment": "No first-party static-site-generation feature documented; render_to_string could be scripted at build time but there is no dedicated SSG tooling."
+    },
+    "hydration": {
+      "value": ["full"],
+      "source": ["https://sycamore.dev/book/server-side-rendering"],
+      "comment": "hydrate/hydrate_to reuse existing DOM nodes; no islands or progressive/partial hydration documented."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/server-side-rendering"],
+      "comment": "No integrated isomorphic server-function mechanism (unlike Leptos); SSR is via render_to_string and manual server wiring."
+    },
+    "streaming-ssr": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/server-side-rendering/streaming"],
+      "comment": "render_to_string_stream streams a fallback shell then updates as suspense boundaries resolve."
+    },
+    "backend-integration": {
+      "value": ["any"],
+      "source": ["https://sycamore.dev/book/server-side-rendering"],
+      "comment": "SSR is framework-agnostic (render_to_string returns a string usable with any server); no first-party axum/actix integration crate."
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "The same sycamore-router runs on client (HistoryIntegration) and server for SSR."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/router", "https://docs.rs/sycamore-router/latest/sycamore_router/"],
+      "comment": "sycamore-router is maintained in-tree by the core team."
+    },
+    "router-name": {
+      "value": "sycamore-router",
+      "source": ["https://docs.rs/sycamore-router/latest/sycamore_router/"]
+    },
+    "nested-routes": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "Nested routes via catch-all segments feeding another Route-deriving enum."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "Angle-bracket dynamic segments, including typed captures and <path..> variadic catch-all."
+    },
+    "typed-routes": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "Routes are a #[derive(Route)] enum, type-checked at compile time (e.g. a missing #[not_found] is a compile error)."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "No built-in navigation guards/redirect hooks documented; must be handled manually in the view closure."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/router"],
+      "comment": "No first-party lazy/code-split route loading documented."
+    },
+    "styling-approach": {
+      "value": ["plain-css", "tailwind-friendly"],
+      "source": ["https://sycamore.dev/book/cookbook/styling"],
+      "comment": "Not opinionated; raw CSS files and CSS frameworks via Trunk, with documented Tailwind integration. No built-in scoped or CSS-in-Rust system."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/cookbook/styling"],
+      "comment": "No built-in component-scoped styling; styling is delegated to external CSS."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "Essentially no mature ready-made UI component kits; users generally build their own or use CSS frameworks."
+    },
+    "forms-inputs": {
+      "value": ["two-way-binding", "controlled"],
+      "source": ["https://sycamore.dev/book/guide/data-binding"],
+      "comment": "bind: directive two-way-binds signals to value/valueAsNumber/checked; can also be driven as controlled inputs."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/sycamore-rs/sycamore/tree/main/examples", "https://github.com/sycamore-rs/sycamore/releases"],
+      "comment": "SVG support in the view macro (dedicated svg example); canvas reachable via web-sys."
+    },
+    "suspense-loading-ui": {
+      "value": true,
+      "source": ["https://sycamore.dev/book/guide/resources-and-suspense"],
+      "comment": "Suspense boundaries for async resources, integrated with streaming SSR."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "No dedicated error-boundary component documented in the book."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://sycamore.dev/book/introduction", "https://docs.rs/sycamore"],
+      "comment": "Structured book with guide/cookbook, tutorials, API docs, and a live example gallery; a few pages (JS interop, testing) are marked incomplete/WIP, so not a full 5."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://sycamore.dev/book/introduction", "https://github.com/sycamore-rs/sycamore/releases"],
+      "comment": "Idiomatic signal API; the 0.9 reactive-primitives rework made signals Copy and removed prior lifetime/scope friction."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "Macro-based view DSL; comparable to peer macro-driven Rust web frameworks."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/sycamore-rs/sycamore/tree/main/examples"],
+      "comment": "About 26 example projects in the repo (>20)."
+    },
+    "interactive-playground": {
+      "value": "https://examples.sycamore.dev",
+      "source": ["https://github.com/sycamore-rs/sycamore/tree/main/examples"],
+      "comment": "Live example gallery; no full REPL, but each example is hosted at examples.sycamore.dev/<name>."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://sycamore.dev/book/introduction"],
+      "comment": "No dedicated Sycamore devtools/inspector documented."
+    },
+    "testing-support": {
+      "value": ["none-official"],
+      "source": ["https://sycamore.dev/book/cookbook/testing", "https://github.com/sycamore-rs/sycamore/issues/55"],
+      "comment": "The testing docs state a testing story is still work-in-progress; generic wasm-bindgen-test works but is not an official documented story."
+    },
+    "github-stars": {
+      "value": 3300,
+      "source": ["https://github.com/sycamore-rs/sycamore"],
+      "comment": "~3.3k stars; checked 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 293703,
+      "source": ["https://crates.io/api/v1/crates/sycamore"],
+      "comment": "All-time downloads of the top-level sycamore crate; checked 2026-07-19."
+    },
+    "contributors": {
+      "value": 71,
+      "source": ["https://lib.rs/crates/sycamore"],
+      "comment": "~71 contributors per lib.rs; checked 2026-07-19."
+    },
+    "community-size": {
+      "value": ["medium"],
+      "source": ["https://sycamore.dev/", "https://lib.rs/crates/sycamore"],
+      "comment": "Dedicated Discord, ~71 contributors, ~3.3k stars; smaller than Leptos/Yew, which the docs note have larger communities."
+    },
+    "ecosystem-crates": {
+      "value": ["growing"],
+      "source": ["https://docs.rs/sycamore-router/latest/sycamore_router/", "https://sycamore.dev/book/introduction"],
+      "comment": "First-party router and SSR integrations exist, but few third-party component kits; leaner than the Yew/Leptos ecosystems."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely-documented production users found; avoiding tutorials/demos per guidance."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No separate meta-framework/full-stack kit; SSR/hydration are built into the core library rather than a dedicated fullstack layer."
+    }
+  }
 }
