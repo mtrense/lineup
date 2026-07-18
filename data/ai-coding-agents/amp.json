@@ -2,7 +2,7 @@
   "name": "Amp",
   "description": "Sourcegraph's frontier coding agent; start an agent in the terminal and control it from web, CLI, and mobile.",
   "url": "https://ampcode.com/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Amp (originally Sourcegraph)",
@@ -301,6 +301,11 @@
       "value": ["auto-run-all"],
       "source": ["https://ampcode.com/manual"],
       "comment": "Out of the box 'Amp does not ask for approval before running tools' — it auto-applies edits and runs commands without prompting until the user configures permissions. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://ampcode.com/manual"],
+      "comment": "No documented quick in-session toggle for an intermediate auto-accept-edits rung (no Shift+Tab-style 'accept all' mode). Amp is permissionless by default (auto-run-all); the only non-prompting behavior is that default/full-bypass posture, and finer control requires configuring amp.permissions rules or a plugin between sessions rather than a fast mid-session toggle. Per guideline, a tool whose only non-prompting option is the full bypass is false here. Checked 2026-07-18."
     }
   }
 }
