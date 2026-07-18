@@ -2,7 +2,7 @@
   "name": "ZeroStack",
   "description": "Minimal, resource-efficient CLI AI coding agent written in Rust with multi-provider LLM support and configurable permission modes.",
   "url": "https://gi-dellav.github.io/zerostack/",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Giuseppe Della Vedova (gi-dellav)",
@@ -301,6 +301,11 @@
       "value": ["auto-edit-ask-commands"],
       "source": ["https://gi-dellav.github.io/zerostack/", "https://github.com/gi-dellav/zerostack/blob/main/docs/CONFIG.md"],
       "comment": "Default mode is 'standard': path tools (read/write/edit) auto-allowed within the CWD and a safe-bash allowlist auto-runs, while other/destructive shell commands prompt. So edits within the project apply without asking but most commands are gated. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/gi-dellav/zerostack/main/docs/CONFIG.md", "https://raw.githubusercontent.com/gi-dellav/zerostack/main/README.md"],
+      "comment": "The /mode slash command switches permission modes in-session, so a user can quickly toggle to 'yolo' — an intermediate rung that auto-applies most edits and commands (prompting only on destructive bash), distinct from the separate full-bypass --dangerously-skip-permissions launch flag (Unsupervised Mode). Checked 2026-07-18."
     }
   }
 }
