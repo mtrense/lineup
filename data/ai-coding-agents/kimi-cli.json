@@ -2,7 +2,7 @@
   "name": "Kimi CLI",
   "description": "Moonshot AI's open-source terminal agent for software-development and terminal tasks; skills and MCP support.",
   "url": "https://github.com/MoonshotAI/kimi-cli",
-  "lastVerified": "2026-06-14",
+  "lastVerified": "2026-07-18",
   "values": {
     "developer": {
       "value": "Moonshot AI",
@@ -303,6 +303,11 @@
       "value": ["prompt-each-action"],
       "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
       "comment": "Out of the box (no --yolo/--afk), every shell command, file write/edit, and MCP tool call requires explicit per-action approval. Checked 2026-06-12."
+    },
+    "auto-accept-mode": {
+      "value": false,
+      "source": ["https://moonshotai.github.io/kimi-cli/llms-full.txt"],
+      "comment": "No intermediate in-session auto-accept toggle (nothing like Claude Code's Shift+Tab 'auto-accept edits'). The only non-prompting options are the full-bypass --yolo (-y/--yes/--auto-approve) and --afk, which are startup flags, not a quickly-toggled mid-session middle rung; there is no slash command/hotkey to enter an edits-only auto-apply mode. Per guideline, a tool whose only non-prompting option is the full bypass is false here (Unsupervised Mode is already true). Checked 2026-07-18."
     }
   }
 }
