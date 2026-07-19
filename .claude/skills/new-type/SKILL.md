@@ -91,7 +91,11 @@ Match the tone and depth of existing `data/*/RESEARCH.md` files in the project.
 
 Keep this short — the user reviews the file, not a chat recap. Output only:
 - The path of the created file: `data/<type>/RESEARCH.md`.
-- **Next step**: review the file and tell me what to change. Once it reads well, run `/scaffold-type <type>` to generate `attributes.json`, the empty `index.json`, and the entry in `data/index.json`.
+- **Next step**: a two-way offer — *review and refine the file (tell me what to change), or if it already reads well, say "scaffold" and I'll run `/scaffold-type <type>` right now.*
+
+This is a soft review gate, not a hard stop. RESEARCH.md is prose you can still shape; scaffolding freezes its structure (attribute directions, tag sets, groups) into JSON. So the choice is deliberate:
+- If the user wants to iterate → refine RESEARCH.md in place; scaffolding waits.
+- If the user says "scaffold" (or "go", "yes", "do it") → invoke the `/scaffold-type <type>` skill **inline in this same session** (not as a subagent — its "Defaults to review" summary must stay visible to the user). Do not re-run the Socratic phase; the guide is done.
 
 Do NOT re-summarize scope, attribute groups, or candidates here — they are in the file. Do NOT print a commit command — the type is not yet usable (no schema, not registered in `data/index.json`). The commit pattern is `/scaffold-type`'s concern.
 
