@@ -189,7 +189,7 @@ Users should be able to:
 - [x] Sycamore — Fine-grained reactive library inspired by SolidJS, lean and signal-based
 - [x] Percy — Isomorphic web apps with a virtual DOM (`html!` macro) and SSR, an early entrant
 - [x] Sauron — Elm-inspired, minimal virtual-DOM library with SSR support
-- [ ] Seed — Elm-architecture framework, historically significant; verify current maintenance status
+- [x] Seed — Elm-architecture framework, historically significant; verify current maintenance status
 - [ ] MoonZoon — Opinionated full-stack framework (Moon backend + Zoon frontend), no-HTML/CSS-required philosophy
 - [ ] Silkenweb — Fine-grained signals built on futures-signals, no virtual DOM
 - [ ] Kobold — Static-analysis-driven library that minimizes diffing for fast updates

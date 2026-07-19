@@ -1,5 +1,313 @@
 {
   "name": "Seed",
   "description": "Elm-architecture framework, historically significant; verify current maintenance status",
-  "values": {}
+  "icon": "rust",
+  "url": "https://github.com/seed-rs/seed",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A Rust front-end framework for creating fast and reliable web apps with an Elm-like architecture",
+      "source": ["https://github.com/seed-rs/seed", "https://crates.io/crates/seed"],
+      "comment": "README tagline; crates.io describes it as 'A Rust framework for creating web apps, using WebAssembly'."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/crates/seed", "https://github.com/seed-rs/seed"],
+      "comment": "Licensed MIT only per crates.io metadata and the GitHub license field — a deviation from the common MIT OR Apache-2.0 dual license used by most peers."
+    },
+    "repository": {
+      "value": "https://github.com/seed-rs/seed",
+      "source": ["https://github.com/seed-rs/seed"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/seed",
+      "source": ["https://crates.io/crates/seed"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/seed",
+      "source": ["https://docs.rs/seed", "https://github.com/seed-rs/seed"],
+      "comment": "The guide site seed-rs.org is currently disabled (a third party may have acquired the domain, per README warning and seed-rs.org issue #126), so API docs on docs.rs are the primary live documentation."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/crates/seed"],
+      "comment": "First crates.io publish (0.0.1) was 2018-12-09."
+    },
+    "latest-stable-version": {
+      "value": "0.10.0",
+      "source": ["https://crates.io/crates/seed"],
+      "comment": "seed 0.10.0; checked 2026-07-19. No newer release since 2023."
+    },
+    "latest-release": {
+      "value": "2023-03-07",
+      "source": ["https://crates.io/crates/seed"],
+      "comment": "crates.io publish date of seed 0.10.0; checked 2026-07-19 (over three years old)."
+    },
+    "maintenance-status": {
+      "value": ["abandoned"],
+      "source": ["https://github.com/seed-rs/seed", "https://crates.io/crates/seed"],
+      "comment": "README states plainly 'It's not maintained at the moment' / 'Seed is not maintained at the moment but if you want to see some features and bring a budget, feel free to contact us'. Last release 0.10.0 (2023-03-07); the only commit since is a Jan 2025 README fix (removing the dead website link). No activity in the last 6 months."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "README FAQ: 'As a framework, Seed is mostly feature-complete. You can build complete web apps in Seed.' API is stable and was used to build real apps; still pre-1.0 (0.10.0) and now frozen/unmaintained. Maturity assessed on API stability, not commit frequency (per RESEARCH.md)."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No corporate/foundation sponsor; created by David O'Connor and later maintained largely by Martin Kavik under the seed-rs community org (donation/BACKERS-funded)."
+    },
+    "reactivity-model": {
+      "value": ["elm"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Built-in state management based on the Elm architecture (Model / Msg / update / view). Internally renders and diffs a virtual DOM, but the reactivity model exposed to users is Elm-style message passing (see uses-virtual-dom)."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/tea_component"],
+      "comment": "Views/components are plain Rust functions returning Node<Msg>; nested TEA modules (own Model/Msg/update/view) are the pattern for reusable components (tea_component example). No component trait to impl."
+    },
+    "view-authoring": {
+      "value": ["dsl"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Views are written with per-element Rust macros (div!, p!, attrs!{}, C!, ...) forming a custom macro markup DSL — not a single html!-style macro nor an imperative builder. README highlights the macro syntax works with normal Rust linting/formatting."
+    },
+    "fine-grained-updates": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Re-renders the view on each update and diffs a virtual DOM; no signal-based fine-grained node targeting."
+    },
+    "uses-virtual-dom": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Seed builds a virtual DOM (El/Node tree) from the view function and diffs/patches it against the previous render, Elm/React-style."
+    },
+    "async-await-in-components": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/fetch"],
+      "comment": "Async work is done via commands (orders.perform_cmd with async blocks) that resolve to a Msg, not by awaiting inside components/view; no suspense-style await in the component tree."
+    },
+    "global-state-solution": {
+      "value": ["none-built-in"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "The single Elm Model is the app-wide state by design; there is no provide/inject context, reactive store, or dedicated global-state primitive beyond the Model."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://crates.io/crates/seed", "https://github.com/seed-rs/seed"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen."
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "README recommends Trunk as the application bundler ('trunk serve'); projects are scaffolded with cargo-generate from the seed-quickstart template."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No first-party Seed CLI; getting-started relies on cargo-generate, trunk, and wasm-bindgen-cli."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Uses Trunk's dev server, which rebuilds and auto-refreshes the browser (live reload); no view/RSX hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably documented, methodically-measured hello-world gzipped .wasm size available; per RESEARCH.md, prefer null over an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Built on wasm-bindgen with web-sys/js-sys for browser/JS APIs; README points users to web-sys for web APIs. rust_from_js / update_from_js examples show custom JS<->Rust calls."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/rust_from_js"],
+      "comment": "Standard wasm-bindgen/web-sys path with the usual boilerplate; examples cover calling JS from Rust and vice versa, but no dedicated interop conveniences beyond the underlying crates."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Requires std; no no_std or deliberately minimal-runtime mode."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Seed's defining mode: a client-rendered WASM SPA served via 'trunk serve'."
+    },
+    "server-side-rendering": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed", "https://github.com/seed-rs/seed/issues/232"],
+      "comment": "README 'Why not Seed?' explicitly lists 'No server-side rendering yet' (tracking issue #232)."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No static-site-generation tooling; client-side rendering only."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://github.com/seed-rs/seed", "https://github.com/seed-rs/seed/issues/232"],
+      "comment": "With no SSR, there is no server-rendered markup to hydrate."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/server_integration"],
+      "comment": "No integrated isomorphic server-function mechanism; the server_integration example wires up client/server communication manually (fetch to a separate backend)."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed/issues/232"],
+      "comment": "No SSR at all, hence no streaming SSR."
+    },
+    "backend-integration": {
+      "value": ["any"],
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/server_integration"],
+      "comment": "Frontend-only framework with no full-stack mode; it pairs with any backend over HTTP (the server_integration example demonstrates talking to a separate Rust server)."
+    },
+    "isomorphic-routing": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Routing runs client-side only; with no SSR there is no server-side route resolution."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/url", "https://github.com/seed-rs/seed/tree/master/examples/pages"],
+      "comment": "URL routing is built into Seed core (the Url type plus UrlChanged/UrlRequested subscriptions handled in update); no separate crate needed. A community derive-based router (seed_routing, seed-rs org) exists for typed routes."
+    },
+    "router-name": {
+      "value": "Built-in (Seed core URL routing)",
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/url"],
+      "comment": "Routing lives in seed core (seed::browser::Url + url-change subscriptions) rather than a named router crate; the optional companion crate is seed_routing."
+    },
+    "nested-routes": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/pages", "https://github.com/seed-rs/seed/tree/master/examples/pages_keep_state"],
+      "comment": "The pages / pages_keep_state / page_trait examples build nested page hierarchies by matching successive Url path segments."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/url"],
+      "comment": "Route parameters are read by parsing Url path segments / query in the update handler."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/url"],
+      "comment": "Core routing matches Url path segments imperatively (string-based); an invalid route is not a compile error. The community seed_routing crate adds derive/enum-based typed routes, but that is not part of core Seed."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Core Seed has no dedicated navigation-guard hook; redirect logic is written by hand in the update loop. The optional seed_routing crate offers guard support."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No first-party lazy / code-split route loading; the app compiles to a single WASM bundle."
+    },
+    "styling-approach": {
+      "value": ["css-in-rust", "inline-style", "plain-css"],
+      "source": ["https://github.com/seed-rs/seed", "https://github.com/seed-rs/styles_hooks"],
+      "comment": "Inline styles via the style!{} macro and plain external CSS work out of the box; CSS-in-Rust with global and scoped styles is provided by the companion Seed Styles crate (styles_hooks), not seed core."
+    },
+    "scoped-styles": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/styles_hooks", "https://github.com/seed-rs/seed"],
+      "comment": "Component-scoped styling is available through the companion Seed Styles crate ('global and scoped styles'); it is not built into seed core."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "README 'Why not Seed?': 'Pre-built components are rare. You will likely have to roll your own components such as date pickers.' Essentially no ready-made UI component-library crates."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/unsaved_changes"],
+      "comment": "Inputs are controlled: value bound from the Model and updated via input_ev handlers dispatching a Msg. No two-way binding directive or dedicated form-helper library."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/canvas", "https://github.com/seed-rs/seed/tree/master/examples/animation"],
+      "comment": "SVG elements can be authored with the element macros (svg![], path![], etc.) and there is a dedicated canvas example driving an HTML canvas via web-sys."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No declarative suspense / loading-boundary primitive; loading states are modeled by hand in the Model."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No error-boundary component; error handling is done in the update loop."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/seed", "https://github.com/seed-rs/seed"],
+      "comment": "Extensive example set and reasonable docs.rs API docs, but the main guide/tutorial site (seed-rs.org) is currently offline (domain issue #126), so the historically strong prose guide is not reachable; net adequate."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Clean, idiomatic macro views that work with rustfmt/clippy and readable Elm-architecture flow; some boilerplate from Msg enums and manual update wiring keeps it below a 5."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "Macro-based views but a comparatively lean framework; on par with peer macro-driven Rust web frameworks for a small app."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples"],
+      "comment": "About 39 example projects in the repo (counter, pages, url, canvas, fetch, graphql, websocket, todomvc, etc.), well above the >20 'extensive' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No online playground/REPL or hosted example gallery; the project website that once hosted live examples (seed-rs.org) is currently disabled."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "No dedicated Seed devtools/inspector beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test"],
+      "source": ["https://github.com/seed-rs/seed/tree/master/examples/tests"],
+      "comment": "The tests example uses wasm-bindgen-test to run in-browser/headless tests; no dedicated component-testing harness."
+    },
+    "github-stars": {
+      "value": 3834,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "~3.8k stars per the GitHub API; checked 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 410539,
+      "source": ["https://crates.io/crates/seed"],
+      "comment": "All-time downloads of the seed crate per crates.io API; checked 2026-07-19."
+    },
+    "contributors": {
+      "value": 61,
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "~61 contributors per the GitHub contributors API (including anonymous); checked 2026-07-19."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/seed-rs/seed"],
+      "comment": "A Discord server exists and there were ~61 historical contributors, but the project is now unmaintained with little current activity; effectively small/dormant today."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/seed-rs/seed", "https://github.com/seed-rs/awesome-seed-rs"],
+      "comment": "A few companion crates exist (Seed Styles / styles_hooks, seed_routing) and an awesome-seed-rs list, but the ecosystem is small and has stalled along with the framework."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely-documented production users; the framework is feature-complete but now unmaintained and no notable shipping apps are prominently cited."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No full-stack meta-framework; Seed is frontend-only (no SSR/server functions), typically paired with a separate Rust backend."
+    }
+  }
 }
