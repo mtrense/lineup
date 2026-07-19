@@ -1,5 +1,312 @@
 {
   "name": "Kobold",
   "description": "Static-analysis-driven library that minimizes diffing for fast updates",
-  "values": {}
+  "url": "https://github.com/maciejhirsz/kobold",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "Declarative Rust web UI library whose view! macro compiles static markup to inline DOM-constructing code and surgically updates only the exact nodes whose expressions change",
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Repo tagline: 'Easy declarative web interfaces.' README highlights the lowest-Wasm-footprint, no-VDOM surgical-update design."
+    },
+    "license": {
+      "value": ["mpl-2-0"],
+      "source": ["https://crates.io/crates/kobold", "https://github.com/maciejhirsz/kobold"],
+      "comment": "Current releases (0.6.0+) are MPL-2.0. Earlier versions were GPL-3.0 (0.0.0-0.1.0) then LGPL-3.0 (0.2.0-0.5.0) before the 2023 relicense."
+    },
+    "repository": {
+      "value": "https://github.com/maciejhirsz/kobold",
+      "source": ["https://github.com/maciejhirsz/kobold"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/kobold",
+      "source": ["https://crates.io/crates/kobold"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/kobold",
+      "source": ["https://crates.io/crates/kobold"],
+      "comment": "docs.rs hosts an extensive crate-level guide; crates.io documentation field points there."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/crates/kobold"],
+      "comment": "0.0.0 published to crates.io on 2021-08-03, 0.1.0 on 2021-08-08 (repo created 2019-11)."
+    },
+    "latest-stable-version": {
+      "value": "0.9.1",
+      "source": ["https://crates.io/crates/kobold"],
+      "comment": "Latest crates.io release as of 2026-07-19; still pre-1.0."
+    },
+    "latest-release": {
+      "value": "2023-05-26",
+      "source": ["https://crates.io/crates/kobold"],
+      "comment": "0.9.1 published 2023-05-26 (checked 2026-07-19); no newer crates.io release since."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/maciejhirsz/kobold", "https://crates.io/crates/kobold"],
+      "comment": "Effectively dormant: last crates.io release was 0.9.1 on 2023-05-26 and the last master commit is 2024-05-05 (checked 2026-07-19). No commits or releases in the last ~2 years, so activity is well below 'actively-maintained'; not archived on GitHub. Solo maintainer."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://crates.io/crates/kobold", "https://github.com/maciejhirsz/kobold"],
+      "comment": "Pre-1.0 (0.9.1), client-only with no SSR, no widely documented production users, and no development in ~2 years. Feature-set is coherent for CSR SPAs but the project remains experimental."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Solo/community project by Maciej Hirsz (author of logos/ramhorns); no corporate or foundation backing."
+    },
+    "reactivity-model": {
+      "value": ["compiler-driven"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Static analysis at compile time: the view! macro produces opaque static View types; static markup becomes inline JS, and only expression nodes are tracked and value/pointer-diffed on update. Not signals, virtual-DOM, or Elm."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Components are render functions annotated with #[component]; 'Components in Kobold are created by annotating a render function with a #[component] attribute.'"
+    },
+    "view-authoring": {
+      "value": ["html-macro"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "The view! macro uses HTML-esque syntax with optional closing tags and <!component> invocation syntax."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Updates target exact nodes: 'Changing a string or an integer only updates the exact Text node that value was rendered to.' Static-only views are literally zero-cost to update."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No virtual DOM; expressions are diffed by value/pointer and the DOM is surgically patched."
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/csv_editor/src/main.rs"],
+      "comment": "Stateful hooks expose bind_async, e.g. state.bind_async(|state, event| async move { ... }), enabling async event handlers via wasm-bindgen-futures. No dedicated suspense primitive."
+    },
+    "global-state-solution": {
+      "value": ["none-built-in"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "State is component-local via stateful/Hook/Signal; there is no built-in context provide/inject or global store. Shared state is threaded through props/Hooks manually."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen/web-sys; static markup also emits inline JS glue for element construction."
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Examples are built and served with Trunk."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No first-party scaffolding/dev-server CLI; relies on Trunk."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Dev loop via Trunk (auto-rebuild + browser refresh); no view/RSX hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "README claims 'consistently the lowest Wasm footprint in the Rust ecosystem,' but no reproducible minimal hello-world gzipped .wasm figure under a documented opt profile was found; omitted per RESEARCH.md rather than recording an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys"],
+      "source": ["https://github.com/maciejhirsz/kobold", "https://raw.githubusercontent.com/maciejhirsz/kobold/master/examples/qrcode/src/main.rs"],
+      "comment": "Built on wasm-bindgen and web-sys (re-exported via kobold::reexport::web_sys); typed event targets like Event<HtmlInputElement> surface web-sys types."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/csv_editor/src/main.rs"],
+      "comment": "Standard wasm-bindgen/web-sys interop with typed event wrappers; dropping to raw web APIs is the usual boilerplate, neither exceptional nor awkward."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Depends on std, wasm-bindgen, and web-sys; no no_std mode. (Runtime footprint is small, but that is bundle size, not no_std.)"
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Primary and only target is client-rendered single-page apps in the browser."
+    },
+    "server-side-rendering": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No SSR; the library renders directly into the live DOM on the client. No render-to-string documented."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No static-site-generation / pre-rendering support."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Client-only; no server-rendered HTML to hydrate."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No isomorphic server-function mechanism; Kobold is a client-side UI library only."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No SSR, hence no streaming SSR."
+    },
+    "backend-integration": {
+      "value": null,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No full-stack/server-integration story; the compiled WASM is static and can be served by any web server, but Kobold ships no framework integration, so none of the tags apply."
+    },
+    "isomorphic-routing": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Client-only; routing runs solely in the browser."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "A first-party kobold_router crate lives in-tree (crates/kobold_router) with a router example. It is WIP (added April 2024) and not published to crates.io, so it must be used via git dependency."
+    },
+    "router-name": {
+      "value": "kobold_router",
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "In-tree crate providing Router, Params, and a link element; WIP and unpublished on crates.io."
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "Router example matches flat routes; no nested-layout routing construct documented."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "Params exposes get(\"id\") to read parameterized path segments."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "Routes are string-based (link route={\"/one\"}, params.get by name), not derive/enum type-checked."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "No navigation-guard/redirect-hook API documented."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/router/src/main.rs"],
+      "comment": "No per-route code splitting / lazy loading."
+    },
+    "styling-approach": {
+      "value": ["plain-css"],
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/csv_editor/src/main.rs"],
+      "comment": "Styling is via plain external CSS and class names; the view! macro supports a .class shorthand (e.g. <input.edit.edit-head>) and a procedural class! macro. No component-scoped or CSS-in-Rust styling system."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No built-in component-scoped styling; CSS is global/external."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No maintained UI component-kit crates; users build their own. kobold_qr is a single-purpose QR widget, not a general kit."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://github.com/maciejhirsz/kobold/blob/master/examples/csv_editor/src/main.rs"],
+      "comment": "Inputs are wired to state via bind/bind_async event handlers with value={ref ...}, i.e. controlled; no dedicated two-way-binding or form-helper abstraction."
+    },
+    "svg-canvas-support": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No first-class SVG support in master; a separate 'svg-attrs' branch exploring SVG attribute handling remains unmerged as of 2026-07-19. The kobold_qr example renders its own widget rather than authoring SVG in view!."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No declarative suspense/loading-boundary primitive; async loading states are handled manually via stateful updates."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No error-boundary construct documented."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/kobold/latest/kobold/", "https://github.com/maciejhirsz/kobold"],
+      "comment": "Thorough crate-level guide on docs.rs (view!, stateful, branching, keywords, events) plus a detailed README and 10 examples; adequate but no standalone book/tutorial series and some areas (async, router) are thin."
+    },
+    "api-ergonomics": {
+      "value": 4,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Statically-typed views with low boilerplate and helpful compiler errors (typos in component fields are compile errors; rust-analyzer refactors into macros). The stateful/Hook/bind! pattern and borrowed-view lifetimes add some ceremony, keeping it short of a 5."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "The view! proc-macro is comparatively lightweight (emits static inline construction) but still macro-based; no published benchmark, so a conservative 'moderate'."
+    },
+    "examples-count": {
+      "value": ["good"],
+      "source": ["https://github.com/maciejhirsz/kobold/tree/master/examples"],
+      "comment": "10 example directories in the official repo (counter, csv_editor, hello_world, interval, list, optional_params, qrcode, router, stateful, todomvc) — in the 10-20 'good' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No hosted online playground/REPL found; only the in-repo examples."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No dedicated devtools/inspector beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["none-official"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "No documented user-facing component/e2e testing story; the repo runs its own CI but provides no test harness or guidance for app authors."
+    },
+    "github-stars": {
+      "value": 401,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "GitHub API snapshot on 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 18054,
+      "source": ["https://crates.io/crates/kobold"],
+      "comment": "All-time downloads of the kobold crate as of 2026-07-19."
+    },
+    "contributors": {
+      "value": 4,
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "GitHub contributors API count on 2026-07-19; effectively solo-maintained by Maciej Hirsz."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "Solo maintainer with ~4 contributors and 401 stars; a dedicated Discord server exists but the active community is small and the project is currently dormant."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/maciejhirsz/kobold"],
+      "comment": "In-tree kobold_router (WIP) and kobold_qr; essentially no third-party ecosystem of routers/component kits/integrations."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely documented production/company users found."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No associated full-stack/meta-framework layer; Kobold is a client-only UI library."
+    }
+  }
 }
