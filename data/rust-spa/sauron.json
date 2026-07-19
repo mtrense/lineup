@@ -1,5 +1,314 @@
 {
   "name": "Sauron",
   "description": "Elm-inspired, minimal virtual-DOM library with SSR support",
-  "values": {}
+  "icon": "rust",
+  "url": "https://github.com/ivanceras/sauron",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A versatile web framework and library for building client-side and/or server-side web applications, following The Elm Architecture with a strong focus on ergonomics, simplicity and elegance",
+      "source": ["https://github.com/ivanceras/sauron", "https://crates.io/crates/sauron"],
+      "comment": "Combines the repo/crate tagline with the README's Elm-architecture framing (model/view/update)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/crates/sauron", "https://github.com/ivanceras/sauron"],
+      "comment": "MIT only (SPDX 'MIT' per the GitHub license field and crates.io metadata), not the MIT OR Apache-2.0 dual-license common to most Rust web frameworks."
+    },
+    "repository": {
+      "value": "https://github.com/ivanceras/sauron",
+      "source": ["https://github.com/ivanceras/sauron"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/sauron",
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "sauron is the top-level crate; the workspace also publishes sauron-core, sauron-node-macro, and the standalone VDOM crate mt-dom."
+    },
+    "documentation": {
+      "value": "https://docs.rs/sauron",
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "Primary docs are the crate-level API docs on docs.rs; there is no separate guide/book, the README and the 31 in-repo examples serve as the narrative documentation."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "First crates.io publish 2019-04-15."
+    },
+    "latest-stable-version": {
+      "value": "0.70.0",
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "sauron 0.70.0; checked 2026-07-19. Still pre-1.0."
+    },
+    "latest-release": {
+      "value": "2025-01-27",
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "crates.io publish date of 0.70.0; checked 2026-07-19."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://crates.io/crates/sauron", "https://api.github.com/repos/ivanceras/sauron/commits"],
+      "comment": "Last release (0.70.0) and last commit both 2025-01-27, i.e. ~18 months before the 2026-07-19 check with no activity since; not archived. Beyond the 6-month 'actively-maintained' window and trending dormant, but the long-running solo project is not declared abandoned."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://crates.io/crates/sauron", "https://github.com/ivanceras/sauron"],
+      "comment": "Long-lived (since 2019) but still pre-1.0 (0.70.0) with a churning API across 0.6x releases and no widely-documented production usage; classified experimental for consistency with peer pre-1.0 entrants."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/ivanceras/sauron", "https://api.github.com/repos/ivanceras/sauron/contributors"],
+      "comment": "No corporate/foundation sponsor; effectively a solo project by ivanceras (Jovansonlee Cesar), who accounts for the overwhelming majority of commits."
+    },
+    "reactivity-model": {
+      "value": ["elm", "virtual-dom"],
+      "source": ["https://github.com/ivanceras/sauron", "https://docs.rs/sauron/latest/sauron/"],
+      "comment": "State propagates via The Elm Architecture (model/view/update message loop) — Sauron is the canonical Rust 'elm' example per RESEARCH.md; the render path itself builds a virtual DOM and diff/patches it (dom module 'provides diffing algorithm which returns patches')."
+    },
+    "component-model": {
+      "value": ["struct-components"],
+      "source": ["https://github.com/ivanceras/sauron", "https://docs.rs/sauron/latest/sauron/"],
+      "comment": "Apps/components implement the Application/Component traits (view/update/stylesheet) on a struct; also supports web-components/custom-elements built from the same trait implementations."
+    },
+    "view-authoring": {
+      "value": ["html-macro", "builder-api"],
+      "source": ["https://github.com/ivanceras/sauron", "https://github.com/ivanceras/sauron/tree/master/examples"],
+      "comment": "Views can be written with the node! html-style macro or with function/builder syntax (div(), etc.); the examples ship both '-macro-syntax' and builder variants (e.g. simple_builder.rs, minimal vs minimal-macro-syntax)."
+    },
+    "fine-grained-updates": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "Updates go through virtual-DOM diff/patch, not fine-grained signal-targeted node updates."
+    },
+    "uses-virtual-dom": {
+      "value": true,
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron"],
+      "comment": "Maintains a virtual DOM (vdom module) with a diff() that returns the patches needed to transform old_node into new_node; supports keyed diffing via key()."
+    },
+    "async-await-in-components": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples", "https://github.com/ivanceras/sauron"],
+      "comment": "Async data loading is handled the Elm way — via Cmd/Effects that dispatch a Msg on completion (see fetch-data examples) — rather than awaiting inside components/resources suspense-style."
+    },
+    "global-state-solution": {
+      "value": ["none-built-in"],
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "The single Application model is the app-wide state per the Elm architecture; there is no dedicated context-injection or signal-store primitive for cross-component global state."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://github.com/ivanceras/sauron", "https://crates.io/crates/sauron"],
+      "comment": "Client compiles to WebAssembly via wasm-bindgen; the same view code renders to a String on the native server side for SSR."
+    },
+    "primary-build-tool": {
+      "value": ["wasm-pack"],
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "README recommends wasm-pack (build --target web --release) plus basic-http-server; no first-party build tool. A csr-tailwind-trunk example shows Trunk works too, but wasm-pack is the documented default."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No first-party scaffolding/build/dev-server CLI."
+    },
+    "dev-server-hmr": {
+      "value": ["manual"],
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Documented flow is a wasm-pack build served by basic-http-server; no first-party hot-reload or live-reload (the Trunk example provides live-reload via the third-party Trunk tool)."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably documented, methodically-measured hello-world gzipped .wasm size available; per RESEARCH.md, prefer null over an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron"],
+      "comment": "Built on wasm-bindgen with web-sys/js-sys for browser/JS API access; also re-exports serde-wasm-bindgen for serializing state across the JS boundary."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Standard wasm-bindgen/web-sys path with the usual boilerplate; no dedicated JS-interop conveniences beyond the underlying crates."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "No no_std mode; relies on std and the wasm-bindgen runtime."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Program::mount_to_body(App::new()) boots a WASM client that renders and diff/patches the DOM in the browser (baseline SPA mode)."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://github.com/ivanceras/sauron", "https://github.com/ivanceras/sauron/tree/master/examples/progressive-rendering"],
+      "comment": "SSR is a first-class, advertised capability: views render to an HTML String on the server (progressive-rendering and ssr-forms examples)."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Static site generation is explicitly listed as a supported capability (render views to static HTML at build time)."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples/progressive-rendering"],
+      "comment": "No true DOM rehydration: the progressive-rendering approach serializes the server App state to JSON, recreates the App on the client, and replaces the <main> element with a fresh client render rather than reattaching to and rehydrating the server-rendered DOM tree."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No integrated, isomorphic server-function mechanism; client/server communication is written manually (e.g. fetch in the fetch-data examples)."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples/progressive-rendering"],
+      "comment": "Although Sauron lists 'progressive rendering' as a feature and the example describes streaming portions of a page, the implementation renders a complete HTML document served via warp rather than confirmed out-of-order/in-order chunked streaming."
+    },
+    "backend-integration": {
+      "value": ["any"],
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples/progressive-rendering"],
+      "comment": "SSR produces a plain String usable with any server; there is no framework-specific integration crate. The progressive-rendering example happens to use warp."
+    },
+    "isomorphic-routing": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "Sauron ships no router at all, so there is no shared server/client routing."
+    },
+    "official-router": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron"],
+      "comment": "No first-party routing module in the public API; routing is left to the application or third-party crates."
+    },
+    "router-name": {
+      "value": null,
+      "comment": "No official router crate/module."
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "No official router, hence no nested-route support."
+    },
+    "dynamic-route-params": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "No official router, hence no parameterized routes out of the box."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "No official router, hence no type-checked routes."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "No official router, hence no navigation guards."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "No first-party lazy/code-split route loading (no router)."
+    },
+    "styling-approach": {
+      "value": ["css-in-rust", "inline-style", "plain-css"],
+      "source": ["https://github.com/ivanceras/sauron", "https://docs.rs/sauron/latest/sauron/"],
+      "comment": "First-class CSS-in-Rust via the jss!/jss_with_media! macros (stylesheet() method) and inline styles via the style! macro; plain/external CSS also works. A csr-tailwind-trunk example shows Tailwind is usable too."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron"],
+      "comment": "jss! generates a global stylesheet injected via the Application's stylesheet()/style() hooks; styles are not automatically component-scoped."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Essentially no ready-made third-party UI component-library crates; users build their own components."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples/ssr-forms", "https://github.com/ivanceras/sauron"],
+      "comment": "Inputs are wired manually via events (on_input etc.) that dispatch messages reading/writing the model; no two-way-binding directive or dedicated form-helper library (ssr-forms example)."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron/tree/master/examples"],
+      "comment": "Dedicated svg module/macros for authoring SVG in views (svg-clock, svg-graph examples); canvas is reachable via web-sys."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No declarative suspense/loading-boundary primitive; loading states are modeled explicitly in the app state."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No error-boundary component documented."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/sauron/latest/sauron/", "https://github.com/ivanceras/sauron"],
+      "comment": "API docs on docs.rs plus a substantial README, but no cohesive guide/book or tutorial series; narrative docs are thin and lean heavily on the (many) examples."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "The Elm model and node! macro are clean and the project explicitly targets ergonomics/simplicity, but the struct+trait wiring and manual message plumbing add some boilerplate."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "Macro-based node! views; comparable to peer macro-driven Rust web frameworks for a small app."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/ivanceras/sauron/tree/master/examples"],
+      "comment": "~31 example projects in the examples/ directory (counter, todomvc, data-viewer, svg-clock, fetch-data, progressive-rendering, ssr-forms, custom-element, etc.), well into the >20 'extensive' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No online playground/REPL or hosted example gallery; the author maintains standalone demo apps (e.g. the ultron editor) but there is no unified interactive playground."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No dedicated Sauron devtools/inspector beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test"],
+      "source": ["https://docs.rs/sauron/latest/sauron/"],
+      "comment": "Uses wasm-bindgen-test for browser-based tests (dev-dependency); no dedicated component-testing harness beyond that."
+    },
+    "github-stars": {
+      "value": 2065,
+      "source": ["https://api.github.com/repos/ivanceras/sauron"],
+      "comment": "2,065 stars per the GitHub API; checked 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 545249,
+      "source": ["https://crates.io/crates/sauron"],
+      "comment": "All-time downloads of the sauron crate; checked 2026-07-19."
+    },
+    "contributors": {
+      "value": 11,
+      "source": ["https://api.github.com/repos/ivanceras/sauron/contributors"],
+      "comment": "~11 contributors per the GitHub contributors API; checked 2026-07-19. Development is overwhelmingly dominated by ivanceras (~2,263 of the commits)."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/ivanceras/sauron/contributors", "https://github.com/ivanceras/sauron"],
+      "comment": "Effectively a single-maintainer project (ivanceras) with a handful of one-off contributors and no advertised dedicated community chat."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "In-tree crates (sauron-core, sauron-node-macro, mt-dom) cover the core; essentially no third-party routers, component kits, or integrations."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://github.com/ivanceras/sauron"],
+      "comment": "No widely-documented external production users; the notable apps built with it (e.g. the author's ultron text editor and a HackerNews clone) are the maintainer's own projects/demos."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "comment": "No separate meta-framework/full-stack kit; SSR, SSG, and progressive rendering are built into the core sauron crate rather than a dedicated fullstack layer."
+    }
+  }
 }
