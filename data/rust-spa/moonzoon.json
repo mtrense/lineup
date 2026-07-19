@@ -1,5 +1,312 @@
 {
   "name": "MoonZoon",
   "description": "Opinionated full-stack framework (Moon backend + Zoon frontend), no-HTML/CSS-required philosophy",
-  "values": {}
+  "icon": "rust",
+  "url": "https://github.com/MoonZoon/MoonZoon",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "Rust fullstack framework to build web and desktop apps with no HTML, CSS or JS needed — a Moon (Actix) backend paired with a signals-based Zoon frontend",
+      "source": ["https://github.com/MoonZoon/MoonZoon", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "Official README tagline: \"Rust Fullstack Framework to build Web and Desktop apps with Multithreading and Durable Computing. No HTML, CSS or JS needed.\""
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon"],
+      "comment": "GitHub reports the repo license as MIT (not the common MIT/Apache-2.0 dual)."
+    },
+    "repository": {
+      "value": "https://github.com/MoonZoon/MoonZoon",
+      "source": ["https://github.com/MoonZoon/MoonZoon"]
+    },
+    "crates-io": {
+      "value": null,
+      "comment": "Not published to crates.io. MoonZoon (mzoon CLI and the zoon/moon/moonlight crates) is consumed as a git dependency pinned to a commit (e.g. `cargo install mzoon --git https://github.com/MoonZoon/MoonZoon --locked`). The unrelated `zoon`/`moon` crates on crates.io are different projects."
+    },
+    "documentation": {
+      "value": "https://github.com/MoonZoon/MoonZoon/tree/main/docs",
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/docs", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Docs are Markdown files in the repo (philosophy, frontend, backend, CLI, development); no hosted book or docs.rs API docs since nothing is published to crates.io."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "Repo created 2020-10-05; first public dev-news/live demo and working mzoon CLI landed in early 2021 (MoonZoon Dev News series on dev.to). Never had a versioned crates.io/tagged release."
+    },
+    "latest-stable-version": {
+      "value": null,
+      "comment": "No released/tagged stable version. Projects pin to a specific git commit rather than a semver release."
+    },
+    "latest-release": {
+      "value": null,
+      "comment": "No crates.io or tagged releases exist. Most recent commit to main was 2025-09-24 (checked 2026-07-19)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon"],
+      "comment": "Not archived, but no commits in ~10 months — latest commit 2025-09-24, with a bursty near-solo commit history (checked 2026-07-19)."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "Pre-1.0 with no versioned release; API still evolving and some advertised features (e.g. SSR/dynamic rendering) are documented as \"not implemented yet\"."
+    },
+    "corporate-foundation-backing": {
+      "value": "NLnet Foundation (grant) and GitHub Sponsors; otherwise community, near-solo development by Martin Kavík",
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "README lists NLnet Foundation and GitHub Sponsors as funders; development is led primarily by Martin Kavík."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Fine-grained reactivity via the futures-signals crate (Mutable + .signal()); no virtual DOM."
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No component macro or trait; components are plain Rust functions returning `impl Element` built with the element builder API."
+    },
+    "view-authoring": {
+      "value": ["builder-api"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Views are written with fluent element builders (e.g. `Column::new().item(...)`, `Button::new().label(...).on_press(...)`); no HTML/RSX macro."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Signal changes update the exact bound elements (e.g. `item_signal`/`Text::with_signal`); no full-subtree re-render or diff."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Elements write directly to the browser DOM; no virtual DOM is maintained."
+    },
+    "async-await-in-components": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No in-view await or suspense/resource mechanism. Async is first-class elsewhere via Task and futures-signals (and async router/connection handlers), feeding signals into the element tree."
+    },
+    "global-state-solution": {
+      "value": ["signals"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "App-wide state is held in global static `Mutable`s (via `#[static_ref]`/`Lazy`) exposed as signals; no provide/inject context system."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "Frontend compiles to WebAssembly (requires the wasm32-unknown-unknown target) via wasm-bindgen."
+    },
+    "primary-build-tool": {
+      "value": ["custom-cli"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/cli.md"],
+      "comment": "First-party `mzoon` CLI handles scaffolding, build, and dev server (`mzoon new`, `mzoon start`, `mzoon build`)."
+    },
+    "official-cli": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "`mzoon` is the official CLI: `mzoon new`, `mzoon start --open`, `mzoon build -r`."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "mzoon dev server provides auto rebuild + browser live-reload (MoonZoon Dev News #1); no view/RSX hot reload without recompile."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No reliably documented, methodically-measured hello-world gzipped .wasm size. The README shows a size benchmark image but without a reproducible profile; per RESEARCH.md, prefer null over an unmethodical number."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys", "js-sys"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md", "https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "Zoon is built on wasm-bindgen/web-sys (RawHtmlEl wraps web_sys elements); examples include web_components, wasm_components and js_text_editor for JS interop."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "Philosophy is \"no JS needed\", so interop is not a headline feature; dropping to wasm-bindgen/web-sys works (dedicated web_components/wasm_components examples) but with standard boilerplate and limited dedicated docs."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Depends on std, wasm-bindgen, web-sys and futures-signals; no no_std mode."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "Zoon renders a client-side WASM SPA; `mzoon build --frontend-dist` produces a frontend-only static bundle deployable to e.g. Netlify."
+    },
+    "server-side-rendering": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "The frontend doc notes robot/dynamic rendering to an HTML string is \"Not implemented yet, waiting for servo.org\"; there is no working SSR path today."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "No pre-render-to-static-HTML build step; `--frontend-dist` emits a client-rendered SPA bundle, not pre-rendered route HTML."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No SSR, so no hydration; the client builds and renders the DOM from scratch."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/backend.md"],
+      "comment": "No annotate-a-fn isomorphic server functions. Client/server communicate through a typed `Connection<UpMsg, DownMsg>` (UpMsg over a fetch request, DownMsg over server-sent events) handled by an actor-based `up_msg_handler` — integrated and typed, but message-passing rather than direct server-function calls."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No SSR at all, therefore no streaming SSR."
+    },
+    "backend-integration": {
+      "value": ["actix-web", "standalone"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/backend.md"],
+      "comment": "The Moon backend is its own integrated server built on Actix Web; you can drop down to Actix directly (route registration, custom App/middlewares)."
+    },
+    "isomorphic-routing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "The `Router` runs on the client only; with no working SSR the routes are not resolved server-side."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "First-party routing shipped in Zoon: the `Router` struct plus the `#[route]` macro, with helpers `routing::back`, `routing::url`, `Router::go`, `Router::replace`."
+    },
+    "router-name": {
+      "value": "Zoon Router (routing module)",
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Built into the zoon crate (`Router` + `#[route]`), not a separately named crate."
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Routes are a flat enum matched against url path segments in order; no nested/child route layout concept is documented."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Dynamic segments/parameters implement the `RouteSegment` trait (implemented for f64, String, etc.), e.g. `#[route(\"report\", frequency)]`."
+    },
+    "typed-routes": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Routes are a `#[route]` enum; matching and parameter parsing are derived and type-checked at compile time."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No dedicated navigation-guard hooks; redirect logic is written manually inside the async `Router::new` callback (e.g. calling `Router::go`)."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No first-party lazy/code-split route loading documented; the app compiles to a single WASM bundle."
+    },
+    "styling-approach": {
+      "value": ["css-in-rust", "inline-style"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Styles are authored entirely in Rust via the `.s(...)` Styleable ability and typed Style values (Width, Background, Borders, etc.), with no HTML/CSS files needed; some map to element inline styles/style groups with automatic vendor prefixing."
+    },
+    "scoped-styles": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Styles are attached to the specific element via `.s(...)`; there is no global stylesheet by default (a `global_styles()` escape hatch exists for opt-in global rules)."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "Zoon ships its own element primitives, but there are essentially no ready-made third-party UI component kits; not published to crates.io, which further limits an external ecosystem."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "Inputs (TextInput, TextArea) are driven as controlled elements: value set from a signal and updates fed back via on_change handlers; no dedicated form-helper library or bind directive."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "Dedicated examples for svg, canvas, three_d and wgpu demonstrate first-class SVG/canvas/graphics support."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "No declarative suspense/loading-boundary primitive; the `spinner` example is a plain element, and loading state is handled manually via signals."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No error-boundary component documented in the frontend guide."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md", "https://github.com/MoonZoon/MoonZoon/tree/main/docs"],
+      "comment": "Detailed in-repo Markdown guides (philosophy, frontend, backend, CLI) plus a Dev News blog series; but no hosted searchable book, no docs.rs API docs, and some sections describe unfinished features."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "User-facing builder API reads cleanly, but the typestate-flag generics make element internals verbose (acknowledged in the docs as a trade-off pending const-generics), and the API is pre-1.0."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No heavy view macro, but the generics/typestate-heavy builder API and full Actix backend build put it in the moderate range for peer Rust web frameworks; not independently benchmarked here."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/examples"],
+      "comment": "46 example projects in the repo examples/ directory (>20)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No online playground/REPL or hosted example gallery. A live \"new project\" template demo is hosted at moonzoon-new-project.netlify.app, but it is a single demo, not an interactive playground."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/frontend.md"],
+      "comment": "No dedicated MoonZoon devtools/inspector documented."
+    },
+    "testing-support": {
+      "value": ["none-official"],
+      "source": ["https://github.com/MoonZoon/MoonZoon/tree/main/docs"],
+      "comment": "No official testing story documented; generic wasm-bindgen-test would work but is not part of a documented MoonZoon testing workflow."
+    },
+    "github-stars": {
+      "value": 1831,
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon"],
+      "comment": "1,831 stars; checked 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": null,
+      "comment": "Not published to crates.io (consumed as a git dependency), so no all-time download figure exists."
+    },
+    "contributors": {
+      "value": 18,
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon"],
+      "comment": "~18 contributors per the GitHub contributors API; checked 2026-07-19."
+    },
+    "community-size": {
+      "value": ["small"],
+      "source": ["https://api.github.com/repos/MoonZoon/MoonZoon", "https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "A dedicated Discord exists and ~18 people have contributed, but development is essentially solo (Martin Kavík) with ~1.8k stars — smaller than Leptos/Yew/Dioxus."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/MoonZoon/MoonZoon"],
+      "comment": "Router, styling, backend and connection are all in-tree (zoon/moon/moonlight); with nothing on crates.io there is little third-party crate ecosystem around it."
+    },
+    "notable-production-users": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/README.md"],
+      "comment": "No widely-documented third-party production users. The maintainer's own projects (MoonZoon Cloud, the blog.abor.dev site) use it, but these are first-party, not independent adopters."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": "Moon (built-in Actix-based backend)",
+      "source": ["https://raw.githubusercontent.com/MoonZoon/MoonZoon/main/docs/backend.md"],
+      "comment": "MoonZoon is inherently full-stack: the Moon backend (Actix + virtual-actor sessions) and Zoon frontend ship together with a typed Connection/UpMsg/DownMsg layer (moonlight); there is no separate meta-framework."
+    }
+  }
 }
