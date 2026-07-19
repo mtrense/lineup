@@ -191,7 +191,7 @@ Users should be able to:
 - [x] Sauron — Elm-inspired, minimal virtual-DOM library with SSR support
 - [x] Seed — Elm-architecture framework, historically significant; verify current maintenance status
 - [x] MoonZoon — Opinionated full-stack framework (Moon backend + Zoon frontend), no-HTML/CSS-required philosophy
-- [ ] Silkenweb — Fine-grained signals built on futures-signals, no virtual DOM
+- [x] Silkenweb — Fine-grained signals built on futures-signals, no virtual DOM
 - [ ] Kobold — Static-analysis-driven library that minimizes diffing for fast updates
 - [ ] Mogwai — Minimal, channel/stream-based view library with no macros
 

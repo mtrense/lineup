@@ -1,5 +1,313 @@
 {
   "name": "Silkenweb",
   "description": "Fine-grained signals built on futures-signals, no virtual DOM",
-  "values": {}
+  "url": "https://github.com/silkenweb/silkenweb",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A library for writing reactive single-page web apps using fine-grained signals and plain Rust syntax, with no virtual DOM",
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Repo tagline: 'A library for writing reactive single page web apps'."
+    },
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "Dual-licensed 'MIT OR Apache-2.0' across all published versions."
+    },
+    "repository": {
+      "value": "https://github.com/silkenweb/silkenweb",
+      "source": ["https://github.com/silkenweb/silkenweb"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/silkenweb",
+      "source": ["https://crates.io/crates/silkenweb"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/silkenweb",
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "API docs on docs.rs; repo also ships an mdbook guide under packages/book. crates.io documentation field is unset."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "0.1.0 first published to crates.io on 2021-04-29."
+    },
+    "latest-stable-version": {
+      "value": "0.10.0",
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "Latest release as of 2026-07-19; still pre-1.0."
+    },
+    "latest-release": {
+      "value": "2025-05-24",
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "0.10.0 published 2025-05-24 (checked 2026-07-19)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Last feature release (0.10.0) was 2025-05-24; recent commits (through April 2026) are dependency (dependabot) bumps rather than feature work. Solo maintainer."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "Feature-complete for SPA/SSR but still 0.x (0.10.0) with breaking changes between minors and no widely documented production users."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Solo/community project maintained primarily by Simon Bourne; no corporate or foundation backing."
+    },
+    "reactivity-model": {
+      "value": ["signals"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Fine-grained reactivity built on futures-signals; 'No VDOM. Fine grained reactivity using signals to minimize DOM API calls.'"
+    },
+    "component-model": {
+      "value": ["function-components"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/testing/src/lib.rs"],
+      "comment": "Components are plain Rust functions that build and return elements; there is also a component wrapper for web-component slots."
+    },
+    "view-authoring": {
+      "value": ["builder-api"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Views are written with a plain-Rust builder API (e.g. div().child(button().on_click(inc).text(\"+\"))), deliberately avoiding a macro DSL. An inline_html! macro and a css! macro exist for HTML/CSS embedding."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Signal updates target the exact DOM nodes affected; no diffing."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Explicitly 'No VDOM'."
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb/tree/main/examples/async-http-request"],
+      "comment": "Signals are built on futures; async data loading is supported (async-http-request example, silkenweb::task spawn helpers). No dedicated suspense primitive."
+    },
+    "global-state-solution": {
+      "value": ["signals"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/testing/src/lib.rs"],
+      "comment": "Shared state is handled via futures-signals Mutables/signals passed through the app; no built-in context provide/inject."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Compiles to WebAssembly via wasm-bindgen/web-sys."
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Quick-start uses Trunk; wasm-pack is used for browser tests."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No first-party scaffolding/dev-server CLI; relies on Trunk."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Dev loop via Trunk, which provides auto-rebuild + browser live reload; no view/RSX hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No documented, reproducible minimal hello-world .wasm measurement under a consistent opt profile; omitted per RESEARCH.md rather than guessing."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Built on wasm-bindgen and web-sys; element/event wrappers surface web-sys underneath."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Standard wasm-bindgen/web-sys interop with the usual boilerplate; the builder API wraps common DOM/event needs but dropping to raw web APIs is unremarkable."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Depends on std and web-sys; no no_std mode."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Primary target is client-rendered single-page web apps."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "'Server side rendering with hydration' plus progressive enhancement."
+    },
+    "static-site-generation": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Supports static site generation and compile-time pre-rendering."
+    },
+    "hydration": {
+      "value": ["full"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "SSR output is hydrated on the client (progressive enhancement); no documented islands or streaming hydration modes."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No integrated isomorphic server-function macro; the README points to the separate Arpy library for typed client/server RPC."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No documented streaming SSR; SSR renders to a complete HTML string."
+    },
+    "backend-integration": {
+      "value": ["axum"],
+      "source": ["https://github.com/silkenweb/silkenweb/tree/main/examples/htmx-axum"],
+      "comment": "Axum is demonstrated (htmx-axum, client-server examples); SSR renders to a string so it is largely server-agnostic."
+    },
+    "isomorphic-routing": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Built-in router module works on both client and server."
+    },
+    "official-router": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "First-party silkenweb::router module shipped in-tree."
+    },
+    "router-name": {
+      "value": "silkenweb::router",
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Built-in module rather than a separate crate; exposes url_path() as a signal."
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Router exposes the URL path as a signal that the app matches manually; no built-in nested-layout routing construct."
+    },
+    "dynamic-route-params": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Path components and query maps are accessible (with_args/arg1/arg2, query_map()), so parameterized routes are supported via manual matching."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "Routes are string/path-component matched at runtime, not derive/enum type-checked."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "No built-in navigation-guard/redirect-hook API; guards would be implemented manually in the path signal handler."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/router/src/main.rs"],
+      "comment": "No documented per-route code splitting / lazy loading."
+    },
+    "styling-approach": {
+      "value": ["scoped-css", "css-in-rust", "tailwind-friendly"],
+      "source": ["https://github.com/silkenweb/silkenweb", "https://github.com/silkenweb/silkenweb/tree/main/examples/tailwind"],
+      "comment": "CSS Modules provide scoping (integrated with SSR/hydration); a css! macro embeds/imports CSS in Rust; a tailwind example is included."
+    },
+    "scoped-styles": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "CSS scoping via CSS Modules so styles do not leak globally."
+    },
+    "component-library-ecosystem": {
+      "value": 2,
+      "source": ["https://github.com/silkenweb/silkenweb/tree/main/packages/bootstrap"],
+      "comment": "A first-party silkenweb-bootstrap component kit exists; otherwise essentially none. Rated 2 (roughly one kit)."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/testing/src/lib.rs"],
+      "comment": "Inputs are wired to signals (value/event handlers), i.e. controlled; no dedicated form-helper or two-way-binding abstraction."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://github.com/silkenweb/silkenweb/tree/main/examples/canvas"],
+      "comment": "SVG elements are available in silkenweb::elements::svg and a canvas example is included."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No declarative suspense/loading-boundary primitive documented; async loading states are handled manually via signals."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No error-boundary construct documented."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "README overview, an mdbook guide (packages/book), docs.rs API docs, and 28 examples; adequate but not an extensive tutorial series."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/testing/src/lib.rs"],
+      "comment": "Idiomatic plain-Rust builder API with no macro DSL; functional and readable but signal wiring adds some verbosity."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Builder-API design avoids heavy view proc-macros, so compile times are middling relative to macro-heavy peers; no published benchmark, hence a conservative 'moderate'."
+    },
+    "examples-count": {
+      "value": ["extensive"],
+      "source": ["https://github.com/silkenweb/silkenweb/tree/main/examples"],
+      "comment": "28 example directories in the official repo (>20)."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No hosted online playground/REPL found; only the repo examples."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No dedicated devtools/inspector beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test", "component-testing"],
+      "source": ["https://github.com/silkenweb/silkenweb/blob/main/examples/testing/src/lib.rs"],
+      "comment": "Testing example uses wasm-bindgen-test with a first-party silkenweb-test BrowserTest harness (mount + render, assert on DOM), run via wasm-pack test."
+    },
+    "github-stars": {
+      "value": 287,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "GitHub API snapshot on 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 17159,
+      "source": ["https://crates.io/crates/silkenweb"],
+      "comment": "All-time downloads of the silkenweb crate as of 2026-07-19."
+    },
+    "contributors": {
+      "value": 4,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "GitHub contributors API count on 2026-07-19; effectively solo-maintained."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Single primary maintainer, ~4 contributors, 287 stars; no large public chat community."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "Router is in-tree; a bootstrap component kit and Arpy (RPC) exist, but the surrounding third-party ecosystem is small."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely documented production/company users found."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "source": ["https://github.com/silkenweb/silkenweb"],
+      "comment": "No named meta-framework; full-stack RPC is provided out-of-tree via the separate Arpy library."
+    }
+  }
 }
