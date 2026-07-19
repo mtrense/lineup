@@ -1,5 +1,312 @@
 {
   "name": "Mogwai",
   "description": "Minimal, channel/stream-based view library with no macros",
-  "values": {}
+  "url": "https://github.com/schell/mogwai",
+  "lastVerified": "2026-07-19",
+  "values": {
+    "description": {
+      "value": "A minimal Rust view library for building browser GUIs with channels/streams instead of callbacks and no virtual DOM (MOGWAI = minimal, obvious, graphical, widget application interface)",
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "README: 'mogwai is a Rust crate for building GUI applications, primarily in the browser'; events are modeled as futures/streams rather than callbacks. Note: the candidate tagline 'no macros' is now dated — mogwai 0.7 ships an rsx! macro (views can still be built with plain Rust functions)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/crates/mogwai", "https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "MIT only (Cargo.toml 'license = \"MIT\"'), not the MIT/Apache-2.0 dual license common to most Rust web frameworks."
+    },
+    "repository": {
+      "value": "https://github.com/schell/mogwai",
+      "source": ["https://github.com/schell/mogwai"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/mogwai",
+      "source": ["https://crates.io/crates/mogwai"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/mogwai/",
+      "source": ["https://crates.io/crates/mogwai", "https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "docs.rs API docs plus an in-crate 'an_introduction' guide module; a separate 'Cooking with Mogwai' cookbook is linked from the README (zyghost.com/guides/mogwai-cookbook)."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/crates/mogwai"],
+      "comment": "First crates.io publish (0.0.0) on 2019-11-18."
+    },
+    "latest-stable-version": {
+      "value": "0.7.6",
+      "source": ["https://crates.io/crates/mogwai"],
+      "comment": "Latest crates.io release as of 2026-07-19; still pre-1.0 (0.7 is a from-scratch rewrite with a cross-platform View trait)."
+    },
+    "latest-release": {
+      "value": "2026-07-14",
+      "source": ["https://crates.io/crates/mogwai"],
+      "comment": "0.7.6 published 2026-07-14 (checked 2026-07-19)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://crates.io/crates/mogwai", "https://github.com/schell/mogwai"],
+      "comment": "0.7.0 through 0.7.6 released across 2025-06 to 2026-07; repo last pushed 2026-07-14. Development is active but effectively solo (Schell Scivally)."
+    },
+    "maturity": {
+      "value": ["experimental"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md", "https://crates.io/crates/mogwai"],
+      "comment": "Pre-1.0 (0.7.x) and API is actively changing — 0.7 is a recent ground-up rewrite (edition 2024, new cross-platform View trait). No widely documented production users, so rated experimental over beta despite the project existing since 2019."
+    },
+    "corporate-foundation-backing": {
+      "value": "Community",
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md", "https://github.com/schell/mogwai"],
+      "comment": "Solo/community project by Schell Scivally; funded via GitHub Sponsors, no corporate or foundation backing."
+    },
+    "reactivity-model": {
+      "value": ["elm", "signals"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Does not fit the tag set neatly: mogwai is fundamentally channel/stream/futures-based — view events flow into async logic loops as messages ('channels instead of callbacks', unidirectional, Elm-adjacent), while reactive Proxy values patch the exact bound DOM node with no diffing (signal-like fine-grained updates). Tagged elm+signals with this caveat; it is neither a classic Model/Msg/update Elm loop nor an auto-tracked signals graph."
+    },
+    "component-model": {
+      "value": ["struct-components"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "0.7 widgets are Rust structs (e.g. #[derive(ViewChild)] on a struct holding elements/listeners/proxies) with impl blocks driving an async step loop. Views can also be assembled ad hoc inside plain functions via rsx!."
+    },
+    "view-authoring": {
+      "value": ["rsx-macro", "builder-api"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Primary authoring is the rsx! macro (JSX-like Rust markup); README concepts also state views 'may be constructed and nested using plain Rust functions', i.e. a builder-style API without the macro."
+    },
+    "fine-grained-updates": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "A Proxy value, when modified, replaces/patches exactly the node it is bound to; 'DOM mutation is explicit ... no performance overhead from vdom diffing'."
+    },
+    "uses-virtual-dom": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Explicitly no virtual DOM; the 'why' section contrasts mogwai with vdom-and-diff frameworks."
+    },
+    "async-await-in-components": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Events are futures; widget logic is written as async loops that .await event streams (e.g. self.on_click.next().await), spawned via wasm_bindgen_futures::spawn_local / mogwai::spawn."
+    },
+    "global-state-solution": {
+      "value": ["none-built-in"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No built-in context/provide-inject or global store; shared state is passed explicitly via channels (senders/receivers) and Proxy values."
+    },
+    "compiles-to": {
+      "value": ["wasm"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "Browser target compiles to WebAssembly via the 'web' feature (wasm-bindgen/web-sys). Also has an 'ssr' backend for server-side string rendering, but the client runs as WASM."
+    },
+    "primary-build-tool": {
+      "value": ["trunk"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Getting-started uses Trunk (trunk serve); projects are scaffolded from mogwai-template via cargo-generate."
+    },
+    "official-cli": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No first-party build/dev-server CLI; relies on Trunk plus a cargo-generate starter template."
+    },
+    "dev-server-hmr": {
+      "value": ["live-reload"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Dev loop via Trunk, which auto-rebuilds and live-reloads the browser; no view/RSX hot reload."
+    },
+    "minimal-wasm-bundle-size": {
+      "value": null,
+      "comment": "No documented, reproducible minimal hello-world .wasm measurement under a consistent opt profile; mogwai advertises being 'small and fast' but publishes no methodical number, so omitted per RESEARCH.md rather than guessing."
+    },
+    "js-interop": {
+      "value": ["wasm-bindgen", "web-sys"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "Built on wasm-bindgen and web-sys (mogwai 'addresses challenges with web-sys'); element/event wrappers surface web-sys underneath."
+    },
+    "js-interop-ergonomics": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Standard wasm-bindgen/web-sys interop with the usual boilerplate; mogwai wraps common element/style/event needs but dropping to raw web APIs is unremarkable."
+    },
+    "no-std-minimal-runtime": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "Depends on std, web-sys and async runtimes; no no_std mode."
+    },
+    "client-side-rendering-spa": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Primary target is client-rendered browser GUIs / SPAs (see the spa-routing example)."
+    },
+    "server-side-rendering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml", "https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "'ssr' is a default feature (ssr.rs module); README lists server-side rendering as a focus. Cross-platform View trait lets the same view render to an SSR string backend."
+    },
+    "static-site-generation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "SSR can render views to HTML strings, but there is no built-in static-site-generation pipeline (route pre-rendering at build time)."
+    },
+    "hydration": {
+      "value": ["none"],
+      "source": ["https://api.github.com/repos/schell/mogwai/contents/crates?ref=main"],
+      "comment": "0.7's crates are mogwai, mogwai-macros, plus benchmark/xtask helpers — the earlier standalone mogwai-hydrator is not part of the 0.7 rewrite, and no client hydration of server HTML is documented. SSR renders strings; hydration marked none pending official support."
+    },
+    "server-functions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No integrated isomorphic server-function mechanism."
+    },
+    "streaming-ssr": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/src"],
+      "comment": "SSR renders to a complete HTML string; no documented streaming SSR."
+    },
+    "backend-integration": {
+      "value": null,
+      "comment": "Mogwai is a view library, not a full-stack framework — it has no first-party server integration. SSR emits HTML strings usable behind any server, but no specific backend (Axum/Actix/etc.) is integrated, so left null rather than asserting a full-stack mode."
+    },
+    "isomorphic-routing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "Mogwai ships no router at all; routing is hand-rolled (see below), so there is no shared server/client router."
+    },
+    "official-router": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No first-party router crate/module. The spa-routing example implements routing manually with a user-defined Route enum, TryFrom parsing, and a HashChangeEvent listener."
+    },
+    "router-name": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No router crate; the example shows users writing their own hash-based routing."
+    },
+    "nested-routes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No built-in routing, hence no nested-route construct; any nesting is manual match logic."
+    },
+    "dynamic-route-params": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "The framework provides no route-parameter feature. The example parses params (e.g. profile/{username}) by hand-splitting the hash, but that is user code, not a mogwai capability."
+    },
+    "typed-routes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No framework-provided typed routing (no derive/enum route system). The example's Route enum is ordinary user code with manual string parsing."
+    },
+    "route-guards": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No navigation-guard/redirect-hook API (no router)."
+    },
+    "lazy-code-split-routes": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "No per-route code splitting / lazy loading (no router)."
+    },
+    "styling-approach": {
+      "value": ["inline-style", "plain-css"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Inline style attributes in rsx! (e.g. style:cursor = \"pointer\") plus ordinary external CSS files; no scoped-CSS, CSS-in-Rust, or first-class Tailwind integration."
+    },
+    "scoped-styles": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No built-in component-scoped styling; styles are global CSS or inline attributes."
+    },
+    "component-library-ecosystem": {
+      "value": 1,
+      "source": ["https://github.com/schell/mogwai"],
+      "comment": "Essentially no ready-made UI component-kit crates; users build widgets themselves."
+    },
+    "forms-inputs": {
+      "value": ["controlled"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "HtmlInputElement is supported; inputs are wired via event channels and Proxy values (controlled). No dedicated form-helper or two-way-binding abstraction."
+    },
+    "svg-canvas-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml", "https://github.com/schell/mogwai/tree/main/examples/svg"],
+      "comment": "web-sys 'SvgElement' feature is enabled and the repo ships a dedicated svg example; canvas can be reached through web-sys interop."
+    },
+    "suspense-loading-ui": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No declarative suspense/loading-boundary primitive; async loading states are handled manually via streams/proxies."
+    },
+    "error-boundaries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No error-boundary construct documented."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "docs.rs API docs, an in-crate 'an_introduction' guide, a separate 'Cooking with Mogwai' cookbook, and 6 repo examples — adequate but not an extensive, fully up-to-date tutorial series (README example still shows older builder! usage in places)."
+    },
+    "api-ergonomics": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "rsx! is concise, but the stream/channel model plus struct-widget + async step-loop pattern carries a distinct learning curve and some boilerplate relative to signal-first peers."
+    },
+    "compile-times": {
+      "value": ["moderate"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml"],
+      "comment": "Small dependency tree, but rsx! is a proc-macro; no published benchmark, so rated moderate conservatively."
+    },
+    "examples-count": {
+      "value": ["limited"],
+      "source": ["https://github.com/schell/mogwai/tree/main/examples"],
+      "comment": "6 example directories on main (counter, list-of-gizmos, nested-components, spa-routing, svg, todomvc) — in the 3-10 'limited' band."
+    },
+    "interactive-playground": {
+      "value": null,
+      "comment": "No hosted online playground/REPL found; there is a cookbook guide and repo examples, but no interactive sandbox."
+    },
+    "browser-devtools": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No dedicated devtools/inspector beyond generic browser tools."
+    },
+    "testing-support": {
+      "value": ["wasm-bindgen-test"],
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/crates/mogwai/Cargo.toml", "https://raw.githubusercontent.com/schell/mogwai/main/examples/spa-routing/src/lib.rs"],
+      "comment": "wasm-bindgen-test is a dev-dependency for browser tests; examples also include plain #[test] unit tests (e.g. route parsing). No dedicated component-testing harness."
+    },
+    "github-stars": {
+      "value": 428,
+      "source": ["https://github.com/schell/mogwai"],
+      "comment": "GitHub API snapshot on 2026-07-19."
+    },
+    "crates-io-downloads": {
+      "value": 53816,
+      "source": ["https://crates.io/crates/mogwai"],
+      "comment": "All-time downloads of the mogwai crate as of 2026-07-19."
+    },
+    "contributors": {
+      "value": 6,
+      "source": ["https://github.com/schell/mogwai"],
+      "comment": "GitHub contributors API count on 2026-07-19; heavily dominated by the maintainer (schell ~270 commits, others in single digits)."
+    },
+    "community-size": {
+      "value": ["solo"],
+      "source": ["https://github.com/schell/mogwai", "https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "Single primary maintainer with a small Matrix/Element chat room; ~6 contributors and 428 stars. Effectively solo."
+    },
+    "ecosystem-crates": {
+      "value": ["minimal"],
+      "source": ["https://github.com/schell/mogwai"],
+      "comment": "Only in-tree helpers (mogwai-macros) plus a starter template; no third-party routers or component kits."
+    },
+    "notable-production-users": {
+      "value": null,
+      "comment": "No widely documented production/company users found."
+    },
+    "meta-framework-full-stack-kit": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/schell/mogwai/main/README.md"],
+      "comment": "No associated full-stack meta-framework; mogwai-template is a project starter, not a full-stack layer."
+    }
+  }
 }

@@ -193,7 +193,7 @@ Users should be able to:
 - [x] MoonZoon — Opinionated full-stack framework (Moon backend + Zoon frontend), no-HTML/CSS-required philosophy
 - [x] Silkenweb — Fine-grained signals built on futures-signals, no virtual DOM
 - [x] Kobold — Static-analysis-driven library that minimizes diffing for fast updates
-- [ ] Mogwai — Minimal, channel/stream-based view library with no macros
+- [x] Mogwai — Minimal, channel/stream-based view library with no macros
 
 ## Notes for Researchers
 
