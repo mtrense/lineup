@@ -82,17 +82,14 @@ export function ComparisonView({
           return new Set(validSelection);
         }
       }
-      // Use shownByDefault from candidateEntries
+      // Use shownByDefault from candidateEntries. `candidates` and
+      // `candidateEntries` are built positionally from the same index list
+      // (see getComparisonData), so entry[i] ↔ candidate[i]. Match by index
+      // rather than re-deriving the id from the display name — the latter is
+      // fragile when the name contains characters the id normalizes away
+      // (e.g. "dust.tt" → id "dust-tt").
       const defaultShown = candidateEntries
-        .filter((entry) => entry.shownByDefault)
-        .map((entry) => {
-          // Find the candidate by matching the entry id to candidate name (case-insensitive, normalized)
-          const candidate = candidates.find(
-            (c) => c.name.toLowerCase().replace(/[\s/]+/g, "-") === entry.id ||
-                   c.name.toLowerCase() === entry.id.toLowerCase()
-          );
-          return candidate?.name;
-        })
+        .map((entry, i) => (entry.shownByDefault ? candidates[i]?.name : undefined))
         .filter((name): name is string => name !== undefined);
 
       // If no candidates are marked as shownByDefault, show all
