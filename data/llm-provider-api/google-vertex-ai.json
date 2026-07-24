@@ -1,5 +1,272 @@
 {
   "name": "Google Vertex AI",
   "description": "Google Cloud's enterprise model platform (Gemini + third-party model garden)",
-  "values": {}
+  "url": "https://cloud.google.com/vertex-ai",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Google",
+      "source": ["https://cloud.google.com/vertex-ai"],
+      "comment": "Operated by Google Cloud (Google LLC) as its enterprise AI/ML platform; rebranded 'Gemini Enterprise Agent Platform' in 2026 (checked 2026-07)."
+    },
+    "category": {
+      "value": ["cloud-platform"],
+      "source": ["https://cloud.google.com/vertex-ai", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models"],
+      "comment": "Hyperscaler cloud platform serving many vendors' models (Gemini plus Anthropic, Meta, Mistral, AI21, Qwen, DeepSeek, and self-deployed open models) behind one API with IAM, regions, and compliance. Google's own first-party Gemini developer API (AI Studio) is tracked as a separate candidate; on Vertex it is one of many models on the platform."
+    },
+    "api-launched": {
+      "value": "2023-06",
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Generative AI (LLM inference) support on Vertex AI reached general availability in June 2023 (previewed at Google I/O, May 2023). The broader Vertex AI ML platform itself went GA in May 2021; this date reflects the generative/LLM inference API, which is the scope here (checked 2026-07)."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Generative AI on Vertex AI is generally available with published commercial pricing; individual newest models may ship in preview."
+    },
+    "api-docs": {
+      "value": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview",
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Official Generative AI on Vertex AI documentation and API reference."
+    },
+    "website": {
+      "value": "https://cloud.google.com/vertex-ai",
+      "source": ["https://cloud.google.com/vertex-ai"],
+      "comment": "Official product page."
+    },
+    "auth-methods": {
+      "value": ["cloud-iam", "service-account", "oauth", "api-key"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/openai", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls"],
+      "comment": "Requests authenticate with Google Cloud IAM identities: service accounts and OAuth 2.0 access tokens via Application Default Credentials (the OpenAI-compatible endpoint passes a GCP access token as the api_key). Vertex AI 'Express mode' additionally issues a simple API key for quick starts (checked 2026-07)."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Self-serve via a Google Cloud account/project with immediate pay-as-you-go activation; no sales contact required. Requires having/creating a Google Cloud account (there is no standalone Vertex-only key outside GCP, though Express mode lowers that friction)."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Google Cloud free trial grants $300 in credits for 90 days, usable on Vertex AI; grounding with Google Search also includes a free daily/monthly query allowance for some Gemini models (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["us", "eu", "asia", "multi-region"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/openai"],
+      "comment": "Available across many Google Cloud regions in the US, Europe, and Asia Pacific; a 'global' endpoint with dynamic routing is also offered for maximum availability."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls"],
+      "comment": "Customers can pin ML processing and storage to a chosen region/jurisdiction (regional endpoints plus data-residency and ML-processing-location controls), a contractual/config guarantee rather than merely multiple endpoints."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models"],
+      "comment": "Model Garden serves families from many vendors: Google (Gemini, Gemma), Anthropic (Claude), Meta (Llama), Mistral AI, AI21, Alibaba (Qwen), DeepSeek, MiniMax, and more."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models"],
+      "comment": "Open-weight models available including Meta Llama, Google Gemma, Mistral, Qwen, and DeepSeek, with self-deployment via prebuilt or custom (vLLM) containers."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Specific dated/stable model versions can be pinned (e.g. gemini-2.5-pro stable snapshots) rather than only a floating alias."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Supports supervised tuning of Gemini plus deploying your own/open-weight models to Vertex AI endpoints (self-deployed models, custom containers), all callable through the same platform API."
+    },
+    "model-catalog-size": {
+      "value": ["100-plus"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models"],
+      "comment": "Model Garden lists well over 100 models (commonly cited as 200+) across first-party, partner, and open-weight self-deploy options; exact count varies and changes frequently (checked 2026-07)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Modern multi-turn messages via generateContent, plus an OpenAI-compatible Chat Completions endpoint and Anthropic Messages for Claude models."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Token streaming via streamGenerateContent (SSE) and the bidirectional Live API for real-time audio/video."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Documented function calling lets models request structured tool invocations the caller executes."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Gemini function calling can emit multiple tool calls in a single turn for concurrent execution (parallel function calling)."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Controlled generation enforces a caller-supplied response schema (responseSchema / structured output = server-enforced JSON Schema); a looser JSON output mode is also available."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Distinct system instructions field supported; OpenAI-compatible endpoint uses the system/developer role."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Image understanding: Gemini accepts images as request input to reason over."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Audio understanding supported (speech input to Gemini), plus Chirp speech-to-text on the same platform."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Native document/PDF understanding as a first-class input type."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Image generation via Imagen and native Gemini image generation on the same platform/account."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Speech generation from text (Gemini TTS / Chirp) available through the same platform."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Text embeddings and multimodal embeddings endpoints available for retrieval/semantic search."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview", "https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Context caching supported (both implicit/automatic and explicit caller-managed caches); cached input billed at ~10% of standard input cost, with a minimum around 2,048 tokens (checked 2026-07)."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Asynchronous batch prediction / batch inference at 50% off standard on-demand token pricing."
+    },
+    "max-context-window": {
+      "value": 1000000,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Largest reliably-confirmed window is 1,000,000 tokens (Gemini 2.5 Pro and Gemini 3); the earlier Gemini 1.5 Pro offered a 2,000,000-token window. Windows vary by model and change often (checked 2026-07)."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Exposes 'thinking' / reasoning controls at the API level (thinking budget on Gemini reasoning models)."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview", "https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "First-party Grounding with Google Search tool callable via the API (also grounding with your own data / RAG Engine)."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "First-party code execution tool (sandboxed Python) callable via the API."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://cloud.google.com/blog/products/ai-machine-learning/build-and-manage-multi-system-agents-with-vertex-ai"],
+      "comment": "Model Context Protocol supported through the Agent Development Kit / Agent Engine (connect agents to remote MCP-compatible tools) and the Cloud API Registry MCP server registry (checked 2026-07)."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://cloud.google.com/blog/products/ai-machine-learning/build-and-manage-multi-system-agents-with-vertex-ai", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Managed retrieval/RAG via Vertex AI RAG Engine, Vector Search, and Vertex AI Search over ingested documents the model can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://cloud.google.com/blog/products/ai-machine-learning/build-and-manage-multi-system-agents-with-vertex-ai"],
+      "comment": "Vertex AI Agent Engine provides a fully managed stateful agents runtime with session and short/long-term memory management above raw inference."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/openai"],
+      "comment": "Documented OpenAI-compatible Chat Completions endpoint usable with the OpenAI SDK via a base-URL swap (…/endpoints/openapi), authenticating with a Google Cloud access token; works with Gemini and self-deployed models."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript", "go", "java", "dotnet"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference"],
+      "comment": "First-party Google Gen AI SDK provides client libraries for Python, Node.js/TypeScript, Go, Java, and C#/.NET; broader Google Cloud client libraries also cover additional languages (checked 2026-07)."
+    },
+    "native-api-style": {
+      "value": ["cloud-native"],
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/openai"],
+      "comment": "Native primary style is the Google Cloud-native generateContent REST API; OpenAI Chat Completions and Anthropic Messages (for Claude) are additional compatibility shims."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Async batch prediction runs as a long-running operation whose completion is discovered by polling or via Cloud Storage output, not classic HTTP webhooks (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/sla"],
+      "comment": "Google publishes a Vertex AI Service Level Agreement (monthly uptime commitment with service-credit remedies); the exact percentage was not re-verified against the SLA document this pass (checked 2026-07)."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers", "provisioned-throughput"],
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing", "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/overview"],
+      "comment": "Default per-project/per-region quotas (dynamic shared quota, adjustable via quota requests) plus reserved capacity via Provisioned Throughput; a Priority pay-as-you-go tier is also offered."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/openai"],
+      "comment": "The global endpoint provides dynamic capacity routing and a Model Optimizer can auto-select among Gemini models, but there is no cross-provider failover gateway; not a defining gateway capability here (checked 2026-07)."
+    },
+    "status-page": {
+      "value": true,
+      "comment": "Covered by the public Google Cloud Service Health dashboard (status.cloud.google.com); no dedicated fetched source cited this pass, derived from the standard Google Cloud status page (checked 2026-07)."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls"],
+      "comment": "Under Google's AI/ML Privacy Commitment, customer prompts/outputs on Vertex AI are not used to train Google's foundation models by default."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls"],
+      "comment": "Zero data retention / abbreviated data logging is available and configurable; note a default short-term (≈24h) caching for abuse monitoring that must be turned off at the project level to achieve true ZDR (checked 2026-07)."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "iso-27001", "gdpr", "fedramp", "pci"],
+      "source": ["https://cloud.google.com/security/compliance/offerings"],
+      "comment": "Vertex AI inherits Google Cloud's portfolio: SOC 1/2/3, ISO 27001 (and 27017/27018/27701/42001), HIPAA (BAA available, covered surface required), GDPR, FedRAMP High, and PCI DSS. Coverage is surface/model-specific; verify per model (checked 2026-07)."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://docs.cloud.google.com/vertex-ai/generative-ai/docs/security-controls"],
+      "comment": "Google Cloud IAM plus Cloud Identity / Workforce Identity Federation (SSO/SAML) provide org-level access control and federation, alongside VPC Service Controls and CMEK."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "provisioned"],
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Primarily per-token pay-as-you-go (Standard and Priority PayGo); reserved capacity via Provisioned Throughput; batch at 50% off."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "A single Google Cloud billing account covers all models and vendors reachable through Vertex AI."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Batch inference at 50% off standard token pricing; context-cache reads billed at ~10% of standard input cost (≈90% discount)."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier", "pay-as-you-go"],
+      "source": ["https://cloud.google.com/vertex-ai/generative-ai/pricing"],
+      "comment": "Lowest-friction start is the $300 Google Cloud free-trial credit, then self-serve pay-as-you-go per-token pricing."
+    }
+  }
 }
