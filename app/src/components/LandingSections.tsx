@@ -6,7 +6,8 @@
  *   1. What is Lineup?
  *   2. How it's built
  *   3. Where the data comes from
- *   4. How to contribute
+ *   4. How to do your own comparisons
+ *   5. How to contribute
  *
  * Purely presentational — no props, no comparison data dependency.
  * Uses semantic <section> + heading elements so the heading hierarchy
@@ -72,7 +73,49 @@ export function LandingSections() {
         </p>
       </section>
 
-      {/* 4 — How to contribute */}
+      {/* 4 — How to do your own comparisons */}
+      <section aria-labelledby="section-diy">
+        <h2
+          id="section-diy"
+          className="mb-4 text-2xl font-semibold"
+        >
+          How to do your own comparisons
+        </h2>
+        <p className="max-w-2xl text-muted-foreground leading-relaxed">
+          Lineup ships with a set of packaged Claude Code skills that walk you
+          through building a comparison end-to-end — no need to hand-write JSON.
+          A typical run looks like this:
+        </p>
+        <ol className="mt-4 max-w-2xl list-decimal space-y-2 pl-6 text-muted-foreground leading-relaxed">
+          <li>
+            <code>/new-type</code> — scope a new comparison through a short
+            Socratic dialog and draft its <code>RESEARCH.md</code> guide
+            (attributes, scope, and preferred sources).
+          </li>
+          <li>
+            <code>/scaffold-type</code> — turn that guide into the schema files
+            (<code>attributes.json</code>), register the type in{" "}
+            <code>data/index.json</code>, and create a stub for each candidate.
+          </li>
+          <li>
+            <code>/gather-data</code> — research each candidate against the
+            guide, populating attribute values with cited sources. Reach for{" "}
+            <code>/gather-data-cycle</code> to research the whole roster in
+            parallel batches. Use <code>/add-candidate</code> or{" "}
+            <code>/discover-candidates</code> to grow the roster,{" "}
+            <code>/extend-comparison</code> to add new attributes to an existing
+            type, and <code>/generate-tile</code> for a landing-page graphic.
+          </li>
+        </ol>
+        <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+          To preview your work, run the app locally with{" "}
+          <code>pnpm --dir app dev</code> from the repository root and open the
+          printed URL. The comparison data is compiled in at build time, so your
+          new type shows up as soon as the dev server reloads.
+        </p>
+      </section>
+
+      {/* 5 — How to contribute */}
       <section aria-labelledby="section-contribute">
         <h2
           id="section-contribute"
