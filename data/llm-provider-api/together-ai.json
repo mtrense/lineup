@@ -1,5 +1,270 @@
 {
   "name": "Together AI",
   "description": "Gateway/host for open-weight models with an OpenAI-compatible API and fine-tuning",
-  "values": {}
+  "url": "https://www.together.ai/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Together AI",
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Operated by Together AI (Together Computer, Inc.), an inference/fine-tuning cloud for open-weight and proprietary models."
+    },
+    "category": {
+      "value": ["gateway"],
+      "source": ["https://docs.together.ai/docs/introduction", "https://www.together.ai/pricing"],
+      "comment": "A hosting gateway serving 200+ open-weight and proprietary models from many vendors behind one OpenAI-compatible API with unified billing; not a hyperscaler cloud platform and not a first-party model trainer."
+    },
+    "api-launched": {
+      "value": null,
+      "comment": "Could not pin a primary-source month for the developer inference API this pass. Together AI was founded in 2022 and its hosted serverless inference API/playground became broadly available during 2023; exact GA month not confirmed from a fetched source (checked 2026-07)."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Developer API is generally available with published commercial pricing across serverless, dedicated, and batch."
+    },
+    "api-docs": {
+      "value": "https://docs.together.ai/docs/introduction",
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Official Together AI developer documentation and API reference."
+    },
+    "website": {
+      "value": "https://www.together.ai/",
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Official product/homepage."
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Requests authenticated with a bearer API key (Authorization header)."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Fully self-serve — create an account and obtain an API key without sales contact; a positive prepaid credit balance (minimum $5 top-up) is required to make calls."
+    },
+    "free-credits-trial": {
+      "value": false,
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "No standing free-inference tier; Together's billing docs state the platform is fully prepaid with a $5 minimum credit purchase and the earlier signup credit was retired in July 2025. A separate startup accelerator grants $15k–$50k to qualifying companies (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["us", "eu"],
+      "source": ["https://support.together.ai/articles/8079447813-eu-data-centers-and-dedicated-model-deployment"],
+      "comment": "Serverless inference is primarily US-hosted; EU data centers are available for dedicated model deployment on Scale and Enterprise tiers (checked 2026-07)."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://support.together.ai/articles/8079447813-eu-data-centers-and-dedicated-model-deployment"],
+      "comment": "Customers on Scale/Enterprise tiers can pin dedicated inference and storage to EU data centers — a contractual/config data-residency guarantee, not merely a shared endpoint."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Serves model families from many vendors: Meta (Llama), DeepSeek, Alibaba (Qwen), Mistral, Moonshot (Kimi), MiniMax, Black Forest Labs (FLUX), and more."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Core focus is open-weight models — Llama, DeepSeek, Qwen, Mixtral, Kimi, etc. — served serverless and on dedicated endpoints."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Models are invoked by explicit, immutable checkpoint identifiers (e.g. meta-llama/Llama-4-Scout-...), so a specific snapshot can be pinned."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction", "https://www.together.ai/pricing"],
+      "comment": "Supports LoRA/full fine-tuning, bring-your-own-model (BYOM), custom containers, and dedicated single-tenant endpoints to deploy and call your own/private models through the same API."
+    },
+    "model-catalog-size": {
+      "value": ["100-plus"],
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Catalog spans 200+ models across chat, vision, image, audio, video, and embeddings (checked 2026-07)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Modern OpenAI-compatible chat completions endpoint."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Token streaming (SSE) supported for incremental responses."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/function-calling"],
+      "comment": "Documented tool/function calling using the OpenAI-style tools parameter and tool_calls response; support is model-dependent."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/function-calling"],
+      "comment": "Documented parallel patterns — same function called multiple times, and multiple functions, in a single turn for concurrent execution."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode", "grammar"],
+      "source": ["https://docs.together.ai/docs/json-mode"],
+      "comment": "Strongest guarantee is schema-constrained JSON via response_format (json_schema); looser JSON mode and regex/grammar-constrained decoding are also supported. Availability varies by model (checked 2026-07)."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Distinct system role supported via the OpenAI-compatible chat messages format."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction", "https://www.together.ai/models/llama-4-scout"],
+      "comment": "Vision-capable models (e.g. Llama 4 Scout accepts up to 5 images, Qwen-VL, Kimi) accept image input."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Speech-to-text/transcription available via Whisper Large v3 and other audio models on the same API."
+    },
+    "document-pdf-input": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "No first-class native document/PDF input content type in the inference API documented; text must be extracted and passed in (checked 2026-07)."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction", "https://www.together.ai/pricing"],
+      "comment": "Image-generation endpoint offered on the same account (FLUX family, Nano Banana Pro, etc.)."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction", "https://www.together.ai/pricing"],
+      "comment": "Text-to-speech / audio synthesis available on the same API (e.g. Cartesia Sonic, MiniMax Speech)."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Text-embeddings endpoint (e.g. multilingual-e5, BGE) plus a Rerank API for retrieval/semantic search on the same account."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Automatic prefix-based prompt caching for select serverless chat models; cached input tokens billed at a reduced rate with no toggle/parameter required (checked 2026-07)."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://www.together.ai/blog/batch-api"],
+      "comment": "Asynchronous Batch API at ~50% of real-time cost; up to 50,000 requests / 100 MB per batch file, best-effort 24-hour window, separate rate limits."
+    },
+    "max-context-window": {
+      "value": 327680,
+      "source": ["https://www.together.ai/models/llama-4-scout"],
+      "comment": "Llama 4 Scout is served at a 327,680-token context on Together (page notes it will be increased toward 10M). Some other models (e.g. Llama 4 Maverick) are reported around 500k; largest served window varies and is rising (checked 2026-07)."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Reasoning models (e.g. DeepSeek-R1, Qwen reasoning variants) are served with visible thinking/reasoning output at the API level; capability is model-dependent."
+    },
+    "built-in-web-search": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "No first-party provider-hosted web-search/grounding tool exposed via the inference API; you wire your own search tool (checked 2026-07)."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/together-code-interpreter"],
+      "comment": "Together Code Interpreter (TCI) is a first-party sandboxed Python execution environment callable via REST API (session-based, $0.03/session)."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/together-code-interpreter"],
+      "comment": "The inference API does not offer hosted/remote MCP connector support as part of a request. Together does publish its Code Interpreter as an MCP server (via Smithery) for MCP clients — the reverse direction — but that is not the API acting as an MCP client (checked 2026-07)."
+    },
+    "files-retrieval-api": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "A Files API exists for uploading fine-tuning/batch data, but there is no managed retrieval/RAG service the model queries at inference time (checked 2026-07)."
+    },
+    "agents-assistants-api": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "No higher-level stateful assistants/threads API with managed conversation state; the API exposes raw inference plus tools/code-interpreter primitives (checked 2026-07)."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Exposes an OpenAI-Chat-Completions-compatible endpoint (base https://api.together.xyz/v1) usable with the OpenAI SDK via a base-URL swap."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript"],
+      "source": ["https://docs.together.ai/docs/introduction", "https://docs.together.ai/docs/together-code-interpreter"],
+      "comment": "First-party Python and TypeScript/JavaScript SDKs; the OpenAI SDKs also work against the compatible endpoint."
+    },
+    "native-api-style": {
+      "value": ["openai"],
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Primary request/response shape follows the OpenAI Chat Completions style."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://www.together.ai/blog/batch-api"],
+      "comment": "Batch job completion is retrieved by polling job status and downloading the output file; no push webhook/callback documented (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": null,
+      "comment": "No public contractual uptime SLA figure found from a primary source this pass; enterprise-tier terms are negotiated (checked 2026-07)."
+    },
+    "rate-limit-model": {
+      "value": ["usage-based-scaling", "provisioned-throughput"],
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Serverless rate limits scale with account tier/usage; dedicated endpoints and Provisioned Throughput (PTUs) provide reserved capacity (checked 2026-07)."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://docs.together.ai/docs/introduction"],
+      "comment": "Together hosts and serves its own model deployments; no automatic cross-provider failover/policy routing like a pure aggregator (checked 2026-07)."
+    },
+    "status-page": {
+      "value": true,
+      "comment": "Public status page exists at status.together.ai (tracking Inference, serverless endpoints, fine-tuning, model APIs). Page not directly fetched this pass."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://www.together.ai/privacy"],
+      "comment": "Privacy policy states data collected is not used to train Together's models without explicit opt-in and consent."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://www.together.ai/privacy"],
+      "comment": "A Zero Data Retention (ZDR) mode is available but opt-in via Privacy & Security settings; by default prompts/responses are stored in history. ZDR applies only going forward from activation."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa"],
+      "source": ["https://www.together.ai/blog/soc-2-compliance"],
+      "comment": "SOC 2 Type 2 examination completed; HIPAA-aligned with BAAs available for healthcare. GDPR and ISO 27001 not confirmed from the fetched sources this pass."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://docs.together.ai/docs/sso"],
+      "comment": "SSO via SAML and OIDC (Okta, Entra, Google Workspace, JumpCloud) with automated provisioning/offboarding on Scale and Enterprise tiers."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "provisioned"],
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Per-token serverless usage pricing plus reserved capacity via dedicated endpoints and Provisioned Throughput (PTUs); GPU clusters priced per GPU-hour."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "One Together account/bill covers all reachable models and services."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://www.together.ai/blog/batch-api", "https://www.together.ai/pricing"],
+      "comment": "Batch API at ~50% of real-time cost; prompt-cache reads billed at a reduced rate (roughly 5–10x cheaper input on select models). The two discounts stack."
+    },
+    "cheapest-entry": {
+      "value": ["pay-as-you-go"],
+      "source": ["https://www.together.ai/pricing"],
+      "comment": "Lowest-friction paid start is self-serve pay-as-you-go per-token pricing (requires a $5 minimum prepaid top-up; no free tier)."
+    }
+  }
 }
