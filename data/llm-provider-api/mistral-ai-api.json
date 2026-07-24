@@ -1,5 +1,268 @@
 {
   "name": "Mistral AI API",
   "description": "First-party API for Mistral's open-weight and proprietary models",
-  "values": {}
+  "url": "https://mistral.ai/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Mistral AI",
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Paris-based Mistral AI trains and serves its own models over its own REST API (La Plateforme) at https://api.mistral.ai/v1."
+    },
+    "category": {
+      "value": ["first-party"],
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Vendor that trains and serves its own Mistral/Ministral/Voxtral/Codestral models through its own API."
+    },
+    "api-launched": {
+      "value": "2023-12",
+      "comment": "Approximate. Mistral opened its developer API platform (La Plateforme) in public beta in December 2023 alongside the Mixtral release; it moved to broad general availability through 2024. No single fetched primary page pins the exact GA month, so this reflects the public-record La Plateforme launch."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Core chat completions, embeddings, batch, FIM, OCR and files endpoints are generally available; the Agents/Conversations API is still labelled beta as of the 2026-07-24 check."
+    },
+    "api-docs": {
+      "value": "https://docs.mistral.ai/api/",
+      "source": ["https://docs.mistral.ai/api/"]
+    },
+    "website": {
+      "value": "https://mistral.ai/",
+      "source": ["https://mistral.ai/pricing"]
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Requests authenticate with a bearer API key (Authorization: Bearer $MISTRAL_API_KEY) created in the console at console.mistral.ai."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "Any developer can self-serve sign up at console.mistral.ai and generate an API key without sales contact; no credit card is required to start on the free Experiment tier."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "Free \"Experiment\" tier gives rate-limited access to the API models at no cost (roughly a 1B-token/month cap, evaluation only) before seamlessly transitioning to pay-as-you-go; larger startup credits are available separately via the Mistral for Startups program. Checked 2026-07-24."
+    },
+    "regional-endpoints": {
+      "value": ["eu", "us"],
+      "source": ["https://docs.mistral.ai/admin/monitor-comply/privacy-data-controls"],
+      "comment": "As an EU-native provider, La Plateforme processes data in EU (Paris-region) data centres by default; a US endpoint is available as an explicit opt-in. Checked 2026-07-24."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/admin/monitor-comply/privacy-data-controls"],
+      "comment": "EU data residency is the contractual default (all La Plateforme processing in the EU); US routing is opt-in. This is a guaranteed default, not merely multiple endpoints."
+    },
+    "model-breadth": {
+      "value": ["single-vendor"],
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Only Mistral's own model families (Mistral/Ministral generalist, Codestral, Voxtral audio, OCR, Magistral reasoning) are served through this API."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Many callable models are open-weight (Apache 2.0) — e.g. Mistral Large 3, Mistral Small 4, the Ministral 3 series — served alongside \"Premier\"/proprietary models like OCR."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Dated immutable snapshots can be pinned (e.g. mistral-medium-2604, mistral-large-2512) instead of the floating *-latest aliases, which silently track the current release."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Mistral offers a fine-tuning API; customers can fine-tune supported models (e.g. mistral-small, codestral, mistral-large, open-mistral-nemo) and call the resulting custom model through the same API."
+    },
+    "model-catalog-size": {
+      "value": ["21-100"],
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "The model overview lists roughly 40-50 entries including legacy/deprecated snapshots; the current non-legacy callable set (featured, frontier generalist, and specialist models) is on the order of ~20-25 as of 2026-07-24."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Multi-turn chat completions endpoint at POST /v1/chat/completions."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Token streaming (SSE) is supported on the chat completions endpoint."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Documented tool/function calling; the model returns structured tool-call requests the caller executes."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Tool/function calling supports parallel execution (multiple tool calls in a single turn)."
+    },
+    "structured-output": {
+      "value": ["json-schema"],
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Supports both a valid-JSON mode and server-enforced JSON schema structured outputs (response_format with json_schema); json-schema is the strongest guarantee offered."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "A distinct system role is supported in the messages array."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/capabilities/vision/"],
+      "comment": "Vision input (image URL or base64) is supported on Mistral Large 3, Mistral Medium 3.x, Mistral Small 3.x and the Ministral 3 series via the chat completions API."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/", "https://status.mistral.ai/"],
+      "comment": "Audio understanding/transcription is offered through the Voxtral models and a first-party Audio/Transcriptions API endpoint (tracked as a distinct Audio API on the status page)."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/capabilities/vision/"],
+      "comment": "Native document/PDF ingestion via Mistral Document AI / OCR (dedicated OCR models and endpoint) as a first-class input type, beyond pasted text."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/", "https://mistral.ai/news/agents-api"],
+      "comment": "Image generation is available through the same account — as an API capability and as a built-in Agents connector powered by Black Forest Labs FLUX1.1 [pro]."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "Speech/audio synthesis (text-to-speech) is offered via the Voxtral TTS model and a speech-synthesis endpoint under the same API."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/api/"],
+      "comment": "First-party text-embeddings endpoint (mistral-embed) for retrieval/semantic search."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/studio-api/conversations/advanced/prompt-caching"],
+      "comment": "Prompt-prefix caching via a prompt_cache_key parameter (a cache hit occurs when a compatible cached prefix, in 64-token blocks, is found); cached input tokens are billed at 10% of the standard input price."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/capabilities/batch/"],
+      "comment": "Asynchronous Batch API (up to 1M requests per batch, 24h SLA) at a 50% discount; supports chat completions, embeddings, OCR and transcriptions endpoints."
+    },
+    "max-context-window": {
+      "value": 256000,
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "256K tokens on the frontier generalist models Mistral Large 3 (mistral-large-2512) and Mistral Medium 3.5 (mistral-medium-2604) per their model cards, as of 2026-07-24; smaller models use 128K or less."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Dedicated Magistral reasoning models plus a per-request configurable reasoning-effort control (e.g. on Mistral Medium 3.5) expose reasoning/thinking depth at the API level."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://mistral.ai/news/agents-api"],
+      "comment": "First-party web_search connector in the Agents API (also a web_search_premium variant with AFP/AP news access) executed on Mistral infrastructure."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://mistral.ai/news/agents-api"],
+      "comment": "First-party code_execution connector in the Agents API runs Python in a Mistral-hosted sandbox."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://mistral.ai/news/agents-api"],
+      "comment": "The Agents API supports Model Context Protocol (MCP) tools/connectors for integrating external systems into agents and conversations."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://mistral.ai/news/agents-api", "https://docs.mistral.ai/api/"],
+      "comment": "A Files API plus the Document Library connector provide file upload and integrated managed RAG the agent/model can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://mistral.ai/news/agents-api"],
+      "comment": "The Agents API (beta) offers a stateful, higher-level agents/conversations framework with persisted history, branching, tool orchestration and agent handoffs above raw chat inference."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/resources/migration-guides"],
+      "comment": "The Mistral Chat Completions API follows the OpenAI request/response structure; existing OpenAI SDK / LangChain / LlamaIndex code works by swapping the base URL to https://api.mistral.ai/v1, the key and the model name. Mistral-native surfaces (OCR, FIM, Agents, image/audio) sit outside the compatible endpoint."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript"],
+      "source": ["https://docs.mistral.ai/getting-started/clients"],
+      "comment": "Official first-party SDK clients are provided for Python (mistralai) and TypeScript (@mistralai/mistralai); other languages are covered only by third-party unofficial SDKs."
+    },
+    "native-api-style": {
+      "value": ["openai"],
+      "source": ["https://docs.mistral.ai/resources/migration-guides"],
+      "comment": "Mistral's native chat completions request/response shape follows the OpenAI Chat Completions conventions (messages array, choices, usage), which is why a base-URL swap suffices; some proprietary surfaces (OCR, FIM, Agents) extend beyond it."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://docs.mistral.ai/capabilities/batch/"],
+      "comment": "Batch job completion is retrieved by polling (client.batch.jobs.get); no webhook/async-callback mechanism is documented for job completion."
+    },
+    "published-sla": {
+      "value": true,
+      "comment": "A contractual uptime SLA (reported as 99.9%) is offered on Mistral's Enterprise/Scale tier with an annual commitment, negotiated via sales. Corroborated across secondary sources at the 2026-07-24 check; the exact SLA figure is not published on a single fetched primary page (it sits behind the enterprise contract), so no primary source is cited."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers"],
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "Workspace-tier rate limits (RPM/TPM and monthly token caps) that step up with plan/usage history; enterprise customers can negotiate custom limits. Free Experiment tier is tightly rate-limited."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://docs.mistral.ai/getting-started/models/models_overview/"],
+      "comment": "Single-vendor first-party API; no automatic cross-provider failover/routing (a gateway feature)."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://status.mistral.ai/"],
+      "comment": "Public status page at status.mistral.ai tracks 11 API components (Chat Completions, Embeddings, OCR, Agents, Conversations, Audio, Integrations, Files, Batch, Workflows, Registry) with 90-day uptime metrics."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/admin/monitor-comply/privacy-data-controls"],
+      "comment": "Data sent through the API is not used for model training by default, and commercial/Scale plan data is opted out by default. Exceptions: the free Experiment tier may train on inputs/outputs (opt-out available), and activating Labs models or using thumbs-up/down feedback opts data into training regardless of tier."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/admin/monitor-comply/privacy-data-controls"],
+      "comment": "A zero-data-retention mode is available (scoped to stateless API requests, typically on the paid Scale/enterprise plan); OCR benefits from ZDR by default. Standard default retention is ~30 days of API logs for abuse monitoring, then deleted."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "iso-27001", "gdpr"],
+      "source": ["https://help.mistral.ai/en/articles/347638-do-you-have-soc-2-or-iso-27001-certification", "https://docs.mistral.ai/admin/monitor-comply/privacy-data-controls"],
+      "comment": "Mistral holds SOC 2 Type II and ISO 27001/27701. GDPR compliance is emphasised as an EU-native provider with a standard EU-clause DPA (a regulation rather than a formal certification). HIPAA/FedRAMP/PCI are not advertised; request reports via trust.mistral.ai."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "comment": "Enterprise offerings provide SSO (SAML 2.0 / OIDC with Azure AD, Okta, etc.), audit logs and an admin console for org-level access control. Corroborated across secondary sources at the 2026-07-24 check; not confirmed on a single fetched primary API page, so no primary source is cited."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "free-tier"],
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "Per-token (per-million input/output) pay-as-you-go usage billing, plus a free Experiment tier for evaluation; no first-party provisioned-throughput or subscription for the API itself."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "A single Mistral account/bill covers all reachable Mistral models (trivially true for a single-vendor first-party API)."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://docs.mistral.ai/capabilities/batch/", "https://docs.mistral.ai/studio-api/conversations/advanced/prompt-caching"],
+      "comment": "Batch API offers a 50% discount; cached prompt tokens are billed at 10% of the standard input price."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier"],
+      "source": ["https://mistral.ai/pricing"],
+      "comment": "The free Experiment tier (no credit card, rate-limited) is the lowest-friction start; pay-as-you-go follows with no minimum commitment."
+    }
+  }
 }
