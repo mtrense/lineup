@@ -1,5 +1,271 @@
 {
   "name": "OpenRouter",
   "description": "Routing gateway with one API over hundreds of models, unified billing, and fallback",
-  "values": {}
+  "url": "https://openrouter.ai",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "OpenRouter",
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Operated by OpenRouter, Inc. (founded early 2023 by Alex Atallah)."
+    },
+    "category": {
+      "value": ["gateway"],
+      "source": ["https://openrouter.ai/docs/quickstart", "https://openrouter.ai/docs/features/provider-routing"],
+      "comment": "Unified API fanning out to hundreds of models across many providers with automatic fallback/routing — the defining gateway shape."
+    },
+    "api-launched": {
+      "value": "2023-03",
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Approximate — OpenRouter was founded and first exposed its unified API in early 2023 (Feb/Mar); no exact GA date is published. Checked 2026-07-24."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "Developer API is generally available and self-serve."
+    },
+    "api-docs": {
+      "value": "https://openrouter.ai/docs",
+      "source": ["https://openrouter.ai/docs/quickstart"]
+    },
+    "website": {
+      "value": "https://openrouter.ai",
+      "source": ["https://openrouter.ai/docs/quickstart"]
+    },
+    "auth-methods": {
+      "value": ["api-key", "oauth"],
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "Primary auth is a bearer API key; OAuth (PKCE) login is available, notably for app integrations and the MCP server."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "Sign up and generate an API key without sales contact; top up credits self-serve."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "Small free allowance for new users, plus free-tier models (50 requests/day without credits, 1,000/day with $10+ balance). Checked 2026-07-24."
+    },
+    "regional-endpoints": {
+      "value": ["global", "eu"],
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Single global endpoint (openrouter.ai/api/v1); a managed EU-jurisdiction endpoint (eu.openrouter.ai) is available to enterprise customers by request."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Enterprise 'Sovereign AI' EU region locking / in-region routing pins processing jurisdiction; enterprise-tier / on request."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://openrouter.ai/docs/features/provider-routing", "https://openrouter.ai/docs/quickstart"],
+      "comment": "Reaches models from many vendors (Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek, Qwen, etc.) through one API."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://openrouter.ai/meta-llama/llama-4-scout", "https://openrouter.ai/docs/features/provider-routing"],
+      "comment": "Open-weight families (Llama, Mistral, Qwen, DeepSeek, etc.) are available alongside proprietary models."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://openrouter.ai/meta-llama/llama-4-scout"],
+      "comment": "Models are addressed by explicit vendor/model slugs (e.g. meta-llama/llama-4-scout); specific dated snapshots can be pinned where the upstream vendor offers them."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "OpenRouter routes to catalog models; it does not host/deploy customer-uploaded fine-tuned weights. BYOK lets you route to your own provider keys, but that is not native custom-model deployment."
+    },
+    "model-catalog-size": {
+      "value": ["100-plus"],
+      "source": ["https://openrouter.ai/enterprise", "https://openrouter.ai/docs/features/provider-routing"],
+      "comment": "Roughly 400+ models across 70+ providers as marketed on the enterprise page. Checked 2026-07-24."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "POST /api/v1/chat/completions, OpenAI-Chat-compatible multi-turn messages."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "SSE token streaming supported."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/guides/features/tool-calling"],
+      "comment": "Standardized tool/function-calling interface across supported models."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/guides/features/tool-calling"],
+      "comment": "parallel_tool_calls parameter (default true for most models) enables multiple tool calls per turn."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://openrouter.ai/docs/features/structured-outputs"],
+      "comment": "Server-enforced JSON Schema via response_format type json_schema with optional strict mode (strongest); valid-JSON mode also supported. Enforcement depends on the selected provider/endpoint."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "System/developer message role supported (OpenAI-compatible messages)."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "Vision-capable models accept images via URL or base64."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "Speech-capable models accept audio input; a transcription (speech-to-text) endpoint is also offered."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "Native PDF/document ingestion with parsing of text and scanned files."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "Image-generation output supported through the same API."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "Dedicated text-to-speech endpoint generating MP3/PCM audio."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/multimodal/overview"],
+      "comment": "POST /api/v1/embeddings, OpenAI-compatible; multiple embedding models available."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/prompt-caching"],
+      "comment": "Automatic caching on providers like OpenAI/DeepSeek/Groq; explicit cache_control breakpoints for Anthropic/Google. Provider-sticky routing maximizes cache hits."
+    },
+    "batch-api": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/api/reference/overview"],
+      "comment": "No dedicated asynchronous offline batch/bulk job endpoint (like OpenAI's 24h Batch API); requests are per-call. Embeddings accept multiple inputs per request but that is not an offline batch job."
+    },
+    "max-context-window": {
+      "value": 1000000,
+      "source": ["https://openrouter.ai/meta-llama/llama-4-scout"],
+      "comment": "OpenRouter lists Llama 4 Scout at 1M tokens (native architecture claims up to 10M). Several catalog models offer ~1M+ context. Checked 2026-07-24; varies per model/provider."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/use-cases/reasoning-tokens"],
+      "comment": "Unified reasoning parameter normalizes effort levels and reasoning-token budgets across providers (OpenAI effort, Anthropic token budgets, Gemini thinking levels)."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/web-search"],
+      "comment": "First-party web plugin (append :online to any model slug) returning url_citation annotations; native search for Anthropic/Google/OpenAI/Perplexity/xAI, Exa for others."
+    },
+    "built-in-code-execution": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/api/reference/overview"],
+      "comment": "No first-party provider-hosted code-interpreter/sandbox exposed via the API; you wire your own execution as a tool."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/use-cases/mcp-servers"],
+      "comment": "No native hosted/remote MCP connector; docs show a client-side bridge converting MCP tool definitions to OpenAI-compatible tools rather than server-side MCP support."
+    },
+    "files-retrieval-api": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/api/reference/overview"],
+      "comment": "No managed files/retrieval (RAG) API; documents are passed inline per request. Embeddings are offered but retrieval orchestration is left to the caller."
+    },
+    "agents-assistants-api": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "Offers a client-side Agent SDK for tool orchestration, but no server-side stateful assistants/threads API with managed conversation state."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "Drop-in OpenAI SDK replacement via base-URL swap to https://openrouter.ai/api/v1."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript"],
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "First-party TypeScript (@openrouter/sdk) and Python SDKs; both documented as beta as of the check date. OpenAI/other libraries also work via the compatible endpoint."
+    },
+    "native-api-style": {
+      "value": ["openai"],
+      "source": ["https://openrouter.ai/docs/quickstart"],
+      "comment": "Native request/response shape mirrors OpenAI Chat Completions (a Responses-style API is in beta)."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/api/reference/overview"],
+      "comment": "No documented webhook/async callback mechanism for job completion."
+    },
+    "published-sla": {
+      "value": false,
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Enterprise page states a commitment to being 'accretive to your uptime' but publishes no contractual/quantified uptime SLA percentage."
+    },
+    "rate-limit-model": {
+      "value": ["usage-based-scaling"],
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "Limits scale with credit balance (e.g. free-model daily caps rise from 50/day to 1,000/day at $10+ balance); no fixed per-tier plan caps."
+    },
+    "provider-fallback-routing": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/provider-routing"],
+      "comment": "Automatic cross-provider load balancing and fallback by default (allow_fallbacks), avoiding recently-unstable providers — the defining gateway capability."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Public status page at status.openrouter.ai (current status only; no historical incident archive)."
+    },
+    "no-training-default": {
+      "value": false,
+      "source": ["https://openrouter.ai/docs/features/privacy-and-logging"],
+      "comment": "OpenRouter itself does not train on prompts, but by default requests may route to underlying providers that train on data; an account-level opt-out ('disable training') routes only to non-training providers. Because the default may include training providers, marked false per guideline."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://openrouter.ai/enterprise", "https://openrouter.ai/docs/features/privacy-and-logging"],
+      "comment": "Zero Data Retention routing enforces requests to only ZDR-guaranteed providers/endpoints (account-wide, per-model-group, per-API-key); requests fail rather than violate policy. Coverage varies by provider."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "gdpr"],
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Enterprise page states SOC-2 compliance and GDPR (signed DPA available on enterprise tier). Request current attestations from the trust portal. Checked 2026-07-24."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://openrouter.ai/enterprise"],
+      "comment": "Organization support with SSO and org-level guardrails/allowlists."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "free-tier", "markup"],
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "Per-token passthrough of underlying provider pricing (no markup on inference) plus free-tier models; revenue via credit-purchase fees (Stripe 5.5%/$0.80 min, crypto 5%) and a 5% BYOK fee — the 'markup' tag reflects those gateway fees."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "One USD credit balance covers every reachable model/provider."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://openrouter.ai/docs/features/prompt-caching"],
+      "comment": "Cached-prompt reads are discounted (roughly 0.1x–0.5x of input cost depending on provider; cache writes typically ~1.25x)."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier"],
+      "source": ["https://openrouter.ai/docs/faq"],
+      "comment": "Free-tier models and a small free new-user allowance let you start with no payment; pay-as-you-go credits thereafter."
+    }
+  }
 }
