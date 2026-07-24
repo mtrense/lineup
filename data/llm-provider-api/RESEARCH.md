@@ -183,7 +183,7 @@ Users should be able to:
 
 ## Candidates
 
-- [ ] **Anthropic Claude API** — first-party API for Claude models; reference for tool use, prompt caching, MCP, extended thinking
+- [x] **Anthropic Claude API** — first-party API for Claude models; reference for tool use, prompt caching, MCP, extended thinking
 - [ ] **OpenAI API** — the incumbent first-party API; de-facto compatibility standard (Chat Completions / Responses)
 - [ ] **Google Gemini API** — Google's first-party developer API (AI Studio) for Gemini models
 - [ ] **Mistral AI API** — first-party API for Mistral's open-weight and proprietary models
