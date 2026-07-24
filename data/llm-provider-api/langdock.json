@@ -1,5 +1,270 @@
 {
   "name": "Langdock",
   "description": "Enterprise AI workspace/assistant platform with an API over multiple underlying models",
-  "values": {}
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Langdock GmbH",
+      "source": ["https://langdock.com/security", "https://langdock.com/products/api"],
+      "comment": "Berlin-based German GmbH; EU-native enterprise AI platform."
+    },
+    "category": {
+      "value": ["assistant-platform"],
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Enterprise AI workspace/assistant product whose unified API is secondary to its chat/agents app; aggregates several vendors' models under one interface."
+    },
+    "api-launched": {
+      "value": null,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Company founded 2023 in Berlin; could not pin an exact public/GA month for the developer API from primary sources (checked 2026-07)."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction", "https://langdock.com/products/api"],
+      "comment": "Documented, generally available REST API with published rate limits and pricing."
+    },
+    "api-docs": {
+      "value": "https://docs.langdock.com/api-endpoints/api-introduction",
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction"]
+    },
+    "website": {
+      "value": "https://langdock.com/products/api",
+      "source": ["https://langdock.com/products/api"]
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "Bearer API key in the Authorization header; browser-origin requests are blocked (backend-only)."
+    },
+    "self-serve-signup": {
+      "value": false,
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction", "https://langdock.com/pricing"],
+      "comment": "API is a workspace-level enterprise product; API access has been obtained by contacting support@langdock.com. A 7-day self-serve workspace trial exists, but the API surface is oriented to enterprise/business workspaces rather than instant self-serve developer keys (checked 2026-07)."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://langdock.com/pricing"],
+      "comment": "7-day free trial with EUR 5 AI-model credits and no credit card required; no permanent free tier."
+    },
+    "regional-endpoints": {
+      "value": ["eu", "us"],
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai", "https://langdock.com/security"],
+      "comment": "Region is specified in the request path (e.g. /openai/{region}/v1/... where region = eu or us); default hosting is EU (Azure)."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://langdock.com/security"],
+      "comment": "EU data residency by default; models configurable to run within EU infrastructure, plus single-tenant, bring-your-own-cloud, and on-premise deployment options."
+    },
+    "model-breadth": {
+      "value": ["few-vendors"],
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Reaches four major model families through one API: OpenAI, Anthropic, Google, and Mistral (plus custom/BYOK models). Vendor diversity is limited to a handful, not a large aggregator catalog."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Mistral (open-weight) models are available through the unified API; custom OpenAI-compatible models can also be registered."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Dated model snapshots are usable (docs show responses with e.g. gpt-4o-2024-05-13); the models endpoint lists available versions per workspace."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Own OpenAI-compatible model endpoints can be registered as custom models (Langdock/custom-model-example) and called through the same API; BYOK is also supported."
+    },
+    "model-catalog-size": {
+      "value": ["21-100"],
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Product page cites 40+ models across OpenAI/Anthropic/Google/Mistral (checked 2026-07)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "OpenAI-compatible chat completion endpoint with a messages array."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Server-sent-events streaming via the stream parameter."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Supported via tools and tool_choice parameters."
+    },
+    "parallel-tool-calls": {
+      "value": false,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "The parallel_tool_calls parameter is explicitly listed as unsupported."
+    },
+    "structured-output": {
+      "value": ["json-mode"],
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "response_format {\"type\":\"json_object\"} (valid-JSON mode) is documented; server-enforced JSON Schema is not documented."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "System role message supported."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "User messages accept image_url content parts for vision-capable models."
+    },
+    "audio-input": {
+      "value": false,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Completion endpoint content parts are limited to text and image_url; no audio input documented."
+    },
+    "document-pdf-input": {
+      "value": false,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai", "https://langdock.com/products/api"],
+      "comment": "The completion endpoint accepts only text and image_url content; documents/PDFs are handled via the separate Knowledge Folder API for RAG, not as a direct inference input."
+    },
+    "image-generation": {
+      "value": null,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "No image-generation endpoint documented in the developer API (the API centers on completions, embeddings, agents, and knowledge)."
+    },
+    "text-to-speech-audio-output": {
+      "value": null,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "No speech/audio synthesis endpoint documented in the developer API."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://langdock.com/products/api", "https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "Dedicated Embedding API (OpenAI embeddings) for semantic search and RAG."
+    },
+    "prompt-caching": {
+      "value": null,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "No prompt/prefix caching documented at the Langdock API level; underlying provider caching is not surfaced (checked 2026-07)."
+    },
+    "batch-api": {
+      "value": false,
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "No asynchronous batch/offline endpoint documented; the completion API is synchronous."
+    },
+    "max-context-window": {
+      "value": 1000000,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Largest window comes from the Google Gemini models offered on the platform (~1M tokens). This reflects the underlying model's context, not a Langdock-published figure; approximate, checked 2026-07."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "reasoning_effort parameter (none/minimal/low/medium/high/xhigh) exposed at the API level; not all values supported by all models."
+    },
+    "built-in-web-search": {
+      "value": null,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Web browsing exists for agents in-app, but a first-party web-search/grounding tool callable via the completion API is not documented (checked 2026-07)."
+    },
+    "built-in-code-execution": {
+      "value": false,
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "A sandboxed JavaScript runtime exists for authoring integrations, but no model-facing first-party code-interpreter tool is exposed via the API."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.langdock.com/resources/integrations/mcp"],
+      "comment": "Native MCP: agents connect to remote/hosted MCP servers (STREAMABLE_HTTP/SSE, API key/OAuth 2.0), and Langdock also exposes its own MCP server endpoint so external clients can call Langdock agents. Configured at the agent/integration level."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://langdock.com/products/api", "https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "Knowledge Folder API provides document upload plus managed retrieval/RAG."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://langdock.com/products/api", "https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "Agent API for creating and managing custom AI agents above raw inference."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Completion endpoint follows the OpenAI Chat Completions specification; existing OpenAI SDK code works with a base-URL swap."
+    },
+    "official-sdks": {
+      "value": null,
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction", "https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "No first-party client SDKs documented; integration is via the OpenAI-compatible endpoint (use the OpenAI SDK) or raw REST."
+    },
+    "native-api-style": {
+      "value": ["openai", "anthropic-messages", "proprietary"],
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai", "https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "Completion endpoints mirror each underlying vendor's shape (OpenAI, Anthropic, Google, Mistral); the OpenAI-format endpoint is the headline. Agent/Knowledge/Embedding endpoints are proprietary REST."
+    },
+    "webhooks-callbacks": {
+      "value": null,
+      "source": ["https://docs.langdock.com/api-endpoints/api-introduction"],
+      "comment": "No webhook/async-callback mechanism documented (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": true,
+      "source": ["https://langdock.com/pricing"],
+      "comment": "Enterprise plans (1,000+ users, dedicated deployment) include dedicated support with SLAs; not offered on lower self-serve tiers."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers", "custom"],
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai"],
+      "comment": "Default workspace-level caps (500 RPM / 60,000 TPM, per model), with increases available on request."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "Not a routing gateway; no automatic cross-provider/model failover documented."
+    },
+    "status-page": {
+      "value": null,
+      "source": ["https://langdock.com/security"],
+      "comment": "No public status/uptime page confirmed from primary sources (checked 2026-07)."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://langdock.com/security"],
+      "comment": "\"Customer data is never used to train or improve AI models.\""
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://langdock.com/security"],
+      "comment": "Data retained only as necessary to provide the service and deletable on request; dedicated/on-premise and bring-your-own-cloud deployments give customers full data control (no external retention)."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "iso-27001", "gdpr"],
+      "source": ["https://langdock.com/security"],
+      "comment": "SOC 2 Type II audited, ISO 27001 certified, GDPR aligned."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://langdock.com/pricing"],
+      "comment": "SSO, SAML, and SCIM included from the Business plan upward, with user groups and permissions."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "subscription", "markup"],
+      "source": ["https://langdock.com/pricing", "https://langdock.com/products/api"],
+      "comment": "Per-token usage-based pricing for the API product (model rate plus Langdock markup); the Chat & Agents workspace is a per-seat subscription."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://langdock.com/products/api"],
+      "comment": "One unified API and account covers all reachable models/providers."
+    },
+    "cache-batch-discount": {
+      "value": false,
+      "source": ["https://docs.langdock.com/en/developer/completion-api/openai", "https://langdock.com/pricing"],
+      "comment": "No cache or batch discount documented (no batch/caching surface on the API)."
+    },
+    "cheapest-entry": {
+      "value": ["pay-as-you-go"],
+      "source": ["https://langdock.com/pricing"],
+      "comment": "After a 7-day free trial (EUR 5 credits, no card), API usage is per-token pay-as-you-go; no permanent free tier."
+    }
+  }
 }

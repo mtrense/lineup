@@ -194,7 +194,7 @@ Users should be able to:
 - [x] **Together AI** — gateway/host for open-weight models with an OpenAI-compatible API and fine-tuning
 - [x] **Groq** — low-latency inference gateway (LPU) serving open-weight models via an OpenAI-compatible API
 - [x] **dust.tt** — enterprise assistant platform exposing an API to build on its agents and connected data
-- [ ] **Langdock** — enterprise AI workspace/assistant platform with an API over multiple underlying models
+- [x] **Langdock** — enterprise AI workspace/assistant platform with an API over multiple underlying models
 
 ## Notes for Researchers
 
