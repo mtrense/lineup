@@ -1,5 +1,269 @@
 {
   "name": "Google Gemini API",
   "description": "Google's first-party developer API (AI Studio) for Gemini models",
-  "values": {}
+  "url": "https://ai.google.dev",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Google",
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Google's first-party developer API for Gemini models, offered via Google AI Studio (generativelanguage.googleapis.com). Distinct from Vertex AI, which is Google Cloud's enterprise surface for the same models."
+    },
+    "category": {
+      "value": ["first-party"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Google trains and serves its own Gemini models over its own API."
+    },
+    "api-launched": {
+      "value": "2023-12",
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "The Gemini developer API launched via Google AI Studio in December 2023 alongside Gemini 1.0 (it succeeded the earlier PaLM/MakerSuite API). No dedicated dated source fetched; date from general product history."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "The developer API is generally available; individual newer features/models may be in preview."
+    },
+    "api-docs": {
+      "value": "https://ai.google.dev/gemini-api/docs",
+      "source": ["https://ai.google.dev/gemini-api/docs"]
+    },
+    "website": {
+      "value": "https://ai.google.dev",
+      "source": ["https://ai.google.dev/gemini-api/docs"]
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Requests authenticate with an API key from Google AI Studio. OAuth is used for some user-scoped operations, but API key is the primary developer-API auth method."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "A developer can obtain a working API key self-serve via Google AI Studio without sales contact."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "A free tier with usable rate limits exists for development before moving to pay-as-you-go (checked 2026-07-24)."
+    },
+    "regional-endpoints": {
+      "value": ["global"],
+      "source": ["https://ai.google.dev/gemini-api/docs/available-regions"],
+      "comment": "The developer API is a single global endpoint (generativelanguage.googleapis.com) available in 190+ countries; it does not expose per-region call endpoints. Regional selection is a Vertex AI feature."
+    },
+    "data-residency-options": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs/available-regions"],
+      "comment": "The developer API / AI Studio processes on Google global infrastructure with no region pinning. Data residency guarantees require Gemini via Vertex AI (a separate candidate)."
+    },
+    "model-breadth": {
+      "value": ["single-vendor"],
+      "source": ["https://ai.google.dev/gemini-api/docs/models"],
+      "comment": "Only Google's own model families (Gemini, plus Google specialized models like Imagen, embeddings, TTS, Lyria) are reachable."
+    },
+    "open-weight-models": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs/models"],
+      "comment": "The API serves Google's proprietary Gemini models. Google's open-weight Gemma models are distributed separately (Kaggle/Hugging Face/Vertex) rather than being the API's offering."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/models"],
+      "comment": "Stable model IDs point to a specific snapshot that usually does not change, and dated preview IDs (e.g. gemini-2.5-flash-preview-09-2025) are available; floating -latest aliases also exist."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "The API supports fine-tuning/tuned models that are then callable through the same API."
+    },
+    "model-catalog-size": {
+      "value": ["21-100"],
+      "source": ["https://ai.google.dev/gemini-api/docs/models"],
+      "comment": "Roughly 40-50 distinct callable models across text (Gemini 2.5/3 series), image generation, TTS, music, and embeddings (checked 2026-07-24)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "generateContent provides a modern multi-turn content/messages endpoint."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "streamGenerateContent supports incremental token streaming."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/function-calling"]
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/function-calling"],
+      "comment": "Docs: the model supports calling multiple functions in a single turn (parallel function calling) as well as sequential/compositional calling."
+    },
+    "structured-output": {
+      "value": ["json-schema"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Supports a responseSchema / structured-output config that constrains responses to a JSON schema, stronger than valid-JSON-only mode."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "A distinct system_instruction field is supported at the API level."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Multimodal image understanding is supported as request input."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Audio understanding (speech input) is a documented core capability."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Native PDF ingestion (up to ~1000 pages) with full multimodal understanding."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Image generation/editing via Gemini image models (\"Nano Banana\") and Imagen through the same API."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Speech generation / TTS output is offered through the same API."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "A text-embeddings endpoint (Gemini embedding models) is available under the same API."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs", "https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "Context caching is supported (both explicit and implicit), billed at a reduced input rate plus per-hour storage."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs", "https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "An asynchronous Batch API is offered at roughly 50% of standard cost."
+    },
+    "max-context-window": {
+      "value": 1048576,
+      "source": ["https://ai.google.dev/gemini-api/docs/long-context", "https://ai.google.dev/gemini-api/docs/models"],
+      "comment": "Gemini 2.5 Pro supports ~1M input tokens. (Gemini 1.5 Pro historically offered 2M but is deprecated.) Checked 2026-07-24."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs", "https://ai.google.dev/gemini-api/docs/openai"],
+      "comment": "Thinking/reasoning mode with configurable thinking budget / reasoning-effort levels is exposed at the API level."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "First-party Grounding with Google Search tool is callable via the API."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "First-party code execution tool (sandboxed) is available as a built-in tool."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/function-calling"],
+      "comment": "The Interactions API documents connecting to remote MCP servers (Streamable HTTP); SDK-level MCP tool support also exists in the Python/JS SDKs (experimental)."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "A Files API for upload/reference is available; managed retrieval (File Search / semantic retrieval) is also offered."
+    },
+    "agents-assistants-api": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "The core Gemini API does not offer an OpenAI-style stateful assistants/threads primitive; conversation state is managed by the caller. (Higher-level agent products exist separately.)"
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/openai"],
+      "comment": "An OpenAI-compatible endpoint (base https://generativelanguage.googleapis.com/v1beta/openai/) lets OpenAI SDK code run with a base-URL swap; documented as beta."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript", "go", "java"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Google Gen AI SDK is offered in Python (google-genai), JavaScript/TypeScript (@google/genai), Go, and Java."
+    },
+    "native-api-style": {
+      "value": ["proprietary"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "The native request/response shape is Google's own generateContent format (contents/parts), distinct from OpenAI or Anthropic message shapes."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Batch jobs are polled for completion; no documented webhook/callback delivery."
+    },
+    "published-sla": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "No contractual uptime SLA is published for the AI Studio developer API; an enterprise SLA is available via Gemini on Vertex AI / Google Cloud."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers"],
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "Fixed per-tier RPM/TPM caps (Free / Tier 1 / 2 / 3), with higher tiers unlocked by cumulative spend."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "First-party single-vendor API; no cross-provider failover/routing."
+    },
+    "status-page": {
+      "value": true,
+      "comment": "Google publishes a public Google Cloud service health / status dashboard covering its APIs. No dedicated status-page URL fetched in this pass."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/terms"],
+      "comment": "Paid tier: Google does not use prompts or responses to train/improve its products. The free/unpaid tier IS used to improve Google products (and may be human-reviewed) — value reflects the paid API default."
+    },
+    "zero-data-retention": {
+      "value": false,
+      "source": ["https://ai.google.dev/gemini-api/terms"],
+      "comment": "Paid-tier prompts/responses are logged for a limited period for abuse/legal compliance; no zero-retention mode on the developer API. A configurable zero-data-retention path exists via Vertex AI."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "iso-27001", "gdpr"],
+      "source": ["https://ai.google.dev/gemini-api/terms"],
+      "comment": "Gemini inherits Google's broad certification portfolio (SOC 1/2/3, ISO 27001, ISO 42001) and GDPR/DPA coverage. HIPAA (BAA) and FedRAMP are surface-dependent and require Gemini via Vertex AI, not the standalone AI Studio API; corroborated by secondary sources, not fully confirmed from a single trust-center page for the developer API."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs"],
+      "comment": "API keys live in a Google Cloud project; org/console access can be governed via Google Cloud Identity / IAM and SSO at the project/console level."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "free-tier"],
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "Per-token pay-as-you-go for paid usage, plus a free tier for development."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "One Google account/bill covers all reachable Gemini and Google model endpoints (single-vendor)."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "Batch API is ~50% off standard rates; context caching is billed at a reduced input rate (up to ~90% lower for cached tokens) plus storage."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier"],
+      "source": ["https://ai.google.dev/gemini-api/docs/pricing"],
+      "comment": "A free tier is the lowest-friction way to start; pay-as-you-go follows."
+    }
+  }
 }
