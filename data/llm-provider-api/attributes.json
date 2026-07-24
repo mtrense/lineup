@@ -1,0 +1,536 @@
+{
+  "name": "LLM Provider APIs",
+  "description": "APIs for sending inference requests to large language models — first-party model APIs, cloud model-hosting platforms, routing gateways, and enterprise assistant platforms, compared across access, model breadth, request features, multimodal support, advanced capabilities, compatibility, governance, and pricing",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Provider, product shape, lifecycle status, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "provider",
+          "name": "Provider",
+          "valueType": "text",
+          "description": "Company or org operating the API (Anthropic, Amazon Web Services, Google, dust.tt, etc.)"
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "first-party", "value": "First-Party", "color": "orange" },
+              { "id": "cloud-platform", "value": "Cloud Platform", "color": "blue" },
+              { "id": "gateway", "value": "Gateway", "color": "purple" },
+              { "id": "assistant-platform", "value": "Assistant Platform", "color": "green" }
+            ]
+          },
+          "description": "The product shape; single primary tag expected but multi-select allowed for hybrids"
+        },
+        {
+          "id": "api-launched",
+          "name": "API Launched",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "month-year"
+          },
+          "description": "First public/GA availability of the inference API (not the company founding)"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ga", "value": "GA", "color": "green" },
+              { "id": "preview", "value": "Preview", "color": "orange" },
+              { "id": "beta", "value": "Beta", "color": "blue" }
+            ]
+          },
+          "description": "Overall availability of the developer API"
+        },
+        {
+          "id": "api-docs",
+          "name": "API Docs",
+          "valueType": "link",
+          "description": "Official API reference / developer documentation URL"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "valueType": "link",
+          "description": "Official product/homepage URL"
+        }
+      ]
+    },
+    {
+      "id": "access-authentication",
+      "name": "Access & Authentication",
+      "description": "How you obtain access, authenticate, and where requests are served",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "auth-methods",
+          "name": "Auth Methods",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "api-key", "value": "API Key", "color": "green" },
+              { "id": "oauth", "value": "OAuth", "color": "blue" },
+              { "id": "cloud-iam", "value": "Cloud IAM", "color": "purple" },
+              { "id": "aws-sigv4", "value": "AWS SigV4", "color": "orange" },
+              { "id": "service-account", "value": "Service Account", "color": "gray" }
+            ]
+          },
+          "description": "How requests are authenticated; multi-select"
+        },
+        {
+          "id": "self-serve-signup",
+          "name": "Self-Serve Signup",
+          "valueType": "boolean",
+          "description": "Can a developer get a working API key without sales contact or an existing cloud account?"
+        },
+        {
+          "id": "free-credits-trial",
+          "name": "Free Credits / Trial",
+          "valueType": "boolean",
+          "description": "Are there free credits or a usable free tier for evaluation (not merely a demo playground)?"
+        },
+        {
+          "id": "regional-endpoints",
+          "name": "Regional Endpoints",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "us", "value": "US", "color": "blue" },
+              { "id": "eu", "value": "EU", "color": "green" },
+              { "id": "asia", "value": "Asia", "color": "orange" },
+              { "id": "global", "value": "Global", "color": "purple" },
+              { "id": "multi-region", "value": "Multi-Region", "color": "gray" }
+            ]
+          },
+          "description": "Where the API can be called / served from"
+        },
+        {
+          "id": "data-residency-options",
+          "name": "Data Residency Options",
+          "valueType": "boolean",
+          "description": "Can the customer pin data processing to a chosen region/jurisdiction? A contractual/config guarantee, not merely multiple endpoints"
+        }
+      ]
+    },
+    {
+      "id": "model-access",
+      "name": "Model Access",
+      "description": "Model breadth, open weights, version pinning, and custom deployment",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "model-breadth",
+          "name": "Model Breadth",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "single-vendor", "value": "Single Vendor", "color": "orange" },
+              { "id": "few-vendors", "value": "Few Vendors", "color": "blue" },
+              { "id": "many-vendors", "value": "Many Vendors", "color": "green" }
+            ]
+          },
+          "description": "How many model families are reachable through this one API"
+        },
+        {
+          "id": "open-weight-models",
+          "name": "Open-Weight Models",
+          "valueType": "boolean",
+          "description": "Are open-weight models (Llama, Mistral, Qwen, DeepSeek, etc.) available through the API?"
+        },
+        {
+          "id": "model-version-pinning",
+          "name": "Model Version Pinning",
+          "valueType": "boolean",
+          "description": "Can the caller pin a specific dated/immutable model snapshot vs only a floating alias that may change under them?"
+        },
+        {
+          "id": "custom-fine-tuned-deployment",
+          "name": "Custom / Fine-Tuned Deployment",
+          "valueType": "boolean",
+          "description": "Can the customer deploy and call their own fine-tuned or private model through the same API?"
+        },
+        {
+          "id": "model-catalog-size",
+          "name": "Model Catalog Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "1-5", "value": "1–5", "color": "orange" },
+              { "id": "6-20", "value": "6–20", "color": "blue" },
+              { "id": "21-100", "value": "21–100", "color": "purple" },
+              { "id": "100-plus", "value": "100+", "color": "green" }
+            ]
+          },
+          "description": "Rough count of distinct models callable; note the exact figure and check date in the comment"
+        }
+      ]
+    },
+    {
+      "id": "core-request-capabilities",
+      "name": "Core Request Capabilities",
+      "description": "Fundamental inference request features",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "chat-messages-endpoint",
+          "name": "Chat / Messages Endpoint",
+          "valueType": "boolean",
+          "description": "Offers a modern multi-turn chat/messages inference endpoint (not legacy single-prompt completion only)"
+        },
+        {
+          "id": "streaming",
+          "name": "Streaming",
+          "valueType": "boolean",
+          "description": "Supports token streaming (SSE or equivalent) for incremental responses"
+        },
+        {
+          "id": "tool-function-calling",
+          "name": "Tool / Function Calling",
+          "valueType": "boolean",
+          "description": "Model can request structured tool/function invocations the caller executes (shipped, documented support only)"
+        },
+        {
+          "id": "parallel-tool-calls",
+          "name": "Parallel Tool Calls",
+          "valueType": "boolean",
+          "description": "Model can emit multiple tool calls in a single turn for concurrent execution"
+        },
+        {
+          "id": "structured-output",
+          "name": "Structured Output",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "json-mode", "value": "JSON Mode", "color": "blue" },
+              { "id": "json-schema", "value": "JSON Schema", "color": "green" },
+              { "id": "grammar", "value": "Grammar / Constrained", "color": "purple" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Strongest guaranteed-shape output — server-enforced JSON schema, valid-JSON mode, constrained decoding/grammar, or prompt-only"
+        },
+        {
+          "id": "system-prompt",
+          "name": "System Prompt",
+          "valueType": "boolean",
+          "description": "Distinct system/developer role or instruction field supported at the API level"
+        }
+      ]
+    },
+    {
+      "id": "multimodal-embeddings",
+      "name": "Multimodal & Embeddings",
+      "description": "Non-text input/output and embeddings support",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "image-input-vision",
+          "name": "Image Input (Vision)",
+          "valueType": "boolean",
+          "description": "Accepts images as request input for the LLM to reason over"
+        },
+        {
+          "id": "audio-input",
+          "name": "Audio Input",
+          "valueType": "boolean",
+          "description": "Accepts audio input (speech understanding / transcription via the same provider API)"
+        },
+        {
+          "id": "document-pdf-input",
+          "name": "Document / PDF Input",
+          "valueType": "boolean",
+          "description": "Native document/PDF ingestion as a first-class input type (not just pasted text)"
+        },
+        {
+          "id": "image-generation",
+          "name": "Image Generation",
+          "valueType": "boolean",
+          "description": "Offers an image-generation endpoint through the same API/account"
+        },
+        {
+          "id": "text-to-speech-audio-output",
+          "name": "Text-to-Speech / Audio Output",
+          "valueType": "boolean",
+          "description": "Offers speech/audio synthesis output through the same API/account"
+        },
+        {
+          "id": "embeddings-endpoint",
+          "name": "Embeddings Endpoint",
+          "valueType": "boolean",
+          "description": "Offers a text-embeddings endpoint for retrieval/semantic search under the same API"
+        }
+      ]
+    },
+    {
+      "id": "advanced-capabilities",
+      "name": "Advanced Capabilities",
+      "description": "Caching, batch, long context, reasoning, built-in tools, MCP, retrieval, and agents",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "prompt-caching",
+          "name": "Prompt Caching",
+          "valueType": "boolean",
+          "description": "Supports caching of repeated prompt prefixes for cost/latency reduction (explicit or automatic; note which)"
+        },
+        {
+          "id": "batch-api",
+          "name": "Batch API",
+          "valueType": "boolean",
+          "description": "Offers an asynchronous batch/offline endpoint (typically discounted, higher-latency) for bulk jobs"
+        },
+        {
+          "id": "max-context-window",
+          "name": "Max Context Window",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Largest input context (tokens) any model on the API supports; higher is better. Record the enabling model in the comment"
+        },
+        {
+          "id": "extended-reasoning",
+          "name": "Extended Reasoning",
+          "valueType": "boolean",
+          "description": "Exposes a reasoning/thinking mode or reasoning-effort control at the API level"
+        },
+        {
+          "id": "built-in-web-search",
+          "name": "Built-in Web Search",
+          "valueType": "boolean",
+          "description": "Provider offers a first-party web-search / grounding tool callable via the API"
+        },
+        {
+          "id": "built-in-code-execution",
+          "name": "Built-in Code Execution",
+          "valueType": "boolean",
+          "description": "Provider offers a first-party code-interpreter / sandboxed execution tool via the API"
+        },
+        {
+          "id": "mcp-support",
+          "name": "MCP Support",
+          "valueType": "boolean",
+          "description": "API can connect to Model Context Protocol servers (hosted/remote MCP connectors) as part of a request or agent"
+        },
+        {
+          "id": "files-retrieval-api",
+          "name": "Files / Retrieval API",
+          "valueType": "boolean",
+          "description": "Offers file upload + managed retrieval/RAG or a files API the model can reference"
+        },
+        {
+          "id": "agents-assistants-api",
+          "name": "Agents / Assistants API",
+          "valueType": "boolean",
+          "description": "Offers a higher-level stateful agents/assistants/threads API above raw inference"
+        }
+      ]
+    },
+    {
+      "id": "compatibility-sdks",
+      "name": "Compatibility & SDKs",
+      "description": "Interop standards and official client libraries",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "openai-compatible-api",
+          "name": "OpenAI-Compatible API",
+          "valueType": "boolean",
+          "description": "Exposes an OpenAI-Chat-Completions-compatible endpoint so existing OpenAI SDK code works with a base-URL swap"
+        },
+        {
+          "id": "official-sdks",
+          "name": "Official SDKs",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "python", "value": "Python", "color": "blue" },
+              { "id": "typescript", "value": "TypeScript", "color": "blue" },
+              { "id": "java", "value": "Java", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "green" },
+              { "id": "ruby", "value": "Ruby", "color": "red" },
+              { "id": "dotnet", "value": ".NET", "color": "purple" },
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "php", "value": "PHP", "color": "gray" }
+            ]
+          },
+          "description": "First-party maintained client libraries; multi-select"
+        },
+        {
+          "id": "native-api-style",
+          "name": "Native API Style",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "openai", "value": "OpenAI", "color": "green" },
+              { "id": "anthropic-messages", "value": "Anthropic Messages", "color": "orange" },
+              { "id": "cloud-native", "value": "Cloud-Native", "color": "blue" },
+              { "id": "graphql", "value": "GraphQL", "color": "purple" },
+              { "id": "proprietary", "value": "Proprietary", "color": "gray" }
+            ]
+          },
+          "description": "The provider's own primary request/response shape (before any compatibility shim)"
+        },
+        {
+          "id": "webhooks-callbacks",
+          "name": "Webhooks / Callbacks",
+          "valueType": "boolean",
+          "description": "Supports webhooks or async callbacks for long-running / batch job completion"
+        }
+      ]
+    },
+    {
+      "id": "reliability-operations",
+      "name": "Reliability & Operations",
+      "description": "SLA, rate limits, fallback routing, and status transparency",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "published-sla",
+          "name": "Published SLA",
+          "valueType": "boolean",
+          "description": "A contractual uptime SLA is offered (often paid/enterprise tier); note the figure/tier in the comment"
+        },
+        {
+          "id": "rate-limit-model",
+          "name": "Rate Limit Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "fixed-tiers", "value": "Fixed Tiers", "color": "blue" },
+              { "id": "usage-based-scaling", "value": "Usage-Based Scaling", "color": "green" },
+              { "id": "provisioned-throughput", "value": "Provisioned Throughput", "color": "purple" },
+              { "id": "custom", "value": "Custom", "color": "gray" }
+            ]
+          },
+          "description": "How throughput limits work — fixed per-tier caps, auto-scaling with spend, reserved capacity, or negotiated"
+        },
+        {
+          "id": "provider-fallback-routing",
+          "name": "Provider Fallback / Routing",
+          "valueType": "boolean",
+          "description": "Can automatically route or fall back across underlying providers/models on error or capacity (a defining gateway feature)"
+        },
+        {
+          "id": "status-page",
+          "name": "Status Page",
+          "valueType": "boolean",
+          "description": "Public status/uptime page exists"
+        }
+      ]
+    },
+    {
+      "id": "governance-compliance",
+      "name": "Governance & Compliance",
+      "description": "Data handling defaults, certifications, and enterprise access control",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "no-training-default",
+          "name": "No-Training Default",
+          "valueType": "boolean",
+          "description": "API inputs/outputs are NOT used to train models by default (zero-training). Consumer defaults that may train are false"
+        },
+        {
+          "id": "zero-data-retention",
+          "name": "Zero Data Retention",
+          "valueType": "boolean",
+          "description": "A zero-retention mode (no storage of prompts/outputs beyond the request) is available, at least on request/enterprise"
+        },
+        {
+          "id": "compliance-certifications",
+          "name": "Compliance Certifications",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "soc2", "value": "SOC 2", "color": "blue" },
+              { "id": "hipaa", "value": "HIPAA", "color": "green" },
+              { "id": "iso-27001", "value": "ISO 27001", "color": "purple" },
+              { "id": "gdpr", "value": "GDPR", "color": "orange" },
+              { "id": "fedramp", "value": "FedRAMP", "color": "red" },
+              { "id": "pci", "value": "PCI", "color": "gray" }
+            ]
+          },
+          "description": "Documented certifications/attestations; multi-select"
+        },
+        {
+          "id": "enterprise-sso-access-control",
+          "name": "Enterprise SSO / Access Control",
+          "valueType": "boolean",
+          "description": "Offers SSO/SAML and org-level access controls for API/console governance"
+        }
+      ]
+    },
+    {
+      "id": "pricing-billing",
+      "name": "Pricing & Billing",
+      "description": "How you pay, unified billing, and discounts",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "pricing-model",
+          "name": "Pricing Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "usage-token", "value": "Usage (Token)", "color": "green" },
+              { "id": "subscription", "value": "Subscription", "color": "purple" },
+              { "id": "provisioned", "value": "Provisioned", "color": "blue" },
+              { "id": "markup", "value": "Markup / Passthrough", "color": "orange" },
+              { "id": "free-tier", "value": "Free Tier", "color": "gray" }
+            ]
+          },
+          "description": "How you pay — per-token usage, flat subscription, reserved throughput, gateway markup, or a free tier; multi-select"
+        },
+        {
+          "id": "unified-billing",
+          "name": "Unified Billing",
+          "valueType": "boolean",
+          "description": "One bill/account covers all reachable models/providers (a gateway/platform advantage)"
+        },
+        {
+          "id": "cache-batch-discount",
+          "name": "Cache/Batch Discount",
+          "valueType": "boolean",
+          "description": "Offers a price discount for cached prompts and/or batch jobs; note the rate in the comment"
+        },
+        {
+          "id": "cheapest-entry",
+          "name": "Cheapest Entry",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "free-tier", "value": "Free Tier", "color": "green" },
+              { "id": "pay-as-you-go", "value": "Pay-As-You-Go", "color": "blue" },
+              { "id": "min-commitment", "value": "Min Commitment", "color": "orange" },
+              { "id": "enterprise-only", "value": "Enterprise Only", "color": "red" }
+            ]
+          },
+          "description": "The lowest-friction way to start paying; enterprise-only when no self-serve billing exists"
+        }
+      ]
+    }
+  ]
+}
