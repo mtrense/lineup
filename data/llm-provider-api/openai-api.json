@@ -1,5 +1,270 @@
 {
   "name": "OpenAI API",
   "description": "The incumbent first-party API; de-facto compatibility standard (Chat Completions / Responses)",
-  "values": {}
+  "url": "https://openai.com/api/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "OpenAI",
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "OpenAI operates the API and trains/serves its own models."
+    },
+    "category": {
+      "value": ["first-party"],
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Trains and serves its own proprietary models (GPT-5.x, o-series, image/audio/embeddings) over its own API."
+    },
+    "api-launched": {
+      "value": "2020-06",
+      "comment": "OpenAI's developer API first launched in private beta in June 2020; the Chat Completions endpoint followed in March 2023 and the Responses API in March 2025. Date from general knowledge; not re-verified against a primary source this pass."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Developer API is generally available with published commercial pricing."
+    },
+    "api-docs": {
+      "value": "https://developers.openai.com/api/docs",
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Official developer documentation and API reference."
+    },
+    "website": {
+      "value": "https://openai.com/api/",
+      "comment": "Official product page (not fetched; homepage returns 403 to automated fetch)."
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://developers.openai.com/api/docs/libraries"],
+      "comment": "Requests authenticate with a bearer API key; SDKs read OPENAI_API_KEY from the environment."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/libraries"],
+      "comment": "Developers can self-serve create an account and generate an API key from the dashboard without sales contact."
+    },
+    "free-credits-trial": {
+      "value": null,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "The fetched pricing page lists no standing free tier or trial credits. New accounts have historically received limited expiring credits and a data-sharing complimentary-daily-tokens program has existed, but neither could be confirmed from a primary source this pass (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["global", "us", "eu", "asia"],
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Default is a single global endpoint (api.openai.com); data residency/processing can be pinned per project to regions including the US, Europe, UK, UAE, Australia, Canada, Japan, India, Singapore, and South Korea (checked 2026-07)."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Per-project data residency: at-rest storage across many countries and regional processing in the US, Europe, and UAE. Eligibility is sales-gated, not a self-serve toggle."
+    },
+    "model-breadth": {
+      "value": ["single-vendor"],
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Only OpenAI's own model families are reachable through the API."
+    },
+    "open-weight-models": {
+      "value": false,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "The API serves OpenAI's proprietary models. OpenAI released gpt-oss open-weight models in 2025, but those are distributed for self-hosting rather than offered as a third-party open-weight catalog on this API."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Dated immutable snapshots (e.g. gpt-4o-2024-08-06) can be pinned alongside floating aliases."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "A fine-tuning API lets customers train and then call their own fine-tuned models through the same inference endpoints."
+    },
+    "model-catalog-size": {
+      "value": ["21-100"],
+      "source": ["https://developers.openai.com/api/docs/models", "https://developers.openai.com/api/docs/pricing"],
+      "comment": "Dozens of distinct models across chat/reasoning, image (gpt-image, sora), realtime, speech/transcription, and embeddings families (checked 2026-07)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Offers both the Chat Completions messages endpoint and the newer Responses API for multi-turn inference."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "SSE token streaming; Responses adds semantic streamed events for tool usage."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Documented function/tool calling in both Chat Completions and Responses, including strict-mode tool schemas."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Model can emit multiple tool calls in a single turn (parallel_tool_calls, on by default)."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Strongest guarantee is server-enforced Structured Outputs (strict JSON Schema); also offers plain JSON mode (response_format / text.format)."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Distinct system/developer role and instructions field supported at the API level."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Vision-capable models accept image input for reasoning."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Audio input via gpt-realtime and dedicated transcription models under the same API."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "PDF/document files can be provided as first-class input (file input / file_search) rather than pasted text."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Image generation endpoint via gpt-image models (and Sora for video) on the same account."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Speech/audio synthesis output via TTS and gpt-realtime models."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Text-embeddings endpoint (text-embedding-3 family) under the same API."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Automatic prompt-prefix caching (no caller-marked breakpoints); cached input billed at a steep discount (up to ~90% off on newer families)."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Asynchronous Batch API completes within 24h at ~50% off standard pricing."
+    },
+    "max-context-window": {
+      "value": 1050000,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "GPT-5.6 flagship models (Sol/Terra/Luna) list a 1.05M-token context window; GPT-4.1 family is 1M (checked 2026-07)."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Reasoning models expose a reasoning-effort control and persist reasoning state across turns in the Responses API."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "First-party hosted web-search tool callable via the Responses API."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "First-party hosted code-interpreter tool available via the Responses API."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Responses API supports remote/hosted MCP connectors as a tool type."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Files API plus a hosted file_search retrieval tool the model can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "Responses API is stateful-by-default (conversations/tool state tracked automatically); the earlier Assistants API is being folded into it."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/libraries"],
+      "comment": "This is the reference OpenAI API itself — the de-facto compatibility standard other providers emulate."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript", "dotnet", "java", "go", "ruby"],
+      "source": ["https://developers.openai.com/api/docs/libraries"],
+      "comment": "First-party SDKs: Python, TypeScript/JavaScript, .NET (with Microsoft), Ruby; Java and Go are in beta. PHP and Rust are community-only."
+    },
+    "native-api-style": {
+      "value": ["openai"],
+      "source": ["https://developers.openai.com/api/docs/libraries"],
+      "comment": "OpenAI's own Chat Completions / Responses request shape is the native style."
+    },
+    "webhooks-callbacks": {
+      "value": true,
+      "source": ["https://developers.openai.com/blog/responses-api"],
+      "comment": "OpenAI provides webhooks for async event notifications (e.g. batch/realtime completion)."
+    },
+    "published-sla": {
+      "value": null,
+      "comment": "No standard contractual uptime SLA is published for the API; enterprise agreements may include a negotiated SLA. Could not confirm a specific figure from a primary source this pass."
+    },
+    "rate-limit-model": {
+      "value": ["usage-based-scaling", "provisioned-throughput"],
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Fixed per-tier caps that auto-upgrade with cumulative spend (usage tiers), plus reserved capacity via Scale Tier / provisioned throughput."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://developers.openai.com/api/docs/models"],
+      "comment": "Single-vendor first-party API; no cross-provider routing/fallback."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Public status page at status.openai.com."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Data sent to the API is not used to train or improve OpenAI models unless the customer explicitly opts in to share it."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Zero Data Retention available for approved/eligible organizations (excludes content from abuse logs, forces store=false); default abuse-monitoring retention is up to 30 days."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "iso-27001", "gdpr"],
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "SOC 2 Type 2 for the API Platform, ISO/IEC 27001, GDPR support with DPA, and HIPAA BAAs on ZDR-eligible endpoints. FedRAMP/PCI not confirmed for the standard API this pass."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/guides/your-data"],
+      "comment": "Org-level access controls / RBAC and workload identity federation; SSO/SAML available for enterprise accounts."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "provisioned"],
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Primarily per-token usage pricing (Standard/Batch/Flex/Priority tiers); reserved throughput available via Scale Tier."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "One OpenAI account/bill covers all models and endpoints."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Batch API ~50% off; cached input billed at a large discount (up to ~90% off on newer model families)."
+    },
+    "cheapest-entry": {
+      "value": ["pay-as-you-go"],
+      "source": ["https://developers.openai.com/api/docs/pricing"],
+      "comment": "Lowest-friction paid start is self-serve pay-as-you-go per-token usage."
+    }
+  }
 }
