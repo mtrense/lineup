@@ -1,5 +1,271 @@
 {
   "name": "Groq",
   "description": "Low-latency inference gateway (LPU) serving open-weight models via an OpenAI-compatible API",
-  "values": {}
+  "url": "https://groq.com/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Groq, Inc.",
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "GroqCloud is operated by Groq, Inc., which designs the LPU inference hardware and hosts open-weight models on it."
+    },
+    "category": {
+      "value": ["gateway"],
+      "source": ["https://console.groq.com/docs/overview", "https://console.groq.com/docs/models.md"],
+      "comment": "A low-latency inference gateway/host serving many vendors' open-weight models (Meta, OpenAI GPT-OSS, Moonshot, Qwen, MiniMax, Canopy) behind one OpenAI-compatible API with unified billing. Hosts its own inference of these models rather than routing to third-party APIs; not a first-party model trainer and not a hyperscaler cloud platform."
+    },
+    "api-launched": {
+      "value": null,
+      "comment": "GroqCloud's self-serve developer API/console became publicly available in early 2024, but the exact GA month is not confirmed from a primary source fetched this pass (checked 2026-07)."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://console.groq.com/docs/overview", "https://console.groq.com/docs/models.md"],
+      "comment": "Core developer API (chat completions) is generally available with published pricing; some newer surfaces such as the Responses API are still in beta, and many non-core models are labelled preview (checked 2026-07)."
+    },
+    "api-docs": {
+      "value": "https://console.groq.com/docs/overview",
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Official GroqCloud developer documentation and API reference."
+    },
+    "website": {
+      "value": "https://groq.com/",
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Official product/homepage."
+    },
+    "auth-methods": {
+      "value": ["api-key"],
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Requests authenticated with a bearer API key (Authorization header) against the OpenAI-compatible endpoint."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://groq.com/pricing"],
+      "comment": "Fully self-serve — create a GroqCloud account and obtain a free API key without sales contact."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://groq.com/pricing"],
+      "comment": "A free tier is available (\"Get started for free\") with a free API key and rate-limited free usage for evaluation before moving to pay-as-you-go (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["global"],
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Single global API endpoint (api.groq.com); no per-region self-serve endpoints exposed. Inference is primarily served from Groq's own US-based data centers (checked 2026-07)."
+    },
+    "data-residency-options": {
+      "value": false,
+      "source": ["https://groq.com/pricing"],
+      "comment": "No self-serve contractual data-residency / region-pinning guarantee documented; region-specific or on-premises deployment is only available via enterprise arrangements (checked 2026-07)."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "Model families from many vendors reachable through one API: Meta (Llama), OpenAI (GPT-OSS), Moonshot (Kimi), Alibaba (Qwen), MiniMax, Canopy Labs (Orpheus)."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "Catalog is entirely open-weight models — Llama, GPT-OSS, Qwen, Kimi, MiniMax, Whisper, etc.; no proprietary/closed frontier models."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/models.md", "https://console.groq.com/docs/deprecations"],
+      "comment": "Models are invoked by explicit versioned IDs (e.g. openai/gpt-oss-120b, moonshotai/kimi-k2-instruct-0905), so a specific snapshot can be pinned. Note: Groq deprecates/retires models aggressively (e.g. multiple 2026 deprecations), so pinned IDs can be sunset with notice."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "LoRA inference is supported, and enterprise arrangements allow deploying fine-tuned/custom models; not a fully self-serve custom-deploy flow for all users (checked 2026-07)."
+    },
+    "model-catalog-size": {
+      "value": ["6-20"],
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "Roughly 12–15 distinct callable models across production and preview tiers plus the Compound agentic systems (checked 2026-07); the catalog is curated and comparatively small versus large aggregators."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/text-chat"],
+      "comment": "Modern OpenAI-compatible chat completions endpoint for multi-turn messages."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/text-chat"],
+      "comment": "Token streaming (SSE) supported via the OpenAI-compatible chat completions endpoint."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Documented tool/function calling using the OpenAI-style tools parameter and tool_calls response; support is model-dependent."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "OpenAI-compatible tool calling supports multiple tool calls in a single turn (model-dependent); parallel tool calls follow the OpenAI Chat Completions semantics (checked 2026-07)."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://console.groq.com/docs/structured-outputs"],
+      "comment": "Strongest guarantee is server-enforced JSON Schema via response_format json_schema with strict:true (token-level constrained decoding that cannot produce invalid/off-schema output); the older json_object (valid-JSON) mode is also available. Availability is model-dependent, and the schema subset requires all properties to be marked required (checked 2026-07)."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/text-chat"],
+      "comment": "Distinct system role supported via the OpenAI-compatible chat messages format."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/vision"],
+      "comment": "Multimodal vision input supported (e.g. qwen/qwen3.6-27b), for VQA, captioning and OCR; up to 5 images and 20 MB per request. Model-dependent — the enabling vision model changes as the catalog turns over (checked 2026-07)."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "Speech-to-text/transcription and translation via Whisper Large V3 and V3 Turbo on the same API."
+    },
+    "document-pdf-input": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/vision"],
+      "comment": "No first-class native document/PDF input content type; images are accepted for vision/OCR but PDFs must be converted/extracted client-side (checked 2026-07)."
+    },
+    "image-generation": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "No image-generation endpoint or model offered; Groq focuses on text, vision-input, and audio (checked 2026-07)."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview", "https://console.groq.com/docs/models.md"],
+      "comment": "Text-to-speech / audio synthesis offered on the same API (e.g. Orpheus V1 English and Orpheus Arabic Saudi TTS models)."
+    },
+    "embeddings-endpoint": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "No text-embeddings endpoint or embedding model in the catalog as of the check (checked 2026-07)."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://groq.com/pricing"],
+      "comment": "Automatic prompt caching — cached input tokens are billed at a 50% discount on cache hits with no extra fee and no toggle required. Note: the beta Responses API does not yet support the prompt_cache_key parameter (checked 2026-07)."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/batch"],
+      "comment": "Asynchronous Batch API at 50% lower cost with a 24h–7d completion window, JSONL input files up to 100 MB, and separate rate limits; supports chat (text and vision), transcription and translation inputs."
+    },
+    "max-context-window": {
+      "value": 196608,
+      "source": ["https://console.groq.com/docs/models.md"],
+      "comment": "Largest served window is 196,608 tokens on the MiniMax M2.7 preview model; production models (Llama, GPT-OSS) top out at 131,072 tokens. Catalog turns over quickly, so the enabling model may change (checked 2026-07)."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Reasoning models are served with API-level reasoning controls (e.g. reasoning_format / reasoning-effort on GPT-OSS models, thinking vs non-thinking modes on Qwen); reasoning output is exposed at the API level."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview", "https://console.groq.com/docs/responses-api"],
+      "comment": "First-party built-in web search / browser-search tool available (via the Compound agentic systems and as a built-in browser search tool for GPT-OSS models in the Responses API); billed separately (checked 2026-07)."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview", "https://console.groq.com/docs/responses-api"],
+      "comment": "First-party code-execution / code-interpreter tool available (via Compound systems and the Responses API code interpreter for GPT-OSS models); billed separately (checked 2026-07)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/responses-api"],
+      "comment": "The Responses API supports remote MCP (Model Context Protocol) connectors to reach external systems/tools; Responses API is currently in beta (checked 2026-07)."
+    },
+    "files-retrieval-api": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/batch"],
+      "comment": "A Files API exists for uploading batch JSONL inputs, but there is no managed retrieval/RAG service the model queries at inference time (checked 2026-07)."
+    },
+    "agents-assistants-api": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/responses-api"],
+      "comment": "No stateful managed assistants/threads API — the Responses API explicitly does not yet support stateful conversations, so the caller must resend history each turn. Compound agentic systems bundle tools but are not a managed conversation-state service (checked 2026-07)."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Exposes an OpenAI-Chat-Completions-compatible endpoint (base https://api.groq.com/openai/v1) usable with the OpenAI SDK via a base-URL swap; a Responses API compatible with OpenAI's is also offered in beta."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript"],
+      "source": ["https://console.groq.com/docs/libraries"],
+      "comment": "First-party Python (groq) and TypeScript/JavaScript (groq-sdk) SDKs; other languages (C#, Dart, PHP, Ruby) are community-contributed and not officially verified. OpenAI SDKs also work against the compatible endpoint."
+    },
+    "native-api-style": {
+      "value": ["openai"],
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Primary request/response shape follows the OpenAI Chat Completions (and OpenAI Responses) style."
+    },
+    "webhooks-callbacks": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/batch"],
+      "comment": "Batch job completion can be delivered via webhook notification in addition to polling batch status (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": null,
+      "source": ["https://groq.com/pricing"],
+      "comment": "No public contractual uptime SLA figure found from a primary source this pass; SLA terms are enterprise-negotiated. Third-party monitors report ~99.9% observed uptime, but that is not a contractual SLA (checked 2026-07)."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers"],
+      "source": ["https://console.groq.com/docs/service-tiers", "https://groq.com/pricing"],
+      "comment": "Fixed per-model rate limits by account tier (free vs on-demand), with additional service tiers (on-demand, flex, auto) affecting throughput/queueing; enterprise/committed-spend contracts are negotiated separately (checked 2026-07)."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Groq hosts and serves its own model deployments on its LPU hardware; there is no automatic cross-provider failover/policy routing like a pure aggregator (checked 2026-07)."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/overview"],
+      "comment": "Public status page exists at status.groq.com (mirrored at groqstatus.com), tracking website and API/endpoint availability (checked 2026-07)."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/your-data", "https://console.groq.com/docs/legal/services-agreement"],
+      "comment": "Groq is not permitted to use Inputs or Outputs to train or fine-tune models unless the customer explicitly grants permission; not used for training by default."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://console.groq.com/docs/your-data"],
+      "comment": "Inference requests are not retained by default; only temporary troubleshooting/abuse logs (up to 30 days, opt-out available) may be kept. All customers can additionally enable a Zero Data Retention (ZDR) setting in Data Controls (checked 2026-07)."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "gdpr"],
+      "source": ["https://trust.groq.com/", "https://console.groq.com/docs/legal/customer-data-processing-addendum"],
+      "comment": "SOC 2 Type II reports maintained (via Trust Center / Vanta monitoring); GroqCloud stated SOC 2, GDPR and HIPAA compliant, with a DPA covering GDPR/CCPA/PDPL. ISO 27001, FedRAMP and PCI not confirmed from the fetched sources this pass (checked 2026-07)."
+    },
+    "enterprise-sso-access-control": {
+      "value": null,
+      "comment": "Could not confirm SSO/SAML and org-level console access controls from a fetched primary source this pass; not documented in the pages reviewed (checked 2026-07)."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "free-tier"],
+      "source": ["https://groq.com/pricing"],
+      "comment": "Per-token pay-as-you-go usage pricing (input and output priced per million tokens per model) with no minimum commitment, plus a free tier to start; enterprise/on-prem arrangements available separately."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://groq.com/pricing"],
+      "comment": "One GroqCloud account/bill covers all reachable models and built-in tools."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://groq.com/pricing", "https://console.groq.com/docs/batch"],
+      "comment": "50% discount on cached input tokens (prompt caching) and 50% lower cost on the Batch API. Note the two discounts do not stack — batch tokens are billed at the flat 50% batch rate regardless of cache status (checked 2026-07)."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier"],
+      "source": ["https://groq.com/pricing"],
+      "comment": "Lowest-friction start is the self-serve free tier (free API key with rate-limited usage) before moving to pay-as-you-go."
+    }
+  }
 }
