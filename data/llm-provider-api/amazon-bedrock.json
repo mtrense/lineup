@@ -1,5 +1,272 @@
 {
   "name": "Amazon Bedrock",
   "description": "AWS multi-vendor model-hosting platform with IAM, provisioned throughput, and broad compliance",
-  "values": {}
+  "url": "https://aws.amazon.com/bedrock/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Amazon Web Services",
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Operated by AWS as a fully managed, serverless model-hosting platform."
+    },
+    "category": {
+      "value": ["cloud-platform"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Hyperscaler platform serving 100+ foundation models from many vendors (Amazon, Anthropic, DeepSeek, Moonshot, MiniMax, OpenAI, Meta, Mistral, Cohere, AI21) behind one API with IAM, regions, and compliance."
+    },
+    "api-launched": {
+      "value": "2023-09",
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Bedrock reached general availability on 2023-09-28 (announced in preview 2023-04-13). Exact GA date corroborated via AWS What's New announcement."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Developer API is generally available with published commercial pricing; individual newer models may be in preview."
+    },
+    "api-docs": {
+      "value": "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Official Amazon Bedrock User Guide and API reference."
+    },
+    "website": {
+      "value": "https://aws.amazon.com/bedrock/",
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Official product page."
+    },
+    "auth-methods": {
+      "value": ["aws-sigv4", "cloud-iam", "api-key"],
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/", "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "The bedrock-runtime endpoint uses AWS SigV4 request signing backed by IAM identity-based policies; a newer bedrock-mantle endpoint additionally supports Amazon Bedrock API keys and the OpenAI SDK (checked 2026-07)."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Fully self-serve with immediate pay-as-you-go activation via the AWS console — no sales contact required. Note it does require creating/having an AWS account (there is no standalone Bedrock-only key issued outside AWS)."
+    },
+    "free-credits-trial": {
+      "value": null,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "No standing free tier for Bedrock model inference could be confirmed from the pricing page; new AWS accounts may receive general promotional AWS credits, but no dedicated Bedrock free-inference tier is documented (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["us", "eu", "asia", "multi-region"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html", "https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "Available across many AWS regions in the US, Europe, and Asia Pacific (plus AWS GovCloud); cross-region inference profiles keep traffic within a chosen geography."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "Customers pin processing to a chosen AWS region; cross-region inference is scoped to a geography (e.g. US-only or EU-only profiles), a contractual/config data-residency guarantee."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Serves model families from many vendors: Amazon (Nova/Titan), Anthropic, DeepSeek, Moonshot AI, MiniMax, OpenAI, Meta, Mistral, Cohere, AI21, Stability AI."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Open-weight models available including Meta Llama, Mistral, DeepSeek, and OpenAI gpt-oss."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Models are invoked by immutable dated model IDs (e.g. anthropic.claude-opus-4-7), so a specific snapshot can be pinned."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/", "https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Supports fine-tuning (e.g. Llama, Cohere), model distillation, and Custom Model Import to deploy and call your own/private models through the same API."
+    },
+    "model-catalog-size": {
+      "value": ["100-plus"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Documentation states 100+ foundation models from industry-leading providers (checked 2026-07)."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Modern multi-turn messages endpoints: the native Converse API plus OpenAI-compatible Chat Completions and Responses APIs and native InvokeModel."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Token streaming via ConverseStream and InvokeModelWithResponseStream (SSE-style incremental responses)."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Documented tool use / function calling via the Converse API toolConfig (and equivalent OpenAI-compatible function calling), model-dependent."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Capable models (e.g. Claude, Nova) can emit multiple tool-use blocks in a single Converse turn for concurrent execution; availability depends on the underlying model."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Server-enforced Structured Outputs validate responses against a JSON Schema (Draft 2020-12 subset) via Converse outputConfig.textFormat or the OpenAI-compatible response_format (json_schema); looser JSON mode (json_object) also supported. Support varies by model (checked 2026-07)."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Converse API exposes a distinct system field; OpenAI-compatible endpoints use the system/developer role."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Vision-capable models (Claude, Amazon Nova, Llama vision) accept image input via the Converse API image content block."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Nova Sonic speech models accept audio input through a dedicated Bedrock bidirectional streaming API (speech understanding)."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Converse API supports a document content block (PDF, DOCX, etc.) as first-class input rather than pasted text; model-dependent."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Image-generation models available on the same API/account: Amazon Nova Canvas, Titan Image Generator, and Stability AI models."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Nova Sonic is a speech-to-speech model producing audio output via a Bedrock streaming API on the same account."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Text/multimodal embeddings available on the same API: Amazon Titan Text Embeddings, Amazon Nova Multimodal Embeddings, and Cohere Embed."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/", "https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Explicit prompt caching supported (caller marks cache points); cached input read is billed at a steep discount (e.g. ~10% of standard input rate for Claude models)."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Asynchronous batch inference available at 50% lower price than on-demand for select models."
+    },
+    "max-context-window": {
+      "value": 1000000,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "1,000,000-token context supported by Amazon Nova Premier / Nova 2 and by Anthropic Claude (1M-token beta) on Bedrock. Largest window varies by model and some advertise more; 1M is the reliably confirmed large window (checked 2026-07)."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Reasoning/thinking exposed at the API level: Claude extended thinking, Amazon Nova 2 adjustable 'thinking', and OpenAI reasoning models via the Responses API."
+    },
+    "built-in-web-search": {
+      "value": false,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "No first-party web-search/grounding tool exposed via the inference API. AgentCore offers a managed Browser tool for web automation and Knowledge Bases for RAG, but not a hosted web-search tool comparable to OpenAI/Gemini grounding (checked 2026-07)."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Bedrock AgentCore Code Interpreter provides a first-party sandboxed code-execution tool (multi-language runtimes, internet access, CloudTrail logging)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Bedrock AgentCore Gateway acts as a managed Model Context Protocol (MCP) server, exposing APIs/Lambda functions as MCP tools with native MCP support and outbound auth (checked 2026-07)."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Bedrock Knowledge Bases provide managed retrieval/RAG over uploaded/ingested documents the model can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Higher-level stateful agents via Amazon Bedrock Agents and Bedrock AgentCore (deploy/operate agents with any framework and model, managed memory and tool orchestration)."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "The bedrock-mantle endpoint exposes OpenAI-compatible Chat Completions and Responses APIs usable directly with the OpenAI SDK via a base-URL swap (AWS-operated, separate from OpenAI's hosted API); checked 2026-07."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript", "java", "go", "ruby", "dotnet", "rust", "php"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Accessed through the first-party AWS SDKs, which cover Python (boto3), JavaScript/TypeScript, Java, Go, Ruby, .NET, Rust, and PHP; the OpenAI and Anthropic SDKs also work against the compatible endpoints."
+    },
+    "native-api-style": {
+      "value": ["cloud-native"],
+      "source": ["https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"],
+      "comment": "Native primary style is the AWS cloud-native Converse / InvokeModel API (bedrock-runtime); OpenAI Chat Completions/Responses and Anthropic Messages are additional compatibility shims."
+    },
+    "webhooks-callbacks": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Async batch job completion is signalled through AWS EventBridge events and S3 output notifications rather than classic HTTP webhooks (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": true,
+      "comment": "AWS publishes an Amazon Bedrock Service Level Agreement (monthly uptime commitment with service-credit remedies). Figure not re-verified against the specific SLA document this pass (checked 2026-07)."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers", "provisioned-throughput"],
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Default per-model, per-region request/token quotas (adjustable via AWS Service Quotas) plus reserved capacity via Provisioned Throughput (1-month / 6-month commitments)."
+    },
+    "provider-fallback-routing": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/"],
+      "comment": "Amazon Bedrock Intelligent Prompt Routing can route requests across models by prompt to balance cost/quality; cross-region inference profiles route for capacity. Not a full cross-provider failover gateway (checked 2026-07)."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "Covered by the public AWS Health Dashboard (status.aws.amazon.com); CloudWatch/CloudTrail provide per-account monitoring."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "AWS states customer data is not shared with model providers and is not used to train the base models; fine-tuning operates on a private model copy."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "Bedrock does not store or log prompts and completions by default for inference; data is encrypted in transit and at rest, with PrivateLink/VPC isolation available (checked 2026-07)."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "iso-27001", "gdpr", "fedramp"],
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "SOC compliant, ISO 27001 certified, HIPAA eligible, GDPR compliant, and FedRAMP High authorized (AWS GovCloud); CSA STAR Level 2 also noted. PCI DSS not confirmed on the security page this pass."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/security-compliance/"],
+      "comment": "AWS IAM identity-based policies plus AWS IAM Identity Center (SSO/SAML) provide org-level access control and federation."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "provisioned"],
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Primarily per-token on-demand usage pricing; reserved capacity via Provisioned Throughput (hourly, 1-/6-month commitments). Batch inference at 50% off."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "A single AWS account/bill covers all models and vendors reachable through Bedrock."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Batch inference ~50% off on-demand; prompt-cache reads discounted (e.g. ~10% of standard input rate for Claude)."
+    },
+    "cheapest-entry": {
+      "value": ["pay-as-you-go"],
+      "source": ["https://aws.amazon.com/bedrock/pricing/"],
+      "comment": "Lowest-friction paid start is self-serve pay-as-you-go on-demand per-token pricing via the AWS console."
+    }
+  }
 }
