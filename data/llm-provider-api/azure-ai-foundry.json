@@ -1,5 +1,270 @@
 {
   "name": "Azure AI Foundry",
   "description": "Microsoft's enterprise model platform (Azure OpenAI + model catalog)",
-  "values": {}
+  "url": "https://azure.microsoft.com/en-us/products/ai-foundry/",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Microsoft",
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Operated by Microsoft as an Azure service. The platform was branded Azure AI Studio, then Azure AI Foundry, and is now being unified under the Microsoft Foundry name (checked 2026-07)."
+    },
+    "category": {
+      "value": ["cloud-platform"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Hyperscaler platform unifying agents, models, and tools under one Azure resource with Entra RBAC, networking, and policies; serves 1,900+ models from Microsoft, OpenAI, Anthropic, Meta, and others behind one API."
+    },
+    "api-launched": {
+      "value": "2023-01",
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Underlying Azure OpenAI Service inference API reached GA in January 2023 (widely reported via the Azure blog; that specific GA-date page was not re-fetched this pass). The Azure AI Studio/AI Foundry brand consolidated it later (Foundry evolution documented on the cited page); rebranded to Microsoft Foundry by 2026."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Developer API is generally available; the core platform, models, and tool framework are GA, while some individual newer tools/models remain in preview (checked 2026-07)."
+    },
+    "api-docs": {
+      "value": "https://learn.microsoft.com/en-us/azure/ai-foundry/",
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Official Microsoft Learn documentation for Azure AI Foundry / Microsoft Foundry."
+    },
+    "website": {
+      "value": "https://ai.azure.com",
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "The Foundry portal (ai.azure.com) is the product home; the marketing page is azure.microsoft.com/products/ai-foundry."
+    },
+    "auth-methods": {
+      "value": ["api-key", "cloud-iam", "service-account"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry", "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Microsoft Entra ID identity with role-based access control (cloud-iam), managed identity (service-account), and resource API keys are all supported for authenticating requests."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Self-serve via an Azure account and the Foundry portal — no sales contact required. Does require creating/having an Azure subscription (no standalone Foundry-only key issued outside Azure)."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "New Azure accounts receive general promotional Azure credits (commonly USD 200 for 30 days) usable across Foundry; there is no dedicated standing free-inference tier for models (checked 2026-07)."
+    },
+    "regional-endpoints": {
+      "value": ["us", "eu", "asia", "multi-region"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Available across many Azure regions and geographies (US, Europe, Asia Pacific); Global and DataZone deployment types control where processing occurs within a chosen geography."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Standard deployments process prompts/responses within the customer-specified geography; DataZone deployments keep processing within a data zone (e.g. US-only or EU-only) — a contractual data-residency guarantee, not merely multiple endpoints."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Model families from many vendors: Microsoft, OpenAI, Anthropic, Meta (Llama), Mistral AI, Cohere, DeepSeek, xAI, NVIDIA, Stability AI, plus Hugging Face community models."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Open-weight models available including Meta Llama, Mistral, DeepSeek, and a large Hugging Face community selection (serverless or managed-compute deployment)."
+    },
+    "model-version-pinning": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Azure OpenAI models are pinned by immutable dated version ids (e.g. o1-2024-12-17, gpt-4.1-2025-04-14), so a specific snapshot can be deployed and called."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Supports fine-tuning (custom models available exclusively to the customer) and Managed Compute deployment of your own/private model weights on dedicated VMs through the same platform."
+    },
+    "model-catalog-size": {
+      "value": ["100-plus"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Documentation states more than 1,900 models in the Foundry Models catalog (the marketing page cites 11,000+ counting all Hugging Face/community models); checked 2026-07."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry", "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Modern multi-turn chat via the Chat Completions API and the newer Responses API (Agents v2) on the unified /openai/v1/ routes."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Token streaming (SSE) is supported on the chat-completion/completion/responses/real-time operations of Azure OpenAI models (standard feature; checked 2026-07)."
+    },
+    "tool-function-calling": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Function calling is a documented built-in capability: the model requests a function, your app executes it, and the result flows back into the conversation."
+    },
+    "parallel-tool-calls": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "OpenAI models on Azure emit multiple tool calls in a single turn (parallel_tool_calls) for concurrent execution; availability depends on the underlying model."
+    },
+    "structured-output": {
+      "value": ["json-schema", "json-mode"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Server-enforced Structured Outputs validate responses against a strict JSON Schema (response_format json_schema) on supported OpenAI models; looser JSON mode (json_object) is available more broadly. Many non-OpenAI catalog models support JSON mode but not strict schema (checked 2026-07)."
+    },
+    "system-prompt": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Distinct system/developer role supported in the messages array (system, developer, user, assistant)."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Vision-capable models (e.g. GPT-4o, Llama vision) accept images in user messages as links or base64 data."
+    },
+    "audio-input": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Audio input supported via GPT-4o audio / real-time operations (audio_tokens) and Whisper transcription models on the same platform (checked 2026-07)."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog", "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Documents/PDFs can be uploaded via the Files API / vector store and consumed through the File Search tool as first-class input rather than pasted text."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Image generation available through the same account (Image Generation built-in tool and image models such as DALL-E / GPT-image); checked 2026-07."
+    },
+    "text-to-speech-audio-output": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Speech/audio synthesis available via Azure OpenAI TTS models and GPT-4o audio output / real-time operations on the same platform (checked 2026-07)."
+    },
+    "embeddings-endpoint": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Text embeddings available via the embeddings operation (e.g. text-embedding-3) under the same API."
+    },
+    "prompt-caching": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Automatic prompt caching (no cache breakpoints to set) for GPT-4o and newer; requires >=1,024 identical leading tokens, cache reads billed at a discount (up to 100% off input on Provisioned). Extended retention up to 24h on newer models."
+    },
+    "batch-api": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/batch"],
+      "comment": "Global Batch API processes asynchronous request files with a 24-hour target turnaround at 50% less cost than global standard, with separate enqueued-token quota."
+    },
+    "max-context-window": {
+      "value": 1000000,
+      "comment": "GPT-4.1 series on Foundry supports a 1,000,000-token input context window (per Azure's GPT-4.1 announcement; that specific page was not re-fetched this pass, so no source URL is cited). Real-world availability varies by region/SKU/API version. Checked 2026-07."
+    },
+    "extended-reasoning": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Reasoning models (o-series, GPT-5 series) expose reasoning at the API level (reasoning_tokens; reasoning-effort control), documented in the dedicated reasoning-models guide."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "First-party Web search / Grounding with Bing Search built-in tool retrieves real-time public-web information with inline citations via the Agent Service."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Code Interpreter built-in tool runs Python in a sandboxed environment for data analysis, math, and chart generation."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Shipped MCP tool connects agents to remote/local Model Context Protocol servers (key, Entra managed-identity, or OAuth auth); Foundry Toolboxes also expose bundles as MCP-compatible endpoints."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog", "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Files API / vector store plus the File Search and Azure AI Search built-in tools provide managed retrieval/RAG over uploaded documents the agent can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry", "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog"],
+      "comment": "Foundry Agent Service offers a higher-level stateful agents API (Responses API / Agents v2; Assistants API in preview) with managed conversation state, tool orchestration, and memory."
+    },
+    "openai-compatible-api": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Exposes stable v1 OpenAI-shaped routes (/openai/v1/) usable directly with the OpenAI() client via a base-URL swap; unified project client also provided."
+    },
+    "official-sdks": {
+      "value": ["python", "typescript", "dotnet", "java", "go"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "First-party Azure SDKs (azure-ai-projects and Azure OpenAI clients) cover Python, JavaScript/TypeScript, .NET, Java, and Go; the OpenAI SDK also works against the compatible endpoint."
+    },
+    "native-api-style": {
+      "value": ["openai", "cloud-native"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Primary style is OpenAI-shaped (Chat Completions / Responses on /openai/v1/); non-OpenAI catalog models on Managed Compute use Azure cloud-native ML endpoints."
+    },
+    "webhooks-callbacks": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/batch"],
+      "comment": "Batch/long-running job completion is polled via status endpoints (validating/in_progress/completed states); no first-party HTTP webhook/callback for job completion was confirmed this pass (checked 2026-07)."
+    },
+    "published-sla": {
+      "value": true,
+      "comment": "Azure publishes an availability SLA (commonly 99.9%) for the service plus a 99% token-generation latency SLA on Provisioned deployments. Exact figures/tiers not re-verified against the specific SLA document this pass (checked 2026-07)."
+    },
+    "rate-limit-model": {
+      "value": ["fixed-tiers", "provisioned-throughput"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/batch", "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Per-deployment TPM/RPM quotas (Standard) plus reserved capacity via Provisioned Throughput Units (PTU); Batch has a separate enqueued-token quota."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Not a cross-provider routing gateway. A preview Model Router can pick among OpenAI models by prompt, but there is no automatic cross-vendor failover like a gateway (checked 2026-07)."
+    },
+    "status-page": {
+      "value": true,
+      "comment": "Covered by the public Azure status page (status.azure.com) and Azure Service Health; that page was not re-fetched this pass, so no source URL is cited (checked 2026-07)."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Microsoft states prompts, completions, embeddings, and training data are NOT used to train any foundation models without the customer's permission, and are not shared with OpenAI/other providers. Models are stateless during inference."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Inference is stateless (no prompts/completions stored in the model). The default 30-day abuse-monitoring store with human review can be turned off entirely via approved Modified Abuse Monitoring for eligible/regulated customers."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "iso-27001", "gdpr", "fedramp", "pci"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy"],
+      "comment": "Inherits the Azure compliance program (the data-privacy page links to Azure compliance offerings): SOC 1/2/3, ISO 27001/27018, HIPAA (BAA), GDPR, FedRAMP High, and PCI DSS among 90+ certifications. Scope can vary by feature (checked 2026-07)."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Microsoft Entra identity provides SSO/SAML, unified role-based access control, network isolation, and Azure Policy governance."
+    },
+    "pricing-model": {
+      "value": ["usage-token", "provisioned"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/batch", "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Primarily per-token pay-as-you-go (Standard/Global Standard); reserved capacity via Provisioned Throughput Units (PTU); some Managed Compute catalog models billed hourly by compute time."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "A single Azure subscription/invoice covers all models and vendors reachable through Foundry."
+    },
+    "cache-batch-discount": {
+      "value": true,
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/batch", "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/prompt-caching"],
+      "comment": "Batch is 50% less than global standard; prompt-cache reads are billed at a discount on input tokens (up to 100% off on Provisioned deployments)."
+    },
+    "cheapest-entry": {
+      "value": ["pay-as-you-go"],
+      "source": ["https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"],
+      "comment": "Lowest-friction paid start is self-serve pay-as-you-go per-token pricing via an Azure account; new accounts may also apply general promotional Azure credits."
+    }
+  }
 }

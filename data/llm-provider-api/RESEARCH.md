@@ -189,7 +189,7 @@ Users should be able to:
 - [x] **Mistral AI API** — first-party API for Mistral's open-weight and proprietary models
 - [x] **Amazon Bedrock** — AWS multi-vendor model-hosting platform with IAM, provisioned throughput, and broad compliance
 - [x] **Google Vertex AI** — Google Cloud's enterprise model platform (Gemini + third-party model garden)
-- [ ] **Azure AI Foundry** — Microsoft's enterprise model platform (Azure OpenAI + model catalog)
+- [x] **Azure AI Foundry** — Microsoft's enterprise model platform (Azure OpenAI + model catalog)
 - [ ] **OpenRouter** — routing gateway with one API over hundreds of models, unified billing, and fallback
 - [ ] **Together AI** — gateway/host for open-weight models with an OpenAI-compatible API and fine-tuning
 - [ ] **Groq** — low-latency inference gateway (LPU) serving open-weight models via an OpenAI-compatible API
