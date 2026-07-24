@@ -1,5 +1,272 @@
 {
   "name": "dust.tt",
   "description": "Enterprise assistant platform exposing an API to build on its agents and connected data",
-  "values": {}
+  "url": "https://dust.tt",
+  "lastVerified": "2026-07-24",
+  "values": {
+    "provider": {
+      "value": "Dust",
+      "source": ["https://dust.tt", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Dust (dust.tt), Paris-based enterprise AI agent platform founded 2023 by Stanislas Polu and Gabriel Hubert."
+    },
+    "category": {
+      "value": ["assistant-platform"],
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview", "https://dust.tt/home/product"],
+      "comment": "Enterprise assistant/agent platform; the API is a way to build on its agents and connected data rather than a raw model-inference API."
+    },
+    "api-launched": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No clean GA date for the public v1 REST API; the platform emerged 2023 and the developer platform/API has been documented and available since 2024. Exact month not pinnable from primary sources (checked 2026-07)."
+    },
+    "status": {
+      "value": ["ga"],
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Developer platform is generally available and documented (OpenAPI 3.0, JS SDK, CLI)."
+    },
+    "api-docs": {
+      "value": "https://docs.dust.tt/reference",
+      "source": ["https://docs.dust.tt/reference"],
+      "comment": "Official API reference; OpenAPI & Postman collections at docs.dust.tt/reference/openapi."
+    },
+    "website": {
+      "value": "https://dust.tt",
+      "source": ["https://dust.tt"]
+    },
+    "auth-methods": {
+      "value": ["api-key", "oauth"],
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview", "https://deepwiki.com/dust-tt/dust/2.2-dustapi-client"],
+      "comment": "Bearer-token API keys (workspace-scoped, created in Build > Developer Tools > API Keys) plus OAuth2 access tokens; console access adds SSO (SAML/OIDC)."
+    },
+    "self-serve-signup": {
+      "value": true,
+      "source": ["https://dust.tt/home/pricing", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Business plan is self-serve; a developer can sign up and mint an API key without sales contact (Enterprise remains custom/sales-led)."
+    },
+    "free-credits-trial": {
+      "value": true,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "2026 pricing overhaul introduced a Free seat with 500 one-time credits; historically a 14-day free trial. Checked 2026-07."
+    },
+    "regional-endpoints": {
+      "value": ["us", "eu"],
+      "source": ["https://dust.tt/home/security"],
+      "comment": "Data can be hosted in the EU or the US to meet regulatory needs."
+    },
+    "data-residency-options": {
+      "value": true,
+      "source": ["https://dust.tt/home/security"],
+      "comment": "Regional hosting (EU or US) offered as a data-residency guarantee, distinct from just multiple endpoints."
+    },
+    "model-breadth": {
+      "value": ["many-vendors"],
+      "source": ["https://dust.tt/home/pricing", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Agents are model-agnostic across OpenAI, Anthropic, Google, Mistral, DeepSeek and xAI; the developer picks the model per agent."
+    },
+    "open-weight-models": {
+      "value": true,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "Open-weight families are reachable (Mistral, DeepSeek) alongside proprietary models."
+    },
+    "model-version-pinning": {
+      "value": null,
+      "source": ["https://dust.tt/home/pricing", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Assistant platform: the underlying model is chosen in the agent configuration, not pinned per API request by the caller, so request-level snapshot pinning is not surfaced."
+    },
+    "custom-fine-tuned-deployment": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No documented ability to deploy/call a customer's own fine-tuned or private model through the API; extensibility is via connected data, tools and MCP, not custom model hosting."
+    },
+    "model-catalog-size": {
+      "value": "21-100",
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "Pricing/marketing cite 20+ models across OpenAI, Anthropic, Google, Mistral and DeepSeek; borderline with 6-20 but stated as more than 20. Checked 2026-07."
+    },
+    "chat-messages-endpoint": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview", "https://deepwiki.com/dust-tt/dust/2.2-dustapi-client"],
+      "comment": "Modern multi-turn conversation/messages API (create conversation, post messages to an agent, stream the answer); it is agent-scoped, not a raw chat-completions endpoint."
+    },
+    "streaming": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview", "https://deepwiki.com/dust-tt/dust/2.2-dustapi-client"],
+      "comment": "Real-time SSE event streaming of agent answers (streamAgentAnswerEvents)."
+    },
+    "tool-function-calling": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Assistant platform: tool use is configured on the agent (connected tools, MCP), not exposed as a request-level function-calling handshake the caller drives. See MCP Support."
+    },
+    "parallel-tool-calls": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Not applicable/undocumented: request-level function calling is not a surfaced primitive."
+    },
+    "structured-output": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No server-enforced structured-output primitive (JSON mode / JSON schema) exposed; the API returns agent messages rather than a shaped-output field."
+    },
+    "system-prompt": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Agent instructions are set in the agent configuration, not passed as a per-request system field, so a request-level system role is not surfaced."
+    },
+    "image-input-vision": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Conversations support file attachments and the vision-capable underlying models (e.g. GPT-4o, Claude, Gemini) can reason over images."
+    },
+    "audio-input": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No documented audio/speech input primitive in the API."
+    },
+    "document-pdf-input": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "First-class document ingestion: file upload endpoints and data-source document upsert (RAG over PDFs and other documents)."
+    },
+    "image-generation": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Image generation is offered as an agent tool available through the platform/API."
+    },
+    "text-to-speech-audio-output": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No documented speech/audio synthesis output through the API."
+    },
+    "embeddings-endpoint": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Embeddings are used internally for data-source retrieval/RAG but no standalone text-embeddings endpoint is exposed to callers."
+    },
+    "prompt-caching": {
+      "value": null,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Prompt/prefix caching is not a developer-facing feature of the Dust API; any caching by underlying providers is not surfaced or documented here."
+    },
+    "batch-api": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "No asynchronous batch/offline inference endpoint documented."
+    },
+    "max-context-window": {
+      "value": null,
+      "source": ["https://dust.tt/home/pricing", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Context depends on the underlying model selected in the agent (e.g. Gemini and Claude long-context models); Dust does not separately document a maximum context window, so not pinnable at check time (2026-07)."
+    },
+    "extended-reasoning": {
+      "value": null,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "Reasoning models (e.g. o3-mini) are selectable, but no API-level reasoning/thinking-budget control is exposed; reasoning behavior is a property of the chosen model."
+    },
+    "built-in-web-search": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "First-party web search/browsing is available as an agent tool through the platform."
+    },
+    "built-in-code-execution": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Code execution is offered as an agent tool (sandboxed function invocations stream via SSE)."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Both client-side and server-side MCP support; client-side MCP servers register, heartbeat, and stream tool requests over SSE."
+    },
+    "files-retrieval-api": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "File upload/download endpoints plus data sources with document upsert and managed retrieval (RAG) the agent can reference."
+    },
+    "agents-assistants-api": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "The core of the product: stateful agents and conversations API with managed state, tool orchestration, branching and scheduling."
+    },
+    "openai-compatible-api": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference", "https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Proprietary agent-oriented REST API (documented via OpenAPI); no OpenAI Chat-Completions-compatible base-URL swap."
+    },
+    "official-sdks": {
+      "value": ["typescript"],
+      "source": ["https://www.npmjs.com/package/@dust-tt/client", "https://github.com/dust-tt/dust-sdk-js"],
+      "comment": "Official JavaScript/TypeScript client SDK (@dust-tt/client) plus a CLI (@dust-tt/dust-cli); no first-party Python SDK found."
+    },
+    "native-api-style": {
+      "value": ["proprietary"],
+      "source": ["https://docs.dust.tt/reference"],
+      "comment": "Proprietary agent/conversation-oriented REST API (workspace-scoped endpoints), documented with OpenAPI 3.0."
+    },
+    "webhooks-callbacks": {
+      "value": true,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Webhook endpoints can trigger flows, with payload filtering and rate-limiting for scheduled automations."
+    },
+    "published-sla": {
+      "value": true,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "SLAs are listed among Enterprise-plan controls (alongside SCIM, audit logs, dedicated support); specific uptime figure not published."
+    },
+    "rate-limit-model": {
+      "value": null,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "Throughput/rate-limit model not clearly documented; usage is credit-metered (programmatic API billed at $0.01/credit) but per-tier throughput caps are not published."
+    },
+    "provider-fallback-routing": {
+      "value": false,
+      "source": ["https://docs.dust.tt/reference/developer-platform-overview"],
+      "comment": "Not a routing gateway; no documented automatic cross-provider failover. Model is selected per agent."
+    },
+    "status-page": {
+      "value": true,
+      "source": ["https://dust1.statuspage.io/", "https://docs.dust.tt/changelog/provider-status-page-updates"],
+      "comment": "Public Atlassian Statuspage (dust1.statuspage.io) tracking 13 components; incidents also surfaced in-app."
+    },
+    "no-training-default": {
+      "value": true,
+      "source": ["https://dust.tt/home/security"],
+      "comment": "Customer data is never used to train models, and no data is stored by third-party model providers (zero data retention by them)."
+    },
+    "zero-data-retention": {
+      "value": true,
+      "source": ["https://dust.tt/home/security"],
+      "comment": "Zero data retention by underlying model providers; Enterprise admins can set custom conversation retention durations."
+    },
+    "compliance-certifications": {
+      "value": ["soc2", "hipaa", "gdpr"],
+      "source": ["https://dust.tt/home/security", "https://www.vanta.com/customers/dust"],
+      "comment": "SOC 2 Type II certified, GDPR compliant (EU data residency), and HIPAA compliant. ISO 27001 not confirmed on the security page (checked 2026-07)."
+    },
+    "enterprise-sso-access-control": {
+      "value": true,
+      "source": ["https://dust.tt/home/security"],
+      "comment": "SSO (SAML, OIDC) + SCIM provisioning, RBAC and Space-based access controls, plus audit logs with 365-day retention."
+    },
+    "pricing-model": {
+      "value": ["subscription", "usage-token", "free-tier"],
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "Per-seat subscription (Pro/Max) metered in credits; a Free seat exists; programmatic/API usage billed at $0.01/credit. Checked 2026-07."
+    },
+    "unified-billing": {
+      "value": true,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "One Dust account/credit balance covers all reachable models across providers."
+    },
+    "cache-batch-discount": {
+      "value": false,
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "No documented cached-prompt or batch-job pricing discount; billing is credit-based per model/task/tool usage."
+    },
+    "cheapest-entry": {
+      "value": ["free-tier"],
+      "source": ["https://dust.tt/home/pricing"],
+      "comment": "A Free seat with 500 one-time credits is the lowest-friction start; paid Business seats are then self-serve pay-as-you-go per seat. Checked 2026-07."
+    }
+  }
 }
