@@ -189,7 +189,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Superpowers** — Jesse Vincent / Prime Radiant's agentic skills framework and methodology bundling TDD, debugging, and planning skills across Claude Code, Cursor, Codex, OpenCode, Copilot CLI, and Gemini CLI (added 2026-04-23)
 - [x] **HumanLayer** — open-source IDE (CodeLayer) orchestrating AI coding agents with battle-tested workflows for parallel sessions and context engineering (added 2026-04-23)
 - [x] **Agentheim** — opinionated domain-driven, multi-agent orchestration framework (Claude Code plugin) turning ideas into modeled backlogs of bounded contexts executed as parallel dependency-aware tasks (added 2026-07-13)
-- [ ] **Matt Pocock's Skills** — agent skill bundle ("Skills for Real Engineers") structuring alignment, domain modelling, TDD feedback loops, and architecture refinement as composable user- and model-invoked skills (added 2026-07-29)
+- [x] **Matt Pocock's Skills** — agent skill bundle ("Skills for Real Engineers") structuring alignment, domain modelling, TDD feedback loops, and architecture refinement as composable user- and model-invoked skills (added 2026-07-29)
 - [ ] **Domain-Driven Workflow** — skill bundle taking a project from blank page to shipped code via DDD strategic modelling (grounding, EventStorming, context mapping, architecture ADRs), then driving a dependency-ordered backlog with TDD workers (added 2026-07-29)
 
 ## Notes for Researchers
