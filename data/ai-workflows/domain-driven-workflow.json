@@ -1,5 +1,261 @@
 {
   "name": "Domain-Driven Workflow",
   "url": "https://github.com/mtrense/skills/tree/main/domain-driven",
-  "values": {}
+  "lastVerified": "2026-07-29",
+  "values": {
+    "description": {
+      "value": "A Claude Code skill bundle that takes a project from a blank page to shipped code via DDD strategic modeling (vision grounding, EventStorming, bounded-context mapping, architecture ADRs), then drives a dependency-ordered task backlog to done with TDD workers.",
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Self-description: 'favors flow over batches -- there is no milestone layer, just a growing backlog whose scheduling is governed by an explicit dependency DAG and organized by bounded context.'"
+    },
+    "website": {
+      "value": null,
+      "source": ["https://api.github.com/repos/mtrense/skills"],
+      "comment": "No dedicated website or docs site; the GitHub repository is the project home (repo homepage field is null)."
+    },
+    "repository": {
+      "value": "https://github.com/mtrense/skills/tree/main/domain-driven",
+      "source": ["https://github.com/mtrense/skills/tree/main/domain-driven"],
+      "comment": "One workflow family inside the multi-workflow monorepo mtrense/skills; it is not a standalone repository."
+    },
+    "creator": {
+      "value": "Max Trense (mtrense), independent developer",
+      "source": ["https://github.com/mtrense/skills"],
+      "comment": "Personal GitHub account; no organization affiliation stated."
+    },
+    "first-release": {
+      "value": "2026",
+      "source": ["https://api.github.com/repos/mtrense/skills", "https://api.github.com/repos/mtrense/skills/commits?path=domain-driven&per_page=100"],
+      "comment": "Host repo created 2026-03-26; the domain-driven workflow itself landed 2026-07-13 ('feat(domain-driven): add DDD build workflow'). Very young (checked 2026-07-29)."
+    },
+    "latest-release": {
+      "value": "2026-07",
+      "source": ["https://api.github.com/repos/mtrense/skills/commits?path=domain-driven&per_page=5", "https://api.github.com/repos/mtrense/skills/releases"],
+      "comment": "No tagged releases or versions exist (releases and tags endpoints are both empty); the marketplace pins no version field, so every commit on main is a new version. Most recent commit touching domain-driven: 2026-07-27 (checked 2026-07-29)."
+    },
+    "license": {
+      "value": null,
+      "source": ["https://api.github.com/repos/mtrense/skills", "https://api.github.com/repos/mtrense/skills/contents/"],
+      "comment": "No LICENSE file in the repository root and the GitHub API reports license: null. Publicly readable but no license is declared, so no SPDX tag applies."
+    },
+    "pricing-model": {
+      "value": ["free-oss"],
+      "source": ["https://github.com/mtrense/skills"],
+      "comment": "Free to obtain and use from a public repo, with no commercial tier; note the 'OSS' half of the tag is imprecise because no license is declared (see License)."
+    },
+    "open-source": {
+      "value": false,
+      "source": ["https://api.github.com/repos/mtrense/skills", "https://api.github.com/repos/mtrense/skills/contents/"],
+      "comment": "Source is public and readable, but no OSI-approved license is attached (no LICENSE file), so it does not meet the guide's OSI criterion."
+    },
+    "covered-phases": {
+      "value": ["discovery", "architecture", "planning", "tasks", "implementation", "testing", "retrospective"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Each phase has its own slash command and artifact: /grounding -> vision.md (discovery); /domain-model, /context-mapping, /architecture-foundation -> domain-model.md, context-map.md, bounded-contexts/, ADRs (architecture); /whats-next -> prioritized proposals (planning); /task-append + /task-refine -> tasks/NNNN-slug.md (tasks); /task-cycle -> code + commits (implementation) with strict TDD inside task-worker (testing); the 'deviated' drift worklist feeding /domain-model and /architecture-foundation revision runs is a distinct feedback step (retrospective). No deployment phase and no separate code-review phase are defined."
+    },
+    "methodology-style": {
+      "value": ["spec-centric", "process-centric", "multi-agent", "plan-and-execute", "strict-tdd"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "The context map is 'the domain-compliance referent for every task' and the architecture foundation 'the architecture-compliance referent' -- code is checked against those models (spec-centric); the ordered phase pipeline is the core value (process-centric); nine role-specialised subagents, six read-only scouts plus task-worker/integrator/exemplar-scribe (multi-agent); model -> backlog DAG -> execution (plan-and-execute); /task-cycle drives tasks 'strict TDD -> verify -> commit' (strict-tdd)."
+    },
+    "opinionated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Prescribes a fixed DDD pipeline with prerequisites between phases (/architecture-foundation requires vision + domain-model + context-map) and a check-dag hard gate; the no-milestone-layer and no-tactical-design-phase choices are explicit design positions."
+    },
+    "ceremony-level": {
+      "value": ["high"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Default flow produces vision, domain model, context map, per-bounded-context files, ADRs plus derived architecture summaries, exemplars and dossiers, and per-task markdown with structured frontmatter and a Closing record -- document-heavy with Socratic sessions at every strategic phase. Not very-high: there is no milestone layer, no batch planning ritual, and no mandatory review board."
+    },
+    "mechanization-level": {
+      "value": ["high"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md"],
+      "comment": "/task-cycle takes '[<limit>|all][@<workers>]' and burns down the whole ready backlog end-to-end (TDD, verify, commit) with parallel git worktrees and a sequential integrator, backed by the deterministic tasks.sh query helper. Not very-high: it runs inside local Claude Code, not a managed hosted pipeline."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Every strategic phase is a Socratic session with the human; /grounding deliberately 'stops there so the human controls each later phase', /task-refine interviews before a task becomes ready, and /whats-next is advisory only ('mints nothing')."
+    },
+    "approval-gates": {
+      "value": ["spec", "plan", "tasks"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Interpretive mapping: the human owns the vision/domain-model/context-map dialogue (spec), the architecture-foundation decisions and /whats-next prioritization (plan), and the draft -> todo refinement interview (tasks). Implementation itself runs unattended once tasks are ready, so no implementation or deploy gate."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "The strategic phases are Socratic by construction and cannot be skipped to reach a schedulable backlog; only the backlog burn-down (/task-cycle) is autonomous."
+    },
+    "autonomy-level": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Phase-level approvals in the default configuration: human-driven modelling and task refinement, then /task-cycle drives many tasks to done without per-step confirmation."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No undo/revert command. One-task-one-commit and the integrator's bounce-on-conflict merge-back make manual git revert easy, and split tasks leave tombstones, but that is convention plus git rather than a framework rollback feature."
+    },
+    "supported-agents": {
+      "value": ["claude-code"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/.claude-plugin/marketplace.json"],
+      "comment": "Distributed as a Claude Code plugin (mtrense-skills marketplace) or symlinked into ~/.claude/skills and ~/.claude/agents; SKILL.md frontmatter, subagents, and slash commands are all Claude Code constructs. No Codex/Cursor/other adapters documented."
+    },
+    "editor-integrations": {
+      "value": ["terminal-only"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md"],
+      "comment": "Runs wherever Claude Code runs; the workflow ships no editor extension, GUI, or web surface of its own."
+    },
+    "model-agnostic": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Locked to Claude Code / Anthropic models; skills even pin model tiers in frontmatter (opus for planning, sonnet for implementation), with a .workflow-overrides/model-map file for per-project routing among Claude tiers."
+    },
+    "mcp-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No Model Context Protocol server or client integration is documented; the workflow is plain skills, subagents, and a bash helper."
+    },
+    "artifact-formats": {
+      "value": ["markdown", "yaml", "json"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "All first-class artifacts are markdown with YAML frontmatter (tasks, ADRs, dossiers, exemplar NOTES.md); tasks.sh parses that frontmatter via yj -> jq. JSON only appears when an ingested exemplar's native format happens to be .json/.yaml/.csv."
+    },
+    "artifacts-covered": {
+      "value": ["architecture", "decisions", "specs", "tasks"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "domain-model.md, context-map.md, bounded-contexts/ and derived architecture/<topic>.md (architecture); ADRs under architecture/decisions/ via /adr (decisions); vision.md plus per-task specs with acceptance criteria (specs); tasks/NNNN-slug.md backlog (tasks). Exemplars (sample artifacts) and dossiers (source-cited fact files) are first-class artifact kinds with no matching tag -- noted rather than force-fitted. No roadmap (no milestone layer), no release notes, no separate test plans."
+    },
+    "project-layout": {
+      "value": "Artifacts live at the project root: vision.md, domain-model.md, context-map.md, bounded-contexts/<context>.md, architecture/ (decisions.md index, decisions/NNNN-title.md ADRs, derived <topic>.md summaries), exemplars/<slug>/ (artifact + NOTES.md), dossiers/<slug>.md, and tasks/NNNN-slug.md. The architecture path is overridable via .workflow-overrides/architecture-path.",
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"]
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "All artifacts are plain files in the project repo, committed alongside code (the bundle depends on the common workflow's /commit)."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Artifacts are language-neutral markdown and the tech stack is chosen per project in /architecture-foundation; the only tooling requirement is bash plus yj and jq on PATH."
+    },
+    "enforcement-mechanisms": {
+      "value": ["instructional", "test-gates", "manual-approval"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Most enforcement is prompt-level (skills instruct the agent to obey the context map and ADRs); strict TDD with a verify step precedes each commit in task-worker (test-gates); Socratic phases require human sign-off (manual-approval). The deterministic check-dag preflight is a mechanical gate but is closest to none of the tags -- it validates the backlog DAG, not code or artifacts' prose. No hooks, linters, CI checks, or second-agent code review."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Phases have hard prerequisites (/architecture-foundation 'requires vision + domain-model + context-map') and 'check-dag is a hard gate' at /task-cycle preflight: 'an unschedulable backlog is refused until refine fixes it.' Re-entry into earlier phases is allowed only as explicit revision mode."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "check-dag structurally validates the task graph (must not leave a cycle or a dangling edge) and tasks.sh answers every backlog query by deterministically parsing YAML frontmatter, so malformed task frontmatter surfaces immediately. There is no formal JSON/YAML schema file, and prose bodies are unvalidated."
+    },
+    "memory-implementation": {
+      "value": ["markdown-files"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Persistent context is entirely on-disk markdown: vision, domain model, context map, ADRs plus derived per-topic summaries, dossiers, exemplar NOTES.md, and task frontmatter indexed by tasks.sh. No vector DB or graph store."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Every phase reads the committed artifacts, so a fresh session resumes from the backlog and models without manual handoff; task ids and status come from tasks.sh rather than session state."
+    },
+    "project-context-files": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Produces project-scoped context files agents read instead of the whole log -- architecture/<topic>.md summaries, context-map.md, bounded-contexts/<context>.md, plus .workflow-overrides/ config. It does not itself author CLAUDE.md/AGENTS.md (that is the sibling codebase-survey workflow)."
+    },
+    "cost-tracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No token or cost accounting. Context economy is addressed structurally instead (tasks.sh reads only frontmatter; scouts keep large artifacts out of the main session), but nothing is measured or budgeted."
+    },
+    "run-history": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Each task file carries a '## Closing' group of implementation-phase records (manual testing, deviations from plan) filled by /task-cycle from the task-worker's report; 'tasks.sh deviated' enumerates the drift worklist and /task-status renders a board. Structured per-task history, not per-run agent traces."
+    },
+    "telemetry-opt": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No telemetry is collected or documented; as a local bundle of markdown skills plus a bash helper there is nothing to disclose or opt out of, so the attribute is not meaningfully applicable."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No user-facing template mechanism. .workflow-overrides/ customises the architecture path and model-tier routing, not artifact or prompt templates; users can of course fork the SKILL.md files, but that is editing the workflow rather than a supported extension point."
+    },
+    "hooks": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No lifecycle hooks are defined or consumed; phase transitions are driven by slash commands, not by user scripts."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md"],
+      "comment": "Ships nine fixed subagents (domain-seed-extractor, boundary-proposer, architecture-proposer, task-analyzer, exemplar-drafter, dossier-scout, task-worker, integrator, exemplar-scribe); no documented mechanism for users to register their own personas or skills into the workflow."
+    },
+    "marketplace": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/.claude-plugin/marketplace.json"],
+      "comment": "The repo publishes its own Claude Code plugin marketplace catalog (mtrense-skills) for installing its seven workflows, but there is no marketplace or community repository of shared domain-driven templates/skills contributed by others."
+    },
+    "install-mechanism": {
+      "value": ["editor-extension", "shell-script"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/.claude-plugin/marketplace.json"],
+      "comment": "Two paths: '/plugin marketplace add mtrense/skills' then '/plugin install domain-driven@mtrense-skills' (mapped to editor-extension as the closest tag for a Claude Code plugin), or './install.sh domain-driven [target]', a symlink installer. The common workflow must be installed alongside for /adr and /commit."
+    },
+    "setup-time": {
+      "value": ["under-5min"],
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Two plugin commands (or one install.sh invocation) plus installing yj and jq on PATH for tasks.sh. Producing the first modeled backlog takes far longer, but that is the workflow, not setup."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "Entirely local: markdown skills, subagents, and a bash helper operating on files in the user's repo. No hosted service."
+    },
+    "requires-account": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/README.md"],
+      "comment": "The workflow itself needs no vendor account; its runtime (Claude Code) requires an Anthropic account, but that is the runtime, not the workflow."
+    },
+    "git-worktree-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md", "https://raw.githubusercontent.com/mtrense/skills/main/README.md"],
+      "comment": "'@N uses parallel git worktrees + serial integrator merge-back' in /task-cycle, with bounce-on-conflict handling."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md", "https://github.com/mtrense/skills"],
+      "comment": "A detailed per-workflow README acting as the full specification (phase table, file layout, scaling law, subagent roster) plus a summary table in the repo root README. Against that: no docs site, no tutorial or walkthrough, no examples, no changelog or versioning, and the host repo has no description or license."
+    },
+    "github-stars": {
+      "value": 3,
+      "source": ["https://api.github.com/repos/mtrense/skills"],
+      "comment": "3 stars on the host repo mtrense/skills as of 2026-07-29. The count covers all seven workflows in the monorepo, not the domain-driven bundle alone; the project is new and essentially unpromoted."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": ["https://api.github.com/repos/mtrense/skills", "https://api.github.com/repos/mtrense/skills/commits?path=domain-driven&per_page=5"],
+      "comment": "Repo last pushed 2026-07-27, and the most recent commit touching domain-driven is also 2026-07-27 (34 commits touch the directory since 2026-07-13) -- well inside 90 days of the 2026-07-29 research date."
+    },
+    "example-projects": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mtrense/skills/main/domain-driven/README.md"],
+      "comment": "No example repositories, sample projects, or documented case studies; the README specification is the only reference material."
+    },
+    "community-channel": {
+      "value": null,
+      "source": ["https://api.github.com/repos/mtrense/skills"],
+      "comment": "No community channel: GitHub Discussions is disabled, no Discord/Slack/forum is listed, and there are 0 open issues."
+    }
+  }
 }
