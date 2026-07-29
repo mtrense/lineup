@@ -191,6 +191,7 @@ This comparison evaluates frameworks and toolchains that structure AI coding age
 - [x] **Agentheim** — opinionated domain-driven, multi-agent orchestration framework (Claude Code plugin) turning ideas into modeled backlogs of bounded contexts executed as parallel dependency-aware tasks (added 2026-07-13)
 - [x] **Matt Pocock's Skills** — agent skill bundle ("Skills for Real Engineers") structuring alignment, domain modelling, TDD feedback loops, and architecture refinement as composable user- and model-invoked skills (added 2026-07-29)
 - [x] **Domain-Driven Workflow** — skill bundle taking a project from blank page to shipped code via DDD strategic modelling (grounding, EventStorming, context mapping, architecture ADRs), then driving a dependency-ordered backlog with TDD workers (added 2026-07-29)
+- [ ] **AI Unified Process** — requirements-driven, AI-native methodology positioning behavioral specs (not code descriptions) as the primary living artifact, shipped as open-source Claude Code plugins (added 2026-07-29)
 
 ## Notes for Researchers
 
