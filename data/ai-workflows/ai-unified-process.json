@@ -2,5 +2,472 @@
   "name": "AI Unified Process",
   "description": "Requirements-driven, AI-native software development methodology where behavioral specs are the primary living artifact, distributed as open-source Claude Code plugins.",
   "url": "https://unifiedprocess.ai/",
-  "values": {}
+  "lastVerified": "2026-07-29",
+  "values": {
+    "description": {
+      "value": "A requirements-centric adaptation of the Rational Unified Process (Inception → Elaboration → Construction → Transition) for AI agents: a vision document leads to a requirements catalog, entity model, and use case specifications owned by a requirements engineer, from which the agent generates code, tests, and docs — shipped as Apache-2.0 Claude Code plugins (aiup-core plus per-stack plugins).",
+      "source": [
+        "https://unifiedprocess.ai/",
+        "https://unifiedprocess.ai/methodology.html",
+        "https://github.com/AI-Unified-Process/marketplace"
+      ],
+      "comment": "Site framing: \"Requirements stay at the heart of every project; AI generates, regenerates, and refactors everything else around them\" — and the specs describe system behaviour rather than the code, unlike developer-centric spec tools."
+    },
+    "website": {
+      "value": "https://unifiedprocess.ai/",
+      "source": [
+        "https://unifiedprocess.ai/"
+      ],
+      "comment": "Sections: Methodology, Enterprise, Tools, Tutorial, Videos, Articles. The archived predecessor repo's README pointed at aiup.dev; unifiedprocess.ai is the current site."
+    },
+    "repository": {
+      "value": "https://github.com/AI-Unified-Process/marketplace",
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://github.com/martinellich/aiup-marketplace"
+      ],
+      "comment": "Moved from martinellich/aiup-marketplace (archived 2026-02-28) to the AI-Unified-Process org. The org also hosts intellij-plugin, vscode-plugin, book-library, and task-manager."
+    },
+    "creator": {
+      "value": "Simon Martinelli (Martinelli GmbH)",
+      "source": [
+        "https://unifiedprocess.ai/enterprise.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/.claude-plugin/marketplace.json"
+      ],
+      "comment": "Site footer: \"© 2026 Simon Martinelli.\" The marketplace manifest names him as owner/author of all four plugins (simon@martinelli.ch). One stack plugin (aiup-angular-jpa) was contributed by Marc Affolter of Oepfelbaum IT Management."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": [
+        "https://api.github.com/repos/martinellich/aiup-marketplace",
+        "https://github.com/martinellich/aiup-marketplace"
+      ],
+      "comment": "Original public plugin repository martinellich/aiup-marketplace was created 2025-12-04; the current AI-Unified-Process/marketplace repo dates from 2026-02-28. Checked 2026-07-29."
+    },
+    "latest-release": {
+      "value": "2026-07",
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace",
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/releases"
+      ],
+      "comment": "No GitHub releases or tags exist; versioning happens per plugin in .claude-plugin/plugin.json and .tessl-plugin/plugin.json, published to the Tessl registry. Most recent push 2026-07-29 (checked the same day), so this is a 'notable update' date, not a tagged release."
+    },
+    "license": {
+      "value": [
+        "apache-2"
+      ],
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace",
+        "https://unifiedprocess.ai/tools.html"
+      ],
+      "comment": "Apache-2.0 for the marketplace plugins and for both companion IDE plugins (IntelliJ / VS Code Navigator). The archived predecessor repo carried no license file."
+    },
+    "pricing-model": {
+      "value": [
+        "free-oss"
+      ],
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://unifiedprocess.ai/enterprise.html"
+      ],
+      "comment": "The methodology, plugins, and IDE navigators are free and open source. The only commercial layer is human services — \"Workshops, consulting, and tailored rollouts\" via a booked call — which is not a product tier and is not required to use the workflow."
+    },
+    "open-source": {
+      "value": true,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace"
+      ],
+      "comment": "Apache-2.0 (OSI-approved); the skill files that constitute the methodology's tooling are the entire deliverable and live in the public repo."
+    },
+    "covered-phases": {
+      "value": [
+        "discovery",
+        "spec",
+        "architecture",
+        "implementation",
+        "review",
+        "testing",
+        "deployment"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-vaadin-jooq/README.md"
+      ],
+      "comment": "Inception produces vision + requirements catalog (discovery, spec via /requirements); Elaboration produces the entity model, use case diagram, and a Software Architecture Document (architecture, spec via /entity-model, /use-case-diagram); Construction produces use case specs, code, and tests (/use-case-spec, /implement, /karibu-test, /playwright-test) plus an explicit developer review step; Transition covers UAT and continuous delivery (deployment). No planning/tasks phase — there is no backlog or task-graph artifact — and no retrospective. Note deployment is methodology-level only: no plugin skill automates Transition."
+    },
+    "methodology-style": {
+      "value": [
+        "spec-centric",
+        "spec-driven",
+        "process-centric"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/",
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "spec-centric/spec-driven: \"behavior is the source of truth; code, tests, and documentation are generated\" and every line of code must trace to a use case. process-centric: the RUP phase model with its four phases and two workflows (Greenfield / Brownfield) is half the product. Not multi-agent — a single agent is stepped through skills, with no role-playing sub-agents. Not strict-tdd: tests are mandated as a regression harness for regeneration but are generated after /implement, not before."
+    },
+    "opinionated": {
+      "value": true,
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md"
+      ],
+      "comment": "\"Nothing gets built without a use case, and nothing reaches production without tests traceable to requirements.\" Skills refuse to run without their upstream artifacts and impose fixed document structures and ID schemes; changes must start by \"changing the specification first\"."
+    },
+    "ceremony-level": {
+      "value": [
+        "high"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "The default path requires a vision document, a requirements catalog, BPMN business processes, an entity model, a PlantUML use case diagram, a Software Architecture Document, one structured spec file per use case, and test cases — with mandated human review between every step. Short of very-high only because there is no formal sign-off machinery beyond \"review by hand\"."
+    },
+    "mechanization-level": {
+      "value": [
+        "medium"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Each phase is a slash command the human types (/requirements → /entity-model → /use-case-diagram → /use-case-spec → /implement → test skills), with the README instructing \"the intermediate documents are designed to be reviewed and corrected by hand. Do not skip the review.\" No single command runs the workflow end-to-end."
+    },
+    "hitl-checkpoints": {
+      "value": true,
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "Core to the method: the Requirements Engineer owns and revises AI-drafted use cases and the entity model, the Software Engineer reviews all generated code, and stakeholders validate every iteration. The README explicitly forbids skipping the manual review between steps."
+    },
+    "approval-gates": {
+      "value": [
+        "spec",
+        "implementation"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "Requirements/entity model/use case specs are reviewed and owned by the Requirements Engineer before implementation (spec); generated code is reviewed by the Software Engineer (implementation). There is no separate plan or task artifact to gate, and Transition/deploy is left to the team's own delivery process."
+    },
+    "autonomous-e2e": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://unifiedprocess.ai/methodology.html"
+      ],
+      "comment": "No runner, loop, or orchestrator ships — the workflow is a set of skills invoked one at a time inside a host agent, and the documented process places mandatory human review between phases. Nothing technically stops a user from chaining the commands, but that is not a supported configuration."
+    },
+    "autonomy-level": {
+      "value": 2,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://unifiedprocess.ai/methodology.html"
+      ],
+      "comment": "Rated on the default configuration: below a plain phase-gated 3 because every phase is a human-typed command AND the intermediate documents are meant to be hand-corrected by a requirements engineer before the next step. /implement runs a longer autonomous stretch once specs are approved."
+    },
+    "rollback-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-vaadin-jooq/README.md"
+      ],
+      "comment": "No undo of generated artifacts or code is provided; recovery is plain git. The methodology's answer to bad output is regeneration from a corrected spec (protected by the test suite) rather than a rollback mechanism."
+    },
+    "supported-agents": {
+      "value": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "copilot-chat",
+        "opencode",
+        "other"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://unifiedprocess.ai/tools.html"
+      ],
+      "comment": "Claude Code is the first-party target (plugin marketplace, bundled .mcp.json). The README documents installation paths for Cursor (.cursor/skills/), OpenAI Codex CLI (~/.codex/skills/), GitHub Copilot, Gemini CLI (.gemini/skills/) and OpenCode (.opencode/skills/, with MCP), via the agent-agnostic Tessl package manager or manual clone+symlink. 'other' covers Gemini CLI, which has no tag id. Windsurf, Aider, Cline and Roo are not mentioned."
+    },
+    "editor-integrations": {
+      "value": [
+        "terminal-only",
+        "jetbrains",
+        "vscode"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/tools.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "The workflow itself is skills inside CLI agents (terminal-only), with Cursor/Copilot installs giving a VS Code-derived surface. First-party companion IDE plugins exist for both JetBrains and VS Code — the \"AI Unified Process Navigator\" for jumping between use case specs and their tests — but they navigate artifacts rather than run the workflow."
+    },
+    "model-agnostic": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Skills are plain SKILL.md markdown following the open Agent Skills convention and are documented as working in six different harnesses; no model or vendor is pinned anywhere in the plugins."
+    },
+    "mcp-support": {
+      "value": true,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/contents/aiup-core",
+        "https://unifiedprocess.ai/tools.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Each plugin ships an .mcp.json wiring MCP servers it consumes: context7 in aiup-core, plus Vaadin, jOOQ, KaribuTesting, JavaDocs, Playwright, Microsoft Learn and bUnit Docs in the stack plugins. AIUP consumes MCP servers; it does not expose one."
+    },
+    "artifact-formats": {
+      "value": [
+        "markdown"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md"
+      ],
+      "comment": "All specification artifacts are markdown under docs/. Two diagram formats have no tag id in the schema: Mermaid ER diagrams (embedded in docs/entity_model.md, so still markdown) and a standalone PlantUML file docs/use_cases.puml. Stack plugins additionally emit SQL (Flyway migrations) and OpenAPI specs as supplementary specifications."
+    },
+    "artifacts-covered": {
+      "value": [
+        "architecture",
+        "specs",
+        "test-plans"
+      ],
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "specs: requirements catalog, entity model, use case diagram, one use case specification per UC. architecture: the entity model plus the Software Architecture Document produced in Elaboration. test-plans: the test strategy planned in Inception, test cases in Elaboration, and the /test-case skill in aiup-core. No roadmap, ADRs, change logs, release notes, or end-user docs are produced; there is no task or backlog artifact."
+    },
+    "project-layout": {
+      "value": "All artifacts live under docs/ in the project repo: docs/vision.md (human-written input), docs/requirements.md, docs/entity_model.md (Mermaid ER), docs/use_cases.puml (PlantUML diagram) and one file per use case at docs/use_cases/UC-XXX-<kebab-case-name>.md. The plugins themselves install into the host agent's plugin/skill directory, not the project.",
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md"
+      ],
+      "comment": "File naming is prescriptive: use case file names must reproduce the diagram's use case names verbatim, lowercased and hyphenated (e.g. \"Log In\" → UC-002-log-in.md)."
+    },
+    "artifacts-in-git": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://unifiedprocess.ai/tools.html"
+      ],
+      "comment": "Everything is in-repo markdown under docs/, versioned with the code it specifies; the IDE Navigator plugins work by linking those in-repo spec files to their tests. No hosted store is involved."
+    },
+    "language-agnostic": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://github.com/AI-Unified-Process/marketplace"
+      ],
+      "comment": "aiup-core is \"technology-independent: it works with any language, framework, or stack because it stops at the specification boundary.\" Construction is stack-specific and only three stack plugins ship today (Vaadin+jOOQ, Spring Boot+Angular/JPA, Blazor .NET 10), all JVM/.NET-leaning — so the spec half is universal while the implementation half needs a matching plugin or falls back to unassisted coding."
+    },
+    "enforcement-mechanisms": {
+      "value": [
+        "instructional",
+        "manual-approval"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/CLAUDE.md"
+      ],
+      "comment": "Enforcement is prompt language inside SKILL.md (prerequisite checks, forbidden-term lists, self-review checklists) plus the mandated human review between phases. Nothing mechanical ships for the user's project: no hooks, linters, or CI checks, and the test skills generate tests without gating on them. The repo's own publish workflow runs Snyk audits over the skills, but that governs the plugins, not user projects."
+    },
+    "strict-phase-ordering": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Skills declare hard prerequisites and refuse to run without them — /use-case-spec requires docs/requirements.md and docs/use_cases.puml, /requirements requires docs/vision.md — so the phase chain cannot be entered mid-stream. The refusal is agent-side (instructional) rather than a compiled gate, and /reverse-engineer is the sanctioned brownfield entry point that back-fills the missing upstream artifacts."
+    },
+    "artifact-validation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md"
+      ],
+      "comment": "Borderline call. Artifacts are not free-form: each skill ships references/use-case.md as a required template plus references/example.md, and enforces structural rules (fixed section set, globally-unique BR-XXX business rule IDs, alternative flows that must cite \"(step N)\" and terminate with a defined clause, both postcondition subsections populated, no technical terms such as SQL/JWT/HTTP verbs), verified against a completion checklist. It is agent-executed structural checking, not a machine schema validator — no linter or JSON/YAML schema exists."
+    },
+    "memory-implementation": {
+      "value": [
+        "markdown-files"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://unifiedprocess.ai/"
+      ],
+      "comment": "The docs/ artifact set is the memory: requirements, entity model, and use case specs are the living context every later skill reads. No database, vector store, or session log is used."
+    },
+    "persistent-memory": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md",
+        "https://unifiedprocess.ai/methodology.html"
+      ],
+      "comment": "Deliberately so — specs are \"living artifacts rather than throwaway prompts\", and each skill re-reads its upstream docs/ files, so a fresh session picks up full project context with no manual handoff."
+    },
+    "project-context-files": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-vaadin-jooq/README.md"
+      ],
+      "comment": "No CLAUDE.md, AGENTS.md, or .cursorrules is written or required in the user's project — context comes from the docs/ specification set instead. (The marketplace repo has its own CLAUDE.md, but that governs plugin development, not projects using AIUP.)"
+    },
+    "cost-tracking": {
+      "value": [
+        "none"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "No token or cost accounting of any kind; the plugins are markdown skills with no runtime, so any usage reporting comes from the host agent."
+    },
+    "run-history": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/contents/aiup-core"
+      ],
+      "comment": "No trace or run-log store. The committed docs/ artifacts and their git history are the only durable record of what the agent did; the evals/ directories in each plugin score skill quality for the Tessl registry, not user runs."
+    },
+    "telemetry-opt": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/contents/aiup-core"
+      ],
+      "comment": "The plugins collect no telemetry of their own — markdown skills plus MCP server configs, with no runtime to phone home — so collection is nil by construction. Nothing to opt out of is disclosed either; any telemetry comes from the host agent or the MCP servers."
+    },
+    "custom-templates": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/skills/use-case-spec/SKILL.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/CLAUDE.md"
+      ],
+      "comment": "Artifact templates (references/use-case.md, references/example.md) ship inside the plugin and no override mechanism, config file, or template directory is documented. Users can of course fork the Apache-2.0 repo or edit manually-symlinked skill copies, but that is not a supported customization path."
+    },
+    "hooks": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/contents/aiup-core",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/CLAUDE.md"
+      ],
+      "comment": "Plugin directories contain only .claude-plugin/, .tessl-plugin/, .mcp.json, skills/ and evals/ — no hooks directory and no lifecycle-event system in the manifests or docs."
+    },
+    "sub-agents": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace/contents/aiup-core",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "No agents/ directory, no personas, and no delegation: the human roles (Requirements Engineer, Software Engineer) are people, not agent personas. The framework is a fixed set of six core skills plus per-stack skills; adding your own skill is a host-agent capability, not an AIUP extension point."
+    },
+    "marketplace": {
+      "value": true,
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/.claude-plugin/marketplace.json"
+      ],
+      "comment": "The project is itself a Claude Code plugin marketplace (four plugins in .claude-plugin/marketplace.json, one of them community-contributed) and also publishes to the Tessl registry, \"an agent-agnostic package manager and registry for skills\"."
+    },
+    "install-mechanism": {
+      "value": [
+        "manual-copy",
+        "editor-extension"
+      ],
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://unifiedprocess.ai/tools.html"
+      ],
+      "comment": "The two headline paths have no matching tag id: `/plugin marketplace add ai-unified-process/marketplace` + `/plugin install aiup-core` (Claude Code's plugin manager) and the Tessl package manager. manual-copy covers the documented clone-and-symlink route used for Cursor/Codex/Copilot/Gemini/OpenCode; editor-extension covers the companion AI Unified Process Navigator on the JetBrains and VS Code marketplaces (a spec↔test navigator, not the workflow itself)."
+    },
+    "setup-time": {
+      "value": [
+        "under-5min"
+      ],
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Three commands in Claude Code (add marketplace, install aiup-core, install one stack plugin), verified by seeing the agent read docs/vision.md. Writing the vision document that the workflow needs takes considerably longer, but that is project work rather than tool setup."
+    },
+    "self-hosted": {
+      "value": true,
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-core/README.md"
+      ],
+      "comment": "Skills and artifacts are local files executed by a locally-running agent. The bundled MCP servers (context7, Vaadin/jOOQ/JavaDocs, Microsoft Learn) call out to hosted documentation services, but the workflow itself needs no AIUP-operated backend."
+    },
+    "requires-account": {
+      "value": false,
+      "source": [
+        "https://github.com/AI-Unified-Process/marketplace",
+        "https://unifiedprocess.ai/tools.html"
+      ],
+      "comment": "No AIUP account, login, or license key exists — the plugins are public Apache-2.0 files. You do need a subscription to whichever coding agent hosts them."
+    },
+    "git-worktree-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/aiup-vaadin-jooq/README.md"
+      ],
+      "comment": "No mention of git worktrees, branch isolation, or parallel workstreams in the README or the plugin docs reviewed; the workflow is a single sequential thread through the phases."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://unifiedprocess.ai/methodology.html",
+        "https://unifiedprocess.ai/tutorial.html",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md"
+      ],
+      "comment": "Strong for the project's size: a dedicated site (methodology with four phases, six principles and two workflows; tools; videos; articles), a nine-step end-to-end Book Library tutorial with a starter repo, a ~53 KB README covering installation across six agent harnesses, and a README per plugin. Short of 5 because there is no API/reference documentation, no changelog or versioned docs, and the license/telemetry/customization questions are unaddressed."
+    },
+    "github-stars": {
+      "value": 104,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace",
+        "https://api.github.com/repos/martinellich/aiup-marketplace"
+      ],
+      "comment": "104 stars and 21 forks on AI-Unified-Process/marketplace as of 2026-07-29. The archived predecessor martinellich/aiup-marketplace holds a further 38 stars, which do not carry over. Stales quickly."
+    },
+    "active-maintenance": {
+      "value": true,
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace",
+        "https://api.github.com/orgs/AI-Unified-Process/repos"
+      ],
+      "comment": "Marketplace repo pushed 2026-07-29 (same day as research); the org's intellij-plugin and vscode-plugin repos were pushed 2026-07-23 and book-library on 2026-07-29. Well inside the 90-day window."
+    },
+    "example-projects": {
+      "value": true,
+      "source": [
+        "https://unifiedprocess.ai/tutorial.html",
+        "https://api.github.com/orgs/AI-Unified-Process/repos"
+      ],
+      "comment": "The tutorial walks a Book Library application end to end across nine steps against the AI-Unified-Process/book-library starter repo (Spring Security, seeded users, Maven wrapper for Java 25); a task-manager repo also exists in the org. These are worked examples by the author, not third-party case studies."
+    },
+    "community-channel": {
+      "value": [],
+      "source": [
+        "https://api.github.com/repos/AI-Unified-Process/marketplace",
+        "https://raw.githubusercontent.com/AI-Unified-Process/marketplace/main/README.md",
+        "https://unifiedprocess.ai/"
+      ],
+      "comment": "No community channel with a matching tag id: GitHub Discussions is disabled on the marketplace repo (0 open issues), and neither the README nor the site advertises a Discord, Slack, forum, or subreddit. Discussion happens on the author's LinkedIn and blog (martinelli.ch), for which no tag exists."
+    }
+  }
 }
