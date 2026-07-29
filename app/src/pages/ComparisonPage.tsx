@@ -181,6 +181,7 @@ export function ComparisonPage() {
 
   return (
     <ComparisonView
+      comparisonId={comparisonId}
       attributes={comparisonData.attributes}
       candidates={comparisonData.candidates}
       candidateEntries={comparisonData.candidateEntries}

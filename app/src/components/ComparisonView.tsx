@@ -17,6 +17,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ValueRenderer } from "@/components/values/ValueRenderer";
+import { GitHubLink } from "@/components/GitHubLink";
+import { repoDataDirUrl } from "@/lib/repo";
 import {
   FilterDrawer,
   FilterState,
@@ -45,6 +47,8 @@ export interface SortState {
 }
 
 interface ComparisonViewProps {
+  /** Comparison type id — used to link to its data directory in the repository. */
+  comparisonId?: string;
   attributes: AttributesFile;
   candidates: CandidateFile[];
   candidateEntries: CandidateEntry[];
@@ -58,6 +62,7 @@ interface ComparisonViewProps {
 }
 
 export function ComparisonView({
+  comparisonId,
   attributes,
   candidates,
   candidateEntries,
@@ -282,7 +287,7 @@ export function ComparisonView({
       {/* Header */}
       <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 no-print">
         <div className="container mx-auto px-4 py-6">
-          <div className="mb-1 flex items-center gap-2">
+          <div className="mb-1 flex items-center justify-between gap-2">
             <Button
               variant="ghost"
               size="sm"
@@ -292,6 +297,12 @@ export function ComparisonView({
               <ChevronLeft className="mr-1 h-4 w-4" />
               Back
             </Button>
+            {comparisonId && (
+              <GitHubLink
+                href={repoDataDirUrl(comparisonId)}
+                label={`View the ${attributes.name} data directory on GitHub`}
+              />
+            )}
           </div>
           <h1 className="text-center text-2xl font-bold md:text-3xl">
             {attributes.name}

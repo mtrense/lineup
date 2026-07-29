@@ -14,7 +14,7 @@
  * continues cleanly from the grid's <h2> group headings.
  */
 
-const REPO_URL = "https://github.com/mtrense/lineup";
+import { REPO_URL } from "@/lib/repo";
 
 export function LandingSections() {
   return (

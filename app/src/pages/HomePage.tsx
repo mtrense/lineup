@@ -2,12 +2,18 @@ import { getGroupedComparisons } from "@/lib/data";
 import { getTileSvg } from "@/lib/tiles";
 import { ComparisonTile } from "@/components/ComparisonTile";
 import { LandingSections } from "@/components/LandingSections";
+import { GitHubLink } from "@/components/GitHubLink";
 
 export function HomePage() {
   const groups = getGroupedComparisons();
 
   return (
-    <main className="container mx-auto px-4 py-16">
+    <main className="container relative mx-auto px-4 py-16">
+      <GitHubLink
+        label="View the Lineup repository on GitHub"
+        className="absolute right-4 top-6"
+      />
+
       {/* Hero */}
       <div className="mb-12 text-center">
         <h1 className="mb-2 text-4xl font-bold">Lineup</h1>

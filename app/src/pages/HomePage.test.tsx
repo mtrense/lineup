@@ -310,10 +310,29 @@ describe("HomePage", () => {
 
       renderHomePage();
 
-      const repoLink = screen.getByRole("link", { name: /github/i });
-      expect(repoLink.getAttribute("href")).toMatch(
-        /github\.com\/[^/]+\/lineup/i
+      // Two links point at the repository: the header glyph and the inline
+      // link in the "How to contribute" section.
+      const repoLinks = screen.getAllByRole("link", { name: /github/i });
+      expect(repoLinks.length).toBeGreaterThan(0);
+      for (const link of repoLinks) {
+        expect(link.getAttribute("href")).toMatch(
+          /github\.com\/[^/]+\/lineup/i
+        );
+      }
+    });
+
+    it("renders a repository glyph link at the top of the page", () => {
+      vi.mocked(getGroupedComparisons).mockReturnValue([]);
+
+      renderHomePage();
+
+      const glyph = screen.getByRole("link", {
+        name: "View the Lineup repository on GitHub",
+      });
+      expect(glyph.getAttribute("href")).toBe(
+        "https://github.com/mtrense/lineup"
       );
+      expect(glyph).toHaveAttribute("target", "_blank");
     });
   });
 });
