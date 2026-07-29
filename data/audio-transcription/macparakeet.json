@@ -1,5 +1,177 @@
 {
   "name": "MacParakeet",
   "url": "https://macparakeet.com/",
-  "values": {}
+  "lastVerified": "2026-07-29",
+  "values": {
+    "developer": {
+      "value": "moona3k (independent open-source developer)",
+      "source": ["https://github.com/moona3k/macparakeet", "https://macparakeet.com/blog/macparakeet-open-source/"],
+      "comment": "Single-maintainer open-source project; no company behind it. GitHub handle moona3k is the only identity published."
+    },
+    "first-release": {
+      "value": "2026-02",
+      "source": ["https://macparakeet.com/changelog/"],
+      "comment": "Changelog lists 'MacParakeet Launch · v0.1' in February 2026 (project initialized January 2026)."
+    },
+    "status": {
+      "value": ["active"],
+      "source": ["https://github.com/moona3k/macparakeet", "https://macparakeet.com/"],
+      "comment": "Actively developed; v0.7.x releases shipping through mid-2026 (checked 2026-07-29)."
+    },
+    "license": {
+      "value": ["open-source"],
+      "source": ["https://github.com/moona3k/macparakeet", "https://macparakeet.com/blog/macparakeet-open-source/"],
+      "comment": "GPL-3.0 since 2026-03-25. Previously a $49 one-time proprietary purchase; there is no paid or feature-limited edition now."
+    },
+    "primary-type": {
+      "value": ["dictation", "transcription", "meeting-assistant"],
+      "source": ["https://macparakeet.com/", "https://github.com/moona3k/macparakeet"],
+      "comment": "Genuinely all three: system-wide hotkey dictation, file/URL transcription, and local meeting recording with live notes and optional summaries."
+    },
+    "website": {
+      "value": "https://macparakeet.com/",
+      "source": ["https://macparakeet.com/"],
+      "comment": "Official product site; source at https://github.com/moona3k/macparakeet."
+    },
+    "real-time-dictation": {
+      "value": true,
+      "source": ["https://macparakeet.com/", "https://github.com/moona3k/macparakeet"],
+      "comment": "Hotkey (Fn by default) push-to-talk or double-tap persistent dictation; text is inserted at the cursor in the focused app."
+    },
+    "file-transcription": {
+      "value": true,
+      "source": ["https://macparakeet.com/", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Drag audio/video files or folders; also media URLs (YouTube, podcasts, ~1000 yt-dlp-supported sites)."
+    },
+    "live-meeting-capture": {
+      "value": true,
+      "source": ["https://macparakeet.com/meetings/"],
+      "comment": "Records microphone plus system audio via ScreenCaptureKit with a live local transcript — no bot joins the call."
+    },
+    "streaming-low-latency": {
+      "value": true,
+      "source": ["https://macparakeet.com/meetings/", "https://macparakeet.com/"],
+      "comment": "Live transcript preview during meeting recording and near-instant dictation output; Parakeet v3 runs ~155x realtime on the Neural Engine (vendor figure). Cohere Transcribe is batch-only with no live preview."
+    },
+    "audio-sources": {
+      "value": ["microphone", "file-upload", "system-audio", "url-import"],
+      "source": ["https://macparakeet.com/", "https://macparakeet.com/meetings/"],
+      "comment": "No meeting bot — conference audio is captured at the OS level instead of joining calls as a participant."
+    },
+    "underlying-engine": {
+      "value": "NVIDIA Parakeet TDT v3 on the Apple Neural Engine (FluidAudio CoreML); optional WhisperKit, Nemotron, Cohere Transcribe",
+      "source": ["https://github.com/moona3k/macparakeet", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Engines are user-selectable and can be pinned separately for dictation vs file/meeting work; all run locally."
+    },
+    "language-count": {
+      "value": 98,
+      "source": ["https://macparakeet.com/", "https://github.com/moona3k/macparakeet"],
+      "comment": "Approx. 98 languages total, but only after downloading WhisperKit models. The default Parakeet v3 engine covers English plus 25 European languages; CJK/Korean route to WhisperKit or Cohere."
+    },
+    "english-accuracy": {
+      "value": 4,
+      "source": ["https://arxiv.org/html/2510.06961v1"],
+      "comment": "No independent test of the app itself; rating anchored to its default engine. The Open ASR Leaderboard paper reports Parakeet TDT 0.6B v3 at 6.32% average English WER (v2: 6.05%) — near the top of the leaderboard but a step behind the very best on accuracy. Vendor claims ~2.5% WER, which is not independently corroborated."
+    },
+    "multilingual-auto-detect": {
+      "value": true,
+      "source": ["https://github.com/moona3k/macparakeet", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Parakeet v3 auto-detects among its 25 supported European languages; WhisperKit offers explicit language choice or auto-detect."
+    },
+    "custom-vocabulary": {
+      "value": true,
+      "source": ["https://github.com/moona3k/macparakeet", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "User-managed custom words with case-insensitive replacement, filler removal and snippet expansion; vocabulary is exportable/importable as versioned JSON."
+    },
+    "speaker-diarization": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md", "https://macparakeet.com/meetings/"],
+      "comment": "Automatic diarization with stable speaker IDs, optional manual renaming, and per-speaker talk-time/word stats. Availability depends on the selected engine."
+    },
+    "timestamps": {
+      "value": true,
+      "source": ["https://github.com/moona3k/macparakeet"],
+      "comment": "Word-level timestamps with Parakeet, Nemotron and WhisperKit; not available with the Cohere Transcribe engine."
+    },
+    "ai-summaries-notes": {
+      "value": true,
+      "source": ["https://github.com/moona3k/macparakeet", "https://macparakeet.com/meetings/"],
+      "comment": "Summaries, chat/Ask, formatting and Transforms exist but are entirely opt-in and require the user to configure an LLM provider (OpenAI, Anthropic, Gemini, OpenRouter, or local Ollama/LM Studio). Nothing is summarised by default."
+    },
+    "built-in-editor": {
+      "value": null,
+      "source": ["https://macparakeet.com/interview-transcription/", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Indeterminate: the app has a transcript library, a meeting notes editor and manual speaker renaming, but no documented in-app transcript text-correction editor — docs emphasise reviewing and exporting to external tools. Not confirmed either way as of 2026-07-29."
+    },
+    "translation": {
+      "value": false,
+      "source": ["https://macparakeet.com/", "https://github.com/moona3k/macparakeet"],
+      "comment": "No documented translation feature — the 98-language claim is multilingual transcription, not translation. A user could ad-hoc translate a transcript via the optional LLM prompt/Transform features, but that is not a shipped translation function."
+    },
+    "export-formats": {
+      "value": ["txt", "docx", "pdf", "srt", "vtt", "json", "markdown"],
+      "source": ["https://macparakeet.com/", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Also exports DAPT XML for localization workflows, which has no tag in this comparison. JSON export includes word-level confidence scores."
+    },
+    "processing-location": {
+      "value": ["on-device"],
+      "source": ["https://macparakeet.com/privacy/", "https://macparakeet.com/"],
+      "comment": "All speech recognition runs locally on Apple Silicon; audio never leaves the Mac and no cloud STT is involved. Only the opt-in AI text features send transcript text to a provider the user configures (which can also be local)."
+    },
+    "offline-capable": {
+      "value": true,
+      "source": ["https://macparakeet.com/privacy/", "https://macparakeet.com/"],
+      "comment": "Fully usable offline once the model is downloaded; no account or sign-in required. Network is needed only for model/app downloads, URL imports and optional cloud LLM features."
+    },
+    "data-used-for-training": {
+      "value": ["no"],
+      "source": ["https://macparakeet.com/privacy/"],
+      "comment": "Privacy policy states nothing is sent to servers and telemetry explicitly excludes audio, transcripts and personal identifiers (anonymous usage stats only, opt-out in Settings). The vendor therefore never receives data to train on; if a user enables cloud AI features, that provider's own policy applies."
+    },
+    "data-deletion-control": {
+      "value": true,
+      "source": ["https://macparakeet.com/privacy/", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Everything is stored locally; library supports multi-select bulk deletion, Private Dictation Mode disables history, and removing the app deletes all data."
+    },
+    "platforms": {
+      "value": ["macos"],
+      "source": ["https://macparakeet.com/", "https://github.com/moona3k/macparakeet"],
+      "comment": "Apple Silicon Macs only (M1 or newer), macOS 14.2+. Intel Macs are unsupported because the Parakeet model requires the Neural Engine."
+    },
+    "system-wide-dictation": {
+      "value": true,
+      "source": ["https://macparakeet.com/"],
+      "comment": "Global hotkey inserts text into any focused app (Slack, VS Code, Gmail, Notes); the overlay does not steal focus."
+    },
+    "integrations": {
+      "value": ["none"],
+      "source": ["https://macparakeet.com/meetings/", "https://github.com/moona3k/macparakeet"],
+      "comment": "No service-level integrations or sign-ins. It works with Zoom/Meet/Teams/Slack huddles only by capturing system audio at the OS level, and meeting reminders/auto-start read the local macOS Calendar via EventKit rather than connecting to Google or Microsoft accounts."
+    },
+    "api-automation": {
+      "value": true,
+      "source": ["https://github.com/moona3k/macparakeet", "https://raw.githubusercontent.com/moona3k/macparakeet/main/spec/02-features.md"],
+      "comment": "Public `macparakeet-cli` covers dictation, file/folder/URL transcription, vocabulary and engine selection; repo also documents agent integration (AGENTS.md) and OpenAI-compatible provider hooks."
+    },
+    "pricing-model": {
+      "value": ["free", "open-source"],
+      "source": ["https://macparakeet.com/blog/macparakeet-open-source/", "https://macparakeet.com/"],
+      "comment": "Free and GPL-3.0 since 2026-03-25; no subscription, no paid tier, no account required (checked 2026-07-29)."
+    },
+    "free-tier": {
+      "value": true,
+      "source": ["https://macparakeet.com/blog/macparakeet-open-source/"],
+      "comment": "The whole app is free — there is no stripped-down 'community edition'."
+    },
+    "free-allowance": {
+      "value": "Unlimited local use, all features",
+      "source": ["https://macparakeet.com/blog/macparakeet-open-source/", "https://macparakeet.com/"],
+      "comment": "Only practical costs are an Apple Silicon Mac and, optionally, the user's own LLM API spend for the opt-in AI features."
+    },
+    "entry-price-usd-mo": {
+      "value": null,
+      "source": ["https://macparakeet.com/blog/macparakeet-open-source/"],
+      "comment": "No subscription exists — the tool is free/open source. It was previously sold as a $49 one-time purchase before going GPL-3.0 on 2026-03-25."
+    }
+  }
 }

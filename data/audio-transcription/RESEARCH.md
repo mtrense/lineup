@@ -172,7 +172,7 @@ Users should be able to:
 - [x] Windows Voice Typing — Built-in Windows dictation (Win+H), system-wide
 - [x] tl;dv — Meeting recorder/transcriber with timestamps and highlights
 - [x] Fathom — Free-leaning AI meeting notetaker with summaries
-- [ ] MacParakeet — Free, open-source macOS app doing on-device dictation, file transcription, and meeting capture on Apple Silicon (added 2026-07-29)
+- [x] MacParakeet — Free, open-source macOS app doing on-device dictation, file transcription, and meeting capture on Apple Silicon (added 2026-07-29)
 
 ## Notes for Researchers
 
