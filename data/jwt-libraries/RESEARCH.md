@@ -191,7 +191,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **biscuit (Rust)** — long-standing pure-Rust JOSE implementation with JWE support
 - [x] **golang-jwt/jwt (Go)** — the community successor to dgrijalva/jwt-go; the Go default
 - [x] **lestrrat-go/jwx (Go)** — the most complete Go JOSE stack: JWS, JWE, JWK, JWKS caching
-- [ ] **go-jose (Go)** — the Square-descended JOSE library maintained under go-jose/go-jose
+- [x] **go-jose (Go)** — the Square-descended JOSE library maintained under go-jose/go-jose
 - [ ] **Nimbus JOSE+JWT (JVM)** — the reference-grade JVM JOSE implementation, near-total spec coverage
 - [ ] **JJWT (JVM)** — fluent Java builder API, widely used in Spring-adjacent codebases
 - [ ] **java-jwt (JVM)** — Auth0's JVM library, JWT-focused rather than full JOSE

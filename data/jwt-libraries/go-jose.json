@@ -1,5 +1,501 @@
 {
   "name": "go-jose (Go)",
   "description": "The Square-descended JOSE library maintained under go-jose/go-jose",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["go"],
+      "source": ["https://pkg.go.dev/github.com/go-jose/go-jose/v4"],
+      "comment": "Go-only module (github.com/go-jose/go-jose/v4); go.mod declares go 1.24.0."
+    },
+    "license": {
+      "value": ["apache-2-0"],
+      "source": [
+        "https://api.github.com/repos/go-jose/go-jose",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "Apache-2.0 for the whole module; inherited from the original Square project."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"
+      ],
+      "comment": "All primitives come from Go's standard crypto packages (crypto/rsa, crypto/ecdsa, crypto/ed25519, crypto/aes, crypto/hmac, crypto/subtle). The JOSE framing, the custom case-sensitive JSON decoder and the AES-CBC-HMAC composite cipher (internal `cipher` package) are written in Go inside the module; there is no cgo and no external crypto dependency at v4.1.4."
+    },
+    "repository": {
+      "value": "https://github.com/go-jose/go-jose",
+      "source": ["https://api.github.com/repos/go-jose/go-jose"],
+      "comment": "The predecessor repository square/go-jose (created 2014-11-14) is archived; go-jose/go-jose is the maintained home."
+    },
+    "package": {
+      "value": "https://pkg.go.dev/github.com/go-jose/go-jose/v4",
+      "source": ["https://pkg.go.dev/github.com/go-jose/go-jose/v4"]
+    },
+    "documentation": {
+      "value": "https://pkg.go.dev/github.com/go-jose/go-jose/v4",
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4/jwt"
+      ],
+      "comment": "Godoc is the primary documentation; the jwt subpackage carries 12 runnable examples. The README holds the algorithm support tables."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": [
+        "https://pkg.go.dev/gopkg.in/square/go-jose.v1?tab=versions",
+        "https://api.github.com/repos/square/go-jose",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4?tab=versions"
+      ],
+      "comment": "Lineage: gopkg.in/square/go-jose.v1 v1.0.0 was published 2016-03-21 (repo square/go-jose created 2014-11-14). The current module path github.com/go-jose/go-jose/v4 only starts at v4.0.0 (2024-02-26); 2016 is recorded as the first public release of this library, not of this module path."
+    },
+    "latest-version": {
+      "value": "4.1.4",
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4?tab=versions",
+        "https://api.github.com/repos/go-jose/go-jose/releases?per_page=15"
+      ],
+      "comment": "v4.1.4, published 2026-03-31 on the module proxy (the GitHub release object is dated 2026-04-04). v3 receives security patches only; v1/v2 are obsolete. All findings below were read against the v4.1.4 tag unless noted. The README announces a future v5 with breaking changes built on encoding/json/v2."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"
+      ],
+      "comment": "HS256/384/512 are SignatureAlgorithm constants implemented in symmetric.go over crypto/hmac."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "Full PSS family implemented via crypto/rsa SignPSS/VerifyPSS."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "P-256/P-384/P-521 only. ES256K (secp256k1, RFC 8812) is not implemented — there is no secp256k1 curve handling anywhere in asymmetric.go."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "Registered under the RFC 8037 `EdDSA` identifier and backed by crypto/ed25519; the OKP curve is fixed to Ed25519. Ed448 is not supported (Go's stdlib has no Ed448). A legacy KeyAlgorithm constant `ED25519` also exists in shared.go."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "rsa1-5",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/crypter.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"
+      ],
+      "comment": "Essentially complete JWA key-management coverage. Two further algorithms the schema's tag set cannot express are also implemented: ECDH-ES+A192KW and PBES2-HS384+A192KW. The README's key-encryption table omits the PBES2 family, but all three PBES2 variants are KeyAlgorithm constants and are handled in crypter.go addRecipient() plus symmetric.go (password-based, []byte key)."
+    },
+    "jwe-content-encryption": {
+      "value": [
+        "a128cbc-hs256",
+        "a192cbc-hs384",
+        "a256cbc-hs512",
+        "a128gcm",
+        "a192gcm",
+        "a256gcm"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"
+      ],
+      "comment": "All six RFC 7518 content-encryption algorithms. XC20P (XChaCha20-Poly1305) is not implemented. DEFLATE (`zip: DEF`) compression is supported, with a decompression size limit added after CVE-2024-28180."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["rsa1-5", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "RSA1_5 (PKCS#1 v1.5 key wrapping, discouraged by RFC 8725 §3.10) remains a usable KeyAlgorithm, though v4 requires the caller to name it in the ParseEncrypted allow-list before it can be reached. asymmetric.go contains no minimum RSA modulus check, so an RSA key under 2048 bits is accepted. `alg: none` is not implemented at all, and secp256k1 is absent."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/opaque.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go"
+      ],
+      "comment": "There is no plugin registry for new `alg` values, but OpaqueSigner/OpaqueVerifier (and OpaqueKeyEncrypter/OpaqueKeyDecrypter for JWE) let a caller supply an arbitrary implementation, and SignatureAlgorithm is an open string type, so a custom identifier can be admitted through the parse-time allow-list. Judged `true` as an escape hatch; note that it bypasses the library's own algorithm handling, and its primary intended use is hardware/KMS-backed keys rather than new algorithms."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/signing.go"
+      ],
+      "comment": "The unsecured JWS variant is not implemented: there is no `none` SignatureAlgorithm constant and no verifier for it. In addition, since v4 every parse entry point (ParseSigned, ParseSignedCompact, ParseSignedJSON, ParseDetached, jwt.ParseSigned) requires an explicit []SignatureAlgorithm allow-list and fails when the header alg is not in it, so `none` cannot be reached even by omission. There is no opt-in switch to enable it."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/jwt.go"
+      ],
+      "comment": "v4 made the allow-list a mandatory positional parameter: `ParseSigned(signature string, signatureAlgorithms []SignatureAlgorithm)` and `ParseEncrypted(s string, keyAlgorithms []KeyAlgorithm, contentEncryption []ContentEncryption)` — code will not compile without it. This was the headline breaking change of v4 (v3 and earlier trusted the header alg, moderated only by key type)."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/signing.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "Keys are passed as `interface{}`, so there is no compile-time separation (that would be a 5), but the concrete Go type of the key selects the verifier (*rsa.PublicKey, *ecdsa.PublicKey, ed25519.PublicKey, []byte for HMAC) and a mismatch between that verifier and the header alg fails closed at runtime with ErrUnsupportedAlgorithm/ErrUnsupportedKeyType. Combined with the mandatory v4 algorithm allow-list, RS256→HS256 confusion requires the caller to both hand over the RSA public key as a []byte and to whitelist HS256. Rated 4 per the guideline's 'single key abstraction, key carries its type, mismatch fails closed'."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/jwt.go"],
+      "comment": "`(*JSONWebToken).UnsafeClaimsWithoutVerification(dest ...interface{})` is a distinct, unmistakably named method, documented as not verifying signed JWTs; the verifying path is the separate `Claims(key, dest...)`. There is no flag-controlled shared entry point."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/jwt.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/validation.go"
+      ],
+      "comment": "`Claims(key, &dest)` verifies the signature and unmarshals — it performs no claim validation at all. Time and identity claims are checked only when the caller explicitly calls `claims.Validate(jwt.Expected{})` or `ValidateWithLeeway`. The capability covers iss, sub, aud, jti, exp, nbf and iat; none of it is automatic, so the default is tagged `none` per the 'distinguish can from does by default' rule."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/validation.go"],
+      "comment": "Validation is entirely opt-in, and within it `jwt.Expected` fields with a zero value are skipped, so `claims.Validate(jwt.Expected{})` passes without any aud or iss check. Only Time is special-cased (zero means now)."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/validation.go"],
+      "comment": "`ValidateWithLeeway(e Expected, leeway time.Duration)` takes arbitrary leeway; `Validate` applies `DefaultLeeway = 1 * time.Minute` to exp/nbf/iat. A one-minute default is conservative and worth knowing about, not alarming."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"],
+      "comment": "HMAC tag verification uses `subtle.ConstantTimeCompare(mac, expected)` from crypto/subtle; the AES-CBC-HMAC composite cipher in the internal `cipher` package likewise compares tags in constant time."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "Only one of the two checks exists. HMAC secrets are enforced against the hash output size (`if len(ctx.key)*8 < 256 { return nil, ErrInvalidKeySize }` for HS256, with matching 384/512 checks), which is the RFC 7518 §3.2 requirement. There is no minimum RSA modulus check anywhere in asymmetric.go, so RSA keys under 2048 bits are accepted for both signing and verification. Recorded `false` because the attribute requires both."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/signing.go"
+      ],
+      "comment": "`supportedCritical` is a hardcoded set containing only `b64`; `checkSupportedCritical` errors on any other name in `crit`, and `checkNoCritical` is used where no critical headers are acceptable. Correct per RFC 7515 §4.1.11. There is no API for the caller to declare additional understood critical headers."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go",
+        "https://api.github.com/repos/go-jose/go-jose/security-advisories?per_page=30"
+      ],
+      "comment": "PBES2 decryption rejects `p2c` above 1,000,000 ('invalid P2C: too high'); the encryption default is 600,000, matching OWASP guidance. DEFLATE decompression is size-limited (added for CVE-2024-28180) and the number of compact-serialization segments is bounded (CVE-2025-27144). Nesting itself is shallow by construction: ParseSignedAndEncrypted handles exactly one signed-inside-encrypted level rather than recursing."
+    },
+    "cve-history": {
+      "value": ["historical-pre-2020", "historical-2020s", "recent-24-months"],
+      "source": [
+        "https://api.github.com/repos/go-jose/go-jose/security-advisories?per_page=30",
+        "https://pkg.go.dev/vuln/GO-2022-0945",
+        "https://pkg.go.dev/gopkg.in/square/go-jose.v1?tab=versions"
+      ],
+      "comment": "All known issues are fixed. Recent: CVE-2026-34986 / GHSA-78h2-9frx-2jm8 (high, published 2026-03-31) — panic on JWE decryption of a malformed token with an empty encrypted_key; fixed in v4.1.4 and v3.0.5. 2020s: CVE-2025-27144 / GHSA-c6gw-w398-hv78 (low, 2025-02-24) — memory-exhaustion DoS parsing tokens with very many dots, fixed in v4.0.5 / v3.0.4; CVE-2024-28180 / GHSA-c5q2-7r4c-mv6g (medium, 2024-03-07) — decompression bomb via highly compressed JWE payloads, fixed in v4.0.1 / v3.0.3 / v2.6.3. Pre-2020 (against the square/go-jose predecessor): CVE-2016-9122 / GHSA-77gc-fj98-665h / GO-2022-0945 — multiple-signature confusion in Verify, fixed in v1.1.0 (the CVE-2016-9121/9123 siblings were fixed in the same cycle). Checked 2026-07-30."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/SECURITY.md"],
+      "comment": "SECURITY.md declares v3 and above supported, routes disclosure through the Let's Encrypt security contact, and promises acknowledgement within 24 hours. GitHub security advisories are also published for this repo."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/SECURITY.md",
+        "https://api.github.com/repos/go-jose/go-jose/contents/"
+      ],
+      "comment": "Searched and found none: SECURITY.md, the README and the repository root contain no audit report or reference to a third-party review, and a web search surfaced no published audit of go-jose. Note that the underlying primitives are Go's standard crypto packages, which were audited by Trail of Bits as part of the FIPS 140-3 module work — that audit covers the stdlib, not this library."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/signing.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go"
+      ],
+      "comment": "Both directions: NewSigner/NewMultiSigner for signing, Verify/VerifyMulti for verification."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/crypter.go",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "Full JWE: NewEncrypter/NewMultiEncrypter, ParseEncrypted and Decrypt/DecryptMulti, including multi-recipient tokens."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go"],
+      "comment": "JSONWebKey implements MarshalJSON/UnmarshalJSON for RSA, EC, OKP (Ed25519) and oct keys, plus a Valid() sanity check and IsPublic()/Public() helpers."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "No HTTP anywhere in the module (go.mod pulls in nothing and the package index exposes no fetcher). You fetch the JWKS yourself and unmarshal it into a JSONWebKeySet."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go"],
+      "comment": "No cache, TTL handling or refetch-on-unknown-kid — a consequence of there being no remote fetch at all. Rotation is the caller's responsibility."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go"],
+      "comment": "A *JSONWebKeySet may be passed directly as the verification or decryption key: the internal tryJWKS helper reads `kid` from the headers, looks it up via JSONWebKeySet.Key(kid), and fails closed with ErrJWKSKidNotFound when the token carries no kid or the kid is unknown. JSONWebKeySet.Key returns a slice because the spec permits duplicate kids; tryJWKS uses the first match."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk_test.go"
+      ],
+      "comment": "JSONWebKey.Thumbprint(hash) implements RFC 7638 for RSA, EC and OKP keys, and is tested against the RFC 7520 cookbook keys. RFC 9278 thumbprint URIs are not provided."
+    },
+    "nested-jwt": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/jwt.go",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4/jwt"
+      ],
+      "comment": "jwt.SignedAndEncrypted builds signed-then-encrypted tokens; jwt.ParseSignedAndEncrypted returns a NestedJSONWebToken whose Decrypt() yields the inner JSONWebToken for signature verification. Both the outer key-management/content-encryption allow-lists and the inner signature allow-list are required parameters."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "CompactSerialize and FullSerialize on both JWS and JWE, ParseSignedJSON/ParseEncryptedJSON on the way back, and NewMultiSigner/VerifyMulti plus NewMultiEncrypter for multiple signatures and multiple recipients. The flattened form is produced when there is a single signature/recipient."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/signing.go"
+      ],
+      "comment": "RFC 7515 Appendix F: DetachedCompactSerialize for producing, ParseDetached(signature, payload, algs) plus DetachedVerify/DetachedVerifyMulti for consuming."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jws.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/shared.go"
+      ],
+      "comment": "RFC 7797 is supported: `b64` is the sole entry in the supportedCritical set, and computeAuthData skips base64 encoding of the payload when the b64 header is false, on both the signing and verification paths."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4",
+        "https://api.github.com/repos/go-jose/go-jose/contents/"
+      ],
+      "comment": "The library exposes no key-generation API; callers use Go's stdlib (rsa.GenerateKey, ecdsa.GenerateKey, ed25519.GenerateKey) or their own randomness for oct keys. The bundled `jose-util` command in the repository can generate keys, but it is a CLI, not part of the importable API."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/shared.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go"
+      ],
+      "comment": "JSONWebKey parses x5c into Certificates, x5t/x5t#S256 into CertificateThumbprintSHA1/SHA256, and x5u into CertificatesURL. Two traps worth naming: the JWS/JWE Header itself only sanitizes x5c (no x5u on the header path), and chain validation is opt-in — `Header.Certificates(opts x509.VerifyOptions)` calls leaf.Verify(opts), but nothing validates the chain unless the caller invokes it. x5u is never dereferenced by the library."
+    },
+    "key-input-formats": {
+      "value": ["jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/crypter.go",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "Directly ingests JWK and JWKS documents, raw []byte/string for symmetric keys and PBES2 passwords, and native Go key structs (*rsa.PrivateKey, *ecdsa.PrivateKey, ed25519.PrivateKey and their public counterparts). PEM and PKCS#8/PKCS#1/SEC1/SPKI DER are not decoded by the library — the idiomatic Go route is encoding/pem plus crypto/x509 before handing the key over. DER certificates do get parsed indirectly as part of a JWK's x5c chain."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/opaque.go",
+        "https://api.github.com/repos/go-jose/go-jose/contents/"
+      ],
+      "comment": "OpaqueSigner (Public/Algs/SignPayload) and OpaqueVerifier let the private key stay inside an HSM, KMS or PKCS#11 token; OpaqueKeyEncrypter/OpaqueKeyDecrypter do the same for JWE key wrapping. The repository ships a `cryptosigner` subpackage that adapts any crypto.Signer — the standard Go interface implemented by cloud KMS clients — into an OpaqueSigner."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/README.md",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4"
+      ],
+      "comment": "No first-party middleware for Gin, Echo, Chi or net/http; the library deliberately stays a protocol implementation. It is instead consumed as a building block by higher-level projects (notably Let's Encrypt's ACME stack)."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://pkg.go.dev/github.com/go-jose/go-jose/v4"],
+      "comment": "Plain blocking Go functions; goroutines are the ecosystem's concurrency answer, so there is no separate async surface and no context.Context parameter on the crypto paths."
+    },
+    "typed-claims": {
+      "value": ["both"],
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4/jwt",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/jwt/jwt.go"
+      ],
+      "comment": "jwt.Claims is a struct for the registered claims, and `Claims(key, dest ...interface{})` accepts any number of destinations, so custom claims can go into a user-defined struct (JSON-tag driven, checked at compile time in the caller's code) or into a map[string]interface{} — both styles are shown in the package's runnable examples."
+    },
+    "crypto-backend": {
+      "value": ["stdlib"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/symmetric.go"
+      ],
+      "comment": "Exclusively Go's standard crypto packages. Earlier v3/v4 releases depended on golang.org/x/crypto; at v4.1.4 go.mod declares no requirements at all."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.sum"
+      ],
+      "comment": "Pure Go with no cgo: go.mod contains only the module and `go 1.24.0` lines, and go.sum is empty, so the dependency graph is the standard library alone."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/asymmetric.go"
+      ],
+      "comment": "Inferred rather than advertised: the module has no dependencies, no cgo and no build tags, and uses only crypto/* plus encoding packages, all of which build for GOOS=js/GOARCH=wasm and for wasip1. The project makes no browser/WASM claim and CI does not appear to test those targets."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod"],
+      "comment": "The question does not translate cleanly for a server-side Go library: Cloudflare Workers, Vercel Edge and Deno Deploy are JS/WASM runtimes, and there is no Node-builtin or native-module constraint here to evaluate. The library imposes no obstacle (pure stdlib, compiles to wasm), but there is no evidence of anyone running it on those platforms, so recorded null rather than a guess in either direction."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://go.dev/doc/security/fips140",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod"
+      ],
+      "comment": "Because every primitive comes from crypto/rsa, crypto/ecdsa, crypto/aes and friends, building with GOFIPS140 routes them through the Go Cryptographic Module (v1.0.0, CMVP certificate #5247). go.mod already requires go 1.24.0, the release that introduced the module. The validation belongs to the Go module, not to go-jose, and FIPS mode does not stop the library offering non-approved algorithms such as EdDSA."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.mod",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/go.sum"
+      ],
+      "comment": "Zero direct (and zero transitive) module dependencies at v4.1.4: go.mod has no require block and go.sum is empty. Verified 2026-07-30."
+    },
+    "package-size": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/go-jose/go-jose/v4"],
+      "comment": "The Go module proxy and pkg.go.dev do not publish an artifact size for a module version, so there is no registry-reported figure comparable to an npm tarball or a JAR."
+    },
+    "github-stars": {
+      "value": 524,
+      "source": ["https://api.github.com/repos/go-jose/go-jose"],
+      "comment": "524 stars on go-jose/go-jose as of 2026-07-30. Understates reach: the archived predecessor square/go-jose carried the stars for the project's first eight years, and pkg.go.dev reports 601 packages importing v4."
+    },
+    "downloads": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/go-jose/go-jose/v4"],
+      "comment": "Go's module proxy publishes no download counts, so there is no per-ecosystem download window to report. The closest available adoption proxy is pkg.go.dev's 'imported by' figure: 601 packages for v4 as of 2026-07-30."
+    },
+    "last-release": {
+      "value": "2026-03-31",
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4?tab=versions",
+        "https://api.github.com/repos/go-jose/go-jose/releases?per_page=15"
+      ],
+      "comment": "v4.1.4 per the module proxy's publication date; the corresponding GitHub release object is dated 2026-04-04. The maintenance branch v3.0.5 shipped the same fix on the same day."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/go-jose/go-jose",
+        "https://api.github.com/repos/go-jose/go-jose/releases?per_page=15",
+        "https://api.github.com/repos/go-jose/go-jose/commits?per_page=50"
+      ],
+      "comment": "Steady cadence (v4.1.0 through v4.1.4 across 2025–2026), advisories fixed on both v4 and v3 branches, last push 2026-07-20 and commits through June 2026. The README already sketches a v5 built on encoding/json/v2. v3 is explicitly security-patch-only and v1/v2 are declared obsolete."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/go-jose/go-jose/commits?per_page=50"],
+      "comment": "The recent ~50 commits come from a handful of humans — mcpherrinm (Matthew McPherrin) and jsha (Jacob Hoffman-Andrews), both ISRG/Let's Encrypt engineers, plus occasional outside contributors — with the remainder being dependabot. Effectively maintained by a small team backed by an organisation that depends on it, rather than by a solo author."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://pkg.go.dev/gopkg.in/square/go-jose.v1?tab=versions",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/SECURITY.md",
+        "https://api.github.com/repos/go-jose/go-jose/security-advisories?per_page=30"
+      ],
+      "comment": "A decade of production use (v1 in 2016), near-complete JWA coverage, a documented disclosure process, and a track record of shipping coordinated advisories with backports to the previous major. The v3→v4 break that made algorithm allow-lists mandatory is exactly the kind of security-driven upgrade path the 'mature' bar describes."
+    },
+    "rfc-conformance-testing": {
+      "value": ["cookbook-7520", "interop-suite"],
+      "source": [
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwk_test.go",
+        "https://raw.githubusercontent.com/go-jose/go-jose/v4.1.4/jwe_test.go",
+        "https://api.github.com/repos/go-jose/go-jose/contents/"
+      ],
+      "comment": "jwk_test.go carries the RFC 7520 cookbook keys and their RFC 7638 thumbprints. jwe_test.go is built largely from cross-library interop vectors explicitly labelled as generated with nimbus-jose-jwt, jose4j and node-jose, which is the strongest interop signal here. The repository also has a fuzz/ directory. No use of the Wycheproof suite was found."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4",
+        "https://pkg.go.dev/github.com/go-jose/go-jose/v4/jwt",
+        "https://raw.githubusercontent.com/go-jose/go-jose/main/README.md"
+      ],
+      "comment": "Rated 4: thorough godoc with roughly a dozen runnable, output-checked examples covering signing, verification, encryption and nested tokens, documented error values, and a README with complete algorithm tables and version guidance. Short of 5 because there is no task-oriented guide site, no JWKS/key-management walkthrough (the library has no JWKS fetching to document), and security considerations live in SECURITY.md and release notes rather than in a documentation section."
+    }
+  }
 }
