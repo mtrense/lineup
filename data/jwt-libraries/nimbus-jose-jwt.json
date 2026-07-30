@@ -1,5 +1,526 @@
 {
   "name": "Nimbus JOSE+JWT (JVM)",
   "description": "The reference-grade JVM JOSE implementation, near-total spec coverage",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["jvm"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "Java library, source/target level 1.8 with a Java 9 multi-release build; the README positions it as \"the most popular and robust Java 8+ and Android library for JSON Web Tokens\". Android is a supported target but has no tag in this schema."
+    },
+    "license": {
+      "value": ["apache-2-0"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml",
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1.pom",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"
+      ],
+      "comment": "\"The Apache Software License, Version 2.0\" declared in both the development pom and the published 10.9.1 pom."
+    },
+    "implementation": {
+      "value": ["platform-provider"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/MACVerifier.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSAVerifier.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "Primitives are obtained from the JCA: each signer/verifier resolves a JCA algorithm name and runs on the default (or a caller-supplied) java.security.Provider via JCAContext. BouncyCastle, BouncyCastle FIPS and Google Tink are optional providers/dependencies (Tink for XC20P; BouncyCastle for PEM parsing and older JDKs). The JOSE framing, Base64URL codec and composite constructions are plain Java in the library itself; no FFI or bundled primitive implementations."
+    },
+    "repository": {
+      "value": "https://bitbucket.org/connect2id/nimbus-jose-jwt",
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Canonical repository is Bitbucket (git), not GitHub; the GitHub copies are third-party forks. Issue tracker: bitbucket.org/connect2id/nimbus-jose-jwt/issues."
+    },
+    "package": {
+      "value": "https://central.sonatype.com/artifact/com.nimbusds/nimbus-jose-jwt",
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/maven-metadata.xml",
+        "https://central.sonatype.com/api/internal/browse/component/versions?sortField=normalizedVersion&sortDirection=desc&page=0&size=12&filter=namespace%3Acom.nimbusds%2Cname%3Animbus-jose-jwt"
+      ],
+      "comment": "Maven Central coordinates com.nimbusds:nimbus-jose-jwt. Verified through the Maven Central metadata and the central.sonatype.com browse API rather than the HTML page (repo1 and mvnrepository refuse automated fetches)."
+    },
+    "documentation": {
+      "value": "https://connect2id.com/products/nimbus-jose-jwt",
+      "source": [
+        "https://connect2id.com/products/nimbus-jose-jwt",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities",
+        "https://connect2id.com/products/nimbus-jose-jwt/download"
+      ],
+      "comment": "Connect2id hosts a full documentation site (feature overview, task-oriented examples, security guidance, download and contribute pages); Javadoc is published alongside each release on Maven Central as a -javadoc.jar."
+    },
+    "first-release": {
+      "value": "2012",
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/CHANGELOG.txt"],
+      "comment": "CHANGELOG.txt opens with \"version 1.0 (2012-03-01) — First version based on the OpenInfoCard JWT, JWS and JWE code base.\" The 2.0 rewrite that decoupled the JOSE object model from the crypto implementations followed in October 2012."
+    },
+    "latest-version": {
+      "value": "10.9.1",
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/maven-metadata.xml",
+        "https://storage.googleapis.com/storage/v1/b/maven-central/o?prefix=maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/&fields=items(name,size)",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "Maven Central metadata gives <release>10.9.1</release> with lastUpdated 2026-05-31 (checked 2026-07-30); no 11.x artifact exists on Central (the 11.0 path 404s). The master pom still reads 10.9-SNAPSHOT and the CHANGELOG carries an in-progress 11.0 entry dated 2026-06-18, so 11.0 is prepared but unpublished. Findings below were read against the master branch, which sits between 10.9.1 and the unreleased 11.0."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/impl/MACProvider.java"
+      ],
+      "comment": "MACProvider/MACSigner/MACVerifier implement the full HMAC_SHA family, with per-algorithm minimum secret lengths (256/384/512 bits)."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSAVerifier.java"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSAVerifier.java"
+      ],
+      "comment": "Full PSS family; on JDKs without native RSASSA-PSS the BouncyCastle provider can be plugged in through the JCA context."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/test/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path"
+      ],
+      "comment": "ES256/384/512 plus ES256K (secp256k1, RFC 8812) — the README lists RFC 8812 among the implemented specs. Exercised by ECDSATest, ECDSARoundTripTest, ECDSASpecVectorsTest and ECDSACookbookTest; ECDHCurveCheckTest guards the invalid-curve class of attack."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/test/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Both the RFC 8037 `EdDSA` identifier and the curve-specific `Ed25519`/`Ed448` identifiers are registered as JWSAlgorithm constants, but the only shipped implementations are Ed25519Signer/Ed25519Verifier (tested by Ed25519SignVerifyTest). No Ed448 signer or verifier class exists in com.nimbusds.jose.crypto, so Ed448 is recorded as unsupported per the \"verify algorithm claims against tests\" rule."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "rsa1-5",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWEAlgorithm.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Complete RFC 7518 key-management coverage, every entry backed by a concrete encrypter/decrypter pair (AESEncrypter, DirectEncrypter, ECDHEncrypter, X25519Encrypter, PasswordBasedEncrypter, RSAEncrypter, MultiEncrypter). Four further implemented algorithms the tag set cannot express: RSA-OAEP-384, RSA-OAEP-512, ECDH-ES+A192KW/PBES2-HS384+A192KW, and the whole ECDH-1PU family (draft, key agreement with sender authentication). RSA1_5 and RSA-OAEP (SHA-1) are flagged @Deprecated in JWEAlgorithm but remain usable."
+    },
+    "jwe-content-encryption": {
+      "value": [
+        "a128cbc-hs256",
+        "a192cbc-hs384",
+        "a256cbc-hs512",
+        "a128gcm",
+        "a192gcm",
+        "a256gcm",
+        "xc20p"
+      ],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/EncryptionMethod.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"
+      ],
+      "comment": "All seven, including XC20P (XChaCha20-Poly1305), which needs the optional Google Tink dependency on the classpath. Two legacy A128CBC_HS256_DEPRECATED / A256CBC_HS512_DEPRECATED constants also exist for pre-final drafts. DEFLATE (`zip`) compression is supported with a configurable maximum compressed-ciphertext length."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWEAlgorithm.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/?pagelen=100&fields=values.path",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities"
+      ],
+      "comment": "`alg: none` is representable — PlainObject/PlainHeader (and PlainJWT) implement unsecured JOSE objects — but as a *separate Java type* that can never be mistaken for a verified JWS, and DefaultJWTProcessor rejects it outright. RSA1_5 is marked @Deprecated yet still shipped (with MMA countermeasures added back in 2.13). RSA keys below 2048 bits are rejected by default (opt-out via the AllowWeakRSAKey option), and ES256K is supported as the registered RFC 8812 algorithm rather than as unrestricted secp256k1, so neither of those tags applies."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSAlgorithm.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"
+      ],
+      "comment": "JWSSigner/JWSVerifier/JWEEncrypter/JWEDecrypter are public interfaces, Algorithm and JWSAlgorithm have public constructors so a custom `alg` identifier can be minted, and DefaultJWTProcessor accepts a custom JWSVerifierFactory/JWEDecrypterFactory. A custom verifier bypasses the library's own algorithm handling entirely, so the escape hatch cuts both ways; the same mechanism is how HSM/remote signers are plugged in."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Two independent barriers. (1) Type separation: unsecured tokens parse into PlainJWT/PlainObject, a different class from SignedJWT/JWSObject, so an unsecured token can never satisfy a signature-verifying code path — Connect2id's security page states the library \"will not allow you to confuse unsecured JWTs with HMAC or digital signature protected JWTs, because it uses separate Java types for them\". (2) DefaultJWTProcessor.process(PlainJWT, ...) throws BadJOSEException(\"Unsecured (plain) JWTs are rejected, extend class to handle\") — the only way to accept one is to subclass the processor, which is an explicit and unmistakable opt-in."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify", "inferred-from-key"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/MACVerifier.java",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities"
+      ],
+      "comment": "Both mechanisms are in play and neither reads the accepted set from the token. On the high-level path DefaultJWTProcessor requires a JWSKeySelector — the standard JWSVerificationKeySelector is constructed with the expected JWSAlgorithm(s) and refuses any other header alg, and the processor fails closed when no key selector is configured. On the low-level path you hand JWSObject.verify() a concrete verifier (MACVerifier, RSASSAVerifier, ECDSAVerifier, Ed25519Verifier) whose supported algorithm set is fixed by the verifier class and the key it wraps; MACVerifier additionally re-checks the header alg against its accepted set before computing the tag. Connect2id's own guidance insists the application define the permitted algorithms up front."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/MACVerifier.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSAVerifier.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"
+      ],
+      "comment": "Verifier classes are separate per family and their constructors take family-specific key types (RSASSAVerifier takes an RSAPublicKey, ECDSAVerifier an ECPublicKey, Ed25519Verifier an OctetKeyPair), so the classic RS256→HS256 swap cannot be expressed by passing the same object to the same call. Not a 5 because MACVerifier also accepts a raw byte[]/String secret, so a caller who deliberately feeds RSA public-key bytes to MACVerifier can still build the unsafe construction; the header alg is then re-checked at runtime and mismatches fail closed with a JOSEException. Rated 4 per the guideline's \"key carries its type, mismatch fails closed at runtime\"."
+    },
+    "unverified-decode-separated": {
+      "value": false,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSObject.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"
+      ],
+      "comment": "Parsing and verification are separate steps rather than a flag — but the unverified step is the shorter one and carries no warning name: SignedJWT.parse(token).getJWTClaimsSet() returns claims from an unverified token, and nothing forces the subsequent verify(verifier) call. There is no `unsafe`/`insecure`-prefixed API to signal the danger. The safe path is the explicitly-assembled DefaultJWTProcessor. Recorded false per the guideline's \"the unsafe path is the shortest one\"; the mitigation is that JWSObject tracks a State (UNVERIFIED/VERIFIED) that a caller can query."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "typ"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTClaimsVerifier.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"
+      ],
+      "comment": "DefaultJWTProcessor installs a DefaultJWTClaimsVerifier automatically, which checks exp and nbf when present (with 60 s clock skew), and a DefaultJOSEObjectTypeVerifier that requires the `typ` header to be absent or JWT. aud, iss and arbitrary required/prohibited claims are supported but only checked when the caller configures them — the capability exists, the default does not exercise it. Note also that exp/nbf are only enforced *if present*: to make them mandatory you must add them to the required-claims set."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTClaimsVerifier.java"],
+      "comment": "The no-argument DefaultJWTClaimsVerifier accepts any audience and any issuer; both are optional constructor parameters. Verification therefore succeeds without the application ever stating an expected aud or iss. Later constructors do let you pass a required audience, an exact-match claims set and a required-claims set, which is the recommended usage."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTClaimsVerifier.java"],
+      "comment": "setMaxClockSkew(int seconds) on DefaultJWTClaimsVerifier; the default is 60 seconds, applied to exp and nbf. Conservative rather than alarming."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/MACVerifier.java"],
+      "comment": "MACVerifier.verify() returns ConstantTimeUtils.areEqual(expectedHMAC, signature.decode()). Historically relevant: a timing leak in MAC verification was fixed in 3.1.2 (2014-09-01) and cache-timing in the Base64URL codec in 6.0, both listed in SECURITY-CHANGELOG.txt."
+    },
+    "minimum-key-size-enforced": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/impl/MACProvider.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSASigner.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/RSASSAVerifier.java",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities"
+      ],
+      "comment": "Both halves are enforced, with one gap worth naming. HMAC: MACProvider requires at least 256 bits at construction and ensureSecretLengthSatisfiesAlgorithm() re-checks 256/384/512 bits per algorithm on every sign and verify — exactly RFC 7518 §3.2. RSA: OptionUtils.ensureMinRSAPrivateKeySize() rejects private keys under 2048 bits in RSASSASigner (and RSADecrypter), overridable only via the explicit AllowWeakRSAKey option (the old boolean allowWeakKey constructor is deprecated); Connect2id's security page states the 2048-bit minimum. Gap: RSASSAVerifier performs no key-size check at all, so a short RSA *public* key supplied by the application (e.g. from an untrusted JWKS) will be used for verification."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/impl/CriticalHeaderParamsDeferral.java"],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour with an opt-in extension: headerPasses() fails the header if a `crit` entry is neither in the processed set (which contains only `b64`, i.e. RFC 7797) nor in the caller-supplied deferred set. Applications declare what they understand via setDeferredCriticalHeaderParams() on the CriticalHeaderParamsAware verifiers/decrypters."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/PasswordBasedDecrypter.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/SECURITY-CHANGELOG.txt",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/CHANGELOG.txt"
+      ],
+      "comment": "PasswordBasedDecrypter.MAX_ALLOWED_ITERATION_COUNT = 1,000,000 is checked against the JWE `p2c` header before key derivation (the fix for CVE-2023-52428). JSON nesting depth is bounded after the StackOverflowError issues of 9.10 and CVE-2025-53864 (fixed in 10.0.2/9.37.4), and 10.7 added a configurable maximum compressed-ciphertext length for DEFLATE payloads. Each limit was added reactively to a reported DoS rather than designed in up front."
+    },
+    "cve-history": {
+      "value": ["historical-pre-2020", "historical-2020s", "recent-24-months"],
+      "source": [
+        "https://api.github.com/advisories?ecosystem=maven&affects=com.nimbusds:nimbus-jose-jwt&per_page=30",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/SECURITY-CHANGELOG.txt"
+      ],
+      "comment": "Six published advisories, all fixed, checked 2026-07-30. Recent: CVE-2025-53864 / GHSA-xwmg-2g98-w7v9 (medium, 2025-07-11) — uncontrolled recursion on deeply nested JSON claim sets, fixed in 9.37.4 and 10.0.2. 2020s: CVE-2023-52428 / GHSA-gvpg-vgmx-xg6w (high, 2024-02-11) — DoS via a huge JWE p2c value in PasswordBasedDecrypter, fixed in 9.37.2. Pre-2020: CVE-2019-17195 / GHSA-f6vf-pq8c-69m4 (critical, 2019-10-16) — uncaught exceptions while parsing JOSE headers, fixed in 7.9; CVE-2017-12972 (HMAC bypass via integer overflow, fixed 4.39), CVE-2017-12973 (AES-CBC padding oracle, fixed 4.39), CVE-2017-12974 (invalid-curve attack in ECDH, fixed 4.36). The project additionally keeps a SECURITY-CHANGELOG.txt recording hardening work that never got a CVE (MMA countermeasures 2013, MAC timing 2014, Base64URL cache timing 2018, CVE-2022-21449 ECDSA signature checks 2022) — a strong signal of an active security process."
+    },
+    "security-policy": {
+      "value": true,
+      "source": [
+        "https://connect2id.com/products/nimbus-jose-jwt/contribute",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/SECURITY-CHANGELOG.txt",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities"
+      ],
+      "comment": "No SECURITY.md in the repository, but the documented private channel is explicit: \"If you suspect a critical vulnerability or wish to have a private discussion with the library maintainers, write an email to Connect2id support\" (support@connect2id.com), alongside a dedicated security-vulnerabilities documentation page and a maintained SECURITY-CHANGELOG.txt."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Searched and found none: no audit report in the repository root, none referenced on the product or security pages, and a web search surfaced only CVE databases and downstream vendor bulletins. Connect2id instead describes a community-review model and points at the IETF/OIDF review of the specifications themselves. Much of the scrutiny this library has received has come from external researchers filing the CVEs listed above."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSObject.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Both directions: JWSObject.sign(JWSSigner) / verify(JWSVerifier), with SignedJWT on top for JWT claim sets."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWEAlgorithm.java"
+      ],
+      "comment": "Full JWE with JWEObject/EncryptedJWT plus nine encrypter and nine decrypter implementations, including MultiEncrypter/MultiDecrypter for multi-recipient JSON-serialized tokens."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/jwk/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/JWKSet.java"
+      ],
+      "comment": "JWK.parse plus RSAKey, ECKey, OctetKeyPair (OKP) and OctetSequenceKey, with KeyUse/KeyOperation consistency checks, key revocation metadata and JWKMatcher/JWKSelector for querying a set."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/source/JWKSourceBuilder.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/JWKSet.java"
+      ],
+      "comment": "Two levels: JWKSet.load(URL, connectTimeout, readTimeout, sizeLimit[, proxy]) for a one-shot fetch, and the JWKSourceBuilder/URLBasedJWKSetSource stack with a pluggable ResourceRetriever for production use. The bare JWKSet.load(URL) overload uses zero timeouts and no size limit — the bounded overload is the one to use."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/source/JWKSourceBuilder.java"],
+      "comment": "Among the most complete JWKS caching stacks of any library here: 5-minute default TTL, refresh-ahead (30 s before expiry), a rate limiter with a 30 s minimum interval between retrievals, single automatic retry on transient failures, and outage tolerance serving stale keys for 10× the TTL by default. Refetch on an unknown kid is therefore throttled rather than an unbounded DoS amplifier. A health-status API (com.nimbusds.jose.util.health) and an event listener hook are included."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/jwk/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"
+      ],
+      "comment": "JWKMatcher/JWKSelector match on kid (plus key type, use, and algorithm); JWSVerificationKeySelector turns the token header into a matcher and returns the candidate keys, which DefaultJWTProcessor tries in turn."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": ["https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/jwk/?pagelen=100&fields=values.path"],
+      "comment": "ThumbprintUtils implements RFC 7638 and a dedicated ThumbprintURI class implements RFC 9278 thumbprint URIs — both listed among the supported specs in the README. One of the few libraries in this comparison to cover RFC 9278."
+    },
+    "nested-jwt": {
+      "value": true,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java"],
+      "comment": "Signed-then-encrypted tokens are handled end to end: when an encrypted JWT decrypts to content type `JWT`, DefaultJWTProcessor re-enters its own pipeline on the nested SignedJWT, applying the JWS key selector and claims verification."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"
+      ],
+      "comment": "JWSObject/JWEObject for compact form; JWSObjectJSON and JWEObjectJSON (with JOSEObjectJSON and UnprotectedHeader) for the general and flattened JSON serializations, supporting multiple signatures and multiple recipients."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSObject.java"],
+      "comment": "JWSObject.serialize(true) emits `header..signature` with the payload omitted, and JWSObject.parse(String, Payload detachedPayload) reattaches it on the way back, rejecting the input if the payload part is not empty."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/JWSObject.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/impl/CriticalHeaderParamsDeferral.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/test/java/com/nimbusds/jose/?pagelen=100&fields=values.path"
+      ],
+      "comment": "RFC 7797 supported: JWSHeader carries `b64`, JWSObject branches on isBase64URLEncodePayload() when building the signing input, `b64` is the one critical header parameter the crypto providers declare as understood, and JWSUnencodedObjectTest covers it."
+    },
+    "key-generation": {
+      "value": true,
+      "source": ["https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/jwk/?pagelen=100&fields=values.path"],
+      "comment": "A dedicated com.nimbusds.jose.jwk.gen package with generators for RSA, EC, OKP and octet-sequence JWKs, including the RSAKeyGenerator.MIN_KEY_SIZE_BITS = 2048 floor referenced by the signer's weak-key check."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/CommonSEHeader.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/JWKSet.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/util/?pagelen=100&fields=values.path"
+      ],
+      "comment": "All four parameters are first-class on JWS and JWE headers (and on JWKs), with X509CertUtils and X509CertChainUtils for parsing and thumbprint computation. The trap: parsing is not validation. JWKSet.load(KeyStore, ...) documents outright that \"the X.509 certificates are not validated\", the library never dereferences x5u or jku on the verification path, and chain validation against a trust anchor is left to the application. Header jwk parameters are at least screened to reject non-public keys (hardening added in 9.21)."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "spki", "jwk", "jwks", "raw-bytes", "pkcs12", "keystore"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/PEMEncodedKeyParser.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/JWKSet.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/util/?pagelen=100&fields=values.path"
+      ],
+      "comment": "PEM via JWK.parseFromPEMEncodedObjects (PEMEncodedKeyParser handles SubjectPublicKeyInfo, PrivateKeyInfo/PKCS#8, traditional PEMKeyPair for EC, and X.509 certificates) — note this path requires the optional BouncyCastle dependency. DER certificates through X509CertUtils. JWK/JWKS natively. Raw byte[]/String secrets and passwords for HMAC, AES and PBES2. JCA KeyStores including PKCS#12 and PKCS#11 tokens through JWKSet.load(KeyStore, PasswordLookup). PKCS#1 and SEC1 are covered only insofar as BouncyCastle's PEMParser recognises them, so they are not tagged separately."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": [
+        "https://connect2id.com/products/nimbus-jose-jwt",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/JWKSet.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/?pagelen=100&fields=values.path",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/test/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path"
+      ],
+      "comment": "Three routes: the JCA context lets you name the java.security.Provider, so a PKCS#11 smart card or HSM provider signs without exposing the key (the product page advertises smart-card/HSM integration and the suite ships an HSMTest); JWKSet.load(KeyStore) reads key handles from a PKCS#11 store; and the JWSSigner interface plus CompletableJWSObjectSigning/ActionRequiredForJWSCompletionException support signers that must suspend for an external action (remote KMS, user confirmation)."
+    },
+    "framework-integrations": {
+      "value": ["spring"],
+      "source": [
+        "https://raw.githubusercontent.com/spring-projects/spring-security/main/oauth2/oauth2-jose/spring-security-oauth2-jose.gradle",
+        "https://connect2id.com/products/nimbus-jose-jwt"
+      ],
+      "comment": "No first-party web-framework adapters — this is a protocol library. It is, however, the JOSE engine inside Spring Security: spring-security-oauth2-jose declares `api 'com.nimbusds:nimbus-jose-jwt'` and its NimbusJwtDecoder is what spring-boot-starter-oauth2-resource-server uses, so most Spring JWT code is Nimbus code. Other JVM stacks (Micronaut Security, Connect2id's own OAuth/OIDC server, Keycloak adapters) embed it too, but only the Spring dependency was verified for this pass."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTProcessor.java",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/jwk/source/JWKSourceBuilder.java"
+      ],
+      "comment": "Blocking API throughout; even remote JWKS retrieval is a synchronous ResourceRetriever call (the cache does refresh-ahead on a background thread, but the public surface returns values, not futures). Reactive callers wrap it themselves — Spring Security's reactive decoder does exactly that."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jwt/proc/DefaultJWTClaimsVerifier.java",
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/main/java/com/nimbusds/jose/util/?pagelen=100&fields=values.path"
+      ],
+      "comment": "JWTClaimsSet is a map of claim names to values, built with a fluent Builder and read through cast-checked accessors (getStringClaim, getDateClaim, getStringListClaim, …) that throw ParseException on a type mismatch. There is no generics-based binding of custom claims to a user POJO — applications either read claims individually or serialise the claims set to JSON and deserialise it themselves. DefaultJWTClaimsVerifier's exact-match claims set gives a limited declarative check."
+    },
+    "crypto-backend": {
+      "value": ["jca", "bouncycastle"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml",
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1.pom",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"
+      ],
+      "comment": "Default backend is whatever JCA provider the JRE supplies; every crypto class takes a JCAContext so the provider can be swapped per operation. BouncyCastle (bcprov/bcutil/bcpkix) and BouncyCastle FIPS are optional dependencies, required for PEM parsing and useful on older JDKs; Google Tink is an optional dependency used for XC20P. No tag exists for Tink."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1.pom",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "Pure Java with no JNI: the published 10.9.1 pom lists only optional compile dependencies (Tink, bcprov/bcutil/bcpkix) and the shaded Gson/JCIP are relocated into the JAR itself. Native code only enters if the application deliberately configures a PKCS#11 or native JCA provider."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "A JVM/Android library: it targets Java 8 bytecode and the JCA, and neither the README nor the build produces a browser or WASM artifact. Running it in a browser would require a whole-JVM transpiler (TeaVM/CheerpJ), which is outside what this attribute means."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"],
+      "comment": "Not applicable: Cloudflare Workers, Vercel Edge and Deno Deploy are JS/WASM runtimes, and the guideline says to record null rather than false for JVM libraries."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/src/main/java/com/nimbusds/jose/crypto/MACVerifier.java"
+      ],
+      "comment": "The README names BouncyCastle FIPS as a supported optional provider, and because every primitive is fetched through the JCA with a selectable java.security.Provider, the library can equally be pointed at a FIPS-validated JCE module (BC-FJA, or a vendor HSM provider). The FIPS 140 validation belongs to that module, not to this library, and FIPS mode does not stop the library offering non-approved algorithms such as EdDSA or XC20P."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1.pom",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "Zero mandatory dependencies pulled into a consumer's build, which is a deliberate selling point. The published 10.9.1 pom declares four compile dependencies — com.google.crypto.tink:tink and org.bouncycastle:{bcprov,bcutil,bcpkix}-jdk18on — but all four are <optional>true</optional>, and Gson plus JCIP annotations are shaded and relocated into the JAR (which is why the artifact is fairly large). Verified 2026-07-30."
+    },
+    "package-size": {
+      "value": 813607,
+      "source": ["https://storage.googleapis.com/storage/v1/b/maven-central/o?prefix=maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/&fields=items(name,size)"],
+      "comment": "nimbus-jose-jwt-10.9.1.jar is 813,607 bytes on Maven Central (sources JAR 505,900; Javadoc JAR 3,394,396). The main JAR includes the shaded Gson copy, so it is not directly comparable to a dependency-declaring JAR of similar scope."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/README.md"],
+      "comment": "Not applicable in a comparable form: the canonical repository is on Bitbucket, which has no star metric, and the GitHub copies are unofficial forks whose counts would misrepresent the project. Adoption is better judged from the fact that Spring Security depends on it."
+    },
+    "downloads": {
+      "value": null,
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/maven-metadata.xml",
+        "https://central.sonatype.com/api/internal/browse/component/versions?sortField=normalizedVersion&sortDirection=desc&page=0&size=12&filter=namespace%3Acom.nimbusds%2Cname%3Animbus-jose-jwt"
+      ],
+      "comment": "Maven Central publishes no public download counts, and the usual proxy (mvnrepository's usage ranking) refused automated access on 2026-07-30. No figure could be recorded honestly."
+    },
+    "last-release": {
+      "value": "2026-05-31",
+      "source": [
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/maven-metadata.xml",
+        "https://central.sonatype.com/api/internal/browse/component/versions?sortField=normalizedVersion&sortDirection=desc&page=0&size=12&filter=namespace%3Acom.nimbusds%2Cname%3Animbus-jose-jwt"
+      ],
+      "comment": "10.9.1, per the Maven Central metadata lastUpdated stamp of 2026-05-31 08:33 UTC. Release cadence is high: 10.3 through 10.9.1 all shipped between May 2025 and May 2026."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/commits/master?pagelen=50&fields=values.author.raw,values.date",
+        "https://maven-central.storage-download.googleapis.com/maven2/com/nimbusds/nimbus-jose-jwt/maven-metadata.xml",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/CHANGELOG.txt"
+      ],
+      "comment": "Commits through 2026-06-18 and roughly monthly releases; work on the next major (11.0) is already in the changelog. The library is Connect2id's commercial foundation (their OIDC server builds on it), which underwrites the cadence. Fourteen years of continuous development with no deprecation notice."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/commits/master?pagelen=50&fields=values.author.raw,values.date"],
+      "comment": "Of the last 50 commits (2025-09-05 to 2026-06-18) roughly 35 are by Vladimir Dzhuvinov, with four occasional contributors (notably Thomas Rørvik Skjølberg, who contributed the JWKS caching stack). Tagged solo because one person clearly carries the project day to day; the mitigating factor is that he is the founder of Connect2id, a company whose products depend on this library, so it is company-backed even though it is not company-staffed."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/CHANGELOG.txt",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/SECURITY-CHANGELOG.txt",
+        "https://raw.githubusercontent.com/spring-projects/spring-security/main/oauth2/oauth2-jose/spring-security-oauth2-jose.gradle"
+      ],
+      "comment": "Fourteen years of releases (1.0 in March 2012), essentially complete JOSE coverage, a documented disclosure channel, a dedicated security changelog going back to 2013, and load-bearing production use as Spring Security's JWT engine. Comfortably past 'stable'."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors", "cookbook-7520", "interop-suite"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/connect2id/nimbus-jose-jwt/src/master/src/test/java/com/nimbusds/jose/crypto/?pagelen=100&fields=values.path",
+        "https://bitbucket.org/connect2id/nimbus-jose-jwt/raw/master/pom.xml"
+      ],
+      "comment": "The crypto test suite includes ECDSASpecVectorsTest (spec test vectors), ECDSACookbookTest (RFC 7520 cookbook), ECDSAJose4JTest and OpenSSLWithECKeyTest (cross-implementation interop — jose4j is a declared test dependency), plus HSMTest against a real PKCS#11 token. Notably, go-jose's own JWE interop vectors are labelled as generated with nimbus-jose-jwt, so this library also serves as a reference for others. No Wycheproof usage found."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://connect2id.com/products/nimbus-jose-jwt",
+        "https://connect2id.com/products/nimbus-jose-jwt/vulnerabilities",
+        "https://connect2id.com/products/nimbus-jose-jwt/download",
+        "https://connect2id.com/products/nimbus-jose-jwt/contribute"
+      ],
+      "comment": "Rated 5: a maintained documentation site with task-oriented examples across signing, encryption, JWK/JWKS handling and key generation, a full Javadoc artifact published with every release, an explicit security-considerations page grounded in RFC 8725 (algorithm contracts, minimum key sizes, type separation of unsecured JWTs), plus download, changelog and contribute pages. The one rough edge is that the example pages are spread across the site rather than presented as a single guided tutorial."
+    }
+  }
 }
