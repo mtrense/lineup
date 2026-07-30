@@ -187,7 +187,7 @@ The core group. Prefer reading the verification code path or the security sectio
 
 - [x] **jsonwebtoken (Rust)** — the default JWT crate in the Rust ecosystem; ring-backed, JWS-only
 - [x] **josekit (Rust)** — full JOSE for Rust including JWE, OpenSSL-backed
-- [ ] **jwt-simple (Rust)** — pure-Rust, opinionated safe-by-default API with type-separated key kinds
+- [x] **jwt-simple (Rust)** — pure-Rust, opinionated safe-by-default API with type-separated key kinds
 - [x] **biscuit (Rust)** — long-standing pure-Rust JOSE implementation with JWE support
 - [ ] **golang-jwt/jwt (Go)** — the community successor to dgrijalva/jwt-go; the Go default
 - [ ] **lestrrat-go/jwx (Go)** — the most complete Go JOSE stack: JWS, JWE, JWK, JWKS caching

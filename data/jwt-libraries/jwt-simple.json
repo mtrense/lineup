@@ -1,5 +1,473 @@
 {
   "name": "jwt-simple (Rust)",
   "description": "Pure-Rust, opinionated safe-by-default API with type-separated key kinds",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["rust"],
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"],
+      "comment": "Rust-only crate. It compiles for wasm32-unknown-unknown and wasm32-wasip1 (both built in CI) and is advertised as compatible with Fastly Compute, but it is not published for any non-Rust runtime."
+    },
+    "license": {
+      "value": ["isc"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/jwt-simple"
+      ],
+      "comment": "ISC, per the Cargo.toml `license` field and the LICENSE file (Copyright 2020-2026 Frank Denis). crates.io reports ISC for every recent version. Note GitHub's licensee shows \"NOASSERTION\" because the LICENSE file is a C-style comment block."
+    },
+    "implementation": {
+      "value": ["native", "ffi-binding"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Mixed. In the default configuration (features `optimal` + `jwe`) RSA and AES-GCM go through the `boring` crate, an FFI binding to BoringSSL; ECDSA (k256/p256/p384), Ed25519 (ed25519-compact), HMAC (hmac-sha256/512) and BLAKE2B are pure Rust. Building with `--no-default-features --features=pure-rust` swaps boring for `superboring`, a pure-Rust reimplementation of the same API — the README calls that path unsupported and only for portability workarounds. On wasm targets superboring is used unconditionally."
+    },
+    "repository": {
+      "value": "https://github.com/jedisct1/rust-jwt-simple",
+      "source": ["https://api.github.com/repos/jedisct1/rust-jwt-simple"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/jwt-simple",
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/jwt-simple",
+      "source": ["https://docs.rs/jwt-simple/latest/jwt_simple/"],
+      "comment": "docs.rs renders the crate-level docs, which are the README verbatim (lib.rs embeds it), plus the API reference. There is no separate documentation site."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"],
+      "comment": "0.0.0 published 2020-08-28, 0.1.0 two days later; 70 versions published as of 2026-07-30."
+    },
+    "latest-version": {
+      "value": "0.12.17",
+      "source": ["https://crates.io/api/v1/crates/jwt-simple", "https://docs.rs/jwt-simple/latest/jwt_simple/"],
+      "comment": "Still pre-1.0 after six years: 0.12.17, published 2026-07-01. The 0.12 line has been current since 2023-11-30. All findings below were read against the 0.12.17 / master source on 2026-07-30."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "HS256Key / HS384Key / HS512Key, each a distinct type implementing MACLike. The same module also ships a non-standard `BLAKE2B` alg (BLAKE2b-256 keyed hashing) that is not registered in the JWA registry and will not interoperate with other implementations."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "RS256/RS384/RS512 key-pair and public-key types, each fixing its own digest and PKCS#1 v1.5 padding through the RSAKeyPairLike/RSAPublicKeyLike traits."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "PS256/PS384/PS512 are separate key types in the same module, differing only in the `padding_scheme()` implementation (PSS with MGF1)."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es256k"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/es256.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "ES256 (p256), ES384 (p384) and ES256K (secp256k1, RFC 8812) each have their own module and key types. ES512 (P-521) is absent — there is no p521 dependency and no ES512 key type."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Registered under the RFC 8037 `EdDSA` alg identifier, backed by the ed25519-compact crate. Ed25519 only; no Ed448 and no curve-specific `Ed25519` alg name."
+    },
+    "jwe-key-management": {
+      "value": ["a128kw", "a256kw", "rsa-oaep", "ecdh-es-a128kw", "ecdh-es-a256kw"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/jwe/mod.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "JWE arrived in the 0.12 line and is on by default (`jwe` feature). RSA-OAEP is SHA-1-based only; the module documents that RSA-OAEP-256 is unsupported because boring/superboring do not expose the OAEP hash selector. No `dir`, no A192KW, no GCMKW, no plain ECDH-ES (key agreement is always combined with AES key wrap), no RSA1_5, no PBES2."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/jwe/mod.rs"],
+      "comment": "The ContentEncryption enum has exactly two members, A256GCM (default) and A128GCM; from_alg_name() rejects anything else. No AES-CBC-HMAC variants and no XChaCha20-Poly1305."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["secp256k1-unrestricted", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/jwe/mod.rs"
+      ],
+      "comment": "`none` is not representable (no key type carries that alg name; the README says it is excluded \"for obvious reasons\") and RSA1_5 is not implemented. Tagged nonetheless for two things: ES256K/secp256k1 is offered unconditionally as a first-class key type, and RSA key *import* performs no modulus-size policy — RSAKeyPair::from_pem/from_der only call check_key(), so a sub-2048-bit key is accepted even though generate() refuses anything other than 2048/3072/4096. Not covered by the tag set: the JWE side exposes RSA-OAEP with SHA-1, which the module itself annotates as \"not recommended\"."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs"
+      ],
+      "comment": "Qualified true, and not an escape hatch. The per-family traits (MACLike, RSAKeyPairLike/RSAPublicKeyLike, ECDSAP256*, ECDSAP256k*, EdDSA*) are public and require the implementor to supply `jwt_alg_name()` plus the tag/digest/padding, so a downstream crate can define its own `alg` string within an existing crypto family and reuse the built-in verification harness. There is no global registry, and a custom impl never widens what the built-in key types accept — verification always compares the token's `alg` against the concrete key type's own name."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Structurally impossible, with no opt-in at all. Token::verify is always invoked from a concrete key type and does `ensure!(jwt_header.algorithm == jwt_alg_name, JWTError::AlgorithmMismatch)` where jwt_alg_name is a &'static str fixed by that key type; no key type exists whose name is \"none\". The README states the unsecured method is deliberately excluded."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "There is no algorithm parameter and no allow-list anywhere in the API: you call verify_token() on an HS256Key or an ES256PublicKey, and that type alone decides the single accepted alg. The header's `alg` is only ever compared for equality, never used to select anything. The README is explicit that the header alg \"should be used only for debugging purposes, and never to select a key type\"."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 5,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs"
+      ],
+      "comment": "5 per the guideline: every algorithm has its own key type (HS256Key, RS256PublicKey, PS384PublicKey, ES256PublicKey, Ed25519PublicKey, …) and verify_token() is a method on that type, so passing an RSA public key where an HMAC secret is expected is a compile-time error — the RS256→HS256 confusion attack has no expressible form. The residual risk is an application deliberately choosing the key type from the untrusted header, which the README warns against."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Stronger than the usual case: there is no API at all that returns claims without verification. The only pre-verification entry point is Token::decode_metadata(), which parses the header alone and returns a TokenMetadata whose accessors are individually documented as untrusted (\"This information should not be trusted: it is unprotected and can be freely modified by a third party\"). JWEToken::decode_metadata() is the equivalent for encrypted tokens."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat", "typ"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/claims.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/common.rs"
+      ],
+      "comment": "Claims::validate() runs on every successful verification, even when options are None. `exp` and `nbf` are enforced when present (with the default 15-minute tolerance) and `iat` must not be in the future unless accept_future is set; none of the three is *required* to be present, so a token carrying no exp verifies. `typ` is a header parameter rather than a claim, but it is checked by default too: if present it must equal \"JWT\" or end with \"+JWT\". `aud`, `iss`, `sub`, `jti`/nonce are only checked when the corresponding VerificationOption is supplied — and unlike some libraries, a token bearing an unexpected `aud` is accepted when allowed_audiences is None."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/common.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/claims.rs"
+      ],
+      "comment": "verify_token(&token, None) is the shortest call and validates neither. allowed_issuers/allowed_audiences are Option<HashSet<String>> fields on VerificationOptions, default None; when set they do fail closed (a missing iss/aud is rejected with RequiredIssuerMissing / RequiredAudienceMissing), but nothing pushes the caller to set them."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/common.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/claims.rs"
+      ],
+      "comment": "VerificationOptions.time_tolerance, applied to exp, nbf and iat. The default is 900 seconds (15 minutes) — generous, and worth flagging: an expired token stays acceptable for a quarter of an hour unless the caller lowers it. Related knobs: max_validity (reject tokens issued too long ago), reject_before (replay window anchored on iat), accept_future, and artificial_time for tests."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs"],
+      "comment": "MACLike::verify_token compares the recomputed tag with ct_codecs::verify(), a constant-time equality primitive, rather than ==; the salt check uses the same function. AES-GCM tag checks on the JWE path are done inside boring/superboring."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs"
+      ],
+      "comment": "Neither RFC 7518 §3.2 limit is met, though there is partial defence. HMAC: a WeakKey error rejects secrets shorter than 12 bytes on both authenticate and verify — better than nothing, but well below the 32 bytes HS256 requires. RSA: generate() accepts only 2048/3072/4096 bits, yet from_pem/from_der/from_components apply no modulus-size check at all, so an imported 1024-bit key verifies."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwe_token.rs"
+      ],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour, and unusually strict: the library understands no critical extensions, so any non-empty `crit` array fails with JWTError::UnknownCriticalExtension before signature verification. The JWE decrypt path does the same, citing RFC 7516. There is no way for a caller to declare an extension understood."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/common.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwe_token.rs"
+      ],
+      "comment": "Interpreted as \"explicit DoS bounds exist\": max_token_length defaults to 1,000,000 bytes and max_header_length to 8,192 (MAX_HEADER_LENGTH / MAX_JWE_HEADER_LENGTH), both checked before any parsing or crypto, and both configurable. The recursion question is largely moot here — the library implements neither nested JWT nor PBES2, so there is no iteration count to cap and no unwrapping loop. Deeply nested *claim* JSON is bounded only by serde_json's own recursion limit, which was not inspected."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": [
+        "https://rustsec.org/advisories/",
+        "https://github.com/advisories?query=jwt-simple"
+      ],
+      "comment": "No advisory found against the Rust crate in the RustSec advisory index or the GitHub Advisory Database as of 2026-07-30. Beware of name collision: the GitHub hits for \"jwt-simple\" (GHSA-8v5f-hp78-jgxq, 2019, signature-verification bypass; the withdrawn GHSA-chgg-rrmv-5q7x) are for the unrelated npm package of the same name, not this crate. Six years with no advisory, but see the Security Policy and RFC Conformance Testing entries — the absence is not backed by a disclosure process or a test-vector suite."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://github.com/jedisct1/rust-jwt-simple/security/policy"],
+      "comment": "GitHub reports \"This project has not set up a SECURITY.md file yet\"; there is no SECURITY.md in the repository tree and no documented private disclosure channel. The author (Frank Denis) is reachable through his other projects, but nothing is stated here."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md",
+        "https://api.github.com/repos/jedisct1/rust-jwt-simple"
+      ],
+      "comment": "Searched (web search plus the repository, README and docs.rs) and found no published third-party audit. The BoringSSL code reached through the `boring` backend carries its own external validation, but that covers the crypto module, not this library."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Both directions: authenticate()/sign() build a token, verify_token() checks it. This is the crate's core purpose. With the optional `cwt` feature the same key types also handle CWT (CBOR Web Tokens)."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwe_token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/jwe/mod.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Real end-to-end JWE, enabled by default (`jwe` feature): encrypt()/decrypt_token() on dedicated key types produce and consume five-part compact serialization with AEAD over the base64url header as AAD, and the CEK is zeroized after use. Coverage is narrow though (see the two JWE algorithm rows), and claims are encrypted directly rather than signed-then-encrypted."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": [
+        "https://docs.rs/jwt-simple/latest/jwt_simple/",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/es256.rs"
+      ],
+      "comment": "No JWK support: there is no jwk module in the crate (top-level modules are algorithms, claims, common, jwe_header, jwe_token, prelude, reexports, token) and no key constructor takes a JWK document. Keys come from PEM, DER or raw bytes only. The one JWK-shaped thing in the codebase is the ephemeral-key `epk` object the ECDH-ES encrypter writes into its own JWE header."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/jwt-simple/reverse_dependencies"
+      ],
+      "comment": "Follows from having no JWK support: the crate has no HTTP client and no network dependency in its manifest. Third-party crates fill the gap — jwt-simple-jwks and jwk-simple are among its reverse dependencies."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://docs.rs/jwt-simple/latest/jwt_simple/"],
+      "comment": "No key set type, no cache, no TTL handling, no refetch-on-unknown-kid — nothing to cache, since JWKS is not implemented."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "The primitives exist but the library never selects a key: Token::decode_metadata().key_id() exposes the untrusted `kid`, keys can carry an id (with_key_id / create_key_id) that is written into signed tokens, and VerificationOptions.required_key_id pins an expected value — but there is no key-set abstraction, so picking the key from a set is entirely the caller's code. The README warns that `kid` \"should be used only to select a key in a set of keys made for the same algorithm\"."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://docs.rs/jwt-simple/latest/jwt_simple/"
+      ],
+      "comment": "The sha1_thumbprint()/sha256_thumbprint() methods on public keys are *not* RFC 7638: they hash the DER encoding of the key and are meant to populate the x5t / x5t#S256 headers, not the canonical JWK JSON. Since the crate has no JWK representation at all, an RFC 7638 thumbprint is not computable, and no RFC 9278 thumbprint URI helper exists."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwe_token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "The JWE API encrypts and decrypts JWTClaims directly — build_from_claims serializes claims as the plaintext and decrypt deserializes them back — so a signed-then-encrypted token is not handled end to end. A caller can set `cty` manually via EncryptionOptions and stitch the two layers together, but nothing in the library does it or verifies the inner signature."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwe_token.rs"
+      ],
+      "comment": "Compact only, for both JWS (three dot-separated parts, rejected if a fourth exists) and JWE (exactly five parts). No flattened or general JSON serialization, and therefore no multiple signatures."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs"],
+      "comment": "RFC 7515 Appendix F is not implemented: Token::build always embeds the base64url payload, and Token::verify slices the authenticated portion out of the token string itself, with no way to supply the payload externally."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs"],
+      "comment": "RFC 7797 not implemented: every segment goes through Base64UrlSafeNoPadding, and the header struct has no `b64` field."
+    },
+    "key-generation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/es256.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/jwe/mod.rs"
+      ],
+      "comment": "generate() on every key type: HMAC keys (32 random bytes, plus generate_with_salt()), ECDSA and Ed25519 key pairs, RSA key pairs at a caller-chosen 2048/3072/4096 bits, and the JWE key types (A128KWKey/A256KWKey, RsaOaepDecryptionKey::generate(bits), EcdhEs*DecryptionKey)."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/jwt_header.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs"
+      ],
+      "comment": "Parsed and emittable, never validated — the usual trap, but here it is called out in the API docs. JWTHeader models x5c, x5u, x5t and x5t#S256 (plus jku and jwk), KeyMetadata can attach the thumbprints (with a length/hex sanity check) and the URLs when signing, and TokenMetadata exposes them on the reading side with each accessor documented as untrusted attacker-controlled input. No certificate chain is verified, no thumbprint is matched against the key, and x5u/jku are never fetched."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "sec1", "spki", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/es256.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs"
+      ],
+      "comment": "Every asymmetric key type offers from_pem/from_der/from_bytes and the matching to_* exporters. RSA public keys accept both SPKI and PKCS#1 DER/PEM (tried in that order) and can also be built from raw n/e components; RSA private keys go through boring's private_key_from_pem/der. ECDSA keys use PKCS#8 for DER/PEM and SEC1 point / raw scalar bytes for from_bytes. HMAC keys are raw bytes via from_bytes. No JWK/JWKS, no PKCS#12, no keystore."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/rsa.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/algorithms/hmac.rs"
+      ],
+      "comment": "No KMS/HSM/PKCS#11 hook. The signing traits require the implementor to hand back concrete in-process key material (MACLike::key() -> &HMACKey, RSAKeyPairLike::key_pair() -> &RSAKeyPair, and equivalents), so a signer that never sees the key cannot be plugged in. The one partial exception is MACLike, whose authentication_tag() is caller-supplied and could in principle call out — not a supported or documented signer interface."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://crates.io/api/v1/crates/jwt-simple/reverse_dependencies",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "No first-party adapters and no de facto community one: the crate ships plain methods on key types, and the README shows no framework wiring. Its 42 reverse dependencies are mostly application-level or vendor-specific crates (okta-jwt-verifier, firebase-verifyid, web-push, zino-auth, mollysocket); none is an axum/actix/tower middleware with enough adoption to count."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs",
+        "https://docs.rs/jwt-simple/latest/jwt_simple/"
+      ],
+      "comment": "All signing, verification, encryption and decryption entry points are plain synchronous functions; nothing in the crate performs I/O, so there is no async surface."
+    },
+    "typed-claims": {
+      "value": ["strongly-typed"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/claims.rs",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "JWTClaims<CustomClaims> is generic over any Serialize/DeserializeOwned type, and verify_token::<MyClaims>() makes the expected shape part of the call — registered claims sit in typed fields alongside `custom`. NoCustomClaims is the empty default; a dynamic map is available only by choosing serde_json::Value as the parameter."
+    },
+    "crypto-backend": {
+      "value": ["boringssl", "rustcrypto"],
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "Split by primitive rather than by feature: RSA (sign, verify, OAEP) and AES-GCM/AES-KW come from `boring` (BoringSSL) in the default `optimal` configuration, while ECDSA uses RustCrypto's k256/p256/p384 and Ed25519/HMAC/BLAKE2B use jedisct1's own pure-Rust crates. `--no-default-features --features=pure-rust` (and any wasm target) substitutes `superboring`, a pure-Rust reimplementation of the boring API; on wasm32-wasip1 the `wasi-crypto` feature can additionally offload RSA and AES-GCM to the host."
+    },
+    "pure-language-implementation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "False as the guideline asks — the *default* configuration enables the `optimal` feature, which pulls `boring` and therefore BoringSSL C code and a build-time toolchain. A fully pure-Rust build is a first-class documented option (`default-features = false, features = [\"pure-rust\"]`, using superboring) and is what wasm targets get automatically, but the README calls that path a portability workaround and \"unsupported\"."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md",
+        "https://api.github.com/repos/jedisct1/rust-jwt-simple/contents/.github/workflows/ci.yml"
+      ],
+      "comment": "CI builds both wasm32-unknown-unknown and wasm32-wasip1 on every push, and superboring replaces boring automatically on wasm targets. The README tempers this: the browser target \"is supported (as in 'it compiles')\", and the author recommends a WebCrypto-based JavaScript library instead for performance and side-channel reasons. On WASI, the `wasi-crypto` feature offloads RSA and AES-GCM to the host for a ~100x speedup and constant-time guarantees."
+    },
+    "edge-runtime-compatible": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md",
+        "https://api.github.com/repos/jedisct1/rust-jwt-simple/contents/.github/workflows/ci.yml"
+      ],
+      "comment": "The README states the crate compiles to WebAssembly/WASI out of the box and is \"fully compatible with Fastly Compute\" — a vendor-named edge platform, which is stronger evidence than the usual inference. Cloudflare Workers / Deno Deploy were not verified specifically; the wasm32 builds in CI and the absence of any OS dependency make them plausible."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/boring/5.1.0"
+      ],
+      "comment": "Indirectly, and only for the primitives that go through BoringSSL. The default backend is `boring` 5.1, which exposes `fips` / `fips-precompiled` features selecting the BoringCrypto FIPS module. jwt-simple does not surface that feature itself — a consumer would enable boring/fips in their own manifest and rely on Cargo feature unification — and the validation belongs to BoringCrypto, not to this library. ECDSA and Ed25519 would still run through non-validated Rust crates."
+    },
+    "dependency-count": {
+      "value": 18,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/jwt-simple"
+      ],
+      "comment": "Direct, non-dev dependencies in the default configuration on a non-wasm target as of 0.12.17: anyhow, blake2b_simd, binstring, coarsetime, ct-codecs, ed25519-compact, hmac-sha1-compact, hmac-sha256, hmac-sha512, k256, p256, p384, rand, serde, serde_json, thiserror, zeroize, plus boring (enabled by the default `optimal` feature). Excludes ciborium (optional, `cwt`) and superboring (wasm targets or `pure-rust`). Comparatively high for a Rust JWT crate, though most entries are small single-purpose crates by the same author."
+    },
+    "package-size": {
+      "value": 76793,
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"],
+      "comment": "crate_size reported by crates.io for 0.12.17 (compressed .crate archive), 2026-07-30."
+    },
+    "github-stars": {
+      "value": 278,
+      "source": ["https://api.github.com/repos/jedisct1/rust-jwt-simple"],
+      "comment": "GitHub API snapshot on 2026-07-30; 0 open issues at that moment."
+    },
+    "downloads": {
+      "value": 5585084,
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"],
+      "comment": "crates.io all-time downloads as of 2026-07-30 (789,293 in the recent 90-day window) — comparable only against other crates, and roughly 3% of jsonwebtoken's all-time total."
+    },
+    "last-release": {
+      "value": "2026-07-01",
+      "source": ["https://crates.io/api/v1/crates/jwt-simple"],
+      "comment": "0.12.17. The repository was last pushed 2026-07-30, so development continues past the release."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://crates.io/api/v1/crates/jwt-simple",
+        "https://api.github.com/repos/jedisct1/rust-jwt-simple"
+      ],
+      "comment": "Four releases in the last nine months (0.12.14 2026-01-20, 0.12.15 2026-04-23, 0.12.16 2026-05-11, 0.12.17 2026-07-01) plus commits within the last day and Dependabot keeping dependencies current. No successor is recommended — though the README does suggest PASETO or Biscuit over JWT itself where the reader controls both ends."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/jedisct1/rust-jwt-simple"],
+      "comment": "All 50 most recent commits (back to 2025-12-09, checked 2026-07-30) are by Frank Denis. A single-maintainer project, albeit one by a well-known cryptography engineer (libsodium, dnscrypt)."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://crates.io/api/v1/crates/jwt-simple",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md"
+      ],
+      "comment": "A judgement call against the guideline. The literal criterion for `stable` — 1.0+ — is not met: the crate is 0.12.17 after six years. Everything else fits: the 0.12 line has held since 2023-11-30 with no breaking minor since, 5.6M downloads and 42 dependent crates show real production use, algorithm coverage is broad, and the recent JWE work was additive. Not `mature`, because there is no SECURITY.md or disclosure process, no third-party audit, no RFC test-vector suite, and a bus factor of one. `beta` was rejected because the API has demonstrably not moved between minor versions."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": [
+        "https://api.github.com/repos/jedisct1/rust-jwt-simple/contents/.github/workflows/ci.yml",
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/src/token.rs"
+      ],
+      "comment": "Weakest area. There is no tests/ directory; testing is hand-written #[test] functions inline in the source modules (round-trips, tampering, audience/nonce/typ handling, a hard-coded RS256 token with an artificial clock). No RFC 7515/7518/7520 appendix vectors, no cookbook suite, no Wycheproof, no interop harness. Worse, the CI workflow only runs `cargo build` for several feature and target combinations — it never runs `cargo test`, so the inline tests are not exercised on push."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/jedisct1/rust-jwt-simple/master/README.md",
+        "https://docs.rs/jwt-simple/latest/jwt_simple/"
+      ],
+      "comment": "4: a 23 KB task-oriented README (mirrored as the crate docs) with runnable examples for HMAC, each signature family, all three JWE key-management modes, custom claims, key identifiers, replay mitigations, salted keys, CWT and wasm builds, plus per-item security warnings on the untrusted metadata accessors and a candid 'Why yet another JWT crate' section referencing RFC 8725. Short of 5: no consolidated security-considerations chapter, no key-management/JWKS guidance (JWKS is unimplemented), and the generated API reference is thin outside claims.rs — many public items carry no doc comment at all."
+    }
+  }
 }
