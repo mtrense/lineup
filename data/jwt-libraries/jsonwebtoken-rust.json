@@ -1,5 +1,465 @@
 {
   "name": "jsonwebtoken (Rust)",
   "description": "The default JWT crate in the Rust ecosystem; ring-backed, JWS-only",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["rust"],
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken"],
+      "comment": "Rust-only crate; it does compile to wasm32 (target-gated js-sys/getrandom dependencies), but it is not published for any non-Rust runtime."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://crates.io/api/v1/crates/jsonwebtoken/11.0.0",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml"
+      ],
+      "comment": "MIT for every published version, including 11.0.0."
+    },
+    "implementation": {
+      "value": ["native", "ffi-binding"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/README.md",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/mod.rs"
+      ],
+      "comment": "Since 10.0.0 the crypto is pluggable behind a CryptoProvider and the caller must enable exactly one of the `rust_crypto` feature (pure-Rust RustCrypto stack: hmac, rsa, p256, p384, ed25519-dalek) or `aws_lc_rs` (FFI binding to AWS-LC). ring was removed in 10.0.0. Neither backend is enabled by default."
+    },
+    "repository": {
+      "value": "https://github.com/Keats/jsonwebtoken",
+      "source": ["https://github.com/Keats/jsonwebtoken"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/jsonwebtoken",
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/jsonwebtoken",
+      "source": ["https://docs.rs/jsonwebtoken/latest/jsonwebtoken/"],
+      "comment": "docs.rs API reference (the crate sets #![deny(missing_docs)]); the README carries the task-oriented examples."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken"],
+      "comment": "0.1.0 published 2015-11-02; 58 versions published as of 2026-07-30."
+    },
+    "latest-version": {
+      "value": "11.0.0",
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken/11.0.0"],
+      "comment": "11.0.0 published 2026-07-24; checked 2026-07-30. All findings below were read against the 11.0.0 / master source."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/hmac.rs"
+      ],
+      "comment": "All three HMAC variants are Algorithm enum members and are implemented by both backends; tests/hmac.rs exercises them."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs"
+      ]
+    },
+    "ecdsa": {
+      "value": ["es256", "es384"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://github.com/advisories?query=jsonwebtoken+ecosystem%3Arust"
+      ],
+      "comment": "No ES512 (P-521) and no ES256K: the Algorithm enum stops at ES384, and the rust_crypto backend only pulls p256/p384. The missing ES512 has bitten downstream users — GHSA-fwg2-gr34-q3w8 (July 2026) records SurrealDB silently downgrading ES512 to ES384 because of this crate limitation."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/pem/decoder.rs"
+      ],
+      "comment": "Registered under the RFC 8037 `EdDSA` alg identifier (Algorithm::EdDSA), not the newer curve-specific name. Ed25519 only — the PEM decoder recognises OID 1.3.101.112 and explicitly notes Ed448 is unsupported."
+    },
+    "jwe-key-management": {
+      "value": null,
+      "source": [
+        "https://github.com/Keats/jsonwebtoken/tree/master/src",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/lib.rs"
+      ],
+      "comment": "Not applicable: the crate implements JWS only. There is no JWE module in src/ and no encryption API in the public surface, so there are no key-management algorithms to record."
+    },
+    "jwe-content-encryption": {
+      "value": null,
+      "source": [
+        "https://github.com/Keats/jsonwebtoken/tree/master/src",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/lib.rs"
+      ],
+      "comment": "Not applicable: no JWE support. The Header struct carries `enc`/`zip` fields for parsing, but nothing consumes them."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs"
+      ],
+      "comment": "`none` is not representable (no None variant in the Algorithm enum) and RSA1_5 cannot appear because there is no JWE. But no RSA modulus-size policy is enforced anywhere: the signer/verifier constructors only check the key family, so an under-2048-bit RSA key is accepted if the backend parses it."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/mod.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "A custom CryptoProvider can replace the *implementation* of the built-in algorithms (install_default(), once per process), but the `alg` set itself is the closed Algorithm enum — a user cannot register a new alg identifier. Algorithm became #[non_exhaustive] in 11.0.0, which reinforces that only upstream adds variants."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/algorithms.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Structurally impossible: the Algorithm enum has no `none` variant, so a header with alg:\"none\" fails to deserialize, and decode() additionally requires header.alg to be a member of validation.algorithms. 11.0.0 removed Validation.insecure_disable_signature_validation entirely; the only unverified path is the separately named dangerous::insecure_decode."
+    },
+    "algorithm-pinning": {
+      "value": ["defaults-to-safe-set", "inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/validation.rs",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/struct.Validation.html",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs"
+      ],
+      "comment": "Validation::new(alg) takes the algorithm as its only argument, and Validation::default() = new(HS256), so the allow-list is never absent and never empty (docs: \"Will error if it is empty\"); it is a one-element default rather than a caller-forced list, hence defaults-to-safe-set. On top of that the DecodingKey carries its family, and the verifier factory rejects a key whose family does not match the algorithm, so the key structurally narrows the algorithm too."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/hmac.rs"
+      ],
+      "comment": "4 per the guideline: a single DecodingKey abstraction, but it carries a DecodingKeyKind/AlgorithmFamily and a mismatch fails closed at runtime with ErrorKind::InvalidKeyFormat — an RSA-derived DecodingKey can never drive an HMAC verifier, so the classic RS256→HS256 swap cannot verify. Not 5 because the key type is not a distinct compile-time type per family and from_secret() accepts arbitrary bytes."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/lib.rs",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "`dangerous::insecure_decode()` lives in a module documented as requiring \"extreme care\", and decode_header() reads only the header. The old in-band flag (Validation.insecure_disable_signature_validation, added in 9.x) was removed in 11.0.0 in favour of the separate function — a strict improvement."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "aud"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/validation.rs",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/struct.Validation.html",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Defaults from Validation::new: required_spec_claims = {\"exp\"}, validate_exp = true, validate_aud = true, validate_nbf = false, aud/iss/sub = None. So `exp` must be present and valid, and since 9.0.0 a token that *carries* an aud while Validation.aud is None is rejected — that is why `aud` is tagged. `nbf` is only checked when validate_nbf is switched on; `iss`/`sub` only when expected values are supplied. Malformed claim types (e.g. nbf as a string) now return InvalidClaimFormat rather than being treated as absent — the fix for CVE-2026-25537."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/validation.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Neither is a required parameter: Validation::default() verifies a token with no aud/iss expectation at all. Partial credit though — since 9.0.0 the aud path fails closed in one direction (a token bearing an aud is rejected unless the expected set is configured). `iss` is entirely opt-in."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/validation.rs",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/struct.Validation.html"
+      ],
+      "comment": "Validation.leeway, in seconds, applied to exp and nbf; default 60. Also Validation.reject_tokens_expiring_in_less_than (default 0) to reject tokens about to expire in transit."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/hmac.rs"],
+      "comment": "The rust_crypto backend verifies via RustCrypto's Mac::verify_slice, which is a constant-time comparison, rather than comparing tags with ==. The aws_lc_rs backend delegates to AWS-LC's hmac verification; its code path was not read for this pass."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/rsa.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/rust_crypto/hmac.rs"
+      ],
+      "comment": "Neither limit is enforced by the crate. The RSA signer/verifier constructors check only AlgorithmFamily::Rsa — no modulus-length policy — and HMAC keys go straight to new_from_slice with no minimum secret length, so a 1-byte HS256 secret is accepted (RFC 7518 §3.2 wants at least the hash output length)."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/header.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "Header has a `crit: Option<Vec<String>>` field, but it is only deserialized — neither jws::decode nor decoding::decode inspects it, so a token declaring unrecognised critical headers verifies successfully. That contradicts RFC 7515 §4.1.11, which requires rejection."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": [
+        "https://github.com/Keats/jsonwebtoken/tree/master/src",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs"
+      ],
+      "comment": "Largely moot and unmeasurable here: the crate handles single-layer JWS compact tokens only — no JWE, no nested tokens, no PBES2 — and no explicit depth or iteration limit exists in its own code. Any bound on deeply nested claim JSON comes from serde_json's recursion handling, which was not inspected for this pass."
+    },
+    "cve-history": {
+      "value": ["recent-24-months"],
+      "source": [
+        "https://github.com/advisories/GHSA-h395-gr6q-cpjc",
+        "https://github.com/advisories?query=jsonwebtoken+ecosystem%3Arust",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "CVE-2026-25537 / GHSA-h395-gr6q-cpjc (published 2026-02-03, moderate, CVSS 5.5): claim type confusion — a spec claim sent with the wrong JSON type (e.g. nbf as a string) landed in TryParse::FailedToParse and was treated as absent, so validate_nbf/validate_exp could be bypassed unless the claim was also listed in required_spec_claims. Affected < 10.3.0, fixed in 10.3.0; current 11.0.0 returns InvalidClaimFormat instead. Also in the database but *not* a flaw in this crate: GHSA-fwg2-gr34-q3w8 (2026-07-01), SurrealDB silently downgrading ES512 to ES384 because jsonwebtoken has no ES512. No RustSec-only advisory was found for the crate."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://github.com/Keats/jsonwebtoken/security/policy"],
+      "comment": "GitHub reports \"This project has not set up a SECURITY.md file yet\"; no SECURITY.md at the repository root and no documented private disclosure channel. Advisories have in practice been published through GitHub's advisory database anyway."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://github.com/Keats/jsonwebtoken"],
+      "comment": "Searched (web search plus the repository and its docs) and found no published third-party audit of this crate. Note that the aws_lc_rs backend inherits AWS-LC's external validation, but that covers the crypto module, not this library."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/encoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "Both directions: encode() signs, decode() verifies. This is the crate's entire purpose."
+    },
+    "jwe": {
+      "value": false,
+      "source": [
+        "https://github.com/Keats/jsonwebtoken/tree/master/src",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/"
+      ],
+      "comment": "No JWE at all — no encryption module, no public encrypt/decrypt API. Rust users needing JWE go to josekit or biscuit."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "The `jwk` module models Jwk/JwkSet for RSA, EC (P-256/P-384/P-521), OKP (Ed25519) and oct keys, and DecodingKey::from_jwk / TryFrom<&Jwk> builds a verification key from one. Documented as \"only meant to be used to deal with public JWK\"."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs"],
+      "comment": "Parsing only; the crate has no HTTP client and no network dependency. You fetch the JWKS yourself (the third-party jwt-authorizer crate adds this on top)."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs"],
+      "comment": "Follows from having no remote fetch: no cache, no TTL/Cache-Control handling, no refetch-on-unknown-kid."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/lib.rs"
+      ],
+      "comment": "JwkSet::find(kid) plus decode_header() give the primitive, but the wiring is manual — decode() itself takes one DecodingKey and never consults the header's kid."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Jwk::thumbprint(ThumbprintHash) implements RFC 7638; it returns a Result as of 11.0.0 and 10.4.0 fixed Ed25519 thumbprint encoding. No RFC 9278 thumbprint URI helper was found."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://docs.rs/jsonwebtoken/latest/jsonwebtoken/"],
+      "comment": "Requires JWE, which the crate does not implement."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs"],
+      "comment": "Compact only. The Jws<C> type holds protected/payload/signature and the encode/decode pair works exclusively on \"header.payload.signature\"; no flattened or general JSON serialization and no multi-signature support."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs"],
+      "comment": "jws::encode takes claims as Option<&T> and will emit an empty payload segment, but there is no counterpart API that verifies a signature against an externally supplied payload, so RFC 7515 Appendix F is not usable end to end."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs"],
+      "comment": "RFC 7797 not implemented: every part goes through base64url encoding, with no b64:false branch."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jwk.rs"],
+      "comment": "Explicitly out of scope — the jwk module states it \"is only meant to be used to deal with public JWK, not generate ones\", and there is no keypair-generation API. Users generate keys with openssl or the backend crates."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/header.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "Parsed only, never validated — a trap worth knowing. Header exposes x5u, x5c, x5t, x5t#S256 (and jku/jwk), and x5c_der() base64-decodes the chain to DER, but nothing verifies a certificate chain, checks a thumbprint against the key, or fetches x5u/jku. Treat all of these as untrusted attacker-controlled input."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/pem/decoder.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/encoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "PEM (behind the default `use_pem` feature) accepts RSA PRIVATE KEY / RSA PUBLIC KEY (PKCS#1), PRIVATE KEY / PUBLIC KEY (PKCS#8, SPKI) and CERTIFICATE; DER via from_*_der; raw HMAC secrets via from_secret / from_base64_secret / from_urlsafe_base64_secret; JWK/JWKS via the jwk module and DecodingKey::from_jwk. SEC1 is deliberately absent — EC private keys must be converted to PKCS#8 first. Also from_rsa_components / from_ec_components / from_ed_components for bare JWK parameters."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/encoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/jws.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/crypto/mod.rs"
+      ],
+      "comment": "Debatable, resolved as false: no public function accepts a signer object — encode() and jws::encode() require a concrete &EncodingKey, which holds key material. The only extension point is replacing the process-wide CryptoProvider, whose signer_factory is still handed an &EncodingKey; abusing that to reach a KMS/HSM is possible but is not a supported per-call signer interface."
+    },
+    "framework-integrations": {
+      "value": ["axum", "tower"],
+      "source": [
+        "https://crates.io/api/v1/crates/jwt-authorizer",
+        "https://crates.io/api/v1/crates/jwt-authorizer/0.15.0/dependencies",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/README.md"
+      ],
+      "comment": "No first-party adapters — the crate ships plain functions. Tagged for the third-party jwt-authorizer crate (0.15.0, ~462k downloads), a tower-layer JWT middleware for axum and tonic that depends on jsonwebtoken ^9.3 and adds the JWKS fetching/caching this crate lacks. It is the closest thing to a de facto adapter, not an official one, and it still tracks the 9.x line."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/encoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs"
+      ],
+      "comment": "encode/decode are plain synchronous functions; no async surface and no need for one, since nothing does I/O."
+    },
+    "typed-claims": {
+      "value": ["strongly-typed"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/src/decoding.rs",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/README.md"
+      ],
+      "comment": "decode::<T>() / encode over any Serialize/DeserializeOwned type, so claims are compile-time-checked structs; a dynamic map is available only by choosing serde_json::Value as T."
+    },
+    "crypto-backend": {
+      "value": ["rustcrypto", "aws-lc-rs"],
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/README.md",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Caller picks exactly one of the `rust_crypto` or `aws_lc_rs` features (or supplies a CryptoProvider); enabling both, or neither, installs a stub provider that errors. ring was the backend up to 9.x and was dropped in 10.0.0."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/jsonwebtoken/11.0.0/dependencies"
+      ],
+      "comment": "Qualified true: default features are `use_pem` only (pem + simple_asn1, both pure Rust), and the usual backend choice `rust_crypto` is pure Rust (hmac, rsa, p256, p384, ed25519-dalek, sha2). Choosing `aws_lc_rs` instead pulls a C library and a build-time toolchain. Note that no crypto backend at all is enabled by default, so \"default configuration\" cannot actually verify a token."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Cargo.toml has a [target.'cfg(target_arch = \"wasm32\")'] dependency block (js-sys, getrandom) and wasm-bindgen-test dev-dependencies; 9.2.0 added wasm timestamp support without std. Applies to the pure-Rust rust_crypto backend — aws_lc_rs does not target wasm32-unknown-unknown."
+    },
+    "edge-runtime-compatible": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Inferred from the same wasm32 support rather than from a vendor statement: with `rust_crypto` the crate has no native dependency and no OS clock requirement on wasm, so it builds for Cloudflare Workers' Rust/wasm target. Not verified by deploying, and it does not apply to the aws_lc_rs backend."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://docs.rs/aws-lc-rs/latest/aws_lc_rs/",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml"
+      ],
+      "comment": "Via the `aws_lc_rs` backend: aws-lc-rs has a `fips` feature that switches to aws-lc-fips-sys, whose module has completed FIPS validation testing and been submitted to NIST. jsonwebtoken does not expose that feature itself — the consumer enables aws-lc-rs/fips in their own manifest — and the validation belongs to AWS-LC, not to this library."
+    },
+    "dependency-count": {
+      "value": 7,
+      "source": [
+        "https://crates.io/api/v1/crates/jsonwebtoken/11.0.0/dependencies",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/Cargo.toml"
+      ],
+      "comment": "Direct, non-dev dependencies with default features on a non-wasm target as of 11.0.0: base64, serde, serde_json, signature, zeroize, plus pem and simple_asn1 pulled in by the default `use_pem`. Excludes js-sys/getrandom (wasm32-only) and the backend crates a user must additionally enable (7 more for `rust_crypto`, 1 for `aws_lc_rs`)."
+    },
+    "package-size": {
+      "value": 69316,
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken/11.0.0"],
+      "comment": "crate_size reported by crates.io for 11.0.0 (compressed .crate archive)."
+    },
+    "github-stars": {
+      "value": 2079,
+      "source": ["https://api.github.com/repos/Keats/jsonwebtoken"],
+      "comment": "GitHub API snapshot on 2026-07-30 (353 forks)."
+    },
+    "downloads": {
+      "value": 160208523,
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken"],
+      "comment": "crates.io all-time downloads as of 2026-07-30 (38.5M in the recent 90-day window) — comparable only against other crates."
+    },
+    "last-release": {
+      "value": "2026-07-24",
+      "source": ["https://crates.io/api/v1/crates/jsonwebtoken/11.0.0"],
+      "comment": "11.0.0; the repository's last push was the same day."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://crates.io/api/v1/crates/jsonwebtoken",
+        "https://api.github.com/repos/Keats/jsonwebtoken",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Four releases in the last twelve months (10.0.0 2025-09-29, 10.1.0 2025-10-18, 10.4.0 2026-05-11, 11.0.0 2026-07-24) plus continuous commits. The maintainer recommends no successor. 55 open issues as of 2026-07-30."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/Keats/jsonwebtoken"],
+      "comment": "Last 50 commits (checked 2026-07-30) are dominated by the author Keats, with arckoor as a second regular committer (13 commits, and the maintainer of the external crypto-provider crates); everyone else is a one-off. Effectively author-led."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://crates.io/api/v1/crates/jsonwebtoken",
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/CHANGELOG.md",
+        "https://github.com/Keats/jsonwebtoken/security/policy"
+      ],
+      "comment": "Stable rather than mature: ten years old, 160M downloads and heavy production use, but two breaking majors within a year (10.0.0 replaced the crypto backend, 11.0.0 reworked provider APIs and removed the insecure-validation flag), no SECURITY.md/disclosure process, and a 2026 authorization-bypass advisory — the guideline's \"established security process\" criterion for `mature` is not met."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": ["https://github.com/Keats/jsonwebtoken/tree/master/tests"],
+      "comment": "tests/ contains hand-written suites organised by algorithm family (hmac.rs, rsa/, ecdsa/, eddsa/, header/, dangerous.rs). No RFC 7515/7518/7520 appendix vectors, no cookbook suite, no Wycheproof, no cross-implementation interop harness was found."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/Keats/jsonwebtoken/master/README.md",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/",
+        "https://docs.rs/jsonwebtoken/latest/jsonwebtoken/struct.Validation.html"
+      ],
+      "comment": "4: complete API reference (#![deny(missing_docs)]) with per-field documentation of the security-relevant Validation defaults, runnable README snippets for signing and verification, an examples/ directory, and explicit notes on backend selection and EC PKCS#8 key handling. Short of 5 — there is no consolidated security-considerations chapter (no RFC 8725 discussion, nothing on the unchecked crit/x5c headers) and no JWKS guide."
+    }
+  }
 }
