@@ -38,7 +38,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Ecosystem** | tags | Runtime(s) the library targets. tags: `rust`, `go`, `jvm`, `python`, `nodejs`, `deno`, `bun`, `browser`, `dart`, `flutter`. Multi-runtime libraries get every tag they genuinely support (e.g. panva/jose ships for Node, Deno, Bun, browsers, and Cloudflare Workers). |
-| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `MIT OR Apache-2.0`, `BSD-3-Clause`, `MPL-2.0`, `LGPL-2.1`, `EPL-2.0`, `proprietary`. Dual licences get both tags. |
+| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `MIT OR Apache-2.0`, `BSD-3-Clause`, `ISC`, `MPL-2.0`, `LGPL-2.1`, `EPL-2.0`, `proprietary`. Dual licences get both tags. |
 | **Implementation** | tags | How the crypto is done. tags: `native` (pure implementation in the host language), `stdlib-crypto` (delegates to the language's standard crypto), `webcrypto` (SubtleCrypto), `ffi-binding` (OpenSSL/BoringSSL/ring/libsodium), `platform-provider` (JCA/BouncyCastle). |
 | **Repository** | link | Canonical source repository. |
 | **Package** | link | Registry page: crates.io, pkg.go.dev, Maven Central, PyPI, npm, JSR/deno.land, pub.dev. |
