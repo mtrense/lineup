@@ -1,5 +1,466 @@
 {
   "name": "jose / panva (JS)",
   "description": "The reference JS JOSE implementation, WebCrypto-based, runtime-portable across Node.js, Deno, browsers, and edge",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["nodejs", "deno", "bun", "browser"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "One universal ESM build for every runtime that provides the WebCryptoAPI and Fetch API. The README names Bun, Browsers, Cloudflare Workers, Deno, Electron and Node.js; the repo carries a per-runtime test harness for each (tap:browsers/bun/deno/electron/node/workerd). Cloudflare Workers and Electron have no tag in this schema — see Edge Runtime Compatible."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://api.github.com/repos/panva/jose",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "MIT per the GitHub licence metadata and the package.json \"license\" field."
+    },
+    "implementation": {
+      "value": ["webcrypto"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/signing.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "Every primitive is `crypto.subtle.*`: signing.ts calls crypto.subtle.sign/verify directly and the threat model states the library \"delegates all cryptographic operations ... to the runtime's Web Cryptography implementation\". No JS crypto of its own, no native binding."
+    },
+    "repository": {
+      "value": "https://github.com/panva/jose",
+      "source": ["https://api.github.com/repos/panva/jose"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/jose",
+      "source": ["https://registry.npmjs.org/jose"],
+      "comment": "npm package name `jose`, sole maintainer `panva`."
+    },
+    "documentation": {
+      "value": "https://github.com/panva/jose/blob/main/docs/README.md",
+      "source": [
+        "https://github.com/panva/jose/blob/v6.2.5/docs/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "TypeDoc-generated markdown reference committed into the repo (docs/), organised by area — JWT, encrypted tokens, key utilities, JWS, JWE, thumbprints/embedded JWK/errors — with an example per entry point. There is no separate hosted docs site."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/CHANGELOG.md",
+        "https://registry.npmjs.org/jose"
+      ],
+      "comment": "CHANGELOG's earliest entry is v0.9.0 \"Initial release\" on 2019-03-02, with v1.0.0 on 2019-04-23; the repository was created 2018-11-06. The npm name also carries 0.0.0–0.3.2 published 2014–2015, but those belong to an unrelated project (repository field points at autoit4you/node-jose) and are marked \"no longer supported\"."
+    },
+    "latest-version": {
+      "value": "6.2.5",
+      "source": ["https://registry.npmjs.org/jose"],
+      "comment": "6.2.5 published 2026-07-29, checked 2026-07-30. Major line history: v2 2020, v3 2020, v4 2021, v5 2023, v6 2025-02-22."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts"],
+      "comment": "All three are entries in the central JWS algorithm table in jws_algorithms.ts, which is the single place algorithms are enumerated."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts"]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts"]
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts"],
+      "comment": "No ES256K: secp256k1 is not a WebCrypto curve, and since the v5 rewrite onto pure WebCrypto the algorithm table contains no secp256k1 entry."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts"],
+      "comment": "Both the RFC 8037 identifier `EdDSA` and the newer curve-specific `Ed25519` identifier are registered in the algorithm table and map to the same WebCrypto Ed25519 operation. Ed448 is absent — no WebCrypto support for it. The same table also carries ML-DSA-44/65/87 (post-quantum), which this schema has no tag for."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwe_algorithms.ts"],
+      "comment": "Complete RFC 7518 key management coverage except RSA1_5, which is deliberately absent. Three further supported identifiers have no tag in this schema: RSA-OAEP-384, RSA-OAEP-512, ECDH-ES+A192KW and PBES2-HS384+A192KW. Actual availability of individual algorithms still depends on the runtime's WebCrypto."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwe_algorithms.ts"],
+      "comment": "All six registered JWA content-encryption algorithms. XC20P (XChaCha20-Poly1305) is not implemented — it is not a WebCrypto primitive."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "`none` is tagged only because the `UnsecuredJWT` helper exists (subpath export `jose/jwt/unsecured`); it is a separate, plainly-named API and `none` is not in the JWS algorithm table at all, so it can never be reached from jwtVerify/jwsVerify — see Rejects alg: none. RSA1_5 is not implemented. `rsa-under-2048` because SECURITY.md states the library \"does not enforce strict key size requirements for all algorithms\" in the spirit of interoperability; nothing rejects a short RSA modulus that the runtime's WebCrypto accepts."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "No registration hook. jws_algorithms.ts is a closed table whose stated purpose is that \"nothing below this module has to enumerate algorithms\", unknown `alg` throws JOSENotSupported, and no subpath export offers a registry. A user can only fork or wrap the library."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_algorithms.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "Unconditional: `none` is not an entry in the JWS algorithm table, so verification of a token with alg:none fails with \"alg none is not supported\" regardless of options — there is no allow-any switch that could re-enable it. Unsecured JOSE lives behind the separate `UnsecuredJWT` class (import from `jose/jwt/unsecured`), which is a different type entirely and whose security implications the threat model spells out."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key", "defaults-to-safe-set"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/key.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/options.ts"
+      ],
+      "comment": "The `algorithms` allow-list option exists and is enforced (`if (shared.algorithms && !shared.algorithms.has(alg)) throw new JOSEAlgNotAllowed`) but it is optional, so this is not `caller-must-specify`. Omitting it leaves the header `alg` free within the set the key permits: a CryptoKey carries its own WebCrypto algorithm, and key.ts additionally enforces a JWK's `alg`, `use` and `key_ops`, so an RSA public key can only ever drive its own RSA algorithm — hence `inferred-from-key`. `defaults-to-safe-set` covers the residual default: the implicit set is every implemented algorithm, which contains no `none` and no RSA1_5, though with a raw Uint8Array secret any of HS256/384/512 is accepted unless pinned."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/key.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts"
+      ],
+      "comment": "4 per the guideline rather than 5: keys travel as a single union (CryptoKey | KeyObject | JWK | Uint8Array), so there is no compile-time separation, but the classic RS256→HS256 swap fails closed at runtime — an RSA CryptoKey's `algorithm` is RSASSA-PKCS1-v1_5, and asymmetric operations do not accept raw bytes while HMAC requires a symmetric key, so the attacker-flipped header cannot make the library reinterpret an RSA public key as an HMAC secret. JWKs additionally fail on `alg`/`use`/`key_ops` mismatch with a TypeError."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "Three separate, plainly-named entry points that share nothing with the verifier: `decodeJwt` (`jose/jwt/decode`), `decodeProtectedHeader` (`jose/decode/protected_header`) and `UnsecuredJWT` (`jose/jwt/unsecured`). jwtVerify has no \"skip verification\" flag, and the threat model states that using the decode-only APIs as if they verified anything is application misuse."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwt_claims_set.ts"],
+      "comment": "`exp` and `nbf` are checked automatically whenever they are present in the payload (their absence is not an error unless listed in `requiredClaims`). `iss`, `sub`, `aud`, `typ` and `iat`/token age are only validated when the corresponding option (issuer, subject, audience, typ, maxTokenAge) is supplied — supplying `audience` or `maxTokenAge` also makes the respective claim mandatory."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwt/verify.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwt_claims_set.ts"
+      ],
+      "comment": "`jwtVerify(jwt, key)` is a complete, valid call: JWTVerifyOptions including `issuer` and `audience` is optional and the verifier succeeds without them. The threat model is explicit that accepted issuers and audiences are application policy. Once passed, they do fail closed (a missing `aud` with an `audience` option set is an error)."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwt_claims_set.ts"],
+      "comment": "`clockTolerance` accepts a number of seconds or a duration string and applies to exp/nbf/iat. The default is 0 — no leeway at all, the conservative choice. A `currentDate` option allows verification against a fixed clock."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/signing.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "There is no tag comparison in library code at all: HMAC verification is `await crypto.subtle.verify(...)`, so the comparison happens inside the runtime's WebCrypto, which is required to be constant-time. Caveat worth reading: SECURITY.md places side-channel resistance entirely outside the library's scope and on the underlying implementation, so the property is inherited, not guaranteed by jose."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"],
+      "comment": "Explicitly declined: \"in the spirit of interoperability with other implementations, it does not enforce strict key size requirements for all algorithms\", and specifically \"the library cannot prevent use of short HMAC secret keys because such restrictions are easily sidestepped\". Neither the RFC 7518 §3.2 HMAC floor nor a 2048-bit RSA floor is applied; whatever the runtime's WebCrypto imports is accepted."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/options.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts"
+      ],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour: validateCrit requires `crit` to be integrity protected (protected header only), non-empty strings, no duplicates, and throws JOSENotSupported — \"Extension Header Parameter ... is not recognized\" — for any name the library does not understand. The caller extends the understood set through the `crit` option; `b64` is the one extension jose implements natively."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/key_management.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/deflate.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "Two concrete guards, both consequences of past advisories: PBES2 decryption caps the header `p2c` at `options?.maxPBES2Count || 10_000` and throws when it is exceeded, and JWE decompression enforces a configurable decompressed-plaintext limit. Nothing else is bounded — SECURITY.md states that token size, JWKS response size, number of signatures/recipients and request rate are the application's responsibility, and DoS via oversized input is listed as out of scope."
+    },
+    "cve-history": {
+      "value": ["historical-2020s"],
+      "source": [
+        "https://github.com/panva/jose/security/advisories",
+        "https://github.com/panva/jose/security/advisories/GHSA-hhhv-q57g-882q"
+      ],
+      "comment": "Six published advisories, all Moderate, all fixed, none in the last 24 months. GHSA-hhhv-q57g-882q / CVE-2024-28176 (2024-03-07): resource exhaustion via a JWE with highly compressed plaintext, affecting <2.0.7 and 3.0.0–4.15.4, patched in 2.0.7/4.15.5 and structurally absent from v5+ (JWE compression was dropped). GHSA-jv3g-j58f-9mq9 (2022-09-06): resource exhaustion via a crafted JWE — the advisory behind today's PBES2 p2c cap. Four sibling advisories of 2021-04-15 (GHSA-58f5-hfqc-jgch and the -browser-runtime/-node-cjs-runtime/-node-esm-runtime variants) covered a padding-oracle timing discrepancy. Nothing outstanding against the v6 line; the maintainer runs the disclosure process himself through GitHub advisories."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"],
+      "comment": "An unusually thorough SECURITY.md: a private reporting channel (\"Vulnerabilities must be reported using the project's security advisory\"), a supported-versions table, a full threat model with trust assumptions, and an explicit list of what is not considered a vulnerability."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"],
+      "comment": "Searched and found none: no audit report is referenced in SECURITY.md, the README or the docs, and a web search on 2026-07-30 for a Cure53/Trail of Bits/OSTIF-style report on this package returned nothing. The written threat model is the maintainer's own."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "Sign and verify across compact, flattened and general serializations (CompactSign/compactVerify, FlattenedSign/flattenedVerify, GeneralSign/generalVerify) plus the JWT wrappers SignJWT/jwtVerify."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jwe_algorithms.ts"
+      ],
+      "comment": "Full encrypt and decrypt in compact, flattened and general serializations, plus EncryptJWT/jwtDecrypt, with the complete JWA key-management and content-encryption sets (minus RSA1_5)."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/key.ts"
+      ],
+      "comment": "`importJWK` (subpath `jose/key/import`) and, since v6, a JWK object can be passed straight to sign/verify/encrypt/decrypt as a KeyInput; `exportJWK` goes the other way."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwks/remote.ts"],
+      "comment": "`createRemoteJWKSet(url)` (subpath `jose/jwks/remote`) fetches the key set itself over HTTP(S) with a 5000 ms default `timeoutDuration`, and returns a resolver you pass to jwtVerify in place of a key. A custom fetch/agent can be supplied."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwks/remote.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "In-memory cache with a 600000 ms (10 min) default `cacheMaxAge`, and refetch-on-unknown-kid: a JWKSNoMatchingKey triggers a reload, rate-limited by a 30000 ms default `cooldownDuration` — so the refetch-on-miss amplification path is throttled by default. The cache is per-resolver and not shared across processes; trusting the JWKS endpoint and protecting any persistent cache is explicitly the application's job."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwks/remote.ts"],
+      "comment": "Both `createLocalJWKSet` and `createRemoteJWKSet` select by the JWS header `kid`, after narrowing candidates by the `kty` implied by the header `alg` and respecting the JWK `use` and `key_ops`; ambiguity raises JWKSMultipleMatchingKeys rather than guessing."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "`calculateJwkThumbprint` (RFC 7638) and `calculateJwkThumbprintUri` (RFC 9278) under the `jose/jwk/thumbprint` subpath; the README lists both RFCs among those implemented."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwt/decrypt.ts"],
+      "comment": "No end-to-end helper. jwtDecrypt decrypts the JWE and validates the claims set; it never inspects `cty: \"JWT\"` and never hands the plaintext to a signature verifier. Nested tokens are entirely doable by composition (SignJWT → CompactEncrypt with cty JWT, then compactDecrypt → jwtVerify), but that is caller-written glue, so this is recorded as false per the attribute's \"handled end to end\" wording."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "All three syntaxes for both JWS and JWE have their own subpath exports; GeneralSign's `addSignature()` produces multi-signature JWS and general JWE supports multiple recipients. Caveat from the threat model: general verify/decrypt returns the first signature or recipient that succeeds — quorum or all-signatures policy is the application's."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": [
+        "https://github.com/panva/jose/blob/v6.2.5/docs/types/interfaces/FlattenedJWSInput.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts"
+      ],
+      "comment": "Supported by re-attaching rather than by a dedicated flag: FlattenedJWSInput documents that the `payload` member may be supplied by the caller (and may be a Uint8Array when `b64: false` is used), so the RFC 7515 Appendix F pattern is to spread the JWS and override `payload` at verification time. The maintainer confirms this is the intended route in discussions #432 and #715."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/jws_verify.ts",
+        "https://github.com/panva/jose/blob/v6.2.5/docs/types/interfaces/FlattenedJWSInput.md"
+      ],
+      "comment": "RFC 7797 is implemented: `b64` is the one crit extension jose understands natively — jws_verify.ts reads `b64` from the protected header when it is listed in `crit`, requires it to be a boolean, and accepts a string or Uint8Array payload when it is false. Only meaningful with the flattened/general serializations."
+    },
+    "key-generation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "`generateKeyPair(alg)` and `generateSecret(alg)` (subpaths `jose/key/generate/keypair` and `jose/key/generate/secret`) produce keys sized for the named algorithm via WebCrypto, with an `extractable` option that defaults to false."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/types.d.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "Tagged `none` in the functional sense, with a caveat. `x5c`, `x5t`, `x5t#S256`, `x5u` (and `jku`, `jwk`) are declared on JoseHeaderParameters so they can be set when signing and are visible on the returned protected header, but nothing in the verification path consumes them: the threat model states these parameters are attacker-controlled input, `jku`/`x5u` are never followed, and there is no thumbprint-matching or chain resolution. Separately, `importX509` parses a PEM certificate to extract its public key — without validating the chain, validity period, revocation, key usage or names. `EmbeddedJWK` is the one header-supplied-key helper, and it is opt-in."
+    },
+    "key-input-formats": {
+      "value": ["pem", "pkcs8", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/key.ts"
+      ],
+      "comment": "importPKCS8 / importSPKI / importX509 take PEM strings (PKCS#8 private, SPKI public, X.509 certificate); importJWK takes a JWK, and createLocalJWKSet/createRemoteJWKSet take a JWKS. Symmetric keys are plain Uint8Array. No binary DER, PKCS#1, SEC1, PKCS#12 or keystore ingestion — DER must be PEM-wrapped first."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/signing.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwt/verify.ts"
+      ],
+      "comment": "No signer abstraction: signing always ends in `crypto.subtle.sign` with a CryptoKey the library holds, so a KMS/HSM/PKCS#11 backend cannot be plugged in (the closest thing is a non-extractable CryptoKey, which still lives in the runtime). Verification does take a resolver function (JWTVerifyGetKey), but that only resolves key material, it does not delegate the operation."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"
+      ],
+      "comment": "No first-party adapters and no framework dependency — the package is a protocol primitive with zero runtime dependencies. It is, however, the JOSE engine other stacks build on (Auth.js/next-auth and a great deal of Next.js middleware code), which is a large part of the download figure; that is consumption, not an adapter."
+    },
+    "async-api": {
+      "value": ["async-only"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwt/verify.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/signing.ts"
+      ],
+      "comment": "Everything that touches crypto returns a Promise, because WebCrypto's SubtleCrypto is asynchronous — jwtVerify, SignJWT#sign, key import/export/generation and the JWKS resolvers are all `async`. The purely lexical helpers (decodeJwt, decodeProtectedHeader, base64url) are synchronous."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/jwt/verify.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/types.d.ts"
+      ],
+      "comment": "The runtime shape is always a dictionary: JWTPayload has typed registered claims plus `[propName: string]: unknown`. jwtVerify does take a `PayloadType` generic (defaulting to JWTPayload), but it is an unchecked compile-time assertion — nothing validates that the decoded JSON matches it — so this is not `strongly-typed` by the guideline. Pair with zod/valibot for real validation."
+    },
+    "crypto-backend": {
+      "value": ["webcrypto"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/src/lib/signing.ts",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "The runtime's own WebCrypto and nothing else — which in practice means OpenSSL under Node.js, BoringSSL under Chromium/workerd, and Rust `ring`/`aws-lc` under Deno. Algorithm availability therefore varies by runtime, as the README warns."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://registry.npmjs.org/jose"
+      ],
+      "comment": "Pure ESM JavaScript with no `dependencies` field at all and no native addon, no node-gyp, no WASM blob; the only platform requirement is that the host provides WebCrypto and Fetch."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md"],
+      "comment": "Browsers are a first-class target: the build produces ESM plus bundled/UMD/minified artifacts, and the repo runs its test suite against real browsers via Playwright (`tap:browsers`) as well as Electron."
+    },
+    "edge-runtime-compatible": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "This is the library's headline property: no Node built-ins are imported, so it runs on Cloudflare Workers, Deno Deploy, Vercel/Netlify edge functions and Bun. The repository maintains dedicated harnesses (`tap:workerd`, `tap:deno`, `tap:bun`) so the claim is continuously tested rather than asserted."
+    },
+    "fips-capable-backend": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"],
+      "comment": "Indeterminate, and arguably not the library's question at all: jose has no backend switch and makes no FIPS statement — it uses whatever WebCrypto the runtime exposes. Whether that path is FIPS-validated depends entirely on the host (a Node.js build against an OpenSSL FIPS provider, workerd's BoringSSL, Deno's Rust stack), and no authoritative statement that Node's WebCrypto surface is covered by its FIPS mode was found on 2026-07-30, so this is left null rather than guessed."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json",
+        "https://registry.npmjs.org/jose"
+      ],
+      "comment": "Zero runtime dependencies — package.json has no `dependencies` field, only devDependencies. Minimal supply-chain surface, checked against 6.2.5 on 2026-07-30."
+    },
+    "package-size": {
+      "value": 257025,
+      "source": ["https://registry.npmjs.org/jose"],
+      "comment": "npm-reported unpackedSize of the 6.2.5 tarball: 257025 bytes across 88 files, which includes the .d.ts type declarations for every subpath. Tree-shaking via the granular subpath exports means an application typically ships far less."
+    },
+    "github-stars": {
+      "value": 7724,
+      "source": ["https://api.github.com/repos/panva/jose"],
+      "comment": "Snapshot of panva/jose on 2026-07-30."
+    },
+    "downloads": {
+      "value": 107341234,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/jose"],
+      "comment": "npm weekly downloads for 2026-07-23 to 2026-07-29 — the consistent window for Node.js candidates in this comparison. Comparable only within the npm ecosystem."
+    },
+    "last-release": {
+      "value": "2026-07-29",
+      "source": ["https://registry.npmjs.org/jose"],
+      "comment": "6.2.5, published the day before this check. Release cadence over 2026 has been roughly monthly."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://registry.npmjs.org/jose",
+        "https://api.github.com/repos/panva/jose"
+      ],
+      "comment": "Six releases in the five months to 2026-07-29, last push to main 2026-07-29, zero open issues. No deprecation or successor pointer."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": [
+        "https://registry.npmjs.org/jose",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/package.json"
+      ],
+      "comment": "Filip Skokan (panva) is the sole npm maintainer and the package author; commits and releases are effectively all his, and SECURITY.md speaks of \"the maintainers\" as the disclosure authority. Mitigating factors: zero dependencies, a long unbroken release record, and the same author maintaining the related openid-client/oauth4webapi projects. Still a single point of failure."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/CHANGELOG.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md",
+        "https://api.npmjs.org/downloads/point/last-week/jose"
+      ],
+      "comment": "Seven years and six major versions since the 2019 initial release, ~107M weekly downloads, essentially complete JOSE coverage, a written threat model and supported-versions policy, and a track record of handling advisories promptly (including removing JWE compression outright in v5 rather than patching around it). The majors do break API — v5 dropped the Node-crypto runtimes and JWE compression, v6 went WebCrypto-only — but each ships a migration guide."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors", "cookbook-7520"],
+      "source": [
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/cookbook/jws.mjs",
+        "https://github.com/panva/jose/tree/v6.2.5/cookbook",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "A dedicated `cookbook/` directory holds JWS and JWE fixtures whose cases cite RFC 7520 (the JOSE cookbook) and related RFCs with hardcoded expected outputs, alongside the regular test suite; SECURITY.md claims correctness \"validated against test vectors from the respective specifications\". Beyond the spec vectors, the same suite is run against Node.js, Deno, Bun, workerd, Electron and real browsers, which is a form of runtime interop testing this schema has no tag for."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://github.com/panva/jose/blob/v6.2.5/docs/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/README.md",
+        "https://raw.githubusercontent.com/panva/jose/v6.2.5/SECURITY.md"
+      ],
+      "comment": "4 rather than 5: the generated reference is complete and every entry point carries a runnable example covering signing, verification, encryption, JWKS and key management, and the SECURITY.md threat model is a better security-considerations section than most peers offer. What is missing for a 5 is a task-oriented guide — there is no narrative \"how do I verify an OIDC id_token\" walkthrough; you assemble it from per-function pages, and much of the practical Q&A lives in GitHub Discussions rather than the docs."
+    }
+  }
 }

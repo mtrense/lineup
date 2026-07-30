@@ -200,7 +200,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **joserfc (Python)** — Authlib author's modern successor to python-jose with full JOSE coverage
 - [x] **Authlib JOSE (Python)** — the JOSE component of the Authlib suite
 - [x] **python-jose (Python)** — historically ubiquitous; included partly to document its current maintenance state
-- [ ] **jose / panva (Node.js, Deno, browser, edge)** — the reference JS JOSE implementation, WebCrypto-based, runtime-portable
+- [x] **jose / panva (Node.js, Deno, browser, edge)** — the reference JS JOSE implementation, WebCrypto-based, runtime-portable
 - [ ] **jsonwebtoken (Node.js)** — Auth0's long-standing Node library, still the most-downloaded JWT package
 - [ ] **fast-jwt (Node.js)** — performance-oriented Node JWT library used by fastify-jwt
 - [ ] **djwt (Deno)** — the Deno-native JWT module
