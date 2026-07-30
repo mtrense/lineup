@@ -1,5 +1,326 @@
 {
   "name": "biscuit (Rust)",
   "description": "Long-standing pure-Rust JOSE implementation with JWE support",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["rust"],
+      "source": ["https://crates.io/api/v1/crates/biscuit", "https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml"],
+      "comment": "Rust-only crate (edition 2021, MSRV 1.66); no bindings for other runtimes."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://crates.io/api/v1/crates/biscuit"],
+      "comment": "`license = \"MIT\"` in Cargo.toml, single-licensed (not the usual Rust MIT/Apache dual licence)."
+    },
+    "implementation": {
+      "value": ["ffi-binding"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwa.rs"],
+      "comment": "All crypto is delegated to `ring` ~0.17.13 (C + assembly core), which RESEARCH.md classifies as ffi-binding. Despite the \"pure-Rust\" reputation of the crate, biscuit itself implements no primitives."
+    },
+    "repository": {
+      "value": "https://github.com/lawliet89/biscuit",
+      "source": ["https://github.com/lawliet89/biscuit", "https://crates.io/api/v1/crates/biscuit"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/biscuit",
+      "source": ["https://crates.io/api/v1/crates/biscuit"],
+      "comment": "Registry metadata read via the crates.io JSON API (the HTML page is client-rendered)."
+    },
+    "documentation": {
+      "value": "https://docs.rs/biscuit/",
+      "source": ["https://docs.rs/biscuit/latest/biscuit/"],
+      "comment": "docs.rs is the only real documentation; the README is a pointer and `doc/supported.md` holds the feature matrix."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://crates.io/api/v1/crates/biscuit/versions"],
+      "comment": "0.0.1 published 2017-03-17; the crate descends from Keats/rust-jwt."
+    },
+    "latest-version": {
+      "value": "0.8.0",
+      "source": ["https://crates.io/api/v1/crates/biscuit/versions", "https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml"],
+      "comment": "Still pre-1.0 after nine years; 0.8.0 published 2026-04-05."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "All three implemented via ring's HMAC; verified in the SignatureAlgorithm sign/verify match arms (0.8.0)."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Verification uses ring's RSA_PKCS1_2048_8192_SHA256/384/512; signing requires Secret::RsaKeyPair (DER)."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Verification uses ring's RSA_PSS_2048_8192_SHA256/384/512 — full PS family, unusual for a small library."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384"],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/CHANGELOG.md"],
+      "comment": "0.8.0 source signs and verifies ES256 (ECDSA_P256_SHA256_FIXED, P-256 added in 0.7.0) and ES384 (ECDSA_P384_SHA384_FIXED); ES512 returns Error::UnsupportedOperation in both paths because ring lacks P-521. No ES256K. Note that doc/supported.md is stale here (it still claims ES256 is verify-only and ES384 unplanned) — the source was taken as ground truth per RESEARCH.md."
+    },
+    "eddsa": {
+      "value": [],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "No EdDSA at all: SignatureAlgorithm has no Ed25519/EdDSA variant. OKP/Ed25519/Ed448 appear only as JWK serialization parameters (src/jwk.rs), never as signing algorithms."
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128gcmkw", "a256gcmkw"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "KeyManagementAlgorithm enumerates RSA1_5, RSA-OAEP(-256), A128/192/256KW, ECDH-ES variants and PBES2, but those arms return an unsupported error (ring does not provide them). Only `dir`, A128GCMKW and A256GCMKW actually work; A192GCMKW is unsupported."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "AES-GCM only; the CBC-HMAC family and A192GCM are enumerated but unimplemented. Docs warn the caller is responsible for never reusing the 96-bit GCM nonce under the same key — a real footgun."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none"],
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "SignatureAlgorithm::None is a first-class variant and doc/supported.md lists `none` as supported. RSA1_5 exists as an enum variant only and errors at runtime, so it is not counted as available. RSA keys under 2048 bits are rejected by ring's RSA_PKCS1_2048_8192_* / RSA_PSS_2048_8192_* constants."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "Algorithms are closed Rust enums (SignatureAlgorithm, KeyManagementAlgorithm, ContentEncryptionAlgorithm) with no registration trait — no escape hatch, but also no way to add EdDSA yourself."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs", "https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html"],
+      "comment": "`decode(&self, secret, algorithm)` takes the expected algorithm as a required parameter and errors with WrongAlgorithmHeader if the token header disagrees, so an attacker-supplied `alg: none` token fails unless the caller itself passed SignatureAlgorithm::None *and* Secret::None (and the signature is empty — otherwise UnspecifiedCryptographicError). That is an explicit, unmistakably named opt-in, so `true` per the Assessment Guidelines. Caveat: `decode_with_jwks_ignore_kid` selects keys by matching the *header* algorithm, so a JWKS containing a key declared with alg `none` would be a way back in; `decode_with_jwks` instead takes the algorithm from the JWK and errors with MissingAlgorithm if absent."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs"],
+      "comment": "The main path `decode(secret, algorithm)` / `into_decoded(secret, algorithm)` cannot be called without naming the algorithm. The JWKS paths are `inferred-from-key` in spirit (JWK `alg` wins, MissingAlgorithm when absent), except `decode_with_jwks_ignore_kid`, which filters candidate keys using the untrusted header's alg."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Secret.html", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "Single `Secret` abstraction, but its variants carry the key kind (Bytes for HMAC, RsaKeyPair, EcdsaKeyPair, PublicKey(DER), RSAModulusExponent, None) and the sign/verify match arms fail closed when the variant does not fit the algorithm; combined with the required algorithm parameter, an RSA public key can never be consumed as an HMAC secret. Not 5 because the check is a runtime match rather than distinct compile-time types per family, and PublicKey(Vec<u8>) is shared between RSA and ECDSA."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html"],
+      "comment": "`unverified_header()` is the only way to read the header without verifying and is documented with a use-with-caution warning; there is no way to obtain the *payload* without a successful verification, since `payload()` only works on a decoded value."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs", "https://docs.rs/biscuit/0.8.0/biscuit/struct.RegisteredClaims.html", "https://docs.rs/biscuit/0.8.0/biscuit/struct.ValidationOptions.html"],
+      "comment": "Signature verification and claim validation are fully separate: `decode` performs no temporal or identity checks whatsoever. The caller must call `validate(ValidationOptions)`; `ValidationOptions::default()` then checks exp, nbf and iat when present, requires no claims, and ignores iss/aud. A caller who forgets `validate()` accepts expired tokens."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/struct.ValidationOptions.html", "https://docs.rs/biscuit/0.8.0/biscuit/struct.RegisteredClaims.html"],
+      "comment": "Both are supported (`validate_iss`, `validate_aud`, and Validation::Validate(...) fields) but ignored by default, and validation itself is opt-in — nothing fails closed without them."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/struct.ValidationOptions.html"],
+      "comment": "TemporalOptions carries an `epsilon` Duration error margin (and an injectable `now`); the default epsilon is zero, and `issued_at` additionally takes a max-age Duration."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwa.rs"],
+      "comment": "HMAC verification calls ring's `constant_time::verify_slices_are_equal` on the expected and actual tags (verified in the 0.8.0 source, not just claimed)."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "Only half of the requirement holds: RSA keys below 2048 bits are rejected, but only implicitly, by ring's RSA_PKCS1_2048_8192_* / RSA_PSS_2048_8192_* verification constants. There is no check that an HMAC secret is at least the hash length (RFC 7518 §3.2) — Secret::Bytes accepts any length, including a one-byte HS256 key."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/struct.RegisteredHeader.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "The `critical` (`crit`) field is deserialized but its own doc comment says it \"is currently not implemented (correctly)\", and doc/supported.md lists `crit` as unsupported: unrecognised critical headers do not fail verification, contrary to RFC 7515 §4.1.11."
+    },
+    "nested-depth-limits": {
+      "value": false,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jwe/enum.Compact.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "No explicit depth or iteration limits exist in the code. The practical exposure is small: nesting is caller-driven (each layer needs its own explicit decrypt/decode call, so there is no unbounded recursion), PBES2 is not implemented so there is no attacker-controlled `p2c`, and `zip` compression is unsupported so there is no decompression bomb."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": ["https://github.com/advisories?query=biscuit+ecosystem%3Arust", "https://rustsec.org/packages/biscuit.html", "https://deps.rs/crate/biscuit/0.8.0"],
+      "comment": "Checked 2026-07-30: no GitHub advisory for the crates.io crate `biscuit` (the two hits for \"biscuit\" are GHSA-p9w4-585h-g3c7 and GHSA-75rw-34q6-72cr, both against the unrelated `biscuit-auth` token format), RustSec has no package page for it (404), and deps.rs reports no advisories for 0.8.0. Nine years with no published advisory, but also no formal security process — read alongside the Security Policy and Independent Review rows."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://github.com/lawliet89/biscuit/tree/master", "https://github.com/lawliet89/biscuit"],
+      "comment": "No SECURITY.md at the repository root (root holds README, CHANGELOG, LICENSE, AGENTS.md, Cargo.*, doc/, fuzz/, src/, test/) and no documented private disclosure channel."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://github.com/lawliet89/biscuit", "https://raw.githubusercontent.com/lawliet89/biscuit/master/README.md"],
+      "comment": "Searched 2026-07-30 for a published audit of this crate and found none; the README and repository make no such claim. (Audits that exist for the similarly named `biscuit-auth` project are unrelated.) The repository does carry a `fuzz/` harness."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Both directions: `encode(secret)` signs using the algorithm from the header, `decode(secret, algorithm)` verifies."
+    },
+    "jwe": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jwe/enum.Compact.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Real encrypt/decrypt (`encrypt`, `decrypt`, `into_encrypted`, `into_decrypted`), but only `dir`/A128GCMKW/A256GCMKW with A128GCM/A256GCM, compact serialization only."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwk.rs", "https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Secret.html"],
+      "comment": "JWK/JWKSet are serde types covering RSA, EC (P-256/384/521), oct and OKP. Only RSA and EC parameters can be turned into a verification key (`jws_public_key_secret`); oct and OKP are serialization-only."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs"],
+      "comment": "No HTTP client anywhere in the dependency list (chrono, data-encoding, once_cell, num-bigint, num-traits, ring, serde, serde_json) — you fetch the JWKS, biscuit parses it."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs"],
+      "comment": "Follows from the absence of remote fetching: no cache, no TTL handling, no refetch-on-unknown-kid."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jws/compact.rs", "https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html"],
+      "comment": "`decode_with_jwks` requires a `kid` in the header (ValidationError::KidMissing otherwise) and looks the key up in the JWKSet; `decode_with_jwks_ignore_kid` is the deliberate opt-out for key sets without kids."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwk.rs"],
+      "comment": "`AlgorithmParameters::thumbprint()` implements RFC 7638 (lexicographic ordering of the required members, SHA-256) and is tested against the RFC 7638 §3.1 example. No RFC 9278 thumbprint URIs."
+    },
+    "nested-jwt": {
+      "value": true,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jwe/enum.Compact.html"],
+      "comment": "The JWE payload type is generic, so a JWS can be the payload; the docs actively recommend sign-then-encrypt (\"you should sign your JSON Web Token to create a JWS, and then encrypt the signed JWS\"). Each layer is an explicit call — there is no single end-to-end nested-JWT helper, and `cty` is not managed for you."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md", "https://github.com/lawliet89/biscuit/tree/master/src/jws"],
+      "comment": "src/jws holds compact.rs and flattened.rs; flattened JSON is JWS-only (JWE is compact-only). No general JSON serialization and therefore no multiple signatures."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md", "https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html"],
+      "comment": "No detached-content API (RFC 7515 Appendix F); the Compact enum always carries its payload."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md", "https://docs.rs/biscuit/0.8.0/biscuit/jws/struct.RegisteredHeader.html"],
+      "comment": "doc/supported.md lists `b64` as unsupported and RegisteredHeader has no `b64` field, so RFC 7797 is out."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwk.rs", "https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Secret.html"],
+      "comment": "No generation helpers in src/jwk.rs or on Secret; keys are loaded from DER/PKCS#8 files produced elsewhere (the docs point at openssl for conversion)."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5u"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/struct.RegisteredHeader.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Parsed and serialized only — this is the trap worth calling out: x5c chains are never validated, x5u is never fetched, x5t is never checked, and each field's own doc comment says it \"is currently not implemented (correctly)\". `x5t#S256` has no field at all."
+    },
+    "key-input-formats": {
+      "value": ["der", "pkcs8", "jwk", "jwks", "raw-bytes"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Secret.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwk.rs"],
+      "comment": "Secret::RsaKeyPair (RSA private key in DER), Secret::EcdsaKeyPair (PKCS#8 DER), Secret::PublicKey (DER public key), Secret::Bytes (raw HMAC bytes), Secret::RSAModulusExponent (n/e straight from a JWK), plus JWK/JWKS via jwk::JWKSet. Notably no PEM support — the docs tell you to convert PEM to DER with openssl first."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Secret.html", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "Signing takes a concrete `Secret` and calls ring directly; there is no signer trait to plug a KMS/HSM/PKCS#11 backend into."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": ["https://github.com/lawliet89/biscuit", "https://raw.githubusercontent.com/lawliet89/biscuit/master/README.md"],
+      "comment": "No first-party adapters, and a search on 2026-07-30 found no de facto community middleware built on biscuit — the popular axum/actix JWT middlewares build on `jsonwebtoken` or `jwt-compact` instead."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/jws/enum.Compact.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml"],
+      "comment": "Every entry point is a plain synchronous function; no async runtime dependency and no I/O in the crate."
+    },
+    "typed-claims": {
+      "value": ["strongly-typed"],
+      "source": ["https://docs.rs/biscuit/0.8.0/biscuit/type.JWT.html", "https://docs.rs/biscuit/0.8.0/biscuit/struct.RegisteredClaims.html"],
+      "comment": "`JWT<T, H>` is generic over a serde-deserializable private-claims struct alongside the typed RegisteredClaims, and the header is generic too. A map-style workflow is possible by instantiating T as serde_json::Value, but the idiomatic path is a compile-time-checked struct."
+    },
+    "crypto-backend": {
+      "value": ["ring"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "ring ~0.17.13 exclusively, and hardwired: the algorithm gaps (ES512, EdDSA, AES-KW, ECDH-ES, A192GCM, CBC-HMAC) are all ring's gaps. No pluggable backend."
+    },
+    "pure-language-implementation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://deps.rs/crate/biscuit/0.8.0"],
+      "comment": "biscuit's own code is pure Rust, but the mandatory `ring` dependency ships C and per-architecture assembly built by a build script, so the default configuration is not FFI-free (a C compiler is required). Cargo.toml offers no alternative backend feature."
+    },
+    "runs-in-browser-wasm": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://raw.githubusercontent.com/lawliet89/biscuit/master/README.md"],
+      "comment": "Inconclusive as of 2026-07-30: biscuit says nothing about WASM and exposes only a `strict` feature, so support hinges entirely on ring, which needs its opt-in `wasm32_unknown_unknown_js` feature (JS host only, wasm-bindgen randomness, an LLVM clang cross-toolchain, no WASI). Neither the repo nor CI shows a wasm target, so no verified answer."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml"],
+      "comment": "Same open question as Browser/WASM: a Cloudflare Workers Rust deployment would need ring's JS-flavoured wasm32 build, which is not exercised by this crate's CI or documentation. Not verified either way rather than assumed false."
+    },
+    "fips-capable-backend": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://docs.rs/biscuit/0.8.0/src/biscuit/jwa.rs.html"],
+      "comment": "The backend is hardwired to ring, which has no FIPS 140 validated mode; there is no feature to swap in aws-lc-rs FIPS or an OpenSSL FIPS provider. (Validation would in any case belong to the module, not to biscuit.)"
+    },
+    "dependency-count": {
+      "value": 8,
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/Cargo.toml", "https://deps.rs/crate/biscuit/0.8.0"],
+      "comment": "Direct dependencies of 0.8.0 with default features: chrono, data-encoding, once_cell, num-bigint, num-traits, ring, serde, serde_json (serde_test is dev-only). deps.rs confirms 8; it flags num-bigint 0.4 as behind 0.5.1 (checked 2026-07-30)."
+    },
+    "package-size": {
+      "value": 78232,
+      "source": ["https://crates.io/api/v1/crates/biscuit/versions"],
+      "comment": "Published .crate archive for 0.8.0 as reported by crates.io (0.7.0 was 73,064 bytes)."
+    },
+    "github-stars": {
+      "value": 187,
+      "source": ["https://github.com/lawliet89/biscuit"],
+      "comment": "Snapshot 2026-07-30: 187 stars, 38 forks, 22 open issues, 325 commits on master."
+    },
+    "downloads": {
+      "value": 5943370,
+      "source": ["https://crates.io/api/v1/crates/biscuit"],
+      "comment": "crates.io all-time downloads as of 2026-07-30 (recent-period figure was 526,513). Compare only against other Rust crates in this table."
+    },
+    "last-release": {
+      "value": "2026-04-05",
+      "source": ["https://crates.io/api/v1/crates/biscuit/versions"],
+      "comment": "0.8.0, per the crates.io versions API. Preceded by 0.7.0 on 2023-11-10 — a ~2.4-year gap. (docs.rs shows a July 2026 timestamp for the 0.8.0 docs, which is a rebuild date, not the publish date.)"
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/lawliet89/biscuit/commits/master", "https://raw.githubusercontent.com/lawliet89/biscuit/master/CHANGELOG.md", "https://crates.io/api/v1/crates/biscuit/versions"],
+      "comment": "Borderline: the 2026-04-05 release falls inside the six-month window for \"actively maintained\", but its entire content was upkeep — MSRV bump to 1.66, ring 0.17.5→0.17.13, build fixes for current stable Rust, CI permissions — after a 2.4-year silence, and the latest commit on master is also 2026-04-05. No feature work, no successor recommended by the author."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/lawliet89/biscuit/commits/master"],
+      "comment": "Recent history is lawliet89 plus dependabot/Copilot-assisted PRs; occasional outside contributors (striezel, g2p, Wicpar) are one-off rather than regular."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://docs.rs/biscuit/latest/biscuit/", "https://raw.githubusercontent.com/lawliet89/biscuit/master/CHANGELOG.md", "https://raw.githubusercontent.com/lawliet89/biscuit/master/doc/supported.md"],
+      "comment": "Judgement call. Nine years old with 5.9M downloads and an unbroken advisory record, but still 0.x with breaking changes across minors, and the crate itself states it \"does not support all, and probably will never support all\" of the RFC features (no EdDSA, no ES512, most JWE algorithms and crit/x5c/kid handling missing). Incomplete algorithm coverage is RESEARCH.md's experimental criterion, but the API stability and production usage put it at beta rather than experimental."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors"],
+      "source": ["https://raw.githubusercontent.com/lawliet89/biscuit/master/src/jwk.rs", "https://github.com/lawliet89/biscuit/tree/master"],
+      "comment": "Unit tests use RFC examples directly — RFC 7517 Appendix A.3 (EC key), RFC 8037 Appendix A.1/A.2 (OKP keys), RFC 7638 §3.1 (thumbprint) — plus a `fuzz/` harness and test/fixtures. No evidence of an RFC 7520 cookbook run, Wycheproof, or a cross-library interop suite."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/biscuit/latest/biscuit/", "https://docs.rs/biscuit/0.8.0/biscuit/type.JWT.html", "https://raw.githubusercontent.com/lawliet89/biscuit/master/README.md"],
+      "comment": "Complete API reference (docs.rs reports 100% documented) and a genuinely useful `doc/supported.md` honesty matrix, but the examples are thin: essentially one HS256 encode/decode round trip on the JWT type alias, nothing on claim validation, asymmetric keys, JWKS, or key management, and no security-considerations section. The README is a stub that defers to docs.rs."
+    }
+  }
 }
