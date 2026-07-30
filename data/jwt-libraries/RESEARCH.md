@@ -194,7 +194,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **go-jose (Go)** — the Square-descended JOSE library maintained under go-jose/go-jose
 - [x] **Nimbus JOSE+JWT (JVM)** — the reference-grade JVM JOSE implementation, near-total spec coverage
 - [x] **JJWT (JVM)** — fluent Java builder API, widely used in Spring-adjacent codebases
-- [ ] **java-jwt (JVM)** — Auth0's JVM library, JWT-focused rather than full JOSE
+- [x] **java-jwt (JVM)** — Auth0's JVM library, JWT-focused rather than full JOSE
 - [ ] **jose4j (JVM)** — mature standalone JVM JOSE implementation with strong RFC coverage
 - [ ] **PyJWT (Python)** — the Python default; JWS/JWT-focused, cryptography-backed
 - [ ] **joserfc (Python)** — Authlib author's modern successor to python-jose with full JOSE coverage

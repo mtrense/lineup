@@ -1,5 +1,502 @@
 {
   "name": "java-jwt (JVM)",
   "description": "Auth0's JVM library, JWT-focused rather than full JOSE",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["jvm"],
+      "source": [
+        "https://github.com/auth0/java-jwt",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle"
+      ],
+      "comment": "Plain JVM library, published only to Maven Central. The README states it is intended for server-side JVM applications; the build targets Java 8 bytecode with a Java 9 module-info and is tested on JDK 8, 11, 17 and 21."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://api.github.com/repos/auth0/java-jwt",
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt"
+      ],
+      "comment": "MIT, per the GitHub repository licence metadata and the Maven Central artifact page."
+    },
+    "implementation": {
+      "value": ["platform-provider", "stdlib-crypto"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/CryptoHelper.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "No crypto of its own: CryptoHelper drives javax.crypto.Mac and java.security.Signature, so the implementation comes from whichever JCA provider is registered. The JDK's built-in providers cover everything except RSASSA-PSS on Java 8, where the README tells you to register a third-party provider such as BouncyCastle."
+    },
+    "repository": {
+      "value": "https://github.com/auth0/java-jwt",
+      "source": ["https://github.com/auth0/java-jwt"]
+    },
+    "package": {
+      "value": "https://central.sonatype.com/artifact/com.auth0/java-jwt",
+      "source": ["https://central.sonatype.com/artifact/com.auth0/java-jwt"],
+      "comment": "Maven coordinates com.auth0:java-jwt."
+    },
+    "documentation": {
+      "value": "https://javadoc.io/doc/com.auth0/java-jwt/latest",
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "The README links javadoc.io as the API reference; EXAMPLES.md in the repository is the task-oriented guide (creation, verification, key providers, custom claims). javadoc.io itself refused the fetch during this pass (HTTP 403), so the link is recorded from the README rather than verified directly."
+    },
+    "first-release": {
+      "value": "2014",
+      "source": [
+        "https://api.deps.dev/v3alpha/systems/maven/packages/com.auth0%3Ajava-jwt",
+        "https://search.maven.org/solrsearch/select?q=g:%22com.auth0%22+AND+a:%22java-jwt%22&core=gav&rows=200&wt=json&sort=timestamp+asc"
+      ],
+      "comment": "Version 0.1 published to Maven Central on 2014-03-07, the same day the GitHub repository was created. 59 versions published as of 2026-07-30."
+    },
+    "latest-version": {
+      "value": "4.6.0",
+      "source": [
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt",
+        "https://api.github.com/repos/auth0/java-jwt/releases?per_page=8"
+      ],
+      "comment": "4.6.0, released 2026-07-13; checked 2026-07-30. All source-derived findings below were read against master at that point. Note search.maven.org's solr index was stale on this date (it still reported 4.5.0 as newest), so Maven Central's own artifact page and deps.dev were used instead."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Algorithm.HMAC256/384/512, each with a String and a byte[] secret overload."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Algorithm.RSA256/384/512, with key-pair, single-key and RSAKeyProvider overloads."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Algorithm.RSA256PSS/RSA384PSS/RSA512PSS. Support is inherited from the JVM: available natively from Java 11 via SunRsaSign, but on Java 8 the caller must register a provider such as BouncyCastle — the library bundles none."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Algorithm.ECDSA256/384/512 over the NIST curves. ES256K is deliberately absent — the README records that secp256k1 support was dropped because the curve is disabled from Java 15 onwards. The README also carries a standing warning about CVE-2022-21449 (the JDK 'psychic signatures' ECDSA flaw), which is a JVM issue rather than a library one."
+    },
+    "eddsa": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Not applicable: no EdDSA at all. The Algorithm factory exposes only HMAC, RSA (PKCS#1 v1.5 and PSS) and ECDSA, and the README's algorithm table lists no Ed25519/Ed448 entry — so there is nothing to tag."
+    },
+    "jwe-key-management": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java"
+      ],
+      "comment": "Not applicable: the library implements signed compact JWTs (JWS) only. There is no encryption API — JWT exposes only create(), require() and decode() — so there are no key-management algorithms to record."
+    },
+    "jwe-content-encryption": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java"
+      ],
+      "comment": "Not applicable: no JWE support, so no content-encryption algorithms."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/RSAAlgorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/HMACAlgorithm.java"
+      ],
+      "comment": "Algorithm.none() is a public, non-deprecated factory returning NoneAlgorithm, and it carries no JavaDoc warning about its security implications — it must be chosen explicitly, but it is exposed. RSA modulus size is never checked: neither the RSAAlgorithm constructors nor verify() inspect key length, so an under-2048-bit key is accepted. RSA1_5 cannot appear (no JWE) and ES256K was removed."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "Algorithm is a public abstract class with a protected (name, description) constructor and abstract sign()/verify(), so a user can subclass it to register any alg identifier. That is also the escape hatch: JWTVerifier only compares the token header's alg against the configured Algorithm's name and then calls its verify(), so a custom subclass fully replaces the library's own checks. Not documented as a supported extension point."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java"
+      ],
+      "comment": "On the normal path, JWT.require(algorithm) demands a non-null Algorithm and verifyAlgorithm() throws AlgorithmMismatchException when the token header's alg differs from it, so a forged alg:\"none\" token never verifies against an RSA/HMAC verifier. The opt-in is Algorithm.none() — explicit and separately named, hence true — but it is an ordinary public factory with no deprecation marker or security note in its JavaDoc, which is weaker than the guideline's ideal. Separately, JWT.decode() bypasses verification entirely by design."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify", "inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java"
+      ],
+      "comment": "Verification cannot be built without naming the algorithm: JWT.require(Algorithm) is the only entry point and rejects null ('The Algorithm cannot be null'). The allow-list is a single algorithm, not a set — a verifier accepts exactly the alg it was constructed with. The Algorithm instance also carries the key, and the key type is fixed per factory (RSAPublicKey, ECPublicKey, or a secret byte[]/String), so the key structurally narrows the algorithm too. Verifying tokens signed with several algorithms means building one verifier per algorithm and dispatching yourself — a place where careless code can reintroduce header-driven selection."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 5,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "5 per the guideline: distinct key types per family enforced by the Java type system — Algorithm.HMAC256 takes String/byte[], RSA256 takes RSAPublicKey/RSAPrivateKey or an RSAKeyProvider, ECDSA256 takes EC keys — so an RSA public key cannot be passed where an HMAC secret is expected, and it will not compile. On top of that the verifier is bound to one algorithm and throws AlgorithmMismatchException on a header mismatch at runtime, so the classic RS256→HS256 swap is doubly blocked. The residual risk is application code that picks the Algorithm from the untrusted header itself, which the library neither encourages nor prevents."
+    },
+    "unverified-decode-separated": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "Borderline, resolved as false on the guideline's 'shortest path' clause. There IS a distinct method rather than a flag — JWT.decode(token) — and its JavaDoc warns in bold that it 'doesn't verify the token's signature! Use it only if you trust the token or if you have already verified it'. But the name is neutral rather than unsafe-sounding, it is a one-call path against the three-step JWT.require(alg).build().verify(token), and it returns the same DecodedJWT type as verify(), so downstream code cannot tell a verified token from an unverified one."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "BaseVerification.build() always calls addMandatoryClaimChecks(), which registers exp, nbf and iat checks (iat unless ignoreIssuedAt() was called). These checks are registered through constructExpectedCheck rather than the addCheck helper, so — unlike withIssuer()/withClaimPresence(), which throw MissingClaimException — an absent exp/nbf/iat is not an error: the claims are validated when present, not required. aud is checked only when withAudience()/withAnyOfAudience() is configured and iss only via withIssuer(); neither is validated by default."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "Both are optional builder calls. JWT.require(algorithm).build().verify(token) succeeds with no aud or iss expectation whatsoever, and a token bearing an unexpected aud is not rejected unless withAudience() was configured. The examples do show withIssuer(), but nothing fails closed without it."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "acceptLeeway(seconds) sets a global leeway, with per-claim overrides acceptExpiresAt(), acceptNotBefore() and acceptIssuedAt(); ignoreIssuedAt() disables the iat check entirely. Default leeway is 0 (defaultLeeway = 0), which is the conservative choice. A Clock can also be injected via build(Clock) for testing."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/CryptoHelper.java"
+      ],
+      "comment": "CryptoHelper.verifySignatureFor for HMAC compares the recomputed tag with MessageDigest.isEqual(...), the JDK's timing-attack-resistant comparison, not Arrays.equals. Asymmetric algorithms delegate comparison to java.security.Signature.verify()."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/HMACAlgorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/RSAAlgorithm.java"
+      ],
+      "comment": "Neither limit. HMACAlgorithm validates only that the secret is non-null ('The Secret cannot be null') — a one-byte HS256 secret is accepted, against RFC 7518 §3.2, which wants at least the hash output length. RSAAlgorithm checks only that the key provider and the resolved key are non-null; no modulus-length policy anywhere."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/HeaderDeserializer.java",
+        "https://api.github.com/repos/auth0/java-jwt/contents/lib/src/main/java/com/auth0/jwt/impl"
+      ],
+      "comment": "HeaderDeserializer extracts only alg, typ, cty and kid into BasicHeader; there is no crit handling anywhere in the impl package, so a token declaring unrecognised critical header parameters verifies successfully. That contradicts RFC 7515 §4.1.11, which requires rejection. The raw value remains readable via getHeaderClaim(\"crit\"), so a caller can implement the check themselves."
+    },
+    "nested-depth-limits": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/HeaderDeserializer.java"
+      ],
+      "comment": "Largely moot but recorded as false: no JWE, no nested tokens and no PBES2, so the DoS classes this attribute targets do not arise, and the library itself imposes no explicit limit. Any bound on deeply nested claim JSON comes from Jackson's own StreamReadConstraints defaults (jackson-databind 2.22.0), not from java-jwt."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": [
+        "https://github.com/advisories?query=java-jwt",
+        "https://github.com/auth0/java-jwt/security/policy",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "No advisory naming the Maven package com.auth0:java-jwt was found in the GitHub Advisory Database (the java-jwt query returns 24 unrelated Maven/npm/pip entries) and none in twelve years of releases. Do not confuse it with Auth0's Node package jsonwebtoken (CVE-2022-23529 etc.) — different library, different ecosystem. The one security note in the README is CVE-2022-21449, the JDK 'psychic signatures' ECDSA flaw, which is remediated by patching the JVM, not by upgrading this library. An OSV.dev query was attempted but its result list did not render for the fetcher, so the negative finding rests on GitHub Advisories plus the repository's own advisory tab."
+    },
+    "security-policy": {
+      "value": true,
+      "source": [
+        "https://github.com/auth0/java-jwt/security/policy",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Published policy pointing at Auth0's Responsible Disclosure Policy form, security@auth0.com, and a PGP key for encrypted reports."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://github.com/auth0/java-jwt",
+        "https://github.com/auth0/java-jwt/security/policy"
+      ],
+      "comment": "Searched (web search plus the repository, its README and its security policy) and found no published third-party audit of this library. Auth0/Okta platform-level attestations exist but do not cover this SDK, and none is linked from the project."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "Both directions: JWT.create()...sign(algorithm) and JWT.require(algorithm).build().verify(token). This is the library's entire purpose."
+    },
+    "jwe": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java"
+      ],
+      "comment": "No JWE — no encryption API and no enc/JWE handling anywhere. The README scopes the library to RFC 7519 JWTs; JVM users needing JWE go to Nimbus JOSE+JWT or jose4j."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Out of scope by design: EXAMPLES.md says key construction is 'beyond the scope of this library' and points at Auth0's separate jwks-rsa-java package for obtaining a public key from a JWK. java-jwt itself only accepts java.security key objects."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "No HTTP client and no network dependency (the only runtime dependencies are Jackson). Remote JWKS retrieval lives in the companion jwks-rsa-java library, which you wire into an RSAKeyProvider yourself."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle"
+      ],
+      "comment": "Follows from having no remote fetch: no cache, no TTL/Cache-Control handling and no refetch-on-unknown-kid. jwks-rsa-java provides the caching and rate limiting, and it is a separate dependency."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/RSAAlgorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "The verification path passes the token's kid to the caller's provider: RSAAlgorithm.verify() calls keyProvider.getPublicKeyById(jwt.getKeyId()), and EXAMPLES.md shows an RSAKeyProvider resolving the key by kid from a JWKS endpoint. The selection logic is yours — note that the built-in providerForKeys() helper ignores the kid and always returns the same key."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "No JWK model at all, so no RFC 7638 thumbprint and no RFC 9278 thumbprint URIs."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Requires JWE, which the library does not implement."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/HeaderDeserializer.java"
+      ],
+      "comment": "Compact serialization only — everything works on 'header.payload.signature' strings. No flattened or general JSON serialization and no multi-signature support."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java"
+      ],
+      "comment": "RFC 7515 Appendix F is not implemented: there is no API that verifies a signature against an externally supplied payload."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/HeaderDeserializer.java"
+      ],
+      "comment": "RFC 7797 not implemented — no b64 header handling; the header deserializer knows only alg, typ, cty and kid, and every segment is base64url-encoded."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "Explicitly out of scope — EXAMPLES.md states that constructing keys is beyond the library's scope. Users generate keys with the JDK's KeyPairGenerator, keytool or openssl."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/HeaderDeserializer.java"
+      ],
+      "comment": "No X.509 header parameters are modelled: HeaderDeserializer maps only alg, typ, cty and kid. x5c/x5t/x5t#S256/x5u are reachable only as generic header claims via getHeaderClaim(), and nothing parses a certificate, validates a chain or fetches an x5u."
+    },
+    "key-input-formats": {
+      "value": ["raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/Algorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "Only HMAC secrets are ingested directly, as a String or byte[]. Asymmetric keys must already be java.security.interfaces.RSAPublicKey/RSAPrivateKey or EC key objects — the library parses no PEM, DER, PKCS#8, JWK or keystore itself ('beyond the scope of this library'); you use the JDK's KeyFactory/KeyStore or jwks-rsa-java first. The repository's own PemUtils lives in the test sources, not in the published artifact."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/RSAAlgorithm.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/CryptoHelper.java"
+      ],
+      "comment": "Debatable, resolved as false: there is no signer abstraction. RSAKeyProvider/ECDSAKeyProvider must return a concrete java.security.PrivateKey, and CryptoHelper calls Signature.getInstance(algorithm) with no provider argument, so an HSM/PKCS#11 key handle only works if JVM-wide provider ordering happens to resolve to the token's provider. A KMS-style signer that never yields a PrivateKey requires subclassing Algorithm yourself."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://github.com/auth0/auth0-spring-security-api"
+      ],
+      "comment": "No first-party or de facto adapter today. Auth0's auth0-spring-security-api existed but targets Spring 4 / Spring Boot 1 and its README now redirects users to Spring Security 5's native OAuth2 resource server — which validates JWTs with Nimbus, not java-jwt. Spring Boot, Quarkus and Micronaut all ship Nimbus-based JWT support, so java-jwt is typically called directly from application code."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWT.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/JWTVerifier.java"
+      ],
+      "comment": "Plain blocking methods (sign/verify/decode); no CompletionStage or reactive surface, and none needed since the library performs no I/O. Verifier instances are documented as reusable and are covered by a ConcurrentVerifyTest."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/impl/JsonNodeClaim.java"
+      ],
+      "comment": "Reading is dynamic: getClaim(name) returns a Claim that you convert at runtime with asString()/asInt()/asMap()/as(Class) — a wrong type yields null or a JWTDecodeException rather than a compile-time error. Writing is better served: withClaim() has typed overloads for String, numbers, boolean, Instant, Map and List. No generic claims-type parameter, so map-only rather than strongly-typed."
+    },
+    "crypto-backend": {
+      "value": ["jca"],
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/CryptoHelper.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Everything goes through JCA (javax.crypto.Mac, java.security.Signature) with the JDK's default providers. BouncyCastle appears only as a test dependency and as the README's suggested provider for RSASSA-PSS on Java 8 — the library never registers a provider itself."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle",
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt"
+      ],
+      "comment": "Pure Java. The only runtime dependencies are jackson-core and jackson-databind 2.22.0, both pure Java; the crypto comes from the JVM's own providers. No JNI, no bundled native library."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": [
+        "https://github.com/auth0/java-jwt",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle"
+      ],
+      "comment": "A server-side JVM library — the repository describes it as intended for server-side JVM applications and it is published only as a JAR. It runs on Android and on any JVM, but there is no browser or WASM target."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": [
+        "https://github.com/auth0/java-jwt"
+      ],
+      "comment": "Not applicable per the RESEARCH.md guideline: the JavaScript edge runtimes (Cloudflare Workers, Vercel Edge, Deno Deploy) do not host JVM libraries, so the question is meaningless here rather than answered false."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/src/main/java/com/auth0/jwt/algorithms/CryptoHelper.java",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md"
+      ],
+      "comment": "Indirectly, and with a caveat. Because all crypto is resolved through JCA by algorithm name, a FIPS 140-validated provider (BC-FJA, or a FIPS-configured JVM/PKCS#11 provider) installed at the top of the provider list will serve java-jwt's Mac and Signature calls. The library exposes no provider selection of its own and makes no FIPS claim; the validation belongs to the provider module, not to this library."
+    },
+    "dependency-count": {
+      "value": 2,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle",
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt"
+      ],
+      "comment": "Two direct runtime dependencies as of 4.6.0: com.fasterxml.jackson.core:jackson-core and :jackson-databind, both 2.22.0 (jackson-databind itself pulls jackson-annotations). Everything else in build.gradle is test- or benchmark-scoped (JUnit, Hamcrest, Mockito, BouncyCastle, JMH)."
+    },
+    "package-size": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt"
+      ],
+      "comment": "Not recorded: Maven Central's artifact page publishes no size, and repo1.maven.org refused both the 4.6.0 directory listing and the JAR to the fetcher (HTTP 403) during this pass, so no verified byte count could be obtained. For scale, indexed listings of older releases show java-jwt-3.4.0.jar at roughly 50 KB, but that figure was not verified for 4.6.0 and is deliberately not recorded as the value."
+    },
+    "github-stars": {
+      "value": 6230,
+      "source": ["https://api.github.com/repos/auth0/java-jwt"],
+      "comment": "GitHub API snapshot on 2026-07-30."
+    },
+    "downloads": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/com.auth0%3Ajava-jwt"
+      ],
+      "comment": "Maven Central publishes no download counts, and neither the artifact page nor deps.dev reports one. Third-party proxies (mvnrepository usage ranking) were not reachable for this pass, and their 'usages' metric is not comparable to a download window anyway."
+    },
+    "last-release": {
+      "value": "2026-07-13",
+      "source": [
+        "https://api.github.com/repos/auth0/java-jwt/releases?per_page=8",
+        "https://central.sonatype.com/artifact/com.auth0/java-jwt"
+      ],
+      "comment": "4.6.0, published 2026-07-13; the repository's last push was the same day."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/auth0/java-jwt/releases?per_page=8",
+        "https://api.github.com/repos/auth0/java-jwt/commits?per_page=50",
+        "https://api.github.com/repos/auth0/java-jwt"
+      ],
+      "comment": "Three releases in the last twelve months (4.5.1 on 2026-02-16, 4.5.2 on 2026-04-29, 4.6.0 on 2026-07-13) after a quieter 2023–2024 stretch, and continuous commits through July 2026. Not archived, not deprecated, and Auth0 points to no successor."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": [
+        "https://api.github.com/repos/auth0/java-jwt/commits?per_page=50",
+        "https://api.github.com/repos/auth0/java-jwt"
+      ],
+      "comment": "Company-backed: the repository belongs to the Auth0 (Okta) organisation, which owns the release process and the disclosure channel. Worth qualifying, though — the last 50 commits (2026-04-02 to 2026-07-13) are 25 from a single Auth0 maintainer, 18 from dependabot and one drive-by, so day-to-day it reads like one person inside an organisation."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://api.deps.dev/v3alpha/systems/maven/packages/com.auth0%3Ajava-jwt",
+        "https://github.com/auth0/java-jwt/security/policy",
+        "https://api.github.com/repos/auth0/java-jwt/releases?per_page=8"
+      ],
+      "comment": "Twelve years and 59 releases, a stable 4.x API since 2022, broad production use, an organisation-backed disclosure process, and no advisory ever filed against the package. Rated mature despite the narrow feature scope — maturity here is about track record, not JOSE coverage."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": [
+        "https://api.github.com/repos/auth0/java-jwt/contents/lib/src/test/java/com/auth0/jwt",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/lib/build.gradle"
+      ],
+      "comment": "Hand-written JUnit suites organised by component (JWTVerifierTest ~57 KB, JWTCreatorTest ~40 KB, JWTTest, JWTDecoderTest, ConcurrentVerifyTest, plus algorithms/, impl/ and interfaces/ subpackages) and a BouncyCastle test dependency for cross-checking signatures. No RFC 7515/7518 appendix vectors, no RFC 7520 cookbook suite, no Wycheproof and no interop harness were found."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/README.md",
+        "https://raw.githubusercontent.com/auth0/java-jwt/master/EXAMPLES.md"
+      ],
+      "comment": "4: a clear README with an algorithm table, JVM-support notes and the CVE-2022-21449 warning, plus a dedicated EXAMPLES.md covering token creation, verification, custom claims, key providers and kid-based lookup, and a full Javadoc on javadoc.io. Short of 5 — there is no consolidated security-considerations chapter (nothing on RFC 8725, the unchecked crit header, or the absence of key-size limits), no key-loading guidance at all, and the JWKS story is a pointer to another library."
+    }
+  }
 }
