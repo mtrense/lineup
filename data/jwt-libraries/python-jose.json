@@ -1,5 +1,471 @@
 {
   "name": "python-jose (Python)",
   "description": "Historically ubiquitous; included partly to document its current maintenance state",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["python"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/pyproject.toml",
+        "https://pypi.org/pypi/python-jose/json"
+      ],
+      "comment": "Pure Python package, CPython only. 3.5.0 dropped Python 3.8 and added 3.12/3.13 support."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/pyproject.toml",
+        "https://pypi.org/pypi/python-jose/json"
+      ],
+      "comment": "MIT, declared in the PyPI metadata and the repository LICENSE file; GitHub's licence detection also reports MIT."
+    },
+    "implementation": {
+      "value": ["native", "stdlib-crypto", "ffi-binding"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/__init__.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/native.py"
+      ],
+      "comment": "Three swappable backends since 3.3.0, selected implicitly at import time by jose/backends/__init__.py: pyca/cryptography (the recommended one, an FFI binding to OpenSSL, installed via the [cryptography] extra), pycryptodome, and the always-installed native-Python backend built on the pure-Python rsa/ecdsa/pyasn1 packages. HMAC in the native backend is stdlib hashlib/hmac. Which backend you get depends on what happens to be importable, which is itself worth knowing."
+    },
+    "repository": {
+      "value": "https://github.com/mpdavis/python-jose",
+      "source": ["https://api.github.com/repos/mpdavis/python-jose"],
+      "comment": "Created 2015-04-20 by Michael Davis (mpdavis)."
+    },
+    "package": {
+      "value": "https://pypi.org/project/python-jose/",
+      "source": ["https://pypi.org/pypi/python-jose/json"]
+    },
+    "documentation": {
+      "value": "https://python-jose.readthedocs.io/en/latest/",
+      "source": ["https://python-jose.readthedocs.io/en/latest/"],
+      "comment": "Sphinx site on Read the Docs with one short page plus an autodoc API page per module (jws, jwt, jwk, jwe)."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://pypi.org/pypi/python-jose/json"],
+      "comment": "Earliest release still present on PyPI is 0.1.1, uploaded 2015-04-22; the repository was created two days earlier."
+    },
+    "latest-version": {
+      "value": "3.5.0",
+      "source": [
+        "https://pypi.org/pypi/python-jose/json",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/CHANGELOG.md"
+      ],
+      "comment": "Released 2025-05-28. All source claims in this record were read from the 3.5.0 tag."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/native.py"
+      ],
+      "comment": "ALGORITHMS.HMAC = {HS256, HS384, HS512}, all in SUPPORTED and exercised by tests/algorithms/test_HMAC.py."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "ALGORITHMS.RSA_DS; signing and verification use padding.PKCS1v15() in the cryptography backend and pyrsa in the native backend."
+    },
+    "rsa-pss": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "Not applicable: no PS256/PS384/PS512 anywhere in jose/constants.py, and the RSA backends hardcode PKCS1v15 padding for signatures. RSA-PSS has never been implemented."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "P-256/P-384/P-521 only, mapped in the backends' curve tables (SECP256R1/SECP384R1/SECP521R1 with cryptography, NIST256p/NIST384p/NIST521p with the ecdsa package). No ES256K/secp256k1 support. The cryptography backend also rejects a curve too short for the hash (\"this curve is too short for your digest\")."
+    },
+    "eddsa": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "Not applicable: no EdDSA, Ed25519, Ed448 or OKP key type in the codebase. RFC 8037 is unimplemented. (The string \"ssh-ed25519\" appears only in the SSH-key sniffing helper used to block HMAC key confusion.)"
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128kw", "a192kw", "a256kw", "rsa-oaep", "rsa-oaep-256", "rsa1-5"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "jwe.encrypt/decrypt admit only members of ALGORITHMS.SUPPORTED, which is HMAC + RSA_DS + EC_DS + dir + AES_JWE_ENC + RSA_KW + AES_KW. Two traps in the constants: ECDH-ES(+A128/192/256KW), the AESGCMKW family and the PBES2 family are all defined as identifiers and appear in ALGORITHMS.ALL, but are deliberately excluded from SUPPORTED and therefore rejected — they exist as names only. Also note the native RSA backend removes RSA-OAEP from SUPPORTED at import time (jose/backends/rsa_backend.py), so which of these you actually get depends on the installed backend; AES key wrapping needs the cryptography or pycryptodome extra because AESKey is None otherwise."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "ALGORITHMS.AES_JWE_ENC, all inside SUPPORTED. Implemented by CryptographyAESKey (AESGCM for the GCM modes, CBC+PKCS7 with an HMAC tag for the CBC-HS modes); requires the cryptography or pycryptodome extra. No XC20P. 3.4.0 fixed GCM IV generation to 96 bits."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["rsa1-5", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "RSA1_5 (PKCS#1 v1.5 key encryption, discouraged by RFC 8725 §3.4 and the source of padding-oracle attacks) is in ALGORITHMS.SUPPORTED and usable for JWE key wrapping with no opt-in. No key-size floor is enforced anywhere, so RSA keys below 2048 bits are accepted. Not tagged: `none` is excluded from SUPPORTED (see Rejects alg: none) and secp256k1 is not implemented at all."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/base.py"
+      ],
+      "comment": "jwk.register_key(algorithm, key_class) accepts any subclass of jose.backends.base.Key and, notably, adds the algorithm name to ALGORITHMS.SUPPORTED — so registering a key class widens the set of `alg` values that jws.sign, jws.verify and jwe.decrypt will accept. That is the escape hatch: a third-party package that registers a key for \"none\" would silently re-enable unsecured tokens."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "ALGORITHMS.NONE = \"none\" exists and is a member of ALGORITHMS.ALL, but not of SUPPORTED, and jwk.get_key(\"none\") returns None so no key can ever be constructed for it. Verified empirically against the 3.5.0 source on 2026-07-30: jwt.decode of an alg:none token fails both with algorithms=['HS256'] (\"The specified alg value is not allowed\") and with no algorithms argument at all (JWKError \"Unable to find an algorithm for key\"). There is no opt-in to re-enable it, though jwk.register_key could be abused to add one. One wart: in the no-algorithms case the failure escapes as JWKError, not JWTError, so callers catching only JWTError get an unexpected exception type rather than a clean rejection."
+    },
+    "algorithm-pinning": {
+      "value": ["trusts-header"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "Recorded against what the API forces, per the assessment guideline. The headline entry point is jwt.decode(token, key, algorithms=None, ...) — the allow-list is optional and defaults to None, and jws._verify_signature then skips the check entirely (`if algorithms is not None and alg not in algorithms`), letting the untrusted header's `alg` choose the key class via jwk.construct. jws.verify(token, key, algorithms) does take algorithms as a required positional parameter, so the lower-level API is caller-must-specify; the JWT-level one that nearly everyone calls is not. Confirmed by running jwt.decode without algorithms against the 3.5.0 source on 2026-07-30: it verified the token."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 3,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/native.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/utils.py",
+        "https://github.com/advisories/GHSA-6c5p-j8vq-pqhj"
+      ],
+      "comment": "A runtime check exists but it is textual, not type-based. Keys are plain strings/bytes/dicts turned into a key object by jwk.construct(key, alg), where alg may come from the token header (see Algorithm Pinning). Both HMAC key classes refuse a secret that matches is_pem_format() or is_ssh_key() — the guard added for CVE-2024-33663 (critical, algorithm confusion with OpenSSH ECDSA keys) and released in 3.4.0 — and JWK dicts are checked for kty, so the classic \"feed the RS256 public key as the HS256 secret\" path fails closed for PEM, OpenSSH and JWK-shaped keys. It is a string sniff, though: a raw DER blob or a key loaded some other way as bytes is still accepted as an HMAC secret, and nothing prevents the same key material being used under a different family. Not 4, because the key does not carry its own type; not 2, because a real check is there."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "jwt.get_unverified_claims() and jwt.get_unverified_header(s)() are separate, plainly named functions on both the jwt and jws modules, and the verifying path is the short one (jwt.decode). Caveat: jwt.decode also accepts options={'verify_signature': False}, which skips verification while keeping the normal call shape — a second, less obvious unsafe path."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat", "aud", "sub", "jti"],
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py"],
+      "comment": "jwt.decode's defaults turn every verify_* flag on. What that actually means per claim differs: exp and nbf are compared against the clock whenever present (leeway 0); iat, sub and jti are only type-checked (integer, string, string) and never compared to anything; aud fails closed — if the token carries an `aud` and the caller passed no audience, _validate_aud raises \"Invalid audience\" (confirmed by running it on 2026-07-30); iss is only checked when an issuer argument is supplied, so it is not validated by default and is not tagged. at_hash is also verified when present (OIDC), but has no tag in this schema. Claims are optional by default — require_exp and friends default to False, so a token with no exp is accepted."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py"],
+      "comment": "Both audience= and issuer= are optional keyword arguments defaulting to None, and require_aud/require_iss default to False, so jwt.decode(token, key, algorithms=['RS256']) with no expected audience or issuer is a perfectly ordinary call. Half credit is due on aud: if the token contains an aud claim and no audience was supplied, verification fails. iss is simply not checked when issuer is omitted."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py"],
+      "comment": "options={'leeway': N} where N is seconds or a datetime.timedelta; applied to both nbf and exp. Default is 0, i.e. no skew allowance. There is no upper bound on the value."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/native.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py",
+        "https://github.com/advisories/GHSA-w799-prg3-cx77"
+      ],
+      "comment": "Native backend: hmac.compare_digest(sig, self.sign(msg)). Cryptography backend: cryptography's HMAC.verify(), which is constant-time. This was not always true — CVE-2016-7036 (GHSA-w799-prg3-cx77, rated critical) was exactly a non-constant-time HMAC comparison, fixed in 1.3.2."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/native.py"
+      ],
+      "comment": "Neither check exists. Grepping the 3.5.0 tree for key-size validation finds no RSA modulus floor (key_size is only used to size DER/JWK output) and no length check on HMAC secrets, so a 512-bit RSA key or a four-byte HS512 secret is accepted, contrary to RFC 7518 §3.2 and RFC 8725. The only size-related guard is in the EC path, where the cryptography backend rejects a curve shorter than the digest."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py"
+      ],
+      "comment": "The string \"crit\" appears exactly once in the whole package, inside a comment in jwe.decrypt paraphrasing the RFC requirement — and no code implements it. jws._load parses the header and only looks at `alg`; unrecognised critical header parameters are silently ignored on both the JWS and JWE paths, which violates RFC 7515 §4.1.11."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/constants.py",
+        "https://github.com/advisories/GHSA-cjwg-qfpm-7377"
+      ],
+      "comment": "Two hard limits, both added in 3.4.0 for CVE-2024-33664 (JWE decompression bomb): jwe.decrypt rejects any input larger than JWE_SIZE_LIMIT (250 KiB) up front, and _decompress uses zlib.decompressobj().decompress(data, max_length=JWE_SIZE_LIMIT) and raises if unconsumed_tail remains. PBES2 has no p2c cap because PBES2 is not supported at all. There is no explicit nesting-depth counter, but nested JWT is not implemented either, so recursion is not reachable."
+    },
+    "cve-history": {
+      "value": ["historical-pre-2020", "historical-2020s"],
+      "source": [
+        "https://github.com/advisories/GHSA-6c5p-j8vq-pqhj",
+        "https://github.com/advisories/GHSA-cjwg-qfpm-7377",
+        "https://github.com/advisories/GHSA-w799-prg3-cx77",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/CHANGELOG.md"
+      ],
+      "comment": "Four GitHub advisories as of 2026-07-30, all fixed in the current release. CVE-2016-7036 (GHSA-w799-prg3-cx77, critical, advisory published 2022-05-17 for a 2016 issue): HMAC comparison was not constant-time; fixed in 1.3.2. CVE-2024-33663 (GHSA-6c5p-j8vq-pqhj, critical, published 2024-04-26): algorithm confusion with OpenSSH ECDSA public keys — a public key could be used as an HMAC secret; fixed in 3.4.0. CVE-2024-33664 (GHSA-cjwg-qfpm-7377, medium, published 2024-04-26): denial of service via a compressed JWE (decompression bomb); fixed in 3.4.0. CVE-2024-29370 (GHSA-h4pw-wxh7-4vjj, published 2025-12-17) is a duplicate advisory for the same JWE issue. The response time is the story here: both 2024 advisories were public on 2024-04-26 and no fixed release existed until 3.4.0 on 2025-02-14, roughly ten months of a critical algorithm-confusion issue with no patched version on PyPI. Nothing unpatched today; nothing new since."
+    },
+    "security-policy": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/mpdavis/python-jose/contents/",
+        "https://api.github.com/repos/mpdavis/python-jose/contents/.github"
+      ],
+      "comment": "Checked 2026-07-30: no SECURITY.md in the repository root and none under .github/ (which contains only workflows/). No private disclosure channel is documented in the README or the docs; GitHub shows no security policy for the project."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/mpdavis/python-jose/contents/",
+        "https://python-jose.readthedocs.io/en/latest/"
+      ],
+      "comment": "Searched on 2026-07-30 across the repository, the docs site and the web for a published third-party audit or a review by a recognised security team; nothing found. What exists is automated scanning coverage (Snyk, Socket, OSV) and the external researchers who reported the 2024 CVEs, neither of which is an audit. Recorded false rather than null because the search was made and came up empty."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"],
+      "comment": "jws.sign / jws.verify plus the JWT wrappers jwt.encode / jwt.decode. Both directions supported."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst"
+      ],
+      "comment": "jwe.encrypt / jwe.decrypt implement full compact-serialization JWE, including the RFC 3218 mitigation of substituting a random CEK on unwrap failure and DEF compression. Practically it needs the [cryptography] (or pycryptodome) extra: without it AESKey is None and the content-encryption algorithms are unavailable."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "jwk.construct() takes a JWK dict (picking up `alg` from the key itself when no algorithm is passed) and each key class has a _process_jwk that validates kty and decodes the parameters. Export back to JWK via Key.to_dict()."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/pyproject.toml"
+      ],
+      "comment": "No HTTP client anywhere in the package — no urllib, requests or httpx import, and no network dependency in pyproject.toml. You fetch the JWKS, python-jose parses it."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"],
+      "comment": "Follows from the absence of remote fetching: there is nothing to cache and no rotation logic. Callers hand a key set to every call."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"],
+      "comment": "jws._get_keys unpacks a JWK set (or a plain list, or Firebase's kid→certificate dict) and _sig_matches_keys then tries every key in turn, swallowing exceptions, until one verifies. The token's `kid` is never read. Functionally this accepts the right token, but it is trial verification against the whole key set rather than kid-based selection, and errors from the wrong keys are discarded."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py"],
+      "comment": "No RFC 7638 thumbprint function; the string \"thumbprint\" does not occur in the 3.5.0 source tree."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py"
+      ],
+      "comment": "jwt.decode always treats its input as a JWS and never inspects `cty` for a nested JWT; jwe.encrypt takes a cty argument but nothing chains encrypt-then-sign or decrypt-then-verify. Sign-then-encrypt is possible only by calling jws and jwe yourself."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwe.py"
+      ],
+      "comment": "Compact only. jws._load splits on \".\" and expects exactly three segments; jwe uses _jwe_compact_serialize/_jwe_compact_deserialize. No flattened or general JSON serialization, and therefore no multiple signatures."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"],
+      "comment": "No RFC 7515 Appendix F support: jws.verify has no parameter for supplying an external payload, and _load requires the middle segment to decode."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"],
+      "comment": "No RFC 7797 support; `b64` is never read, and the payload is unconditionally base64url-encoded and decoded."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "No key or key-pair generation API. The only randomness helper is get_random_bytes(), used internally for CEKs and IVs. Bring your own keys (openssl, cryptography, ssh-keygen)."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "None of x5c, x5t, x5t#S256 or x5u is parsed or produced — the identifiers do not appear in the source. Not to be confused with key input: the cryptography backend's RSA key class will ingest a PEM X.509 certificate as a key (load_pem_x509_certificate) and Firebase-style {kid: certificate} dicts are accepted as a key set, but that is a key you supply, not a header the library trusts."
+    },
+    "key-input-formats": {
+      "value": ["pem", "pkcs1", "pkcs8", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/rsa_backend.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "PEM in its usual flavours: load_pem_public_key / load_pem_private_key in the cryptography backend cover SPKI and PKCS#8, and the native RSA backend additionally handles PKCS#1 and converts PKCS#8 to PKCS#1 (including a legacy-bug compatibility path). PEM X.509 certificates are accepted as keys. JWK dicts and JWK sets ({\"keys\": [...]}) are handled by jwk.construct and jws._get_keys. HMAC secrets are raw str/bytes. No direct DER, PKCS#12 or keystore ingestion."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/base.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwk.py"
+      ],
+      "comment": "Nothing ships for KMS, HSM or PKCS#11, and no signer interface is documented. There is an unofficial route: jose.backends.base.Key is a public ABC with sign/verify, jws.sign and jws.verify accept any Key instance directly, and jwk.register_key can bind a custom class to an algorithm — so an opaque remote signer can be bolted on. Recorded false because that is an extension point the caller builds, not a supported external-signer facility."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/pyproject.toml",
+        "https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/"
+      ],
+      "comment": "No adapters, first-party or de facto: the package depends only on crypto libraries. Historically python-jose's reach came from FastAPI, whose OAuth2-with-JWT tutorial recommended `pip install python-jose[cryptography]` for years — that tutorial now installs PyJWT instead (checked 2026-07-30), which is the single most important thing to know about this library's trajectory. Any remaining use in Django/Flask/FastAPI code is direct API calls."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jws.py"
+      ],
+      "comment": "Entirely synchronous — no async def, no awaitables. Since there is no I/O (no JWKS fetching), only CPU-bound crypto, this is unsurprising rather than a limitation."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/jwt.py"],
+      "comment": "jwt.encode takes a dict and jwt.decode returns a dict; there is no binding to a user class and no schema validation (no Pydantic or dataclass integration). The only claim typing is the internal sanity checking of iat/sub/jti types."
+    },
+    "crypto-backend": {
+      "value": ["openssl", "stdlib"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/__init__.py",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/pyproject.toml"
+      ],
+      "comment": "Tags recorded for the two backends this schema can express: the recommended [cryptography] extra, which is pyca/cryptography over OpenSSL, and stdlib hashlib/hmac, which is what HMAC uses in the native backend. Neither tag covers the default configuration accurately: with no extra installed, RSA and ECDSA run on the pure-Python `rsa` and `ecdsa` packages (there is no tag for a pure-Python crypto stack), and a third option, pycryptodome, is also selectable. Backend choice is implicit — jose/backends/__init__.py imports cryptography first and silently falls back — so two deployments of the same version can use different crypto."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://pypi.org/pypi/python-jose/json",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst"
+      ],
+      "comment": "True of the default install, and only of that: `pip install python-jose` pulls ecdsa, rsa and pyasn1, all pure Python, so there is no compiled code in the dependency tree. The documented recommendation is `pip install python-jose[cryptography]`, which adds pyca/cryptography — a compiled Rust/OpenSSL extension — and then takes over all operations. Also worth flagging: the pure-Python ecdsa package's own documentation warns it is not side-channel resistant."
+    },
+    "runs-in-browser-wasm": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst",
+        "https://pypi.org/pypi/python-jose/json"
+      ],
+      "comment": "Indeterminate. Nothing in the project mentions Pyodide, WASM or the browser (the README's only portability note is about Google App Engine, from the pure-Python era). The default backend has no native code and would plausibly import under Pyodide, but no source confirms it was tried, so this is left null rather than guessed."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst"],
+      "comment": "Null per the assessment guideline on ecosystems where the question does not really apply: python-jose is a server-side CPython library, and the edge platforms named in this comparison (Cloudflare Workers, Vercel Edge, Deno Deploy) are JavaScript-first. No Python-on-the-edge support is claimed or documented."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/jose/backends/cryptography_backend.py"
+      ],
+      "comment": "Only in the [cryptography] configuration, and only by inheritance: the backend calls into pyca/cryptography's default_backend(), so if that is built against an OpenSSL with the FIPS provider active, the primitives come from the validated module. The validation belongs to OpenSSL, not to python-jose, which offers no FIPS mode, no policy switch and no algorithm restriction of its own. The default pure-Python backend is not FIPS-capable at all, and RSA1_5 remains available in every configuration."
+    },
+    "dependency-count": {
+      "value": 3,
+      "source": ["https://pypi.org/pypi/python-jose/json"],
+      "comment": "Three runtime requirements in the default install as of 3.5.0: ecdsa (!=0.15), rsa (>=4.0,<5.0) and pyasn1 (>=0.5.0). Optional extras add one each: cryptography (>=3.4.0), pycryptodome, or the legacy pycrypto. Note the quirk called out in the README — the native backend's dependencies are installed even when you select another backend, so the [cryptography] install carries four."
+    },
+    "package-size": {
+      "value": 34624,
+      "source": ["https://pypi.org/pypi/python-jose/json"],
+      "comment": "python_jose-3.5.0-py3-none-any.whl as published on PyPI on 2025-05-28; the sdist is 92,726 bytes."
+    },
+    "github-stars": {
+      "value": 1757,
+      "source": ["https://api.github.com/repos/mpdavis/python-jose"],
+      "comment": "Snapshot from the GitHub API on 2026-07-30 (265 forks, 115 open issues)."
+    },
+    "downloads": {
+      "value": 44207143,
+      "source": ["https://pypistats.org/api/packages/python-jose/recent"],
+      "comment": "PyPI downloads in the last 30 days per pypistats, observed 2026-07-30 (last week: 10,514,763). Still enormous despite the maintenance situation — a good illustration of how long a default lingers in requirements files after the ecosystem has moved on. Comparable only against the other Python entries."
+    },
+    "last-release": {
+      "value": "2025-05-28",
+      "source": [
+        "https://pypi.org/pypi/python-jose/json",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/CHANGELOG.md"
+      ],
+      "comment": "3.5.0. The two releases before it were 3.4.0 on 2025-02-14 and 3.3.0 on 2021-06-04 — a three-and-a-half-year gap that spans both 2024 CVEs."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": [
+        "https://api.github.com/repos/mpdavis/python-jose/commits?per_page=50",
+        "https://pypi.org/pypi/python-jose/json",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/CHANGELOG.md"
+      ],
+      "comment": "Checked 2026-07-30: the most recent commit on master is \"Prepare release 3.5.0\" dated 2025-05-28, fourteen months ago, and no release since. The pattern is bursty rather than steady — the entire 3.5.0 changeset was merged in a single afternoon after long silence, as was 3.4.0. Not tagged deprecated: the maintainers have not marked the project as such and point to no successor, though the community has largely moved on (FastAPI's tutorial switched to PyJWT, and joserfc is positioned by Authlib's author as the modern replacement). Not archived: the repository is open and issues (115 of them) remain accepting."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/mpdavis/python-jose/commits?per_page=50"],
+      "comment": "Over the recent commit history the work is community pull requests squash-merged in batches; asherf appears repeatedly as the one landing and releasing them, alongside repository owner mpdavis, with the remaining commits from many one-off contributors (erny, romanek-adam, blag, sobolevn, timgates42, …). Effectively two people with commit rights, which is small-team in name and closer to solo in practice — the fourteen-month silence since the last batch is the visible consequence."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://pypi.org/pypi/python-jose/json",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/CHANGELOG.md",
+        "https://github.com/advisories/GHSA-6c5p-j8vq-pqhj"
+      ],
+      "comment": "Eleven years old, 3.x with a stable API, and heavy production deployment — but deliberately not tagged mature, which this comparison reserves for projects with an established security process and a good track record on advisories. python-jose has no SECURITY.md and left a critical algorithm-confusion CVE without a patched PyPI release for about ten months. Stable, widely used, and not where new code should start."
+    },
+    "rfc-conformance-testing": {
+      "value": ["cookbook-7520", "own-tests-only"],
+      "source": [
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/tests/rfc/test_rfc7520.py",
+        "https://github.com/mpdavis/python-jose/tree/3.5.0/tests"
+      ],
+      "comment": "tests/rfc/test_rfc7520.py exercises the RFC 7520 cookbook vectors, but only three of them — sections 4.1.3 (RSA v1.5 signature), 4.3.3 (ECDSA) and 4.4.3 (HMAC), all verification-only. Everything else is the project's own test suite (per-algorithm tests plus compatibility tests that cross-check the backends against each other). No Wycheproof, no interop suite, and no JWE/JWK cookbook vectors, hence the second tag."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://python-jose.readthedocs.io/en/latest/",
+        "https://raw.githubusercontent.com/mpdavis/python-jose/3.5.0/README.rst"
+      ],
+      "comment": "A real Sphinx site on Read the Docs with a short prose page and an autodoc API page for each of jws, jwt, jwk and jwe, plus docstrings carrying runnable one-liner examples, and a README that explains the backend choice properly. That is an adequate API reference with thin examples — a 3. It stops well short of a guide: nothing on key management or JWKS handling, no security-considerations section, and no mention of the sharp edges recorded elsewhere in this row (algorithms defaulting to None in jwt.decode, RSA1_5 being available, no key-size floor)."
+    }
+  }
 }
