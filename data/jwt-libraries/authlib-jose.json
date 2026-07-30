@@ -1,5 +1,327 @@
 {
   "name": "Authlib JOSE (Python)",
   "description": "The JOSE component of the Authlib suite",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["python"],
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "Pure CPython package, requires_python >=3.10. No bindings for other runtimes."
+    },
+    "license": {
+      "value": ["bsd-3-clause"],
+      "source": ["https://pypi.org/pypi/Authlib/json", "https://api.github.com/repos/authlib/authlib"],
+      "comment": "PyPI metadata and the GitHub license field both report BSD-3-Clause. The project additionally sells a commercial licence for closed-source use, but the open-source terms are BSD-3-Clause."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto", "ffi-binding"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://pypi.org/pypi/Authlib/json"],
+      "comment": "HMAC uses CPython's stdlib `hmac`/`hashlib` (including `hmac.compare_digest`); all asymmetric and AEAD work is delegated to pyca/cryptography, which is an FFI/Rust binding over OpenSSL. Examined Authlib 1.7.2."
+    },
+    "repository": {
+      "value": "https://github.com/authlib/authlib",
+      "source": ["https://github.com/authlib/authlib"],
+      "comment": "The JOSE code lives under `authlib/jose/` in the main Authlib repository; it is not shipped as a separate distribution."
+    },
+    "package": {
+      "value": "https://pypi.org/project/Authlib/",
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "No standalone package — `authlib.jose` ships inside the Authlib distribution."
+    },
+    "documentation": {
+      "value": "https://docs.authlib.org/en/latest/jose/index.html",
+      "source": ["https://docs.authlib.org/en/latest/jose/index.html", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "The JOSE section of the Authlib docs carries a prominent deprecation banner pointing at joserfc."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://pypi.org/project/Authlib/#history", "https://api.github.com/repos/authlib/authlib"],
+      "comment": "First PyPI upload 0.1rc0 on 2017-10-25; repository created 2017-10-27. The JOSE module has been part of the distribution since the early releases."
+    },
+    "latest-version": {
+      "value": "1.7.2",
+      "source": ["https://pypi.org/pypi/Authlib/json", "https://pypi.org/project/Authlib/#history"],
+      "comment": "1.7.2, released 2026-05-06 (checked 2026-07-30). `authlib.jose` is deprecated as of 1.7.0 and is announced for removal in 1.8."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "`HMACAlgorithm(256|384|512)` in JWS_ALGORITHMS, all three in the default `jwt` instance's algorithm list."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "`RSAAlgorithm(256|384|512)`, all three enabled in the default `jwt` instance."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "`RSAPSSAlgorithm(256|384|512)`, all three enabled in the default `jwt` instance."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "`ECAlgorithm` instances for P-256/P-384/P-521 plus ES256K on secp256k1 (RFC 8812). `prepare_key` checks that the imported key's curve matches the algorithm's curve, so a secp256k1 key cannot be used for ES256."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc8037/jws_eddsa.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc8037/okp_key.py"],
+      "comment": "Registered under the single RFC 8037 `EdDSA` identifier (not curve-specific alg names). The underlying OKPKey maps Ed25519, Ed448, X25519 and X448; signing accepts whatever Ed curve the key carries."
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128kw", "a192kw", "a256kw", "a128gcmkw", "a192gcmkw", "a256gcmkw", "rsa-oaep", "rsa-oaep-256", "rsa1-5", "ecdh-es", "ecdh-es-a128kw", "ecdh-es-a256kw"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jwe_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "JWE_ALG_ALGORITHMS also contains ECDH-ES+A192KW, which has no tag in this comparison. The three PBES2 variants are present in the file only as commented-out entries, so password-based key wrapping is NOT available. RSA1_5 is registered but flagged `deprecated`, so it is refused unless the caller passes an explicit algorithm list. Draft algorithms (ECDH-1PU, C20P/XC20P) exist under `authlib/jose/drafts/` but `register_jwe_draft` is never called from `authlib/jose/__init__.py`, so they are unavailable without manual registration."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jwe_encs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "The six RFC 7518 content-encryption algorithms. C20P/XC20P are implemented in `authlib/jose/drafts/` but are not registered by the package's default wiring (and XC20P additionally needs pycryptodome)."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5", "rsa-under-2048"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jwe_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py"],
+      "comment": "`NoneAlgorithm` (name \"none\") and the RSA1_5 key-wrap algorithm are both in the registry with `deprecated = True`; in 1.7.2 `_prepare_algorithm_key` raises UnsupportedAlgorithmError for deprecated algorithms when no algorithm allow-list was given, so reaching them requires an explicit opt-in such as `JsonWebSignature(algorithms=['none'])`. No RSA modulus-size check exists anywhere in the JWS path, so sub-2048-bit RSA keys are accepted."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/__init__.py"],
+      "comment": "`JsonWebSignature.register_algorithm()` / `JsonWebEncryption.register_algorithm()` are public classmethods that accept any JWSAlgorithm/JWEAlgorithm subclass; the built-in algorithm sets are themselves registered through this API. It is also an escape hatch: a custom algorithm registered without `deprecated = True` bypasses the deprecation guard."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py", "https://github.com/authlib/authlib/security/advisories/GHSA-7wc2-qxgw-g8gg"],
+      "comment": "In 1.7.2 the module-level `jwt` object pins 14 algorithms (HS/RS/ES/ES256K/PS/EdDSA) with `none` absent, and `_prepare_algorithm_key` rejects any algorithm marked `deprecated` when the caller passed no allow-list — `none` is only reachable via an explicit `algorithms=['none']`. This is a regression-repaired state: CVE-2026-28802 (GHSA-7wc2-qxgw-g8gg, published 2026-03-04) reported that a token with `alg: none` and an empty signature passed verification in 1.6.5/1.6.6 (regression introduced in 1.6.0), fixed in 1.6.7."
+    },
+    "algorithm-pinning": {
+      "value": ["defaults-to-safe-set"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "`from authlib.jose import jwt` gives a JsonWebToken pre-configured with a curated 14-algorithm list (no `none`), and the `alg` is then read from the token header and checked against that list. Callers can narrow it with `JsonWebToken(['RS256'])`, which the docs recommend; the docs also explicitly warn against enabling HS and RS/ES/PS families simultaneously because of the CVE-2016-10555 confusion class."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/oct_key.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "Keys are typed classes (OctKey/RSAKey/ECKey/OKPKey) and `OctKey.import_key` refuses raw data starting with any of POSSIBLE_UNSAFE_KEYS (`-----BEGIN `, `---- BEGIN `, `ssh-rsa `, `ssh-dss `, `ssh-ed25519 `, `ecdsa-sha2-`), which blocks the textbook RS256→HS256 attack of replaying a PEM public key as an HMAC secret; a JWK dict likewise fails OctKey's required-field check. Rated 3 rather than 4/5 because the default `jwt` instance mixes symmetric and asymmetric families, the guard is a byte-prefix heuristic (raw DER key material would slip past), and Authlib's own docs tell users to supply a key-loader callable instead of relying on the library."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "There is no unverified-decode API at all: `JsonWebToken.decode()` always runs signature verification (or JWE decryption) and raises BadSignatureError on mismatch — there is no `verify=False` flag and no `decode_unverified` helper. Reading claims without verification requires manual base64url parsing by the caller, so the unsafe path is strictly longer than the safe one."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": ["https://docs.authlib.org/en/latest/jose/jwt.html", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/claims.py"],
+      "comment": "`jwt.decode()` verifies the signature and returns a JWTClaims dict without checking a single claim; the documented flow requires a separate explicit `claims.validate()` call. When invoked, `validate()` checks iss, sub, aud, exp, nbf, iat and jti — but only for claims present in the payload or marked `essential` in claims_options. Tagged `none` because the attribute records what happens with no extra configuration, and forgetting `validate()` silently accepts expired tokens."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/claims.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "Neither `decode()` nor `validate()` takes a required audience/issuer parameter. Expected values must be supplied through `claims_options`, e.g. {\"iss\": {\"essential\": True, \"values\": [...]}}; with no options the aud/iss checks are skipped entirely."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/claims.py"],
+      "comment": "`JWTClaims.validate(now=None, leeway=0)`; leeway is applied to exp, nbf and iat. Default is 0 seconds, and `now` defaults to `int(time.time())`."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py"],
+      "comment": "`HMACAlgorithm.verify` compares with `hmac.compare_digest(sig, v_sig)` from the CPython stdlib. Asymmetric verification is delegated to pyca/cryptography."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/oct_key.py"],
+      "comment": "Neither requirement of RFC 7518 §3.2/§3.3 is enforced: RSAAlgorithm never inspects the modulus size, and OctKey accepts a secret of any length (its `generate_key` defaults to 256 bits, but imported secrets are unchecked). The only structural check is the ECDSA curve/algorithm match."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://github.com/authlib/authlib/security/advisories/GHSA-9ggr-2464-2j32"],
+      "comment": "`_validate_crit_headers` requires `crit` to be a list of strings, raises InvalidCritHeaderParameterNameError for any entry not in REGISTERED_HEADER_PARAMETER_NAMES (extendable by the caller's `private_headers`, which is the caller-declares-understood escape hatch), and requires each named parameter to be present in the header; `_reject_unprotected_crit` rejects `crit` in the unprotected header per RFC 7515 §4.1.11. This behaviour is the fix for CVE-2025-59420 (GHSA-9ggr-2464-2j32, 2025-09-22), where unknown critical headers were silently accepted."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://github.com/authlib/authlib/security/advisories/GHSA-pq5p-34cr-23v9", "https://github.com/authlib/authlib/security/advisories/GHSA-g7f3-828f-7h7m"],
+      "comment": "1.7.2 caps deserialized input with `MAX_CONTENT_LENGTH = 256000` before parsing (added for CVE-2025-61920, oversized JOSE segments, affected ≤1.6.3) and bounds `zip=DEF` inflation (CVE-2025-62706, decompression bomb, affected 1.6.4, fixed 1.6.5). PBES2 is not implemented at all, so there is no `p2c` iteration cap to assess. Nested JWT is not processed recursively, so there is no recursion depth to bound."
+    },
+    "cve-history": {
+      "value": ["recent-24-months"],
+      "source": ["https://github.com/authlib/authlib/security/advisories", "https://github.com/authlib/authlib/security/advisories/GHSA-wvwj-cvrp-7pv5", "https://github.com/authlib/authlib/security/advisories/GHSA-7432-952r-cw78"],
+      "comment": "Dense recent JOSE advisory history, all patched in current 1.7.2 (checked 2026-07-30): CVE-2026-27962 / GHSA-wvwj-cvrp-7pv5 (Critical, 2026-03-15) — `deserialize_compact` fell back to the attacker-supplied `jwk` header when the key resolver returned None, ≤1.6.8, fixed 1.6.9; CVE-2026-28802 / GHSA-7wc2-qxgw-g8gg (High, 2026-03-04) — `alg: none` with an empty signature verified, 1.6.5–1.6.6, fixed 1.6.7; CVE-2026-28490 / GHSA-7432-952r-cw78 (High, 2026-03-15) — JWE RSA1_5 Bleichenbacher padding oracle via distinguishable exceptions; CVE-2025-61920 / GHSA-pq5p-34cr-23v9 (High, 2025-10-10) — DoS via oversized JOSE segments, ≤1.6.3; CVE-2025-62706 / GHSA-g7f3-828f-7h7m (Moderate, 2025-10-10) — unbounded DEFLATE for `zip=DEF`, 1.6.4; CVE-2025-59420 / GHSA-9ggr-2464-2j32 (2025-09-22) — unknown `crit` headers accepted. Further 2026 advisories (GHSA-m344-f55w-2m6j fail-open OIDC hash binding, open redirects, CSRF) affect Authlib's OAuth/OIDC layers rather than `authlib.jose` itself."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://github.com/authlib/authlib/security/policy"],
+      "comment": "Published policy asking reporters not to open public issues, with private disclosure to me@lepture.com or via Tidelift coordination. The \"supported versions\" table is stale (lists 1.1.x / 0.15.x), but GitHub private vulnerability reporting is clearly in use given the repository-published advisories."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://github.com/authlib/authlib/security/advisories", "https://github.com/authlib/authlib"],
+      "comment": "No published third-party audit found for Authlib or its JOSE module; the recent advisories originate from individual researchers rather than a formal audit engagement."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py"],
+      "comment": "`JsonWebSignature.serialize_compact` / `deserialize_compact` plus the JSON serializations; both signing and verification."
+    },
+    "jwe": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jwe_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jwe_encs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py"],
+      "comment": "Full RFC 7516 encrypt/decrypt via `JsonWebEncryption`, including `zip=DEF`; `jwt.encode` routes to JWE when the header carries `enc`, and `jwt.decode` handles the 5-segment compact form."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7517/asymmetric_key.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/oct_key.py"],
+      "comment": "`JsonWebKey.import_key` / `import_key_set` build OctKey, RSAKey, ECKey and OKPKey from JWK dicts, with required-field checks per key type."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py", "https://docs.authlib.org/en/latest/jose/index.html"],
+      "comment": "The `authlib.jose` module contains no HTTP client — it parses a JWKS you have already fetched (`KeySet` / `import_key_set`). Remote JWKS retrieval lives in Authlib's separate OAuth/OIDC client integrations, not in the JOSE component being compared here."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py"],
+      "comment": "Follows from the absence of remote fetching: no TTL/Cache-Control handling and no refetch-on-unknown-kid anywhere in `authlib.jose`. Key rotation is entirely the caller's responsibility."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7517/base_key.py"],
+      "comment": "`create_load_key` resolves the verification key from a KeySet (or a JWKS dict) using the token header's `kid`; `find_encode_key` does the same when signing, picking a random key when no kid is given. Note CVE-2026-27962: before 1.6.9 a key-loader callable returning None caused a fallback to the token's embedded `jwk` header."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7517/base_key.py"],
+      "comment": "`Key.thumbprint()` implements RFC 7638 (required members plus kty, lexicographically ordered, SHA-256, base64url). RFC 9278 thumbprint URIs are not implemented."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py"],
+      "comment": "`decode()` dispatches on the dot count (2 = JWS, 4 = JWE) and returns the claims of that single layer; it does not inspect `cty: JWT` or recursively decode a signed token nested inside a JWE. Signed-then-encrypted tokens require two manual calls."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py"],
+      "comment": "JsonWebSignature implements compact plus the general JSON serialization (list of headers producing a `signatures` array, i.e. multiple signatures) and the flattened single-signature form."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py"],
+      "comment": "`deserialize_compact` requires three non-empty segments and offers no API for supplying an external payload; no RFC 7515 Appendix F support was found in the JWS implementation."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://github.com/authlib/authlib/tree/main/authlib/jose"],
+      "comment": "No RFC 7797 module exists under `authlib/jose/` (only rfc7515–7519, rfc8037 and drafts), and `b64` is not among REGISTERED_HEADER_PARAMETER_NAMES; the payload is always base64url-decoded."
+    },
+    "key-generation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/oct_key.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc8037/okp_key.py"],
+      "comment": "`generate_key` classmethods on each key type: OctKey (bit size, via `secrets.token_bytes`), OKPKey (crv, default Ed25519), and equivalently RSAKey/ECKey, exposed through `JsonWebKey`."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7517/asymmetric_key.py"],
+      "comment": "`x5u`, `x5c`, `x5t` and `x5t#S256` appear in REGISTERED_HEADER_PARAMETER_NAMES, so they are permitted in a header and round-tripped, but nothing in `authlib.jose` parses a certificate chain, derives a key from `x5c`, checks a thumbprint or dereferences `x5u`. Tagged \"none\" because acceptance without processing is not support."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "jwk", "jwks", "raw-bytes"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7517/asymmetric_key.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/oct_key.py"],
+      "comment": "`AsymmetricKey.import_key` accepts key objects, JWK dicts and PEM/DER/OpenSSH-encoded bytes (delegating to pyca/cryptography's loaders, which transparently handle PKCS#1, PKCS#8 and SPKI structures — not separately tagged since Authlib performs no format-specific handling itself); `as_pem`/`as_der` export. OctKey takes raw bytes but refuses anything that looks like a PEM or SSH key. JWKS via `import_key_set`/KeySet. No PKCS#12 or keystore support."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7515/jws.py"],
+      "comment": "No signer abstraction: every algorithm's `sign(msg, key)` expects local key material via `prepare_key`. A KMS/HSM signer could be bolted on by subclassing JWSAlgorithm and calling `register_algorithm`, but nothing first-party exists and no such integration is documented."
+    },
+    "framework-integrations": {
+      "value": ["django", "flask", "fastapi"],
+      "source": ["https://github.com/authlib/authlib", "https://docs.authlib.org/en/latest/jose/index.html"],
+      "comment": "Authlib the distribution ships first-party Flask, Django and Starlette/FastAPI integrations (plus requests/httpx clients), but they are OAuth/OIDC client and provider adapters — `authlib.jose` itself has no framework binding, and since 1.7 those integrations consume joserfc rather than `authlib.jose`."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/jwt.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "All JOSE entry points (`jwt.encode`/`decode`, JWS/JWE serialize/deserialize, key import) are plain synchronous functions; there are no coroutines in the module."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7519/claims.py", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "JWTClaims is a dict subclass — custom claims are dynamic keys with no static typing. A runtime `claims_options` mapping ({\"essential\": ..., \"values\": ..., \"value\": ..., \"validate\": ...}) and a pluggable `claims_cls` give some schema-like validation, but only for claims the caller enumerates."
+    },
+    "crypto-backend": {
+      "value": ["openssl", "stdlib"],
+      "source": ["https://pypi.org/pypi/Authlib/json", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/rfc7518/jws_algs.py"],
+      "comment": "The sole crypto dependency is pyca/cryptography, whose wheels statically link OpenSSL; HMAC uses CPython's stdlib `hmac`/`hashlib`. XC20P (draft, unregistered) would additionally need pycryptodome."
+    },
+    "pure-language-implementation": {
+      "value": false,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "`requires_dist` is cryptography and joserfc; pyca/cryptography ships a compiled Rust/OpenSSL extension, so the default configuration is not pure Python."
+    },
+    "runs-in-browser-wasm": {
+      "value": null,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "Not determinable from primary sources: Authlib's own code is pure Python, so browser/WASM viability rests entirely on whether pyca/cryptography is available in the target (e.g. a Pyodide build). Neither Authlib's docs nor its packaging metadata make any statement about WASM targets."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "Not applicable — Authlib is a CPython server-side library (requires_python >=3.10) and the Cloudflare Workers / Vercel Edge / Deno Deploy question is meaningless for this ecosystem, per the comparison's assessment guideline."
+    },
+    "fips-capable-backend": {
+      "value": null,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "Indeterminate: Authlib makes no FIPS statement and offers no backend switch. In practice it inherits whatever pyca/cryptography links against — the published wheels bundle a non-validated statically-linked OpenSSL, while a source build against a system OpenSSL FIPS provider is a deployment-level choice outside Authlib's control. Not verified against a pyca/cryptography FIPS statement, so recorded as unknown rather than false."
+    },
+    "dependency-count": {
+      "value": 2,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "`requires_dist` for Authlib 1.7.2: `cryptography` and `joserfc>=1.6.0` (checked 2026-07-30). Only `cryptography` is used by the `authlib.jose` module itself; joserfc is pulled in for the non-deprecated code paths."
+    },
+    "package-size": {
+      "value": 247747,
+      "source": ["https://pypi.org/pypi/Authlib/json"],
+      "comment": "Size of the published wheel authlib-1.7.2-py2.py3-none-any.whl (sdist is 166,874 bytes). This covers the whole Authlib distribution — OAuth 1/2, OIDC and framework integrations — not just the JOSE module."
+    },
+    "github-stars": {
+      "value": 5385,
+      "source": ["https://api.github.com/repos/authlib/authlib"],
+      "comment": "Snapshot of authlib/authlib on 2026-07-30. Counts the whole Authlib project, not the JOSE module specifically."
+    },
+    "downloads": {
+      "value": 148633060,
+      "source": ["https://pypistats.org/api/packages/authlib/recent"],
+      "comment": "PyPI downloads in the last 30 days for the Authlib distribution (checked 2026-07-30; last week 35,609,978). Attributable to the whole package — Authlib is a common transitive dependency — so this overstates JOSE-module usage. Compare only within the Python ecosystem."
+    },
+    "last-release": {
+      "value": "2026-05-06",
+      "source": ["https://pypi.org/project/Authlib/#history"],
+      "comment": "Authlib 1.7.2, 2026-05-06 (1.7.1 on 2026-05-04, 1.7.0 on 2026-04-18). Repository pushed_at 2026-07-30, so development continues after the release."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained", "deprecated"],
+      "source": ["https://docs.authlib.org/en/latest/jose/index.html", "https://api.github.com/repos/authlib/authlib", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/authlib/jose/__init__.py"],
+      "comment": "Both tags apply and the combination is the point: the Authlib package is actively developed (commits on 2026-07-30, three releases in April–May 2026, advisories patched quickly), but the `authlib.jose` module itself is deprecated — importing it emits \"authlib.jose module is deprecated, please use joserfc instead.\" and the docs state \"Changed in version 1.7: ... It will be removed in Authlib 1.8.\" New code should use joserfc, by the same author."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/authlib/authlib/commits?per_page=50"],
+      "comment": "Last 50 commits (checked 2026-07-30) are spread across azmeuk (~10), lepture (~7), liudonggalaxy (~5), levinKaus (~4) and others, with the rest merge commits. Historically a solo project by lepture; azmeuk is now the most active committer."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://pypi.org/project/Authlib/#history", "https://github.com/authlib/authlib/security/advisories"],
+      "comment": "1.0+ with a stable API, nine years of history and very broad production deployment, and there is a real security process. Not rated `mature` because of the 2025–2026 run of serious JOSE advisories — notably the `alg: none` verification regression introduced in 1.6.0 (CVE-2026-28802) — and because the module is now slated for removal in 1.8."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": ["https://github.com/authlib/authlib/tree/v1.7.2/tests/jose", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/tests/jose/test_rfc8037.py", "https://raw.githubusercontent.com/authlib/authlib/v1.7.2/tests/jose/test_jws.py"],
+      "comment": "tests/jose contains test_jws, test_jwe, test_jwk, test_jwt, test_rfc8037, test_chacha20 and test_ecdh_1pu. Spot-checking test_jws.py and test_rfc8037.py found only project-local fixtures (\"hello\"/\"secret\" payloads, local PEM key files) — no RFC 7515 Appendix A payloads, no RFC 7520 cookbook vectors and no Wycheproof integration. Round-trip and interop-with-self testing rather than spec-vector conformance."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.authlib.org/en/latest/jose/index.html", "https://docs.authlib.org/en/latest/jose/jwt.html"],
+      "comment": "Dedicated guide pages for JWS, JWE, JWK and JWT with runnable examples plus an API reference, and an explicit security note about not mixing HS with RS/ES/PS (CVE-2016-10555). Short of 5: no JWKS/key-rotation workflow, no consolidated security-considerations chapter, and the fact that `claims.validate()` must be called separately is easy to miss. Every page now opens with a deprecation banner pointing at joserfc."
+    }
+  }
 }
