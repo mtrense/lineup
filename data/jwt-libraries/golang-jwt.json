@@ -1,5 +1,500 @@
 {
   "name": "golang-jwt/jwt (Go)",
   "description": "The community successor to dgrijalva/jwt-go; the Go default",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["go"],
+      "source": [
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod"
+      ],
+      "comment": "Plain Go module (github.com/golang-jwt/jwt/v5), go directive 1.21. No other runtime target."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "MIT, inherited from the original dgrijalva/jwt-go LICENSE; pkg.go.dev flags the module as redistributable."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/ecdsa.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/ed25519.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod"
+      ],
+      "comment": "Every signing method delegates to the Go standard library (crypto/hmac, crypto/rsa, crypto/ecdsa, crypto/ed25519, crypto/x509); go.mod declares no external requires, so there is nothing else it could delegate to."
+    },
+    "repository": {
+      "value": "https://github.com/golang-jwt/jwt",
+      "source": ["https://api.github.com/repos/golang-jwt/jwt"]
+    },
+    "package": {
+      "value": "https://pkg.go.dev/github.com/golang-jwt/jwt/v5",
+      "source": ["https://pkg.go.dev/github.com/golang-jwt/jwt/v5"]
+    },
+    "documentation": {
+      "value": "https://golang-jwt.github.io/jwt/",
+      "source": [
+        "https://golang-jwt.github.io/jwt/usage/parse/",
+        "https://api.github.com/repos/golang-jwt/jwt"
+      ],
+      "comment": "Dedicated docs site (set as the repository homepage) with task-oriented create/parse/signing-method pages; the generated API reference lives on pkg.go.dev."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "The golang-jwt/jwt repository was created 2021-05-18 and the module path github.com/golang-jwt/jwt dates from then. The code base itself is much older — it is the community fork of dgrijalva/jwt-go, cloned after the original author invited a migration (README), so v3.x continuity predates 2021 by years under the old import path."
+    },
+    "latest-version": {
+      "value": "5.3.1",
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/releases?per_page=10",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "v5.3.1, published 2026-01-28; checked 2026-07-30. All findings below were read against the `main` branch, which had its last commit on 2026-07-06. The v4 line still receives back-ported security patches (v4.5.2, 2025-03-21)."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "SigningMethodHS256/HS384/HS512 registered in hmac.go's init(); exercised by hmac_test.go."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa.go",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa_pss.go",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "All three declared as SigningMethodRSAPSS and registered in init(). Historically gated behind a `go1.4` build tag; there is no build tag on the file today, so PS is always compiled in and rsa_pss_test.go covers it."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/ecdsa.go",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "SigningMethodES256/ES384/ES512 (P-256/SHA-256, P-384/SHA-384, P-521/SHA-512 with a 66-byte coordinate size). No ES256K — secp256k1 is absent from the file and from Go's crypto/elliptic."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": ["https://raw.githubusercontent.com/golang-jwt/jwt/main/ed25519.go"],
+      "comment": "Registered under the RFC 8037 `EdDSA` alg identifier (SigningMethodEdDSA), not the newer curve-specific name. Ed25519 only, using crypto/ed25519 key types; no Ed448 anywhere in the file."
+    },
+    "jwe-key-management": {
+      "value": null,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Not applicable: the library implements JWS/JWT only. The repository root contains no JWE source file and the package exposes no encrypt/decrypt API, so there are no key-management algorithms to record."
+    },
+    "jwe-content-encryption": {
+      "value": null,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Not applicable: no JWE support at all. Go users needing JWE go to lestrrat-go/jwx or go-jose."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/none.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "`none` ships as a registered SigningMethod (none.go) and therefore appears in GetAlgorithms(), but it can only ever verify or sign when the caller passes the sentinel jwt.UnsafeAllowNoneSignatureType as the key — otherwise NoneSignatureTypeDisallowedError. RSA < 2048 is tagged because rsa.go performs no modulus-length check: any *rsa.PublicKey Go can parse is accepted. RSA1_5 cannot appear (no JWE) and secp256k1 is not implemented."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/signing_method.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "RegisterSigningMethod(alg string, f func() SigningMethod) adds any `alg` name to the process-wide registry, and SigningMethod is a three-method interface (Sign/Verify/Alg). The README advertises \"hooks for adding your own signing methods\". This is the same escape hatch that makes external KMS signers possible, and it also means a third-party package can silently widen the algorithm set of an application that does not use WithValidMethods."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/none.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "True by the guideline's opt-in rule: both Sign and Verify on SigningMethodNone first check that the key is the explicitly and unmistakably named constant jwt.UnsafeAllowNoneSignatureType, returning NoneSignatureTypeDisallowedError otherwise. A keyfunc returning an HMAC secret, an RSA key or nil therefore cannot be tricked into accepting an unsecured token. The method is still registered under `alg: none`, so it is reachable — just not with any ordinary key."
+    },
+    "algorithm-pinning": {
+      "value": ["trusts-header", "inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser_option.go",
+        "https://golang-jwt.github.io/jwt/usage/parse/",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "Flagging this loudly: the allow-list is opt-in. jwt.Parse(token, keyfunc) has no algorithms parameter, and parser.go only enforces validMethods `if p.validMethods != nil` — an unset list means the `alg` from the untrusted header selects the signing method via GetSigningMethod. The docs say WithValidMethods is \"heavily encouraged\" and the README says \"it's important that you validate the alg presented is what you expect\", i.e. the library delegates the check to the caller's keyfunc. `inferred-from-key` is tagged as the structural backstop: each signing method type-asserts its key (*rsa.PublicKey, *ecdsa.PublicKey, ed25519.PublicKey, []byte), so a key of the wrong Go type fails closed with ErrInvalidKeyType."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go"
+      ],
+      "comment": "4 per the guideline: keys travel as `any` through Keyfunc, but each concrete key carries its Go type and a mismatch fails closed at runtime with a clear ErrInvalidKeyType — SigningMethodHMAC.Verify requires a []byte, so the classic RS256→HS256 swap against a keyfunc that returns an *rsa.PublicKey cannot verify. Not 5 because nothing is checked at compile time (the keyfunc signature is `func(*Token) (any, error)`), the alg allow-list is opt-in, and HMAC accepts arbitrary []byte — an application whose keyfunc hands back the PEM/DER bytes of its RSA public key for any algorithm is still exploitable."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser_option.go"
+      ],
+      "comment": "Parser.ParseUnverified is a separate, plainly named method carrying the doc comment \"Don't use this method unless you know what you're doing\"; it returns the token and parts without touching the signature. The verifying path (Parse/ParseWithClaims) is the short, obvious one. Note a secondary flag, WithoutClaimsValidation, which disables claim checks only — the signature is still verified."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/validator.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser_option.go"
+      ],
+      "comment": "validator.Validate always checks `exp` and `nbf` when present, but neither claim is required by default (\"usage of the claim itself is OPTIONAL by default\") — a token with no exp at all validates unless WithExpirationRequired / WithNotBeforeRequired is set. `iat` is only checked with WithIssuedAt. `aud`, `iss` and `sub` are compared only when expected values were supplied via WithAudience/WithAllAudiences/WithIssuer/WithSubject, so they are capability, not default. Custom claim types implementing ClaimsValidator get their Validate() called after the standard checks."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/validator.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser_option.go"
+      ],
+      "comment": "Neither is a required parameter and neither fails closed: jwt.Parse with no options happily validates a token that carries an aud/iss the application never stated. Both are available as opt-in parser options (WithAudience, WithAllAudiences, WithIssuer)."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser_option.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/validator.go",
+        "https://golang-jwt.github.io/jwt/usage/parse/"
+      ],
+      "comment": "WithLeeway(d time.Duration) sets a tolerance applied to the exp and nbf comparisons; the default is zero leeway (strict), which is the safe default. The docs warn that leeway \"should generally not exceed more than a few minutes\". WithTimeFunc additionally allows overriding the clock, documented as being for testing."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go"],
+      "comment": "Verified in source: SigningMethodHMAC.Verify compares with `if !hmac.Equal(sig, hasher.Sum(nil))`, i.e. the standard library's constant-time MAC comparison, not `==` or bytes.Equal on the raw strings."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go"
+      ],
+      "comment": "Neither limit is enforced. rsa.go type-asserts *rsa.PrivateKey / *rsa.PublicKey and applies no modulus-length policy, so a 1024-bit RSA key works. hmac.go type-asserts []byte with no minimum length, so a 1-byte HS256 secret is accepted, contrary to RFC 7518 §3.2 which wants at least the hash output length. (Go 1.24+ refuses to *generate* RSA keys under 1024 bits, but that is the runtime, not this library, and it does not gate verification.)"
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "The header is decoded into a plain map[string]any and the parser only ever reads `alg` from it; there is no reference to `crit` anywhere in the parsing path. A token declaring unrecognised critical header parameters therefore verifies successfully, which contradicts RFC 7515 §4.1.11's requirement to reject."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://api.github.com/repos/golang-jwt/jwt/security-advisories?per_page=20"
+      ],
+      "comment": "Largely moot and only partly answerable: there is no JWE, no nested-token handling and no PBES2, so the attribute's primary subject does not exist here. There is one relevant data point in each direction — CVE-2025-30204 was exactly a parsing amplification bug (ParseUnverified split untrusted input on every '.', ~16 bytes per character), fixed in v5.2.2/v4.5.2 by bounding the split; and any bound on deeply nested claim JSON comes from encoding/json, which was not inspected for this pass. Recorded as indeterminate rather than a flat false or true."
+    },
+    "cve-history": {
+      "value": ["recent-24-months"],
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/security-advisories?per_page=20",
+        "https://api.github.com/repos/golang-jwt/jwt/releases?per_page=10",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/SECURITY.md"
+      ],
+      "comment": "Two published advisories, both patched, both within the last 24 months as of 2026-07-30. (1) GHSA-mh63-6h87-95cp / CVE-2025-30204, published 2025-03-21, High: excessive memory allocation during header parsing — an Authorization header of `Bearer` followed by many periods caused O(n) allocation with a ~16x constant, a remote DoS; affected 3.2.0 up to 4.5.2 / 5.2.2, fixed in v5.2.2 and v4.5.2 (released the same day). (2) GHSA-29wx-vh33-7x7r / CVE-2024-51744, published 2024-11-04, Low: ParseWithClaims returning both a token and an error made it easy to write code that accepted invalid tokens; fixed in v4.5.1. Note also the pre-fork lineage: the predecessor dgrijalva/jwt-go carried CVE-2020-26160 (audience bypass), which is why this fork exists — that advisory is filed against the old module path, not this one."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://github.com/golang-jwt/jwt/blob/main/SECURITY.md"],
+      "comment": "SECURITY.md at the repository root: private reporting via GitHub Security Advisories, an explicit request not to discuss vulnerabilities publicly, and a stated support window (\"as of November 2024 the latest version v5 is supported; in critical cases we might supply back-ported patches for v4\") — a promise the v4.5.2 back-port in March 2025 actually kept."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://github.com/golang-jwt/jwt/blob/main/SECURITY.md",
+        "https://api.github.com/repos/golang-jwt/jwt/contents/"
+      ],
+      "comment": "Searched (web search plus the repository root, README and SECURITY.md) and found no published third-party audit or documented review by a recognised security team. Assurance here comes from advisory handling and community review, not from a funded audit."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go"
+      ],
+      "comment": "Both directions: Token.SignedString(key) signs, Parse/ParseWithClaims verify. This is the library's entire purpose."
+    },
+    "jwe": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "No JWE whatsoever — no encryption source file, no encrypt/decrypt API, and no `enc` handling in the parser."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "No JWK type and no JWK-to-key conversion; the repository root has no jwk source file. Keys come in as Go crypto types, usually via the PEM helpers. Go users who need JWK reach for lestrrat-go/jwx or the third-party MicahParks keyfunc package."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod",
+        "https://api.github.com/repos/golang-jwt/jwt/contents/"
+      ],
+      "comment": "Follows from having no JWK support: the module has zero dependencies and does no network I/O. The Keyfunc callback is the designed seam through which you supply a key you fetched yourself."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://api.github.com/repos/golang-jwt/jwt/contents/"],
+      "comment": "No remote fetch, therefore no cache, no TTL/Cache-Control handling and no refetch-on-unknown-kid. Third-party packages built on top of this library provide it."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "Not built in. The Keyfunc receives the parsed *Token, so a caller can read token.Header[\"kid\"] and pick a key by hand, and a Keyfunc may return a VerificationKeySet — but the parser then simply tries every key in the set until one verifies rather than selecting by kid. Recorded false because the library performs no kid-based selection itself."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "RFC 7638 is not implemented; it presupposes JWK support the library does not have."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/golang-jwt/jwt/v5"],
+      "comment": "Requires JWE, which is absent."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "Compact only. The parser splits the input into exactly three base64url segments and Token.SignedString emits \"header.payload.signature\"; there is no flattened or general JSON serialization and no multi-signature support."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "RFC 7515 Appendix F not supported: the payload segment must be present and parseable as claims, and no API verifies a signature against an externally supplied payload."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "RFC 7797 not implemented: every segment goes through DecodeSegment/EncodeSegment base64url handling, with no `b64: false` branch."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Out of scope for the library — the *_utils.go files only parse existing keys. Go users generate keys with crypto/rsa, crypto/ecdsa and crypto/ed25519 directly, so there is little reason for a wrapper."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa_utils.go"
+      ],
+      "comment": "No X.509 header parameter is handled. Token.Header is a raw map[string]any, so an application can read x5c/x5t/x5u out of it and can feed a PEM CERTIFICATE block to ParseRSAPublicKeyFromPEM / ParseECPublicKeyFromPEM, but the library never parses, chain-validates, thumbprint-checks or fetches any of them. Anything an application does with those header values is entirely its own responsibility, on attacker-controlled input."
+    },
+    "key-input-formats": {
+      "value": ["pem", "pkcs8", "pkcs1", "sec1", "spki", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/rsa_utils.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/ecdsa_utils.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go"
+      ],
+      "comment": "PEM helpers cover the lot: ParseRSAPrivateKeyFromPEM tries PKCS#1 then PKCS#8 (plus a *WithPassword variant), ParseRSAPublicKeyFromPEM tries PKIX/SPKI, then an X.509 CERTIFICATE, then PKCS#1; ParseECPrivateKeyFromPEM tries SEC1 then PKCS#8, ParseECPublicKeyFromPEM tries PKIX/SPKI then CERTIFICATE; ed25519_utils.go covers PKCS#8/SPKI. HMAC keys are raw []byte. No JWK/JWKS, no PKCS#12, no keystore. Bare DER is not tagged: the helpers all require a PEM wrapper, though a caller can of course call crypto/x509 itself and hand the resulting key object to the library."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/signing_method.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "Via the SigningMethod interface rather than a dedicated signer type: Sign(signingString string, key any) ([]byte, error) is fully user-implementable and Token.SignedString accepts any key value, so a custom method can forward the signing string to a KMS/HSM and never see key material. This is the documented extension mechanism (RegisterSigningMethod) and the basis of the third-party AWS KMS signing methods, but there is no first-party KMS/PKCS#11 adapter in the module."
+    },
+    "framework-integrations": {
+      "value": ["echo", "gin"],
+      "source": [
+        "https://raw.githubusercontent.com/appleboy/gin-jwt/master/go.mod",
+        "https://github.com/labstack/echo-jwt"
+      ],
+      "comment": "No first-party adapters — the module ships plain functions plus a small `request` helper package for extracting tokens from *http.Request. Tagged for the two de facto community/framework-vendor middlewares built on it: labstack/echo-jwt (Echo's own JWT middleware, which uses golang-jwt/jwt/v5) and appleboy/gin-jwt v3, whose go.mod requires github.com/golang-jwt/jwt/v5 v5.3.1. Chi is deliberately not tagged: go-chi/jwtauth builds on lestrrat-go/jwx, not on this library."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/token.go"
+      ],
+      "comment": "Plain synchronous functions; Go's concurrency model makes an async variant unnecessary, and nothing here does I/O. No context.Context parameter either."
+    },
+    "typed-claims": {
+      "value": ["both"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/parser.go",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Both shapes are first class: jwt.MapClaims is a map[string]any for dynamic use, while ParseWithClaims takes any value implementing the Claims interface — typically a struct embedding jwt.RegisteredClaims and decoded by encoding/json, which gives compile-time-checked custom claim fields. Such a struct may also implement ClaimsValidator to add its own validation."
+    },
+    "crypto-backend": {
+      "value": ["stdlib"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/hmac.go",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/ecdsa.go"
+      ],
+      "comment": "Exclusively the Go standard library's crypto packages; go.mod has no require directives, so there is no alternative backend and no way to swap one in short of writing a custom SigningMethod."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Pure Go with zero external modules: go.mod declares only the module path and `go 1.21`, and pkg.go.dev lists only standard-library imports. No cgo in the library itself (Go's own crypto is pure Go unless the toolchain is built with the boringcrypto tag)."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod",
+        "https://go.dev/doc/security/fips140"
+      ],
+      "comment": "Inferred rather than stated: the library is pure Go over standard-library crypto with no cgo, no build tags and no OS-specific code, so it compiles for GOOS=js/GOARCH=wasm and for wasip1 like any other pure-Go package. The repository makes no claim about WASM and ships no WASM test, and a Go WASM binary is large enough that browser use is uncommon in practice."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod"],
+      "comment": "Recorded as not applicable per the guideline: the runtimes this attribute names (Cloudflare Workers, Vercel Edge, Deno Deploy) are JavaScript/WASM platforms with no first-class Go support, so the question does not carry meaning for a server-side Go module. Nothing in the library would obstruct a TinyGo/WASM deployment, but that was not verified."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://go.dev/doc/security/fips140",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod"
+      ],
+      "comment": "Inherited from the toolchain, not provided by the library: because every algorithm goes through crypto/hmac, crypto/rsa, crypto/ecdsa and crypto/ed25519, an application built with GOFIPS140=latest or run with GODEBUG=fips140=on routes this library's crypto through the Go Cryptographic Module. Module v1.0.0 (Go 1.24+) holds CMVP certificate #5247; v1.26.0 is in process. The validation belongs to that module, not to golang-jwt, and the library exposes no FIPS switch of its own. The older GOEXPERIMENT=boringcrypto path is a further option."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/go.mod",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Zero direct module dependencies — go.mod contains no require block at all. pkg.go.dev's \"Imports: 20\" figure counts standard-library packages only. Minimal supply-chain surface, which is a large part of this library's appeal."
+    },
+    "package-size": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/golang-jwt/jwt/v5"],
+      "comment": "The Go module proxy and pkg.go.dev do not publish an artifact size for a module, so there is no registry-reported figure comparable to an npm tarball or a crate archive. Left null rather than guessing from a checkout."
+    },
+    "github-stars": {
+      "value": 9185,
+      "source": ["https://api.github.com/repos/golang-jwt/jwt"],
+      "comment": "GitHub API snapshot on 2026-07-30 (440 forks, 46 open issues)."
+    },
+    "downloads": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/golang-jwt/jwt/v5"],
+      "comment": "The Go module ecosystem publishes no download counts. The nearest available adoption metric is pkg.go.dev's \"Imported by\" figure: 15,146 known importers of github.com/golang-jwt/jwt/v5 as of 2026-07-30, which puts it at the top of the Go JWT field — but it is a different metric from every other candidate's, so it is recorded here in the comment rather than in the value."
+    },
+    "last-release": {
+      "value": "2026-01-28",
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/releases?per_page=10",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "v5.3.1. The repository itself has been pushed to more recently (last commit 2026-07-06)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/releases?per_page=10",
+        "https://api.github.com/repos/golang-jwt/jwt/commits?per_page=50",
+        "https://api.github.com/repos/golang-jwt/jwt"
+      ],
+      "comment": "Four releases in the last ~18 months (v5.2.2 2025-03-21, v5.2.3 2025-07-15, v5.3.0 2025-07-30, v5.3.1 2026-01-28) plus ongoing commits, the most recent on 2026-07-06; not archived, 46 open issues as of 2026-07-30. The v4 line receives back-ported security patches (v4.5.2). The maintainers point to no successor — this project is itself the successor that dgrijalva/jwt-go points at."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/commits?per_page=50",
+        "https://api.github.com/repos/golang-jwt/jwt/contributors?per_page=15",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "The last 50 commits (checked 2026-07-30) are 16 dependabot updates plus roughly ten distinct human authors with one commit each, among them the two long-running maintainers oxisto (Christian Banse) and mfridman. All-time counts are dominated by dgrijalva (241), the pre-fork original author who is no longer involved. So: a genuine small maintainer team reviewing mostly drive-by contributions, not a foundation- or company-backed organisation, and the recent human commit volume is low."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/SECURITY.md",
+        "https://api.github.com/repos/golang-jwt/jwt/security-advisories?per_page=20",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Meets the guideline's bar: a decade-plus code lineage, 15k+ known importers, semver 2.0.0 with a documented MIGRATION_GUIDE.md and VERSION_HISTORY.md for the v4→v5 break, a real SECURITY.md disclosure process, and a track record of handling both of its advisories promptly — CVE-2025-30204 was patched in v5.2.2 with a same-day v4.5.2 back-port for the previous major."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": [
+        "https://api.github.com/repos/golang-jwt/jwt/contents/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+      ],
+      "comment": "Hand-written Go test files alongside the source (hmac_test.go, rsa_test.go, rsa_pss_test.go, ecdsa_test.go, ed25519_test.go, parser_test.go, validator_test.go, none_test.go, …) plus a test/ directory of sample keys and example tests. No RFC 7515/7518/7520 appendix vectors, no cookbook suite, no Wycheproof, and no cross-implementation interop harness was found — though the underlying primitives are the Go standard library's, which is itself extensively tested against Wycheproof upstream."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://golang-jwt.github.io/jwt/usage/parse/",
+        "https://pkg.go.dev/github.com/golang-jwt/jwt/v5",
+        "https://raw.githubusercontent.com/golang-jwt/jwt/main/README.md"
+      ],
+      "comment": "4: a dedicated docs site with task-oriented create/parse/signing-method pages, complete godoc on pkg.go.dev, runnable Example tests in the repository (hmac_example_test.go, http_example_test.go), a MIGRATION_GUIDE.md, and explicit security notes in both the README and the parse guide (validate the `alg`, keep leeway small, `none` requires the unsafe sentinel). Short of 5 because there is no consolidated security-considerations chapter mapping the library onto RFC 8725, no guidance at all on JWKS or key rotation (features it lacks), and nothing telling readers that `crit` and the x5* headers are silently ignored."
+    }
+  }
 }

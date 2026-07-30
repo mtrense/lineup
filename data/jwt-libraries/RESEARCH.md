@@ -189,7 +189,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **josekit (Rust)** — full JOSE for Rust including JWE, OpenSSL-backed
 - [x] **jwt-simple (Rust)** — pure-Rust, opinionated safe-by-default API with type-separated key kinds
 - [x] **biscuit (Rust)** — long-standing pure-Rust JOSE implementation with JWE support
-- [ ] **golang-jwt/jwt (Go)** — the community successor to dgrijalva/jwt-go; the Go default
+- [x] **golang-jwt/jwt (Go)** — the community successor to dgrijalva/jwt-go; the Go default
 - [ ] **lestrrat-go/jwx (Go)** — the most complete Go JOSE stack: JWS, JWE, JWK, JWKS caching
 - [ ] **go-jose (Go)** — the Square-descended JOSE library maintained under go-jose/go-jose
 - [ ] **Nimbus JOSE+JWT (JVM)** — the reference-grade JVM JOSE implementation, near-total spec coverage
