@@ -1,5 +1,326 @@
 {
   "name": "jsonwebtoken (Node.js)",
   "description": "Auth0's long-standing Node library, still the most-downloaded JWT package",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["nodejs"],
+      "source": ["https://registry.npmjs.org/jsonwebtoken", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "Node-only by design: requires node:crypto (createSecretKey/createPublicKey/createSign). package.json declares engines node >=12. It happens to run on Bun via node:crypto compatibility, but that is neither advertised nor tested, so only nodejs is tagged."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://registry.npmjs.org/jsonwebtoken", "https://api.github.com/repos/auth0/node-jsonwebtoken"],
+      "comment": "MIT in both the npm manifest and the repository LICENSE file."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto"],
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "All cryptography is delegated to Node's built-in crypto module through jws -> jwa (crypto.createHmac, crypto.createSign/createVerify, crypto.timingSafeEqual). No native addon of its own."
+    },
+    "repository": {
+      "value": "https://github.com/auth0/node-jsonwebtoken",
+      "source": ["https://api.github.com/repos/auth0/node-jsonwebtoken"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/jsonwebtoken",
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "npmjs.com blocks automated fetches (HTTP 403); the package metadata was read from the npm registry API instead."
+    },
+    "documentation": {
+      "value": "https://github.com/auth0/node-jsonwebtoken#readme",
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "README-only; there is no separate docs site. The README (396 lines) documents sign/verify/decode options, the supported algorithm table and the error types."
+    },
+    "first-release": {
+      "value": "2013",
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "npm registry time map: version 0.1.0 published 2013-07-01; the GitHub repository was created the same day."
+    },
+    "latest-version": {
+      "value": "9.0.3",
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "dist-tags.latest = 9.0.3, published 2025-12-04 (checked 2026-07-30)."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "HS_ALGS in verify.js and the hs branch in jwa 2.0.1 (crypto.createHmac with sha256/384/512). HS is the default when signing with no explicit algorithm."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "RSA_KEY_ALGS/PUB_KEY_ALGS in verify.js; implemented in jwa via crypto.createSign('RSA-SHA*')."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js"],
+      "comment": "Gated on lib/psSupported (Node ^6.12.0 || >=8.0.0), so effectively always available on supported Node versions; PS algorithms are spliced into the allowed lists at load time."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "EC_KEY_ALGS covers ES256/384/512, and lib/validateAsymmetricKey.js pins each to its required curve (prime256v1 / secp384r1 / secp521r1). ES256K (secp256k1, RFC 8812) is not implemented — the jwa algorithm regex only matches RS|PS|ES|HS with 256/384/512."
+    },
+    "eddsa": {
+      "value": [],
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "No EdDSA at all. jwa 2.0.1's algorithm regex is /^(RS|PS|ES|HS)(256|384|512)$|^(none)$/ and Ed25519/Ed448 appear nowhere in jsonwebtoken 9.0.3's sources; an ed25519 KeyObject is rejected by validateAsymmetricKey as an unknown key type."
+    },
+    "jwe-key-management": {
+      "value": [],
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "The library implements JWS compact tokens only; there is no JWE code path, so the JWE tag sets are legitimately empty."
+    },
+    "jwe-content-encryption": {
+      "value": [],
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "No JWE support (see JWE Key Management)."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa-under-2048"],
+      "source": ["https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "`none` is still in sign.js SUPPORTED_ALGS (signing an unsecured token requires algorithm:'none' and no key) and can be verified by passing algorithms:['none'] with no key. RSA keys under 2048 bits: signing rejects them unless allowInsecureKeySizes:true, but verify.js performs no modulus-length check at all, so short-modulus RSA verification is accepted silently."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz", "https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js"],
+      "comment": "No registration hook. The algorithm set is a hardcoded array in sign.js/verify.js and a fixed regex plus signer/verifier factory map in jwa; an unknown alg throws a TypeError."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "Since 9.0.0 (Dec 2022, GHSA-qwph-4952-7xr6). verify.js: a token with an empty signature and no explicit options.algorithms fails with 'please specify \"none\" in \"algorithms\" to verify unsigned tokens'; a signed token with no key fails with 'secret or public key must be provided'. Accepting an unsecured token therefore requires the explicit, separately named opt-in algorithms:['none'] together with a falsy key. Versions <= 8.5.1 defaulted to accepting `none` and are unsafe."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key", "defaults-to-safe-set"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "options.algorithms is optional. When omitted, verify.js derives the allow-list from the KeyObject: type 'secret' -> HS256/384/512, asymmetricKeyType rsa|rsa-pss -> RS*/PS*, ec -> ES*, otherwise the curated PUB_KEY_ALGS fallback. The token header's alg is then checked against that list, never trusted on its own. Passing an explicit algorithms array is still the documented best practice and the only way to narrow within a family (e.g. RS256 but not RS512)."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "Single key abstraction (string/Buffer/KeyObject) but v9 normalises to a Node KeyObject and fails closed at runtime: HS* requires type 'secret', RS/PS/ES require type 'public', and lib/validateAsymmetricKey.js additionally binds alg to key type and EC curve. A PEM RSA public key passed where an HMAC secret is expected is rejected with 'secretOrPublicKey must be a symmetric key when using HS256'. Not a 5 because the check is runtime rather than type-level, and allowInvalidAsymmetricKeyTypes:true disables part of it. The classic RS256->HS256 confusion (CVE-2015-9235) was fixed in 4.2.2 and hardened again in 9.0.0."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "jwt.decode() is a separate module/export from jwt.verify() and takes no key; verification is never a flag on the same call. The name itself does not carry a warning, but the README documents it as not verifying the signature and a 2020 docs commit deliberately moved it below verify so it is not discovered first."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "verify.js checks nbf and exp automatically when present (suppressible via ignoreNotBefore / ignoreExpiration). aud, iss, sub, jti and nonce are only checked when the corresponding option is supplied, and iat only via the maxAge option. Note a missing exp is not an error — a token with no expiry verifies."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "options.audience and options.issuer are entirely optional; jwt.verify(token, key) succeeds without either, so the API does not fail closed on unstated audience/issuer."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "options.clockTolerance (seconds) is applied to both the nbf and exp comparisons, and options.clockTimestamp can override 'now'. Default tolerance is 0 — the safe default."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "jwa 2.0.1 createHmacVerifier compares the recomputed tag with crypto.timingSafeEqual (falling back to buffer-equal-constant-time on runtimes without it), after an early length check. Verified in source, not just claimed."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "Partial, hence false rather than rounding up. sign.js rejects RSA/PSS keys with modulusLength < 2048 (and, on older Node, signatures shorter than 256 bytes) unless allowInsecureKeySizes:true — added in 9.0.0 for GHSA-8cf7-32gw-wr33. But verify.js applies no key-size check whatsoever, and there is no minimum length for HMAC secrets on either path (a one-character HS256 secret is accepted), contrary to RFC 7518 section 3.2."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "The string 'crit' does not appear anywhere in jsonwebtoken 9.0.3's sources; the header is decoded and only alg (and optionally kid, by the caller) is consulted. A token carrying an unrecognised critical header verifies successfully, which violates RFC 7515 section 4.1.11."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "Not applicable rather than false: the library only handles single-level JWS compact tokens (it rejects anything that is not exactly three dot-separated parts) and implements no JWE, no nesting and no PBES2, so there is no recursive path to bound."
+    },
+    "cve-history": {
+      "value": ["historical-2020s", "historical-pre-2020"],
+      "source": ["https://github.com/advisories?query=jsonwebtoken", "https://github.com/auth0/node-jsonwebtoken/security/advisories/GHSA-qwph-4952-7xr6"],
+      "comment": "Five advisories, all fixed and none in the last 24 months. Dec 2022 cluster, all fixed in 9.0.0: GHSA-qwph-4952-7xr6 / CVE-2022-23540 (insecure default algorithm — falsy key plus no algorithms list fell back to `none`), GHSA-8cf7-32gw-wr33 / CVE-2022-23539 (unrestricted key types), GHSA-hjrf-2m68-5959 / CVE-2022-23541 (key-retrieval function allowed RSA-to-HMAC confusion), GHSA-27h2-hvpr-p74q / CVE-2022-23529 (RCE via attacker-controlled secretOrPublicKey; later withdrawn as it requires the calling code to be already broken). Historical: CVE-2015-9235 (GHSA-c7hr-j4mj-j2w6, critical) — the classic alg-confusion verification bypass, fixed in 4.2.2. Current 9.0.3 has no open advisory as of 2026-07-30."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://github.com/advisories?query=jsonwebtoken"],
+      "comment": "No SECURITY.md at the repository root (raw fetch returns 404), but the README's Issue Reporting section documents a private channel: Auth0's Responsible Disclosure Program (https://auth0.com/whitehat), explicitly asking that vulnerabilities not be filed as public issues. GitHub Security Advisories are used and published for this repo."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://auth0.com/blog/amp/critical-vulnerabilities-in-json-web-token-libraries", "https://github.com/advisories?query=jsonwebtoken"],
+      "comment": "Searched and found none: there is no published third-party audit report. External security research exists (Tim McLean's 2015 cross-library JWT verification-bypass work, and the 2022 findings behind the four December advisories), but researcher-reported vulnerabilities are not an audit."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "Both directions: jwt.sign() and jwt.verify() over JWS compact serialization. This is the library's entire scope."
+    },
+    "jwe": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "No JWE code at all; the package contains only sign.js, verify.js, decode.js and six small lib modules."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "The word 'jwk' appears nowhere in the sources. A caller can build a Node KeyObject from a JWK themselves (crypto.createPublicKey({key: jwk, format: 'jwk'})) and pass it in, but the library neither parses nor validates JWK documents."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://registry.npmjs.org/jwks-rsa"],
+      "comment": "No HTTP client and no network code. The README points at the separate Auth0 package jwks-rsa for JWKS retrieval (which, as of 4.1.0, itself builds on panva/jose rather than jsonwebtoken)."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://registry.npmjs.org/jwks-rsa"],
+      "comment": "Out of scope for this package; caching, rate limiting and rotation live in jwks-rsa (lru-cache + limiter dependencies)."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "The library never resolves a key set itself. It does hand the decoded header (including kid) to a getKey(header, callback) function when secretOrPublicKey is a callback, so the application can do the lookup — that hook is how jwks-rsa is wired up. Signing can emit a kid via options.keyid."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "No RFC 7638 thumbprint computation; no JWK handling at all."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "Requires JWE, which is not implemented."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "verify.js splits on '.' and requires exactly three parts; flattened and general JSON serializations are not supported, so multiple signatures are impossible."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "RFC 7515 Appendix F is not supported; the payload segment is always required and decoded from the token."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "RFC 7797 (b64: false) is not implemented; 'b64' does not appear in the sources. A non-object payload can be signed as a raw string/Buffer, but it is still base64url-encoded."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "No key-generation helpers; callers use node:crypto generateKeyPair or external tooling."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "No x5c/x5t/x5t#S256/x5u handling — the strings do not occur in the sources, and the README's TODO section states outright that 'X.509 certificate chain is not checked'. Arbitrary headers can be emitted via options.header, but nothing is parsed or validated on verification."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "raw-bytes"],
+      "source": ["https://unpkg.com/jsonwebtoken@9.0.3/verify.js", "https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js"],
+      "comment": "Keys are passed straight to crypto.createPublicKey/createPrivateKey (falling back to createSecretKey), so the accepted set is whatever Node's crypto accepts: PEM strings/Buffers (PKCS#1, PKCS#8, SEC1, SPKI), DER via a {key, format:'der', type:...} object, raw bytes for HMAC secrets, and pre-built KeyObjects. Only PEM and raw secrets are documented and exercised in the tests; JWK/JWKS ingestion is not offered by the library itself."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js"],
+      "comment": "No pluggable signer interface. sign() needs key material (or a KeyObject) it can hand to node:crypto, so KMS/HSM signing is only possible if the HSM is exposed through a Node KeyObject, e.g. an OpenSSL engine — not through an API of this library."
+    },
+    "framework-integrations": {
+      "value": ["express", "nestjs"],
+      "source": ["https://registry.npmjs.org/express-jwt", "https://registry.npmjs.org/@nestjs/jwt"],
+      "comment": "Both are de facto adapters that depend on this package directly: Auth0's express-jwt 8.5.1 (dependency jsonwebtoken ^9.0.0) and the first-party @nestjs/jwt 11.0.2 (dependency jsonwebtoken 9.0.3, pinned). Fastify's fastify-jwt uses fast-jwt instead, so it is not tagged here."
+    },
+    "async-api": {
+      "value": ["both"],
+      "source": ["https://raw.githubusercontent.com/auth0/node-jsonwebtoken/v9.0.3/sign.js", "https://unpkg.com/jsonwebtoken@9.0.3/verify.js"],
+      "comment": "sign() and verify() return synchronously when no callback is given and switch to Node-style callbacks when one is. There is no promise API (callbacks must be promisified), and a getKey callback for the key forces the async form."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://registry.npmjs.org/@nestjs/jwt", "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "Plain JavaScript with no bundled type definitions; payloads are dynamic objects and verify() returns a JwtPayload-shaped map. TypeScript users install the community @types/jsonwebtoken from DefinitelyTyped (pinned as a peer of @nestjs/jwt), which types the payload as string | JwtPayload — no generic claim struct, no runtime schema validation."
+    },
+    "crypto-backend": {
+      "value": ["stdlib", "openssl"],
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "node:crypto exclusively, which in mainline Node builds is OpenSSL (or BoringSSL in some redistributions). The library itself contains no cryptographic implementation."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/jsonwebtoken", "https://registry.npmjs.org/jws"],
+      "comment": "Dependency tree is pure JavaScript: ms, semver, six lodash.* singles, and jws 4.0.1 -> jwa 2.0.1 + safe-buffer (jwa pulls ecdsa-sig-formatter and buffer-equal-constant-time). No native addon or node-gyp build; the primitives come from Node's built-in crypto."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz", "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "Depends on node:crypto KeyObject APIs (createSecretKey, createPublicKey, createSign, timingSafeEqual) that browser bundler shims do not provide; there is no browser build or WASM target."
+    },
+    "edge-runtime-compatible": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "Not usable on WebCrypto-only edge runtimes (Vercel Edge, Deno Deploy, bare Cloudflare Workers) because it needs Node's crypto KeyObject API. It can work on Workers with nodejs_compat enabled, but that is a compatibility shim rather than native support; the recommended edge choice in this ecosystem is panva/jose."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz"],
+      "comment": "Indirectly: because every primitive goes through node:crypto, a Node runtime built against an OpenSSL FIPS provider (node --enable-fips / --force-fips) covers this library's HS/RS/PS/ES operations. The FIPS validation belongs to the OpenSSL module, not to jsonwebtoken, and the library offers no FIPS switch or self-test of its own."
+    },
+    "dependency-count": {
+      "value": 10,
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "Direct runtime dependencies of 9.0.3 (checked 2026-07-30): jws, ms, semver, lodash.includes, lodash.isboolean, lodash.isinteger, lodash.isnumber, lodash.isplainobject, lodash.isstring, lodash.once. High for the ecosystem — six of the ten are single-function lodash packages retained for legacy Node support."
+    },
+    "package-size": {
+      "value": 43403,
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "dist.unpackedSize of the 9.0.3 npm tarball (~43 KB across 15 files, README and LICENSE included). Transitive dependencies are not counted."
+    },
+    "github-stars": {
+      "value": 18180,
+      "source": ["https://api.github.com/repos/auth0/node-jsonwebtoken"],
+      "comment": "auth0/node-jsonwebtoken, snapshot taken 2026-07-30."
+    },
+    "downloads": {
+      "value": 53794735,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/jsonwebtoken"],
+      "comment": "npm weekly downloads for 2026-07-22 to 2026-07-28. By far the most-downloaded JWT package on npm; comparable only within the npm ecosystem."
+    },
+    "last-release": {
+      "value": "2025-12-04",
+      "source": ["https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "9.0.3, a maintenance release bumping jws to 4.0.1. The previous release, 9.0.2, was 2023-08-30 — a two-year gap."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/auth0/node-jsonwebtoken/commits/master", "https://registry.npmjs.org/jsonwebtoken"],
+      "comment": "Okta/Auth0 still owns it and commits land (Mar-Jun 2026: CODEOWNERS, semantic-release automation, CI fixes), but nothing substantive has changed in the library code since the Dec 2025 dependency bump, and before that since Aug 2023. Feature work has stopped; expect security and dependency fixes only. 205 open issues as of 2026-07-30."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/auth0/node-jsonwebtoken/commits/master", "https://api.github.com/repos/auth0/node-jsonwebtoken"],
+      "comment": "Company-backed: recent commits are all from Okta/Auth0 staff accounts (SamuelSSalazar, julienwoll, frederikprijck, previously jakelacey2012 and *-okta accounts), with a CODEOWNERS file added in 2026. Continuity depends on Okta's willingness to staff it rather than on one individual."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://registry.npmjs.org/jsonwebtoken", "https://github.com/advisories?query=jsonwebtoken"],
+      "comment": "Thirteen years old, 1.0+ since 2015, ~54M weekly downloads, stable API across the 9.x line, and a demonstrated advisory process (the Dec 2022 cluster was disclosed and fixed together in the 9.0.0 breaking release). Feature coverage is deliberately narrow rather than immature."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": ["https://data.jsdelivr.com/v1/packages/gh/auth0/node-jsonwebtoken@v9.0.3?structure=flat"],
+      "comment": "The v9.0.3 test directory is ~30 hand-written mocha suites (per-claim tests, jwt.malicious.tests.js, wrong_alg.tests.js, validateAsymmetricKey.tests.js) plus locally generated PEM fixtures. No RFC 7515/7518/7520 appendix vectors, no cookbook fixtures, no Wycheproof or interop suite."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz"],
+      "comment": "README-only (396 lines), but a thorough one: full option reference for sign/verify/decode, a supported-algorithm table, error-type documentation, and a JWKS example via jwks-rsa. No dedicated docs site, no bundled TypeScript types, and no consolidated security-considerations section — the safety-relevant advice (always pass `algorithms`, never trust decode()) is scattered through option descriptions."
+    }
+  }
 }
