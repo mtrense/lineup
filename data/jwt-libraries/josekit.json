@@ -1,5 +1,324 @@
 {
   "name": "josekit (Rust)",
   "description": "Full JOSE for Rust including JWE, OpenSSL-backed",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["rust"],
+      "source": ["https://crates.io/api/v1/crates/josekit", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "Rust-only crate (edition 2021, categories: authentication). No bindings for other ecosystems."
+    },
+    "license": {
+      "value": ["mit-or-apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/josekit/0.10.3", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs/contents/"],
+      "comment": "Cargo manifest and crates.io both report \"MIT OR Apache-2.0\"; the repository ships LICENSE-MIT and LICENSE-APACHE. (The GitHub API's single-license field only surfaces Apache-2.0.)"
+    },
+    "implementation": {
+      "value": ["ffi-binding"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs"],
+      "comment": "All cryptography goes through the `openssl` 0.10 crate (EVP Signer/Verifier, symm ciphers). Optional `vendored` feature statically builds OpenSSL from source."
+    },
+    "repository": {
+      "value": "https://github.com/hidekatsu-izuno/josekit-rs",
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/josekit",
+      "source": ["https://crates.io/api/v1/crates/josekit"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/josekit",
+      "source": ["https://docs.rs/josekit/latest/josekit/"],
+      "comment": "The crate declares no `documentation` field, so docs.rs is the canonical API reference; the README is where the real usage guide lives."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/josekit"],
+      "comment": "First crates.io publication 2020-08-12; 23 versions to date."
+    },
+    "latest-version": {
+      "value": "0.10.3",
+      "source": ["https://crates.io/api/v1/crates/josekit/0.10.3"],
+      "comment": "Pre-1.0. Published 2025-05-20; also the newest (no pre-releases ahead of it) as of 2026-07-30."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "Implemented in src/jws/alg/hmac.rs via OpenSSL HMAC; each requires a secret at least as long as the hash output (32/48/64 bytes)."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "RSASSA-PKCS1-v1_5 in src/jws/alg/rsassa.rs."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs/git/trees/master?recursive=1", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "Separate src/jws/alg/rsassa_pss.rs module; the README documents PS256/384/512 signing and verification with RSA-PSS keys. Module presence confirmed in the repo tree; the file itself was not read line by line."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/ecdsa.rs"],
+      "comment": "All four including ES256K (secp256k1, RFC 8812). Verifier construction checks the key's curve against the algorithm's expected curve and bails on mismatch."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs/git/trees/master?recursive=1"],
+      "comment": "One `EdDSA` alg identifier (RFC 8037) covering both Ed25519 and Ed448 keys — the curve comes from the key, not the alg header. The newer curve-specific `Ed25519` alg identifier is not used."
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128kw", "a192kw", "a256kw", "a128gcmkw", "a192gcmkw", "a256gcmkw", "rsa-oaep", "rsa-oaep-256", "rsa1-5", "ecdh-es", "ecdh-es-a128kw", "ecdh-es-a256kw", "pbes2-hs256-a128kw", "pbes2-hs512-a256kw"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/alg/ecdh_es.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/alg/pbes2_hmac_aeskw.rs"],
+      "comment": "Every tag in this comparison's defined set is supported. josekit additionally implements ECDH-ES+A192KW, PBES2-HS384+A192KW, and the non-standard RSA-OAEP-384 / RSA-OAEP-512, which have no tag ids here — so the tags understate its coverage. ECDH-ES works over P-256/P-384/P-521/secp256k1 plus X25519/X448."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/enc/aescbc_hmac.rs"],
+      "comment": "All six RFC 7518 content-encryption algorithms (src/jwe/enc/aescbc_hmac.rs and aesgcm.rs). No XChaCha20-Poly1305 (XC20P). DEF compression (`zip`) is also implemented."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "`jwt::None` / `encode_unsecured` / `decode_unsecured` expose the unsecured JWS variant, and `RSA1_5` is an exported JWE key-management algorithm (the README labels it deprecated). Not applicable: secp256k1 is curve-checked so it cannot be smuggled through ES256, and RSA keys under 2048 bits are rejected outright."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_algorithm.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "`JwsAlgorithm`, `JwsSigner` and `JwsVerifier` are public, object-safe, unsealed traits, and the decode API takes `&dyn JwsVerifier` — a downstream crate can register an arbitrary `alg` name. That is also the escape hatch: the only check on the wire is that the header `alg` equals the custom verifier's `name()`, so a custom implementation inherits full responsibility for safety."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "Verified in josekit 0.10.3: `deserialize_compact_with_selector` compares the header `alg` against `verifier.algorithm().name()` and bails on mismatch, so an attacker-supplied `alg: none` token can never validate against, say, an RS256 verifier. The unsecured path requires the explicitly named `jwt::decode_unsecured` / `jwt::None.verifier()` opt-in, which the README documents as \"no digital signature or MAC performed\". Caveat: the doc comments on those functions carry no security warning."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs"],
+      "comment": "There is no way to verify without naming an algorithm: the caller builds a verifier from an algorithm constant plus a key (`HS256.verifier_from_bytes(..)`, `RS256.verifier_from_pem(..)`) and the header `alg` must equal that verifier's name. The `*_with_selector` and `*_in_jwk_set` variants hand the untrusted header to a caller-supplied closure, but the closure returns a concrete verifier whose algorithm is still matched against the header afterwards."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/ecdsa.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs"],
+      "comment": "4 rather than 5: each algorithm family has its own signer/verifier types and its own `*_from_pem`/`_from_der`/`_from_jwk` constructors that parse and validate the key (curve match for ECDSA, >=2048-bit for RSA), and the header alg must equal the verifier's alg — so RS256->HS256 confusion fails closed. It is a runtime rather than compile-time guarantee, and the trait-object escape hatch (`&dyn JwsVerifier`) means the type system does not enforce the pairing."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "There is no \"decode the claims without verifying\" function at all. `jwt::decode_header` returns only the JOSE header, and `jwt::decode_unsecured` works solely on `alg: none` tokens. Every claims-returning entry point takes a verifier or a decrypter."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_payload_validator.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_context.rs"],
+      "comment": "Decoding verifies the signature only — no `exp`/`nbf`/`iat`/`aud`/`iss` check happens automatically. Claim checking is an entirely separate, opt-in step: build a `JwtPayloadValidator` (issuer, subject, audience, jti, base_time for exp/nbf, min/max issued time, arbitrary claims) and call `validate(&payload)` yourself. Forgetting that call yields a signature-valid but expired token."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_payload_validator.rs"],
+      "comment": "`aud` and `iss` are optional setters on an optional validator; nothing in the decode signature mentions them and nothing fails closed if they are never supplied."
+    },
+    "clock-skew-configurable": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_payload_validator.rs"],
+      "comment": "No leeway/tolerance parameter. `JwtPayloadValidator::set_base_time` lets the caller move the reference instant used for `exp`/`nbf` (and min/max issued time bound `iat`), which can be abused as skew handling, but there is no symmetric leeway setting; comparisons are strict."
+    },
+    "constant-time-comparison": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/enc/aescbc_hmac.rs"],
+      "comment": "Read in 0.10.3: the HMAC JWS verifier recomputes the MAC and compares with `if new_signature.as_slice() != signature { bail!(\"Failed to verify.\"); }` — a plain slice comparison, not `openssl::memcmp::eq`. The AES-CBC-HMAC content-encryption tag check does the same (`if calc_tag.as_slice() != tag`). No constant-time helper is imported anywhere on these paths."
+    },
+    "minimum-key-size-enforced": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs"],
+      "comment": "Both halves enforced in 0.10.3: RSA signer, verifier and `generate_key_pair` all bail with \"key length must be 2048 or more.\", and HMAC keys must be at least the hash output length (32/48/64 bytes) per RFC 7518 §3.2, from raw bytes and from JWK alike. Note the README still describes RSA keys as \"1024 bits or more\" — the code is stricter, and the code is what runs."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs"],
+      "comment": "`deserialize_compact_with_selector` walks the `crit` array and bails with \"The critical name '{}' is not supported.\" for anything not in the acceptable set — correct RFC 7515 §4.1.11 behaviour. `JwsContext::add_acceptable_critical` / `remove_acceptable_critical` let the caller declare which critical names it understands; `b64` is acceptable by default in the JWS layer and explicitly rejected in the JWT layer."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/alg/pbes2_hmac_aeskw.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe/zip/deflate.rs"],
+      "comment": "PBES2 decryption caps the iteration count: `if p2c > 1000000 { bail!(\"The p2c value is too large. This is a possible DoS attack: {}\", p2c) }`. Recursive nesting is a non-issue because josekit never auto-unwraps a token inside a token. Gap worth flagging: DEF (`zip`) decompression is unbounded — `DeflateDecoder::read_to_end` into a fresh `Vec` with no output-size limit, i.e. no decompression-bomb guard."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": ["https://api.github.com/advisories?ecosystem=rust&affects=josekit"],
+      "comment": "Checked 2026-07-30: the GitHub Advisory Database returns an empty list for the Rust package `josekit`, and rustsec.org has no advisory page for the crate (404). No CVE surfaced by search either. Note the flip side of the guideline — no advisories here coexists with no SECURITY.md and no published security process, so this is absence of evidence rather than a track record."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs/contents/", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs/contents/.github"],
+      "comment": "No SECURITY.md at the repository root or under .github (which holds only `workflows`), and no private disclosure channel documented in the README. Reports would go through public GitHub issues."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs/contents/", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "Searched the repository and README and the web for an audit report; found none. `false` in the \"looked and found nothing\" sense, not a claim that the code is unreviewed."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "Full sign and verify for compact and JSON serializations, plus the JWT-level `encode_with_signer` / `decode_with_verifier` wrappers."
+    },
+    "jwe": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe.rs"],
+      "comment": "Full encrypt and decrypt: 19 key-management algorithms, 6 content-encryption algorithms, DEF compression, compact plus flattened/general JSON, and multi-recipient serialization."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs"],
+      "comment": "`Jwk::from_bytes` / `from_reader` / `from_map`, plus `*_from_jwk` signer and verifier constructors on every algorithm; `JwkSet` parses key sets."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs"],
+      "comment": "No HTTP client among the dependencies (thiserror, anyhow, regex, serde, serde_json, base64, flate2, time, openssl) and no fetch API. You fetch the JWKS yourself and hand the bytes to `JwkSet`. The `jku` header can be set and read but is never dereferenced — which is also the safe default."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "Follows from the absence of remote fetch: no TTL/Cache-Control handling, no refetch-on-unknown-kid, no rate limiting. Rotation is entirely the application's problem."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs"],
+      "comment": "`decode_with_verifier_in_jwk_set` reads `header.key_id()`, returns no verifier when the token carries no `kid`, iterates `jwk_set.get(key_id)` and passes each matching JWK to the caller's selector, which turns it into a verifier. The JWS layer additionally compares the verifier's own `kid` against the header when set."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs"],
+      "comment": "No RFC 7638 thumbprint function on `Jwk` (and no RFC 9278 thumbprint URI). The only thumbprint accessors are the X.509 certificate ones (`x5t`, `x5t#S256`), which are different things."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "`decode_with_decrypter` deserializes the JWE plaintext straight into a `JwtPayload` and never inspects `cty: JWT` to recurse into an inner JWS. Sign-then-encrypt is achievable by hand (sign with `jws::serialize_compact`, then carry the string yourself through `jwe::serialize_compact`), but the JWT API does not do it end to end."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwe.rs"],
+      "comment": "`serialize_compact`, `serialize_flattened_json` and `serialize_general_json` exist for both JWS and JWE; the general-JSON JWS path takes several signers and `deserialize_json_with_selector` walks the `signatures` array, accepting the first signature the selector matches."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs"],
+      "comment": "No API accepts an externally supplied payload; the JSON deserializer bails with \"The payload field is required.\" and the compact path always splits the payload out of the token. RFC 7515 Appendix F is not implemented."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_context.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_header.rs"],
+      "comment": "RFC 7797 is handled in the JWS layer: `b64` is a settable header parameter, is an acceptable `crit` name, and when false the payload skips base64url encoding. The JWT layer deliberately refuses it (\"JWT is not supported b64 header claim.\")."
+    },
+    "key-generation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs"],
+      "comment": "`Jwk::generate_oct_key`, `generate_rsa_key`, `generate_ec_key`, `generate_ed_key`, `generate_ecx_key`, plus per-algorithm `generate_key_pair` helpers (RSA generation enforces the 2048-bit floor). The README nonetheless leads with `openssl` CLI recipes."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_header.rs"],
+      "comment": "All four parameters have typed getters/setters on `JwsHeader`, but they are only carried, not trusted: `x5c` entries get base64 format validation with no certificate parsing, chain building or signature checking, and `x5u` is never fetched. Treat x5c here as metadata, not as a trust path."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "sec1", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/rsassa.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwk/jwk.rs"],
+      "comment": "Every algorithm offers `*_from_pem`, `*_from_der` and `*_from_jwk`; PEM/DER cover both PKCS#8 and the traditional forms (PKCS#1 for RSA, SEC1 for EC) on the private side and SPKI plus raw on the public side, `JwkSet` covers JWKS, and HMAC/`dir` take raw bytes. The README notes traditional-PEM/raw-DER coverage is partial for EC, Ed and ECX keys. No PKCS#12 or keystore ingestion."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/jws_algorithm.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "Structurally possible rather than provided: `JwsSigner` is a public unsealed trait whose only crypto method is `sign(&self, message: &[u8]) -> Result<Vec<u8>>`, and `encode_with_signer` accepts `&dyn JwsSigner`, so a KMS/HSM/PKCS#11 signer can be implemented downstream. There is no first-party KMS integration and no equivalent seam for JWE decryption keys."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "comment": "No source cited because this is a negative finding: web and crates.io searches on 2026-07-30 surfaced no first-party or de facto josekit adapter for axum, actix-web or tower. Users wire `jwt::decode_with_verifier` into their own middleware."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "Every public function is synchronous and there is no async runtime dependency; signers and verifiers are `Send + Sync` so they can be shared across tasks, but calls block."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt/jwt_payload_validator.rs", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jwt.rs"],
+      "comment": "`JwtPayload` is a `serde_json` map with typed accessors for the registered claims (iss, sub, aud, exp, nbf, iat, jti) and `claim(key)` / `set_claim(key, Value)` for everything else. No generic parameter for a user-defined claims struct, so custom claims are dynamic `Value`s the caller deserializes itself."
+    },
+    "crypto-backend": {
+      "value": ["openssl"],
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs"],
+      "comment": "`openssl` 0.10.68, linked against the system OpenSSL by default or statically built via the `vendored` feature. Hashing, signing, key parsing and symmetric ciphers all go through OpenSSL EVP."
+    },
+    "pure-language-implementation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "The manifest's default configuration has a hard `openssl` dependency, i.e. a C library plus openssl-sys build script. There is no pure-Rust backend option."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "Follows from the mandatory OpenSSL FFI dependency: no wasm32 target support is claimed anywhere in the manifest or README, and openssl-sys does not build for wasm32-unknown-unknown."
+    },
+    "edge-runtime-compatible": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "Not `null` — the question is meaningful for Rust (WASM-based Workers/Deno Deploy targets exist) and the answer is no, because the crate cannot be built without native OpenSSL."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/src/jws/alg/hmac.rs"],
+      "comment": "Inherited, not claimed: because all crypto goes through OpenSSL EVP against the dynamically linked system library, josekit runs on an OpenSSL 3 installation configured with the FIPS provider. Validation belongs to that module, not to josekit — the project makes no FIPS statement of its own, the `vendored` build is not FIPS, and josekit exposes non-approved algorithms (Ed25519/Ed448, secp256k1, XChaCha-free but also RSA1_5) that a FIPS deployment must avoid at the application level."
+    },
+    "dependency-count": {
+      "value": 9,
+      "source": ["https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/Cargo.toml"],
+      "comment": "Direct, non-optional dependencies in the default configuration as of 0.10.3: thiserror, anyhow, regex, serde, serde_json, base64, flate2, time, openssl. Dev-dependency doc-comment excluded. `openssl` pulls a substantial native subtree of its own."
+    },
+    "package-size": {
+      "value": 145447,
+      "source": ["https://crates.io/api/v1/crates/josekit/0.10.3"],
+      "comment": "crates.io reports the 0.10.3 .crate archive at 145,447 bytes; this excludes the OpenSSL it links against."
+    },
+    "github-stars": {
+      "value": 93,
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs"],
+      "comment": "Snapshot on 2026-07-30 — modest star count relative to the crate's 3.5M downloads."
+    },
+    "downloads": {
+      "value": 3492146,
+      "source": ["https://crates.io/api/v1/crates/josekit"],
+      "comment": "crates.io all-time downloads as of 2026-07-30 (the RESEARCH.md window for Rust); ~491k in the trailing 90 days, so uptake continues despite the release gap. Compare only against other crates."
+    },
+    "last-release": {
+      "value": "2025-05-20",
+      "source": ["https://crates.io/api/v1/crates/josekit/0.10.3", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs"],
+      "comment": "0.10.3, published 2025-05-20 — the same day as the last push to master."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs/commits?per_page=50", "https://crates.io/api/v1/crates/josekit"],
+      "comment": "As of 2026-07-30 the last commit and the last release are both 2025-05-20 — roughly 14 months quiet, with 17 open issues. Not deprecated or archived, and the maintainer points to no successor, so `dormant` rather than `passively-maintained`: the 2025 cadence was healthy (0.10.0 Sep 2024, 0.10.1 Dec 2024, 0.10.2/0.10.3 May 2025), it simply stopped. Re-check before relying on this."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs/commits?per_page=50"],
+      "comment": "Hidekatsu Izuno authors essentially all commits in the recent history; the only other names are one-off external contributions (RonnyChan-okta, muturgan, rbochenek) merged by him."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": ["https://crates.io/api/v1/crates/josekit", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "Judged against the guideline: algorithm coverage is essentially complete (so not `experimental`), but it is still 0.x after five years and the API has moved across minors (0.8 -> 0.10), there is no changelog, no security policy and no audit, and no documented upgrade path. Real production use is implied by 3.5M downloads."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": ["https://api.github.com/repos/hidekatsu-izuno/josekit-rs/contents/data", "https://api.github.com/repos/hidekatsu-izuno/josekit-rs/git/trees/master?recursive=1"],
+      "comment": "No `tests/` directory; tests are inline `#[cfg(test)]` modules exercising round-trips against the project's own sample material in `data/` (pem, der, jwk, jwks, jwt). Found no RFC 7520 cookbook vectors, Wycheproof suite or interop harness — recorded as `own-tests-only` rather than `unknown` because the test data set was inspected, though not file by file."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/josekit/latest/josekit/", "https://raw.githubusercontent.com/hidekatsu-izuno/josekit-rs/master/README.md"],
+      "comment": "3: the README is a genuinely broad example catalogue (HMAC, RSA, RSA-PSS, ECDSA, EdDSA, dir, ECDH-ES, AESKW, AESGCMKW, PBES2, RSA-OAEP, unsecured tokens, payload validation, key-format matrices) and is compiled as doctests via `doc-comment`, but the docs.rs landing page is a bare module list, per-item doc comments are one-liners with typos (\"repsentation\", \"siginig\"), and there is no security-considerations section and no key-rotation/JWKS guidance. Short of 4 because the API reference itself carries almost no explanation."
+    }
+  }
 }
