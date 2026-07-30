@@ -1,5 +1,326 @@
 {
   "name": "fast-jwt (Node.js)",
   "description": "Performance-oriented Node JWT library used by fastify-jwt",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["nodejs"],
+      "source": ["https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "Node.js only: package.json declares engines.node >= 20 and the source requires node:crypto (createHmac/createSign/createVerify) plus Buffer throughout. No browser, Deno, or Bun build is published."
+    },
+    "license": {
+      "value": ["apache-2-0"],
+      "source": ["https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "package.json license field and LICENSE.md in the 6.3.0 tarball both state Apache-2.0. GitHub's licence detector reports \"Other\" only because the file is named LICENSE.md."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "All signing/verification is delegated to node:crypto in src/crypto.js (createHmac, createSign/createVerify, crypto.sign/crypto.verify). fast-jwt itself only does JSON/base64url handling, key sniffing, and ASN.1 parsing of PEM headers (asn1.js)."
+    },
+    "repository": {
+      "value": "https://github.com/nearform/fast-jwt",
+      "source": ["https://api.github.com/repos/nearform/fast-jwt"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/fast-jwt",
+      "source": ["https://registry.npmjs.org/fast-jwt"],
+      "comment": "Metadata verified via the npm registry API endpoint for the package."
+    },
+    "documentation": {
+      "value": "https://nearform.github.io/fast-jwt/",
+      "source": ["https://nearform.github.io/fast-jwt/"],
+      "comment": "Docs site is a rendering of the README (installation, createSigner/createDecoder/createVerifier options, algorithm table, caching, JWKS pointer, benchmarks)."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://registry.npmjs.org/fast-jwt"],
+      "comment": "npm registry time.created and version 0.1.0 both dated 2020-06-23."
+    },
+    "latest-version": {
+      "value": "6.3.0",
+      "source": ["https://registry.npmjs.org/fast-jwt"],
+      "comment": "dist-tags.latest as of 2026-07-30; published 2026-07-28."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/crypto.js: hsAlgorithms = ['HS256','HS384','HS512'], implemented with createHmac; exercised in test/compliance.spec.js (HS256)."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/crypto.js rsaAlgorithms, signed/verified with RSA_PKCS1_PADDING via node:crypto."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Same rsaAlgorithms list; PS* switches to RSA_PKCS1_PSS_PADDING with RSA_PSS_SALTLEN_DIGEST on sign and RSA_PSS_SALTLEN_AUTO on verify. PS384 is covered by test/compliance.spec.js."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "P-256/P-384/P-521 via node:crypto with ecdsa-sig-formatter for the JOSE↔DER conversion. ES256K is NOT a supported alg identifier: the ecCurves table in src/crypto.js maps secp256k1 (OID 1.3.132.0.10) to bits '256', so a secp256k1 key is treated as plain ES256 rather than RFC 8812 ES256K."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Registered under the RFC 8037 'EdDSA' alg identifier only (no curve-specific 'Ed25519' alg id). src/crypto.js accepts both OID 1.3.101.112 (Ed25519) and 1.3.101.113 (Ed448) and returns 'EdDSA'; the curve is taken from the key. Ed25519 is exercised in test/compliance.spec.js."
+    },
+    "jwe-key-management": {
+      "value": [],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "fast-jwt implements JWS compact tokens only; there is no JWE code path in src/."
+    },
+    "jwe-content-encryption": {
+      "value": [],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No JWE support, so no content-encryption algorithms."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "secp256k1-unrestricted"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "'none' is a first-class supported algorithm: createSigner({ algorithm: 'none' }) emits unsecured tokens (and refuses a key), and a verifier configured with algorithms: ['none'] and a null key accepts them. secp256k1 keys are accepted but mapped onto the ES256 identifier instead of RFC 8812 ES256K, i.e. the curve is usable without its own restricted alg id."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "The supported set is a fixed Set in src/signer.js (HS/ES/RS/PS/EdDSA + none) and a fixed union type in src/index.d.ts; there is no registration hook for a custom alg."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "On the default path in src/verifier.js the allowed-algorithm list is derived from the supplied key (detectPublicKeyAlgorithms), which never yields 'none'; an unsecured token then fails with FAST_JWT_INVALID_ALGORITHM. With no key the list stays empty and 'none' is still rejected. Accepting it requires the explicit opt-in createVerifier({ key: null, algorithms: ['none'] }). Note the README's claim that \"by default, all algorithms are accepted\" is looser than the code."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://github.com/nearform/fast-jwt/security/advisories/GHSA-ww5h-9m49-7xx4"],
+      "comment": "createVerifier infers the accepted algorithms from the key material (RSA PEM → RS*/PS*, EC PEM → ES<bits>, OKP → EdDSA, anything without a PEM header → HS*), and only narrows that set if the caller passes `algorithms`. The inference is a textual PEM sniff rather than a structural key type, which is exactly the mechanism behind the CVE-2023-48223 / CVE-2026-34950 / GHSA-ww5h-9m49-7xx4 confusion lineage; every advisory recommends passing an explicit `algorithms` allow-list."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 2,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://github.com/advisories/GHSA-c2ff-88x2-x9pg", "https://github.com/nearform/fast-jwt/security/advisories/GHSA-ww5h-9m49-7xx4"],
+      "comment": "Keys are raw strings/Buffers for every algorithm; RSA-key-as-HMAC-secret is prevented only by string sniffing (locatePem + publicKeyPemMatcher, plus a new check refusing serialized asymmetric JWK/JWKS JSON as an HMAC secret). That heuristic has been bypassed three times — CVE-2023-48223 (fixed 3.3.2), CVE-2026-34950 (whitespace prefix), and GHSA-ww5h-9m49-7xx4 (non-whitespace prefix, fixed 2026-07-28 in 6.3.0). 6.3.0 hardens it into a single locatePem helper, but the guideline's level 2 (\"raw bytes/strings accepted, documentation warns against misuse\") is the honest rating given the track record; passing `algorithms` explicitly raises the practical level to 3."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://nearform.github.io/fast-jwt/"],
+      "comment": "createDecoder() is a separate top-level export in src/decoder.js that never touches a key or a signature; verification lives only in createVerifier(). The decoder name is not alarming (\"decode\" rather than \"unsafeDecode\"), but the two APIs are genuinely distinct and the verifier has no \"skip verification\" flag."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "createVerifier registers nbf and exp validators unless ignoreNotBefore/ignoreExpiration are set. iat is only checked when maxAge is given; aud/iss/sub/jti/nonce only when the corresponding allowed* option is passed; typ only with checkTyp; requiredClaims defaults to none, so a token with no exp at all still verifies."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "allowedAud and allowedIss are optional; the README states \"by default, all values are accepted\". Callers can approximate fail-closed behaviour with requiredClaims: ['aud','iss'] plus the allowed* options, but nothing forces it."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://github.com/nearform/fast-jwt/security/advisories"],
+      "comment": "clockTolerance (milliseconds) defaults to 0, and clockTimestamp can pin the reference time. Since GHSA-687g-22h4-j4w4 (\"infinite clock tolerance bypasses exp and nbf\") the option is validated as a finite, non-negative number."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/crypto.js verifySignature compares HMAC tags with node:crypto timingSafeEqual, returning false when the lengths differ. Asymmetric algorithms use node:crypto verify directly."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No RSA modulus-size check anywhere in src/; a 1024-bit RSA key verifies. HMAC secrets are only checked for being non-empty (added after GHSA-gmvf-9v4p-v8jc / CVE-2026-44351), not for the RFC 7518 §3.2 requirement of at least hash-output length."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://github.com/advisories?query=fast-jwt"],
+      "comment": "validateCrit in src/verifier.js enforces RFC 7515 §4.1.11: crit must be a non-empty string array, must not name registered headers, must not contain duplicates, every entry must appear in the header, and every entry must be listed in the caller's allowedCritHeaders — otherwise FAST_JWT_INVALID_CRIT_HEADER. This behaviour was added in response to GHSA-hm7r-c7qw-ghp6 / CVE-2026-35042 (April 2026); earlier versions ignored crit."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Not applicable: fast-jwt handles single-level compact JWS only — no JWE, no nested tokens, no PBES2 iteration counts, so there is nothing to depth-limit. The related DoS surface it does address is ReDoS in user-supplied allowed* RegExps (safe-regex2 warning, after GHSA-cjw9-ghj4-fwxf)."
+    },
+    "cve-history": {
+      "value": ["historical-2020s", "recent-24-months"],
+      "source": ["https://github.com/advisories?query=fast-jwt", "https://github.com/nearform/fast-jwt/security/advisories", "https://github.com/nearform/fast-jwt/security/advisories/GHSA-ww5h-9m49-7xx4"],
+      "comment": "Ten repository advisories as of 2026-07-30, most of them in 2026. Highlights: GHSA-c2ff-88x2-x9pg / CVE-2023-48223 (algorithm confusion, fixed 3.3.2); GHSA-gm45-q3v2-6cf8 / CVE-2025-30144 (iss validation); GHSA-mvf2-f6gm-w987 / CVE-2026-34950 (incomplete fix, whitespace-prefixed RSA key); GHSA-rp9m-7r4c-75qg / CVE-2026-35039 (cache key collisions); GHSA-hm7r-c7qw-ghp6 / CVE-2026-35042 (crit ignored); GHSA-cjw9-ghj4-fwxf and GHSA-3j8v-cgw4-2g6q (ReDoS / stateful RegExp); GHSA-gmvf-9v4p-v8jc / CVE-2026-44351 (empty HMAC secret via async key resolver); and three published 2026-07-28: GHSA-ww5h-9m49-7xx4 (critical, non-whitespace key prefix re-enables confusion, affects 6.2.0–6.2.4), GHSA-g3jj-5cmm-3hxx (raw public JWK JSON accepted as HMAC secret) and GHSA-5hjw-83fp-phq9 (claim validators bypassed for array payloads). All are patched in 6.3.0; no unpatched advisory was found."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://github.com/nearform/fast-jwt/security/policy", "https://github.com/nearform/fast-jwt/security/advisories"],
+      "comment": "Borderline: there is no SECURITY.md (GitHub shows \"This project has not set up a SECURITY.md file yet\"), but GitHub private vulnerability reporting is enabled — the security tab offers \"Report a vulnerability\" and the maintainers routinely publish repository advisories with fixes. Counted as a documented private disclosure channel."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://github.com/nearform/fast-jwt/security/advisories"],
+      "comment": "Searched for a published third-party audit and found none; the security record consists of coordinated researcher disclosures handled through GitHub advisories. NearForm has credited informal review from JOSE experts in blog posts, which does not meet the bar for a published audit."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://nearform.github.io/fast-jwt/"],
+      "comment": "createSigner and createVerifier cover both directions for compact JWS."
+    },
+    "jwe": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No JWE implementation; the library is JWT/JWS only."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Keys must be PEM strings/Buffers or raw HMAC secrets. Since GHSA-g3jj-5cmm-3hxx, serialized JWK/JWKS JSON is explicitly rejected rather than parsed. Converting JWK to PEM is left to the caller (or to get-jwks)."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://nearform.github.io/fast-jwt/", "https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "The docs state \"JWKS is supported via get-jwks\" — a separate NearForm package used as the verifier's async key function. fast-jwt itself performs no HTTP."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://nearform.github.io/fast-jwt/"],
+      "comment": "Delegated to the companion get-jwks package. fast-jwt's own LRU cache caches verification results (tokens), not key sets."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "The library never selects a key by kid. It passes the decoded token ({ header, payload, signature }) to the caller's async key function, so kid-based lookup is possible but entirely the caller's (or get-jwks') job. Signing can set the kid header."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No RFC 7638 thumbprint computation in src/."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Requires JWE, which is not implemented."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/decoder.js splits on the two dots of the compact form; flattened/general JSON serialization and multiple signatures are not supported."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "The decoder requires a non-empty payload segment; no RFC 7515 Appendix F support."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No RFC 7797 b64:false handling; the decoder rejects any segment outside the base64url alphabet."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "No key-generation API; the README documents ssh-keygen/openssl commands for producing test keys."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "x5c/x5t/x5t#S256/x5u appear only in the JwtHeader TypeScript type and in the crit deny-list; no X.509 header parameter is read, resolved, or validated during verification. A PEM X.509 certificate can be passed as the key value (it is converted to SPKI via createPublicKey), but that is key input, not header support."
+    },
+    "key-input-formats": {
+      "value": ["pem", "pkcs1", "pkcs8", "sec1", "spki", "raw-bytes"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/crypto.js recognises PEM PKCS#1 (BEGIN RSA ...), SEC1 (BEGIN EC PRIVATE KEY), PKCS#8 (BEGIN PRIVATE KEY / ENCRYPTED PRIVATE KEY, with a passphrase object), SPKI (BEGIN PUBLIC KEY) and PEM X.509 certificates; anything with no PEM header is treated as a raw HMAC secret. Binary DER, JWK and JWKS are not accepted (JWK/JWKS JSON is now actively refused)."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "The key option may be a function, but it must resolve to a string/Buffer key the library then signs with itself — there is no pluggable signer interface, so KMS/HSM signing is not possible."
+    },
+    "framework-integrations": {
+      "value": ["fastify"],
+      "source": ["https://registry.npmjs.org/@fastify/jwt/latest"],
+      "comment": "@fastify/jwt 10.2.1 depends on fast-jwt ^6.2.4 — the official Fastify JWT plugin is a first-party wrapper around this library. No Express/NestJS/Hono adapter is published by the maintainers."
+    },
+    "async-api": {
+      "value": ["both"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Signer/verifier are synchronous when the key is a string or Buffer, and switch to callback-or-promise style when the key option is a function (e.g. a JWKS resolver). The typings overload createSigner/createVerifier accordingly."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "src/index.d.ts types the verifier's result as `any` and the decoded payload as `any`; the generic parameter on createSigner/createVerifier constrains the input payload/token type only. Claims are plain JSON objects with no schema validation beyond the built-in type checks on registered claims."
+    },
+    "crypto-backend": {
+      "value": ["stdlib", "openssl"],
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Everything runs through node:crypto, which in mainline Node.js is backed by OpenSSL. fast-jwt neither bundles nor selects a crypto provider itself."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "The five direct dependencies (asn1.js, mnemonist, @lukeed/ms, safe-regex2, ecdsa-sig-formatter) are all pure JavaScript; there is no native addon or FFI in the install. The cryptography itself is native, but inside Node's own runtime rather than a package dependency."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "Hard dependency on node:crypto and Buffer, CommonJS entry point, engines.node >= 20, and no browser field or bundled build. Only usable in a browser through a Node-polyfilling bundler, which is not a supported configuration."
+    },
+    "edge-runtime-compatible": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz", "https://nearform.github.io/fast-jwt/"],
+      "comment": "Needs node:crypto createSign/createVerify/createHmac and PEM key objects; the docs make no claim about Cloudflare Workers, Vercel Edge, or Deno Deploy, and no edge target is tested in CI. Might partially work under Workers' nodejs_compat, but that is unverified — treated as not supported."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Indirect: because all primitives come from node:crypto, running on a Node.js build linked against a FIPS-validated OpenSSL provider (node --enable-fips) puts the operations inside that module. The validation belongs to the OpenSSL module, not to fast-jwt, which offers no FIPS switch of its own and would fail on any algorithm the FIPS provider blocks (e.g. Ed25519 in some configurations)."
+    },
+    "dependency-count": {
+      "value": 5,
+      "source": ["https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "Direct runtime dependencies of 6.3.0: asn1.js, mnemonist, @lukeed/ms, safe-regex2, ecdsa-sig-formatter (checked 2026-07-30)."
+    },
+    "package-size": {
+      "value": 77978,
+      "source": ["https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "dist.unpackedSize for 6.3.0 (11 files: README, LICENSE, package.json and eight src files)."
+    },
+    "github-stars": {
+      "value": 435,
+      "source": ["https://api.github.com/repos/nearform/fast-jwt"],
+      "comment": "Snapshot of nearform/fast-jwt on 2026-07-30."
+    },
+    "downloads": {
+      "value": 1208359,
+      "source": ["https://api.npmjs.org/downloads/point/last-week/fast-jwt"],
+      "comment": "npm downloads for the week 2026-07-23 to 2026-07-29. Node ecosystem window: weekly. A large share arrives through @fastify/jwt."
+    },
+    "last-release": {
+      "value": "2026-07-28",
+      "source": ["https://registry.npmjs.org/fast-jwt"],
+      "comment": "6.3.0, the security release fixing the three advisories published the same day."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://registry.npmjs.org/fast-jwt", "https://github.com/nearform/fast-jwt/commits/master", "https://api.github.com/repos/nearform/fast-jwt"],
+      "comment": "Six releases in the last four months, last push 2026-07-29, and advisories are patched on the day they are published. Maintained by NearForm; no deprecation notice."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/nearform/fast-jwt/commits/master", "https://registry.npmjs.org/fast-jwt/6.3.0"],
+      "comment": "Company-backed: the repository lives in the NearForm org, npm maintainers are mostly NearForm staff, releases are automated (optic-release-automation), and recent commits come from several different humans plus dependabot rather than a single author."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": ["https://registry.npmjs.org/fast-jwt", "https://github.com/nearform/fast-jwt/security/advisories"],
+      "comment": "6.x with a stable, documented API, five years of history and heavy production use via @fastify/jwt. Held short of \"mature\" deliberately: eight of ten advisories — including three critical auth-bypass classes — were published in 2026, so the track record of getting the security-critical defaults right is still being established, even though the response time is good."
+    },
+    "rfc-conformance-testing": {
+      "value": ["cookbook-7520", "own-tests-only"],
+      "source": ["https://raw.githubusercontent.com/nearform/fast-jwt/master/test/compliance.spec.js", "https://github.com/nearform/fast-jwt/tree/master/test"],
+      "comment": "test/compliance.spec.js builds its HS256/RS256/PS384/ES512/EdDSA cases on keys lifted from RFC 7520 and RFC 8037, and test/compatibility.spec.js cross-checks against jsonwebtoken and jose. The published RFC signature vectors themselves are not replayed, so the suite is mostly self-generated round-trip testing on standard keys."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://nearform.github.io/fast-jwt/", "https://registry.npmjs.org/fast-jwt/-/fast-jwt-6.3.0.tgz"],
+      "comment": "Complete option-by-option reference for createSigner/createDecoder/createVerifier with runnable sync, callback and promise examples, an algorithm table, error-code handling and a detailed caching section including its security caveat. Short of 5: no dedicated security-considerations section (the algorithm-pinning advice that the advisories all give is absent), and JWKS is a one-line pointer to get-jwks."
+    }
+  }
 }

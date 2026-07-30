@@ -202,7 +202,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **python-jose (Python)** — historically ubiquitous; included partly to document its current maintenance state
 - [x] **jose / panva (Node.js, Deno, browser, edge)** — the reference JS JOSE implementation, WebCrypto-based, runtime-portable
 - [x] **jsonwebtoken (Node.js)** — Auth0's long-standing Node library, still the most-downloaded JWT package
-- [ ] **fast-jwt (Node.js)** — performance-oriented Node JWT library used by fastify-jwt
+- [x] **fast-jwt (Node.js)** — performance-oriented Node JWT library used by fastify-jwt
 - [ ] **djwt (Deno)** — the Deno-native JWT module
 - [ ] **dart_jsonwebtoken (Dart)** — the most-used JWT package on pub.dev
 - [ ] **jose (Dart)** — Dart JOSE implementation covering JWS, JWE, and JWK
