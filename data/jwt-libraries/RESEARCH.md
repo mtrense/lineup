@@ -204,7 +204,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **jsonwebtoken (Node.js)** — Auth0's long-standing Node library, still the most-downloaded JWT package
 - [x] **fast-jwt (Node.js)** — performance-oriented Node JWT library used by fastify-jwt
 - [x] **djwt (Deno)** — the Deno-native JWT module
-- [ ] **dart_jsonwebtoken (Dart)** — the most-used JWT package on pub.dev
+- [x] **dart_jsonwebtoken (Dart)** — the most-used JWT package on pub.dev
 - [ ] **jose (Dart)** — Dart JOSE implementation covering JWS, JWE, and JWK
 
 ## Notes for Researchers

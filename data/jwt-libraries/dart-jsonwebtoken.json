@@ -1,5 +1,407 @@
 {
   "name": "dart_jsonwebtoken (Dart)",
   "description": "The most-used JWT package on pub.dev",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["dart", "flutter"],
+      "source": [
+        "https://pub.dev/packages/dart_jsonwebtoken",
+        "https://pub.dev/packages/dart_jsonwebtoken/score"
+      ],
+      "comment": "Pure Dart package usable from both plain Dart and Flutter; pub.dev reports platform support for Android, iOS, Linux, macOS, Web and Windows, plus WASM compatibility."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://pub.dev/packages/dart_jsonwebtoken",
+        "https://github.com/jonasroussel/dart_jsonwebtoken"
+      ],
+      "comment": "MIT, per the pub.dev package page and the GitHub repository licence badge."
+    },
+    "implementation": {
+      "value": ["native"],
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "All crypto runs in Dart: pointycastle for HMAC/RSA/ECDSA, and since 3.4.0 a vendored pure-Dart Ed25519 implementation (replacing ed25519_edwards, to enable dart2wasm). No FFI or platform provider."
+    },
+    "repository": {
+      "value": "https://github.com/jonasroussel/dart_jsonwebtoken",
+      "source": ["https://pub.dev/packages/dart_jsonwebtoken"],
+      "comment": "Single-repository project owned by the package's verified publisher (jonasroussel.com)."
+    },
+    "package": {
+      "value": "https://pub.dev/packages/dart_jsonwebtoken",
+      "source": ["https://pub.dev/packages/dart_jsonwebtoken"],
+      "comment": "pub.dev registry page."
+    },
+    "documentation": {
+      "value": "https://dart-jwt.dev/",
+      "source": [
+        "https://dart-jwt.dev/",
+        "https://pub.dev/packages/dart_jsonwebtoken"
+      ],
+      "comment": "Dedicated documentation site linked as the package homepage; dartdoc API reference also exists on pub.dev."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://pub.dev/api/packages/dart_jsonwebtoken"],
+      "comment": "Earliest version on pub.dev is 0.1.0, published 2020-05-31."
+    },
+    "latest-version": {
+      "value": "3.4.1",
+      "source": ["https://pub.dev/api/packages/dart_jsonwebtoken"],
+      "comment": "3.4.1, published 2026-04-19; checked 2026-07-30."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart"],
+      "comment": "Declared as JWTAlgorithm.HS256/HS384/HS512, all HMACAlgorithm instances; HMAC is computed via pointycastle since 3.2.0."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart"],
+      "comment": "RSAAlgorithm instances RS256/RS384/RS512. Release 3.4.0 shipped a fix for RSA PKCS1-v1_5 sign/verify on the Node.js/JS target."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart"],
+      "comment": "RSASSA-PSS available as PS256/PS384/PS512 alongside the PKCS#1 v1.5 family, sharing the RSAAlgorithm implementation and RSA key classes."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart"],
+      "comment": "ECDSAAlgorithm covers P-256, P-384, P-521 and secp256k1 (ES256K, RFC 8812); JWK parsing accepts the matching crv values."
+    },
+    "eddsa": {
+      "value": ["ed25519"],
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "Registered under the RFC 8037 \"EdDSA\" alg identifier with Ed25519 only (JWK import supports crv Ed25519); Ed448 is not implemented."
+    },
+    "jwe-key-management": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No JWE support: verify() rejects anything that is not three-part JWS compact serialization."
+    },
+    "jwe-content-encryption": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No JWE support, so no content-encryption algorithms."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["secp256k1-unrestricted", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/key_parser.dart"
+      ],
+      "comment": "ES256K (secp256k1) is exposed like any other algorithm, with no opt-in gate. The PEM/DER key parser performs no modulus-size check, so RSA keys below 2048 bits are accepted for both signing and verification. `alg: none` is not implemented and RSA1_5 does not apply (no JWE)."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart"],
+      "comment": "JWTAlgorithm is an abstract class with a fixed set of 14 static const instances, and verification resolves the algorithm through a hardcoded fromName() switch. A user-defined subclass could in principle be passed to sign(algorithm:), but there is no registry, so it can never be resolved on the verification path. Restrictive, but it closes an escape hatch around the library's own checks."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"
+      ],
+      "comment": "verify() calls JWTAlgorithm.fromName(header['alg']); the switch has no 'none' case and its default branch throws JWTInvalidException('unknown algorithm'). There is no opt-in to enable unsecured JWS. Verified in 3.4.1."
+    },
+    "algorithm-pinning": {
+      "value": ["trusts-header"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "The verify(token, key, {...}) signature has no algorithm or allow-list parameter at all: the algorithm is taken from the untrusted token header via JWTAlgorithm.fromName(header['alg']). Practical exposure is limited because the key object's Dart type constrains which algorithm families can succeed (see Algorithm Confusion Resistance), but an attacker can still freely switch within a family accepted by that key type — e.g. RS256 to PS512 with the same RSAPublicKey. A caller cannot pin the accepted algorithm without inspecting the header themselves."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/algorithms.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "Distinct key classes (SecretKey, RSAPublicKey, ECPublicKey, EdDSAPublicKey) but a single JWTKey parameter on verify(), so the check is at runtime: each algorithm does `assert(key is X, ...)` followed by an explicit `key as X` cast. The assert is a no-op in release mode, but the cast still throws a TypeError, which verify() wraps in JWTUndefinedException — so the classic RS256 to HS256 downgrade with the RSA public key as HMAC secret fails closed. Docked from 5 because nothing is prevented at compile time and the failure surfaces as an undefined-exception rather than a clear algorithm-mismatch error."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart",
+        "https://dart-jwt.dev/"
+      ],
+      "comment": "JWT.decode(token) / JWT.tryDecode(token) are separate static methods from JWT.verify(token, key), documented as \"Decode a token without checking its signature\" and \"Use with caution\"; the docs tell readers not to use decode for authorization. The name is 'decode' rather than something like 'unsafeDecode', and it is the shortest call, so the separation is by name and docs rather than by friction."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "typ"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "verify() defaults checkExpiresIn: true and checkNotBefore: true (both only enforced when the claim is present), and checkHeaderType: true requires header typ == 'JWT'. iat is only checked when the caller passes issueAt; aud, sub, iss and jti are only checked when the corresponding named argument is supplied. Note that a token carrying no exp at all is accepted."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "audience, issuer, subject and jwtId are optional named parameters defaulting to null; when null the corresponding claim is not checked at all. Verification succeeds without stating either."
+    },
+    "clock-skew-configurable": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No leeway/skew parameter exists on verify(); exp and nbf are compared directly against timeNowUTC() with zero tolerance. The only time-related knobs are the boolean check toggles and the issueAt/issueAtUtc pair. The clock package dependency is used for testable time, not for configurable skew."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/algorithms.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "HMACAlgorithm.verify recomputes the tag and returns fixedTimeBytesEquals(actual, signature). Added in 3.3.2 (\"constant-time comparison for HMAC signature verification (timing-attack resistant)\"); earlier versions compared normally."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/key_parser.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "The key parser reads ASN.1 parameters without any strength check, and SecretKey accepts a string of any length, so neither the RFC 7518 §3.2 HMAC minimum nor a 2048-bit RSA floor is enforced. The docs merely recommend a 32-byte secret."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "The header is decoded and only 'typ' and 'alg' are inspected; there is no reference to 'crit' anywhere on the verification path, so a token declaring critical headers is accepted as if they were absent — a violation of RFC 7515 §4.1.11."
+    },
+    "nested-depth-limits": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No explicit limits. In practice the attack surface is small: verify() requires exactly three dot-separated parts, there is no JWE, no nesting and no PBES2, so the only unbounded input is JSON payload depth handled by dart:convert."
+    },
+    "cve-history": {
+      "value": ["historical-2020s"],
+      "source": [
+        "https://github.com/advisories?query=dart_jsonwebtoken",
+        "https://intel.aikido.dev/cve/AIKIDO-2024-10308",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "No CVE or GHSA exists — a GitHub Advisory Database search for dart_jsonwebtoken returns no results. Aikido Intel tracks AIKIDO-2024-10308 (published 2024-10-01, \"Insufficient Verification of Data Authenticity\", high), affecting 0.1.0-2.14.0 and fixed in 2.14.1; it corresponds to the changelog entries \"Fix exp, nbf and iat checks by casting the value to int\" (2.14.0) and \"Fix iat claim verification\" (2.14.1), i.e. expiry checks that could be bypassed. Fixed long before the current 3.4.1; no known unpatched issues as of 2026-07-30."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken"],
+      "comment": "No SECURITY.md at the repository root or under .github/ (both fetch as 404), and no documented private disclosure channel found in the README or on dart-jwt.dev."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken"],
+      "comment": "Searched the repository, the docs site and the web for a published third-party audit; none found. This is 'searched and found none', not 'unknown'."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "Both directions: JWT.sign(key, algorithm: ...) and JWT.verify(token, key), plus non-throwing trySign/tryVerify variants."
+    },
+    "jwe": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "JWS-only; a five-part JWE compact token is rejected with \"token does not use JWS Compact Serialization\"."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "JWTKey.fromJWK() constructs SecretKey (oct), RSA public/private, EC public/private (P-256, P-384, P-521, secp256k1) and Ed25519 keys; every key class also has toJWK(). Added in 3.0.0/3.1.0."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"],
+      "comment": "No HTTP client and no JWKS URL handling anywhere in the package (dependencies are clock, convert and pointycastle only); the caller fetches and picks the key themselves."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"],
+      "comment": "Follows from the absence of remote fetch — no key set type, no cache, no rotation logic."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "verify() takes exactly one JWTKey; there is no key-set abstraction and the header's kid is never read. toJWK() can emit a keyID, but selection by kid is left to the caller (who can read it via JWT.decode)."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"],
+      "comment": "No RFC 7638 thumbprint computation in the key classes; toJWK() only serializes the key parameters."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "Requires JWE, which the library does not implement."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "Compact serialization only — sign() emits 'header.payload.signature' and verify() insists on exactly three parts. No flattened/general JSON, no multiple signatures."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No RFC 7515 Appendix F support; the payload segment must be present and non-empty."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "No RFC 7797 handling; the 'b64' header is never inspected and the payload is always base64url-decoded."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"],
+      "comment": "Key classes only import existing material (PEM, DER bytes, JWK, pointycastle objects); there is no generate()/generateKeyPair() helper. Users are pointed at openssl in the docs."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/key_parser.dart"
+      ],
+      "comment": "None of x5c/x5t/x5t#S256/x5u are read from the header. The library can extract a public key from a PEM X.509 certificate supplied by the caller (RSAPublicKey.cert()/ECPublicKey.cert(), via publicKeyBytesFromCertificate), but that is key loading, not header handling, and no chain validation is performed."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "sec1", "spki", "jwk", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/key_parser.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "PEM constructors handle PRIVATE KEY (PKCS#8), RSA PRIVATE KEY / RSA PUBLIC KEY (PKCS#1), EC PRIVATE KEY (SEC1), PUBLIC KEY (SPKI) and CERTIFICATE; .bytes() constructors take the equivalent DER. JWK via JWTKey.fromJWK(). 'raw-bytes' is recorded for SecretKey, which takes a String secret with an optional isBase64Encoded flag rather than a Uint8List. No JWKS set type, no PKCS#12/keystore."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/blob/master/lib/src/keys.dart"
+      ],
+      "comment": "Signing goes through the fixed JWTAlgorithm implementations, which require in-process key material of a concrete JWTKey subclass; there is no pluggable signer interface for KMS/HSM/PKCS#11."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://pub.dev/packages/dart_jsonwebtoken",
+        "https://dart-jwt.dev/"
+      ],
+      "comment": "No first-party adapters; neither the docs site nor the pub.dev page ships or endorses a shelf/Dart Frog middleware. Server-side Dart users wire JWT.verify into their own handlers."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "sign/verify/decode are synchronous static or instance methods returning JWT/String directly; no Future-based variants."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/lib/src/jwt.dart"],
+      "comment": "JWT.payload is `dynamic` (typically Map<String, dynamic>, or a plain String). Registered claims aud/sub/iss/jti are surfaced as typed fields on the JWT object, but custom claims are untyped map access with no generics or schema."
+    },
+    "crypto-backend": {
+      "value": ["pointycastle"],
+      "source": [
+        "https://pub.dev/api/packages/dart_jsonwebtoken",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "pointycastle ^4.0.0 for HMAC (since 3.2.0), RSA and ECDSA; Ed25519 is a vendored pure-Dart implementation inside the package (lib/src/ed25519.dart) since 3.4.0."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://pub.dev/api/packages/dart_jsonwebtoken",
+        "https://pub.dev/packages/dart_jsonwebtoken/score"
+      ],
+      "comment": "Direct dependencies are clock, convert and pointycastle — all pure Dart, no FFI or platform channels. pub.dev grades the package as supporting every platform including Web and WASM, which requires the absence of native code."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://pub.dev/packages/dart_jsonwebtoken/score",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "pub.dev lists Web among the supported platforms and marks the package WASM-compatible; 3.4.0 replaced the ed25519_edwards dependency with a vendored implementation specifically to enable dart2wasm compilation."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://pub.dev/packages/dart_jsonwebtoken/score"],
+      "comment": "Not applicable per the RESEARCH.md guideline: Cloudflare Workers / Vercel Edge / Deno Deploy do not run Dart packages, so the question is meaningless for this ecosystem (the package does compile to WASM and to JS for the browser — see Runs in Browser/WASM)."
+    },
+    "fips-capable-backend": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/v3.4.1/lib/src/algorithms.dart",
+        "https://pub.dev/api/packages/dart_jsonwebtoken"
+      ],
+      "comment": "The backend is pointycastle plus a vendored Ed25519, neither of which is a FIPS 140-validated module, and there is no hook to swap in one. FIPS validation would belong to the crypto module, not this library — but no such module can be plugged in here."
+    },
+    "dependency-count": {
+      "value": 3,
+      "source": ["https://pub.dev/api/packages/dart_jsonwebtoken"],
+      "comment": "Direct runtime dependencies in pubspec.yaml for 3.4.1: clock ^1.1.2, convert ^3.1.2, pointycastle ^4.0.0. Dev dependencies excluded."
+    },
+    "package-size": {
+      "value": null,
+      "source": ["https://pub.dev/api/packages/dart_jsonwebtoken"],
+      "comment": "pub.dev's package page and API manifest do not report a published archive size, so no comparable figure is available without downloading the tarball."
+    },
+    "github-stars": {
+      "value": 109,
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken"],
+      "comment": "109 stars, 40 forks on jonasroussel/dart_jsonwebtoken as observed 2026-07-30. Star count is low relative to the package's download volume, which is typical for pub.dev-centric Dart/Flutter packages."
+    },
+    "downloads": {
+      "value": 1160000,
+      "source": [
+        "https://pub.dev/packages/dart_jsonwebtoken",
+        "https://pub.dev/packages/dart_jsonwebtoken/score"
+      ],
+      "comment": "~1.16M downloads as shown on the pub.dev package page on 2026-07-30; pub.dev's headline counter covers the trailing 30 days. Compare only against other pub.dev packages."
+    },
+    "last-release": {
+      "value": "2026-04-19",
+      "source": ["https://pub.dev/api/packages/dart_jsonwebtoken"],
+      "comment": "3.4.1 published 2026-04-19T15:45:33Z."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://pub.dev/api/packages/dart_jsonwebtoken",
+        "https://github.com/jonasroussel/dart_jsonwebtoken/commits/main"
+      ],
+      "comment": "Four releases in the first half of 2026 (3.3.2 in February through 3.4.1 on 2026-04-19) and repository activity as recent as 2026-07-02; pub points 160/160 with all dependencies on latest constraints. No successor is pointed to."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/commits/main"],
+      "comment": "Every substantive commit in the recent history is by jonasroussel, the verified publisher; the only other committer is dependabot. Contributions arrive as occasional PRs but there is one maintainer."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://pub.dev/api/packages/dart_jsonwebtoken",
+        "https://raw.githubusercontent.com/jonasroussel/dart_jsonwebtoken/master/CHANGELOG.md"
+      ],
+      "comment": "Six years old, 3.x, heavily used in Dart/Flutter production code, with a documented changelog and breaking changes confined to majors (3.0.0 changed NumericDate handling to UTC). Not 'mature': single maintainer, no security policy, no audit, and a 2024 verification bug that only Aikido tracked."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": ["https://github.com/jonasroussel/dart_jsonwebtoken/tree/master/test"],
+      "comment": "The test directory holds hand-written suites (sign_test, verify_test, decode_test, header_test, keys_test, payload_test, keys_const) with self-generated key material. No RFC 7515/7518 appendix vectors, no RFC 7520 cookbook, no Wycheproof corpus found in the listing."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://dart-jwt.dev/",
+        "https://pub.dev/packages/dart_jsonwebtoken"
+      ],
+      "comment": "Dedicated docs site with task-oriented, runnable examples for signing, verifying, decoding, every key type and the registered claims, plus a dartdoc API reference. Short of 5: no dedicated security-considerations section, nothing on JWKS or key rotation, and the docs are silent on the absence of algorithm pinning and clock skew."
+    }
+  }
 }
