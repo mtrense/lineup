@@ -197,7 +197,7 @@ The core group. Prefer reading the verification code path or the security sectio
 - [x] **java-jwt (JVM)** — Auth0's JVM library, JWT-focused rather than full JOSE
 - [x] **jose4j (JVM)** — mature standalone JVM JOSE implementation with strong RFC coverage
 - [x] **PyJWT (Python)** — the Python default; JWS/JWT-focused, cryptography-backed
-- [ ] **joserfc (Python)** — Authlib author's modern successor to python-jose with full JOSE coverage
+- [x] **joserfc (Python)** — Authlib author's modern successor to python-jose with full JOSE coverage
 - [ ] **Authlib JOSE (Python)** — the JOSE component of the Authlib suite
 - [ ] **python-jose (Python)** — historically ubiquitous; included partly to document its current maintenance state
 - [ ] **jose / panva (Node.js, Deno, browser, edge)** — the reference JS JOSE implementation, WebCrypto-based, runtime-portable

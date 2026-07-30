@@ -1,5 +1,527 @@
 {
   "name": "joserfc (Python)",
   "description": "Authlib author's modern successor to python-jose with full JOSE coverage",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["python"],
+      "source": [
+        "https://pypi.org/pypi/joserfc/json",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml"
+      ],
+      "comment": "Python only, `requires-python = \">=3.10\"` as of 1.7.0, which dropped 3.9. No other runtime is targeted."
+    },
+    "license": {
+      "value": ["bsd-3-clause"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://api.github.com/repos/authlib/joserfc"
+      ],
+      "comment": "pyproject declares `license = \"BSD-3-Clause\"`; GitHub reports the same from the LICENSE file. Author: Hsiaoming Yang (lepture), the author of Authlib."
+    },
+    "implementation": {
+      "value": ["ffi-binding", "stdlib-crypto"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7517/pem.py"
+      ],
+      "comment": "joserfc implements no primitive itself. Asymmetric signatures, AES and key agreement go through pyca/cryptography (a Rust/OpenSSL binding) — hence `ffi-binding`; HMAC goes through the Python standard library's `hmac`/`hashlib` (`hmac.new(op_key, msg, self.hash_alg)`) — hence `stdlib-crypto`. The optional draft ChaCha20-Poly1305 algorithms use pycryptodome, a third binding."
+    },
+    "repository": {
+      "value": "https://github.com/authlib/joserfc",
+      "source": ["https://api.github.com/repos/authlib/joserfc"],
+      "comment": "Created 2023-02-05 under the authlib organisation; not archived, last push 2026-07-25."
+    },
+    "package": {
+      "value": "https://pypi.org/project/joserfc/",
+      "source": ["https://pypi.org/pypi/joserfc/json", "https://pypi.org/project/joserfc/#history"],
+      "comment": "Over 40 releases on PyPI as of 2026-07-30."
+    },
+    "documentation": {
+      "value": "https://jose.authlib.org/",
+      "source": ["https://jose.authlib.org/en/guide/", "https://pypi.org/pypi/joserfc/json"],
+      "comment": "A dedicated documentation site (Sphinx), not a README: guides for JWK/JWT/JWS/JWE, pages for algorithms, the registry, errors and warnings, API reference, migration guides from Authlib/PyJWT/python-jose, recipes, a security page and an API-stability policy."
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://pypi.org/project/joserfc/#history", "https://api.github.com/repos/authlib/joserfc"],
+      "comment": "0.1.0 published to PyPI on 2023-03-05; the repository was created a month earlier (2023-02-05). 1.0.0 followed on 2024-07-14."
+    },
+    "latest-version": {
+      "value": "1.7.4",
+      "source": ["https://pypi.org/pypi/joserfc/1.7.4/json", "https://jose.authlib.org/en/changelog/"],
+      "comment": "1.7.4, uploaded to PyPI 2026-07-19 (the changelog page dates the same release 2026-07-13 — a minor discrepancy; the PyPI upload timestamp is used here). All findings below were read against the `main` branch on 2026-07-30, which is a handful of commits ahead of the 1.7.4 tag."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://jose.authlib.org/en/guide/algorithms/"
+      ],
+      "comment": "All three implemented over the stdlib `hmac` module. Only HS256 is flagged `recommended`, so HS384/HS512 need an explicit `algorithms=[...]` list or a custom registry to be accepted — see Algorithm Pinning."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://jose.authlib.org/en/guide/algorithms/"
+      ],
+      "comment": "PKCS#1 v1.5 padding via pyca/cryptography (`padding = padding.PKCS1v15()`). Only RS256 is `recommended`; RS384/RS512 require an explicit allow-list."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://jose.authlib.org/en/guide/algorithms/"
+      ],
+      "comment": "Full PSS family registered in `_rfc7518/jws_algs.py`. None of the three is marked `recommended`, so the caller must name them explicitly."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://jose.authlib.org/en/guide/algorithms/",
+        "https://api.github.com/repos/authlib/joserfc/contents/src/joserfc"
+      ],
+      "comment": "P-256/P-384/P-521 in `_rfc7518/jws_algs.py`, each with a hard curve check — `if key.curve_name != self.curve: raise InvalidKeyCurveError` — so an ES256 token cannot be verified with a P-521 key. ES256K (secp256k1) lives in the dedicated `_rfc8812` module (RFC 8812) and is listed as optional in the docs; only ES256 is `recommended`."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": [
+        "https://jose.authlib.org/en/guide/algorithms/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc9864/__init__.py",
+        "https://api.github.com/repos/authlib/joserfc/contents/src/joserfc"
+      ],
+      "comment": "Registered under the newer curve-specific identifiers `Ed25519` and `Ed448` from the `_rfc9864` module (RFC 9864). The older RFC 8037 `EdDSA` identifier is still present via `_rfc8037` but the docs list it as deprecated in favour of the curve-specific names. Neither is `recommended`, so an explicit `algorithms=[\"Ed25519\"]` is required."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "rsa1-5",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jwe_algs.py",
+        "https://jose.authlib.org/en/guide/algorithms/"
+      ],
+      "comment": "Complete RFC 7518 key-management coverage. Two implemented algorithms the schema's tag set cannot express are also present: ECDH-ES+A192KW and PBES2-HS384+A192KW. Beyond RFC 7518, the `drafts` module adds the ECDH-1PU family (sender-authenticated key agreement), which must be registered manually. Recommended-by-default are dir, A128KW, A256KW, RSA-OAEP, ECDH-ES, ECDH-ES+A128KW and ECDH-ES+A256KW; the rest need an explicit allow-list."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm", "xc20p"],
+      "source": [
+        "https://jose.authlib.org/en/guide/algorithms/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/drafts/jwe_chacha20.py",
+        "https://api.github.com/repos/authlib/joserfc/contents/src/joserfc/_rfc7518"
+      ],
+      "comment": "All six RFC 7518 content-encryption algorithms are implemented (`_rfc7518/jwe_encs.py`) and all six are `recommended`, so they work with the default registry. XC20P (XChaCha20-Poly1305) is behind the optional `drafts` extra: it needs pycryptodome (`from Crypto.Cipher import ChaCha20_Poly1305`) and an explicit `register_chacha20_poly1305()` call. The same draft module also provides C20P, for which this schema has no tag. `zip: DEF` compression is supported with a decompression cap — see Nested/Recursive Depth Limits."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jwe_algs.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/rsa_key.py"
+      ],
+      "comment": "All three are reachable, but only deliberately. `none` and `RSA1_5` are registered algorithms that are not `recommended`, so the default registry refuses them; naming them in `algorithms=[...]` enables them and emits a `SecurityWarning` quoting draft-ietf-jose-deprecate-none-rsa15-02. RSA below 2048 bits is tagged because the JWS path does not enforce a size floor and `RSAKey.import_key` only warns (`warnings.warn(\"Key size should be >= 2048 bits\", SecurityWarning)`) — the JWE key-management path does reject it (`InvalidKeyLengthError`). Not tagged: ES256K is the RFC 8812-registered use of secp256k1, not an unrestricted one."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/drafts/jwe_chacha20.py",
+        "https://jose.authlib.org/en/guide/algorithms/"
+      ],
+      "comment": "`JWSRegistry.register()` / `JWERegistry.register()` are public classmethods, and the library's own draft algorithms use them (`register_chacha20_poly1305()` calls `JWERegistry.register(model)`); the docs instruct users to call these to opt into C20P/XC20P and ECDH-1PU. The escape hatch is real: `register()` also sets the algorithm's `recommended` flag, so a registered algorithm can become acceptable to the default registry."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://jose.authlib.org/en/guide/registry/"
+      ],
+      "comment": "The `none` algorithm exists but is not in the recommended set, and `JWSRegistry.get_alg` fails closed on the default path: `if self.allowed: if name not in self.allowed: raise UnsupportedAlgorithmError(...) else: if name not in self.recommended: raise UnsupportedAlgorithmError(f\"Algorithm of '{name}' is not recommended\")`. Enabling it requires the caller to literally write `algorithms=[\"none\"]` (or a registry constructed with it), which additionally triggers a `SecurityWarning` naming the algorithm as deprecated — an explicit, unmistakable opt-in, so `true` per the guideline. Note the shape of the check: the default is an allow-list of *recommended* algorithms, not a block-list of `none`, so there is no generic \"allow everything\" switch that quietly re-admits it."
+    },
+    "algorithm-pinning": {
+      "value": ["defaults-to-safe-set"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/registry.py",
+        "https://jose.authlib.org/en/guide/registry/"
+      ],
+      "comment": "`algorithms: Collection[str] | None = None` is optional on `jwt.decode`, `jws.deserialize_compact` and friends, so verification runs without an allow-list — hence not `caller-must-specify`. The `alg` is read from the untrusted header (`registry.get_alg(protected[\"alg\"])`), but it must survive the recommended-only default set, which for JWS is just HS256, RS256 and ES256 — a curated safe set, so not `trusts-header` either. Passing `algorithms=[...]` narrows it further, and the docs push callers toward doing so."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/model.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py",
+        "https://github.com/authlib/joserfc/issues/27"
+      ],
+      "comment": "Distinct key classes (OctKey / RSAKey / ECKey / OKPKey) and a runtime gate on the verification path: `validate_compact` resolves the key and then calls `alg.check_key(key)`, which is `key.check_use(\"sig\"); if key.key_type != self.key_type: raise InvalidKeyTypeError(f\"Algorithm '{self.name}' requires '{self.key_type}' key\"); key.check_alg(self.name)` — so handing an RSA public key to HS256 fails closed, and a JWK's own `use`/`alg` members are honoured. Rated 4 rather than 5 because the key parameter is a single `Key` union at runtime; nothing at the type level stops a caller from importing an RSA public PEM as `OctKey` raw bytes. History matters here: joserfc inherited Authlib's CVE-2024-37568 (HMAC verification accepted an asymmetric public key when `algorithms` was unspecified), fixed in 0.11.0 — the `check_key` gate above is the current guard."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://jose.authlib.org/en/api/jws/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/compact.py"
+      ],
+      "comment": "Parsing and verification are separate public functions rather than a flag: `jws.extract_compact(value)` returns a `CompactSignature` without a key, and `jws.validate_compact(obj, key, ...)` does the cryptography; `deserialize_compact` is simply the two composed. Naming caveat: `extract_compact` is not as loudly unsafe as `decode_unverified`/`insecure_*`, and there is no `jwt.extract` — reading JWT claims without verification means dropping to the JWS layer."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7519/claims.py",
+        "https://jose.authlib.org/en/guide/jwt/"
+      ],
+      "comment": "`jwt.decode()` verifies the signature and JSON-parses the payload — nothing else. Its body ends at `return Token(header, claims)`, and the docs say plainly that decode \"will only verify if the payload is a JSON base64 string\". Claim checking is a second, opt-in step: `JWTClaimsRegistry(...).validate(token.claims)`, which does check `exp`, `nbf` and `iat` against the clock when present (and since 1.7.3 type-validates `iss`, `sub`, `aud`), but only if you construct it and call it. Tagged `none` because the attribute asks what happens on verification with no extra configuration; the capability is good, the default is nothing. A caller who forgets the second step accepts expired tokens."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7519/claims.py"
+      ],
+      "comment": "Neither is a parameter of `jwt.decode`, and `JWTClaimsRegistry()` with no options passes any token: `check_value()` returns early when the claim is absent from `self.options`. Stating an expected issuer or audience means opting in explicitly, e.g. `JWTClaimsRegistry(iss={\"essential\": True, \"value\": \"https://authlib.org\"})`."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7519/claims.py"],
+      "comment": "`JWTClaimsRegistry(now=..., leeway=0, **kwargs)`. The default leeway is 0 — the conservative choice — and it is applied symmetrically: `exp` fails when `value < self.now - self.leeway`, `nbf` and `iat` when `value > self.now + self.leeway`. `now` is also injectable, which makes the time checks testable."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py"],
+      "comment": "`HMACAlgorithm.verify` ends in `return hmac.compare_digest(sig, v_sig)` — the stdlib constant-time primitive. AES-GCM and the AES-CBC-HMAC composite tag checks are delegated to pyca/cryptography, which fails closed on tag mismatch."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/oct_key.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/rsa_key.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jwe_algs.py",
+        "https://github.com/advisories/GHSA-gg9x-qcx2-xmrh"
+      ],
+      "comment": "Neither half of RFC 7518 §3.2 is enforced on the JWS path. HMAC: `OctKey` rejects only empty material (`\"oct key material must not be empty\"`, added in 1.6.8 after CVE-2026-49852) and merely warns below 14 bytes — `SecurityWarning(\"Key size should be >= 112 bits\")` — far under the 32/48/64 bytes RFC 7518 requires for HS256/384/512. RSA: `RSAKey` also only warns below 2048 bits, and the JWS RSA algorithms perform no size check at all. The one place a floor is enforced is JWE key management, where the RSA algorithms raise `InvalidKeyLengthError(f\"A key of size {self.key_size} bits or larger MUST be used\")` with `key_size = 2048`. Recorded `false` because the attribute's own bar — reject undersized RSA *and* short HMAC secrets — is not met where it matters most."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/registry.py",
+        "https://jose.authlib.org/en/guide/registry/"
+      ],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour, and then some. `check_crit_header` raises `MissingCritHeaderError` for a name listed in `crit` but absent from the header, and `UnsupportedHeaderError` for a critical name not in the header registry. The caller can declare names it understands by passing a `header_registry` to the registry constructor — hence the second tag. Independently, `strict_check_header=True` by default rejects *any* unregistered header parameter, critical or not; the docs warn that turning it off \"may compromise the security and integrity of the token\"."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7516/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jwe_zips.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jwe_algs.py"
+      ],
+      "comment": "Unusually thorough resource limits, all registry-tunable. JWS: `max_header_length = 512`, `max_payload_length = 128000`, `max_signature_length = 1024`, checked in `extract_compact` before any crypto. JWE: `max_protected_header_length = 1024`, `max_encrypted_key_length = 1024`, `max_initialization_vector_length = 64`, `max_ciphertext_length = 65536`, `max_auth_tag_length = 64`. Decompression bomb guard: `DEF` stops at `250 * 1024` bytes with `ExceededSizeError`. PBES2: `validate_p2c` raises above 300,000 iterations and warns below 1,000. Caveat: these are size and cost caps, not a recursion counter — joserfc never unwraps nested tokens automatically (see Nested JWT), so there is no recursion to bound. Several of these caps are themselves the fixes for the advisories listed under CVE History."
+    },
+    "cve-history": {
+      "value": ["historical-2020s", "recent-24-months"],
+      "source": [
+        "https://api.github.com/repos/authlib/joserfc/security-advisories",
+        "https://github.com/advisories/GHSA-gg9x-qcx2-xmrh",
+        "https://github.com/advisories/GHSA-frfh-8v73-gjg4",
+        "https://api.github.com/repos/authlib/joserfc/security-advisories/GHSA-w5r5-m38g-f9f9",
+        "https://api.github.com/repos/authlib/joserfc/security-advisories/GHSA-5jhw-7jv7-qcqq",
+        "https://jose.authlib.org/en/security/"
+      ],
+      "comment": "Six advisories in three years, five of them in the last 15 months — a young library being actively probed, with fixes landing fast. (1) CVE-2024-37568, inherited from Authlib: HMAC verification accepted an asymmetric public key when `algorithms` was unspecified; fixed in 0.11.0. (2) CVE-2025-65015 / GHSA-frfh-8v73-gjg4 (critical 9.2, 2025-11-18): `ExceededSizeError` messages embedded undecoded token segments, so logging an oversized bearer token exhausted resources; fixed in 1.3.5 and 1.4.2. (3) CVE-2026-27932 / GHSA-w5r5-m38g-f9f9 (high 7.5, 2026-02-28): unbounded PBES2 `p2c` read from the token header, CPU exhaustion before any claim check; affects <= 1.6.2 and the advisory still lists no patched version, but current `main` caps `p2c` at 300,000 in `validate_p2c`. (4) CVE-2026-48990 / GHSA-wphv-vfrh-23q5 (medium, 2026-05-24): RFC 7797 `b64=false` payloads bypassed the payload-size limit; fixed in 1.6.7. (5) CVE-2026-49852 / GHSA-gg9x-qcx2-xmrh (high 8.7, published 2026-05-29): HS256/384/512 verification accepted an empty or `None` HMAC key, a full auth bypass wherever a key lookup silently returned \"\"; fixed in 1.6.8. (6) CVE-2026-62995 / GHSA-5jhw-7jv7-qcqq (low, 2026-07-13): tokens with trailing `==` padding accepted, giving JWT malleability against deny-list and replay defences; fixed in 1.7.2. Everything except CVE-2026-27932 carries an explicit fixed version, and all are covered by the current 1.7.4. Note that the project's own security page is out of date — it lists only CVE-2025-65015, CVE-2024-37568 and a CWE-290 fix in 1.1.0."
+    },
+    "security-policy": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/SECURITY.md",
+        "https://api.github.com/repos/authlib/joserfc/security-advisories",
+        "https://jose.authlib.org/en/security/"
+      ],
+      "comment": "A 170-byte SECURITY.md: \"If you discover a security vulnerability, do not submit a public issue or patch. Instead, please report it privately through the GitHub Security tab.\" Terse, but a real private channel that is demonstrably used — six advisories have been published through GitHub's advisory workflow, and there is a security page in the documentation as well."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/authlib/joserfc/contents/",
+        "https://jose.authlib.org/en/security/",
+        "https://api.github.com/repos/authlib/joserfc/security-advisories"
+      ],
+      "comment": "Searched and found none: no audit report in the repository root or the docs tree, and the security page lists only CVEs. External security researchers clearly look at the project (the 2026 advisories credit outside reporters such as randomstuff), but vulnerability reports are not an audit. The repository does carry a sonar-project.properties, i.e. static analysis, which is also not a third-party review."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py",
+        "https://jose.authlib.org/en/guide/jws/"
+      ],
+      "comment": "Both directions: `serialize_compact`/`deserialize_compact` and `serialize_json`/`deserialize_json`, plus the split `extract_compact`/`validate_compact` pair."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwe.py",
+        "https://jose.authlib.org/en/guide/jwe/"
+      ],
+      "comment": "Full implementation: `encrypt_compact`/`decrypt_compact`, `encrypt_json`/`decrypt_json` with multiple recipients (`obj.add_recipient({\"alg\": \"A128KW\"}, key1)`), key agreement, key wrapping, `dir`, and `zip: DEF` compression. `decrypt_json` verifies all recipients by default (`verify_all_recipients=True`)."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwk.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_keys.py",
+        "https://jose.authlib.org/en/guide/jwk/"
+      ],
+      "comment": "`jwk.import_key(data, key_type=None, parameters=None)` dispatches on `kty` to OctKey/RSAKey/ECKey/OKPKey, and `KeySet.import_key_set({\"keys\": [...]})` parses whole key sets, skipping members with an unknown `kty`."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_keys.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://jose.authlib.org/en/recipes/azure/"
+      ],
+      "comment": "No HTTP anywhere in the library — the single runtime dependency is `cryptography`, and `KeySet.import_key_set` takes a already-parsed dict, not a URL. The documented pattern is you-fetch-we-parse: the Azure recipe has the user call `requests.get(jwks_uri)` and feed the JSON to `KeySet.import_key_set`."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://jose.authlib.org/en/recipes/azure/", "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_keys.py"],
+      "comment": "Follows from the absence of remote fetch: there is nothing to cache and no refetch-on-unknown-`kid` path. The Azure recipe shows the caller wrapping their own fetch in `@functools.cache`, which is an unbounded process-lifetime cache with no TTL and no rotation handling — workable, but it is the user's code, not the library's."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwk.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_keys.py"
+      ],
+      "comment": "Pass a `KeySet` as the key and `guess_key` reads `kid` from the token header and calls `KeySet.get_by_kid(kid, parameters)`, which additionally filters candidates by the `alg` and `use` parameters derived from the header before returning. Unknown `kid` raises `InvalidKeyIdError`. One sharp edge worth knowing: `get_by_kid` returns the single key when the set has exactly one entry and the token carries no `kid`."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": ["https://jose.authlib.org/en/guide/jwk/", "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwk.py"],
+      "comment": "RFC 7638 via `key.thumbprint()` (also used by `ensure_kid()` to mint a missing `kid`) and RFC 9278 thumbprint URIs via `key.thumbprint_uri()`, returning `urn:ietf:params:oauth:jwk-thumbprint:sha-256:...`. Both RFCs have dedicated modules (`_rfc7638`, `_rfc9278`)."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://jose.authlib.org/en/guide/jwe/"
+      ],
+      "comment": "Not handled end to end. `jwt.decode` branches once — JWE if a `JWERegistry` was passed, otherwise JWS — and then JSON-parses the result: `_decode_jwe` returns `jwe_obj.plaintext` straight to `json.loads`, with no check of `cty: JWT` and no second unwrap. A signed-then-encrypted token therefore has to be assembled and taken apart in two explicit steps by the caller (`cty` is a registered header parameter, so it can be set). The JWE guide documents no nested-token helper."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py",
+        "https://jose.authlib.org/en/guide/jws/",
+        "https://jose.authlib.org/en/guide/jwe/"
+      ],
+      "comment": "All four. `serialize_json` takes either a single member dict (flattened) or a list (general, with a `signatures` array), and `obj.flattened` reports which form was parsed; multiple signatures over one payload are the documented use of the list form. JWE has the matching `GeneralJSONEncryption`/`FlattenedJSONEncryption` with `add_recipient`."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": [
+        "https://jose.authlib.org/en/api/jws/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py",
+        "https://jose.authlib.org/en/guide/jws/"
+      ],
+      "comment": "RFC 7515 Appendix F: `jws.detach_content(value)` strips the payload from a serialized JWS, and `deserialize_compact(..., payload=...)` takes the content back in on the verification side. The same `payload` parameter is what makes RFC 7797 detached-by-necessity tokens verifiable."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://jose.authlib.org/en/guide/jws/",
+        "https://api.github.com/repos/authlib/joserfc/contents/src/joserfc",
+        "https://api.github.com/repos/authlib/joserfc/contents/tests/fixtures"
+      ],
+      "comment": "RFC 7797 has its own module (`_rfc7797`), which is where `extract_compact` actually lives, and a fixture file of spec vectors (`jws_rfc7797.json`). Usage is `{\"alg\": \"HS256\", \"b64\": False, \"crit\": [\"b64\"]}`; `b64` is a registered header parameter so the `crit` check accepts it. This path was the subject of CVE-2026-48990 (payload-size limits bypassed for `b64=false`), fixed in 1.6.7."
+    },
+    "key-generation": {
+      "value": true,
+      "source": ["https://jose.authlib.org/en/guide/jwk/", "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwk.py"],
+      "comment": "`jwk.generate_key(key_type, crv_or_size, parameters, private=True, auto_kid=False)` plus per-class generators: `OctKey.generate_key(256)`, `RSAKey.generate_key(2048)` (2048 is the default), `ECKey.generate_key(\"P-256\")` including secp256k1, `OKPKey.generate_key(\"Ed25519\")` covering Ed25519/Ed448/X25519/X448, and `KeySet.generate_key_set(..., count=4)`."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/registry.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7517/pem.py"
+      ],
+      "comment": "Tagged `none` in the functional sense, with a caveat. `x5u`, `x5c`, `x5t` and `x5t#S256` (and `jku`, `jwk`) are entries in JWS_HEADER_REGISTRY, so a token carrying them survives the strict header check and their types are validated (`\"x5c\": HeaderParameter(\"X.509 Certificate Chain\", is_list_str)`) — but nothing more happens: no certificate is parsed from `x5c`, no thumbprint is computed or compared, and no key is ever derived from these headers. On the safe side, that also means `x5u`/`jku` URLs are never dereferenced, so the classic SSRF/key-injection class does not apply. Separately, and unrelated to headers: key *import* does understand X.509 — `_rfc7517/pem.py` uses `load_pem_x509_certificate` to pull a public key out of a `-----BEGIN CERTIFICATE-----` block."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "sec1", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7517/pem.py",
+        "https://jose.authlib.org/en/guide/jwk/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_keys.py"
+      ],
+      "comment": "`import_from_pem_key` sniffs the PEM banner and dispatches to pyca/cryptography's loaders — `load_pem_private_key`, `load_pem_public_key`, `load_ssh_private_key`/`load_ssh_public_key` for OpenSSH keys, `load_pem_x509_certificate` for certificates — falling back to `load_der_private_key`/DER for binary input. PKCS#8, PKCS#1 (`BEGIN RSA PRIVATE KEY`) and SEC1 (`BEGIN EC PRIVATE KEY`) are therefore all accepted implicitly through those loaders rather than being named in joserfc's own code; export is normalised to `PrivateFormat.PKCS8` and `PublicFormat.SubjectPublicKeyInfo`. JWK dicts and JWK Sets are first class, and `OctKey.import_key(b\"...\")` takes raw bytes or a str. OpenSSH keys are supported but have no tag here. Not supported: PKCS#12 and platform keystores."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwk.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7515/model.py"
+      ],
+      "comment": "No pluggable signer interface. `KeyFlexible = Union[KeyBase, KeyCallable]` lets the caller supply a *callable that returns a key*, which defers key lookup but not the signing operation: `alg.sign(signing_input, key)` still needs local key material, and `alg.check_key` insists the object be one of joserfc's four key classes. Routing signatures to a KMS or HSM would mean registering a custom algorithm via `JWSRegistry.register()` — possible, but a user-built escape hatch rather than a supported extension point."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://pypi.org/pypi/authlib/json",
+        "https://jose.authlib.org/en/guide/"
+      ],
+      "comment": "joserfc ships no web-framework adapters and takes no framework dependency; it is a pure protocol library and the docs offer recipes rather than integrations. The relationship worth knowing is one level up: Authlib (`joserfc>=1.6.0` is one of its two dependencies as of 1.6.12) is the same author's OAuth/OIDC suite and is what provides the Flask, Django and Starlette/FastAPI integrations — so most Django or FastAPI code using joserfc reaches it through Authlib rather than directly."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jws.py"
+      ],
+      "comment": "Every public entry point is a plain `def` — no coroutines anywhere in `jwt`, `jws`, `jwe` or `jwk`. This costs little in practice because the library performs no I/O: with no JWKS fetching, the only blocking work is CPU-bound crypto."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/jwt.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7519/claims.py"
+      ],
+      "comment": "`Token.claims` is a plain `dict` (`Claims`); there is no binding to a user-defined class and no Pydantic-style model. `JWTClaimsRegistry` is a runtime *claims-request* validator in the OIDC sense — `{\"essential\": True, \"value\": ..., \"values\": [...]}` per claim — which constrains values but does not type them, so `map-only` rather than `schema-validated`. The package ships `py.typed`, so the API itself is fully type-hinted even though the claims are not."
+    },
+    "crypto-backend": {
+      "value": ["openssl", "stdlib"],
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7518/jws_algs.py",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/src/joserfc/_rfc7517/pem.py"
+      ],
+      "comment": "Everything asymmetric, all AES modes and all key parsing go through pyca/cryptography (`cryptography>=45.0.1`), whose primitives are OpenSSL (plus Rust glue) — hence `openssl`. HMAC uses the Python standard library's `hmac`/`hashlib` — hence `stdlib`. The optional draft ChaCha20-Poly1305 algorithms add pycryptodome, for which there is no tag here."
+    },
+    "pure-language-implementation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://pypi.org/pypi/joserfc/json"
+      ],
+      "comment": "joserfc's own source is pure Python (a py3-none-any wheel), but its single required dependency, pyca/cryptography, is a compiled Rust/C extension linked against OpenSSL. There is no pure-Python fallback configuration."
+    },
+    "runs-in-browser-wasm": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://raw.githubusercontent.com/pyodide/pyodide/main/docs/usage/packages-in-pyodide.md",
+        "https://cryptography.io/en/latest/faq/"
+      ],
+      "comment": "Inconclusive, so recorded null rather than guessed. joserfc itself is a pure-Python wheel and would load anywhere CPython runs; the question is entirely whether a wasm build of pyca/cryptography at version >= 45.0.1 is available. Pyodide does ship a prebuilt Emscripten/wasm32 `cryptography` wheel, but it is pinned to whatever version that Pyodide release bundles, and the canonical package list is rendered dynamically (the docs source contains only a `pyodide-package-list` directive and the rendered page returned HTTP 403 on 2026-07-30), so the bundled version could not be confirmed. The project itself claims no browser or WASM target."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml"],
+      "comment": "Recorded null per the research guide's instruction to use null where the question does not translate. Cloudflare Workers, Vercel Edge and Deno Deploy are JS/WASM runtimes; the nearest Python equivalent (Cloudflare's Pyodide-based Python Workers) reduces to the same unresolved pyca/cryptography wasm question as the browser attribute, so a `false` here would be misleading and a `true` unfounded."
+    },
+    "fips-capable-backend": {
+      "value": null,
+      "source": [
+        "https://cryptography.io/en/latest/faq/",
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml"
+      ],
+      "comment": "Undetermined. joserfc has no crypto of its own, so the question belongs entirely to pyca/cryptography and to how it was built (bundled OpenSSL versus a system OpenSSL with the FIPS provider). Neither joserfc's docs nor the pyca/cryptography FAQ that was checked makes any statement about FIPS 140, and no validated-module claim could be verified, so this is null rather than false. Validation would in any case belong to the underlying module, not to joserfc, and nothing in the library would prevent non-approved algorithms being requested."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": [
+        "https://raw.githubusercontent.com/authlib/joserfc/main/pyproject.toml",
+        "https://pypi.org/pypi/joserfc/json"
+      ],
+      "comment": "One required runtime dependency: `cryptography>=45.0.1`. `pycryptodome` is an optional extra (`drafts`) needed only for the draft ChaCha20-Poly1305 algorithms. Verified against `main` and the 1.7.4 metadata on 2026-07-30."
+    },
+    "package-size": {
+      "value": 71000,
+      "source": ["https://pypi.org/pypi/joserfc/1.7.4/json"],
+      "comment": "The 1.7.4 wheel `joserfc-1.7.4-py3-none-any.whl` is 71,000 bytes as reported by PyPI (uploaded 2026-07-19); the sdist is 234,027 bytes. Wheel size recorded per the guide. This is the library only — the `cryptography` dependency is an order of magnitude larger."
+    },
+    "github-stars": {
+      "value": 171,
+      "source": ["https://api.github.com/repos/authlib/joserfc"],
+      "comment": "171 stars on 2026-07-30. Strikingly low against ~150M monthly PyPI downloads: almost all usage arrives transitively through Authlib, so the star count badly understates adoption."
+    },
+    "downloads": {
+      "value": 149704642,
+      "source": ["https://pypistats.org/api/packages/joserfc/recent", "https://pepy.tech/projects/joserfc", "https://pypi.org/pypi/authlib/json"],
+      "comment": "149,704,642 downloads in the last month (PyPI, pypistats `recent` endpoint, checked 2026-07-30); pepy.tech independently reports ~150.5M for the trailing 30 days and ~603M all-time. Window is PyPI monthly, per the guide's Python convention — do not compare across ecosystems. The scale is explained by Authlib, which has depended on `joserfc>=1.6.0` since its 1.6 line, so most of these downloads are transitive rather than direct adoption."
+    },
+    "last-release": {
+      "value": "2026-07-19",
+      "source": ["https://pypi.org/pypi/joserfc/1.7.4/json", "https://pypi.org/project/joserfc/#history"],
+      "comment": "1.7.4, uploaded 2026-07-19 — eleven days before this check. Release cadence is high: 1.7.0 through 1.7.4 all shipped between 2026-06-02 and 2026-07-19."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/authlib/joserfc/commits?per_page=50",
+        "https://api.github.com/repos/authlib/joserfc",
+        "https://pypi.org/project/joserfc/#history"
+      ],
+      "comment": "Unambiguously active: last commit 2026-07-25, last release 2026-07-19, five releases in the two months before this check, and every advisory except CVE-2026-27932 answered with a fixed version. Only one open issue at the time of checking. No deprecation notice and no successor — joserfc is itself the successor the author points python-jose and Authlib-JOSE users toward."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": [
+        "https://api.github.com/repos/authlib/joserfc/contributors",
+        "https://api.github.com/repos/authlib/joserfc/commits?per_page=50"
+      ],
+      "comment": "Hsiaoming Yang (lepture) has 579 of the project's contributions; the next contributor has 7. In the most recent page of commits (2026-05-23 to 2026-07-25) he authored 18 of 20, the other two being outside fixes from Ralph Bragg and tonghuaroot. Backed by the `authlib` GitHub organisation, but that organisation is essentially one person plus sponsors."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://jose.authlib.org/en/stability/",
+        "https://jose.authlib.org/en/changelog/",
+        "https://api.github.com/repos/authlib/joserfc/security-advisories"
+      ],
+      "comment": "1.0.0 landed 2024-07-14 with a written API-stability policy (`joserfc.jws/jwe/jwk/jwt` method names and parameters are expected to stay stable; minor versions bump when new RFCs are added), and the download figures show large-scale production use via Authlib. Held at `stable` rather than `mature`: the project is only three years old, five advisories arrived in the last fifteen months, one of them still carries no fixed version in its advisory record, and the docs' own security page has not kept up with them. The handling has been prompt, but the track record is short."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors", "cookbook-7520"],
+      "source": [
+        "https://api.github.com/repos/authlib/joserfc/contents/tests/rfc7520",
+        "https://api.github.com/repos/authlib/joserfc/contents/tests/fixtures",
+        "https://api.github.com/repos/authlib/joserfc/contents/tests"
+      ],
+      "comment": "A dedicated `tests/rfc7520/` package (test_jws.py, test_jwe.py, test_jwk.py, ~20 KB) runs the RFC 7520 cookbook examples from the `jwe_rfc7520.json` and `jws_rfc7520.json` fixtures, and `jws_rfc7797.json` carries RFC 7797 vectors — hence both tags. No Wycheproof usage and no cross-library interop suite was found; the ECDH-1PU fixture is drawn from the draft rather than a published RFC."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://jose.authlib.org/en/guide/",
+        "https://jose.authlib.org/en/guide/jwk/",
+        "https://jose.authlib.org/en/guide/registry/",
+        "https://jose.authlib.org/en/recipes/azure/",
+        "https://jose.authlib.org/en/security/"
+      ],
+      "comment": "Task-oriented guides with runnable snippets for signing, verification, encryption and key management; a separate API reference per module; an explicit Algorithms page stating which algorithms are recommended, optional or deprecated; a Registry page that explains the security reasoning behind the defaults and warns about relaxing them; recipes covering the JWKS-from-an-IdP workflow and OpenSSL key preparation; migration guides from Authlib, PyJWT and python-jose; plus an API-stability policy and a security page. Rated 5 on that breadth, with one honest deduction a reader may weigh differently: the dedicated security page is little more than a stale CVE list rather than a security-considerations chapter, and the safe-by-default reasoning is scattered across the Algorithms, Registry and Errors pages."
+    }
+  }
 }
