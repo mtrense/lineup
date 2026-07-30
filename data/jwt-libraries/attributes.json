@@ -1,0 +1,769 @@
+{
+  "name": "JWT & JOSE Libraries",
+  "description": "Libraries that issue, verify, and manipulate JSON Web Tokens and the wider JOSE family (JWS, JWE, JWK/JWKS, JWA) across Rust, Go, JVM, Python, Node.js, Deno, and Dart — weighted toward security posture and algorithm coverage",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Ecosystem, licensing, implementation strategy, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "ecosystem",
+          "name": "Ecosystem",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "blue" },
+              { "id": "jvm", "value": "JVM", "color": "red" },
+              { "id": "python", "value": "Python", "color": "green" },
+              { "id": "nodejs", "value": "Node.js", "color": "green" },
+              { "id": "deno", "value": "Deno", "color": "purple" },
+              { "id": "bun", "value": "Bun", "color": "purple" },
+              { "id": "browser", "value": "Browser", "color": "blue" },
+              { "id": "dart", "value": "Dart", "color": "blue" },
+              { "id": "flutter", "value": "Flutter", "color": "blue" }
+            ]
+          },
+          "description": "Runtime(s) the library targets; multi-runtime libraries carry every tag they genuinely support"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "green" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "mit-or-apache-2-0", "value": "MIT OR Apache-2.0", "color": "green" },
+              { "id": "bsd-3-clause", "value": "BSD-3-Clause", "color": "green" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" },
+              { "id": "lgpl-2-1", "value": "LGPL-2.1", "color": "orange" },
+              { "id": "epl-2-0", "value": "EPL-2.0", "color": "orange" },
+              { "id": "proprietary", "value": "Proprietary", "color": "red" }
+            ]
+          },
+          "description": "From LICENSE / package manifest; dual-licensed projects carry both tags"
+        },
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "native", "value": "Native", "color": "green" },
+              { "id": "stdlib-crypto", "value": "Stdlib Crypto", "color": "blue" },
+              { "id": "webcrypto", "value": "WebCrypto", "color": "purple" },
+              { "id": "ffi-binding", "value": "FFI Binding", "color": "orange" },
+              { "id": "platform-provider", "value": "Platform Provider", "color": "blue" }
+            ]
+          },
+          "description": "How the cryptography is performed: in-language, via the standard library, SubtleCrypto, a native binding, or a platform provider such as JCA"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Canonical source repository"
+        },
+        {
+          "id": "package",
+          "name": "Package",
+          "valueType": "link",
+          "description": "Registry page: crates.io, pkg.go.dev, Maven Central, PyPI, npm, JSR/deno.land, or pub.dev"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Best documentation entry point for users"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release on the registry; informational rather than a ranking signal"
+        },
+        {
+          "id": "latest-version",
+          "name": "Latest Version",
+          "valueType": "text",
+          "description": "Current stable version string, with pre-1.0 versions stated exactly"
+        }
+      ]
+    },
+    {
+      "id": "algorithm-support",
+      "name": "Algorithm Support",
+      "description": "Signature and encryption algorithms the library actually implements, not merely mentions",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "hmac-hs",
+          "name": "HMAC (HS)",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "hs256", "value": "HS256", "color": "blue" },
+              { "id": "hs384", "value": "HS384", "color": "blue" },
+              { "id": "hs512", "value": "HS512", "color": "blue" }
+            ]
+          },
+          "description": "Symmetric HMAC signature algorithms; near-universal, so absence is notable"
+        },
+        {
+          "id": "rsa-pkcs1",
+          "name": "RSA PKCS#1 v1.5 (RS)",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rs256", "value": "RS256", "color": "blue" },
+              { "id": "rs384", "value": "RS384", "color": "blue" },
+              { "id": "rs512", "value": "RS512", "color": "blue" }
+            ]
+          },
+          "description": "The most widely deployed family, used by most OIDC id_tokens"
+        },
+        {
+          "id": "rsa-pss",
+          "name": "RSA-PSS (PS)",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ps256", "value": "PS256", "color": "purple" },
+              { "id": "ps384", "value": "PS384", "color": "purple" },
+              { "id": "ps512", "value": "PS512", "color": "purple" }
+            ]
+          },
+          "description": "Often missing in smaller libraries; a genuine differentiator"
+        },
+        {
+          "id": "ecdsa",
+          "name": "ECDSA (ES)",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "es256", "value": "ES256", "color": "green" },
+              { "id": "es384", "value": "ES384", "color": "green" },
+              { "id": "es512", "value": "ES512", "color": "green" },
+              { "id": "es256k", "value": "ES256K", "color": "orange" }
+            ]
+          },
+          "description": "ES256K (secp256k1, RFC 8812) is a separate and much rarer capability"
+        },
+        {
+          "id": "eddsa",
+          "name": "EdDSA",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ed25519", "value": "Ed25519", "color": "green" },
+              { "id": "ed448", "value": "Ed448", "color": "purple" }
+            ]
+          },
+          "description": "Edwards-curve signatures per RFC 8037; note whether registered as EdDSA or the newer curve-specific identifier"
+        },
+        {
+          "id": "jwe-key-management",
+          "name": "JWE Key Management",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "dir", "value": "dir", "color": "gray" },
+              { "id": "a128kw", "value": "A128KW", "color": "blue" },
+              { "id": "a192kw", "value": "A192KW", "color": "blue" },
+              { "id": "a256kw", "value": "A256KW", "color": "blue" },
+              { "id": "a128gcmkw", "value": "A128GCMKW", "color": "blue" },
+              { "id": "a192gcmkw", "value": "A192GCMKW", "color": "blue" },
+              { "id": "a256gcmkw", "value": "A256GCMKW", "color": "blue" },
+              { "id": "rsa-oaep", "value": "RSA-OAEP", "color": "purple" },
+              { "id": "rsa-oaep-256", "value": "RSA-OAEP-256", "color": "purple" },
+              { "id": "rsa1-5", "value": "RSA1_5", "color": "red" },
+              { "id": "ecdh-es", "value": "ECDH-ES", "color": "green" },
+              { "id": "ecdh-es-a128kw", "value": "ECDH-ES+A128KW", "color": "green" },
+              { "id": "ecdh-es-a256kw", "value": "ECDH-ES+A256KW", "color": "green" },
+              { "id": "pbes2-hs256-a128kw", "value": "PBES2-HS256+A128KW", "color": "orange" },
+              { "id": "pbes2-hs512-a256kw", "value": "PBES2-HS512+A256KW", "color": "orange" }
+            ]
+          },
+          "description": "JWE key-wrapping and key-agreement algorithms; empty for libraries that do not implement JWE"
+        },
+        {
+          "id": "jwe-content-encryption",
+          "name": "JWE Content Encryption",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "a128cbc-hs256", "value": "A128CBC-HS256", "color": "blue" },
+              { "id": "a192cbc-hs384", "value": "A192CBC-HS384", "color": "blue" },
+              { "id": "a256cbc-hs512", "value": "A256CBC-HS512", "color": "blue" },
+              { "id": "a128gcm", "value": "A128GCM", "color": "green" },
+              { "id": "a192gcm", "value": "A192GCM", "color": "green" },
+              { "id": "a256gcm", "value": "A256GCM", "color": "green" },
+              { "id": "xc20p", "value": "XC20P", "color": "purple" }
+            ]
+          },
+          "description": "Authenticated content-encryption algorithms available for JWE payloads"
+        },
+        {
+          "id": "deprecated-algorithms-available",
+          "name": "Deprecated Algorithms Available",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "alg-none", "value": "none", "color": "red" },
+              { "id": "rsa1-5", "value": "RSA1_5", "color": "red" },
+              { "id": "secp256k1-unrestricted", "value": "secp256k1 (unrestricted)", "color": "orange" },
+              { "id": "rsa-under-2048", "value": "RSA < 2048", "color": "orange" },
+              { "id": "none-of-these", "value": "None of these", "color": "green" }
+            ]
+          },
+          "description": "Discouraged or unsafe algorithms the library still exposes; use \"None of these\" rather than an empty value when the library exposes none"
+        },
+        {
+          "id": "algorithm-extensibility",
+          "name": "Algorithm Extensibility",
+          "valueType": "boolean",
+          "description": "Users can register a custom alg implementation — powerful, but also an escape hatch around the library's own safety checks"
+        }
+      ]
+    },
+    {
+      "id": "security-posture",
+      "name": "Security Posture",
+      "description": "Safe-by-default behaviour on the verification path, measured against RFC 8725 (JWT Best Current Practices)",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "rejects-alg-none",
+          "name": "Rejects alg: none",
+          "valueType": "boolean",
+          "description": "The unsecured JWS variant is rejected on the default verification path; an explicit, unmistakably named opt-in still counts as true"
+        },
+        {
+          "id": "algorithm-pinning",
+          "name": "Algorithm Pinning",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "caller-must-specify", "value": "Caller Must Specify", "color": "green" },
+              { "id": "inferred-from-key", "value": "Inferred From Key", "color": "green" },
+              { "id": "defaults-to-safe-set", "value": "Defaults To Safe Set", "color": "orange" },
+              { "id": "trusts-header", "value": "Trusts Header", "color": "red" }
+            ]
+          },
+          "description": "How the accepted algorithm set is chosen — what the API forces, not what the docs recommend"
+        },
+        {
+          "id": "algorithm-confusion-resistance",
+          "name": "Algorithm Confusion Resistance",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "Resistance to RS256→HS256 key confusion: 5 = structurally impossible, 3 = runtime check, 1 = raw bytes accepted for any algorithm"
+        },
+        {
+          "id": "unverified-decode-separated",
+          "name": "Unverified Decode Is Clearly Separated",
+          "valueType": "boolean",
+          "description": "A distinct, plainly-named API exists for reading claims without verification, rather than a flag on the normal path"
+        },
+        {
+          "id": "default-claim-validation",
+          "name": "Default Claim Validation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "exp", "value": "exp", "color": "green" },
+              { "id": "nbf", "value": "nbf", "color": "green" },
+              { "id": "iat", "value": "iat", "color": "blue" },
+              { "id": "aud", "value": "aud", "color": "green" },
+              { "id": "iss", "value": "iss", "color": "green" },
+              { "id": "sub", "value": "sub", "color": "blue" },
+              { "id": "jti", "value": "jti", "color": "blue" },
+              { "id": "typ", "value": "typ", "color": "blue" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Claims checked automatically on verification with no extra configuration"
+        },
+        {
+          "id": "audience-issuer-required",
+          "name": "Audience/Issuer Required",
+          "valueType": "boolean",
+          "description": "The API makes it hard to verify without stating the expected aud and iss — required parameters or fail-closed defaults"
+        },
+        {
+          "id": "clock-skew-configurable",
+          "name": "Clock Skew Configurable",
+          "valueType": "boolean",
+          "description": "Leeway for exp/nbf/iat can be set; the default value is worth flagging when large or unbounded"
+        },
+        {
+          "id": "constant-time-comparison",
+          "name": "Constant-Time Comparison",
+          "valueType": "boolean",
+          "description": "HMAC tag comparison uses a constant-time primitive, verified in source rather than claimed"
+        },
+        {
+          "id": "minimum-key-size-enforced",
+          "name": "Minimum Key Size Enforced",
+          "valueType": "boolean",
+          "description": "Rejects RSA keys under 2048 bits and HMAC secrets shorter than the hash output, per RFC 7518 §3.2"
+        },
+        {
+          "id": "crit-header-handling",
+          "name": "crit Header Handling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rejects-unknown", "value": "Rejects Unknown", "color": "green" },
+              { "id": "caller-declares-understood", "value": "Caller Declares Understood", "color": "blue" },
+              { "id": "ignores", "value": "Ignores", "color": "red" },
+              { "id": "unknown", "value": "Unknown", "color": "gray" }
+            ]
+          },
+          "description": "Behaviour for the crit header per RFC 7515 §4.1.11; ignoring unrecognised critical headers is a security-relevant spec violation"
+        },
+        {
+          "id": "nested-depth-limits",
+          "name": "Nested/Recursive Depth Limits",
+          "valueType": "boolean",
+          "description": "Guards against denial of service via deeply nested JWE/JWS or excessive PBES2 iteration counts"
+        },
+        {
+          "id": "cve-history",
+          "name": "CVE History",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none-known", "value": "None Known", "color": "green" },
+              { "id": "historical-pre-2020", "value": "Historical (pre-2020)", "color": "blue" },
+              { "id": "historical-2020s", "value": "Historical (2020s)", "color": "orange" },
+              { "id": "recent-24-months", "value": "Recent (24 months)", "color": "orange" },
+              { "id": "unpatched", "value": "Unpatched", "color": "red" }
+            ]
+          },
+          "description": "Published advisories against this package; only meaningful together with the comment listing IDs and fix status"
+        },
+        {
+          "id": "security-policy",
+          "name": "Security Policy",
+          "valueType": "boolean",
+          "description": "A SECURITY.md or documented private disclosure channel exists"
+        },
+        {
+          "id": "independent-security-review",
+          "name": "Independent Security Review",
+          "valueType": "boolean",
+          "description": "A published third-party audit or documented review by a recognised security team"
+        }
+      ]
+    },
+    {
+      "id": "jose-feature-coverage",
+      "name": "JOSE Feature Coverage",
+      "description": "How much of the JOSE family is implemented beyond signed compact JWTs",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "jws",
+          "name": "JWS (Sign & Verify)",
+          "valueType": "boolean",
+          "description": "The baseline; false for verify-only or sign-only libraries, with the direction noted in the comment"
+        },
+        {
+          "id": "jwe",
+          "name": "JWE (Encrypt & Decrypt)",
+          "valueType": "boolean",
+          "description": "Full JWE support, not merely the ability to parse the header"
+        },
+        {
+          "id": "jwk-parsing",
+          "name": "JWK Parsing",
+          "valueType": "boolean",
+          "description": "Can construct keys from JWK documents"
+        },
+        {
+          "id": "jwks-remote-fetch",
+          "name": "JWKS Remote Fetch",
+          "valueType": "boolean",
+          "description": "Built-in retrieval of a JWKS from a URL, as opposed to parsing one you fetched yourself"
+        },
+        {
+          "id": "jwks-caching-rotation",
+          "name": "JWKS Caching & Rotation",
+          "valueType": "boolean",
+          "description": "Caches the key set with TTL handling and refetches on unknown kid; unthrottled refetch-on-miss is a DoS amplifier worth noting"
+        },
+        {
+          "id": "kid-selection",
+          "name": "kid Selection",
+          "valueType": "boolean",
+          "description": "Selects the verification key by the token's kid from a key set"
+        },
+        {
+          "id": "jwk-thumbprint",
+          "name": "JWK Thumbprint",
+          "valueType": "boolean",
+          "description": "RFC 7638 thumbprints, ideally including RFC 9278 thumbprint URIs"
+        },
+        {
+          "id": "nested-jwt",
+          "name": "Nested JWT",
+          "valueType": "boolean",
+          "description": "Signed-then-encrypted tokens handled end to end"
+        },
+        {
+          "id": "json-serialization",
+          "name": "JSON Serialization",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "compact", "value": "Compact", "color": "blue" },
+              { "id": "flattened-json", "value": "Flattened JSON", "color": "green" },
+              { "id": "general-json", "value": "General JSON", "color": "green" },
+              { "id": "multiple-signatures", "value": "Multiple Signatures", "color": "purple" }
+            ]
+          },
+          "description": "Serializations supported beyond the compact form"
+        },
+        {
+          "id": "detached-payload",
+          "name": "Detached Payload",
+          "valueType": "boolean",
+          "description": "RFC 7515 Appendix F detached content"
+        },
+        {
+          "id": "unencoded-payload",
+          "name": "Unencoded Payload",
+          "valueType": "boolean",
+          "description": "RFC 7797 unencoded payload option (b64: false)"
+        },
+        {
+          "id": "key-generation",
+          "name": "Key Generation",
+          "valueType": "boolean",
+          "description": "Can generate keys or key pairs suitable for the supported algorithms"
+        },
+        {
+          "id": "x509-header-support",
+          "name": "X.509 Header Support",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "x5c", "value": "x5c", "color": "blue" },
+              { "id": "x5t", "value": "x5t", "color": "blue" },
+              { "id": "x5t-s256", "value": "x5t#S256", "color": "blue" },
+              { "id": "x5u", "value": "x5u", "color": "orange" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "X.509 header parameters handled; note whether x5c chains are validated or merely parsed"
+        }
+      ]
+    },
+    {
+      "id": "key-handling-integration",
+      "name": "Key Handling & Integration",
+      "description": "Key ingestion, external signers, framework adapters, and API shape",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "key-input-formats",
+          "name": "Key Input Formats",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pem", "value": "PEM", "color": "blue" },
+              { "id": "der", "value": "DER", "color": "blue" },
+              { "id": "pkcs8", "value": "PKCS#8", "color": "green" },
+              { "id": "pkcs1", "value": "PKCS#1", "color": "green" },
+              { "id": "sec1", "value": "SEC1", "color": "green" },
+              { "id": "spki", "value": "SPKI", "color": "green" },
+              { "id": "jwk", "value": "JWK", "color": "purple" },
+              { "id": "jwks", "value": "JWKS", "color": "purple" },
+              { "id": "raw-bytes", "value": "Raw Bytes", "color": "orange" },
+              { "id": "pkcs12", "value": "PKCS#12", "color": "gray" },
+              { "id": "keystore", "value": "Keystore", "color": "gray" }
+            ]
+          },
+          "description": "Key encodings the library can ingest directly"
+        },
+        {
+          "id": "external-signer-support",
+          "name": "External Signer Support",
+          "valueType": "boolean",
+          "description": "Can sign with a key it never sees — KMS, HSM, PKCS#11, or cloud signer — via a pluggable signer interface"
+        },
+        {
+          "id": "framework-integrations",
+          "name": "Framework Integrations",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "axum", "value": "Axum", "color": "orange" },
+              { "id": "actix", "value": "Actix", "color": "orange" },
+              { "id": "tower", "value": "Tower", "color": "orange" },
+              { "id": "gin", "value": "Gin", "color": "blue" },
+              { "id": "echo", "value": "Echo", "color": "blue" },
+              { "id": "chi", "value": "Chi", "color": "blue" },
+              { "id": "spring", "value": "Spring", "color": "green" },
+              { "id": "quarkus", "value": "Quarkus", "color": "green" },
+              { "id": "micronaut", "value": "Micronaut", "color": "green" },
+              { "id": "django", "value": "Django", "color": "green" },
+              { "id": "fastapi", "value": "FastAPI", "color": "green" },
+              { "id": "flask", "value": "Flask", "color": "green" },
+              { "id": "express", "value": "Express", "color": "purple" },
+              { "id": "fastify", "value": "Fastify", "color": "purple" },
+              { "id": "nestjs", "value": "NestJS", "color": "purple" },
+              { "id": "hono", "value": "Hono", "color": "purple" },
+              { "id": "oak", "value": "Oak", "color": "purple" },
+              { "id": "shelf", "value": "Shelf", "color": "blue" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "First-party or de facto community adapters for web frameworks"
+        },
+        {
+          "id": "async-api",
+          "name": "Async API",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "sync-only", "value": "Sync Only", "color": "blue" },
+              { "id": "async-only", "value": "Async Only", "color": "purple" },
+              { "id": "both", "value": "Both", "color": "green" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "Whether the API is synchronous, asynchronous, or both; WebCrypto-backed libraries are typically async only"
+        },
+        {
+          "id": "typed-claims",
+          "name": "Typed Claims",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "strongly-typed", "value": "Strongly Typed", "color": "green" },
+              { "id": "schema-validated", "value": "Schema Validated", "color": "blue" },
+              { "id": "map-only", "value": "Map Only", "color": "orange" },
+              { "id": "both", "value": "Both", "color": "green" }
+            ]
+          },
+          "description": "How custom claims are modelled — compile-time types, runtime schema, or a dynamic map"
+        }
+      ]
+    },
+    {
+      "id": "portability-footprint",
+      "name": "Portability & Footprint",
+      "description": "Crypto backend, runtime portability, and supply-chain surface",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "crypto-backend",
+          "name": "Crypto Backend",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ring", "value": "ring", "color": "orange" },
+              { "id": "rustcrypto", "value": "RustCrypto", "color": "orange" },
+              { "id": "aws-lc-rs", "value": "aws-lc-rs", "color": "orange" },
+              { "id": "openssl", "value": "OpenSSL", "color": "red" },
+              { "id": "boringssl", "value": "BoringSSL", "color": "red" },
+              { "id": "stdlib", "value": "Stdlib", "color": "green" },
+              { "id": "webcrypto", "value": "WebCrypto", "color": "purple" },
+              { "id": "bouncycastle", "value": "BouncyCastle", "color": "blue" },
+              { "id": "jca", "value": "JCA", "color": "blue" },
+              { "id": "libsodium", "value": "libsodium", "color": "green" },
+              { "id": "pointycastle", "value": "PointyCastle", "color": "blue" }
+            ]
+          },
+          "description": "The cryptographic implementation underneath; drives portability and FIPS options"
+        },
+        {
+          "id": "pure-language-implementation",
+          "name": "Pure Language Implementation",
+          "valueType": "boolean",
+          "description": "No native or FFI dependency in the default configuration, verified with the ecosystem's dependency tool"
+        },
+        {
+          "id": "runs-in-browser-wasm",
+          "name": "Runs in Browser/WASM",
+          "valueType": "boolean",
+          "description": "Works in a browser or a WASM/WASI target"
+        },
+        {
+          "id": "edge-runtime-compatible",
+          "name": "Edge Runtime Compatible",
+          "valueType": "boolean",
+          "description": "Works on Cloudflare Workers, Vercel Edge, or Deno Deploy; null where the question is meaningless for the ecosystem"
+        },
+        {
+          "id": "fips-capable-backend",
+          "name": "FIPS-Capable Backend",
+          "valueType": "boolean",
+          "description": "Can be configured against a FIPS 140-validated crypto module; validation belongs to the module, not the library"
+        },
+        {
+          "id": "dependency-count",
+          "name": "Dependency Count",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Direct dependencies in the default configuration; informational, and not meaningfully comparable across ecosystems"
+        },
+        {
+          "id": "package-size",
+          "name": "Package Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Published artifact size (npm tarball unpacked, JAR, wheel, crate); null where the registry does not report it usefully"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-maintenance",
+      "name": "Ecosystem & Maintenance",
+      "description": "Adoption, release cadence, maintainer situation, and conformance testing",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Repository star count; a dated snapshot, recorded in the comment"
+        },
+        {
+          "id": "downloads",
+          "name": "Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Registry downloads over a consistent per-ecosystem window stated in the comment; ranks within an ecosystem only"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Date of the most recent stable release"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively Maintained", "color": "green" },
+              { "id": "passively-maintained", "value": "Passively Maintained", "color": "blue" },
+              { "id": "dormant", "value": "Dormant", "color": "orange" },
+              { "id": "deprecated", "value": "Deprecated", "color": "red" },
+              { "id": "archived", "value": "Archived", "color": "red" }
+            ]
+          },
+          "description": "Activity level based on releases and substantive commits over the last 6–12 months"
+        },
+        {
+          "id": "bus-factor",
+          "name": "Bus Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "solo", "value": "Solo", "color": "orange" },
+              { "id": "small-team", "value": "Small Team", "color": "blue" },
+              { "id": "organization", "value": "Organization", "color": "green" }
+            ]
+          },
+          "description": "Regular committers over roughly the last 50 commits, not the all-time contributor list"
+        },
+        {
+          "id": "maturity",
+          "name": "Maturity",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "experimental", "value": "Experimental", "color": "red" },
+              { "id": "beta", "value": "Beta", "color": "orange" },
+              { "id": "stable", "value": "Stable", "color": "blue" },
+              { "id": "mature", "value": "Mature", "color": "green" }
+            ]
+          },
+          "description": "Production readiness, API stability, and track record of handling advisories"
+        },
+        {
+          "id": "rfc-conformance-testing",
+          "name": "RFC Conformance Testing",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rfc-test-vectors", "value": "RFC Test Vectors", "color": "green" },
+              { "id": "cookbook-7520", "value": "RFC 7520 Cookbook", "color": "green" },
+              { "id": "interop-suite", "value": "Interop Suite", "color": "blue" },
+              { "id": "wycheproof", "value": "Wycheproof", "color": "purple" },
+              { "id": "own-tests-only", "value": "Own Tests Only", "color": "orange" },
+              { "id": "unknown", "value": "Unknown", "color": "gray" }
+            ]
+          },
+          "description": "Evidence the implementation is tested against the specs rather than only against itself"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = task-oriented guide with signing, verification, JWKS and key-management examples plus a security-considerations section; 1 = essentially undocumented"
+        }
+      ]
+    }
+  ]
+}
