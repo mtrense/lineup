@@ -1,5 +1,325 @@
 {
   "name": "lestrrat-go/jwx (Go)",
   "description": "The most complete Go JOSE stack: JWS, JWE, JWK, JWKS caching",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["go"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://api.github.com/repos/lestrrat-go/jwx"],
+      "comment": "Go-only module (`github.com/lestrrat-go/jwx/v4`, go 1.26.0). No bindings for other ecosystems."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx"],
+      "comment": "GitHub reports SPDX MIT for the repository; a LICENSE file sits at the repo root."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://pkg.go.dev/github.com/lestrrat-go/dsig"],
+      "comment": "All primitives come from Go's standard crypto packages, reached through the maintainer's own low-level `github.com/lestrrat-go/dsig` module (RSA PKCS#1v1.5/PSS, ECDSA, Ed25519, HMAC), plus `golang.org/x/crypto` for what the stdlib does not ship. Pure Go, no cgo."
+    },
+    "repository": {
+      "value": "https://github.com/lestrrat-go/jwx",
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx"]
+    },
+    "package": {
+      "value": "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4",
+      "source": ["https://proxy.golang.org/github.com/lestrrat-go/jwx/v4/@latest", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "Go module proxy path; v3 (`.../jwx/v3`) is still released in parallel for users who have not migrated."
+    },
+    "documentation": {
+      "value": "https://github.com/lestrrat-go/jwx/blob/v4.2.0/docs/README.md",
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/README.md", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "The in-repo `docs/` guide series (anatomy, JWT, JWS, JWE, JWK, extensions, input limits, global settings, frameworks, FAQ) is the best entry point; pkg.go.dev carries very detailed godoc and there is a separate github.com/jwx-go/examples repository."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://proxy.golang.org/github.com/lestrrat-go/jwx/@v/list", "https://proxy.golang.org/github.com/lestrrat-go/jwx/@v/v0.9.0.info", "https://api.github.com/repos/lestrrat-go/jwx"],
+      "comment": "Earliest version the Go module proxy knows is v0.9.0, 2019-05-20. The code is considerably older — the repository was created 2015-11-04 and was consumed in GOPATH mode before Go modules existed — so 2019 is a registry artefact, not the project's age."
+    },
+    "latest-version": {
+      "value": "v4.2.0",
+      "source": ["https://proxy.golang.org/github.com/lestrrat-go/jwx/v4/@latest", "https://api.github.com/repos/lestrrat-go/jwx/releases?per_page=15"],
+      "comment": "v4.2.0, released 2026-07-24. The v3 line is maintained in parallel (v3.2.0, 2026-07-27) and SECURITY.md promises fixes for v2, v3 and v4. Everything else in this record was checked against v4.2.0."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://pkg.go.dev/github.com/lestrrat-go/dsig"],
+      "comment": "jwa.HS256()/HS384()/HS512(); the MAC itself is computed by dsig.SignHMAC over crypto/hmac."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"],
+      "comment": "Full PS family in core, no build tag needed."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/10-extensions.md"],
+      "comment": "ES256/384/512 (P-256/P-384/P-521) are in core. ES256K is NOT in core in v4 — it lives in the optional first-party extension module `github.com/jwx-go/es256k/v4`, which self-registers via init(); counted per the guide's \"behind a feature flag / optional module still counts\" rule."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/10-extensions.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/jws.go"],
+      "comment": "Core ships both alg identifiers for Curve25519: the legacy `EdDSA` (RFC 8037, jwa.EdDSA()) and the newer curve-specific `Ed25519` (jwa.EdDSAEd25519()), and jws.Verify treats them as distinct strings with no aliasing, per RFC 9864. Ed448 requires the optional module `github.com/jwx-go/ed448/v4`."
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128kw", "a192kw", "a256kw", "a128gcmkw", "a192gcmkw", "a256gcmkw", "rsa-oaep", "rsa-oaep-256", "rsa1-5", "ecdh-es", "ecdh-es-a128kw", "ecdh-es-a256kw", "pbes2-hs256-a128kw", "pbes2-hs512-a256kw"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/key_encryption_gen.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/10-extensions.md"],
+      "comment": "Every tag defined in this comparison is present. jwa also defines ECDH-ES+A192KW, PBES2-HS384+A192KW, the non-standard RSA-OAEP-384/512, and six HPKE key-encapsulation modes (draft-ietf-jose-hpke-encrypt), none of which have tag ids here — so the tag list understates coverage. Post-quantum ML-KEM and X448/hybrid HPKE come from optional jwx-go modules."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/content_encryption_gen.go"],
+      "comment": "All six RFC 7518 content-encryption algorithms. No XChaCha20-Poly1305 (XC20P) in core; ChaCha20Poly1305 appears only as an HPKE AEAD inside the optional x448 module."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5", "rsa-under-2048"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/signature_gen.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/key_encryption_gen.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"],
+      "comment": "`jwa.NoSignature()` (\"none\") exists as an algorithm identifier and can be *produced* via the loudly-named jws.WithInsecureNoSignature()/jwt.WithInsecureNoSignature(); jws.WithKey() refuses it outright and jws.Verify() never reports success for it. RSA1_5 remains an exposed JWE key-management algorithm. RSA under 2048 bits is listed because no minimum RSA key size is enforced by the library (see \"Minimum Key Size Enforced\"). secp256k1 is not unrestricted — ES256K only exists if you deliberately import the es256k extension module."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/10-extensions.md"],
+      "comment": "jws.RegisterSigner / RegisterVerifier / UnregisterSigner / UnregisterVerifier plus RegisterAlgorithmForKeyType and RegisterAlgorithmForCurve. This is the mechanism the first-party extension modules (ES256K, Ed448, ML-DSA, HPKE) use, and it is global process-wide state — a registered custom `alg` becomes acceptable everywhere in the process, so it is also the escape hatch around jwx's own algorithm checks."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/jws.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwt/jwt.go"],
+      "comment": "Verified in v4.2.0: jws.Verify's documentation states it \"DOES NOT consider it a success when {\\\"alg\\\":\\\"none\\\"} is encountered\", reasoning that reporting success would claim verification that never happened; such messages must go through Parse() instead. jws.WithKey() explicitly refuses jwa.NoSignature. The only ways to touch an unsecured token are the unmistakably named jws.WithInsecureNoSignature() (signing), jwt.ParseInsecure() and jwt.WithVerify(false) — all documented as forbidden in production."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/jws.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "The API forces it: jws.WithKey(alg, key) takes a concrete jwa.SignatureAlgorithm, and by default Verify rejects any JWS whose protected `alg` does not exactly equal the algorithm actually used (string equality, no aliasing). A bare jwt.Parse() with no key option is an error. With jws.WithKeySet the algorithm comes from the JWK's own `alg` (and `kid` must match by default); jws.WithInferAlgorithmFromKey(true) is an opt-in that derives it from the key type instead — still key-driven, never header-driven. The header can only drive the choice if the caller explicitly passes jws.WithSkipAlgorithmMatch(true), which the docs advise against."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/jws.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "4, not 5: the caller names the algorithm, jwx checks that the algorithm supports the supplied key type, and the protected header `alg` is cross-checked against the algorithm actually used — so handing an RSA public key to an HS256 verification fails closed at runtime. It is not 5 because keys enter as `any` (raw Go key, crypto.Signer or jwk.Key), so nothing is caught at compile time, and jws.WithSkipAlgorithmMatch(true) can switch the cross-check off. The docs recommend jws.WithInferAlgorithmFromKey(true) with key sets specifically as an anti-confusion measure."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwt/jwt.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "jwt.ParseInsecure() is a distinct, plainly-named entry point that disables verification and validation and rejects any key-bearing option (WithVerify/WithValidate may not be combined with it). The flag-shaped alternative jwt.WithVerify(false) does exist, but the safe path is the default — a bare jwt.Parse() errors out rather than silently skipping verification."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwt/jwt.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "Read in v4.2.0 source: parseBytes sets `ctx.validate = true` and `verification := true`, and the Parse doc comment confirms \"Validation runs by default after parsing\". The default validators cover exp, nbf and iat only. iss/aud/sub/jti are capable but opt-in (jwt.WithIssuer/WithAudience/WithSubject/WithJwtID/WithRequiredClaim). Caveat: the repo's docs/01-jwt.md prose reads as if no claim validation happens by default — the code and the godoc agree that it does, and the code is what runs."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/01-jwt.md"],
+      "comment": "jwt.WithAudience() and jwt.WithIssuer() are optional ValidateOptions; a token with no `aud`/`iss` expectation validates fine as long as the time claims pass. Nothing in the Parse signature mentions them and nothing fails closed without them."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "jwt.WithAcceptableSkew(time.Duration), default 0 — i.e. strict by default, which is the conservative choice. jwt.WithClock() allows an injected clock, and the global jwt.WithTruncation() controls time truncation (set to time.Second to restore v2 behaviour)."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/dsig/main/hmac.go", "https://pkg.go.dev/github.com/lestrrat-go/dsig"],
+      "comment": "HMAC verification is delegated to dsig.VerifyHMAC, which recomputes the MAC and compares with `hmac.Equal(signature, expected)` — Go's constant-time comparison. Read from the dsig main branch (jwx v4.2.0 pins dsig v1.3.0; the file was not fetched at that exact tag)."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://pkg.go.dev/github.com/lestrrat-go/dsig", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/20-global-settings.md"],
+      "comment": "Neither half of RFC 7518 §3.2 is enforced by jwx itself: the jws package documents no minimum RSA modulus and no minimum HMAC secret length, there is no such global setting, and dsig explicitly states it does \"minimal input parameter checking\" for performance. What jwx does check is that the algorithm matches the key *type* (jws.WithKey) and, optionally, jws.WithValidateKey(true) to run jwk.Key.Validate() (default false). Any RSA floor therefore comes from Go's own crypto/rsa, not from this library. Recorded as \"searched and found none\", not as a claim that small keys are encouraged."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour: crit validation is on by default (jws.WithCritValidation, default true) and Verify rejects any `crit` list whose names the caller has not allowlisted with jws.WithCritExtension(...). `b64` is auto-declared when jws.WithDetachedPayload/WithDetachedPayloadReader is used. The experimental fast path jws.VerifyCompactFast refuses tokens carrying `crit` at all (ErrCritPresent)."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/13-input-size.md"],
+      "comment": "An unusually explicit set of amplification caps, all documented in docs/13-input-size.md and settable globally via Settings() or per call: JWE decompression buffer 10 MiB (WithMaxDecompressBufferSize), JWE recipients 100 (WithMaxRecipients), PBES2 p2c constrained to 1,000–1,000,000 (WithMinPBES2Count/WithMaxPBES2Count), AES-CBC buffer 256 MiB (WithCBCBufferSize), JWS signatures 100 (WithMaxSignatures), JWKS keys 1,000 (WithMaxKeys), and nested-JWT unwrapping fixed at depth 2. Raw input size is deliberately NOT capped — the docs require the caller to wrap input in io.LimitReader/http.MaxBytesReader. The PBES2 and decompression caps are the direct remediations of CVE-2023-49290 and CVE-2024-28122."
+    },
+    "cve-history": {
+      "value": ["historical-2020s"],
+      "source": ["https://api.github.com/advisories?ecosystem=go&affects=github.com/lestrrat-go/jwx"],
+      "comment": "Four GitHub advisories, all medium severity, all patched, none within the last 24 months (checked 2026-07-30): GHSA-hj3v-m684-v259 / CVE-2024-28122 (2024-03-08, DoS via compressed JWE; fixed 2.0.21 / 1.2.29); GHSA-pvcr-v8j8-j5q3 / CVE-2024-21664 (2024-01-09, segfault parsing JSON serialization without a protected field; fixed 2.0.19 / 1.2.28); GHSA-7f9x-gw85-8grf / CVE-2023-49290 (2023-12-05, unbounded PBES2 p2c; fixed 2.0.18 / 1.2.27); GHSA-rm8v-mxj3-5rmq (2023-06-14, potential padding-oracle in AES-CBC JWE decryption; fixed 2.0.11 / 1.2.26). All affect v1/v2 lines; the fixes are structurally present in v3/v4 as the documented input limits. Handling looks healthy: advisories filed, versions patched, limits made configurable and documented afterwards."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/SECURITY.md"],
+      "comment": "SECURITY.md asks for private reports through GitHub Security Advisories with reproduction steps, and states support for v2, v3 and v4 (nothing before v2.0.0). It also candidly warns that the project is thinly staffed and that a reproducing test case speeds up fixes."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/SECURITY.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/README.md"],
+      "comment": "Searched SECURITY.md, the docs set and the README and found no published third-party audit. `false` in the \"looked and found nothing\" sense. The codebase does carry fuzz tests (jws/fuzz_test.go, jwe/fuzz_test.go), which is self-review rather than independent review."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "jws.Sign and jws.Verify, compact and JSON, single and multiple signatures, plus streaming detached payloads and an experimental fast path (jws.VerifyCompactFast) for minimal compact tokens."
+    },
+    "jwe": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwa/key_encryption_gen.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwe/jwe_test.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/13-input-size.md"],
+      "comment": "Full encrypt/decrypt with multiple recipients in both compact and JSON serializations, DEF compression, and — new in v4 — HPKE key encapsulation from draft-ietf-jose-hpke-encrypt."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwk", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/04-jwk.md"],
+      "comment": "jwk.Parse/ParseKey/ParseString/ParseReader/ParseFS for JWK and JWK Set documents, jwk.Import for raw Go keys, jwk.Export back out. Unknown key types are retained as jwk.UnsupportedKey placeholders by default (configurable to drop or to fail strictly) so a set does not break when an IdP adds post-quantum keys."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jwx-go/jwkfetch/main/README.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/04-jwk.md", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"],
+      "comment": "Yes, but note the packaging change: in v4 HTTP fetching was moved out of the core module into the first-party companion `github.com/jwx-go/jwkfetch/v4` (jwkfetch.Client for one-shot HTTPS, jwkfetch.Cache for background refresh), both implementing the core jwk.Fetcher interface consumed by jws/jwt.WithVerifyAuto. In v3 and earlier the equivalent lived in core as jwk.Cache. Fetching a `jku` URL requires an explicit whitelist (MapWhitelist/RegexpWhitelist/WhitelistFunc, applied to redirects too) precisely because the URL is attacker-controlled — the docs call out SSRF directly and warn that regexes must be anchored."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jwx-go/jwkfetch/main/README.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/04-jwk.md"],
+      "comment": "jwkfetch.Cache keeps a background-refreshed key set (httprc workers and refresh timers) with WithConstantInterval/WithMinInterval/WithMaxInterval; WithMinInterval is the rate-limit floor that stops a short Cache-Control max-age from turning into a fetch storm. The model is scheduled refresh for a small trusted set of URLs rather than refetch-on-unknown-kid, so an unknown `kid` waits for the next refresh instead of triggering an unthrottled fetch — safer against amplification, slower to pick up an emergency rotation. Exact Cache-Control parsing behaviour is httprc's and was not read at source level."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/01-jwt.md"],
+      "comment": "jws.WithKeySet / jwt.WithKeySet select by the token's `kid`, and by default both a `kid` match and an `alg` match are required; jws.WithRequireKid(false) relaxes it and the docs explicitly discourage that. Suboptions cover the awkward cases: WithUseDefault (single-key sets), WithMultipleKeysPerKeyID, WithInferAlgorithmFromKey."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwk"],
+      "comment": "RFC 7638 via `Thumbprint(crypto.Hash) ([]byte, error)` on the jwk.Key interface (also used by jwk.AssignKeyID). No RFC 9278 thumbprint URI helper was found."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/13-input-size.md"],
+      "comment": "Not end to end on the consuming side, which is what this attribute asks about. Producing is covered: jwt.NewSerializer().Sign(...).Encrypt(...).Serialize(token) chains sign-then-encrypt. Consuming is not — jwt.Parse handles compact JWS only and has no WithDecrypt option in v4, so the caller must decrypt the outer JWE itself and feed the plaintext back to jwt.Parse. (Signed-JWT-inside-signed-JWT nesting is unwrapped, but only to a fixed depth of 2.)"
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "jws.WithCompact / jws.WithJSON; Verify and Parse detect the format transparently. Multiple signatures require WithJSON and are capped at 100 per message by default (jws.WithMaxSignatures). Streaming detached-payload verification is limited to single-signature compact or flattened JSON."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"],
+      "comment": "RFC 7515 Appendix F via jws.WithDetachedPayload([]byte) and the streaming jws.WithDetachedPayloadReader(io.Reader) (HMAC/RSA/ECDSA only, reader consumed once, context-cancellable), plus jws.WithDetached(true) when compacting a *Message."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/headers_gen.go"],
+      "comment": "RFC 7797 supported: `b64` is a first-class header (jws.B64Key), Sign auto-declares it in `crit` when set to false per RFC 7797 §3, and Verify auto-allowlists `b64` when a detached payload is supplied. The godoc repeats the RFC's §5.2 caution against b64=false with an in-band compact JWS, and the fast path refuses any b64 header outright."
+    },
+    "key-generation": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwk", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/04-jwk.md"],
+      "comment": "Deliberately out of scope: the jwk package exposes no Generate* function. You generate with crypto/rsa, crypto/ecdsa, crypto/ed25519 and hand the result to jwk.Import(). Sensible in Go, but it does mean key generation is not a jwx feature."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jws/headers_gen.go", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwk", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwk/x509.go"],
+      "comment": "All four parameters are typed on both jws.Headers and jwk.Key (X509CertChain() returning *cert.Chain, X509CertThumbprint(), X509CertThumbprintS256(), X509URL()). They are carried and decoded, not trusted: the cert package handles base64/DER chain decoding, no chain building, expiry or signature validation happens on verification, and `x5u` is never dereferenced automatically (only `jku` can be, and only via an explicit whitelisted jwk.Fetcher). Treat x5c here as metadata, not a trust path."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "pkcs8", "pkcs1", "sec1", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwk/jwkbb/x509.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwk/x509.go", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/04-jwk.md"],
+      "comment": "jwk.Parse handles JWK and JWK Set JSON; with jwk.WithPEM(true)/jwk.WithX509(true) it decodes PEM blocks of type PRIVATE KEY (PKCS#8), PUBLIC KEY (PKIX/SPKI), EC PRIVATE KEY (SEC1), RSA PRIVATE KEY and RSA PUBLIC KEY (PKCS#1) and CERTIFICATE, with the decoder set itself extensible via jwkbb.RegisterX509Decoder. DER is reachable as the payload of those blocks and as base64 DER in x5c rather than as a separate \"parse these raw DER bytes\" entry point — the tag is generous. Symmetric keys are raw bytes through jwk.Import([]byte). No PKCS#12 and no keystore ingestion."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "Two seams. jws.WithKey accepts a crypto.Signer, so any KMS/HSM/PKCS#11 implementation of that stdlib interface signs without exposing the private key. For anything that does not fit, jws.RegisterSigner/RegisterVerifier let you plug in a whole custom implementation — the docs name cloud KMS as the motivating case. No first-party AWS/GCP/Azure KMS adapter ships in the module."
+    },
+    "framework-integrations": {
+      "value": ["echo"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/21-frameworks.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/99-faq.md"],
+      "comment": "Weak tag, read the caveat: there is NO first-party middleware for any framework. docs/21-frameworks.md gives worked net/http examples (the tag set has no net/http tag) and points at a third-party echo-middleware-jwx port, which the FAQ itself describes as not extensively tested. Nothing for gin or chi. jwt.ParseRequest/ParseHeader/ParseCookie/ParseForm cover the net/http plumbing directly, which is why dedicated adapters are rare."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws"],
+      "comment": "Idiomatic Go: every entry point is a blocking call. Concurrency is the caller's goroutines; several APIs take a context.Context (jws.WithContext, jwt.WithContext) for cancellation, and jws.Verify checks it between signatures, key providers and (alg, key) attempts."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/01-jwt.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/README.md"],
+      "comment": "jwt.Token is a strictly encapsulated interface — no struct-field access at all, only typed getters for registered claims (Issuer(), Subject(), Expiration(), ...) and Get()/Set() for everything else, which return `any`. There is no generic Token[MyClaims]. Two things soften the map-only verdict: the generic helper jwt.Get[T](token, key) gives a type-asserted read, and jwt.RegisterCustomField[T](name) / RegisterCustomDecoder / jwt.WithTypedClaim let you bind a Go type to a private claim so it unmarshals directly — but registration is global process-wide state, not a per-call type parameter."
+    },
+    "crypto-backend": {
+      "value": ["stdlib"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://pkg.go.dev/github.com/lestrrat-go/dsig", "https://raw.githubusercontent.com/lestrrat-go/dsig/main/hmac.go"],
+      "comment": "Go standard library crypto throughout, wrapped by github.com/lestrrat-go/dsig v1.3.0, with golang.org/x/crypto v0.54.0 for pieces the stdlib lacks (e.g. AEADs used by the HPKE paths). No cgo, no OpenSSL, no BoringSSL."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod"],
+      "comment": "Pure Go. Direct requires are github.com/lestrrat-go/dsig, github.com/lestrrat-go/option/v3, github.com/valyala/fastjson, golang.org/x/crypto (plus stretchr/testify for tests) — all pure Go, no cgo and no native library. The optional asmbase64 extension module adds AVX2 assembly, but that is Go assembly, not FFI, and it is opt-in."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/99-faq.md"],
+      "comment": "Inferred rather than advertised: with no cgo and only pure-Go dependencies there is nothing to stop a GOOS=js/GOARCH=wasm or GOOS=wasip1 build, which is how Go code reaches the browser. The project makes no WASM claim anywhere — the FAQ and docs never mention WASM, TinyGo or the browser — and no CI target for it was found, so this is a well-founded inference, not a tested guarantee. TinyGo in particular was not verified."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/99-faq.md"],
+      "comment": "Genuinely indeterminate for this ecosystem. The named targets in the guideline are JavaScript-first: Cloudflare Workers, Vercel Edge and Deno Deploy do not run Go server code, so \"false\" would blame the library for a runtime boundary. Conversely jwx is pure Go and would build for WASI-based edge platforms (e.g. Fastly Compute). No statement from the project, no CI evidence, and nothing tested — recorded as null rather than guessing either way."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": ["https://go.dev/doc/security/fips140", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod", "https://pkg.go.dev/github.com/lestrrat-go/dsig"],
+      "comment": "Inherited from the toolchain, not claimed by the project: because all primitives come from Go's standard crypto packages, building with GOFIPS140 (or running with GODEBUG fips140=on) routes them through the Go Cryptographic Module, FIPS 140-3 validated as v1.0.0 under CMVP certificate #5247 (Go 1.24+), with v1.26.0 under review. Validation belongs to that module, not to jwx. Caveats: jwx makes no FIPS statement of its own, algorithms outside the approved set (Ed25519/EdDSA, RSA1_5, ChaCha20-Poly1305 via golang.org/x/crypto, the HPKE and post-quantum extension modules) must be avoided at the application level, and Go's FIPS mode is unsupported on Wasm, OpenBSD, AIX and 32-bit Windows."
+    },
+    "dependency-count": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/go.mod"],
+      "comment": "Direct non-test requires in v4.2.0: github.com/lestrrat-go/dsig v1.3.0, github.com/lestrrat-go/option/v3 v3.0.0-alpha1, github.com/valyala/fastjson v1.6.10, golang.org/x/crypto v0.54.0. github.com/stretchr/testify v1.11.1 is a direct require too but is test-only, so it is excluded; indirect entries (go-spew, go-difflib, x/mod, x/sync, x/tools, yaml.v3) and the stringer tool dependency are also excluded. Note that two of the four are the maintainer's own modules, and that option/v3 is pinned to an alpha."
+    },
+    "package-size": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "The Go module proxy and pkg.go.dev publish no artifact-size metric comparable to an npm tarball, JAR, wheel or .crate; the only figure available would be the module zip fetched from the proxy, which is source, not a built artifact. Recorded as null per the guideline for registries that do not report this usefully."
+    },
+    "github-stars": {
+      "value": 2404,
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx"],
+      "comment": "Snapshot on 2026-07-30 (23 watchers, 3 open issues)."
+    },
+    "downloads": {
+      "value": null,
+      "source": ["https://proxy.golang.org/github.com/lestrrat-go/jwx/v4/@latest", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jwt"],
+      "comment": "Go has no download counter: the module proxy publishes no download statistics and pkg.go.dev exposes only an \"imported by\" graph, which is a different metric and is not comparable to the npm/PyPI/crates.io windows used for other candidates here. An attempt to read the imported-by count for the v2 module returned nothing usable. Null rather than a fabricated proxy number."
+    },
+    "last-release": {
+      "value": "2026-07-24",
+      "source": ["https://proxy.golang.org/github.com/lestrrat-go/jwx/v4/@latest", "https://api.github.com/repos/lestrrat-go/jwx/releases?per_page=15"],
+      "comment": "v4.2.0 on 2026-07-24. The parallel v3 line released v3.2.0 three days later (2026-07-27), and the repository was last pushed 2026-07-28."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx", "https://api.github.com/repos/lestrrat-go/jwx/releases?per_page=15", "https://api.github.com/repos/lestrrat-go/jwx/commits?sha=develop/v4&per_page=50"],
+      "comment": "Unambiguous as of 2026-07-30: eight releases across the v3 and v4 lines in the last twelve months, last push 2026-07-28, only 3 open issues, and two major lines maintained simultaneously (v4 on develop/v4 as default branch, v3 still receiving releases). SECURITY.md commits to fixes for v2, v3 and v4."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx/commits?sha=develop/v4&per_page=50"],
+      "comment": "The last 50 commits on develop/v4 are roughly 35 by lestrrat (Daisuke Maki), ~10 by dependabot and a single outside contribution. Substantive work is one person's, and the surrounding modules the library now depends on (dsig, option, and the jwx-go extension modules) are by the same author — so the concentration is if anything higher than the commit split suggests."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": ["https://api.github.com/repos/lestrrat-go/jwx", "https://api.github.com/repos/lestrrat-go/jwx/releases?per_page=15", "https://api.github.com/advisories?ecosystem=go&affects=github.com/lestrrat-go/jwx", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/SECURITY.md"],
+      "comment": "Meets the guideline's bar: repository since 2015, four major versions, near-total spec coverage, a documented security process, four advisories all triaged and patched with the underlying weaknesses turned into documented configurable limits, and per-major migration guides. The counterweights are the solo bus factor and an API that breaks between majors more than most (v3 and v4 landed within a year of each other), so \"mature\" here means well-tended rather than frozen."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors"],
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/jwe/jwe_test.go", "https://api.github.com/repos/lestrrat-go/jwx/git/trees/v4.2.0?recursive=1"],
+      "comment": "jwe/jwe_test.go parses and round-trips the literal examples from RFC 7516 Appendix A.1 (RSAES-OAEP + A256GCM) and A.3 (A128KW + A128CBC-HS256), and several tests cite RFC 7518 §4.8.1.1 for PBES2 salt/iteration rules. Searching the v4.2.0 tree found no file referencing RFC 7520 (cookbook), Wycheproof or an interop harness, so those are not tagged. There are also fuzz tests (jws/fuzz_test.go, jwe/fuzz_test.go) and a jwa registry-snapshot test, which are own-tests rather than spec vectors."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/README.md", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/13-input-size.md", "https://pkg.go.dev/github.com/lestrrat-go/jwx/v4/jws", "https://raw.githubusercontent.com/lestrrat-go/jwx/v4.2.0/docs/02-jws.md"],
+      "comment": "5: a task-oriented guide series (anatomy, JWT, JWS, JWE, JWK, extensions, global settings, frameworks, FAQ) with working code, a separate github.com/jwx-go/examples repository, per-package READMEs, and godoc that is unusually explicit about security trade-offs — every dangerous option carries its own warning (WithSkipAlgorithmMatch, WithInsecureNoSignature, WithRequireKid(false)), SSRF and whitelist-anchoring are spelled out for jku fetching, and docs/13-input-size.md is a de facto security-considerations chapter enumerating every DoS limit and its default. Short of a single consolidated \"security considerations\" page, and the sheer surface area makes it easy to get lost, but the material is all there."
+    }
+  }
 }
