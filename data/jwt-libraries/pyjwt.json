@@ -1,5 +1,438 @@
 {
   "name": "PyJWT (Python)",
   "description": "The Python default; JWS/JWT-focused, cryptography-backed",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["python"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml",
+        "https://pypi.org/pypi/PyJWT/json"
+      ],
+      "comment": "CPython library published to PyPI, requires-python >=3.9 with classifiers through 3.14. No other runtime is targeted."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://api.github.com/repos/jpadilla/pyjwt",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"
+      ],
+      "comment": "MIT per the GitHub licence metadata and the pyproject [project] license field."
+    },
+    "implementation": {
+      "value": ["stdlib-crypto", "ffi-binding"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"
+      ],
+      "comment": "HMAC uses the standard library's hmac/hashlib. Every asymmetric algorithm (RS/PS/ES/EdDSA) is delegated to the optional `cryptography` package, which binds OpenSSL — hence both tags. Base `pip install PyJWT` ships HS* and `none` only; `pip install PyJWT[crypto]` enables the rest."
+    },
+    "repository": {
+      "value": "https://github.com/jpadilla/pyjwt",
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt"]
+    },
+    "package": {
+      "value": "https://pypi.org/project/PyJWT/",
+      "source": ["https://pypi.org/pypi/PyJWT/json"],
+      "comment": "PyPI distribution name PyJWT; import name is `jwt`."
+    },
+    "documentation": {
+      "value": "https://pyjwt.readthedocs.io/en/stable/",
+      "source": [
+        "https://pyjwt.readthedocs.io/en/stable/usage.html",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/README.rst"
+      ],
+      "comment": "The README points at readthedocs as the full documentation; the usage page is the task-oriented guide and there is a separate API reference."
+    },
+    "first-release": {
+      "value": "2011",
+      "source": ["https://pypi.org/pypi/PyJWT/json"],
+      "comment": "Earliest release on PyPI is 0.1.1, uploaded 2011-02-24."
+    },
+    "latest-version": {
+      "value": "2.13.0",
+      "source": [
+        "https://pypi.org/pypi/PyJWT/json",
+        "https://api.github.com/repos/jpadilla/pyjwt/releases?per_page=6"
+      ],
+      "comment": "2.13.0 released 2026-05-21; still pre-3.0 but with a long-stable 2.x API. Checked 2026-07-30."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"],
+      "comment": "Registered in get_default_algorithms() via HMACAlgorithm; available in the base install with no optional dependency."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"],
+      "comment": "RSAAlgorithm; requires the `crypto` extra (`cryptography`), otherwise the algorithm is not registered."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"],
+      "comment": "RSAPSSAlgorithm; requires the `crypto` extra."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"],
+      "comment": "ECAlgorithm registers ES256, ES256K (secp256k1, RFC 8812), ES384 and ES512 — plus a legacy `ES521` alias for the same P-521 curve. Requires the `crypto` extra. Curve/alg binding is enforced per RFC 7518 §3.4 since 2.11.0."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://api.github.com/repos/jpadilla/pyjwt/contents/tests/keys"
+      ],
+      "comment": "One registered identifier, `EdDSA` (RFC 8037), whose OKPAlgorithm accepts both Ed25519 and Ed448 keys; the test fixture set contains jwk_okp_key_Ed25519.json and jwk_okp_key_Ed448.json. The curve-specific `Ed25519` alg identifier is not registered. Requires the `crypto` extra."
+    },
+    "jwe-key-management": {
+      "value": [],
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt/contents/jwt"],
+      "comment": "PyJWT implements JWS/JWT only — the package contains api_jws, api_jwt, api_jwk and jwks_client modules and no JWE module at all."
+    },
+    "jwe-content-encryption": {
+      "value": [],
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt/contents/jwt"],
+      "comment": "No JWE support, so no content-encryption algorithms."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa-under-2048"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/CHANGELOG.rst"
+      ],
+      "comment": "`none` is a registered algorithm (NoneAlgorithm) reachable only by explicitly listing it in `algorithms=[\"none\"]` with an empty key. RSA keys under 2048 bits still work: since 2.11.0 they raise an InsecureKeyLengthWarning but are only rejected when `enforce_minimum_key_length=True` is passed. ES256K is registered as its own RFC 8812 identifier, not as an unrestricted secp256k1 under ES256."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py"],
+      "comment": "PyJWS.register_algorithm(alg_id, alg_obj) / unregister_algorithm() accept any Algorithm subclass and are exported as jwt.register_algorithm. This also lets a caller replace or re-add algorithms the library deliberately restricts, so it is an escape hatch around its own checks."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"
+      ],
+      "comment": "Verified in 2.13.0. decode() raises DecodeError (\"It is required that you pass in a value for the 'algorithms' argument\") when verify_signature is on and no algorithm list is given, and the header `alg` must appear in that list, so `none` only verifies if the caller literally writes algorithms=[\"none\"]. NoneAlgorithm.prepare_key additionally raises InvalidKeyError unless the key is empty/None."
+    },
+    "algorithm-pinning": {
+      "value": ["caller-must-specify", "inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/CHANGELOG.rst"
+      ],
+      "comment": "The normal path forces an explicit allow-list: `algorithms` is mandatory whenever the key is not a PyJWK. When a PyJWK (e.g. from PyJWKClient) is passed, the algorithm is taken from the key's `alg`/kty-derived algorithm_name instead — and since 2.13.0 the token header `alg` is bound to PyJWK.algorithm_name, closing the allow-list bypass of CVE-2026-48523."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 3,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://github.com/advisories/GHSA-xgmm-8j9v-c9wx",
+        "https://api.github.com/advisories?ecosystem=pip&affects=pyjwt&per_page=30"
+      ],
+      "comment": "Guideline level 3: keys are plain str/bytes or cryptography objects, and confusion is prevented by runtime blocklists that only bite once the caller has supplied an algorithm list. HMACAlgorithm.prepare_key rejects PEM/OpenSSH/x509 material (\"asymmetric key or x509 certificate ... should not be used as an HMAC secret\") and, since 2.13.0, raw JWK JSON documents. This is a defence added after the fact: CVE-2017-11424 and CVE-2022-29217 were key-confusion bugs, and CVE-2026-48526 (high, fixed 2.13.0) was the same class again via a JWK-as-HMAC-secret."
+    },
+    "unverified-decode-separated": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://pyjwt.readthedocs.io/en/stable/usage.html"
+      ],
+      "comment": "Headers have a distinct API (jwt.get_unverified_header), but reading claims without verification is the same jwt.decode() call with options={\"verify_signature\": False} — a flag on the normal path, which the attribute definition scores as false. The docs call the practice \"generally ill-advised\"."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat", "aud"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwt.py",
+        "https://pyjwt.readthedocs.io/en/stable/usage.html"
+      ],
+      "comment": "Default options are verify_signature/verify_exp/verify_nbf/verify_iat/verify_aud/verify_iss/verify_sub/verify_jti all True with require=[]. In practice exp, nbf and iat are checked whenever present. `aud` fails closed: if the token carries an aud claim and the caller passed no audience, _validate_aud raises InvalidAudienceError. `iss`, `sub` and `jti` checks return early unless the corresponding expected value is passed, so they are not tagged. Absent claims are never required unless listed in `require`."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwt.py"],
+      "comment": "`audience` and `issuer` are optional keyword arguments defaulting to None; a token with no aud/iss claim verifies happily without them. Partial credit: a token that does carry `aud` is rejected when the caller supplied no audience, and `options={\"require\": [\"aud\", \"iss\"]}` can force presence — but nothing in the API forces the caller to state expectations."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwt.py",
+        "https://pyjwt.readthedocs.io/en/stable/usage.html"
+      ],
+      "comment": "decode(..., leeway=...) accepts seconds as a float or a datetime.timedelta and applies to exp, nbf and iat. Default is 0 — no implicit skew allowance."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"],
+      "comment": "HMACAlgorithm.verify returns hmac.compare_digest(sig, self.sign(msg, key)) — the standard library's constant-time primitive. Asymmetric verification is delegated to `cryptography`."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/CHANGELOG.rst",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwt.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py"
+      ],
+      "comment": "The checks exist (RSA _MIN_KEY_SIZE = 2048 bits, HMAC secret at least the hash digest size, per RFC 7518 §3.2) but are advisory by default: 2.11.0 introduced them as an InsecureKeyLengthWarning and they only raise InvalidKeyError when the caller opts in with `enforce_minimum_key_length=True`, which defaults to False in the options dict. Recorded false because the default path does not reject. Empty HMAC keys are rejected outright since 2.13.0."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://github.com/advisories/GHSA-752w-5fwx-jx9f",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/CHANGELOG.rst"
+      ],
+      "comment": "As of 2.12.0, _validate_crit runs on decode with _supported_crit = {\"b64\"}: crit must be a non-empty list of strings, every entry must be present in the header, and any extension outside the supported set is rejected. This is recent — up to and including 2.11.0 unknown crit entries were accepted (CVE-2026-32597, high, fixed in 2.12.0)."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": [
+        "https://api.github.com/repos/jpadilla/pyjwt/contents/jwt",
+        "https://github.com/advisories/GHSA-w7vc-732c-9m39"
+      ],
+      "comment": "Not applicable in the JWE/PBES2 sense — PyJWT has no JWE and no nested-token handling, so there is no recursion to bound and no p2c cap to set. The one related DoS was CVE-2026-48525 (unbounded Base64URL decoding of the unused payload segment of a b64=false detached JWS), fixed in 2.13.0 by not decoding that segment rather than by adding a size limit. Left null rather than forcing a true/false."
+    },
+    "cve-history": {
+      "value": ["historical-pre-2020", "historical-2020s", "recent-24-months"],
+      "source": [
+        "https://api.github.com/advisories?ecosystem=pip&affects=pyjwt&per_page=30",
+        "https://github.com/advisories/GHSA-xgmm-8j9v-c9wx",
+        "https://github.com/advisories/GHSA-752w-5fwx-jx9f"
+      ],
+      "comment": "Nine GitHub advisories as of 2026-07-30, all patched. CVE-2017-11424 (key confusion, GHSA-r9jw-mwhq-wp62); CVE-2022-29217 (key confusion via non-blocklisted public key formats, high, fixed 2.4.0); CVE-2024-53861 (partial iss matching, low, fixed 2.10.1); CVE-2026-32597 (unknown `crit` extensions accepted, high, fixed 2.12.0); and a batch of five published 2026-06-15 all fixed in 2.13.0 — CVE-2026-48526 (public-key JWK accepted as HMAC secret, high), CVE-2026-48523 (algorithm allow-list bypass via PyJWK/PyJWKClient, medium), CVE-2026-48522 (PyJWKClient missing URL scheme allow-list, SSRF/file:// token forgery, medium), CVE-2026-48525 (b64=false detached-JWS decoding DoS, medium), CVE-2026-48524 (unbounded JWKS refetch via attacker-controlled kid, low). Read as a track record: recurring algorithm-confusion class, but consistently fixed and disclosed through GitHub advisories. Anything older than 2.13.0 should be considered vulnerable to a high-severity forgery."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/SECURITY.md"],
+      "comment": "SECURITY.md directs reporters to GitHub's private \"Report a vulnerability\" workflow, with security@jpadilla.com as a fallback. The supported-versions table is stale — it still names 2.10.x as the supported line while 2.13.0 is current."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://api.github.com/advisories?ecosystem=pip&affects=pyjwt&per_page=30",
+        "https://github.com/advisories/GHSA-xgmm-8j9v-c9wx"
+      ],
+      "comment": "Searched for a published third-party audit and found none. What exists is coordinated individual disclosure: the 2026 advisory batch was reported by external researchers (GHSA-xgmm-8j9v-c9wx credits reporter aradona91) and triaged via GitHub advisories — valuable, but not an audit."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py"],
+      "comment": "Both directions: PyJWS.encode/decode plus the JWT layer on top (jwt.encode / jwt.decode)."
+    },
+    "jwe": {
+      "value": false,
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt/contents/jwt"],
+      "comment": "No JWE implementation of any kind — the package is JWS/JWT only. Users needing JWE reach for joserfc or Authlib."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwk.py"],
+      "comment": "PyJWK / PyJWK.from_json / PyJWKSet parse individual keys and key sets; each Algorithm implements from_jwk and to_jwk for oct, RSA, EC and OKP key types."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/jwks_client.py"],
+      "comment": "PyJWKClient(uri) fetches the key set itself over urllib, with configurable headers, timeout (default 30s) and ssl_context. Since 2.13.0 the URI is restricted to http/https schemes (CVE-2026-48522)."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/jwks_client.py",
+        "https://github.com/advisories/GHSA-fhv5-28vv-h8m8"
+      ],
+      "comment": "cache_jwk_set defaults to True with a lifespan of 300 seconds (TTL only — no Cache-Control parsing), plus an optional per-key LRU (cache_keys, max_cached_keys=16). On an unknown kid the client refetches once and retries. There is no rate limiting beyond the TTL, which is exactly the amplification vector of CVE-2026-48524; the TTL-based cache is the mitigation."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/jwks_client.py"],
+      "comment": "PyJWKClient.get_signing_key_from_jwt reads `kid` from the unverified header and looks it up in the key set; PyJWKSet supports jwk_set[kid] lookup directly."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwk.py"],
+      "comment": "No RFC 7638 thumbprint computation anywhere in api_jwk.py — PyJWK exposes only kty, kid and use. RFC 9278 thumbprint URIs likewise absent."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt/contents/jwt"],
+      "comment": "Requires JWE, which PyJWT does not implement."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py"],
+      "comment": "Compact serialization only; api_jws builds and splits `header.payload.signature` strings and has no flattened/general JSON or multi-signature support."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://github.com/advisories/GHSA-w7vc-732c-9m39"
+      ],
+      "comment": "RFC 7515 Appendix F both ways: encode(..., is_payload_detached=True) and decode(..., detached_payload=b\"...\"). Not documented on the readthedocs usage page. The feature carried CVE-2026-48525 (DoS) until 2.13.0."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/CHANGELOG.rst"
+      ],
+      "comment": "RFC 7797 `b64: false` is handled on both encode and decode, and `b64` is the single member of the supported `crit` set. 2.13.0 tightened the handling to match RFC 7515 Appendix F."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://pyjwt.readthedocs.io/en/stable/usage.html"
+      ],
+      "comment": "No generation helpers — algorithms only prepare, sign, verify and convert existing keys. Users generate keys with `cryptography` or openssl and hand them in."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwk.py"],
+      "comment": "None of x5c, x5t, x5t#S256 or x5u is read or validated: PyJWK exposes only kty/kid/use and no certificate chain handling exists. (X.509 material is recognised in one place only — HMACAlgorithm.prepare_key rejects PEM certificates as HMAC secrets.)"
+    },
+    "key-input-formats": {
+      "value": ["pem", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwk.py"
+      ],
+      "comment": "prepare_key accepts PEM (loaded via cryptography's load_pem_private_key/load_pem_public_key, so PKCS#1, PKCS#8 and SPKI bodies all work), OpenSSH public keys (`ssh-` prefix — no tag for this), already-constructed cryptography key objects, and raw bytes/str for HMAC. JWK and JWK Set documents go through PyJWK/PyJWKSet. No DER, PKCS#12 or keystore ingestion."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py"],
+      "comment": "No signer abstraction: encode() takes key material and calls the algorithm object directly. A KMS/HSM signer can only be bolted on by subclassing Algorithm and calling register_algorithm, which is an extensibility hook rather than a supported external-signer interface."
+    },
+    "framework-integrations": {
+      "value": ["django", "fastapi", "flask"],
+      "source": [
+        "https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/",
+        "https://pypi.org/pypi/djangorestframework-simplejwt/json",
+        "https://pypi.org/pypi/Flask-JWT-Extended/json"
+      ],
+      "comment": "No first-party adapters — PyJWT is framework-agnostic. Tagged for the de facto community stacks built on it: FastAPI's official OAuth2/JWT tutorial installs `pyjwt` and imports `jwt` directly; djangorestframework-simplejwt requires pyjwt>=1.7.1; Flask-JWT-Extended requires PyJWT>=2.11.0,<3.0."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jws.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/jwks_client.py"
+      ],
+      "comment": "Everything is synchronous, including PyJWKClient's blocking urllib fetch — which is worth knowing in an async web app, since a JWKS refetch blocks the event loop unless run in a thread."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/api_jwt.py",
+        "https://pyjwt.readthedocs.io/en/stable/usage.html"
+      ],
+      "comment": "Claims go in and come out as a plain dict[str, Any]; decode() is annotated to return Any. The package ships py.typed and is fully annotated, but there is no generic/model binding for custom claims — validation beyond the registered claims is the caller's job."
+    },
+    "crypto-backend": {
+      "value": ["openssl", "stdlib"],
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/jwt/algorithms.py",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml",
+        "https://cryptography.io/en/latest/faq/"
+      ],
+      "comment": "HMAC via the standard library's hmac/hashlib; all asymmetric algorithms via the optional `cryptography` package, which performs its primitives with OpenSSL."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://pypi.org/project/PyJWT/2.13.0/#files",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"
+      ],
+      "comment": "PyJWT itself is pure Python: the only published wheel is pyjwt-2.13.0-py3-none-any.whl and the sole runtime dependency is typing_extensions (Python < 3.11). Caveat: a useful install for RS/PS/ES/EdDSA adds the `crypto` extra, and `cryptography` is a native Rust/OpenSSL extension — the default install gives you HS* and `none` only."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": ["https://pypi.org/project/PyJWT/2.13.0/#files"],
+      "comment": "The base package is a platform-independent pure-Python wheel with no compiled code, so it imports under any WASM-hosted CPython (Pyodide and friends). Asymmetric algorithms additionally need a WASM build of `cryptography`; that build's availability was not confirmed from a primary source in this pass, so treat HS*-only as the guaranteed subset."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"],
+      "comment": "Per the guideline, null rather than false: Cloudflare Workers / Vercel Edge / Deno Deploy are JavaScript-runtime concepts and PyJWT is a CPython library. It uses no Node built-ins and no native code in the base install, so the underlying property (portability) is captured by the browser/WASM and pure-implementation attributes instead."
+    },
+    "fips-capable-backend": {
+      "value": null,
+      "source": [
+        "https://cryptography.io/en/latest/faq/",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"
+      ],
+      "comment": "Indeterminate. PyJWT delegates all asymmetric crypto to `cryptography`, whose FAQ makes no FIPS 140 statement, and PyJWT itself says nothing about FIPS. In principle a distribution-built `cryptography` linked against a system OpenSSL running its FIPS provider would inherit that validation — validation belongs to the module, not this library — but neither project documents or tests the configuration, so this is recorded as unknown rather than false."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": [
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml",
+        "https://pypi.org/pypi/PyJWT/json"
+      ],
+      "comment": "Default install: one direct dependency, typing_extensions>=4.0, and even that is conditional on python_version < '3.11' — so on modern Python the runtime dependency count is effectively zero. The `crypto` extra adds cryptography>=3.4.0 (which pulls cffi on most platforms). Checked 2026-07-30 against 2.13.0."
+    },
+    "package-size": {
+      "value": 31274,
+      "source": ["https://pypi.org/project/PyJWT/2.13.0/#files"],
+      "comment": "pyjwt-2.13.0-py3-none-any.whl as reported by PyPI (31.3 kB); the sdist is 107,515 bytes. Excludes the optional `cryptography` dependency, which is orders of magnitude larger."
+    },
+    "github-stars": {
+      "value": 5677,
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt"],
+      "comment": "Snapshot of jpadilla/pyjwt on 2026-07-30."
+    },
+    "downloads": {
+      "value": 687986995,
+      "source": ["https://pypistats.org/api/packages/pyjwt/recent"],
+      "comment": "PyPI downloads for the last 30 days as reported by pypistats on 2026-07-30 (last_week 162,566,972; last_day 26,707,187). PyPI counts include mirrors and CI traffic, so treat this as a within-Python-ecosystem ranking signal only."
+    },
+    "last-release": {
+      "value": "2026-05-21",
+      "source": [
+        "https://api.github.com/repos/jpadilla/pyjwt/releases?per_page=6",
+        "https://pypi.org/pypi/PyJWT/json"
+      ],
+      "comment": "2.13.0, published 2026-05-21."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/jpadilla/pyjwt/releases?per_page=6",
+        "https://api.github.com/repos/jpadilla/pyjwt/commits?per_page=50"
+      ],
+      "comment": "Four releases in the last twelve months (2.11.0 Jan 2026, 2.12.0/2.12.1 Mar 2026, 2.13.0 May 2026), commits through 2026-07-27, and same-cycle turnaround on the 2026 advisories."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/jpadilla/pyjwt/commits?per_page=50"],
+      "comment": "Of the last 50 commits (checked 2026-07-30): jpadilla 17, kurtmckee 14, tamird 4, plus single contributions and 12 bot commits (pre-commit.ci, dependabot). Two humans carry the bulk of the work; the project is under the personal jpadilla account, with Auth0 as a README sponsor rather than an owner."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://pypi.org/pypi/PyJWT/json",
+        "https://api.github.com/advisories?ecosystem=pip&affects=pyjwt&per_page=30",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/pyproject.toml"
+      ],
+      "comment": "On PyPI since 2011, classifier \"Development Status :: 5 - Production/Stable\", the default JWT library across the Python ecosystem, and a documented process for handling advisories. Judgement call against \"stable\": the version is still 2.x rather than 3.0 and the 2026 advisory batch shows the security surface is still moving, but a decade and a half of broad production use plus prompt, well-documented fixes matches the guideline's \"mature\" bar."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": [
+        "https://api.github.com/repos/jpadilla/pyjwt/contents/tests",
+        "https://api.github.com/repos/jpadilla/pyjwt/contents/tests/keys"
+      ],
+      "comment": "The suite (test_algorithms, test_api_jws, test_api_jwt, test_api_jwk, test_jwks_client, plus a dedicated test_advisory.py regression file) runs against the project's own generated key fixtures in tests/keys. No RFC 7520 cookbook vectors, Wycheproof corpus or cross-implementation interop suite was found in the repository."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://pyjwt.readthedocs.io/en/stable/usage.html",
+        "https://raw.githubusercontent.com/jpadilla/pyjwt/2.13.0/README.rst"
+      ],
+      "comment": "Level 4: a readthedocs site with runnable examples for HS256, RS256, PS256, ES256 and EdDSA, every registered claim, leeway, required claims, key-length validation, reading claims/headers without verification, PyJWKClient JWKS retrieval and an OIDC login walk-through, alongside an API reference. Short of 5 because there is no consolidated security-considerations chapter (guidance is scattered) and features such as detached payloads and b64=false are undocumented outside the changelog."
+    }
+  }
 }
