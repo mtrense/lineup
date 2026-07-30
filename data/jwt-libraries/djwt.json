@@ -1,5 +1,441 @@
 {
   "name": "djwt (Deno)",
   "description": "The Deno-native JWT module",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["deno", "browser"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md",
+        "https://github.com/Zaubrik/djwt/tree/master/dist",
+        "https://deno.land/x/djwt@v3.0.2"
+      ],
+      "comment": "Self-described as \"Create and verify JSON Web Tokens (JWT) with Deno or the browser\", distributed as TypeScript modules on deno.land/x with a prebuilt dist/mod.js for browser use. No npm publication, so Node.js and Bun are not targeted; a JSR publish was attempted in 2024 and reverted (commit \"Reverted last 6 commits because jsr is not compatible with browser\", 2024-08-09)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/LICENSE"],
+      "comment": "MIT License, copyright 2019 timonson. The README states MIT as well."
+    },
+    "implementation": {
+      "value": ["webcrypto"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts"
+      ],
+      "comment": "Every cryptographic operation is crypto.subtle.sign / crypto.subtle.verify; algorithm.ts only maps a JWA `alg` string onto a SubtleCrypto algorithm descriptor. The library contains no crypto implementation of its own."
+    },
+    "repository": {
+      "value": "https://github.com/Zaubrik/djwt",
+      "source": ["https://github.com/Zaubrik/djwt"],
+      "comment": "Originally timonson/djwt; the repository now lives under the Zaubrik organisation and the old path redirects."
+    },
+    "package": {
+      "value": "https://deno.land/x/djwt",
+      "source": [
+        "https://deno.land/x/djwt@v3.0.2",
+        "https://apiland.deno.dev/v2/modules/djwt"
+      ],
+      "comment": "deno.land/x is the canonical registry entry (URL imports). A JSR package @zaubrik/djwt also exists but could not be fetched in this pass, and the repository's own JSR publishing commits were reverted."
+    },
+    "documentation": {
+      "value": "https://deno.land/x/djwt@v3.0.2",
+      "source": [
+        "https://deno.land/x/djwt@v3.0.2",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "There is no dedicated docs site: the deno.land/x module page renders the README plus auto-generated symbol documentation for create, verify, decode and getNumericDate. The README is genuinely all the prose documentation there is, alongside an examples/ directory in the repository."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": [
+        "https://apiland.deno.dev/v2/modules/djwt/v0.1.0",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/LICENSE"
+      ],
+      "comment": "Oldest version on deno.land/x is v0.1.0, uploaded 2020-07-29. The project itself is older — the LICENSE is dated 2019 — but 2019 code predates the registry entry, and the guideline asks for the first release on the registry."
+    },
+    "latest-version": {
+      "value": "3.0.2",
+      "source": [
+        "https://apiland.deno.dev/v2/modules/djwt",
+        "https://apiland.deno.dev/v2/modules/djwt/v3.0.2",
+        "https://deno.land/x/djwt@v3.0.2"
+      ],
+      "comment": "Tagged v3.0.2 on deno.land/x, uploaded 2024-03-28. Still current on 2026-07-30 — no release in over two years."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/tests/test.ts"
+      ],
+      "comment": "All three map to WebCrypto HMAC with SHA-256/384/512 in getAlgorithm() and are exercised in tests/test.ts."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/tests/test.ts"
+      ],
+      "comment": "Mapped to RSASSA-PKCS1-v1_5 with the matching hash; covered by the test suite."
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/tests/test.ts"
+      ],
+      "comment": "Mapped to RSA-PSS with saltLength set to the hash length in bytes (256 >> 3 etc.), per RFC 7518 §3.5; covered by the test suite."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts"],
+      "comment": "ES256 (P-256) and ES384 (P-384) only. ES512 is present but commented out in both the Algorithm union and getAlgorithm() with the note \"is not yet supported\", referring to Deno's WebCrypto lacking P-521 at the time; the tests carry the same commented-out case. ES256K is absent entirely."
+    },
+    "eddsa": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts"],
+      "comment": "No Edwards-curve support: the Algorithm union has no EdDSA, Ed25519 or Ed448 member and getAlgorithm() throws \"The jwt's alg ... is not supported\" for anything outside the listed set."
+    },
+    "jwe-key-management": {
+      "value": [],
+      "source": [
+        "https://github.com/Zaubrik/djwt",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"
+      ],
+      "comment": "No JWE at all — the whole library is four source files (mod.ts, algorithm.ts, signature.ts, util.ts) implementing JWS compact serialization."
+    },
+    "jwe-content-encryption": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "No JWE, so no content-encryption algorithms."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/tests/test.ts"
+      ],
+      "comment": "\"none\" is a first-class member of the Algorithm union and has a dedicated test (\"[jwt] none algorithm\"): create(header, payload, null) emits an unsecured JWT and verify(jwt, null) accepts it. RSA1_5 and secp256k1 do not exist here. RSA key size is not djwt's concern — it never touches key material, so a sub-2048-bit RSA key is whatever the host WebCrypto allows through importKey."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts"],
+      "comment": "The algorithm set is a closed TypeScript union and a closed switch in getAlgorithm(), which throws on anything unlisted. No registration hook exists, so a caller cannot add an alg — and therefore cannot bypass the library's own checks that way either."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"
+      ],
+      "comment": "Examined at master (v3.0.2). The opt-in is passing `null` as the key: verifyAlgorithm() throws \"The alg 'none' does not allow a key\" when alg is none and a key was supplied, and throws \"The alg ... demands a key\" when a real alg is paired with a null key. So on any normal call — verify(jwt, someCryptoKey) — an attacker's `none` token is rejected. Recorded true, but with a caveat the RESEARCH.md wording does not quite cover: the opt-in is an untyped `null` argument rather than an unmistakably named unsafe API (key is typed `CryptoKey | null`), so code that passes a key-lookup result which can be null would silently accept unsigned tokens (verifySignature then only checks signature.length === 0)."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"
+      ],
+      "comment": "verify(jwt, key, options) has no algorithms allow-list parameter. The header's alg is taken, mapped through getAlgorithm(), and compared against the CryptoKey's own algorithm: name must match, plus hash.name for HMAC/RSA keys and namedCurve for EC keys. The key therefore pins the algorithm structurally, down to the hash — an HS256 key will not verify an HS512 token. The residual gap is `none`, where the \"key\" is null."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"
+      ],
+      "comment": "Guideline level 4: one key abstraction (WebCrypto CryptoKey), but the key carries its algorithm, hash and curve, and a mismatch fails closed before any signature check with the clear error \"The jwt's alg ... does not match the key's algorithm\". RS256→HS256 confusion is structurally impossible because an RSA CryptoKey imported for RSASSA-PKCS1-v1_5 cannot be used as an HMAC key, and raw bytes are never accepted as a key. Not 5 because the check is a runtime comparison rather than a distinct key type per family, and because the null-key `none` path sits outside it."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "decode(jwt) is a separate exported function that returns the [header, payload, signature] 3-tuple and takes no key at all — there is no flag on verify() that skips the signature. The README states in bold that it \"does not verify the digital signature\". The name is not itself a warning (no `unsafe`/`insecure` prefix), and the raw tuple shape at least discourages casual use."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "validate() always runs validateTimingClaims(): exp and nbf are checked whenever present (and a malformed exp/nbf is rejected outright), with opt-outs ignoreExp / ignoreNbf. `aud` is only checked when the caller passes the `audience` option — and then it fails closed, throwing \"The jwt has no 'aud' claim\" if the token carries none. iss, sub, jti and typ are never validated; the header is only checked for a string `alg`. Arbitrary extra checks are possible through the `predicates` option, which runs after signature verification."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "`audience` is an optional field of VerifyOptions, and issuer validation does not exist in the API at all — `iss` is declared on the Payload type but never compared to anything. verify(jwt, key) with no options happily accepts a token with any aud/iss."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "VerifyOptions.expLeeway and nbfLeeway, both defaulting to 1 (seconds) in validateTimingClaims — a small, sane default rather than an unbounded one. ignoreExp / ignoreNbf disable the checks entirely."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"],
+      "comment": "djwt never compares MAC bytes in JavaScript: verification is `await crypto.subtle.verify(getAlgorithm(alg), key, signature, ...)`, so the tag comparison happens inside the host runtime's WebCrypto (Rust-side in Deno, the platform crypto library in browsers), which is where the constant-time guarantee lives. Caveat: the property is inherited from the runtime, not proven by this library, and the one comparison djwt does perform itself — `signature.length === 0` on the unsecured `none` path — carries no secret."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/algorithm.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"
+      ],
+      "comment": "No key-size logic anywhere: djwt receives an already-imported CryptoKey and only inspects algorithm/hash/curve. Neither the RFC 7518 §3.2 rule that an HMAC secret be at least the hash length nor a 2048-bit RSA floor is enforced — a one-byte HMAC secret imported via crypto.subtle.importKey works fine."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "validate() inspects exactly one header parameter — it throws unless header.alg is a string — and passes the rest through untouched. A token carrying `crit` with unrecognised extension names verifies normally, which is the RFC 7515 §4.1.11 violation the tag describes. Note that djwt implements none of the extensions (`b64` and friends) that `crit` would typically announce."
+    },
+    "nested-depth-limits": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "Not applicable rather than absent: there is no JWE, no nested-token handling and no PBES2, so there is no recursion to bound and no p2c cap to set. decode() splits the compact serialization on \".\" exactly once and base64url-decodes three segments, with no size limit — but that is input size, not depth. Left null instead of forcing a true/false."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": [
+        "https://github.com/advisories?query=djwt",
+        "https://osv.dev/list?q=djwt"
+      ],
+      "comment": "Searched 2026-07-30: the GitHub Advisory Database returns \"No results matched your search\" for djwt and OSV.dev returns no entries. Read this cautiously — deno.land/x is not a package ecosystem tracked by GHSA or OSV, so there is effectively no reporting channel that would produce an advisory for this library, and the repository has no SECURITY.md. Absence of advisories here is much weaker evidence than it would be for an npm or PyPI package."
+    },
+    "security-policy": {
+      "value": false,
+      "source": ["https://github.com/Zaubrik/djwt"],
+      "comment": "No SECURITY.md in the repository root (contents are .github/, dist/, examples/, tests/, .gitignore, LICENSE, README.md, algorithm.ts, deno.json, deps.ts, mod.ts, signature.ts, util.ts) and the README documents no private disclosure channel."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://github.com/Zaubrik/djwt",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "Searched the repository and README for an audit report or a named reviewing security team and found none; no third-party audit surfaced in web search either."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"
+      ],
+      "comment": "Both directions: create(header, payload, key) signs and verify(jwt, key, options) verifies. This is the library's entire scope."
+    },
+    "jwe": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "No encryption of any kind; the README scopes the library to JWS Compact Serialization."
+    },
+    "jwk-parsing": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "djwt has no JWK type or parser — it takes a CryptoKey. A caller can of course feed a JWK document to crypto.subtle.importKey(\"jwk\", ...) themselves, but that is the runtime's API, not this library's."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "No network code at all; the library performs no fetch."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "No key set handling and therefore no cache — verify() takes exactly one key."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "`kid` is never read. The Header type carries an index signature so a kid can be set when signing, but verification ignores it; key selection is entirely the caller's job (decode() first, then pick a key, then verify())."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "No RFC 7638 thumbprint computation; the library has no JWK representation to hash."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "Requires JWE, which djwt does not implement."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "Compact only, stated explicitly in the README (\"uses the JWS Compact Serialization only\") and visible in decode(), which splits on \".\" and demands a 3-tuple."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "RFC 7515 Appendix F is not supported: decode() requires all three segments to be present and JSON-parses the payload segment."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "RFC 7797 `b64: false` is not implemented; the payload segment is always base64url-decoded and JSON-parsed, and the `b64` header parameter is ignored."
+    },
+    "key-generation": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"
+      ],
+      "comment": "The library exports no key helper. The README instead instructs users to call crypto.subtle.generateKey({ name: \"HMAC\", hash: \"SHA-512\" }, true, [\"sign\", \"verify\"]) directly — deliberate minimalism rather than an oversight, but by this attribute's definition it is a false."
+    },
+    "x509-header-support": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "None of x5c, x5t, x5t#S256 or x5u is read, parsed or validated; the only header parameter djwt looks at is alg."
+    },
+    "key-input-formats": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "None of the listed encodings apply, and \"empty\" would read as unresearched, so recorded null with the explanation: djwt ingests no key material whatsoever — the API accepts an already-imported WebCrypto CryptoKey (or null for `none`). Whatever crypto.subtle.importKey supports on the host runtime — raw, pkcs8, spki, jwk — is what a user can get in, but the conversion happens outside this library. There is no PEM handling anywhere in the source."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"],
+      "comment": "No pluggable signer interface: create() calls crypto.subtle.sign directly with the CryptoKey it was given, so a KMS/HSM/PKCS#11 signer cannot be injected. Partial mitigation for key hygiene: a non-extractable CryptoKey works fine, so the private key need never be readable by the application."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://github.com/Zaubrik/djwt",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md"
+      ],
+      "comment": "No first-party adapter package and none referenced from the README. djwt is very commonly paired with oak in Deno tutorials, but that pairing is hand-written middleware around verify(), not a published integration, so `oak` would overstate it."
+    },
+    "async-api": {
+      "value": ["async-only"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"
+      ],
+      "comment": "create() and verify() are async because SubtleCrypto is promise-based — the typical shape for a WebCrypto-backed library. decode(), validate() and getNumericDate() are synchronous, but no synchronous signing or verification path exists."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"],
+      "comment": "The Payload interface declares the registered claims (iss, sub, aud, exp, nbf, iat, jti) plus an open index signature, and claims come back as that object. verify<PayloadType extends Payload>() takes a generic, but it is an unchecked cast (`return payload as PayloadType`) with no runtime schema enforcement, so it does not qualify as strongly typed. The `predicates` option — an array of payload predicates that must all pass — is the intended place to do real claim validation, by hand."
+    },
+    "crypto-backend": {
+      "value": ["webcrypto"],
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"],
+      "comment": "The host runtime's SubtleCrypto, exclusively. On Deno that means Deno's Rust-based ext/crypto; in a browser it is the browser's own implementation. djwt has no backend choice and no vendored crypto."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/deps.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"
+      ],
+      "comment": "Pure TypeScript with no FFI and no native module: the only import outside the standard library-provided globals is encodeBase64Url/decodeBase64Url from https://deno.land/std@0.221.0/encoding/base64url.ts. The heavy lifting is done by the runtime's built-in WebCrypto, which is native code inside the runtime rather than a dependency of the package."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md",
+        "https://github.com/Zaubrik/djwt/tree/master/dist"
+      ],
+      "comment": "Browser support is a stated goal (\"with Deno or the browser\") and the repository ships a bundled dist/mod.js for it; the code uses only WebCrypto, TextEncoder/TextDecoder and base64url helpers. Note that in a browser crypto.subtle is only available in secure contexts (HTTPS/localhost)."
+    },
+    "edge-runtime-compatible": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/deps.ts"
+      ],
+      "comment": "Nothing runtime-specific is used — no Node built-ins, no native modules, no filesystem or network access — so it runs on Deno Deploy as-is and the code itself is compatible with Cloudflare Workers and Vercel Edge, which all expose WebCrypto. The practical friction is distribution rather than capability: djwt is published as deno.land/x URL imports, and its JSR publishing attempt was reverted in August 2024, so a bundler-based edge platform needs the dist bundle or a vendored copy."
+    },
+    "fips-capable-backend": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Zaubrik/djwt/master/signature.ts"],
+      "comment": "There is no backend to configure: djwt hard-codes crypto.subtle and offers no provider selection. Whether the underlying primitives are FIPS 140-validated is entirely the host runtime's business — validation belongs to the module, not this library — and neither Deno's WebCrypto nor browser implementations are offered as a validated module, so there is no supported FIPS configuration."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/deps.ts",
+        "https://deno.land/x/djwt@v3.0.2"
+      ],
+      "comment": "One direct dependency, checked 2026-07-30: deno.land/std@0.221.0's encoding/base64url module, imported through deps.ts purely for base64url encode/decode. The deno.land/x page lists std@0.221.0 as the sole dependency."
+    },
+    "package-size": {
+      "value": null,
+      "source": ["https://deno.land/x/djwt@v3.0.2"],
+      "comment": "deno.land/x publishes source modules rather than an archived artifact and reports no package size, so there is no comparable figure. For scale, the library is four small TypeScript files (mod.ts, algorithm.ts, signature.ts, util.ts) plus deps.ts."
+    },
+    "github-stars": {
+      "value": 235,
+      "source": [
+        "https://github.com/Zaubrik/djwt",
+        "https://apiland.deno.dev/v2/modules/djwt"
+      ],
+      "comment": "Snapshot of Zaubrik/djwt taken 2026-07-30 (235 stars, 23 forks). The deno.land/x registry metadata still shows a stale cached count of 167."
+    },
+    "downloads": {
+      "value": null,
+      "source": ["https://apiland.deno.dev/v2/modules/djwt"],
+      "comment": "deno.land/x does not publish download counts. The registry's own metadata exposes only an opaque \"popularity score\" (27,945 on 2026-07-30), which is not a download figure and is not comparable to the npm/PyPI/crates.io numbers recorded for other candidates."
+    },
+    "last-release": {
+      "value": "2024-03-28",
+      "source": [
+        "https://apiland.deno.dev/v2/modules/djwt/v3.0.2",
+        "https://deno.land/x/djwt@v3.0.2"
+      ],
+      "comment": "v3.0.2 uploaded 2024-03-28T11:32:40Z; no newer version as of 2026-07-30."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": [
+        "https://github.com/Zaubrik/djwt/commits/master",
+        "https://apiland.deno.dev/v2/modules/djwt/v3.0.2"
+      ],
+      "comment": "Last release 2024-03-28 and last commit 2024-08-09 (\"Reverted last 6 commits because jsr is not compatible with browser\") — roughly two years of silence as of 2026-07-30, well past the 12-month dormancy line. Not deprecated: the maintainer points to no successor and the repository is neither archived nor marked obsolete. Worth knowing that Deno's own documentation now demonstrates JWTs with panva's jose rather than djwt."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/Zaubrik/djwt/commits/master"],
+      "comment": "Effectively one person: timonson authored all but two of the visible recent commits, the exceptions being drive-by PRs (a typo fix and the JSR publishing PR, the latter subsequently reverted). The Zaubrik organisation is the author's own."
+    },
+    "maturity": {
+      "value": ["stable"],
+      "source": [
+        "https://apiland.deno.dev/v2/modules/djwt",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md",
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/mod.ts"
+      ],
+      "comment": "Post-1.0 (v3.0.2), a small API that has been settled for years, and long-standing production use as the default JWT choice in the Deno ecosystem — that meets the \"stable\" bar. Held back from \"mature\" by three things: no security process or disclosure channel, no release in two years, and incomplete coverage (no ES512, no EdDSA, no JWE/JWK)."
+    },
+    "rfc-conformance-testing": {
+      "value": ["own-tests-only"],
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/tests/test.ts",
+        "https://github.com/Zaubrik/djwt/tree/master/tests"
+      ],
+      "comment": "tests/ holds only test.ts and test_deps.ts. Coverage is decent for the surface (every supported alg, the none algorithm, expired tokens, aud as string/array/RegExp, predicates), but the keys are generated at test time with crypto.subtle.generateKey and the one fixed token in the decode test is the ubiquitous jwt.io sample rather than an RFC vector. No RFC 7515/7520 appendix vectors, no Wycheproof corpus, no cross-implementation interop suite, and no RFC number is referenced in the tests."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://raw.githubusercontent.com/Zaubrik/djwt/master/README.md",
+        "https://deno.land/x/djwt@v3.0.2",
+        "https://github.com/Zaubrik/djwt"
+      ],
+      "comment": "Level 3: a README with a runnable snippet for each of create/verify/decode, key generation via crypto.subtle.generateKey, the aud option and the leeway/ignore options, plus auto-generated symbol docs on deno.land/x and an examples/ directory. Short of 4 because it is README-only with no per-option API reference, no worked JWKS/key-management guidance (the library has none), and no security-considerations section — notably nothing warning about the null-key `none` path."
+    }
+  }
 }
