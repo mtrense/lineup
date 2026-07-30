@@ -1,5 +1,539 @@
 {
   "name": "jose4j (JVM)",
   "description": "Mature standalone JVM JOSE implementation with strong RFC coverage",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["jvm"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j"
+      ],
+      "comment": "Pure JVM library (Java, maven coordinates org.bitbucket.b_c:jose4j); the pom compiles with source/target 1.8, so Java 8 and later. Some algorithms need a newer JDK or an added JCA provider (see the EdDSA and RSA-PSS comments)."
+    },
+    "license": {
+      "value": ["apache-2-0"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j"
+      ],
+      "comment": "The pom declares \"The Apache Software License, Version 2.0\" and the repository ships LICENSE plus NOTICE.txt. Author: Brian Campbell (the \"b_c\" of the groupId)."
+    },
+    "implementation": {
+      "value": ["platform-provider"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jca/ProviderContext.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java"
+      ],
+      "comment": "All cryptography goes through the JCA/JCE: Mac, Signature, Cipher, KeyAgreement, KeyPairGenerator and MessageDigest instances obtained from the platform, with the provider selectable per operation via ProviderContext. jose4j implements no primitive itself; BouncyCastle appears only as a test-scope dependency and as an optional provider for algorithms the JDK lacks."
+    },
+    "repository": {
+      "value": "https://bitbucket.org/b_c/jose4j",
+      "source": ["https://api.bitbucket.org/2.0/repositories/b_c/jose4j"],
+      "comment": "Canonical home is Bitbucket (created 2012-10-01, last updated 2025-05-19). Several GitHub repositories named jose4j exist but are third-party forks, not the upstream."
+    },
+    "package": {
+      "value": "https://central.sonatype.com/artifact/org.bitbucket.b_c/jose4j",
+      "source": [
+        "https://central.sonatype.com/artifact/org.bitbucket.b_c/jose4j/versions",
+        "https://search.maven.org/solrsearch/select?q=g:%22org.bitbucket.b_c%22+AND+a:%22jose4j%22&core=gav&rows=100&wt=json"
+      ],
+      "comment": "Maven Central coordinates org.bitbucket.b_c:jose4j; 45 versions published as of 2026-07-30."
+    },
+    "documentation": {
+      "value": "https://bitbucket.org/b_c/jose4j/wiki/Home",
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/README.md",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/examples/?pagelen=100"
+      ],
+      "comment": "The 314-byte README does nothing but point at the Bitbucket wiki, which is the project's documentation. The wiki is client-side rendered and could not be retrieved by the fetcher on 2026-07-30, so its contents are unverified here; the repository's examples test class (ExamplesTest.java, 45 KB) is the compiled counterpart of the wiki's example code. Javadoc is published to Maven Central alongside the JAR."
+    },
+    "first-release": {
+      "value": "2014",
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22org.bitbucket.b_c%22+AND+a:%22jose4j%22&core=gav&rows=100&wt=json",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j"
+      ],
+      "comment": "Oldest artifact on Maven Central is 0.3.6, published 2014-06-06; the Bitbucket repository itself dates from 2012-10-01, so development predates the registry record by about eighteen months."
+    },
+    "latest-version": {
+      "value": "0.9.6",
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22org.bitbucket.b_c%22+AND+a:%22jose4j%22&core=gav&rows=100&wt=json",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/refs/tags?pagelen=100&sort=-target.date",
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "0.9.6, released 2024-03-06 — still pre-1.0 after twelve years, which reflects the author's versioning habit rather than instability. master carries 0.9.7-SNAPSHOT with unreleased changes (notably a stricter audience validation PR merged 2025-05-19). Findings below were read against master, which is only four commits ahead of the 0.9.6 tag on the main code."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java"
+      ],
+      "comment": "HMAC_SHA256/384/512 constants implemented in HmacUsingShaAlgorithm over javax.crypto.Mac; exercised by HmacShaTest and JwsUsingHmacSha256ExampleTest."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/RsaUsingShaAlgorithm.java"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/RsaUsingShaAlgorithm.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100"
+      ],
+      "comment": "Full PSS family, implemented with PSSParameterSpec/MGF1ParameterSpec and covered by RsaPssTest. Because jose4j only delegates to the JCA, availability depends on the runtime: PSS needs Java 11+ or a provider such as BouncyCastle on Java 8, which is why RsaUsingShaAlgorithm imports java.security.Security and can fall back to BC."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100"
+      ],
+      "comment": "P-256/P-384/P-521 plus ES256K (secp256k1, RFC 8812) as ECDSA_USING_SECP256K1_CURVE_AND_SHA256. ES256K is only usable where the JCA provider still offers secp256k1 — the SunEC provider dropped that curve in JDK 16, so BouncyCastle is needed on newer JDKs. Tested by EcdsaUsingShaAlgorithmTest/EcdsaUsingShaEdgesTest."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/EdDsaKeyUtil.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100"
+      ],
+      "comment": "Registered under the RFC 8037 `EdDSA` identifier only (there is no curve-specific `Ed25519` alg constant). EdDsaKeyUtil handles both OKP curves — ED25519 (32-byte keys) and ED448 (57-byte keys) — through the JCA \"EdDSA\" algorithm, so it needs JDK 15+ or BouncyCastle. Covered by EdDsaTest."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "rsa1-5",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwe/KeyManagementAlgorithmIdentifiers.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jwe/?pagelen=100"
+      ],
+      "comment": "Complete RFC 7518 key-management coverage. Two implemented algorithms the schema's tag set cannot express are also present: ECDH-ES+A192KW and PBES2-HS384+A192KW. ECDH-ES additionally works over X25519/X448 (XEcdhTest, XDHKeyUtil). Every family has a dedicated test class, including negative tests (NegativeJweWrappingTest, InvalidCurveTest)."
+    },
+    "jwe-content-encryption": {
+      "value": [
+        "a128cbc-hs256",
+        "a192cbc-hs384",
+        "a256cbc-hs512",
+        "a128gcm",
+        "a192gcm",
+        "a256gcm"
+      ],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwe/ContentEncryptionAlgorithmIdentifiers.java"
+      ],
+      "comment": "All six RFC 7518 content-encryption algorithms; XC20P (XChaCha20-Poly1305) is not implemented. `zip: DEF` compression is supported with a decompression size cap (see Nested/Recursive Depth Limits)."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/AlgorithmIdentifiers.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwa/AlgorithmConstraints.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwx/KeyValidationSupport.java"
+      ],
+      "comment": "`none` exists as AlgorithmIdentifiers.NONE (and AlgorithmConstraints.ALLOW_ONLY_NONE) but is blocked on the default verification path — see Rejects alg: none. RSA1_5 remains available as a key-management algorithm, discouraged by RFC 8725 §3.10; 0.9.3 added extra controls after the chosen-ciphertext advisory. Not tagged: RSA < 2048 is rejected outright (2048-bit minimum enforced), and ES256K is the RFC 8812-registered use of secp256k1 rather than an unrestricted one."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwa/AlgorithmFactory.java"
+      ],
+      "comment": "AlgorithmFactory exposes public registerAlgorithm(A) and unregisterAlgorithm(String), reachable through AlgorithmFactoryFactory for JWS, JWE key management and content encryption. That makes it easy to add an alg — and equally easy to unregister one, or to register an implementation that sidesteps jose4j's own key checks, so it is an escape hatch as much as a feature."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwa/AlgorithmConstraints.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java"
+      ],
+      "comment": "Two independent defaults block it. (1) The JsonWebSignature constructor applies AlgorithmConstraints.DISALLOW_NONE unless the explicitly named system property `org.jose4j.jws.default-allow-none` is set. (2) JwtConsumerBuilder defaults `requireSignature = true`, so an unsecured JWT fails with SIGNATURE_MISSING unless the caller calls setDisableRequireSignature(). Caveat worth knowing: the DISALLOW_NONE layer is a block-list, so a caller who replaces it with the generic AlgorithmConstraints.NO_CONSTRAINTS re-admits `none` at the JWS layer — the JWT-layer requireSignature check still catches it."
+    },
+    "algorithm-pinning": {
+      "value": ["defaults-to-safe-set"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwa/AlgorithmConstraints.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumer.java"
+      ],
+      "comment": "The default is a curated block-list (DISALLOW_NONE): every supported algorithm except `none` is accepted from the header unless the caller narrows it. Pinning is possible and documented — setJwsAlgorithmConstraints / setJweAlgorithmConstraints / setJweContentEncryptionAlgorithmConstraints with ConstraintType.PERMIT — but it is optional, so code compiles and runs without an allow-list. Not `trusts-header` (none is excluded and key-type mismatches fail closed), not `caller-must-specify` (nothing forces the allow-list)."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/test/java/org/jose4j/jws/PublicKeyAsHmacKeyTest.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwx/KeyValidationSupport.java"
+      ],
+      "comment": "Single key abstraction (java.security.Key), so no compile-time separation, but the RS256→HS256 trick fails closed at runtime: HmacUsingShaAlgorithm.verifySignature starts with `if (!(key instanceof SecretKey)) throw new InvalidKeyException(key.getClass() + \" cannot be used for HMAC verification.\")`, and the RSA/EC algorithms require RSAKey/ECKey via KeyValidationSupport. There is a dedicated regression test, PublicKeyAsHmacKeyTest, which walks the attack (including with the BouncyCastle provider) and asserts verification never succeeds. Rated 4 per the guideline's \"key carries its type and a mismatch fails closed at runtime\"."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java"
+      ],
+      "comment": "JsonWebSignature.getUnverifiedPayload() is a distinct, plainly named accessor sitting next to the verifying getPayload(). Partial caveat: at the JWT layer the same JwtConsumer pipeline can be told to skip verification with setSkipSignatureVerification() (or setSkipAllValidators()), which is a flag on the normal path rather than a separate API — documented as being for two-pass processing. Recorded true on the strength of the clearly named JWS-level method."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf", "iat", "aud"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/NumericDateValidator.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/GeneralAudValidator.java"
+      ],
+      "comment": "JwtConsumer wires in a date-claims validator (exp, nbf, iat checked when present, none required by default), an audience validator and an issuer validator. The audience default is unusually strict and worth calling out: with no expected audience configured, a token that *carries* an `aud` claim is rejected, while a token without `aud` passes — fail-closed only in the presence of the claim, and disable-able with setSkipDefaultAudienceValidation(). The issuer validator is constructed with a null expected issuer and not required, so `iss` is effectively unchecked unless setExpectedIssuer() is called. sub/jti/typ are validated only when setRequireSubject/setRequireJti/setExpectedType are used."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/GeneralAudValidator.java"
+      ],
+      "comment": "Neither is a required parameter: a JWT carrying neither `aud` nor `iss` validates cleanly against a JwtConsumer built without setExpectedAudience()/setExpectedIssuer(). jose4j is nonetheless stricter than most — an unexpected `aud` value fails, and setExpectedIssuer() implies the claim is required — but the attribute asks whether the API makes it hard to verify *without* stating both, and it does not. A stricter-audience change is merged on master but unreleased as of 0.9.6."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/NumericDateValidator.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java"
+      ],
+      "comment": "JwtConsumerBuilder.setAllowedClockSkewInSeconds(int) feeds NumericDateValidator.allowedClockSkewSeconds, applied to exp, nbf and iat. The default is 0 — no leeway at all — which is the conservative choice and the opposite of the unbounded defaults worth flagging elsewhere."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java"
+      ],
+      "comment": "verifySignature compares the received and computed tags with ByteUtil.secureEquals(signatureBytes, calculatedSigature) rather than Arrays.equals. The AES-CBC-HMAC composite cipher's tag check goes through the same helper."
+    },
+    "minimum-key-size-enforced": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwx/KeyValidationSupport.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumerBuilder.java"
+      ],
+      "comment": "Both halves of RFC 7518 §3.2 are enforced: KeyValidationSupport.MIN_RSA_KEY_LENGTH = 2048 with checkRsaKeySize() rejecting smaller moduli for every JOSE RSA algorithm, and HmacUsingShaAlgorithm.validateKey() rejecting HMAC secrets shorter than the hash output (256/384/512 bits). Two escape hatches exist and are named as such: JwtConsumerBuilder.setRelaxVerificationKeyValidation() (documented for 1024-bit RSA keys and short HMAC secrets) and JsonWebSignature.setDoKeyValidation(false). One structural gap: the RSA check only applies to keys implementing java.security.interfaces.RSAKey, so a provider key that does not expose its modulus is not size-checked."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwx/JsonWebStructure.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java"
+      ],
+      "comment": "Correct RFC 7515 §4.1.11 behaviour: checkCrit() throws \"Unrecognized header '<name>' marked as critical\" for anything not natively understood — JsonWebSignature.isSupportedCriticalHeader() accepts only `b64` — and the caller can additionally declare names it handles via setKnownCriticalHeaders(). Both tags apply: reject by default, with an explicit opt-in per header name. Exercised by CritHeaderTest in both the jws and jwe test packages."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwe/Pbes2HmacShaWithAesKeyWrapAlgorithm.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/zip/DeflateRFC1951CompressionAlgorithm.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumer.java"
+      ],
+      "comment": "The two DoS amplifiers that produced advisories are now bounded: PBES2 rejects `p2c` above 2,499,999 (\"cannot be more than ... to avoid excessive resource utilization\") and below 1000, generates 65,536 iterations by default and requires an 8-octet minimum salt; DEFLATE decompression stops at 204,800 bytes by default, tunable with the `org.jose4j.zip.decompress-max-bytes` system property. Recorded true on that basis, but note the gap: JwtConsumer's nesting loop has no explicit depth cap — each additional layer merely has to survive key resolution and verification."
+    },
+    "cve-history": {
+      "value": ["historical-2020s"],
+      "source": [
+        "https://github.com/advisories/GHSA-jgvc-jfgh-rjvv",
+        "https://github.com/advisories/GHSA-6qvw-249j-h44c",
+        "https://github.com/advisories/GHSA-3677-xxcr-wjqv"
+      ],
+      "comment": "Four 2023–2024 advisories, all fixed and all in JWE code paths; nothing known against the JWS/JWT path and nothing unpatched as of 2026-07-30. GHSA-jgvc-jfgh-rjvv (moderate, published 2023-04-27, reported by rcorrea35 via Google Security Research): RSA1_5 chosen-ciphertext/padding-oracle — an attacker could swap RSA-OAEP for RSA1_5 in the header because the key's algorithm was not checked against it; fixed in 0.9.3. CVE-2023-31582 (GHSA-7g24-qg88-p43q): PBES2 iteration counts of 1000 or less accepted; fixed in 0.9.3. CVE-2023-51775 (GHSA-6qvw-249j-h44c, moderate 6.5, published 2024-02-29): CPU exhaustion via a huge PBES2 `p2c`; fixed in 0.9.4. CVE-2024-29371 (GHSA-3677-xxcr-wjqv, high 7.5): JWE decompression bomb; fixed in 0.9.6 — the current release. Not tagged historical-pre-2020: an early invalid-curve fix is often attributed to jose4j (InvalidCurveTest exists in the test suite) but no advisory ID for it could be confirmed."
+    },
+    "security-policy": {
+      "value": false,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/?pagelen=100",
+        "https://github.com/advisories/GHSA-jgvc-jfgh-rjvv"
+      ],
+      "comment": "The repository root holds only src, .gitignore, LICENSE, NOTICE.txt, README.md and pom.xml — no SECURITY.md and no documented private disclosure channel. Bitbucket also offers no security-advisory facility, so advisories are published downstream (GitHub Advisory Database, NVD) after the fact. Reports have in practice gone to the author directly and been fixed quickly (the 2023 Google report was fixed within two weeks), but there is nothing published telling a reporter where to send them."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://github.com/advisories/GHSA-jgvc-jfgh-rjvv",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/?pagelen=100"
+      ],
+      "comment": "Searched and found none: no audit report in the repository and no published third-party assessment. The closest thing is the 2023 Google Security Research advisory on the RSA1_5 chosen-ciphertext issue, which is a vulnerability disclosure rather than an audit of the library."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java"
+      ],
+      "comment": "Both directions through a single JsonWebSignature object: setPayload/setKey/getCompactSerialization to produce, setCompactSerialization/verifySignature to consume."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwe/KeyManagementAlgorithmIdentifiers.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jwe/?pagelen=100"
+      ],
+      "comment": "Full JsonWebEncryption implementation with the complete RFC 7518 algorithm set, key agreement, key wrapping, `dir`, compression, and a large negative-test suite."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/JsonWebKey.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/PublicJsonWebKey.java"
+      ],
+      "comment": "JsonWebKey.Factory.newJwk(String json | Map | Key) dispatches on `kty` to RSA, EC, OKP (OctetKeyPair) and oct key classes; JsonWebKeySet parses whole key sets."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/HttpsJwks.java"
+      ],
+      "comment": "HttpsJwks retrieves a key set from an HTTPS URI using the bundled SimpleGet/Get client (org.jose4j.http), with no third-party HTTP dependency."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/HttpsJwks.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/resolvers/HttpsJwksVerificationKeyResolver.java"
+      ],
+      "comment": "HttpsJwks honours Cache-Control max-age (taking precedence) and Expires, falling back to a 3600-second default cache duration, and can optionally retain the last good key set for a configured window after a fetch failure. HttpsJwksVerificationKeyResolver refetches when no key matches the JWS header (logging \"Refreshing JWKs from {} as no suitable verification key ... was found\") and retries selection. The refetch-on-miss amplification risk is throttled by HttpsJwks' refresh reprieve threshold (300 ms by default), which is short — a rotating attacker-chosen `kid` can still drive roughly three fetches per second per resolver."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/resolvers/HttpsJwksVerificationKeyResolver.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/main/java/org/jose4j/jwk/?pagelen=100"
+      ],
+      "comment": "VerificationJwkSelector (and DecryptionJwkSelector for JWE) filters a JsonWebKeySet by `kid` plus `kty`, `alg`, `use` and x5t via SimpleJwkFilter; JwksVerificationKeyResolver and HttpsJwksVerificationKeyResolver plug that into JwtConsumer. When header-based filtering leaves several candidates, selectWithVerifySignatureDisambiguate() can disambiguate by actually trying the signature (off by default)."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/JsonWebKey.java"
+      ],
+      "comment": "RFC 7638 via calculateThumbprint(hashAlgorithm) and calculateBase64urlEncodedThumbprint(hashAlgorithm), plus RFC 9278 thumbprint URIs through calculateThumbprintUri(), which is restricted to SHA-256 and emits urn:ietf:params:oauth:jwk-thumbprint:sha-256:<value>."
+    },
+    "nested-jwt": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumer.java"
+      ],
+      "comment": "JwtConsumer unwraps signed-inside-encrypted tokens layer by layer (isNestedJwt loop), passing the accumulated JOSE objects to key resolvers and customizers as a nesting context so the inner key can be chosen based on the outer structure. requireSignature/requireEncryption/requireIntegrity let the caller state which layers must be present."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/main/java/org/jose4j/jwx/?pagelen=100"
+      ],
+      "comment": "Compact serialization only — the jwx package contains CompactSerialization/CompactSerializer and nothing for the flattened or general JSON forms, and JsonWebSignature exposes only getCompactSerialization()/getDetachedContentCompactSerialization(). Consequently multiple signatures and multi-recipient JWE are out of reach; this is jose4j's most conspicuous spec gap relative to Nimbus JOSE+JWT or go-jose."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100"
+      ],
+      "comment": "RFC 7515 Appendix F: getDetachedContentCompactSerialization() emits header..signature, and the payload is supplied separately on the verification side; covered by DetachedContentTest."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100"
+      ],
+      "comment": "RFC 7797 implemented: isRfc7797UnencodedPayload() reads the `b64` header, getSigningInputBytes() switches the signing input per RFC 7797 §3, and `b64` is the one critical header understood natively. Tested by JwsUnencodedPayloadOptionTest."
+    },
+    "key-generation": {
+      "value": true,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/main/java/org/jose4j/jwk/?pagelen=100",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/RsaKeyUtil.java"
+      ],
+      "comment": "Generators for every key type it supports: RsaJwkGenerator, EcJwkGenerator, OkpJwkGenerator (Ed25519/Ed448/X25519/X448) and OctJwkGenerator, backed by RsaKeyUtil.generateKeyPair(bits) and the matching EC/OKP utilities, all returning ready-to-serialize JWKs."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/PublicJsonWebKey.java"
+      ],
+      "comment": "All four members are read and written. Two traps: x5c chains are parsed (X509Util.fromBase64Der) and only checked for leaf-vs-bare-key consistency via checkForBareKeyCertMismatch() — there is no path validation, expiry check or trust-anchor verification, so an x5c chain must be validated by the caller before it is trusted. x5u is stored and returned as a plain string and is never dereferenced by the library, which sidesteps the classic jku/x5u SSRF class of attack. x5t/x5t#S256 can be derived from the leaf certificate when absent (allowFallbackDeriveFromX5c)."
+    },
+    "key-input-formats": {
+      "value": ["pem", "der", "spki", "jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/KeyPairUtil.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/keys/RsaKeyUtil.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/JsonWebKey.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/PublicJsonWebKey.java"
+      ],
+      "comment": "KeyPairUtil.fromPemEncoded() reads \"-----BEGIN PUBLIC KEY-----\" blocks as X509EncodedKeySpec (SPKI), and pemEncode() writes them back; DER shows up as base64 DER certificates in x5c via X509Util. JWK and JWKS documents are first-class, and raw bytes become HmacKey/AesKey/PbkdfKey. Not supported directly: PKCS#8 private-key PEM, PKCS#1, SEC1, PKCS#12 and Java keystores — RsaKeyUtil builds keys only from RSAPublicKeySpec/RSAPrivateKeySpec/RSAPrivateCrtKeySpec, and everything else is expected to arrive as a java.security.Key that the caller obtained from KeyFactory or a KeyStore."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jca/ProviderContext.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/HmacUsingShaAlgorithm.java"
+      ],
+      "comment": "Not via a jose4j-specific signer interface, but through the JCA, which is the JVM's answer to the same problem: any opaque java.security.Key from an HSM, PKCS#11 token or cloud-KMS JCA provider can be handed to JsonWebSignature, and ProviderContext lets the caller name the provider per operation — separately for the supplied-key operations (signature, MAC, key encryption, key agreement) and for the general ones (content encryption) — so signing can be routed to the HSM while content encryption stays local. Note the trade-off flagged under Minimum Key Size Enforced: keys that hide their material also escape the size checks."
+    },
+    "framework-integrations": {
+      "value": ["quarkus"],
+      "source": [
+        "https://quarkus.io/guides/security-jwt",
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "jose4j itself ships no adapters — the pom has no web-framework dependencies and the library is a pure protocol implementation. The tag records the de facto integration rather than a first-party one: SmallRye JWT, the MicroProfile JWT implementation behind quarkus-smallrye-jwt / quarkus-smallrye-jwt-build, is built on jose4j, and Quarkus' own security-jwt guide has callers implementing a custom JWTCallerPrincipalFactory against org.jose4j.jwt.JwtClaims and org.jose4j.jwt.consumer.InvalidJwtException — jose4j types surface directly in the framework's extension points. jose4j is also embedded in IBM WebSphere Liberty, which is how several of its advisories reached enterprise security bulletins."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jws/JsonWebSignature.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwk/HttpsJwks.java"
+      ],
+      "comment": "Blocking synchronous API throughout; even the HTTPS JWKS fetch uses a blocking HttpsURLConnection-style client. There are no CompletionStage/Future entry points, which is a real consideration in reactive stacks (Quarkus wraps the blocking call itself)."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jwt/consumer/JwtConsumer.java",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/examples/?pagelen=100"
+      ],
+      "comment": "Claims live in JwtClaims, a dynamic map with setClaim(name, value) and typed accessors for the registered claims (getExpirationTime, getAudience, …) plus getClaimValue(name, Class<T>) for casting custom ones. There is no binding of claims to a user-defined class and no schema validation, so mapping to your own type is manual."
+    },
+    "crypto-backend": {
+      "value": ["jca"],
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jca/ProviderContext.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "Everything runs on whatever JCA providers the JVM offers, selectable by name per operation through ProviderContext. BouncyCastle is a test-scope dependency only, but is the usual answer for algorithms the JDK lacks (EdDSA before JDK 15, RSA-PSS on Java 8, secp256k1 from JDK 16 onward); org.jose4j.lang.BouncyCastleProviderHelp exists to install it."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "Pure Java with no JNI/native component of its own: the only compile-scope dependency is org.slf4j:slf4j-api (logging). Whether the JCA provider underneath is pure Java is a separate question — the default SunJCE/SunEC providers do use native code in places, but that is the platform, not jose4j."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml",
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jca/ProviderContext.java"
+      ],
+      "comment": "A Java 8 bytecode library that depends on the JCA/JCE service architecture; there is no browser or WASM target, and the project claims none. It does run on Android and inside GraalVM native images (Quarkus ships GraalVM substitutions for jose4j classes), but neither is a browser/WASM environment."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "Not applicable per the research guide: Cloudflare Workers, Vercel Edge and Deno Deploy are JS/WASM runtimes, so the question does not translate for a JVM server library. Recorded null rather than a misleading false."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/src/main/java/org/jose4j/jca/ProviderContext.java",
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "Because jose4j only ever asks the JCA for primitives and lets the caller name the provider per operation, it can be pointed at a FIPS 140-validated JCE provider (BC-FJA, an HSM's PKCS#11 provider, a vendor JCE in FIPS mode). The validation belongs to that module, not to jose4j, and FIPS mode does not stop jose4j offering non-approved algorithms — it will simply fail at the provider when one is unavailable. No FIPS testing by the project itself was found."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/pom.xml"
+      ],
+      "comment": "One direct compile-scope dependency: org.slf4j:slf4j-api. junit, logback-classic, bcprov-jdk18on and mockito-core are all test scope and do not reach consumers. Verified against master's pom (0.9.7-SNAPSHOT) on 2026-07-30; 0.9.6 has the same shape with older dependency versions."
+    },
+    "package-size": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/org.bitbucket.b_c/jose4j/versions"
+      ],
+      "comment": "No published artifact size could be obtained: Maven Central's browse pages do not report JAR size in retrievable form, and repo1.maven.org and mvnrepository.com both refused the fetch (HTTP 403) on 2026-07-30. Recorded null rather than an estimate."
+    },
+    "github-stars": {
+      "value": null,
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j"
+      ],
+      "comment": "Not applicable in a comparable form: the canonical repository is on Bitbucket, which has no star metric (and exposes no watcher count via the public API). The GitHub repositories named jose4j are third-party forks, so their star counts would be meaningless here."
+    },
+    "downloads": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/org.bitbucket.b_c/jose4j/versions"
+      ],
+      "comment": "Maven Central publishes no download statistics, and the usual proxy figure (mvnrepository's \"used by\" count) could not be fetched — mvnrepository.com returned HTTP 403 on 2026-07-30. Adoption is nonetheless broad: jose4j is a transitive dependency of SmallRye JWT/Quarkus and is embedded in IBM WebSphere Liberty."
+    },
+    "last-release": {
+      "value": "2024-03-06",
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22org.bitbucket.b_c%22+AND+a:%22jose4j%22&core=gav&rows=100&wt=json",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/refs/tags?pagelen=100&sort=-target.date"
+      ],
+      "comment": "0.9.6, tagged and published to Maven Central on 2024-03-06 — nearly two and a half years before this check. Work continued afterwards on master (last commit 2025-05-19) without a release."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/commits/master?pagelen=50",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/refs/tags?pagelen=100&sort=-target.date"
+      ],
+      "comment": "Quiet but not abandoned or superseded: the last release is 2024-03-06 and the last commits are 2025-05-19 (dependency bumps, a merged strict-audience-validation pull request, a tag-mismatch fix) — roughly 14 months of silence as of 2026-07-30, past the guide's 12-month dormancy threshold. No successor is named by the author and no deprecation notice exists; the current release carries fixes for every known advisory. Anyone adopting it should note that a future advisory may not get a timely release."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/commits/master?pagelen=50"
+      ],
+      "comment": "Brian Campbell authors essentially all of the recent ~50 commits; the only other names are two merged outside pull requests (David Ongaro, Jamshid Khosravian). Single-maintainer project throughout its history, which is the main risk factor to weigh against its otherwise strong track record."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22org.bitbucket.b_c%22+AND+a:%22jose4j%22&core=gav&rows=100&wt=json",
+        "https://github.com/advisories/GHSA-3677-xxcr-wjqv",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/cookbook/?pagelen=100"
+      ],
+      "comment": "Twelve years of broad production use (2014 on Maven Central, embedded in WebSphere Liberty and Quarkus/SmallRye JWT), near-complete JWA coverage, RFC 7520 cookbook conformance tests, and each of the 2023–2024 advisories fixed in a prompt point release. Two caveats against the label: it is still versioned 0.9.x, and there is no published security policy or release since March 2024 — see Maintenance Status."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors", "cookbook-7520"],
+      "source": [
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/cookbook/?pagelen=100",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jws/?pagelen=100",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/jwe/?pagelen=100"
+      ],
+      "comment": "A dedicated cookbook test package holds JoseCookbookTest.java (81 KB) for the RFC 7520 examples, and the jws/jwe packages carry appendix-vector tests by name — JwsUsingHmacSha256ExampleTest, JwsUsingRsaSha256ExampleTest, JwsUsingEcdsaP256Sha256ExampleTest, JwsUsingEcdsaP521Sha512ExampleTest, Pbes2ExampleEncryptedRSAPrivateKeyJwkAppendixCTest — alongside attack-oriented tests (InvalidCurveTest, PublicKeyAsHmacKeyTest, NegativeJweWrappingTest). No Wycheproof usage and no formal interop suite was found, though jose4j is itself used to generate interop vectors for other libraries."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://bitbucket.org/b_c/jose4j/raw/master/README.md",
+        "https://api.bitbucket.org/2.0/repositories/b_c/jose4j/src/master/src/test/java/org/jose4j/examples/?pagelen=100"
+      ],
+      "comment": "Rated conservatively at 3 because the primary documentation could not be verified: the README is a 314-byte pointer to the Bitbucket wiki, and the wiki is client-side rendered and returned no content to the fetcher on 2026-07-30. What is verifiable is solid but not a guide: Javadoc published with each release, a 45 KB ExamplesTest class that keeps the documented examples compiling, and no security-considerations document anywhere in the repository. Readers who can render the wiki may well judge it a 4."
+    }
+  }
 }
