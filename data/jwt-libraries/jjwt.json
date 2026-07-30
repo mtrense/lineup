@@ -1,5 +1,524 @@
 {
   "name": "JJWT (JVM)",
   "description": "Fluent Java builder API, widely used in Spring-adjacent codebases",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["jvm"],
+      "source": [
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "\"JSON Web Token support for the JVM and Android\". Android is a first-class target — jjwt-orgjson exists specifically so Android projects can use the platform's bundled org.json — but the schema has no `android` tag, so only `jvm` is recorded. The 0.13.0 line is still Java 7 compatible."
+    },
+    "license": {
+      "value": ["apache-2-0"],
+      "source": [
+        "https://api.github.com/repos/jwtk/jjwt",
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api"
+      ],
+      "comment": "Apache-2.0 across all modules; a NOTICE.md accompanies the LICENSE at the repository root."
+    },
+    "implementation": {
+      "value": ["platform-provider"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/RsaSignatureAlgorithm.java"
+      ],
+      "comment": "Every primitive is delegated to the JCA (javax.crypto.Mac, java.security.Signature, Cipher), with a `Provider` selectable globally, per parser/builder, or per key. BouncyCastle is an optional runtime dependency that supplies PS256-512 on JDK 10 or earlier and EdDSA on JDK 14 or earlier. The JOSE framing, JWK model and validation logic are plain Java in jjwt-impl."
+    },
+    "repository": {
+      "value": "https://github.com/jwtk/jjwt",
+      "source": ["https://api.github.com/repos/jwtk/jjwt"],
+      "comment": "Repository created 2014-09-13; default branch `main`, not archived."
+    },
+    "package": {
+      "value": "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api",
+      "source": [
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api"
+      ],
+      "comment": "jjwt-api is the compile-scope artifact; a working setup also needs the runtime-scope jjwt-impl plus one of jjwt-jackson / jjwt-gson / jjwt-orgjson. The legacy all-in-one io.jsonwebtoken:jjwt artifact stopped at 0.12.6."
+    },
+    "documentation": {
+      "value": "https://github.com/jwtk/jjwt/blob/0.13.0/README.adoc",
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"],
+      "comment": "The README.adoc is the documentation: a book-length, task-oriented guide with a full table of contents covering JWS, JWE, JWK, key management, compression, JSON providers and Android. Javadoc is published per artifact on javadoc.io, but that host refused the fetch (HTTP 403) at the time of research, so the README is recorded as the entry point."
+    },
+    "first-release": {
+      "value": "2014",
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22io.jsonwebtoken%22+AND+a:%22jjwt%22&core=gav&rows=60&wt=json",
+        "https://api.github.com/repos/jwtk/jjwt"
+      ],
+      "comment": "io.jsonwebtoken:jjwt 0.1 was published to Maven Central on 2014-09-21, eight days after the repository was created. The modular jjwt-api/jjwt-impl split arrived with 0.10.0 in 2018."
+    },
+    "latest-version": {
+      "value": "0.13.0",
+      "source": [
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api",
+        "https://api.github.com/repos/jwtk/jjwt/releases?per_page=10",
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api/0.13.0"
+      ],
+      "comment": "0.13.0, published 2025-08-20 — still pre-1.0 after eleven years, though JJWT guarantees semantic-versioning compatibility for every artifact except jjwt-impl. All findings below were read against the 0.13.0 tag. Note that search.maven.org's Solr index is stale and still reports 0.12.6 as latest; deps.dev and central.sonatype.com both confirm 0.13.0."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java"
+      ],
+      "comment": "Jwts.SIG.HS256/HS384/HS512, implemented over javax.crypto.Mac, each with a minimum key length equal to the hash output."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/RsaSignatureAlgorithm.java"
+      ]
+    },
+    "rsa-pss": {
+      "value": ["ps256", "ps384", "ps512"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Full PSS family. Javadoc and README both note it \"requires Java 11 or a compatible JCA Provider (like BouncyCastle)\" — on JDK 10 and earlier you must add bcprov."
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java"
+      ],
+      "comment": "P-256 / P-384 / P-521 only. ES256K (secp256k1, RFC 8812) is not in the Jwts.SIG registry. JJWT also rejects legacy DER-encoded ECDSA signatures, requiring the RFC 7518 concatenated R|S form."
+    },
+    "eddsa": {
+      "value": ["ed25519", "ed448"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://api.github.com/repos/jwtk/jjwt/contents/impl/src/test/groovy/io/jsonwebtoken/impl/security?ref=0.13.0"
+      ],
+      "comment": "Registered under the single RFC 8037 `EdDSA` identifier (Jwts.SIG.EdDSA); the curve — Ed25519 or Ed448 — follows the key, and Jwks.CRV carries both. There are no separate `Ed25519`/`Ed448` alg identifiers. Requires JDK 15+ or BouncyCastle on JDK 14 and earlier. RFC8037AppendixATest.groovy exercises the Ed25519 vectors."
+    },
+    "jwe-key-management": {
+      "value": [
+        "dir",
+        "a128kw",
+        "a192kw",
+        "a256kw",
+        "a128gcmkw",
+        "a192gcmkw",
+        "a256gcmkw",
+        "rsa-oaep",
+        "rsa-oaep-256",
+        "rsa1-5",
+        "ecdh-es",
+        "ecdh-es-a128kw",
+        "ecdh-es-a256kw",
+        "pbes2-hs256-a128kw",
+        "pbes2-hs512-a256kw"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "All 17 JWA key-management algorithms are implemented in the Jwts.KEY registry. Two of them cannot be expressed with the schema's tag set: ECDH-ES+A192KW and PBES2-HS384+A192KW. AES-GCM key wrap and PBES2 need Java 8+; ECDH-ES over Edwards curves (X25519/X448) needs JDK 11+ or BouncyCastle."
+    },
+    "jwe-content-encryption": {
+      "value": [
+        "a128cbc-hs256",
+        "a192cbc-hs384",
+        "a256cbc-hs512",
+        "a128gcm",
+        "a192gcm",
+        "a256gcm"
+      ],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "All six RFC 7518 content-encryption algorithms via Jwts.ENC; the GCM variants require Java 8 or a compatible provider. XC20P is not implemented. Compression is available via Jwts.ZIP.DEF (DEFLATE) and a non-standard GZIP the javadoc flags as \"NOT JWA-STANDARD\"."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/Jwts.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/RsaSignatureAlgorithm.java"
+      ],
+      "comment": "`none` exists as Jwts.SIG.NONE and is what you get if you never call signWith/encryptWith, so unsecured JWTs can still be *created* by omission; parsing one requires the explicit `unsecured()` opt-in (see \"Rejects alg: none\"). RSA1_5 remains in the Jwts.KEY registry, contrary to RFC 8725 §3.10, though it can be removed with `key().remove(...)`. RSA keys under 2048 bits are rejected outright (MIN_KEY_BIT_LENGTH = 2048), and secp256k1 is absent."
+    },
+    "algorithm-extensibility": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md"
+      ],
+      "comment": "0.12.0 deprecated the closed SignatureAlgorithm enum precisely to allow custom implementations: SecureDigestAlgorithm, KeyAlgorithm, AeadAlgorithm and CompressionAlgorithm are public interfaces, and `Jwts.parser().sig()/key()/enc()/zip()` are nested collections you can add to or empty out. The escape-hatch caveat is explicit in the javadoc — \"any algorithm instance added with a JWA-standard id will replace the JJWT standard implementation\", so a custom object can silently take over RS256. The same collections are the mechanism for hardening: emptying `sig()` disables signature verification entirely, and removing RSA1_5 from `key()` is a one-liner."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md"
+      ],
+      "comment": "DefaultJwtParser: `final boolean unsecured = Jwts.SIG.NONE.getId().equalsIgnoreCase(alg); if (unsecured && !this.unsecured) throw new UnsupportedJwtException(...)`, and DefaultJwtParserBuilder initialises `unsecured = false`. The only way in is the separately named, security-documented `Jwts.parser().unsecured()` opt-in — it is not reachable through a generic \"allow all algorithms\" switch. Disabled by default since 0.12.0 (\"as mandated by RFC 7518, Section 3.6\"); before 0.12.0 unsecured tokens parsed without opt-in. A second guard, `unsecuredDecompression()`, is needed before a compressed unsecured payload will be inflated."
+    },
+    "algorithm-pinning": {
+      "value": ["inferred-from-key", "defaults-to-safe-set"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "There is no required allow-list parameter, so this is not `caller-must-specify`. The header `alg` selects an implementation from the parser's algorithm registry, which defaults to the complete Jwts.SIG set minus `none` — a curated default set that the caller can narrow with `sig().remove(...)` or empty entirely. What actually pins the family is the key: `verifyWith(SecretKey)` and `verifyWith(PublicKey)` are distinct overloads, and each algorithm validates the concrete key type before use, so a token claiming HS256 cannot be verified against a configured PublicKey. Within a family (RS256 vs RS512) the header still decides."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/RsaSignatureAlgorithm.java"
+      ],
+      "comment": "4 per the guideline. The classic RS256→HS256 swap is blocked at compile time on the common path — `verifyWith` is overloaded on javax.crypto.SecretKey and java.security.PublicKey, and you cannot hand an RSAPublicKey to the SecretKey overload. Short of 5 because there is one shared key abstraction below that: RS256, PS256 and ES256 all take a PublicKey, and the `keyLocator(Locator<Key>)` path (the JWKS-style route) returns a bare java.security.Key, so a mismatch there is caught by each algorithm's runtime validateKey() with an InvalidKeyException rather than by the compiler. Java keys carry their own algorithm and bit length, so those runtime checks fail closed."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Stronger than the usual case, like josekit and jwt-simple: JJWT offers no API at all that returns the claims of a signed token without verifying it. parseSignedClaims/parseSignedContent always verify; parseUnsecuredClaims applies only to `alg: none` tokens and only after `unsecured()`; the generic parse(String) dispatches on the token type and still verifies a JWS. There is no flag on the normal path that turns verification off. Recorded `true` on that basis — reading claims unverified requires splitting the compact string yourself."
+    },
+    "default-claim-validation": {
+      "value": ["exp", "nbf"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "The parser checks `exp` and `nbf` against the clock automatically on every Claims parse, throwing ExpiredJwtException / PrematureJwtException. Everything else is capability rather than default: requireIssuer(), requireAudience(), requireSubject(), requireId() and require(name, value) exist but must be called, and each throws MissingClaimException when the claim is absent or IncorrectClaimException on mismatch. `iat` is exposed but not validated."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "`Jwts.parser().verifyWith(key).build().parseSignedClaims(jws)` is a complete, idiomatic verification with no `aud` or `iss` check. requireAudience()/requireIssuer() are optional builder calls; the parser does not fail closed without them."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "`clockSkewSeconds(long)` applies leeway to exp and nbf. The default is strict: DefaultJwtParserBuilder initialises `allowedClockSkewMillis = 0`, so no skew is tolerated unless asked for. The only bound is arithmetic (the value may not exceed Long.MAX_VALUE / 1000), so an unreasonably large leeway is the caller's own doing. A custom `clock(Clock)` can also be supplied, primarily for testing."
+    },
+    "constant-time-comparison": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java"
+      ],
+      "comment": "Verification recomputes the MAC and compares with `MessageDigest.isEqual(providedSignature, computedSignature)`, which has been a constant-time comparison in the JDK since Java 7u40/8."
+    },
+    "minimum-key-size-enforced": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/RsaSignatureAlgorithm.java"
+      ],
+      "comment": "Both halves of RFC 7518 §3.2/§3.3 are enforced, and this is one of JJWT's defining behaviours. HMAC keys shorter than the hash output are rejected (\"The %s key's size is %d bits which is not secure enough for the %s algorithm\"), and RsaSignatureAlgorithm carries `MIN_KEY_BIT_LENGTH = 2048` with a WeakKeyException citing RFC 7518 §3.3 for RS* and §3.5 for PS*. One documented exemption: when a key reports no bit length — typical of PKCS#11/HSM handles — the check is skipped (`if (size < 0) return;`)."
+    },
+    "crit-header-handling": {
+      "value": ["rejects-unknown", "caller-declares-understood"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "Correct per RFC 7515 §4.1.11 and configurable: any name listed in `crit` that is not in the parser's supported set raises UnsupportedJwtException, and a name declared critical but missing from the header raises MalformedJwtException. The caller widens the set with `Jwts.parser().critical().add(\"b64\").and()` — the same mechanism used to opt into RFC 7797 unencoded payloads — and the javadoc is explicit that JJWT only guarantees the header was present; implementing the extension's behaviour is the application's job."
+    },
+    "nested-depth-limits": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/Pbes2HsAkwAlgorithm.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java"
+      ],
+      "comment": "PBES2 decryption caps the attacker-controlled `p2c` at MAX_ITERATIONS = 2.5 × the OWASP-recommended default (310,000 for HS256, 210,000 for HS384, 120,000 for HS512) and throws UnsupportedJwtException above it. Decompression is refused until integrity has been verified — an unsecured compressed token needs the extra `unsecuredDecompression()` opt-in, and a `b64:false` payload resolved through the deprecated SigningKeyResolver cannot be decompressed at all. Recursion is not a concern because nested (JWS-in-JWE) parsing is not implemented; there is no byte-size cap on the compact token itself."
+    },
+    "cve-history": {
+      "value": ["none-known"],
+      "source": [
+        "https://api.github.com/advisories?affects=io.jsonwebtoken%3Ajjwt&ecosystem=maven&per_page=20",
+        "https://api.github.com/advisories?affects=io.jsonwebtoken%3Ajjwt-impl&ecosystem=maven&per_page=20",
+        "https://api.github.com/repos/jwtk/jjwt/security-advisories?per_page=20",
+        "https://api.github.com/search/issues?q=repo:jwtk/jjwt+CVE&per_page=10"
+      ],
+      "comment": "No effective advisory in twelve years. The single GitHub advisory touching JJWT, GHSA-r65j-6h5f-4f92 / CVE-2024-31033 (\"JJWT improperly generates signing keys\", medium, published 2024-04-01), was WITHDRAWN on 2024-04-03 as disputed — it alleged that key generation ignored characters of a supplied string, which the maintainers rejected as a misuse report (issues #930 and #932). GitHub's advisory API returns an empty list for io.jsonwebtoken:jjwt-api, and the repository publishes no advisories of its own. Adjacent CVEs discussed in the tracker belong elsewhere: jackson-databind (CVE-2022-42003/42004), org.json (CVE-2022-45688) and the JVM's own ECDSA flaw CVE-2022-21449, against which JJWT 0.11.3+ added a defensive guard. Checked 2026-07-30."
+    },
+    "security-policy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/SECURITY.md"],
+      "comment": "SECURITY.md at the repository root asks for private disclosure to security@jjwt.org rather than a public issue, and states that only the latest minor and point revisions (0.12.x and later) receive security fixes."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/SECURITY.md",
+        "https://api.github.com/repos/jwtk/jjwt/contents/?ref=0.13.0",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Searched and found none: no audit report or reference to a third-party review in SECURITY.md, the README, the CHANGELOG or the repository root, and a web search surfaced no published audit. JJWT was notably not among the libraries broken by Tim McLean's 2015 JWT library review, but that is an absence of findings, not an audit."
+    },
+    "jws": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"],
+      "comment": "Both directions and the library's core competency: `Jwts.builder()...signWith(key).compact()` and `Jwts.parser().verifyWith(key).build().parseSignedClaims(jws)`."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md"
+      ],
+      "comment": "Full encrypt and decrypt, added in 0.12.0 with \"all JWA-defined algorithms\": `encryptWith(key, keyAlg, enc)` on the builder and `decryptWith(key)` plus parseEncryptedClaims/parseEncryptedContent on the parser."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/security/Jwks.java",
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/security?ref=0.13.0"
+      ],
+      "comment": "`Jwks.parser().build().parse(json)` yields a typed Jwk (RsaPublicJwk, EcPrivateJwk, OctetPublicJwk, SecretJwk, …) backed by a real java.security.Key, and `Jwks.setParser()` parses a whole JWK Set. `Jwks.builder()` goes the other way. Parsing honours a configurable KeyOperationPolicy for the `key_ops` member. RFC 7517 Appendix A/B/C vectors are covered by the test suite."
+    },
+    "jwks-remote-fetch": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/security?ref=0.13.0"
+      ],
+      "comment": "No HTTP anywhere in the library: the API package has no client, no URL-based key source and no documentation of one. You fetch the JWKS yourself and hand the JSON to Jwks.setParser(). This is a real gap against Nimbus JOSE+JWT for OIDC use."
+    },
+    "jwks-caching-rotation": {
+      "value": false,
+      "source": [
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/security?ref=0.13.0"
+      ],
+      "comment": "Follows from there being no remote fetch — no cache, no TTL/Cache-Control handling, no refetch on unknown `kid`. Rotation is entirely the application's responsibility, typically inside its own Locator implementation."
+    },
+    "kid-selection": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/security/JwkSet.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "The hook exists but the selection does not. `keyLocator(Locator<Key>)` / LocatorAdapter hand you the JwsHeader (and thus `getKeyId()`) before verification, and the README's canonical example is a hand-written switch on the kid; but JwkSet exposes only getKeys() and Iterable<Jwk<?>> with no lookup-by-kid method, so mapping a `kid` to a key from a parsed key set is code you write. Recorded false because the library does not perform the selection itself."
+    },
+    "jwk-thumbprint": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/security/Jwks.java",
+        "https://api.github.com/repos/jwtk/jjwt/contents/impl/src/test/groovy/io/jsonwebtoken/impl/security?ref=0.13.0"
+      ],
+      "comment": "RFC 7638 thumbprints via JwkThumbprint plus the Jwks.HASH registry (SHA-256/384/512 and SHA3 variants), and RFC 9278 thumbprint URIs (`urn:ietf:params:oauth:jwk-thumbprint:...`) are produced directly by the API. A builder shortcut can set the JWK's `kid` to its thumbprint. RFC7638Section3Dot1Test.groovy checks the RFC's own vector."
+    },
+    "nested-jwt": {
+      "value": false,
+      "source": [
+        "https://api.github.com/search/issues?q=repo:jwtk/jjwt+nested+JWT+in:title",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Not handled end to end. Issue #374 \"Support nested JWTs\" is still open (filed 2018-08-06) and is tagged for the 1.0 milestone; the README never mentions nested tokens or a `cty: JWT` unwrapping path. You can construct one manually — encrypt a compact JWS as the JWE payload with cty set — and parse it in two explicit steps, but the parser will not chain the two for you."
+    },
+    "json-serialization": {
+      "value": ["compact"],
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"],
+      "comment": "Compact serialization only. The README's \"Currently Unsupported Features\" section names \"Non-compact serialization and parsing\" first, adding that it \"may be implemented in a future release\". No flattened or general JSON, and therefore no multiple signatures or multiple JWE recipients."
+    },
+    "detached-payload": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"],
+      "comment": "The README has a dedicated \"Detached Payload\" example: `encodePayload(false)` with the payload omitted from the compact string, verified by supplying the content back on the parse side via `parseSignedContent(jws, content)`. This is the RFC 7515 Appendix F pattern layered on RFC 7797."
+    },
+    "unencoded-payload": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+      ],
+      "comment": "RFC 7797 support arrived in 0.12.0: `encodePayload(false)` on the builder sets `b64:false` and marks it critical; the parser must opt in with `critical().add(\"b64\").and()`, which is the correct crit-aware behaviour rather than silent acceptance."
+    },
+    "key-generation": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/security?ref=0.13.0"
+      ],
+      "comment": "Every algorithm is its own key factory: `Jwts.SIG.HS256.key().build()` produces a secret key of the correct strength, `Jwts.SIG.RS256.keyPair().build()` (and the EC/EdDSA equivalents) produce key pairs, and Jwts.ENC/Jwts.KEY expose the same for JWE. The API package carries KeyBuilder, SecretKeyBuilder, KeyPairBuilder and PrivateKeyBuilder, each accepting a Provider and SecureRandom. Keys.hmacShaKeyFor(byte[]) wraps existing material with a length check."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/security/X509Mutator.java",
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/security?ref=0.13.0"
+      ],
+      "comment": "All four parameters are first-class on both headers and JWKs through X509Mutator/X509Accessor: x509Url(URI) → x5u, x509Chain(List<X509Certificate>) → x5c, x509Sha1Thumbprint / x509Sha256Thumbprint → x5t and x5t#S256 (and the builders can compute the thumbprints from the chain). The trap to name: JJWT parses and exposes these values but performs no chain validation and never dereferences x5u — the javadoc pushes that responsibility onto the caller, requiring an integrity-protected transport per RFC 6125 if you resolve the URL yourself."
+    },
+    "key-input-formats": {
+      "value": ["jwk", "jwks", "raw-bytes"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/security/Jwks.java",
+        "https://api.github.com/repos/jwtk/jjwt/contents/api/src/main/java/io/jsonwebtoken/io?ref=0.13.0",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "The native currency is java.security.Key/KeyPair, so anything the JCA can load (KeyStore, PKCS#12, PKCS#11) reaches JJWT indirectly — but the library itself decodes only JWK (Jwks.parser()), JWK Set (Jwks.setParser()) and raw bytes (Keys.hmacShaKeyFor, Decoders.BASE64URL). There is no PEM or DER parser in the public API: the io.jsonwebtoken.io package contains only Base64/Base64URL codecs and the JSON Serializer/Deserializer abstractions. `keystore`/`pkcs12` are deliberately not tagged because the loading is the JDK's, not JJWT's."
+    },
+    "external-signer-support": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java"
+      ],
+      "comment": "Yes, through the JCA rather than a bespoke signer interface: 0.12.0 explicitly improved \"PKCS11/HSM compatibility\", and a Provider can be set globally (Security.addProvider), per parser/builder (`provider(Provider)`) or per key (`Keys.builder(key).provider(p).build()`). The private key is then an opaque PKCS#11 handle the library never sees material for — which is why the key-strength checks skip keys that report no bit length, and why KeysBridge.isGenericSecret() relaxes JCA algorithm-name matching for HSM-issued secrets."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://api.github.com/repos/jwtk/jjwt/contents/?ref=0.13.0"
+      ],
+      "comment": "No first-party adapters and no de facto community one: the modules are api, impl, the three JSON providers and an extensions module, with nothing web-framework specific. JJWT is heavily used inside Spring Boot applications, but Spring Security's own OAuth2/JWT support is built on Nimbus JOSE+JWT, not on JJWT — teams wire JJWT in by hand."
+    },
+    "async-api": {
+      "value": ["sync-only"],
+      "source": ["https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"],
+      "comment": "Plain blocking calls; no CompletableFuture, reactive or callback surface anywhere in the API. Concurrency is the caller's thread pool, and parsers/builders are cheap to construct per request."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Claims is an immutable Map<String,Object> (mutation moved to ClaimsBuilder in 0.12.0) with typed getters for the registered claims only; custom claims come back through `get(name, Class)` conversion or as raw Objects. There is no generic parameter for a user-defined claims type. The closest thing to typing is the JacksonDeserializer claim-type-converter map — whose constructor 0.13.0 made public specifically so applications can register a custom ObjectMapper — but that is runtime deserialization of one named claim into a POJO, not compile-time checking, so `map-only` is the honest tag."
+    },
+    "crypto-backend": {
+      "value": ["jca", "bouncycastle"],
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md"
+      ],
+      "comment": "The JCA is the backend; whichever Provider is installed does the work (SunJCE/SunEC by default). BouncyCastle is tagged because it is an officially supported optional runtime dependency — bcprov-jdk18on for PS256-512 on JDK ≤ 10, EdDSA on JDK ≤ 14 and EdECDH on JDK ≤ 10 — and JJWT detects and prefers it when present. It is unnecessary on JDK 15+."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api/versions/0.13.0:dependencies",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-impl/versions/0.13.0:dependencies"
+      ],
+      "comment": "Pure Java with no JNI/native artifact: jjwt-api 0.13.0 has no dependencies at all and jjwt-impl depends only on jjwt-api. The optional BouncyCastle provider is likewise pure Java. Whether the JCA provider underneath uses native code is a JVM matter, not a JJWT dependency."
+    },
+    "runs-in-browser-wasm": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api"
+      ],
+      "comment": "A JVM/Android library: it needs a JCA runtime, so it does not target browsers or WASM/WASI, and the project makes no such claim. The portability story JJWT does tell is downward compatibility instead — Java 7+, and Android via the jjwt-orgjson module using the platform's bundled org.json parser."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api"],
+      "comment": "Not applicable, per the RESEARCH.md guideline: Cloudflare Workers, Vercel Edge and Deno Deploy are JS/WASM runtimes with no JVM, so the question does not translate for a JVM/Android library. Recorded null rather than a misleading false."
+    },
+    "fips-capable-backend": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/impl/src/main/java/io/jsonwebtoken/impl/security/DefaultMacAlgorithm.java"
+      ],
+      "comment": "Because all cryptography goes through the JCA and the Provider is selectable at three levels (JVM-wide, per parser/builder, per key), JJWT can be pointed at a FIPS 140-validated module such as BC-FJA or a vendor's FIPS-mode JCE provider. The validation belongs to that module, not to JJWT, and JJWT itself neither restricts the algorithm set to FIPS-approved ones nor advertises FIPS support — nothing here was verified against a running FIPS provider."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api/versions/0.13.0:dependencies",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-impl/versions/0.13.0:dependencies",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Zero direct dependencies for the compile-scope artifact jjwt-api 0.13.0, per deps.dev (verified 2026-07-30). The figure understates a real deployment: you also add runtime-scope jjwt-impl (which depends only on jjwt-api) and one JSON module — jjwt-jackson pulls jackson-databind, jjwt-gson pulls gson, jjwt-orgjson pulls org.json (or nothing extra on Android) — plus optionally BouncyCastle on older JDKs. So a typical Maven setup is three JJWT artifacts and one third-party JSON library."
+    },
+    "package-size": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api/0.13.0",
+        "https://search.maven.org/solrsearch/select?q=g:%22io.jsonwebtoken%22&rows=20&wt=json"
+      ],
+      "comment": "No authoritative figure obtainable: central.sonatype.com does not display artifact byte sizes, the Maven Central search index is stale (still reporting 0.12.6 as latest for this group), and repo1.maven.org refused both the directory listing and the .pom with HTTP 403 during research. The number would also be ambiguous, since JJWT ships as at least three jars (api + impl + a JSON module) rather than one artifact."
+    },
+    "github-stars": {
+      "value": 11116,
+      "source": ["https://api.github.com/repos/jwtk/jjwt"],
+      "comment": "11,116 stars on jwtk/jjwt as of 2026-07-30, with 269 watchers — the most-starred JVM JOSE library by a wide margin, well ahead of Nimbus and jose4j (whose canonical homes are Bitbucket/GitLab, so star counts are not comparable across this group)."
+    },
+    "downloads": {
+      "value": null,
+      "source": [
+        "https://central.sonatype.com/artifact/io.jsonwebtoken/jjwt-api",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api"
+      ],
+      "comment": "Maven Central publishes no download counts, and neither central.sonatype.com nor deps.dev exposes one. The usual proxy — mvnrepository.com's \"usages\" ranking — was not reachable (HTTP 403) and is a different metric anyway. Left null rather than quoting an unverified figure."
+    },
+    "last-release": {
+      "value": "2025-08-20",
+      "source": [
+        "https://api.github.com/repos/jwtk/jjwt/releases?per_page=10",
+        "https://api.deps.dev/v3alpha/systems/maven/packages/io.jsonwebtoken%3Ajjwt-api"
+      ],
+      "comment": "0.13.0, released 2025-08-20 (0.12.7 six days earlier on 2025-08-14, after a fourteen-month gap since 0.12.6). Roughly eleven months old as of 2026-07-30, though development has continued on main."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://api.github.com/repos/jwtk/jjwt",
+        "https://api.github.com/repos/jwtk/jjwt/commits?per_page=50",
+        "https://api.github.com/repos/jwtk/jjwt/releases?per_page=10"
+      ],
+      "comment": "Substantive commits within the last six months — the most recent is dated 2026-06-19 and the repository was last pushed 2026-07-24 — which meets the guideline even though the last release was 2025-08-20. Cadence is lumpy rather than dormant: 0.12.6 (Jun 2024) → 0.12.7 and 0.13.0 (Aug 2025) → post-0.13.0 work on main. 44 open issues, and the long-promised 1.0 remains outstanding."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/jwtk/jjwt/commits?per_page=50"],
+      "comment": "Over the recent commit window (2025-08 to 2026-06) the work is Les Hazlewood (lhazlewood, the original author and clear lead) with Brian Demers (bdemers) second, plus dependabot and a handful of one-off outside contributors. Two regular committers puts it at the bottom edge of `small-team`; in practice the project is close to author-led, and the `jwtk` organisation has no corporate backer standing behind it."
+    },
+    "maturity": {
+      "value": ["mature"],
+      "source": [
+        "https://search.maven.org/solrsearch/select?q=g:%22io.jsonwebtoken%22+AND+a:%22jjwt%22&core=gav&rows=60&wt=json",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/SECURITY.md",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md"
+      ],
+      "comment": "Judgement call, resolved in favour of `mature`: twelve years of broad production use since 2014, a documented private disclosure channel, a clean advisory record, a detailed CHANGELOG with migration notes, and security-driven defaults tightened over time (unsecured JWTs disabled in 0.12.0, key-strength enforcement, an explicit guard for the JVM's CVE-2022-21449). The counterweight is real and worth knowing: the version is still 0.13.0 with 1.0 unshipped, and 0.12.0 was a large API break (immutable Claims/Header, byte[] payloads, the SignatureAlgorithm enum deprecated) — mitigated by the project's stated semver guarantee for every artifact except jjwt-impl."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors", "cookbook-7520"],
+      "source": [
+        "https://api.github.com/repos/jwtk/jjwt/contents/impl/src/test/groovy/io/jsonwebtoken/impl/security?ref=0.13.0",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc"
+      ],
+      "comment": "Strong and verifiable: the test tree carries dedicated classes for RFC 7516 Appendix A1-A3 (JWE), RFC 7517 Appendices A-C (JWK), RFC 7518 Appendices B and C (AES-CBC-HMAC and ECDH-ES), RFC 7638 §3.1 (thumbprints), RFC 8037 Appendix A (Edwards curves) and RFC 7520 §§3-5 (the JOSE cookbook). Matches the README's claim of being \"tested against RFC-specified test vectors\". No Wycheproof suite and no cross-library interop harness were found."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": [
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/README.adoc",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/CHANGELOG.md",
+        "https://raw.githubusercontent.com/jwtk/jjwt/0.13.0/SECURITY.md"
+      ],
+      "comment": "5: the README.adoc is a genuine task-oriented manual — installation per build tool, a full table of contents, compile-vs-runtime dependency rationale, worked examples for JWS, JWE, every key-management family, JWK and JWK Set creation and parsing, key generation, compression, custom JSON providers, Android, PKCS#11/HSM providers and an explicit \"Currently Unsupported Features\" list — backed by dense javadoc that states Java-version and provider requirements per algorithm, plus a maintained CHANGELOG with migration guidance and a SECURITY.md. The security guidance is spread through the relevant sections rather than gathered into one chapter, and there is no JWKS-fetching walkthrough because the feature does not exist; neither is enough to drop it to 4."
+    }
+  }
 }
