@@ -1,5 +1,476 @@
 {
   "name": "jose (Dart)",
   "description": "Dart JOSE implementation covering JWS, JWE, and JWK",
-  "values": {}
+  "lastVerified": "2026-07-30",
+  "values": {
+    "ecosystem": {
+      "value": ["dart", "flutter"],
+      "source": [
+        "https://pub.dev/packages/jose",
+        "https://pub.dev/api/packages/jose"
+      ],
+      "comment": "pub.dev lists both the Dart and Flutter SDKs and every platform (Android, iOS, Linux, macOS, Web, Windows); the pubspec constrains only the Dart SDK (^3.0.0) and has no Flutter dependency, so it is a plain Dart package usable from Flutter. Compiling to JS/WASM means it also runs in a browser, but that is recorded under \"Runs in Browser/WASM\" rather than as a separate ecosystem tag, since the `browser` tag in this comparison denotes JS-ecosystem libraries."
+    },
+    "license": {
+      "value": ["bsd-3-clause"],
+      "source": [
+        "https://pub.dev/packages/jose",
+        "https://pub.dev/api/packages/jose/score"
+      ],
+      "comment": "BSD-3-Clause, reported by pub.dev as FSF-libre and OSI-approved; the repository's LICENSE file carries the same license."
+    },
+    "implementation": {
+      "value": ["native"],
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://pub.dev/packages/crypto_keys",
+        "https://raw.githubusercontent.com/appsup-dart/crypto_keys/master/lib/src/operators/symmetric.dart"
+      ],
+      "comment": "Pure Dart all the way down: jose delegates every primitive to crypto_keys, which is itself \"a Dart library ... leveraging pointycastle to provide a more accessible API\". PointyCastle is a pure-Dart reimplementation of the BouncyCastle primitives, so there is no FFI, no platform crypto provider and no WebCrypto use — the same code runs on the VM and in compiled-to-JS/WASM web builds."
+    },
+    "repository": {
+      "value": "https://github.com/appsup-dart/jose",
+      "source": ["https://github.com/appsup-dart/jose"],
+      "comment": "Also declared as both `homepage` and `repository` in the pubspec."
+    },
+    "package": {
+      "value": "https://pub.dev/packages/jose",
+      "source": [
+        "https://pub.dev/packages/jose",
+        "https://pub.dev/api/packages/jose"
+      ],
+      "comment": "Published on pub.dev under the verified publisher appsup.be (Rik Bellens)."
+    },
+    "documentation": {
+      "value": "https://pub.dev/documentation/jose/latest/",
+      "source": [
+        "https://pub.dev/documentation/jose/latest/",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/README.md"
+      ],
+      "comment": "Generated dartdoc for the single `jose` library. The landing page is the README, which carries five worked examples (verify a JWS, create a JWS, decrypt a JWE, encrypt a JWE, decode+verify+validate a JWT); there is no separate documentation site."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://pub.dev/packages/jose/versions"
+      ],
+      "comment": "0.1.0 published 2018-11-02T19:01:38Z on pub.dev."
+    },
+    "latest-version": {
+      "value": "0.3.5+2",
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://pub.dev/api/packages/jose/versions/0.3.5%2B2"
+      ],
+      "comment": "Still pre-1.0 after seven years. 0.3.5+2 published 2026-03-31T08:27:17Z; current on 2026-07-30. Note that 0.3.5+1, published the same day, is the release that fixes CVE-2026-34240."
+    },
+    "hmac-hs": {
+      "value": ["hs256", "hs384", "hs512"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jws_test.dart"
+      ],
+      "comment": "All three are `static const` entries in JsonWebAlgorithm.allAlgorithms; HMAC-SHA256 is exercised against the RFC 7515 examples in test/jws_test.dart."
+    },
+    "rsa-pkcs1": {
+      "value": ["rs256", "rs384", "rs512"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jws_test.dart"
+      ],
+      "comment": "Registered in the algorithm catalogue; RS256 is covered by the RFC 7515 example tests."
+    },
+    "rsa-pss": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart"],
+      "comment": "Not supported. PS256/PS384/PS512 exist in jwa.dart only inside a block comment introduced by `/* TODO: not supported yet in crypto_keys`, so they are not in allAlgorithms and no `alg: PS*` token can be verified. (The commented block also carries a copy-paste bug — the ps256 constant is declared with the string 'PS512' — which is further evidence it has never been exercised.)"
+    },
+    "ecdsa": {
+      "value": ["es256", "es384", "es512", "es256k"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jws_test.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/CHANGELOG.md"
+      ],
+      "comment": "The full ECDSA set including ES256K (secp256k1, RFC 8812), which was added in 0.3.3. ES256 (P-256) and ES512 (P-521) are exercised against the RFC 7515 appendix examples in test/jws_test.dart; ES384 and ES256K are registered in the catalogue but I did not find a dedicated JWS test for them."
+    },
+    "eddsa": {
+      "value": [],
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart"],
+      "comment": "No Edwards-curve support: neither `EdDSA` nor `Ed25519`/`Ed448` appears in the JsonWebAlgorithm catalogue, and the OKP key type is not handled. The underlying crypto_keys repository has since grown a lib/src/operators/eddsa.dart, but jose 0.3.5+2 exposes no JWA identifier that would reach it."
+    },
+    "jwe-key-management": {
+      "value": ["dir", "a128kw", "a192kw", "a256kw", "rsa-oaep", "rsa-oaep-256", "rsa1-5"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jwe_test.dart",
+        "https://pub.dev/packages/jose"
+      ],
+      "comment": "RSA1_5, RSA-OAEP, RSA-OAEP-256 and A128/A192/A256KW are entries in the JsonWebAlgorithm catalogue; RSA-OAEP, RSA-OAEP-256, RSA1_5, A128KW and `dir` are all exercised by the RFC 7516 example tests in test/jwe_test.dart. `dir` has no JsonWebAlgorithm constant of its own (it is the degenerate \"no key wrapping\" case handled in the JWE path), but it is documented on pub.dev and covered by the tests, so it is tagged. Absent: every GCMKW variant, all of ECDH-ES, and all of PBES2."
+    },
+    "jwe-content-encryption": {
+      "value": ["a128cbc-hs256", "a192cbc-hs384", "a256cbc-hs512", "a128gcm", "a192gcm", "a256gcm"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jwe_test.dart"
+      ],
+      "comment": "The complete RFC 7518 §5 set, minus the non-standard XC20P. A128CBC-HS256, A256CBC-HS512, A128GCM and A256GCM are exercised by the RFC 7516 example tests. 0.3.3 fixed AES-GCM to use a 12-byte IV, so releases before that produced non-conforming GCM ciphertexts."
+    },
+    "deprecated-algorithms-available": {
+      "value": ["alg-none", "rsa1-5"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"
+      ],
+      "comment": "RSA1_5 is a first-class catalogue entry and is exercised by the RFC 7516 tests, despite being discouraged by RFC 8725 §3.6 and deprecated in the JOSE registries. `none` is implemented in jws.dart (`if (header.algorithm == 'none') return key == null && recipient.data.isEmpty ? this.data : null;`) but is unreachable on the default verification path — see \"Rejects alg: none\". Not tagged: RSA < 2048 (the catalogue declares minKeyBitLength 2048 for the RSA algorithms, though see the caveat under \"Minimum Key Size Enforced\") and secp256k1 — ES256K here is the RFC 8812-registered identifier bound to the P-256K curve rather than an unrestricted secp256k1 escape hatch."
+    },
+    "algorithm-extensibility": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart"],
+      "comment": "The algorithm set is a closed list of `static const JsonWebAlgorithm` values collected in `allAlgorithms`, resolved by `JsonWebAlgorithm.getByName`. There is no registration hook, so a user cannot add an `alg` — which also means no caller can route around the library's own checks that way. Adding PS256 today requires patching both jose and crypto_keys."
+    },
+    "rejects-alg-none": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"
+      ],
+      "comment": "Examined at master (0.3.5+2). JoseObject.getPayload contains an explicit guard — `if (allowedAlgorithms == null && header.algorithm == 'none') { continue; }` — so on the default call (`verify(keyStore)` / `decodeAndVerify(token, keyStore)`) an unsecured token is skipped and the loop ends in `throw JoseException('Could not decrypt/verify payload')`. Reaching it requires the caller to literally name it: `getPayload(keyStore, allowedAlgorithms: ['none'])`. That is an explicit and unmistakable opt-in, hence `true`, but note the mechanism is a generic algorithm allow-list rather than a separately named unsafe API, and a caller who builds that list from the token's own header would defeat it. Machinery on the other side of the guard is still live: JsonWebKeyStore.findJsonWebKeys short-circuits with `if (header.algorithm == 'none') return Stream.fromIterable([null]);` and jws.dart then accepts a null key with an empty signature."
+    },
+    "algorithm-pinning": {
+      "value": ["trusts-header", "inferred-from-key"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart"
+      ],
+      "comment": "Both tags apply and the pair is the honest description. `allowedAlgorithms` (spelled `allowedArguments` on JsonWebToken.decodeAndVerify — an odd parameter name that makes the safe path easy to miss) is optional and null by default, so the accepted algorithm is taken straight from the untrusted JOSE header: `trusts-header`. What stops that from being exploitable is the key store, not an allow-list — `_isValidKeyFor` requires `key.usableForAlgorithm(header.algorithm)` and `key.usableForOperation(operation)`, so the header's `alg` can only ever select an algorithm that some already-trusted key legitimately supports: `inferred-from-key`. RFC 8725 §3.1 asks for the explicit allow-list; here the caller has to know to pass it."
+    },
+    "algorithm-confusion-resistance": {
+      "value": 4,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart",
+        "https://github.com/advisories/GHSA-vm9r-h74p-hg97"
+      ],
+      "comment": "Guideline level 4: one key abstraction (JsonWebKey), but the key carries its `kty`/`alg`/`key_ops` and a mismatch fails closed before any signature check, via `key.usableForAlgorithm(...) && key.usableForOperation(...)` in JsonWebKeyStore._isValidKeyFor. Classic RS256→HS256 confusion does not work: an RSA JsonWebKey is not usable for HS256, and raw byte strings are never accepted as keys — an HMAC secret must be an `oct` JsonWebKey. Not 5 because it is a runtime check on a shared type rather than distinct key types per family, and held at 4 rather than higher on evidence: CVE-2026-34240 (fixed 2026-03-31) showed the neighbouring trust decision — which keys are candidates at all — was wrong for years, with attacker-supplied header `jwk` values treated as valid verification keys."
+    },
+    "unverified-decode-separated": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"
+      ],
+      "comment": "`JsonWebToken.unverified(serialization)` is a separate, plainly named constructor taking no key store at all, documented as decoding \"without verifying the integrity\", and the resulting object records that it is unverified. The verified path is the distinct static `JsonWebToken.decodeAndVerify(serialization, keyStore)`, which cannot skip verification. The unsafe path is arguably the shorter one to type, but it is impossible to reach by accident from the verifying API."
+    },
+    "default-claim-validation": {
+      "value": ["none"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"
+      ],
+      "comment": "Nothing is validated automatically. `decodeAndVerify` verifies the signature (or decrypts) and constructs the claims — it never calls `claims.validate()`, and no other code path does either, so an expired token verifies successfully unless the application remembers the extra step. The capability exists and is separate: `Iterable<Exception> validate({Duration expiryTolerance = const Duration(), Uri? issuer, String? clientId})` checks `exp` unconditionally and checks `iss`/`aud` only when the corresponding argument is passed. `nbf`, `iat`, `sub`, `jti` and `typ` are exposed as typed getters but never checked. Note the shape of the API too: validate() *returns* exceptions rather than throwing, so ignoring its result silently ignores every failure."
+    },
+    "audience-issuer-required": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart"],
+      "comment": "`issuer` and `clientId` are optional named parameters of `validate()`, and `validate()` is itself optional. Verification with no statement of expected issuer or audience is not merely possible, it is the path of least resistance."
+    },
+    "clock-skew-configurable": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart"],
+      "comment": "`validate({Duration expiryTolerance = const Duration(), ...})` — the default is zero leeway, which is strict rather than dangerous, and the doc comment quotes RFC 7519's advice that implementers \"MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew\". The tolerance applies to the `exp` check; there is no `nbf`/`iat` check for it to apply to."
+    },
+    "constant-time-comparison": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/crypto_keys/master/lib/src/operators/symmetric.dart",
+        "https://raw.githubusercontent.com/appsup-dart/crypto_keys/master/lib/src/operator.dart"
+      ],
+      "comment": "Verification of an HMAC signature bottoms out in crypto_keys as `bool verify(List<int> data, Signature signature) => sign(data) == signature;`, and Signature's equality is `other is Signature && const ListEquality().equals(other.data, data)` — package:collection's ListEquality is an ordinary early-exit element-by-element loop, not a constant-time compare. So the HS* tag comparison is data-dependent in timing. Practical exploitability over a network is limited and this is a common shortcut, but by the letter of the attribute it is a `false`; jose itself does no comparison of its own to fix it. AEAD tag checking for the JWE content-encryption algorithms is delegated further down to PointyCastle and was not audited in this pass."
+    },
+    "minimum-key-size-enforced": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart"],
+      "comment": "Nearly, but not on the path that matters. Every algorithm in the catalogue declares a `minKeyBitLength` (2048 for the RSA family, hash-matched sizes for the symmetric ones) and the `if (keyBitLength! < minKeyBitLength!) throw ArgumentError` check does fire — but only from `_getKeyBitLength()`, reached exclusively through `generateCryptoKeyPair()`. So key *generation* refuses to produce an undersized key, while verification with a caller-supplied 512-bit RSA key or a 4-byte HMAC secret is not blocked by jose. RFC 7518 §3.2's requirement that an HMAC key be at least the hash length is therefore not enforced at use time."
+    },
+    "crit-header-handling": {
+      "value": ["ignores"],
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"],
+      "comment": "JoseHeader exposes `List<String>? get critical => getTyped('crit');` and nothing ever reads it. A token declaring critical extension headers the library does not implement verifies normally, which is the RFC 7515 §4.1.11 violation the `ignores` tag describes. jose implements none of the extensions `crit` would typically announce (no `b64`, no PASSporT-style extensions), so the practical exposure is limited to accepting tokens a conforming implementation would reject."
+    },
+    "nested-depth-limits": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwe.dart"
+      ],
+      "comment": "No guards found. `decodeAndVerify` recurses unconditionally whenever the payload's media type is `JWT` — `claims = (await decodeAndVerify(content.stringContent, keyStore, ...)).claims;` — with no depth counter, so a deliberately deep nesting chain is bounded only by the Dart stack. JWE `zip: DEF` decompression (`case 'DEF': return Inflate(uncompressed).getBytes()`) applies no output-size cap, i.e. no decompression-bomb protection. PBES2 is not implemented, so there is no `p2c` cap to set — that part is not applicable rather than missing."
+    },
+    "cve-history": {
+      "value": ["recent-24-months"],
+      "source": [
+        "https://github.com/advisories/GHSA-vm9r-h74p-hg97",
+        "https://osv.dev/list?q=jose&ecosystem=Pub",
+        "https://github.com/advisories?query=dart+jose"
+      ],
+      "comment": "One advisory, and a serious one. GHSA-vm9r-h74p-hg97 / CVE-2026-34240, \"jose vulnerable to untrusted JWK header key acceptance during signature verification\", published 2026-03-31, CVSS 3.1 7.5 High (AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N), CWE-347, reported by @splitline: versions ≤ 0.3.5 treated a public key embedded in the untrusted JOSE header's `jwk` parameter as a valid verification candidate even when it was not in the trusted key store, so anyone could forge arbitrary tokens by signing with their own key. Fixed in 0.3.5+1 (the \"improved key resolution in JsonWebKeyStore\" change); the current findJsonWebKeys resolves candidates only from addKey/addKeySet/addKeySetUrl. Checked 2026-07-30: this is the only entry on OSV.dev for pub:jose and the only GitHub advisory. The bug was live from 2018 until March 2026, so read it as a fixed catastrophic default rather than an isolated slip — and note the vulnerable range covers every release except the two most recent."
+    },
+    "security-policy": {
+      "value": false,
+      "source": [
+        "https://github.com/appsup-dart/jose",
+        "https://github.com/appsup-dart/jose/tree/master"
+      ],
+      "comment": "No SECURITY.md and no .github directory at the repository root as of 2026-07-30 (top level is example/, lib/, test/, .gitignore, .travis.yml, CHANGELOG.md, LICENSE, README.md, analysis_options.yaml, pubspec.yaml), and the README documents no private disclosure channel. CVE-2026-34240 was nevertheless handled through GitHub's advisory workflow with a same-day patched release, so a process exists in practice even though none is published."
+    },
+    "independent-security-review": {
+      "value": false,
+      "source": [
+        "https://github.com/appsup-dart/jose",
+        "https://github.com/advisories/GHSA-vm9r-h74p-hg97"
+      ],
+      "comment": "Searched the repository, README and the web for a published audit or a named reviewing security team and found none. The closest thing on record is a single external researcher's vulnerability report (@splitline, CVE-2026-34240), which is not a review of the library."
+    },
+    "jws": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/README.md"
+      ],
+      "comment": "Both directions: JsonWebSignatureBuilder constructs and signs, JsonWebSignature.fromCompactSerialization(...).getPayload(keyStore) verifies."
+    },
+    "jwe": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwe.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jwe_test.dart"
+      ],
+      "comment": "Full JWE in both directions, including multiple recipients, additional authenticated data in the JSON serializations, and `zip: DEF` compression (added in 0.3.5). Verified against the RFC 7516 appendix examples in the test suite."
+    },
+    "jwk-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "JsonWebKey.fromJson is the primary constructor and JWK is the library's native key representation; RSA/EC/oct key types are all handled, and `key_ops` was brought in line with the RFC in 0.3.5+1."
+    },
+    "jwks-remote-fetch": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "`JsonWebKeyStore.addKeySetUrl(Uri url)` plus DefaultJsonWebKeySetLoader, which does the HTTP GET itself via package:http (data: URIs are handled too). The pluggable JsonWebKeySetLoader interface lets an application substitute its own transport."
+    },
+    "jwks-caching-rotation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "DefaultJsonWebKeySetLoader keeps `Map<Uri, MapEntry<DateTime, String>> _cache` and serves from it while the entry is fresh, deriving the expiry from the response's `date`/`expires` headers and falling back to a 5-minute default (`Duration cacheExpiry = const Duration(minutes: 5)`); the TTL is constructor-configurable. Two caveats: expiry is driven by `expires` rather than `Cache-Control: max-age`, and there is no refetch-on-unknown-`kid` — an unrecognised `kid` simply fails until the TTL lapses. That is a rotation-latency problem, but it also means the library is not the unthrottled refetch-on-miss DoS amplifier this attribute warns about."
+    },
+    "kid-selection": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/CHANGELOG.md"
+      ],
+      "comment": "JsonWebKeyStore._isValidKeyFor filters candidates with `if ((header.keyId != null) && (header.keyId != key.keyId)) { return false; }`. Since 0.3.5+1 (\"try all keys when kid is absent\") a token with no `kid` falls back to trying every usable key in the store rather than failing."
+    },
+    "jwk-thumbprint": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "No RFC 7638 JWK thumbprint computation and no RFC 9278 thumbprint URI. The only thumbprints present are the X.509 certificate ones read straight out of the JWK's `x5t` / `x5t#S256` members, which are a different thing entirely."
+    },
+    "nested-jwt": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart"],
+      "comment": "Handled end to end and recursively: decodeAndVerify inspects the decrypted/verified payload's media type and, when `content.mediaType == 'JWT'`, calls itself on the inner serialization before taking the claims — so signed-then-encrypted tokens work in one call. The recursion is uncapped; see \"Nested/Recursive Depth Limits\"."
+    },
+    "json-serialization": {
+      "value": ["compact", "flattened-json", "general-json", "multiple-signatures"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwe.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jwe_test.dart"
+      ],
+      "comment": "All four. jws.dart branches on `if (json.containsKey('signatures'))` to read the general form and otherwise the flattened form, and multiple signatures / multiple JWE recipients are supported in the JSON serializations while compact serialization rejects them (`'Compact serialization does not support multiple signatures'`). The RFC 7516 general and flattened JSON examples are both in the test suite; parsing a multi-signature JWS from JSON was fixed as recently as 0.3.5+1."
+    },
+    "detached-payload": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart"],
+      "comment": "RFC 7515 Appendix F is not implemented — there is no API to supply the payload out of band, and the payload segment is always read from the serialization itself."
+    },
+    "unencoded-payload": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"
+      ],
+      "comment": "RFC 7797 `b64: false` is not supported: the payload is unconditionally base64url-decoded, and since the `crit` header is ignored entirely a `b64` token would be silently misread rather than rejected."
+    },
+    "key-generation": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "`factory JsonWebKey.generate(String? algorithm, {int? keyBitLength})` resolves the JWA by name and delegates to that algorithm's random-key generator, so a key can be produced for any registered signing, key-management or content-encryption algorithm. This is the one place the catalogue's minKeyBitLength floors are enforced."
+    },
+    "x509-header-support": {
+      "value": ["x5c", "x5t", "x5t-s256", "x5u"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart"
+      ],
+      "comment": "Read this tag with the caveat, because the split matters: all four parameters are handled as *JWK members* (JsonWebKey exposes x509CertificateChain, x509CertificateThumbprint, x509CertificateSha256Thumbprint and x509Url), but the *JOSE header* equivalents are explicitly unimplemented — x5u/x5c/x5t are commented out as TODO in JoseHeader, so a JWS protected header carrying x5c contributes nothing to key resolution. On validation depth: JsonWebKey.fromJson does check the leaf certificate against the key (`if (_keyPair.publicKey != cert.publicKey) throw ArgumentError(\"The public key in 'x5c' does not match...\")`), which is more than mere parsing, but there is no chain building, no signature verification up the chain, no expiry or revocation check and no trust anchor. `x5u` is parsed into a Uri and never fetched. `x5t`/`x5t#S256` are returned as raw strings without being recomputed from the certificate."
+    },
+    "key-input-formats": {
+      "value": ["pem", "pkcs8", "spki", "jwk", "jwks"],
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"],
+      "comment": "JWK and JWKS are native (JsonWebKey.fromJson, JsonWebKeySet, JsonWebKeyStore.addKeySet/addKeySetUrl). PEM ingestion is `factory JsonWebKey.fromPem(String pem, {String? keyId})`, which delegates to package:x509's parsePem and then unwraps whatever it gets: a PrivateKeyInfo (PKCS#8) via its keyPair, a KeyPair, an X509Certificate (0.3.1 added CERTIFICATE handling) reduced to its subjectPublicKeyInfo, or a SubjectPublicKeyInfo (SPKI) directly. PKCS#1 and SEC1 bare-key PEM labels were not confirmed and are not tagged; raw DER has no entry point of its own — the API is PEM-oriented. There is also JsonWebKey.fromCryptoKeys for pointycastle/crypto_keys objects and the .rsa()/.ec()/.symmetric() component constructors, but those are typed objects rather than an encoding."
+    },
+    "external-signer-support": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jws.dart"
+      ],
+      "comment": "No pluggable signer abstraction: signing goes through a JsonWebKey holding actual key material and calls into crypto_keys directly, so a KMS/HSM/PKCS#11 signer cannot be injected without subclassing JsonWebKey and reimplementing its sign/verify. The one pluggable seam in the library is JsonWebKeySetLoader, which concerns key *retrieval*, not remote signing."
+    },
+    "framework-integrations": {
+      "value": ["none"],
+      "source": [
+        "https://github.com/appsup-dart/jose",
+        "https://pub.dev/packages/jose"
+      ],
+      "comment": "No first-party adapter package and none referenced from the README or pub.dev page; there is no shelf middleware. The package is instead consumed as a building block by higher-level packages from the same author (notably openid_client), which is a library dependency rather than a framework integration."
+    },
+    "async-api": {
+      "value": ["both"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jose.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwk.dart"
+      ],
+      "comment": "Mixed rather than dual: signing/encrypting through the builders is synchronous (the crypto itself is synchronous pure Dart), while the consuming side is async — `Future<JosePayload> getPayload(JsonWebKeyStore keyStore, {List<String>? allowedAlgorithms})`, `Future<bool> verify(...)`, `Future<JsonWebToken> decodeAndVerify(...)` — because key resolution returns a Stream and may hit the network for a JWKS URL. So there is no synchronous verification path even when every key is already in memory."
+    },
+    "typed-claims": {
+      "value": ["map-only"],
+      "source": ["https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwt.dart"],
+      "comment": "JsonWebTokenClaims extends JsonObject and is a JSON map underneath, reached with `claims['my-claim']`. The registered claims get convenience getters with real Dart types (`Uri? get issuer`, `String? get subject`, `List<String>? get audience`, `DateTime?` for exp/nbf/iat), but custom claims are dynamic, unvalidated and uncheckable at compile time — there is no generic payload type and no schema mechanism. Tagged map-only, with the registered-claim accessors as the nuance."
+    },
+    "crypto-backend": {
+      "value": ["pointycastle"],
+      "source": [
+        "https://pub.dev/packages/crypto_keys",
+        "https://pub.dev/api/packages/jose"
+      ],
+      "comment": "jose depends on crypto_keys ^0.3.0+1, which depends on pointycastle ^4.0.0 and describes itself as leveraging PointyCastle behind a friendlier API. There is no backend choice and no platform-crypto path — the same pure-Dart primitives are used everywhere, including on the web."
+    },
+    "pure-language-implementation": {
+      "value": true,
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://pub.dev/packages/crypto_keys",
+        "https://pub.dev/api/packages/jose/score"
+      ],
+      "comment": "Pure Dart with no FFI in the default configuration: the nine direct dependencies (crypto_keys, x509, asn1lib, archive, http, http_parser, collection, meta, typed_data) are all Dart packages, and crypto_keys' own tree bottoms out in PointyCastle, itself pure Dart. pub.dev corroborates by awarding the package all platforms including Web and the \"WebAssembly ready\" marker, which a package with a native dependency could not earn. Verified from the published manifests rather than a local `dart pub deps` run."
+    },
+    "runs-in-browser-wasm": {
+      "value": true,
+      "source": [
+        "https://pub.dev/packages/jose",
+        "https://pub.dev/api/packages/jose/score"
+      ],
+      "comment": "pub.dev lists Web among the supported platforms and tags the package as WASM-ready and supporting the js/wasm runtimes, which follows from the pure-Dart PointyCastle backend — nothing is delegated to dart:io or a native library. The trade-off is performance: PointyCastle's RSA/EC in compiled JS is markedly slower than the browser's own WebCrypto, which this library never uses."
+    },
+    "edge-runtime-compatible": {
+      "value": null,
+      "source": ["https://pub.dev/packages/jose"],
+      "comment": "Not applicable, per the assessment guideline that this question is meaningless for some ecosystems. Cloudflare Workers, Vercel Edge and Deno Deploy do not run Dart, so there is no edge target for a pub package to be compatible with; the equivalent question for Dart — does it work in a browser and in AOT/JIT server builds — is answered under \"Runs in Browser/WASM\". Recorded null rather than false so it is not read as a deficiency."
+    },
+    "fips-capable-backend": {
+      "value": false,
+      "source": [
+        "https://pub.dev/packages/crypto_keys",
+        "https://pub.dev/api/packages/jose"
+      ],
+      "comment": "There is no backend to swap: the crypto is hard-wired to crypto_keys/PointyCastle, a pure-Dart reimplementation that is not a FIPS 140-validated cryptographic module and cannot be pointed at one. Validation would belong to the module rather than to this library, but here no such module is reachable at all — no OpenSSL FIPS provider, no aws-lc-rs, no BC-FJA."
+    },
+    "dependency-count": {
+      "value": 9,
+      "source": ["https://pub.dev/api/packages/jose"],
+      "comment": "Nine direct dependencies in the 0.3.5+2 pubspec, checked 2026-07-30: crypto_keys ^0.3.0+1, meta ^1.1.6, typed_data ^1.0.0, x509 ^0.2.1, http >=0.13.0 <2.0.0, http_parser ^4.0.0, asn1lib ^1.0.0, collection ^1.15.0, archive >=3.6.1 <5.0.0. Dev-only dependencies (test, lints, melos) are excluded. Notable that http and archive are unconditional — the HTTP client is pulled in for JWKS URL loading and archive for JWE `zip: DEF`, even for an application that uses neither."
+    },
+    "package-size": {
+      "value": null,
+      "source": [
+        "https://pub.dev/api/packages/jose/versions/0.3.5%2B2",
+        "https://pub.dev/packages/jose"
+      ],
+      "comment": "pub.dev's package and version APIs expose the archive URL and SHA-256 for jose-0.3.5+2.tar.gz but publish no size field, and the package page does not display one either, so there is no comparable figure to record. For scale, the library is seven source files under lib/src (jose, jwa, jwe, jwk, jws, jwt, util)."
+    },
+    "github-stars": {
+      "value": 56,
+      "source": [
+        "https://github.com/appsup-dart/jose",
+        "https://github.com/appsup-dart/jose/tree/master"
+      ],
+      "comment": "Snapshot of appsup-dart/jose taken 2026-07-30: 56 stars, 46 forks, 2 watchers. Stars badly understate usage here — pub.dev reports ~58k downloads in the last 30 days — because the Dart/Flutter community discovers packages through pub.dev rather than GitHub."
+    },
+    "downloads": {
+      "value": 57850,
+      "source": [
+        "https://pub.dev/api/packages/jose/score",
+        "https://pub.dev/packages/jose"
+      ],
+      "comment": "57,850 downloads over the 30 days ending 2026-07-30, from pub.dev's score API (`downloadCount30Days`); the package page renders the same figure as \"57.9k\". Comparable only against other pub.dev packages — the sibling candidate dart_jsonwebtoken is the relevant yardstick, not any npm or PyPI number. Likes: 73; pub points 160/160."
+    },
+    "last-release": {
+      "value": "2026-03-31",
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://pub.dev/api/packages/jose/versions/0.3.5%2B2"
+      ],
+      "comment": "0.3.5+2 published 2026-03-31T08:27:17Z — the same day CVE-2026-34240 was disclosed and 0.3.5+1 shipped the fix."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://github.com/appsup-dart/jose/commits/master",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/CHANGELOG.md"
+      ],
+      "comment": "A release four months ago (2026-03-31) and commits in March 2026 clear the six-month bar as of 2026-07-30, and the same-day response to CVE-2026-34240 shows the maintainer is reachable. Read it as active-but-episodic rather than briskly maintained: 0.3.4 → 0.3.5 spanned roughly two years, and much of the recent work is dependency-compatibility catch-up. The maintainer points to no successor package."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": [
+        "https://github.com/appsup-dart/jose/commits/master",
+        "https://pub.dev/packages/jose"
+      ],
+      "comment": "One person: rbellens (Rik Bellens) authored the great majority of recent commits including every release commit, and the verified publisher appsup.be is his own. Other names in the recent history (sgt, mootw, serverwentdown) appear as one-off contributions merged by rbellens. The same author also maintains the crypto_keys and x509 dependencies, so the concentration extends one layer down the stack."
+    },
+    "maturity": {
+      "value": ["beta"],
+      "source": [
+        "https://pub.dev/api/packages/jose",
+        "https://github.com/advisories/GHSA-vm9r-h74p-hg97",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/lib/src/jwa.dart"
+      ],
+      "comment": "A genuinely awkward call. Arguing for higher: seven years old, ~58k downloads a month, broad real production use, RFC-vector-tested, and the widest JOSE coverage available in Dart. Arguing for lower: still 0.3.x with no 1.0 in sight and breaking changes across minors, incomplete algorithm coverage (no PS*, no EdDSA, no ECDH-ES, no PBES2, no GCMKW), no security policy, and a high-severity signature-verification bypass that stood from 2018 until March 2026. The guideline's \"stable\" requires 1.0+ with a documented upgrade path, which this does not meet, so `beta` it is — used in production, but the API still moves."
+    },
+    "rfc-conformance-testing": {
+      "value": ["rfc-test-vectors"],
+      "source": [
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jws_test.dart",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/test/jwe_test.dart",
+        "https://github.com/appsup-dart/jose/tree/master/test"
+      ],
+      "comment": "Real spec vectors, not just self-consistency: test/jws_test.dart is grouped under \"JWS Examples from RFC7515\" and test/jwe_test.dart under \"JWE Examples from RFC7516\" with the appendix cases named individually (RSAES-OAEP + AES GCM, RSAES-PKCS1-v1_5 + AES_128_CBC_HMAC_SHA_256, AES Key Wrap, general and flattened JSON serializations). jwe_test.dart also carries a \"JWE Examples from jose4j\" group, which is cross-implementation borrowing rather than a formal interop suite. Not tagged: cookbook-7520 (no RFC 7520 group found), wycheproof, interop-suite. Coverage is uneven — ES384 and ES256K have catalogue entries but no matching RFC-vector test."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": [
+        "https://pub.dev/documentation/jose/latest/",
+        "https://raw.githubusercontent.com/appsup-dart/jose/master/README.md",
+        "https://github.com/appsup-dart/jose/tree/master"
+      ],
+      "comment": "Level 3: generated dartdoc for the whole public API with useful class-level doc comments (several quote the RFC text directly), plus a README with five runnable examples — verify a JWS, create a JWS, decrypt a JWE, encrypt a JWE, and decode/verify/validate a JWT — an example/ directory, and a printed algorithm support table. Held below 4 because the prose is a feature tour rather than a task-oriented guide: nothing walks through JWKS-backed verification or key rotation, and there is no security-considerations section at all. That last gap is material given how much of this library's safety depends on the caller — passing `allowedAlgorithms`, remembering to call `claims.validate()`, and supplying an expected issuer and audience are all undocumented obligations."
+    }
+  }
 }
