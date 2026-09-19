@@ -1,5 +1,281 @@
 {
   "name": "lalrpop",
   "description": "LR(1)/LALR(1) parser generator with .lalrpop grammar files and inline Rust actions",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/Cargo.toml"],
+      "comment": "Workspace Cargo.toml: `license = \"Apache-2.0 OR MIT\"` (dual), inherited by both `lalrpop` and `lalrpop-util`."
+    },
+    "approach": {
+      "value": ["generator-grammar-file"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/README.md", "https://lalrpop.github.io/lalrpop/quick_start_guide.html"],
+      "comment": "Grammar lives in a `.lalrpop` file; the `lalrpop` crate runs from `build.rs` (or the CLI) and emits a Rust module that is pulled in via `lalrpop_mod!`."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop/Cargo.toml"],
+      "comment": "Runtime crate `lalrpop-util` depends only on `regex-automata` (optional); generator crate deps (petgraph, ena, regex, string_cache, sha3, ...) are all pure Rust."
+    },
+    "repository": {
+      "value": "https://github.com/lalrpop/lalrpop",
+      "source": ["https://crates.io/api/v1/crates/lalrpop"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/lalrpop",
+      "source": ["https://crates.io/api/v1/crates/lalrpop", "https://crates.io/api/v1/crates/lalrpop-util"],
+      "comment": "`lalrpop` is the generator (build-dependency); `lalrpop-util` is the runtime crate the user's binary links. Versions must be kept in sync."
+    },
+    "documentation": {
+      "value": "https://lalrpop.github.io/lalrpop/",
+      "source": ["https://lalrpop.github.io/lalrpop/", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/README.md"],
+      "comment": "The LALRPOP Book (tutorial, lexer tutorial, cheat sheet); API reference at docs.rs/lalrpop-util."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://crates.io/api/v1/crates/lalrpop"],
+      "comment": "crates.io `created_at` 2015-07-26 (v0.1.0) for both `lalrpop` and `lalrpop-util`."
+    },
+    "latest-stable-version": {
+      "value": "0.23.1",
+      "source": ["https://crates.io/api/v1/crates/lalrpop", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/RELEASES.md"],
+      "comment": "Checked 2026-09-19; published 2026-03-11. Research reflects lalrpop / lalrpop-util 0.23.x (Rust 2024 edition, `lexer` feature on by default)."
+    },
+    "grammar-class": {
+      "value": ["lr1", "lalr1"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/README.md"],
+      "comment": "README: \"uses LR(1) by default (though you can opt for LALR(1))\"."
+    },
+    "grammar-definition": {
+      "value": ["external-file"],
+      "source": ["https://lalrpop.github.io/lalrpop/quick_start_guide.html"],
+      "comment": "`.lalrpop` grammar files processed by `build.rs` (`lalrpop::process_src()` / `process_root()`) or the `lalrpop` CLI."
+    },
+    "left-recursion": {
+      "value": ["native"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/004_full_expressions.md"],
+      "comment": "LR generator: the tutorial's canonical precedence tiers are left-recursive (`<l:Expr> \"+\" <r:Factor>`). Per Assessment Guidelines LR generators get `native`."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/README.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Deterministic LR(1)/LALR(1) tables; shift/reduce and reduce/reduce conflicts are reported as errors by the generator (README highlights its conflict error messages)."
+    },
+    "backtracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Table-driven LR state machine with state/symbol stacks and single-token lookahead; no backtracking."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lexer.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/003_writing_custom_lexer.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/005_external_lib.md"],
+      "comment": "Built-in regex-based lexer (`regex-automata` hybrid DFA, `lexer` feature) generated from the grammar's terminals; or an `extern { enum Tok {...} }` block with any `Iterator<Item = Result<(Loc, Tok, Loc), Error>>`. The book has a dedicated chapter pairing it with `logos`."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/004_full_expressions.md"],
+      "comment": "`#[precedence(level=\"N\")]` and `#[assoc(side=\"left\"|\"right\")]` attributes on alternatives generate the precedence tiers automatically (no yacc-style `%left`/`%right` declarations; the attribute mechanism is the equivalent)."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/001_lexer_gen.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml"],
+      "comment": "Built-in lexer works on `&str` and yields `&'input str` slices at byte offsets on char boundaries; the default-on `unicode` feature enables Unicode classes (`\\s`, `\\d`, ...) in terminal regexes."
+    },
+    "input-types": {
+      "value": ["str", "token-slice", "custom-stream"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lexer.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/003_writing_custom_lexer.md"],
+      "comment": "Built-in lexer consumes `&str`. With an `extern` token declaration the parser accepts any iterator of `Result<(Loc, Tok, Loc), E>` (a token slice iterator or a streaming lexer both work). No `&[u8]` support in the built-in lexer."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Tokens are pulled lazily from an iterator, but end-of-iterator is treated as EOF (`UnrecognizedEof`); there is no 'need more input' signal or resumable parser state."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lexer.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/003_writing_custom_lexer.md"],
+      "comment": "Built-in `Token<'input>` borrows `&'input str`; actions can bind `<&'input str>` into the AST. Custom lexers may likewise yield borrowing tokens (\"Using tokens with references\" chapter)."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "custom-span-type"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/location_tracking.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/003_writing_custom_lexer.md"],
+      "comment": "`@L`/`@R` bind start/end positions (default `usize` byte offsets). With a custom lexer, `type Location = ...` may be any `Debug + Clone + Default` type (e.g. line/column), so line/col is user-supplied rather than built in."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/004_full_expressions.md"],
+      "comment": "Each nonterminal declares its Rust result type; actions construct arbitrary user types (Box<Expr>, i32, ...)."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/004_full_expressions.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/007_fallible_actions.md"],
+      "comment": "`=> { rust code }` actions with `<name:Sym>` bindings; `=>?` fallible actions return `Result<T, ParseError>`."
+    },
+    "whitespace-comment-handling": {
+      "value": ["lexer-skip"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/001_lexer_gen.md"],
+      "comment": "Built-in lexer skips whitespace by default; `match { r\"\\s*\" => { }, r\"//[^\\n\\r]*\" => { } }` ignore patterns customise skipping (comments etc.). With an external lexer, skipping is the lexer's job."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/009_state_parameter.md"],
+      "comment": "`grammar(scale: i32);` / `grammar<'a>(state: &'a mut S);` declares extra parameters passed to `parse()` and visible in every action (used e.g. for the error-collection Vec)."
+    },
+    "error-recovery": {
+      "value": ["configurable"],
+      "source": ["https://lalrpop.github.io/lalrpop/tutorial/008_error_recovery.html", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Per Assessment Guidelines: the `!` error token lets the user decide where recovery is allowed; runtime pops states to one that can shift `!`, drops tokens until the lookahead is accepted, and hands the user an `ErrorRecovery { error, dropped_tokens }`. Parser-level only — lexer errors are not recoverable unless the lexer emits an error token."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://lalrpop.github.io/lalrpop/tutorial/008_error_recovery.html"],
+      "comment": "Idiom: `grammar<'err>(errors: &'err mut Vec<ErrorRecovery<...>>)` with `! => { errors.push(<>); ... }` collects every recovered error in one run."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://docs.rs/lalrpop-util/latest/lalrpop_util/enum.ParseError.html"],
+      "comment": "`UnrecognizedToken` and `UnrecognizedEof` carry `expected: Vec<String>` (terminal names from the grammar, which docs warn may not be user-presentable as-is)."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/007_fallible_actions.md", "https://docs.rs/lalrpop-util/latest/lalrpop_util/enum.ParseError.html"],
+      "comment": "`extern { type Error = MyError; }` sets the `E` in `ParseError<L, T, E>`; `map_error`/`map_location`/`map_token` adapt it further."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://docs.rs/lalrpop-util/latest/lalrpop_util/enum.ParseError.html"],
+      "comment": "Guideline 4: `UnrecognizedToken`/`ExtraToken` carry `(L, T, L)` start/end spans and `ErrorRecovery` keeps dropped-token spans; `InvalidToken`/`UnrecognizedEof` carry a single location. No labelled secondary spans."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/SUMMARY.md"],
+      "comment": "No first-party or documented bridge to ariadne/miette/codespan-reporting/annotate-snippets; `ParseError` exposes byte spans so users wire up their own reporter (Gluon and Nickel pair it with codespan-reporting)."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://lalrpop.github.io/lalrpop/tutorial/008_error_recovery.html", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/007_fallible_actions.md"],
+      "comment": "`!` error-token productions attach rule-specific handling/messages at chosen grammar points; `=>?` actions return `ParseError::User { error }` with custom human-readable errors."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Batch LR parse over a token iterator; no tree reuse or edit API."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/lexer_tutorial/001_lexer_gen.md"],
+      "comment": "Whitespace/comments are skipped by the lexer; output is a user-typed AST, not a CST."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/SUMMARY.md"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/tweag/nickel/master/core/Cargo.toml"],
+      "comment": "Not used by rust-analyzer, Helix, Zed, or Neovim. Nickel's language server (nls) reuses the LALRPOP-based `nickel-lang-core` parser, but that is a language-specific LSP rather than one of the tagged editors."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "epage/parse-benchmarks-rs JSON benchmark (rustc 1.94.1, lalrpop v0.23.1, checked 2026-09-19): 40 ms parse vs 18 ms for hand-written serde_json (≈2.2×) and 27 ms for winnow → `fast` tier. Maintainer-authored (winnow) but includes all competitors and is reproducible; parsers 'have not been validated'."
+    },
+    "compile-time-impact": {
+      "value": ["heavy"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://github.com/lalrpop/lalrpop/issues/65"],
+      "comment": "parse-benchmarks-rs: 12 s debug build for the JSON parser — the slowest in the table (winnow 1 s, pest 3 s). Issue #65 documents a large grammar producing ~1M lines of generated code and 20+ min builds. Generated tables scale with grammar size; keeping `lalrpop` in `[build-dependencies]` only avoids compiling the generator into the final binary."
+    },
+    "allocation-strategy": {
+      "value": ["arena-friendly"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/tutorial/009_state_parameter.md"],
+      "comment": "Runtime keeps `Vec` state/symbol stacks (requires `alloc`), so not allocation-free. AST allocation is entirely user-controlled in actions; an arena can be threaded in via grammar parameters."
+    },
+    "generated-code-size": {
+      "value": ["large"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://github.com/lalrpop/lalrpop/issues/65"],
+      "comment": "parse-benchmarks-rs reports 1,523 KiB release binary overhead for the JSON grammar (vs 67–175 KiB for combinators); issue #65 records ~50 MB of generated source for a PHP expression grammar."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lib.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/RELEASES.md", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/.github/workflows/test.yaml"],
+      "comment": "`#![cfg_attr(not(feature = \"std\"), no_std)]`; `alloc` required (Vec stacks). Since 0.22.0 the built-in lexer is also no_std-compatible. CI runs `cargo hack --feature-powerset` (covers the no-`std` feature set) but has no embedded/`wasm32` target job."
+    },
+    "msrv": {
+      "value": "1.86",
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/Cargo.toml", "https://crates.io/api/v1/crates/lalrpop-util", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/.github/workflows/test.yaml"],
+      "comment": "`rust-version = \"1.86\"` in workspace Cargo.toml and on crates.io for 0.23.1; CI pins a 1.86 MSRV job. RELEASES.md notes 0.23.0 bumped MSRV to 1.85."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lib.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lexer.rs", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "No `unsafe` found in lalrpop-util's lib.rs, lexer.rs, or state_machine.rs, but the crate does not declare `#![forbid(unsafe_code)]`, so tagged minimal rather than forbid. `regex-automata` (dependency) does contain unsafe."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://lalrpop.github.io/lalrpop/quick_start_guide.html", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml"],
+      "comment": "Code generation happens in `build.rs` (or the CLI); `lalrpop_mod!` is a plain `macro_rules!` include helper. No proc-macro crate in the tree."
+    },
+    "build-rs-step": {
+      "value": true,
+      "source": ["https://lalrpop.github.io/lalrpop/quick_start_guide.html", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-test/build.rs"],
+      "comment": "Standard setup: `lalrpop = \"0.23\"` in `[build-dependencies]` with `lalrpop::process_src()`/`Configuration` in `build.rs`. Alternatively run the `lalrpop` CLI and commit the generated `.rs` to avoid the build script."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml"],
+      "comment": "Runtime crate `lalrpop-util`: one optional dependency, `regex-automata` (enabled by the default `lexer` feature; zero deps with `default-features = false`). Generator crate `lalrpop` (build-time only) has 13 direct deps."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/Cargo.toml", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/lib.rs"],
+      "comment": "Inferred: runtime is pure Rust, `no_std`-capable, sole dependency `regex-automata`; the generator runs on the host in `build.rs`. No wasm32 CI job or official statement found."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/lalrpop-util/latest/lalrpop_util/enum.ParseError.html", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/lalrpop-util/src/state_machine.rs"],
+      "comment": "Generated parsers are stateless unit structs; `ParseError`/`ErrorRecovery` are plain enums/Vecs (Send when `L`/`T`/`E` are). Input must be a synchronous token iterator over already-buffered text — no async streaming, but nothing prevents parsing inside an async task."
+    },
+    "github-stars": {
+      "value": 3501,
+      "source": ["https://api.github.com/repos/lalrpop/lalrpop"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 85252512,
+      "source": ["https://crates.io/api/v1/crates/lalrpop-util", "https://crates.io/api/v1/crates/lalrpop"],
+      "comment": "All-time downloads of the runtime crate `lalrpop-util` as of 2026-09-19 (85.3M); the generator crate `lalrpop` has 69.1M."
+    },
+    "last-release": {
+      "value": "2026-03-11",
+      "source": ["https://crates.io/api/v1/crates/lalrpop", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/RELEASES.md"],
+      "comment": "lalrpop / lalrpop-util 0.23.1."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/lalrpop/lalrpop/commits?per_page=5", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/RELEASES.md"],
+      "comment": "Checked 2026-09-19: commits on 2026-09-14 (clippy, docs) and 2026-07-25 (dep bump); releases 0.23.0 (2026-02) and 0.23.1 (2026-03) within the last 12 months. Original author nikomatsakis is no longer the day-to-day maintainer; dburgener handles most current activity."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/SUMMARY.md", "https://docs.rs/lalrpop-util/latest/lalrpop_util/enum.ParseError.html"],
+      "comment": "Guideline 4: full book (crash course, 9-chapter tutorial, 6-chapter lexer tutorial, location tracking, cheat sheet) plus docs.rs API docs. No cookbook or formal migration guides beyond RELEASES.md."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://lalrpop.github.io/lalrpop/", "https://raw.githubusercontent.com/lalrpop/lalrpop/master/doc/src/SUMMARY.md"],
+      "comment": "The LALRPOP Book (mdBook) with step-by-step calculator tutorial and lexer tutorial."
+    },
+    "notable-users": {
+      "value": "Gluon (parser crate), Nickel (nickel-lang-core), Solang Solidity compiler (solang-parser)",
+      "source": ["https://raw.githubusercontent.com/gluon-lang/gluon/master/parser/Cargo.toml", "https://raw.githubusercontent.com/tweag/nickel/master/core/Cargo.toml", "https://raw.githubusercontent.com/hyperledger-solang/solang/main/solang-parser/Cargo.toml", "https://raw.githubusercontent.com/RustPython/RustPython/main/Cargo.toml"],
+      "comment": "All three verified via `lalrpop-util` dependency + `lalrpop` build-dependency in their Cargo.toml (checked 2026-09-19). The README still lists RustPython, but RustPython's current workspace uses `ruff_python_parser` and no longer depends on lalrpop."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/lalrpop/lalrpop/contributors?per_page=10", "https://lib.rs/crates/lalrpop-util", "https://api.github.com/repos/lalrpop/lalrpop/commits?per_page=5"],
+      "comment": "lalrpop GitHub org; crate owners Niko Matsakis, Daniel Burgener (dburgener) and the org team. History: nikomatsakis 743, Marwes 245, dburgener 113, Pat-Lafon 73, youknowone 64 commits; recent activity is mostly dburgener plus occasional contributors."
+    }
+  }
 }
