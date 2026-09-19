@@ -1,5 +1,281 @@
 {
   "name": "logos",
   "description": "Derive-macro lexer generator focused on speed; the de-facto companion to lalrpop/chumsky",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md"],
+      "comment": "Cargo.toml: `license = \"MIT OR Apache-2.0\"` (dual); README repeats the dual licence."
+    },
+    "approach": {
+      "value": ["lexer-only"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md", "https://docs.rs/logos/latest/logos/"],
+      "comment": "Lexer generator only: `#[derive(Logos)]` on a token enum with `#[token]`/`#[regex]` attributes compiles all patterns into one DFA. No parsing facilities; the book pairs it with chumsky (calculator example) and LALRPOP's book pairs it as the external lexer."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://raw.githubusercontent.com/maciejhirsz/logos/master/logos-codegen/Cargo.toml"],
+      "comment": "Runtime crate depends only on `logos-derive`; the codegen crate's deps (fnv, proc-macro2, quote, regex-automata, regex-syntax, syn) are all pure Rust — no `cc` or C code."
+    },
+    "repository": {
+      "value": "https://github.com/maciejhirsz/logos",
+      "source": ["https://crates.io/api/v1/crates/logos"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/logos",
+      "source": ["https://crates.io/api/v1/crates/logos"],
+      "comment": "Companion crates: `logos-derive` (proc-macro), `logos-codegen` (shared generator), `logos-cli` (offline code generation)."
+    },
+    "documentation": {
+      "value": "https://logos.maciej.codes/",
+      "source": ["https://logos.maciej.codes/", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/SUMMARY.md"],
+      "comment": "The Logos Handbook (mdBook); API reference at docs.rs/logos."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/api/v1/crates/logos/versions"],
+      "comment": "crates.io v0.1.0 published 2018-11-09."
+    },
+    "latest-stable-version": {
+      "value": "0.16.1",
+      "source": ["https://crates.io/api/v1/crates/logos/versions"],
+      "comment": "Checked 2026-09-19; published 2026-01-30. Research reflects logos 0.16.x (the 0.16 line rewrote the matching engine for full regex semantics; MSRV 1.80)."
+    },
+    "grammar-class": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/common-regex.md"],
+      "comment": "Not applicable: logos is a lexer generator that compiles regular expressions (regex-syntax subset, no lookaround/word boundaries) into a DFA — a regular language recogniser. None of the defined grammar-class tags (LR/LALR/GLR/PEG/recursive descent/LL(k)/arbitrary) describe a regular-language lexer, so this is left null rather than stretched."
+    },
+    "grammar-definition": {
+      "value": ["macro-dsl"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/attributes/token_and_regex.md"],
+      "comment": "Token patterns live in `#[token(\"...\")]` / `#[regex(\"...\")]` attributes on a Rust enum processed by the `Logos` derive macro."
+    },
+    "left-recursion": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md"],
+      "comment": "Lexer only; per RESEARCH.md `n/a` for lexers."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/token-disambiguation.md"],
+      "comment": "Overlapping token patterns are resolved by longest match, then by a computed specificity priority (\"Longer beats shorter. Specific beats generic.\"). If two patterns can match the same input with equal priority the derive macro emits a compile error, which the user resolves with `priority = N`. The listed tags are parser-oriented; `rejected-at-build` is the closest fit."
+    },
+    "backtracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/common-regex.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/migrating.md"],
+      "comment": "Deterministic DFA: \"its matching engine will never backtrack during a token\" (book). 0.16 reworked the engine to follow exact `regex` match semantics (e.g. `a*a` now matches) without runtime backtracking; unbounded greedy `.*`/`.+` are rejected at compile time unless `allow_greedy = true` because they force O(n^2) re-reads."
+    },
+    "lexer-integration": {
+      "value": ["is-lexer"],
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "`Lexer<T>` implements `Iterator<Item = Result<T, T::Error>>`; `.spanned()` yields `(Result<T, E>, Span)` for feeding LALRPOP / chumsky."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/logos/latest/logos/"],
+      "comment": "Lexer only; no expression/precedence facility."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/unicode-support.md"],
+      "comment": "\"By default, logos is Unicode aware\": regexes match Unicode codepoints and returned spans never split UTF-8 sequences. Byte-level matching is opt-in via `(?-u)` / byte-string patterns and `#[logos(utf8 = false)]`."
+    },
+    "input-types": {
+      "value": ["str", "bytes"],
+      "source": ["https://docs.rs/logos/latest/logos/", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/migrating.md"],
+      "comment": "`Source` is `str` by default, or `[u8]` with `#[logos(utf8 = false)]` (or when a pattern can match invalid UTF-8). The `source = ...` attribute for custom source types was removed in 0.16, so custom streams are no longer supported."
+    },
+    "streaming-partial-input": {
+      "value": null,
+      "source": ["https://docs.rs/logos/0.16.1/logos/struct.Lexer.html", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/partial.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lexer.rs"],
+      "comment": "Released 0.16.1 has no partial-input API (`Lexer` docs list only `new`/`with_extras`). The master branch adds `Lexer::new_partial`, which returns `None` when more data is needed and is documented for lexing from `Read`/`AsyncRead` in chunks — unreleased as of 2026-09-19, so null per the RESEARCH.md guideline on unreleased features."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/SUMMARY.md"],
+      "comment": "`lex.slice()` returns a `&'source str`/`&'source [u8]` borrowed from the input; token variants can carry `&'source str` via callbacks (book example \"JSON-borrowed parser\")."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://docs.rs/logos/latest/logos/", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/extras.md"],
+      "comment": "`Span = Range<usize>` of byte offsets via `lex.span()` / `.spanned()`. Line/column is not built in; the book shows tracking it manually in `Extras`."
+    },
+    "output-model": {
+      "value": ["tokens-only"],
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "Produces a flat token iterator; no tree."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/callbacks.md"],
+      "comment": "`callback = fn` on `#[token]`/`#[regex]` runs arbitrary Rust with `&mut Lexer` access (slice, span, bump, remainder, extras) and can return values, `Option`, `Result`, `Skip`, `Filter`, or `FilterResult`."
+    },
+    "whitespace-comment-handling": {
+      "value": ["lexer-skip"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/attributes/logos.md"],
+      "comment": "`#[logos(skip r\"[ \\t\\n]+\")]` (optionally with callback/priority) drops trivia; alternatively emit trivia as ordinary tokens if the parser wants them."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/extras.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/context-dependent-lexing.md"],
+      "comment": "`#[logos(extras = T)]` exposes a public mutable `lex.extras` field readable/writable from callbacks; `morph()` switches to a different token enum for context-dependent (multi-mode) lexing."
+    },
+    "error-recovery": {
+      "value": ["basic"],
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html", "https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lexer.rs"],
+      "comment": "Unmatched input yields an `Err(Token::Error)` item for the unmatched slice and iteration continues with the next token (the iterator is not fused on error). No user-configurable recovery strategy beyond that."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "Each unrecognised segment is its own `Err` item in the stream, so a single pass over the input can surface many lexical errors."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://docs.rs/logos/latest/logos/trait.Logos.html"],
+      "comment": "Default error type is `()`; errors carry no expected-pattern set."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/attributes/logos.md", "https://docs.rs/logos/latest/logos/trait.Logos.html"],
+      "comment": "`#[logos(error = MyError)]` (must be `Default + Clone + PartialEq + Debug`, plus `From<E>` for callback errors); 0.15.1+ also allows `#[logos(error(MyError, callback = f))]` so the error constructor receives lexer context such as the span."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/attributes/logos.md"],
+      "comment": "Every error item is paired with a byte-range `Span` via `lex.span()` / `.spanned()` (and can be baked into a custom error via the error callback), but there is no labelled secondary-span facility — 4 per the guideline."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["ariadne"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/examples/json.rs", "https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml"],
+      "comment": "No first-party bridge crate; the official `json` example (listed in the handbook) renders `(message, Span)` errors with `ariadne::Report`, and `ariadne` is a dev-dependency of the repo. Tagged on that documented-example basis only."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/callbacks.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/attributes/logos.md"],
+      "comment": "No per-pattern label/context mechanism. Callbacks and the error callback can construct richer custom errors by hand, but nothing equivalent to nom `context` or chumsky `labelled`."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "Stateless single-pass lexer; no edit/reuse API."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "Emits tokens only; skipped trivia is dropped unless the user chooses to emit it as tokens."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/SUMMARY.md"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/tweag/nickel/master/Cargo.toml"],
+      "comment": "None of the tagged editors (rust-analyzer, Helix, Zed, Neovim) depend on logos. It is used by language servers outside the tag set, e.g. Nickel (whose workspace includes `lsp-server` and `logos = \"0.16\"`)."
+    },
+    "runtime-speed-tier": {
+      "value": ["top-tier"],
+      "source": ["https://alic.dev/blog/fast-lexing", "https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md", "https://github.com/maciejhirsz/logos/releases/tag/v0.16"],
+      "comment": "Independent benchmark (alic.dev, June 2023, Apple M1): a hand-optimised lexer beat logos by \"at least 20%\" (up to ~35%) in raw throughput — i.e. logos is within ~1.5x of hand-written, meeting the top-tier threshold. README reports ~1.0–1.6 GB/s on its own benchmarks. Caveat: the 0.16 engine rewrite acknowledges \"a slight decrease in performance\" versus 0.15; no independent post-0.16 numbers found as of 2026-09-19."
+    },
+    "compile-time-impact": {
+      "value": ["moderate"],
+      "source": ["https://github.com/maciejhirsz/logos/issues/457", "https://raw.githubusercontent.com/maciejhirsz/logos/master/logos-cli/src/main.rs"],
+      "comment": "The derive macro builds and optimises the DFA at compile time; issue #457 reports \"up to 10 seconds\" per build for a token enum using Unicode property classes (`\\p{XID_Start}`), with ASCII classes as the workaround. Typical ASCII grammars are quick. `logos-cli` exists to generate the code offline (with `--check`) so the proc-macro cost is paid once."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lib.rs", "https://docs.rs/logos/latest/logos/struct.Lexer.html"],
+      "comment": "The lexer borrows the input and yields `Copy`-able tokens/spans; it compiles as `no_std` without `alloc`, so lexing itself performs no heap allocation unless callbacks do."
+    },
+    "generated-code-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/state-machine-codegen.md"],
+      "comment": "No measurements found. The derive emits one function per DFA state (tail-call style, default) or a single match-loop enum (`state_machine_codegen` feature); the book discusses speed and stack usage but not code size."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lib.rs", "https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://github.com/maciejhirsz/logos/releases"],
+      "comment": "`#![cfg_attr(not(feature = \"std\"), no_std)]`; disable the default `std` feature. Works without `alloc`. 0.16.1 release notes fixed `no_std` issues in generated code, indicating it is exercised."
+    },
+    "msrv": {
+      "value": "1.80.0",
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://crates.io/api/v1/crates/logos/versions"],
+      "comment": "`rust-version = \"1.80.0\"` since 0.16.0 (needed for `LazyLock`); 0.15.x was 1.74."
+    },
+    "unsafe-usage": {
+      "value": ["substantial"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/unsafe.md", "https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lib.rs"],
+      "comment": "By default both the runtime and the generated DFA use unchecked slice reads to skip bounds checks (validated by fuzzing). The `forbid_unsafe` feature switches to safe, bounds-checked code (~10% slower) and lets the crate be used under `#![forbid(unsafe_code)]`."
+    },
+    "proc-macro-reliance": {
+      "value": ["optional"],
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://raw.githubusercontent.com/maciejhirsz/logos/master/logos-cli/src/main.rs"],
+      "comment": "The normal workflow is the `#[derive(Logos)]` proc-macro (`logos-derive`, on by default via `export_derive`). The `logos-cli` tool can pre-generate the same code from the annotated enum offline (`--output`, `--check`, `--format`), so the runtime crate can be used with the derive feature disabled."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/README.md"],
+      "comment": "Derive macro; no build script required (logos-cli is an optional manual/CI step, not build.rs)."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/Cargo.toml", "https://lib.rs/crates/logos"],
+      "comment": "Only `logos-derive` (optional, enabled by default). The derive pulls in `logos-codegen` → fnv, proc-macro2, quote, regex-automata, regex-syntax, syn at build time."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/src/lib.rs", "https://raw.githubusercontent.com/maciejhirsz/logos/master/logos-codegen/Cargo.toml"],
+      "comment": "Pure Rust, `no_std`-capable runtime with no platform-specific code, so it targets wasm32 without setup. Not explicitly documented by the project; inferred from the crate's dependencies and no_std support."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/logos/latest/logos/struct.Lexer.html", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/partial.md"],
+      "comment": "`Lexer` is `Send + Sync` (auto traits) and holds only a borrow of the input. Input must be in memory in 0.16.1; the unreleased `new_partial` API is documented for feeding from `AsyncRead` in chunks."
+    },
+    "github-stars": {
+      "value": 3563,
+      "source": ["https://api.github.com/repos/maciejhirsz/logos"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 78607645,
+      "source": ["https://crates.io/api/v1/crates/logos"],
+      "comment": "All-time downloads of `logos`, checked 2026-09-19 (~7.1M/month per lib.rs)."
+    },
+    "last-release": {
+      "value": "2026-01-30",
+      "source": ["https://crates.io/api/v1/crates/logos/versions"],
+      "comment": "0.16.1."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/maciejhirsz/logos/commits?per_page=8", "https://crates.io/api/v1/crates/logos/versions", "https://github.com/maciejhirsz/logos/releases"],
+      "comment": "Release 2026-01-30; PRs merged as recently as 2026-09-11 (syn 3 upgrade, doc fixes). Day-to-day maintenance is by jeertmans (co-maintainer since the 0.13 era when the original author stepped back); 90 open issues."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/SUMMARY.md", "https://docs.rs/logos/latest/logos/"],
+      "comment": "Handbook covers attributes, disambiguation, extras, callbacks, context-dependent lexing, Unicode, unsafe, a 0.16 migration guide, debugging and six worked examples, plus solid docs.rs API docs. Several book chapters are short; not quite the depth of a full cookbook, hence 4 rather than 5."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://logos.maciej.codes/", "https://raw.githubusercontent.com/maciejhirsz/logos/master/book/src/SUMMARY.md"],
+      "comment": "The Logos Handbook (mdBook)."
+    },
+    "notable-users": {
+      "value": "Nickel (configuration language, with LALRPOP), Fe (Ethereum language, fe-parser), chumsky (examples/dev-dependency), LALRPOP book's external-lexer tutorial",
+      "source": ["https://raw.githubusercontent.com/tweag/nickel/master/Cargo.toml", "https://raw.githubusercontent.com/ethereum/fe/master/crates/parser/Cargo.toml", "https://raw.githubusercontent.com/zesterer/chumsky/main/Cargo.toml", "https://lalrpop.github.io/lalrpop/lexer_tutorial/005_external_lib.html"],
+      "comment": "Verified via each project's Cargo.toml / docs; lib.rs counts ~2,700 dependent crates (551 direct) as of 2026-09-19."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/maciejhirsz/logos/contributors?per_page=15", "https://lib.rs/crates/logos"],
+      "comment": "Original author maciejhirsz (129 commits) plus active maintainer jeertmans (217) and major contributor robot-rover (118, 0.16 engine rewrite); ~69 contributors total. Not organisation-backed."
+    }
+  }
 }

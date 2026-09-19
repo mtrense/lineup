@@ -170,7 +170,7 @@ Users should be able to:
 - [x] chumsky — combinator library designed around error recovery and rich diagnostics; Pratt parsing, `ariadne` companion
 - [x] pest — PEG parser generator with external `.pest` grammar files and a generic `Pair` tree; large user base
 - [x] lalrpop — LR(1)/LALR(1) parser generator with `.lalrpop` grammar files and inline Rust actions
-- [ ] logos — derive-macro lexer generator focused on speed; the de-facto companion to lalrpop/chumsky
+- [x] logos — derive-macro lexer generator focused on speed; the de-facto companion to lalrpop/chumsky
 - [ ] tree-sitter — Rust bindings to the incremental, error-tolerant parsing library used by editors
 - [ ] combine — early Haskell-Parsec-inspired combinator library; mature but slower-moving
 - [ ] peg (rust-peg) — PEG parser generator via a procedural macro DSL embedded in Rust
