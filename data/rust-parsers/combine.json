@@ -1,5 +1,280 @@
 {
   "name": "combine",
   "description": "Early Haskell-Parsec-inspired combinator library; mature but slower-moving",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://api.github.com/repos/Marwes/combine"],
+      "comment": "Cargo.toml declares license = \"MIT\"; GitHub reports spdx MIT. Single license."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/README.md", "https://docs.rs/combine/latest/combine/"],
+      "comment": "Parsec-inspired parser combinator library; parsers are Rust values composed with methods/functions (map, with, skip, or, many, sep_by, chainl1...)."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml"],
+      "comment": "Only required dependency is memchr (default-features off); optional deps (regex, tokio, futures, bytes, pin-project-lite) are all pure Rust."
+    },
+    "repository": {
+      "value": "https://github.com/Marwes/combine",
+      "source": ["https://github.com/Marwes/combine", "https://crates.io/api/v1/crates/combine"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/combine",
+      "source": ["https://crates.io/api/v1/crates/combine"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/combine",
+      "source": ["https://docs.rs/combine/latest/combine/", "https://github.com/Marwes/combine/wiki"],
+      "comment": "docs.rs is the primary reference; the GitHub wiki holds a quickstart tutorial (written for combine 3) plus 'Error Handling', 'Input Machinery' and 'Parser Trait' explainers."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://crates.io/api/v1/crates/combine"],
+      "comment": "crates.io crate created 2015-07-17; GitHub repository created 2015-01-12."
+    },
+    "latest-stable-version": {
+      "value": "4.6.8",
+      "source": ["https://crates.io/api/v1/crates/combine", "https://crates.io/api/v1/crates/combine/versions"],
+      "comment": "Checked 2026-09-19; 4.6.8 published 2026-08-25 (bugfix release after 4.6.7 in 2024-04). All research reflects combine 4.6.x."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs", "https://docs.rs/combine/latest/combine/"],
+      "comment": "Combinator library; per Assessment Guidelines tagged 'arbitrary'. The crate docs describe its default behaviour as LL(1) with opt-in LL(k) via attempt, but no formal grammar class is enforced."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://docs.rs/combine/latest/combine/"],
+      "comment": "Parsers are Rust expressions; the macro_rules parser! macro only helps with recursive parsers / opaque types, it is not a grammar DSL."
+    },
+    "left-recursion": {
+      "value": ["manual-rewrite"],
+      "source": ["https://docs.rs/combine/latest/combine/", "https://docs.rs/combine-language/latest/combine_language/"],
+      "comment": "No left-recursion support in combine itself; chainl1/chainr1 handle left/right-associative operator chains but are not a precedence/Pratt facility. The separate combine-language crate (same author, 4.0.0 released 2026-09-18) adds expression_parser with Assoc/Fixity."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": ["https://docs.rs/combine/latest/combine/trait.Parser.html", "https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs"],
+      "comment": "or/choice try alternatives in order; an alternative is only tried if the previous one failed without consuming input (Parsec semantics), so full backtracking needs attempt()."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://docs.rs/combine/latest/combine/parser/combinator/index.html", "https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs"],
+      "comment": "Inverse of a cut: parsers commit as soon as they consume input (LL(1) by default); attempt() opts into backtracking after consumption. Equivalent effect to a bounded/cut model."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/stream/mod.rs", "https://docs.rs/combine/latest/combine/stream/index.html"],
+      "comment": "Scannerless over &str/&[u8]; also parses any &[T] slice (SliceStream) or any Iterator via IteratorStream, so an external lexer's tokens can be fed directly."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/combine/latest/combine/", "https://docs.rs/combine-language/latest/combine_language/"],
+      "comment": "Only chainl1/chainr1 in the main crate. The separate combine-language crate offers expression_parser with Assoc/Fixity tables; not counted as it is a distinct crate/repository."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/stream/mod.rs", "https://docs.rs/combine/latest/combine/"],
+      "comment": "For &str streams Token = char and ranges are &str slices; the parser::char module provides char-level primitives (letter, digit, space, string, ...). Byte-level parsing via parser::byte."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice", "custom-stream"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/stream/mod.rs", "https://docs.rs/combine/latest/combine/stream/index.html"],
+      "comment": "&str, &[u8]/&[T], SliceStream<T>, IteratorStream, std::io::Read via stream::read / buf_reader, and user types implementing StreamOnce/Stream. No rope/text-buffer input."
+    },
+    "streaming-partial-input": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/stream/index.html", "https://raw.githubusercontent.com/Marwes/combine/master/README.md"],
+      "comment": "PartialStream signals 'need more input' at end of stream and parsing can be resumed without losing progress; stream::decoder and tokio/futures features build on this."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/stream/index.html", "https://raw.githubusercontent.com/Marwes/combine/master/README.md"],
+      "comment": "RangeStream/RangeStreamOnce return borrowed slices of the input (take_while, range, recognize)."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col", "custom-span-type"],
+      "source": ["https://docs.rs/combine/latest/combine/stream/position/index.html", "https://raw.githubusercontent.com/Marwes/combine/master/src/stream/span.rs", "https://raw.githubusercontent.com/Marwes/combine/master/src/stream/mod.rs"],
+      "comment": "Default &str/&[u8] positions are PointerOffset (translatable to a byte index). Opt-in wrappers: position::Stream with IndexPositioner (byte index) or SourcePosition (line/column); the Positioner trait is user-implementable. span::Stream reports positions as Span{start,end} but the built-in impl yields zero-width spans."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/combine/latest/combine/trait.Parser.html"],
+      "comment": "Parser::Output is an arbitrary user type built via map/and_then/then."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/combine/latest/combine/trait.Parser.html"],
+      "comment": "map, and_then, flat_map, then chains."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/combine/latest/combine/", "https://docs.rs/combine-language/latest/combine_language/"],
+      "comment": "User composes spaces()/skip_many(space()) explicitly; no implicit skip rules. combine-language's LanguageEnv adds lexeme-style whitespace/comment skipping as a separate crate."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/stream/state/index.html"],
+      "comment": "stream::state::Stream pairs a stream with user-defined state that parsers can read and mutate."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://docs.rs/combine/latest/combine/error/index.html", "https://docs.rs/combine/latest/combine/easy/index.html"],
+      "comment": "No recovery/sync API; a parse stops at the first committed error."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://docs.rs/combine/latest/combine/easy/index.html"],
+      "comment": "easy::Errors holds several Error entries but all at a single position (merged expected/unexpected/message info); only one failure site per run."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/easy/index.html", "https://docs.rs/combine/latest/combine/error/index.html"],
+      "comment": "easy::Error::Expected entries collect what the LL(1) parser would have accepted; ParseError::set_expected is part of the error trait."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/error/index.html"],
+      "comment": "Error type is the stream's associated StreamOnce::Error, constrained by the ParseError trait; users implement ParseError/StreamError for their own types. Built-ins: easy::Errors, StringStreamError, UnexpectedParse."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://docs.rs/combine/latest/combine/error/index.html", "https://raw.githubusercontent.com/Marwes/combine/master/src/stream/span.rs"],
+      "comment": "Errors carry a single position (byte offset or line/column via position::Stream). span::Stream wraps positions in Span{start,end} but the built-in conversion produces zero-width spans; no labelled secondary spans."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://docs.rs/combine/latest/combine/", "https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml"],
+      "comment": "No first-party or documented bridge to ariadne/miette/codespan-reporting/annotate-snippets; easy::Errors implements Display for plain-text output."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://docs.rs/combine/latest/combine/trait.Parser.html"],
+      "comment": "Parser::expected(msg) replaces the expected set with a label; Parser::message(msg) appends a message to the error."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/combine/latest/combine/"],
+      "comment": "Partial/resumable parsing is for streaming input, not for reusing a previous tree after an edit."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/combine/latest/combine/trait.Parser.html"],
+      "comment": "Output is whatever the user builds; no CST facility."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/combine/latest/combine/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/README.md"],
+      "comment": "README's user list contains no editor or language server; no verified usage in rust-analyzer, Helix, Zed or Neovim."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "epage/parse-benchmarks-rs JSON benchmark (rustc 1.94.1, checked 2026-09-19): combine 53 ms vs 18 ms for the hand-optimised serde_json baseline (~2.9x, upper edge of the 1.5-3x bracket); winnow 27, peg 29, chumsky 47, pest 62, nom 68. Caveat: the suite still pins combine v3.8.1, not 4.x; benchmark is maintained by winnow's author."
+    },
+    "compile-time-impact": {
+      "value": ["moderate"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "Same benchmark: 4 s clean debug build for the combine (v3.8.1) JSON parser vs 1 s winnow, 3 s nom, 5 s chumsky, 12 s lalrpop. Deeply nested generic parser types; no proc-macros. Incremental delta not separately measured."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://raw.githubusercontent.com/Marwes/combine/master/.github/workflows/rust.yml"],
+      "comment": "Zero-copy ranges; core builds with --no-default-features (no std, no alloc) in CI. Collecting combinators (many, sep_by) extend a user-chosen container, which may be non-allocating."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "source": ["https://docs.rs/combine/latest/combine/"],
+      "comment": "Combinator library; no code generation."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs", "https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://raw.githubusercontent.com/Marwes/combine/master/.github/workflows/rust.yml"],
+      "comment": "#![cfg_attr(not(feature = \"std\"), no_std)]; features std (default) and alloc. CI runs cargo check --no-default-features. easy errors, decoder and Read streams need std; position tracking works in no_std."
+    },
+    "msrv": {
+      "value": "1.85.0",
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/.github/workflows/rust.yml", "https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml"],
+      "comment": "No rust-version field in Cargo.toml; 1.85.0 is the pinned toolchain in the CI matrix (cargo check with and without default features)."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/stream/mod.rs", "https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs"],
+      "comment": "No forbid(unsafe_code). src/stream/mod.rs has three unsafe blocks (bounds-checked get_unchecked in slice_uncons_while*, repr(transparent) pointer cast in CompleteStream::from); lib.rs has none. Other modules not exhaustively audited."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://docs.rs/combine/latest/combine/"],
+      "comment": "No proc-macro dependencies (no syn/quote); parser!, choice!, dispatch! are macro_rules macros."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml"],
+      "comment": "No build script or build-dependencies."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://lib.rs/crates/combine"],
+      "comment": "One required dependency (memchr). Optional feature-gated deps: regex, pin-project-lite, tokio (0.2/0.3/1), tokio-util, futures-core, futures-io, bytes (0.5/1)."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/src/lib.rs", "https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml"],
+      "comment": "Inferred: no_std-capable pure Rust with a single pure-Rust dependency and no platform-specific code; no wasm target in CI."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/Cargo.toml", "https://docs.rs/combine/latest/combine/stream/index.html"],
+      "comment": "First-party async support: tokio/futures-03 features, stream::decoder for async I/O, tokio-util codec integration, examples/async.rs. Parsers are plain generic values (Send when captures are)."
+    },
+    "github-stars": {
+      "value": 1372,
+      "source": ["https://api.github.com/repos/Marwes/combine"],
+      "comment": "Checked 2026-09-19 (100 forks, 34 open issues)."
+    },
+    "crates-io-downloads": {
+      "value": 264058591,
+      "source": ["https://crates.io/api/v1/crates/combine"],
+      "comment": "All-time downloads, checked 2026-09-19 (~24.7M/month per lib.rs; large share via redis-rs)."
+    },
+    "last-release": {
+      "value": "2026-08-25",
+      "source": ["https://crates.io/api/v1/crates/combine/versions"],
+      "comment": "4.6.8; previous release 4.6.7 on 2024-04-10."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://raw.githubusercontent.com/Marwes/combine/master/CHANGELOG.md", "https://github.com/Marwes/combine/commits/master", "https://crates.io/api/v1/crates/combine/versions"],
+      "comment": "Bugfix-only releases: 4.6.8 (2026-08-25) after 4.6.7 (2024-04) and 4.6.6 (2022-08); repo pushed 2026-09-18 merging small community PRs. No feature work since the 4.x line; 4.6.8 landed within 6 months but fits the 'responds to bugs, no features in 12+ months' definition. Not superseded, though winnow/chumsky/nom now dominate the combinator space."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/combine/latest/combine/", "https://github.com/Marwes/combine/wiki"],
+      "comment": "Crate-level docs with worked examples (integer lists, recursive expressions, error output) and a stream/error/parser module overview, but docs.rs reports only ~47% of items documented; wiki tutorial targets combine 3."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://github.com/Marwes/combine/wiki", "https://raw.githubusercontent.com/Marwes/combine/master/README.md"],
+      "comment": "GitHub wiki 'Quickstart Tutorial' plus explainer pages, but the tutorial is labelled for combine 3 and has not been updated for 4.x."
+    },
+    "notable-users": {
+      "value": "redis-rs (RESP protocol parser), graphql-parser (graphql-rust)",
+      "source": ["https://raw.githubusercontent.com/redis-rs/redis-rs/main/redis/Cargo.toml", "https://raw.githubusercontent.com/graphql-rust/graphql-parser/master/Cargo.toml", "https://raw.githubusercontent.com/Marwes/combine/master/README.md"],
+      "comment": "Both verified via Cargo.toml (redis 4.6.8, graphql-parser 4.6.6). README also lists toml_edit and tantivy, but toml_edit has since moved to winnow and tantivy's query-grammar now depends on nom 7; mentat is archived."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://lib.rs/crates/combine", "https://github.com/Marwes/combine/commits/master"],
+      "comment": "Markus Westerlind (Marwes) is the sole owner/publisher and merges all PRs; ~55 contributors overall, recent commits are one-off community fixes."
+    }
+  }
 }
