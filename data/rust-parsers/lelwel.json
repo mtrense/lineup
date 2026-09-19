@@ -1,5 +1,280 @@
 {
   "name": "lelwel",
   "description": "LL(1) parser generator with a focus on error recovery and lossless output",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://crates.io/api/v1/crates/lelwel", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml"],
+      "comment": "Cargo.toml: `MIT OR Apache-2.0`; repo ships LICENSE-MIT and LICENSE-APACHE."
+    },
+    "approach": {
+      "value": ["generator-grammar-file"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "Grammar lives in an external `.llw` file compiled via `lelwel::build(\"src/grammar.llw\")` from build.rs into readable recursive-descent Rust code (generated.rs in OUT_DIR)."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml", "https://lib.rs/crates/lelwel"],
+      "comment": "Generator deps are logos, codespan-reporting, rustc-hash (all pure Rust); generated parser is plain Rust source. Not verified with `cargo tree`."
+    },
+    "repository": {
+      "value": "https://github.com/0x2a-42/lelwel",
+      "source": ["https://github.com/0x2a-42/lelwel"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/lelwel",
+      "source": ["https://crates.io/api/v1/crates/lelwel"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/lelwel",
+      "source": ["https://docs.rs/lelwel/latest/lelwel/"],
+      "comment": "No book; the README's grammar-specification section is the de-facto user guide. docs.rs reports only ~12% of items documented."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/lelwel"],
+      "comment": "0.1.0 published 2021-08-28 (since yanked)."
+    },
+    "latest-stable-version": {
+      "value": "0.10.4",
+      "source": ["https://crates.io/api/v1/crates/lelwel"],
+      "comment": "Checked 2026-09-19; 0.10.4 published 2026-04-08. Research reflects 0.10.x (edition 2024)."
+    },
+    "grammar-class": {
+      "value": ["ll-k", "recursive-descent"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "LL(1) core with extensions: direct left recursion (Pratt), semantic predicates for arbitrary lookahead, and a restricted ordered choice. Author deliberately avoids GLR/GLL/ALL(*) to keep linear runtime."
+    },
+    "grammar-definition": {
+      "value": ["external-file"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "`.llw` grammar file; LSP (`lelwel-ls`) and CLI (`llw`) validate it."
+    },
+    "left-recursion": {
+      "value": ["native"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs"],
+      "comment": "Direct left recursion is written as-is in the grammar; the generator lowers it to a Pratt parser (branch order = binding power, `right` declarations for right-assoc). Indirect left recursion is not supported."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build", "ordered-choice"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "LL(1) conflicts are reported by the generator / language server; the restricted `/` ordered-choice operator provides PEG-style first-match where explicitly used. Semantic predicates and assertions handle context-sensitive disambiguation (e.g. C typedef names)."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs"],
+      "comment": "Backtracking only inside the restricted ordered choice `/` (parser state snapshot/restore); the `~` commit operator cuts further backtracking. Plain LL(1) alternatives are deterministic."
+    },
+    "lexer-integration": {
+      "value": ["pairs-with", "external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Pairs with logos by default (generated lexer.rs skeleton uses `#[derive(Logos)]`) but the README says this is not mandatory: the `ParserCallbacks::create_tokens` hook returns `(Vec<Token>, Vec<Span>)` from any source."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://github.com/0x2a-42/lelwel/releases"],
+      "comment": "Pratt parsing introduced in 0.7.0; precedence from alternative order in left-recursive rules, associativity via `right` declarations."
+    },
+    "unicode-aware": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "Not applicable at the parser level: the generated parser operates on a token vector with byte-range spans over `&str`; character handling is delegated to the lexer (logos by default). No Unicode statement in the docs."
+    },
+    "input-types": {
+      "value": ["str"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/main.rs"],
+      "comment": "`Parser::new(source: &str, &mut diags)`; the user's `create_tokens` callback turns the `&str` into tokens + spans, so the effective parse input is a token vector produced from a string."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Full tokenization precedes parsing; no incomplete-input signalling."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "CST stores only `Range<usize>` spans and node tags; text is obtained by slicing the original `&'a str`."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "`Span = core::ops::Range<usize>` byte range; token spans stored directly, rule-node spans derived from contained tokens. Line/column comes from codespan-reporting at render time."
+    },
+    "output-model": {
+      "value": ["lossless-cst"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Homogeneous lossless CST laid out linearly in a Vec (8-byte nodes); grammar operators for node rename (`@`), elision (`^`), markers and creation (`<1`, `1>name`) shape the tree."
+    },
+    "semantic-actions": {
+      "value": ["post-walk"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "AST is built by walking the CST afterwards. Grammar `actions`/`predicates`/`assertions` (`?1`, `!1`) call numbered methods on the user's `ParserCallbacks` impl for context-sensitive parsing, not for value construction."
+    },
+    "whitespace-comment-handling": {
+      "value": ["preserved-as-trivia"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/lexer.rs"],
+      "comment": "`skip TokenName;` declarations make the parser ignore tokens while keeping them in the CST; the default lexer skeleton emits whitespace as tokens rather than dropping them."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs", "https://github.com/0x2a-42/lelwel/releases"],
+      "comment": "`ParserCallbacks::Context` associated type (0.10.0) threads user state; semantic actions/predicates use it e.g. for C typedef-name disambiguation in the C example."
+    },
+    "error-recovery": {
+      "value": ["automatic"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Recovery sets computed automatically from follow sets of grammar dominators (author's heuristic, inspired by matklad's resilient LL tutorial); strategies: skip expected token, advance with error node, break loop. No user configuration needed. README shows it producing meaningful trees where tree-sitter yields ERROR nodes."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/main.rs"],
+      "comment": "Diagnostics are accumulated in a `Vec<Diagnostic>` across the whole parse; an active-error-state mechanism suppresses cascades."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs"],
+      "comment": "Generated messages read `invalid syntax, expected one of: '+', <Num>, ...` built by `syntax_error_message`."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/parser.rs"],
+      "comment": "`ParserCallbacks::Diagnostic` associated type + `create_diagnostic(span, message)`; skeleton defaults to `codespan_reporting::diagnostic::Diagnostic<()>` but any type works."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/parser.rs"],
+      "comment": "Every error carries a byte-range span; the generator supplies one primary span + message. Secondary labels are only possible if the user adds them in `create_diagnostic`."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["codespan-reporting"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/examples/calc/src/main.rs"],
+      "comment": "Skeleton and all examples use codespan-reporting by default (README: not mandatory)."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/backend/rust.rs"],
+      "comment": "No rule-labelling / custom-message facility in the grammar; syntax errors use the auto-generated expected-set message. Semantic assertions (`!n`) can emit user-written diagnostics for semantic checks only."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Whole-input parse each time."
+    },
+    "lossless-syntax-tree": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "Lossless CST is a headline feature (the last 'L' in the name); skipped whitespace/comments are retained."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "No query language. `lelwel-ls` is an LSP for editing `.llw` grammar files, not for languages built with lelwel."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://lib.rs/crates/lelwel/rev"],
+      "comment": "No major editor dependency found; reverse deps on lib.rs are small crates (fjord-schema, json_shape, yutu)."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "source": ["https://lobste.rs/s/ugtqdp/lelwel_resilient_ll_1_parser_generator"],
+      "comment": "No independent or reproducible benchmark found (README compares error resilience vs tree-sitter, not speed). Design is linear-time recursive descent with an 8-byte-node arena, but unmeasured."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "No measurements found. Generated code is plain recursive-descent functions (no deep generics / tables) plus a build.rs step; the default logos derive adds proc-macro cost."
+    },
+    "allocation-strategy": {
+      "value": ["arena-friendly"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "CST nodes are laid out linearly in a single `Vec<Node>` with a parallel `Vec<Span>`; no per-node heap allocation."
+    },
+    "generated-code-size": {
+      "value": ["small"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Emits one readable Rust function per rule plus a fixed runtime skeleton; no parse tables. Not measured in bytes."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml"],
+      "comment": "Generated runtime uses `Vec`/`String` and codespan-reporting; no `no_std`/`alloc` feature is documented."
+    },
+    "msrv": {
+      "value": "Not declared (edition 2024 implies >= 1.85)",
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml", "https://crates.io/api/v1/crates/lelwel"],
+      "comment": "No `rust-version` in Cargo.toml; CI builds with the default stable toolchain only."
+    },
+    "unsafe-usage": {
+      "value": ["forbid-unsafe"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/lib.rs", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "`#![forbid(unsafe_code)]` in lib.rs; no unsafe in the generated runtime skeleton."
+    },
+    "proc-macro-reliance": {
+      "value": ["optional"],
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "lelwel itself uses build.rs codegen, no proc-macros. The default lexer skeleton uses logos' derive macro, but README states logos is not mandatory."
+    },
+    "build-rs-step": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "`lelwel::build(\"src/grammar.llw\")` in build.rs; output `include!`d from OUT_DIR."
+    },
+    "dependency-count": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml", "https://lib.rs/crates/lelwel"],
+      "comment": "Generator crate (build-dependency): logos, codespan-reporting, rustc-hash (+ optional cli/lsp/wasm deps). There is no separate runtime crate; the generated code is self-contained and the user's crate adds logos + codespan-reporting by default (both replaceable)."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/Cargo.toml", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/lib.rs"],
+      "comment": "Crate has a `wasm` feature (wasm-bindgen) exposing `generate_syntax_tree`/`get_location`, so the generator itself is built for wasm32; generated parsers are pure Rust with no I/O. Not tested in CI."
+    },
+    "async-friendly": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/src/skeleton/generated.rs"],
+      "comment": "Parser and CST are plain `Vec`-based structs borrowing `&str` (likely `Send`), but nothing is documented and the parse is synchronous over a complete string."
+    },
+    "github-stars": {
+      "value": 200,
+      "source": ["https://api.github.com/repos/0x2a-42/lelwel"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 59021,
+      "source": ["https://crates.io/api/v1/crates/lelwel"],
+      "comment": "All-time, checked 2026-09-19."
+    },
+    "last-release": {
+      "value": "2026-04-08",
+      "source": ["https://crates.io/api/v1/crates/lelwel"],
+      "comment": "0.10.4."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/lelwel", "https://api.github.com/repos/0x2a-42/lelwel"],
+      "comment": "Four releases Nov 2025–Apr 2026; last push 2026-08-22; 12 open issues (checked 2026-09-19)."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/lelwel/latest/lelwel/", "https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "docs.rs covers ~12% of items with no crate-level guide; the README grammar reference plus ten example grammars (C, Lua, WGSL, Python 2.7, JSON, TOML, ...) carry the documentation."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/0x2a-42/lelwel/main/README.md"],
+      "comment": "README quickstart only; no book or long-form tutorial."
+    },
+    "notable-users": {
+      "value": null,
+      "source": ["https://lib.rs/crates/lelwel/rev"],
+      "comment": "Only 3 direct dependents on crates.io (fjord-schema, json_shape, yutu), none well-known."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/0x2a-42/lelwel/contributors?per_page=20"],
+      "comment": "0x2a-42 has 298 of ~304 commits; five other contributors with 1–2 commits each."
+    }
+  }
 }
