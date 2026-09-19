@@ -180,7 +180,7 @@ Users should be able to:
 - [x] pom — PEG parser combinators using operator overloading for a grammar-like syntax
 - [x] rust-sitter — write tree-sitter grammars as annotated Rust types via a macro
 - [x] lelwel — LL(1) parser generator with a focus on error recovery and lossless output
-- [ ] lexgen — lexer generator using a Rust macro DSL, alternative to logos
+- [x] lexgen — lexer generator using a Rust macro DSL, alternative to logos
 - [ ] nom-supreme — error-handling and ergonomics extension layer on top of nom
 - [ ] yap — lightweight, dependency-free parser combinator crate
 - [ ] parsell — streaming/pushdown parser combinator crate designed around zero-copy inputs

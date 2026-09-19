@@ -1,5 +1,281 @@
 {
   "name": "lexgen",
   "description": "Lexer generator using a Rust macro DSL, alternative to logos",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/Cargo.toml", "https://api.github.com/repos/osa1/lexgen"],
+      "comment": "Cargo.toml of both `lexgen` (proc-macro) and `lexgen_util` (runtime): `license = \"MIT\"`; GitHub reports SPDX MIT."
+    },
+    "approach": {
+      "value": ["lexer-only"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://crates.io/api/v1/crates/lexgen"],
+      "comment": "\"A fully-featured lexer generator implemented as a proc macro\": the `lexer!` macro compiles named rule sets of regexes into DFAs. No parsing facilities; the repo ships a LALRPOP integration example (`crates/lexgen_lalrpop_example`)."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://crates.io/api/v1/crates/lexgen/0.16.0/dependencies", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/Cargo.toml"],
+      "comment": "Proc-macro crate depends on proc-macro2, quote, rustc-hash, syn (0.16.0; main adds smallvec); runtime crate `lexgen_util` depends only on `unicode-width`. All pure Rust, no `cc`."
+    },
+    "repository": {
+      "value": "https://github.com/osa1/lexgen",
+      "source": ["https://crates.io/api/v1/crates/lexgen"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/lexgen",
+      "source": ["https://crates.io/api/v1/crates/lexgen", "https://crates.io/api/v1/crates/lexgen_util"],
+      "comment": "Two crates are needed: `lexgen` (the `lexer!` proc macro) and `lexgen_util` (runtime: `Lexer`, `Loc`, `LexerError`), released in lockstep (both 0.16.0)."
+    },
+    "documentation": {
+      "value": "https://github.com/osa1/lexgen/blob/main/README.md",
+      "source": ["https://docs.rs/lexgen/latest/lexgen/", "https://github.com/osa1/lexgen/blob/main/README.md"],
+      "comment": "docs.rs for `lexgen` contains only the `lexer` macro entry with the note \"Please see the project README for usage\"; the README is the reference (rule syntax, regex syntax, semantic actions, state, location tracking)."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/lexgen/versions"],
+      "comment": "crates.io v0.1.0 published 2021-04-22."
+    },
+    "latest-stable-version": {
+      "value": "0.16.0",
+      "source": ["https://crates.io/api/v1/crates/lexgen/versions"],
+      "comment": "Checked 2026-09-19; published 2024-12-24. 19 versions total, none yanked. Research reflects lexgen/lexgen_util 0.16.0 plus the `main` branch (only two small post-release commits)."
+    },
+    "grammar-class": {
+      "value": ["regular"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Lexer generator: each rule set is compiled to a DFA from a regex syntax (character sets/ranges, `*`/`+`/`?`, alternation, set difference `#`, Unicode property classes such as `$$XID_Start`, and a limited right-context lookahead `> <regex>`). Per RESEARCH.md, `regular`."
+    },
+    "grammar-definition": {
+      "value": ["macro-dsl"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/lib.rs"],
+      "comment": "Rules are written inside the function-like `lexer! { ... }` proc macro with its own syntax (`<regex> => <action>,`, `<regex> =? <fallible action>,`, `<regex> = <token>,`, `<regex>,` to skip; `let` bindings for named regexes; named rule sets starting with `Init`)."
+    },
+    "left-recursion": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Lexer only; per RESEARCH.md `n/a` for lexers."
+    },
+    "ambiguity-handling": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/dfa/codegen.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Not a parser, so the tag set does not apply. Overlapping rules are resolved by longest match: the generated DFA records the last accepting state and backtracks to it when the scan dies. The README documents no explicit priority/tie-break rule between rules that match the same length, and there is no build-time ambiguity check."
+    },
+    "backtracking": {
+      "value": ["unlimited"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://github.com/osa1/lexgen/issues/35"],
+      "comment": "Longest-match DFA that backtracks to the last accepting state (`Lexer::backtrack()` restores the saved iterator/location); the distance backtracked is not bounded. A Prolog-style cut/commit operator (`!`) is requested in issue #35 but not implemented as of 2026-09-19; the documented workaround is separate rule sets."
+    },
+    "lexer-integration": {
+      "value": ["is-lexer"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_lalrpop_example/Cargo.toml"],
+      "comment": "Generated lexers implement `Iterator<Item = Result<(Loc, T, Loc), LexerError<E>>>` — the triple shape LALRPOP expects from an external lexer; the repo ships a LALRPOP example crate."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Lexer only; no expression/precedence facility."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "Operates on `char`s (`Iterator<Item = char>`), regex character classes are Unicode scalar ranges, built-in classes mirror `char::is_alphabetic`, `is_whitespace`, XID_Start/XID_Continue etc.; `Loc.col` is a character/display-width column, `Loc.byte_idx` a UTF-8 byte index."
+    },
+    "input-types": {
+      "value": ["str", "custom-stream"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "`Lexer::new(&str)` / `new_with_state(&str, S)` for string input, or `new_from_iter(I: Iterator<Item = char> + Clone)` / `new_from_iter_with_state` for any char iterator (in which case `match_()` panics because there is no backing slice). No byte-slice input."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "No \"need more input\" signal: end of the iterator is end of input (the `Init` rule set returns `None`, other rule sets return `Some(Err(..))`). A char iterator can be supplied, but it is consumed as a complete input."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "`Lexer<'input, ..>` holds `input: &'input str`; `match_()` returns the current lexeme as a borrowed `&str`, so semantic actions can build tokens carrying `&'input str` slices. Not available when constructed from a char iterator."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Every token is yielded as `(Loc, T, Loc)` and `match_loc()` gives the same bounds; `Loc { line: u32, col: u32, byte_idx: usize }` (all zero-based; tabs count as 4 columns, other chars by `unicode-width`). Errors carry a single `Loc`."
+    },
+    "output-model": {
+      "value": ["tokens-only"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Produces a flat iterator of user-defined tokens; no tree."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Actions are Rust closures `fn(&mut Lexer) -> SemanticActionResult` with access to `match_()`, `match_loc()`, `peek()`, `state()`, and control methods `return_()`, `continue_()`, `switch()`, `switch_and_return()`, `reset_match()`. `=?` actions may return `Result<Token, UserError>`."
+    },
+    "whitespace-comment-handling": {
+      "value": ["lexer-skip"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "A bare `<regex>,` rule (sugar for `=> |lexer| lexer.continue_()`) drops the match; multi-line comments are typically handled with a dedicated rule set. Trivia can alternatively be emitted as ordinary tokens."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Optional user state type declared in the `lexer!` header (`type State = ...`), passed via `new_with_state`, and mutable from actions through `lexer.state()`; plus multiple named rule sets switched from actions for context-dependent lexing."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://github.com/osa1/lexgen/issues/49"],
+      "comment": "On no match the iterator yields `Err(LexerError { location, kind: InvalidToken })` after resetting its match state (PR #49); there is no documented skip-to-sync mechanism or recovery API, and the README does not document what `next()` does after an error. `none` per the RESEARCH.md bar (`basic` needs a documented skip/sync mechanism)."
+    },
+    "multiple-errors-per-parse": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "The iterator is not fused and `backtrack()` resets the DFA state on `InvalidToken`, so calling `next()` again is possible, but whether the lexer makes progress past the offending character is undocumented in README and API docs. Left null rather than asserting either way (checked 2026-09-19)."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "`LexerErrorKind` is just `InvalidToken | Custom(E)`; no expected-pattern set."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "Fallible `=?` actions return `Result<Token, UserError>`; a user error type declared in the `lexer!` header surfaces as `LexerError<E> { location: Loc, kind: LexerErrorKind::Custom(E) }`."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "`LexerError<E>` carries a single `location: Loc` (line, col, byte index) — a position, not a range; no labelled spans. 3 per the guideline. (Successful tokens do get start+end `Loc`.)"
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/Cargo.toml"],
+      "comment": "No bridge to ariadne/miette/codespan-reporting/annotate-snippets in the crates, examples, or README."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://api.github.com/search/issues?q=repo:osa1/lexgen+error+recovery+OR+InvalidToken+OR+resume+OR+no_std+OR+wasm+OR+performance&per_page=20"],
+      "comment": "No per-rule label/context mechanism. Open issues #36 (\"Provide a way to specify error value when failing to match\") and #23 request richer failure reporting; user code can only produce custom errors from fallible actions."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Single-pass iterator; no edit/reuse API."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "Emits tokens only; skipped matches are dropped."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://crates.io/api/v1/crates/lexgen/reverse_dependencies", "https://lib.rs/crates/lexgen"],
+      "comment": "None of the tagged editors depend on lexgen; crates.io reverse dependencies are parsegen, xq-lang, math-engine, lex_sleuther_multiplexer (lib.rs: 9 dependents, 5 direct) as of 2026-09-19."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://osa1.net/posts/2024-11-22-how-to-parse-1.html"],
+      "comment": "Only data point is the maintainer's own comparison (blog, 2024-11-22, JSON-style event parser): lexgen-generated 179 MB/s vs hand-written iterator 274 MB/s and push parser 304 MB/s — 1.5–1.7x slower, i.e. the `fast` band. Author: \"lexgen-generated event parser is the slowest, but I think it should be possible to make it perform at least as good as the hand-written one\" and notes little effort has gone into optimising the code generator. No independent benchmark found; treat as indicative."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md", "https://lib.rs/crates/lexgen"],
+      "comment": "No build-time measurements or issues found (checked 2026-09-19). The proc macro builds NFA→DFA and emits one function per DFA state; the macro crate is ~8K SLoC with a syn/quote dependency."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "The runtime `Lexer` holds a borrowed `&'input str`, a `Peekable<Chars>`, `Loc`s and the saved last-match iterator — no heap allocation during lexing unless the user's tokens/actions allocate. Not documented as a design goal by the project; inferred from the runtime source."
+    },
+    "generated-code-size": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/dfa/codegen.rs", "https://lib.rs/crates/lexgen"],
+      "comment": "No measurements found. Codegen emits a match-based function per DFA state (with binary-search tables for large Unicode classes); the issue tracker has a 'generated code size' label but no numbers (checked 2026-09-19)."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/Cargo.toml"],
+      "comment": "`lexgen_util` has no `no_std` attribute or feature and uses `std::str::Chars` / `std::iter::Peekable`; nothing in README or Cargo features claims `no_std`."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://crates.io/api/v1/crates/lexgen/versions", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/Cargo.toml"],
+      "comment": "No `rust-version` in any published version's metadata or in Cargo.toml, and the README states no MSRV. Edition 2021 implies at least Rust 1.56, but no policy is declared."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/dfa/codegen.rs", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/lib.rs"],
+      "comment": "No `unsafe` found in the runtime crate, the macro entry point, or the DFA code generator (generated code is safe Rust), but neither crate declares `#![forbid(unsafe_code)]`, so `forbid-unsafe` cannot be tagged."
+    },
+    "proc-macro-reliance": {
+      "value": ["required"],
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/Cargo.toml", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen/src/lib.rs"],
+      "comment": "`lexgen` is a `proc-macro = true` crate; the `lexer!` function-like macro is the only way to define a lexer (no CLI/offline generator)."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/README.md"],
+      "comment": "README: implemented as a proc macro so \"it doesn't require a build step\"."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/Cargo.toml", "https://crates.io/api/v1/crates/lexgen/0.16.0/dependencies"],
+      "comment": "Runtime crate `lexgen_util` 0.16.0: `unicode-width` only. The build-time proc-macro crate `lexgen` 0.16.0 has 4 (proc-macro2, quote, rustc-hash, syn); `main` adds smallvec."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/Cargo.toml", "https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "Pure-Rust runtime with only `unicode-width` (table-based) and no platform-specific code, so wasm32 targets should build without setup. Inferred — not documented or tested in CI by the project."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/osa1/lexgen/main/crates/lexgen_util/src/lib.rs"],
+      "comment": "`Lexer` contains only a `&str`/char iterator, `Loc`s, `fn` pointers and the user state, so it is `Send` whenever the input iterator and state are. Input must be fully available in memory (no async/partial feeding)."
+    },
+    "github-stars": {
+      "value": 73,
+      "source": ["https://api.github.com/repos/osa1/lexgen"],
+      "comment": "Checked 2026-09-19 (8 forks, 19 open issues)."
+    },
+    "crates-io-downloads": {
+      "value": 281144,
+      "source": ["https://crates.io/api/v1/crates/lexgen", "https://crates.io/api/v1/crates/lexgen_util"],
+      "comment": "All-time downloads of `lexgen`, checked 2026-09-19 (~22K/month per lib.rs); `lexgen_util` has 267,268."
+    },
+    "last-release": {
+      "value": "2024-12-24",
+      "source": ["https://crates.io/api/v1/crates/lexgen/versions"],
+      "comment": "0.16.0 (both crates)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://api.github.com/repos/osa1/lexgen/commits?per_page=10", "https://api.github.com/repos/osa1/lexgen", "https://crates.io/api/v1/crates/lexgen/versions"],
+      "comment": "Last release 2024-12-24; last commits 2025-12-26/30 (two external PRs merged: NFA/DFA transition merging, CI fix), i.e. ~9 months before 2026-09-19 and outside the 6-month 'active' window. Repo not archived; external PRs still get merged. Release cadence has slowed from several per year (2021–2023) to one in 2024 and none since."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://github.com/osa1/lexgen/blob/main/README.md", "https://docs.rs/lexgen/latest/lexgen/"],
+      "comment": "The README is a complete single-page reference — rule syntax, regex syntax, built-in classes, semantic-action API, user state, rule sets, end-of-input semantics, lookahead — plus Lua 5.1, OCaml, Rust lexer examples and a LALRPOP example crate. docs.rs is essentially empty (points to the README) and there is no tutorial/book, so 3 rather than 4."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://github.com/osa1/lexgen/blob/main/README.md", "https://docs.rs/lexgen/latest/lexgen/"],
+      "comment": "README reference only; no long-form guide."
+    },
+    "notable-users": {
+      "value": "xq (jq reimplementation in Rust; its xq-lang crate lexes with lexgen + LALRPOP), parsegen (osa1's LR parser generator, uses lexgen in its tests/examples)",
+      "source": ["https://raw.githubusercontent.com/MiSawa/xq/master/crates/lang/Cargo.toml", "https://raw.githubusercontent.com/osa1/parsegen/main/Cargo.toml", "https://crates.io/api/v1/crates/lexgen/reverse_dependencies"],
+      "comment": "Adoption is thin: crates.io lists four reverse dependencies (parsegen, xq-lang, math-engine, lex_sleuther_multiplexer) as of 2026-09-19; xq is the only widely known one."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/osa1/lexgen/contributors?per_page=20"],
+      "comment": "osa1 (Ömer Sinan Ağacan) has 283 of ~291 commits; six other contributors with 1–2 commits each. All crates.io releases published by osa1."
+    }
+  }
 }
