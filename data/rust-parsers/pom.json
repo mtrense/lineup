@@ -1,5 +1,280 @@
 {
   "name": "pom",
   "description": "PEG parser combinators using operator overloading for a grammar-like syntax",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://api.github.com/repos/J-F-Liu/pom"],
+      "comment": "Cargo.toml declares license = \"MIT\"; GitHub reports spdx MIT. Single license."
+    },
+    "approach": {
+      "value": ["combinator", "peg"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md", "https://docs.rs/pom/latest/pom/"],
+      "comment": "Self-described as 'PEG parser combinators using operator overloading without macros'; parsers are Rust values composed with +, -, *, >>, |, -p, !p. Tagged both because PEG semantics (ordered choice, lookahead) are documented explicitly."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://lib.rs/crates/pom"],
+      "comment": "Only dependency is bstr (pure Rust). No C/C++ in the tree."
+    },
+    "repository": {
+      "value": "https://github.com/J-F-Liu/pom",
+      "source": ["https://github.com/J-F-Liu/pom", "https://crates.io/api/v1/crates/pom"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/pom",
+      "source": ["https://crates.io/api/v1/crates/pom"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/pom",
+      "source": ["https://docs.rs/pom/latest/pom/", "https://raw.githubusercontent.com/J-F-Liu/pom/master/doc/article.md"],
+      "comment": "docs.rs is the API reference (80% doc coverage on 3.4.0); a long-form tutorial article lives in doc/article.md of the repository."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://crates.io/api/v1/crates/pom"],
+      "comment": "crates.io 0.1.0 published 2016-12-30."
+    },
+    "latest-stable-version": {
+      "value": "3.4.0",
+      "source": ["https://crates.io/api/v1/crates/pom", "https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml"],
+      "comment": "Checked 2026-09-19; 3.4.0 published 2024-03-06. master Cargo.toml already reads 3.4.1 but that version is unpublished. All research reflects pom 3.4.x."
+    },
+    "grammar-class": {
+      "value": ["peg"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Documents PEG semantics explicitly (ordered choice via |, positive/negative lookahead via -p and !p), so tagged 'peg' rather than 'arbitrary' per Assessment Guidelines. The monadic >> operator additionally allows context-sensitive parsing beyond strict PEG."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "Grammar is plain Rust expressions with overloaded operators; explicitly 'without macros'."
+    },
+    "left-recursion": {
+      "value": ["manual-rewrite"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/doc/article.md"],
+      "comment": "No Pratt/precedence helper; recursion goes through call() and a left-recursive rule loops forever. Tutorial notes a Packrat/memoization attempt was abandoned; cache() memoizes but does not handle left recursion."
+    },
+    "ambiguity-handling": {
+      "value": ["ordered-choice"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "p | q returns the first alternative that succeeds (PEG first-match)."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://docs.rs/pom/latest/pom/utf8/struct.Parser.html"],
+      "comment": "Alternatives backtrack freely by default; .expect(name) marks a parser as committed and produces Error::Expect, which aborts the enclosing ordered choice (a cut)."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Scannerless over &[u8] / &str (utf8 module). Parser<'a, I, O> is generic over the symbol type I, so an external lexer's token slice (&[Token]) can be parsed directly; not an Iterator adapter, requires a slice."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/pom/latest/pom/", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "No operator-precedence facility; expression grammars must encode precedence levels as separate rules."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/utf8.rs", "https://docs.rs/pom/latest/pom/utf8/struct.Parser.html"],
+      "comment": "The utf8 module (default feature) provides char-level sym/any/one_of/is_a etc. over UTF-8 bytes via bstr::decode_utf8, and take()/skip() count chars and reject ranges that split a character. The base parser module is byte-oriented."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://docs.rs/pom/latest/pom/utf8/struct.Parser.html"],
+      "comment": "parse(&'a [I]) for any symbol type (bytes, tokens); utf8::Parser adds parse_str(&'a str). No custom input trait, no rope support."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Error::Incomplete exists and is returned when input ends mid-match, but there is no resumable/partial-input API; the whole slice must be present."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://docs.rs/pom/latest/pom/utf8/struct.Parser.html"],
+      "comment": ".collect() yields &input[start..end] (&'a [I] / &'a str) borrowed from the input."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Single byte offsets only: .pos() returns the position after a match and every error variant carries position: usize. No ranges, no line/column."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "Each Parser<I, O> produces an arbitrary Rust O; README's JSON example builds a JsonValue enum directly."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": ".map(f), .convert(f) (fallible), and the monadic >> operator."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "No implicit skipping; README's JSON example defines a space() parser and sequences it explicitly (e.g. space() * value - space())."
+    },
+    "stateful-parsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "No user-state parameter; parsers are Box<dyn Fn(&[I], usize) -> Result<(O, usize)>>. Only closure captures could carry state."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs"],
+      "comment": "Parsing stops at the first failure and returns a single Error; no skip/sync or recovery API."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs"],
+      "comment": "Result<O> = Result<O, pom::Error>; one error per run (nested inner errors are a chain for a single failure, not multiple errors)."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs"],
+      "comment": "Errors are message strings (e.g. 'expect: X, found: Y' from sym/seq) plus a position; ordered choice reports only the last alternative's error, no aggregated expected set."
+    },
+    "custom-error-types": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Error type is the fixed pom::Error enum (Incomplete/Mismatch/Conversion/Expect/Custom); .convert() folds user errors into a Conversion message string."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs"],
+      "comment": "Every error variant except Incomplete carries a single position: usize byte offset plus a message; no ranges or secondary spans (Assessment Guideline: 3 = single offset)."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "No optional dependencies or documented bridges to ariadne/miette/codespan-reporting/annotate-snippets."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs", "https://docs.rs/pom/latest/pom/utf8/struct.Parser.html"],
+      "comment": ".name(label) wraps failures in Error::Custom with the label and inner error; .expect(label) produces Error::Expect. The 'trace' feature prints named-parser activity to stderr."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/pom/latest/pom/"],
+      "comment": "Batch parser; no tree reuse."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/pom/latest/pom/"],
+      "comment": "Produces user-typed values; whitespace is consumed by explicit parsers."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/pom/latest/pom/"],
+      "comment": "No query or highlighting facility."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://lib.rs/crates/pom/rev"],
+      "comment": "No editor or language server among the 28 direct dependents listed on lib.rs (checked 2026-09-19)."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "source": ["https://github.com/J-F-Liu/pom", "https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "No qualifying benchmark. The README table shows pom json_byte ~621 µs/iter vs a pest figure of ~13 µs/iter, but the pest bench is not in the repo's benches/ (only json.rs and json_char.rs) so it is not reproducible; epage/parse-benchmarks-rs dropped pom ('lack of notoriety'). The maintainer's own numbers suggest a 'slow' tier but this is unverified."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "No published measurement found. Design (boxed dyn Fn closures, ~1.5K LOC, one dependency) implies a light footprint, but per Assessment Guidelines a guess is not recorded."
+    },
+    "allocation-strategy": {
+      "value": ["allocates-per-node"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Every combinator boxes a closure at construction; repeat()/list() build Vecs; errors allocate message Strings; cache() uses a RefCell<HashMap>. .collect() borrows, but a typical parse allocates per rule."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "Combinator library; nothing is generated."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/lib.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/result.rs"],
+      "comment": "No #![no_std]; result.rs imports std::error and the Result alias is ::std::result::Result. No alloc-only feature."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://lib.rs/crates/pom"],
+      "comment": "No rust-version in Cargo.toml and none stated in README; edition = 2021 implies at least Rust 1.56 but no MSRV policy is published."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/utf8.rs", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "No forbid(unsafe_code). parser.rs has no unsafe; utf8.rs uses str::from_utf8_unchecked on slices already validated via bstr::decode_utf8."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "Explicitly 'without macros'; no proc-macro crates in the dependency list."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml"],
+      "comment": "No build script or build-dependencies."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://lib.rs/crates/pom"],
+      "comment": "bstr only."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/Cargo.toml", "https://raw.githubusercontent.com/J-F-Liu/pom/master/src/lib.rs"],
+      "comment": "Inferred, not CI-verified: pure Rust, std-only (no I/O, threads or platform APIs), single pure-Rust dependency bstr; nothing target-specific in the crate."
+    },
+    "async-friendly": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/src/parser.rs"],
+      "comment": "Parser wraps Box<dyn Fn(...) + 'a> with no Send/Sync bound, so parsers are not Send; input must be a complete in-memory slice."
+    },
+    "github-stars": {
+      "value": 527,
+      "source": ["https://api.github.com/repos/J-F-Liu/pom"],
+      "comment": "Checked 2026-09-19; 35 forks, 14 open issues."
+    },
+    "crates-io-downloads": {
+      "value": 11006264,
+      "source": ["https://crates.io/api/v1/crates/pom"],
+      "comment": "All-time downloads checked 2026-09-19 (~4.0M recent). Much of the volume comes from PDF-tooling dependents (adobe-cmap-parser, type1-encoding-parser pin pom 1.x)."
+    },
+    "last-release": {
+      "value": "2024-03-06",
+      "source": ["https://crates.io/api/v1/crates/pom"],
+      "comment": "3.4.0."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/J-F-Liu/pom/commits/master", "https://crates.io/api/v1/crates/pom"],
+      "comment": "Last release 2024-03-06; last commits 2025-01-24 (clippy/doc fixes merged by the owner) and 2024-12-09 (trace output fix). No release or substantive commit in the last 6 months; contributor PRs are still merged. Not archived, no successor named."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/pom/latest/pom/", "https://raw.githubusercontent.com/J-F-Liu/pom/master/doc/article.md", "https://raw.githubusercontent.com/J-F-Liu/pom/master/README.md"],
+      "comment": "docs.rs reference at 80% item coverage with short one-line method docs, a README operator table plus full JSON example, and one long-form tutorial article. No cookbook or migration guides."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/J-F-Liu/pom/master/doc/article.md", "https://github.com/J-F-Liu/pom"],
+      "comment": "doc/article.md 'PEG Parser Combinators Implemented in Rust' walks through design, operators and a JSON parser; README also links Bodil Stokke's 'Learning Parser Combinators With Rust'."
+    },
+    "notable-users": {
+      "value": "svgbob (ASCII-to-SVG diagram converter), adobe-cmap-parser and type1-encoding-parser (font/CMap parsers used by pdf-extract), chumsky (dev-dependency for its benchmark suite)",
+      "source": ["https://raw.githubusercontent.com/ivanceras/svgbob/master/crates/svgbob/Cargo.toml", "https://crates.io/api/v1/crates/adobe-cmap-parser", "https://raw.githubusercontent.com/zesterer/chumsky/main/Cargo.toml", "https://lib.rs/crates/pom/rev"],
+      "comment": "Verified from Cargo.toml / crates.io. pom was originally written for the author's lopdf, which no longer depends on it."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/J-F-Liu/pom/commits/master", "https://lib.rs/crates/pom"],
+      "comment": "Single owner/releaser (J-F-Liu). lib.rs lists 17 contributors; nigeleke authored most 2024 changes but releases and merges go through the owner."
+    }
+  }
 }
