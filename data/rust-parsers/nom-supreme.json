@@ -1,5 +1,277 @@
 {
   "name": "nom-supreme",
   "description": "Error-handling and ergonomics extension layer on top of nom",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mpl-2-0"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://crates.io/api/v1/crates/nom-supreme"],
+      "comment": "Cargo.toml declares license = \"MPL-2.0\"; single license on every published version."
+    },
+    "approach": {
+      "value": ["extension"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/", "https://crates.io/api/v1/crates/nom-supreme"],
+      "comment": "Per Assessment Guidelines. Self-described 'collection of excellent utilities for nom': ParserExt postfix combinators, ErrorTree, enhanced tag, parse_separated_terminated, final_parser. Not a parser framework on its own; requires nom."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://lib.rs/crates/nom-supreme"],
+      "comment": "Dependencies are nom, memchr, brownstone, indent_write and joinery, all pure-Rust crates; no C/C++ build step."
+    },
+    "repository": {
+      "value": "https://github.com/Lucretiel/nom-supreme",
+      "source": ["https://github.com/Lucretiel/nom-supreme", "https://crates.io/api/v1/crates/nom-supreme"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/nom-supreme",
+      "source": ["https://crates.io/api/v1/crates/nom-supreme"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/nom-supreme",
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/README.md"],
+      "comment": "README is a one-liner pointing at docs.rs; no book or site."
+    },
+    "first-release": {
+      "value": "2020",
+      "source": ["https://crates.io/api/v1/crates/nom-supreme/versions"],
+      "comment": "0.1.0 published 2020-12-13."
+    },
+    "latest-stable-version": {
+      "value": "0.8.0",
+      "source": ["https://crates.io/api/v1/crates/nom-supreme", "https://crates.io/api/v1/crates/nom-supreme/versions"],
+      "comment": "Checked 2026-09-19; 0.8.0 published 2022-04-21. All research reflects 0.8.0, which depends on nom >=6.0.1, <8.0.0 — it does not build against nom 8 (issue #18 open, PR #19 unmerged)."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Inherited from nom: combinators impose no formal grammar class (per Assessment Guidelines); nom-supreme adds no grammar restrictions."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "Parsers are nom functions/closures; ParserExt adds postfix method syntax (.terminated(), .context(), .cut(), ...) but the grammar is still plain Rust."
+    },
+    "left-recursion": {
+      "value": ["manual-rewrite"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/", "https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "No precedence/Pratt helper in any module (context, error, final_parser, multi, parser_ext, tag); left recursion must be eliminated by hand as in plain nom. nom-language's precedence module targets nom 8, which nom-supreme 0.8 cannot be combined with."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs"],
+      "comment": "Inherited from nom's alt; nom-supreme's ErrorTree::Alt additionally records every failed alternative when all branches fail."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "Unlimited by default; ParserExt::cut (and parse_from_str_cut) converts recoverable errors into failures to commit to a branch."
+    },
+    "lexer-integration": {
+      "value": ["built-in"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/tag.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Scannerless like nom: the enhanced tag parsers and ParserExt operate directly on any nom input type (InputLength/InputTake/Compare bounds)."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "No operator-precedence facility among the crate's modules."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/final_parser.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Inherited from nom's &str handling (char-level primitives, UTF-8 boundary-safe slicing). nom-supreme's own final_parser::Location (line/column) is implemented for &str only; PR #15 adding [u8] support is unmerged."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "custom-stream"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/tag.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/final_parser.rs"],
+      "comment": "Generic over nom's input traits, so &str, &[u8] and custom inputs work. Line/column Location is &str-only; ByteOffset works for any input implementing nom's Offset."
+    },
+    "streaming-partial-input": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/final_parser.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Inherited from nom's streaming combinators (Err::Incomplete). Note final_parser deliberately wraps the parser in .complete() so Incomplete becomes an error at the entry point."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/parser_ext.rs"],
+      "comment": "Inherited from nom; ParserExt::recognize / with_recognized return slices of the input via the Offset trait without copying."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/final_parser/index.html", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/final_parser.rs"],
+      "comment": "Errors carry the remaining input at the failure point (a single position, not a range). final_parser's RecreateContext/ExtractContext convert it to ByteOffset (any Offset input) or Location {line, column} (1-indexed, &str only). No wrapper input type needed, unlike nom_locate."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Parsers return arbitrary user types; final_parser bridges IResult to a plain Result<O, E>."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "ParserExt adds postfix map_res, value, parse_from_str, verify, array, separated_array on top of nom's map family."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "No implicit skip rules; whitespace is consumed explicitly, e.g. .terminated(space0) / .delimited_by(...)."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/multi.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Same borderline position as nom: no dedicated state parameter, but parsers are closures that can capture mutable state, and parse_separated_terminated threads a user accumulator through a fold. Not a first-class API."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs"],
+      "comment": "Improves error *reporting*, not recovery: parsing still stops at the first Err::Error/Err::Failure; no skip-to-sync or pluggable recovery API."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs"],
+      "comment": "One failure per run. ErrorTree::Alt aggregates the alternatives tried at a single failure point and Stack records the context chain, but these describe one error, not independent errors at multiple locations."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/tag.rs"],
+      "comment": "ErrorTree's BaseErrorKind::Expected(Expectation) records what was expected (Tag with the literal expected, Char, Digit, Alpha, Eof, ...); the TagError trait lets the enhanced tag parser report the exact expected tag, and Alt lists every alternative that was tried. This is the crate's headline improvement over nom's VerboseError."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/context.rs"],
+      "comment": "Inherits nom's generic error parameter; nom-supreme's TagError and ContextError traits are implementable for user types, and GenericErrorTree is generic over tag, context and external-error types."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/final_parser.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs"],
+      "comment": "Each ErrorTree node carries a single location (the input tail), convertible to a ByteOffset or a line/column Location. No byte ranges and no labelled secondary spans, so 3 per the guideline."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "No ariadne/miette/codespan-reporting/annotate-snippets dependency or documented bridge; ErrorTree implements Display (indented tree rendering via indent_write/joinery) and std::error::Error."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/context.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/parser_ext/trait.ParserExt.html"],
+      "comment": "ParserExt::context and the context module attach labels of any Clone type (not just &'static str) via the ContextError trait; ErrorTree::Stack keeps the full chain."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "No tree reuse; same as nom."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Produces user-defined values; no CST facility."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://lib.rs/crates/nom-supreme/rev"],
+      "comment": "lib.rs reverse-dependency list (98 crates, checked 2026-09-19) contains no editor or language server."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "comment": "No independent benchmark of nom-supreme found (searched 2026-09-19); it is not included in epage/parse-benchmarks-rs. As a thin layer over nom its happy-path cost should track nom, but ErrorTree allocates Vec/Box on failure paths, so no tier is asserted."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "comment": "No build-time measurement or issue found (2026-09-19). Five small pure-Rust dependencies and no proc-macros suggest a light delta, but per the guideline a guess is not recorded."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/multi.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs"],
+      "comment": "parse_separated_terminated is fold-based and allocation-free (collect_separated_terminated allocates via Extend); ParserExt combinators are zero-cost wrappers. ErrorTree itself allocates (Vec for Stack/Alt, Box<dyn Error> for external errors) on the failure path."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Combinator extension; no code generation. No source: follows from the approach."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/lib.rs", "https://github.com/Lucretiel/nom-supreme/blob/main/CHANGELOG.md", "https://github.com/Lucretiel/nom-supreme/issues/11"],
+      "comment": "lib.rs has no no_std attribute (only #![deny(missing_docs)]); 0.8.0 removed all feature flags, the changelog says they 'may come back ... until someone cites a desire for nom-supreme in a no-std context', and issue #11 (Sep 2022) requesting no_std is open without a response."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://crates.io/api/v1/crates/nom-supreme/versions"],
+      "comment": "No rust-version in Cargo.toml (edition 2018) and no MSRV statement in the README or docs; crates.io lists rust_version as null for every version."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/lib.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/parser_ext.rs"],
+      "comment": "No `unsafe` found in lib.rs, error.rs, final_parser.rs, tag.rs, parser_ext.rs, multi.rs or context.rs (the whole crate), but no `#![forbid(unsafe_code)]` is declared, so tagged minimal rather than forbid, consistent with other candidates."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/lib.rs"],
+      "comment": "Trait/function API plus one declarative macro (express!); no proc-macro or syn dependency."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml"],
+      "comment": "No build script declared."
+    },
+    "dependency-count": {
+      "value": 5,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://lib.rs/crates/nom-supreme"],
+      "comment": "nom (>=6.0.1, <8.0.0), memchr, brownstone, indent_write, joinery. Dev-only: cool_asserts."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/Cargo.toml", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/lib.rs"],
+      "comment": "Inferred: pure Rust, std-only, no platform-specific code or FFI, so wasm32-unknown-unknown (which has std) should work; not verified in the crate's CI."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/src/error.rs", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Parsers are plain closures over slices; ErrorTree's external error type is Box<dyn Error + Send + Sync + 'static>, so errors cross async boundaries. No async API of its own."
+    },
+    "github-stars": {
+      "value": 164,
+      "source": ["https://github.com/Lucretiel/nom-supreme"],
+      "comment": "164 stars, 20 forks on 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 12286250,
+      "source": ["https://crates.io/api/v1/crates/nom-supreme", "https://lib.rs/crates/nom-supreme"],
+      "comment": "All-time downloads as of 2026-09-19 (~397k/month per lib.rs); 98 dependent crates, 37 directly."
+    },
+    "last-release": {
+      "value": "2022-04-21",
+      "source": ["https://crates.io/api/v1/crates/nom-supreme/versions"],
+      "comment": "0.8.0; no release since (checked 2026-09-19)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/Lucretiel/nom-supreme/commits/main", "https://github.com/Lucretiel/nom-supreme/issues", "https://github.com/Lucretiel/nom-supreme/pulls", "https://crates.io/api/v1/crates/nom-supreme/versions"],
+      "comment": "Effectively dormant: last commit and release both 2022-04-21; the nom 8 upgrade request (issue #18, Feb 2025) and PR #19 (May 2025) plus the no_std request (#11, 2022) have no maintainer response. Repo is not archived and no successor is named, so the closest defined tag is passive; a reader should treat it as unmaintained for nom 8 users."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/nom-supreme/latest/nom_supreme/", "https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/README.md", "https://github.com/Lucretiel/nom-supreme/issues"],
+      "comment": "docs.rs API docs are complete (#![deny(missing_docs)]) with module-level explanations and examples for ParserExt, ErrorTree and final_parser; README is a single line (the maintainer's own issue #16 'Need a readme' is open) and there is no tutorial or migration guide."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/Lucretiel/nom-supreme/master/README.md", "https://docs.rs/nom-supreme/latest/nom_supreme/"],
+      "comment": "Only rustdoc; no long-form guide."
+    },
+    "notable-users": {
+      "value": "symbolic-debuginfo (Sentry, breakpad feature), cargo-contract transcode (use-ink), rs-matter-codegen (project-chip)",
+      "source": ["https://raw.githubusercontent.com/getsentry/symbolic/master/symbolic-debuginfo/Cargo.toml", "https://raw.githubusercontent.com/use-ink/cargo-contract/master/crates/transcode/Cargo.toml", "https://raw.githubusercontent.com/project-chip/rs-matter/main/rs-matter-codegen/Cargo.toml", "https://lib.rs/crates/nom-supreme/rev"],
+      "comment": "Verified from each project's Cargo.toml (symbolic-debuginfo: optional under the breakpad feature; cargo-contract pins 0.7.0 with the error feature; rs-matter-codegen 0.8)."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://lib.rs/crates/nom-supreme", "https://github.com/Lucretiel/nom-supreme/commits/main"],
+      "comment": "Nathan West (Lucretiel) is the sole crates.io owner and author of every commit in the recent history."
+    }
+  }
 }
