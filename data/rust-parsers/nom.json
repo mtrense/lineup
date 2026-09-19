@@ -1,5 +1,279 @@
 {
   "name": "nom",
   "description": "The most widely used Rust parser combinator library; byte- and string-oriented, streaming support",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://github.com/rust-bakery/nom"],
+      "comment": "Cargo.toml declares license = \"MIT\"; single license, no dual licensing."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": ["https://github.com/rust-bakery/nom", "https://docs.rs/nom/latest/nom/"],
+      "comment": "Self-described 'parser combinator framework'; grammar is written as plain Rust functions composed via combinators."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml"],
+      "comment": "Only runtime dependency is memchr (pure Rust, default-features disabled); no C/C++ in the tree."
+    },
+    "repository": {
+      "value": "https://github.com/rust-bakery/nom",
+      "source": ["https://github.com/rust-bakery/nom", "https://crates.io/api/v1/crates/nom"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/nom",
+      "source": ["https://crates.io/api/v1/crates/nom"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/nom",
+      "source": ["https://docs.rs/nom/latest/nom/", "https://raw.githubusercontent.com/rust-bakery/nom/main/README.md"],
+      "comment": "docs.rs is the primary reference and links the 'Choosing a combinator', error management and recipes guides. The third-party Nominomicon (tfpk.github.io/nominomicon) is linked from the README but targets nom 7."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://crates.io/api/v1/crates/nom", "https://crates.io/api/v1/crates/nom/versions"],
+      "comment": "crates.io crate created 2015-01-17 (0.1.0); versions list on crates.io begins with 1.0.0-beta in Oct 2015."
+    },
+    "latest-stable-version": {
+      "value": "8.0.0",
+      "source": ["https://crates.io/api/v1/crates/nom", "https://crates.io/api/v1/crates/nom/versions"],
+      "comment": "Checked 2026-09-19; 8.0.0 published 2025-01-26. All research reflects nom 8.0.0 (trait-based Parser API, unified Input trait, VerboseError moved to nom-language)."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "Combinator library; no formal grammar class is imposed (per Assessment Guidelines). Does not document PEG semantics."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "Parsers are ordinary Rust functions/closures; the legacy named!/do_parse! macros were removed in nom 7."
+    },
+    "left-recursion": {
+      "value": ["precedence-climbing"],
+      "source": ["https://docs.rs/nom-language/latest/nom_language/", "https://github.com/rust-bakery/nom/blob/main/CHANGELOG.md"],
+      "comment": "Core nom has no left-recursion support (would recurse infinitely; requires manual rewrite). The first-party nom-language crate (same repo, added with nom 8) provides a precedence module with unary/binary operator precedence and associativity."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": ["https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "alt tries alternatives in order; Err::Error lets the next branch be tried."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "Unlimited backtracking by default; the cut() combinator turns Err::Error into Err::Failure to commit to a branch."
+    },
+    "lexer-integration": {
+      "value": ["built-in"],
+      "source": ["https://docs.rs/nom/latest/nom/trait.Input.html", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/traits.rs"],
+      "comment": "Scannerless: parses &str/&[u8] directly. The Input trait is only implemented for &[u8] and &str; parsing a token slice requires implementing Input for the user's token type."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://docs.rs/nom-language/latest/nom_language/", "https://github.com/rust-bakery/nom/blob/main/CHANGELOG.md"],
+      "comment": "Not in the nom crate itself; provided by the first-party nom-language crate (nom_language::precedence) maintained in the nom repository."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://docs.rs/nom/latest/nom/trait.Input.html", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/traits.rs"],
+      "comment": "&str input iterates chars (Item = char) and slicing respects char boundaries; the character module offers char-level primitives. Note open issues #1883/#1884 (May 2026) about tag_no_case panicking on Unicode case folds that change byte length."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "custom-stream"],
+      "source": ["https://docs.rs/nom/latest/nom/trait.Input.html", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/traits.rs"],
+      "comment": "Built-in Input impls for &str and &[u8] only; the Input trait (Clone + Sized) is user-implementable for custom stream/token types, e.g. nom_locate's LocatedSpan."
+    },
+    "streaming-partial-input": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/src/lib.rs", "https://github.com/rust-bakery/nom"],
+      "comment": "Parallel streaming and complete submodules; streaming variants return Err::Incomplete(Needed) when more data is required."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://github.com/rust-bakery/nom"],
+      "comment": "README: a parser returning a subset of its input returns a slice of that input without copying."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://docs.rs/nom/latest/nom/", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/traits.rs", "https://docs.rs/nom_locate/latest/nom_locate/"],
+      "comment": "Errors carry the remaining input at the failure point; byte offsets are computed with the Offset trait (impl for str and [u8]). Line/column spans are opt-in via the third-party nom_locate LocatedSpan wrapper (supports nom 8)."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "Parsers return arbitrary user types; no generic tree is produced."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://github.com/rust-bakery/nom/blob/main/CHANGELOG.md", "https://docs.rs/nom/latest/nom/"],
+      "comment": "Parser::map, map_res, map_opt, flat_map and the combinator module build values from sub-parser results."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "No implicit skip rules; whitespace is consumed with explicit combinators (character::multispace0, sequence::delimited, the ws recipe)."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://github.com/rust-bakery/nom/blob/main/CHANGELOG.md", "https://docs.rs/nom_locate/latest/nom_locate/"],
+      "comment": "No dedicated state parameter. nom 8 combinators return impl FnMut specifically so closures can capture mutable state; nom_locate's LocatedSpan also carries an 'extra' user field. Borderline: works without wrappers but is not a first-class API."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://github.com/rust-bakery/nom/blob/main/doc/error_management.md", "https://docs.rs/nom/latest/nom/error/index.html"],
+      "comment": "Parsing stops at the first Err::Error/Err::Failure; no skip-to-sync or user-pluggable recovery API is documented."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "A run yields a single Err; VerboseError accumulates the context chain of one failure path, not multiple independent errors."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://docs.rs/nom/latest/nom/error/index.html", "https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "Errors carry an ErrorKind naming the combinator that failed (Tag, Digit, ...) and optional context labels, not a set of expected tokens; the docs note VerboseError does not record alternatives tried by alt (nom-supreme's ErrorTree does)."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://docs.rs/nom/latest/nom/error/index.html", "https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "Error type is a generic parameter; users implement ParseError<I> (plus optional ContextError / FromExternalError)."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://docs.rs/nom/latest/nom/error/index.html", "https://github.com/rust-bakery/nom/blob/main/doc/error_management.md"],
+      "comment": "Errors hold the remaining input (a single failure position, convertible to a byte offset via Offset), not a byte range; convert_error renders line/column for VerboseError<&str>. No labelled secondary spans."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://github.com/rust-bakery/nom/blob/main/doc/error_management.md", "https://docs.rs/nom/latest/nom/error/index.html"],
+      "comment": "No first-party bridge to ariadne/miette/codespan-reporting/annotate-snippets; only its own convert_error text renderer (now in nom-language). Third-party crates (nom-supreme, nom_locate) fill the gap."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://docs.rs/nom/latest/nom/error/index.html"],
+      "comment": "error::context(\"label\", parser) attaches a static string via the ContextError trait."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "Streaming (append-only) input is supported, but there is no tree reuse on edits."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "Produces user-defined values; no CST/trivia retention facility."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/nom/latest/nom/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/README.md"],
+      "comment": "The README's 'parsers written with nom' list contains no editor/LSP; no verified rust-analyzer/helix/zed/neovim dependency found (2026-09-19)."
+    },
+    "runtime-speed-tier": {
+      "value": ["moderate"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "epage/parse-benchmarks-rs JSON benchmark (rustc 1.94.1, results dated 2026-03): nom 8.0.0 parses in 68 ms vs 18 ms for the hand-optimised serde_json baseline (~3.8x) and 27 ms for winnow. Benchmark is maintained by winnow's author; nom lands in the 3-10x bracket. Benchmark checked 2026-09-19."
+    },
+    "compile-time-impact": {
+      "value": ["light"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml"],
+      "comment": "parse-benchmarks-rs reports a 3 s clean debug build for the nom JSON example (vs 1 s winnow, 12 s lalrpop); single small dependency (memchr) and no proc-macros. Incremental delta not separately measured."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://github.com/rust-bakery/nom"],
+      "comment": "Zero-copy slices; with the alloc feature disabled nom runs in no_std builds without an allocator (collecting combinators like many0 then need alloc or a custom accumulator)."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Combinator library; no code generation. No source: follows from the approach."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/src/lib.rs", "https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://raw.githubusercontent.com/rust-bakery/nom/main/README.md"],
+      "comment": "#![cfg_attr(not(feature = \"std\"), no_std)]; works with alloc (default) or fully without an allocator when alloc is disabled."
+    },
+    "msrv": {
+      "value": "1.65",
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://raw.githubusercontent.com/rust-bakery/nom/main/README.md"],
+      "comment": "rust-version = \"1.65.0\" for the 8.x series; README states MSRV only changes in major releases (7.x was 1.48)."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/src/lib.rs", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/traits.rs"],
+      "comment": "No #![forbid(unsafe_code)]; src/traits.rs contains four small unsafe blocks using str::get_unchecked after boundary checks. Not a full cargo-geiger audit."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml"],
+      "comment": "Pure function/trait API; no proc-macro or syn dependency."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml"],
+      "comment": "No build script declared."
+    },
+    "dependency-count": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://lib.rs/crates/nom"],
+      "comment": "memchr ^2.3 only (default-features = false)."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/Cargo.toml", "https://raw.githubusercontent.com/rust-bakery/nom/main/src/lib.rs"],
+      "comment": "Inferred: no_std-capable pure Rust with a single pure-Rust dependency and no platform-specific code; not separately verified in nom's CI."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/src/lib.rs"],
+      "comment": "Parsers are plain functions/closures over slices (Send when their captures are); streaming mode with Err::Incomplete is designed for feeding buffers from async I/O. No async API of its own."
+    },
+    "github-stars": {
+      "value": 10500,
+      "source": ["https://github.com/rust-bakery/nom"],
+      "comment": "GitHub shows ~10.5k stars on 2026-09-19 (rounded display value)."
+    },
+    "crates-io-downloads": {
+      "value": 729543826,
+      "source": ["https://crates.io/api/v1/crates/nom"],
+      "comment": "All-time downloads as of 2026-09-19; lib.rs reports ~35.5k dependent crates."
+    },
+    "last-release": {
+      "value": "2025-01-26",
+      "source": ["https://crates.io/api/v1/crates/nom/versions"],
+      "comment": "8.0.0; no release since (checked 2026-09-19)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/rust-bakery/nom/commits/main", "https://github.com/rust-bakery/nom/issues", "https://github.com/rust-bakery/nom/pulls", "https://crates.io/api/v1/crates/nom/versions"],
+      "comment": "Not archived. Last commit 2025-08-26, last release 2025-01-26 (both >12 months before 2026-09-19); 242 open issues and 49 open PRs including unmerged bug fixes from 2025-2026. Fails the 6-month 'actively maintained' bar. winnow is a fork by a former maintainer, not a successor."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://docs.rs/nom/latest/nom/", "https://raw.githubusercontent.com/rust-bakery/nom/main/README.md", "https://tfpk.github.io/nominomicon/"],
+      "comment": "Comprehensive API docs with examples, 'Choosing a combinator', error management and recipes guides, 7-to-8 changelog. The linked Nominomicon tutorial is third-party, targets nom 7 and has unfinished chapters, so not a 5."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/README.md", "https://tfpk.github.io/nominomicon/"],
+      "comment": "README links the Nominomicon guide and the doc/ tutorials (choosing_a_combinator, error_management, nom_recipes)."
+    },
+    "notable-users": {
+      "value": "sozu (HTTP proxy), x509-parser and tls-parser (rusticata), pcap-parser",
+      "source": ["https://raw.githubusercontent.com/rust-bakery/nom/main/README.md"],
+      "comment": "Taken from the README's 'parsers written with nom' list; the README also lists many format/protocol parsers."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://lib.rs/crates/nom", "https://github.com/rust-bakery/nom/commits/main"],
+      "comment": "Geoffroy Couprie (Geal) is the sole owner/primary maintainer; ~99 contributors overall but recent commits are one-off doc/bugfix PRs merged sporadically."
+    }
+  }
 }
