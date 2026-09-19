@@ -1,5 +1,281 @@
 {
   "name": "grmtools (lrpar / lrlex)",
   "description": "Yacc-compatible LR parser generator with automatic error recovery (CPCT+)",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/Cargo.toml", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrlex/Cargo.toml", "https://crates.io/api/v1/crates/lrpar"],
+      "comment": "`license = \"Apache-2.0/MIT\"` (dual) on lrpar, lrlex, cfgrammar and lrtable."
+    },
+    "approach": {
+      "value": ["generator-grammar-file"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/README.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md"],
+      "comment": "Yacc `.y` grammar and Lex `.l` lexer files compiled to Rust at build time via `CTLexerBuilder`/`CTParserBuilder` in `build.rs`; runtime generation (`RTParserBuilder`) is also possible."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://crates.io/api/v1/crates/lrpar/0.15.0/dependencies", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/mod.rs"],
+      "comment": "All four crates (lrpar, lrlex, cfgrammar, lrtable) are pure Rust with `#![forbid(unsafe_code)]`; dependency tree (regex, wincode, vob, packedvec, syn/quote for codegen, ...) contains no C/C++."
+    },
+    "repository": {
+      "value": "https://github.com/softdevteam/grmtools",
+      "source": ["https://api.github.com/repos/softdevteam/grmtools", "https://crates.io/api/v1/crates/lrpar"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/lrpar",
+      "source": ["https://crates.io/api/v1/crates/lrpar", "https://crates.io/api/v1/crates/lrlex"],
+      "comment": "grmtools is a suite: `lrpar` (parser generator + runtime), `lrlex` (lexer generator), `cfgrammar` (grammar representation), `lrtable` (LR tables), `nimbleparse` (CLI). `lrpar` is the main crate; all are versioned in lockstep."
+    },
+    "documentation": {
+      "value": "https://softdevteam.github.io/grmtools/master/book/",
+      "source": ["https://softdevteam.github.io/grmtools/master/book/", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/SUMMARY.md"],
+      "comment": "The grmtools book (mdBook: quickstart, lexing, parsing, error recovery, AST evaluator, per-library chapters); API reference at docs.rs/lrpar and docs.rs/lrlex."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/api/v1/crates/lrpar", "https://crates.io/api/v1/crates/lrlex"],
+      "comment": "crates.io `created_at` 2018-12-13 (v0.1.0) for both `lrpar` and `lrlex`."
+    },
+    "latest-stable-version": {
+      "value": "0.15.0",
+      "source": ["https://crates.io/api/v1/crates/lrpar", "https://raw.githubusercontent.com/softdevteam/grmtools/master/CHANGES.md"],
+      "comment": "Checked 2026-09-19; published 2026-07-22 (CHANGES.md dated 2026-07-20). Research reflects grmtools 0.15.x (edition 2024, `wincode` serialisation, `%grmtools{}` header sections introduced in 0.14.0)."
+    },
+    "grammar-class": {
+      "value": ["lr1"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrtable/src/lib/pager.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/lrtable.md"],
+      "comment": "`lrtable` builds LR(1) state tables using Pager's algorithm (\"A Practical General Method for Constructing LR(k) Parsers\", 1977) to merge weakly-compatible states, giving LR(1) power with near-LALR table sizes. No LALR(1)-only mode."
+    },
+    "grammar-definition": {
+      "value": ["external-file"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/yaccextensions.md"],
+      "comment": "Yacc-style `.y` grammar (with a leading `%grmtools{yacckind: Grmtools}` section) and Lex-style `.l` lexer file, processed by `build.rs` and included via `lrpar_mod!`/`lrlex_mod!`."
+    },
+    "left-recursion": {
+      "value": ["native"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrtable/src/lib/pager.rs"],
+      "comment": "LR(1) generator: the quickstart calculator grammar uses left-recursive `Expr: Expr '+' Term` rules. Per Assessment Guidelines LR generators get `native`."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/ctbuilder.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrtable/src/lib/statetable.rs"],
+      "comment": "`CTParserBuilder::error_on_conflicts` defaults to `true`: any shift/reduce or reduce/reduce conflict not resolved by `%left`/`%right`/`%nonassoc`/`%prec` (or declared via `%expect`/`%expect-rr`) fails the build with a spanned conflict diagnostic. Accept/reduce conflicts are always a hard error."
+    },
+    "backtracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "Deterministic table-driven LR parse over a `Vec<StIdx>` state stack; the only search happens inside CPCT+ error recovery, not in normal parsing."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/manuallexer.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs"],
+      "comment": "`lrlex` (bundled Lex-compatible generator, regex-crate based, with start states) is the default lexer; `lrpar` is generic over the `Lexer`/`NonStreamingLexer`/`Lexeme` traits so any hand-written lexer works (`calc_manual_lex` example, `CTTokenMapBuilder` generates `T_*` token-id constants)."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/cfgrammar/src/lib/yacc/parser.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrtable/src/lib/statetable.rs"],
+      "comment": "Yacc `%left`, `%right`, `%nonassoc` declarations and per-production `%prec`; `lrtable` resolves shift/reduce conflicts by precedence level then associativity exactly as Yacc does."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/lexextensions.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs"],
+      "comment": "lrlex compiles `.l` rules with the Rust `regex` crate over `&str` (`regex.unicode` flag, on by default in regex, togglable in `%grmtools{}`); `NonStreamingLexer::line_col()` reports columns in characters, not bytes."
+    },
+    "input-types": {
+      "value": ["str", "token-slice", "custom-stream"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/manuallexer.md"],
+      "comment": "lrlex lexes `&'input str`. `LRNonStreamingLexer::new(input, lexemes, newlines)` accepts a pre-built lexeme `Vec`; any type implementing `NonStreamingLexer` is accepted by the parser. No `&[u8]` support."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs"],
+      "comment": "The parser collects the whole lexeme stream up front (`lexer.iter().collect()`) before parsing; the parse API takes a `NonStreamingLexer`. A bare `Lexer` trait exists but there is no 'need more input' signal or resumable parser."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/actioncode.md"],
+      "comment": "Rule return types may use the `'input` lifetime; `$lexer.span_str(lexeme.span())` yields `&'input str` borrowed from the input."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/cfgrammar/src/lib/span.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/actioncode.md"],
+      "comment": "`cfgrammar::Span { start, end }` in byte offsets on every lexeme and via `$span` in actions; `NonStreamingLexer::line_col(span)` converts to `((line, col), (line, col))` and `span_lines_str` returns the enclosing source lines. Span type is fixed (not user-definable)."
+    },
+    "output-model": {
+      "value": ["typed-ast", "generic-tree"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/actioncode.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/yacccompatibility.md"],
+      "comment": "`YaccKind::Grmtools`: each rule declares a Rust return type built by its action. `YaccKind::Original(GenericParseTree)` instead produces an untyped parse tree (`calc_parsetree` example)."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/actioncode.md"],
+      "comment": "Yacc-style `{ ... }` action blocks with `$1..$n`, `$lexer`, `$span`; lexeme symbols arrive as `Result<Lexeme, Lexeme>` (Err = inserted by error recovery)."
+    },
+    "whitespace-comment-handling": {
+      "value": ["lexer-skip"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md"],
+      "comment": "Lex rules with an empty/`;` action discard the match (quickstart: `[\\t ]+ ;`); comments are handled the same way. Parser never sees trivia."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/actioncode.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/examples/calc_ast_arena/src/main.rs"],
+      "comment": "`%parse-param <name>: <Clone type>` (tuple for several) plus `%parse-generics` for type/lifetime parameters, threaded into every action; the `calc_ast_arena` example passes a `bumpalo::Bump` this way."
+    },
+    "error-recovery": {
+      "value": ["automatic"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/errorrecovery.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "CPCT+ (Diekmann & Tratt, \"Don't Panic! Better, Fewer, Syntax Errors for LR Parsers\") is on by default: it searches for minimal-cost insert/delete/shift repair sequences without any grammar annotation and continues parsing. `RecoveryKind::None` disables it. Tunable via `%avoid_insert`; a search timeout applies to pathological inputs (<2% of real-world cases per docs). Lexer errors are recovered by emitting faulty lexemes."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/errorrecovery.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "`parse()` returns `(Option<T>, Vec<LexParseError>)`; the book's stated goal is letting users \"fix all their syntax errors in one go\"."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "`ParseError { stidx, lexeme, repairs }` carries ranked repair sequences (`Insert(TIdx)` names tokens that would be valid) rather than the full set of acceptable tokens at the failure state. `stidx` exposes the LR state for users who query the table themselves."
+    },
+    "custom-error-types": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs"],
+      "comment": "Parse errors are always `LexParseError<StorageT, LexerTypesT>` / `ParseError`. Only the lexer error type is pluggable (`LexerTypes::LexErrorT` implementing the `LexError` trait); user actions can return their own `Result` values but cannot inject errors into the error list."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/cfgrammar/src/lib/span.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/diagnostics.rs"],
+      "comment": "Guideline 4: every runtime `ParseError`/`LexError` carries the offending lexeme's byte-range `Span` (line/col via the lexer); repair lexemes carry spans too. No labelled secondary spans on runtime errors — the multi-span `SpannedDiagnosticFormatter` (0.14.0) is used for build-time grammar conflict diagnostics."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/diagnostics.rs", "https://crates.io/api/v1/crates/lrpar/0.15.0/dependencies"],
+      "comment": "No bridge to ariadne/miette/codespan-reporting/annotate-snippets; grmtools ships its own `SpannedDiagnosticFormatter` for grammar errors and `ParseError::pp()` for runtime messages."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/errorrecovery.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/yacccompatibility.md"],
+      "comment": "`%epp LEXEME \"display\"` gives tokens human-friendly names in repair messages and `%avoid_insert` tunes ranking, but there is no way to label rules/sub-parsers or attach custom messages; Yacc's `error` token and `yyerrok` are explicitly unsupported."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "Batch LR parse over a fully collected lexeme vector; no edit/reuse API."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md"],
+      "comment": "Whitespace/comments are discarded by lexer rules; output is a user-typed AST or an untyped parse tree without trivia."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/SUMMARY.md"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/thirdparty.md"],
+      "comment": "Not used by rust-analyzer, Helix, Zed, or Neovim. The only editor-related project listed is `nimbleparse_lsp` (ratmice), an LSP for developing grmtools grammars themselves."
+    },
+    "runtime-speed-tier": {
+      "value": ["slow"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "epage/parse-benchmarks-rs JSON benchmark (rustc 1.94.1, grmtools v0.14.1, checked 2026-09-19): 182 ms vs 18 ms for hand-written serde_json (≈10.1×) — right on the moderate/slow boundary (>10× = slow per guideline). Benchmark is maintainer-authored (winnow) but reproducible and includes all competitors; parsers 'have not been validated'. Whole-input lexing into a Vec plus recovery bookkeeping likely contribute."
+    },
+    "compile-time-impact": {
+      "value": ["heavy"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/ctbuilder.rs"],
+      "comment": "parse-benchmarks-rs: 10 s debug build for the JSON parser (winnow 1 s, pest 3 s, lalrpop 12 s). `build.rs` runs the full LR(1) table construction and embeds the serialised grammar + state table (`wincode`) in the generated source; lrpar itself pulls syn/quote/prettyplease into the runtime dependency tree."
+    },
+    "allocation-strategy": {
+      "value": ["arena-friendly"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/examples/calc_ast_arena/src/main.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs"],
+      "comment": "Not allocation-free: all lexemes are collected into a `Vec` and the LR stack is a `Vec`. AST allocation is user-controlled; the first-party `calc_ast_arena` example threads a `bumpalo::Bump` via a parse parameter."
+    },
+    "generated-code-size": {
+      "value": ["large"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/ctbuilder.rs"],
+      "comment": "parse-benchmarks-rs reports 2,612 KiB release binary overhead for the JSON grammar — the largest in the table (lalrpop 1,523 KiB, combinators 60–175 KiB). Generated file embeds a serialised `YaccGrammar` + `StateTable` deserialised at startup (once per process since 0.14.2)."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/mod.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrlex/src/lib/mod.rs"],
+      "comment": "No `#![no_std]`/`cfg_attr` in lrpar, lrlex, cfgrammar or lrtable and no `std` feature; runtime uses `std` (Vec, HashMap, regex, filetime)."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/Cargo.toml", "https://crates.io/api/v1/crates/lrpar", "https://raw.githubusercontent.com/softdevteam/grmtools/master/.buildbot.sh"],
+      "comment": "No `rust-version` in any Cargo.toml, no MSRV statement in README/book, and CI tests only current stable. Crates use `edition = \"2024\"`, which implies Rust ≥ 1.85, but that is a floor rather than a declared MSRV."
+    },
+    "unsafe-usage": {
+      "value": ["forbid-unsafe"],
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/mod.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrlex/src/lib/mod.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/cfgrammar/src/lib/mod.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrtable/src/lib/mod.rs"],
+      "comment": "`#![forbid(unsafe_code)]` in lrpar, lrlex, cfgrammar and lrtable. Dependencies (regex, indexmap, ...) do contain unsafe."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://docs.rs/lrpar/latest/lrpar/macro.lrpar_mod.html", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md"],
+      "comment": "Code generation happens in `build.rs`; `lrpar_mod!`/`lrlex_mod!` are `macro_rules!` include helpers. lrpar depends on syn/quote/proc-macro2 only as codegen libraries, not as a proc-macro crate."
+    },
+    "build-rs-step": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/quickstart.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/README.md"],
+      "comment": "Standard setup: `lrpar`/`lrlex`/`cfgrammar` in `[build-dependencies]` with `CTLexerBuilder::new().lrpar_config(...).lexer_in_src_dir(...).build()` in `build.rs`. Alternative: `RTParserBuilder` builds grammars at runtime, avoiding build.rs at the cost of runtime table construction."
+    },
+    "dependency-count": {
+      "value": 15,
+      "source": ["https://crates.io/api/v1/crates/lrpar/0.15.0/dependencies", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/Cargo.toml"],
+      "comment": "`lrpar` 0.15.0 normal non-optional deps: cactus, cfgrammar, filetime, indexmap, lrtable, num-traits, packedvec, prettyplease, proc-macro2, quote, regex, syn, unicode-width, vob, wincode (+ optional serde, + web-time on wasm32). lrpar is both generator and runtime crate, so codegen deps (syn/quote/prettyplease) are linked by the end binary too; `lrlex` adds 12 more."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/.buildbot.sh", "https://raw.githubusercontent.com/softdevteam/grmtools/master/CHANGES.md", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/Cargo.toml"],
+      "comment": "CI runs the test suite on `wasm32-unknown-unknown` (via wasm-bindgen) and `wasm32-wasip2`; 0.14.0 changelog notes improved WASM compatibility and `web-time` is used on wasm32 targets."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/parser.rs", "https://raw.githubusercontent.com/softdevteam/grmtools/master/lrpar/src/lib/lex_api.rs"],
+      "comment": "Generated `parse()` is a synchronous free function over a `&dyn NonStreamingLexer` and returns plain `Vec<LexParseError>` (Copy-able lexemes + spans), so results are Send; parsing runs fine inside an async task. Input must be fully buffered text — no async streaming, and `Lexer::iter()` returns a non-Send `Box<dyn Iterator>`."
+    },
+    "github-stars": {
+      "value": 574,
+      "source": ["https://api.github.com/repos/softdevteam/grmtools"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 1155121,
+      "source": ["https://crates.io/api/v1/crates/lrpar", "https://crates.io/api/v1/crates/lrlex"],
+      "comment": "All-time downloads of `lrpar` as of 2026-09-19 (1.16M); `lrlex` 1.16M (they are almost always used together)."
+    },
+    "last-release": {
+      "value": "2026-07-22",
+      "source": ["https://crates.io/api/v1/crates/lrpar", "https://raw.githubusercontent.com/softdevteam/grmtools/master/CHANGES.md"],
+      "comment": "lrpar / lrlex / cfgrammar / lrtable 0.15.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/softdevteam/grmtools/commits?per_page=5", "https://raw.githubusercontent.com/softdevteam/grmtools/master/CHANGES.md"],
+      "comment": "Checked 2026-09-19: merges on 2026-09-10 and 2026-08-26; releases 0.14.0 (2025-10), 0.14.1 (2026-01), 0.14.2 (2026-04), 0.15.0 (2026-07) — four releases in 12 months with substantive features (`%grmtools` sections, multi-span diagnostics, wincode migration)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/SUMMARY.md", "https://docs.rs/lrpar/latest/lrpar/"],
+      "comment": "Guideline 4: full book (quickstart, lexing, parsing, Yacc/Lex compatibility and extensions, error recovery, AST evaluator, start states, editions, per-crate chapters) plus docs.rs API docs (~81% coverage for lrpar) and seven in-repo examples. No cookbook or formal migration guides beyond CHANGES.md."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://softdevteam.github.io/grmtools/master/book/", "https://raw.githubusercontent.com/softdevteam/grmtools/master/doc/src/SUMMARY.md"],
+      "comment": "The grmtools book (mdBook) with a step-by-step calculator quickstart and an AST-evaluator walkthrough."
+    },
+    "notable-users": {
+      "value": "GreptimeDB promql-parser, yk JIT (ykrt), Microsoft Demikernel network simulator",
+      "source": ["https://raw.githubusercontent.com/GreptimeTeam/promql-parser/main/Cargo.toml", "https://raw.githubusercontent.com/ykjit/yk/master/ykrt/Cargo.toml", "https://raw.githubusercontent.com/microsoft/demikernel/dev/network_simulator/Cargo.toml", "https://lib.rs/crates/lrpar/rev"],
+      "comment": "Verified via Cargo.toml (checked 2026-09-19): promql-parser depends on lrpar/lrlex/cfgrammar 0.14.2 (deps + build-deps); ykrt uses lrpar/lrlex 0.13 as build- and dev-dependencies (JIT IR parser); Demikernel's network_simulator lists lrpar/lrlex/cfgrammar 0.13.7 as build-dependencies. lib.rs lists 12 direct / 25 total dependent crates."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/softdevteam/grmtools/contributors?per_page=10", "https://api.github.com/repos/softdevteam/grmtools/commits?per_page=5"],
+      "comment": "softdevteam (Laurence Tratt's research group, King's College London). Commits: ltratt 1,188, ratmice 349, ptersilie 287, snim2 46; recent activity is ratmice authoring and ltratt reviewing/merging — effectively two active maintainers."
+    }
+  }
 }
