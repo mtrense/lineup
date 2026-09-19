@@ -1,5 +1,350 @@
 {
   "name": "parsell",
   "description": "Streaming/pushdown parser combinator crate designed around zero-copy inputs",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mpl-2-0"],
+      "source": [
+        "https://crates.io/api/v1/crates/parsell",
+        "https://raw.githubusercontent.com/asajeffrey/parsell/master/Cargo.toml"
+      ],
+      "comment": "Cargo.toml license = \"MPL-2.0\"; all 17 crates.io releases carry MPL-2.0. GitHub's license detector reports NOASSERTION (repo also has a CC BY 4.0 licence for the doc/ folder)."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": [
+        "https://github.com/asajeffrey/parsell",
+        "https://docs.rs/parsell/latest/parsell/"
+      ],
+      "comment": "Parser combinators (map / and_then / or_else / star / plus) in plain Rust, inspired by Hutton & Meijer's monadic parsing and nom."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": [
+        "https://crates.io/api/v1/crates/parsell/0.6.5/dependencies",
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"
+      ],
+      "comment": "Single-file pure-Rust crate with zero runtime dependencies; only std imports (Cow, Chars, Peekable)."
+    },
+    "repository": {
+      "value": "https://github.com/asajeffrey/parsell",
+      "source": ["https://github.com/asajeffrey/parsell"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/parsell",
+      "source": ["https://crates.io/api/v1/crates/parsell"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/parsell",
+      "source": [
+        "https://docs.rs/parsell/latest/parsell/",
+        "https://crates.io/api/v1/crates/parsell"
+      ],
+      "comment": "Cargo.toml points at http://asajeffrey.github.io/parsell (self-hosted rustdoc); docs.rs hosts the same API docs for 0.6.5 with ~47% doc coverage. No book."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://crates.io/api/v1/crates/parsell"],
+      "comment": "0.1.0 published 2016-02-05."
+    },
+    "latest-stable-version": {
+      "value": "0.6.5",
+      "source": ["https://crates.io/api/v1/crates/parsell"],
+      "comment": "Checked 2026-09-19. Published 2016-03-07; repository Cargo.toml sits at unreleased 0.6.6-SNAPSHOT. All research reflects 0.6.5."
+    },
+    "grammar-class": {
+      "value": ["ll-k"],
+      "source": [
+        "https://github.com/asajeffrey/parsell",
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/"
+      ],
+      "comment": "Deviates from the 'combinators get arbitrary' default because the library explicitly documents an LL(1) restriction: an Uncommitted parser may only decide to commit or backtrack on the first token, and a Committed parser never backtracks except on empty input. Effectively LL(1), i.e. k = 1."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://github.com/asajeffrey/parsell"],
+      "comment": "Grammar is ordinary Rust expressions built from combinator methods."
+    },
+    "left-recursion": {
+      "value": ["manual-rewrite"],
+      "source": [
+        "https://docs.rs/parsell/latest/parsell/",
+        "https://github.com/asajeffrey/parsell"
+      ],
+      "comment": "No Pratt/precedence helper; per Assessment Guidelines a combinator library without one gets manual-rewrite. Left-recursive definitions would loop as in any recursive-descent combinator."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://docs.rs/parsell/latest/parsell/"
+      ],
+      "comment": "or_else tries alternatives in order, but an alternative can only be rejected on its first token (Uncommitted returns None); after that the parser is committed, so ambiguities beyond one token of lookahead cannot be resolved."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/"
+      ],
+      "comment": "Commitment is baked into the type system (Uncommitted vs Committed traits) rather than exposed as a cut operator: backtracking is bounded to the first token of input, by design, to allow streaming without buffering."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://docs.rs/parsell/latest/parsell/"
+      ],
+      "comment": "Scannerless over char iterators (std::str::Chars implements PeekableIterator) but the traits are generic over the item type, so any Peekable<I: Iterator> token stream also works."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/parsell/latest/parsell/"],
+      "comment": "No operator-precedence facility in the API."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://github.com/asajeffrey/parsell"
+      ],
+      "comment": "Input is consumed via std::str::Chars, so primitives (character(), CHARACTER, character_map()) operate on char values; the README example uses char::is_alphanumeric."
+    },
+    "input-types": {
+      "value": ["str", "custom-stream"],
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://docs.rs/parsell/latest/parsell/"
+      ],
+      "comment": "&str via its Chars iterator (init_str), plus anything implementing the PeekableIterator trait (blanket impl for Peekable<I>). No direct &[u8] input."
+    },
+    "streaming-partial-input": {
+      "value": true,
+      "source": [
+        "https://github.com/asajeffrey/parsell",
+        "https://docs.rs/parsell/latest/parsell/trait.Stateful.html"
+      ],
+      "comment": "Core design goal: ParseResult::Continue(state) returns the suspended parser, which is resumed with Stateful::more() on the next chunk and finalised with done()."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": [
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/",
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"
+      ],
+      "comment": "buffer() yields Cow<'a, str>: Borrowed when the match lies within one chunk, Owned only when a match spans chunk boundaries."
+    },
+    "span-tracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "No position, offset, or span information anywhere in the API."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/parsell/latest/parsell/"],
+      "comment": "Users construct their own Rust values via map / and_then; no intermediate tree."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/parsell/latest/parsell/"],
+      "comment": "map, map2..map6, and_then, try_map, try_and_then_try chains."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://github.com/asajeffrey/parsell"],
+      "comment": "No implicit skipping; whitespace must be consumed with explicit parsers such as character(char::is_whitespace).star(...)."
+    },
+    "stateful-parsing": {
+      "value": false,
+      "source": ["https://docs.rs/parsell/latest/parsell/trait.Stateful.html"],
+      "comment": "The 'Stateful' trait refers to the parser's own suspended state across chunks, not user-threaded state; there is no facility for passing a symbol table or indentation stack through the parse."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "Failure is signalled by Option::None (first-token backtrack) or by user Result values; no recovery mechanism."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "No error type or error accumulation; a parse yields a single Option/Result."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "No built-in error type, so no expected-token sets."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://docs.rs/parsell/latest/parsell/"
+      ],
+      "comment": "Borderline: the library defines no error type at all, so any error type is necessarily user-supplied — errors are carried as Result<T, E> outputs and bubbled through try_map / try_and_then_try. Marked true because the user fully controls the error type, but nothing helps construct one."
+    },
+    "error-span-fidelity": {
+      "value": 1,
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "Below the scale's floor in practice: a failed parse is a bare None with no message, position, or span. Rated 1 (the minimum)."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://crates.io/api/v1/crates/parsell/0.6.5/dependencies"],
+      "comment": "No dependencies and no documented bridge to any diagnostic crate."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://docs.rs/parsell/latest/parsell/"],
+      "comment": "No label/context combinator."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://github.com/asajeffrey/parsell"],
+      "comment": "Streaming (append-only) resumption is not incremental reparsing of edited input."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/parsell/latest/parsell/"],
+      "comment": "Produces user-defined values only; no tree, no trivia."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/parsell/latest/parsell/"]
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://crates.io/api/v1/crates/parsell/reverse_dependencies"],
+      "comment": "Zero reverse dependencies on crates.io; no editor use found."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "source": ["http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/"],
+      "comment": "No independent or reproducible benchmark found; the author's 2016 talk presents design goals (static dispatch, no buffering) but no numbers. Not included in epage/parse-benchmarks or similar suites."
+    },
+    "compile-time-impact": {
+      "value": ["heavy"],
+      "source": ["https://github.com/asajeffrey/parsell/issues/2"],
+      "comment": "Maintainer-filed issue #2 'Typechecking time' (Feb 2016) records Travis typecheck times of 1m15s on stable, 2m46s on beta and 3m41s on nightly for the crate's own tests, attributed to deep generic combinator types. Measurements are from 2016 compilers; never resolved. Open issue #9 'Better type errors' is related."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": [
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/",
+        "https://github.com/asajeffrey/parsell"
+      ],
+      "comment": "Explicit design goal: 'do as little buffering or copying as possible'; heap allocation (and dynamic dispatch) only occurs at chunk boundaries when a match must be saved across a Continue, otherwise buffer() borrows."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Combinator library; no code generation. Derived from the approach, no separate source."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "No #![no_std]; uses std::borrow::Cow, std::str::Chars, std::iter::Peekable, std::fmt directly. No feature flags."
+    },
+    "msrv": {
+      "value": null,
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/master/Cargo.toml",
+        "https://lib.rs/crates/parsell"
+      ],
+      "comment": "No rust-version in Cargo.toml and no README statement; 2015-edition crate last published for 2016-era compilers (lib.rs flags it as targeting 'nightly'). Whether 0.6.5 still builds on a current stable was not verified."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs",
+        "https://lib.rs/crates/parsell"
+      ],
+      "comment": "No unsafe blocks found in src/lib.rs and lib.rs shows no unsafe badge, but the crate does not declare #![forbid(unsafe_code)], so it cannot carry the forbid-unsafe tag."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://crates.io/api/v1/crates/parsell/0.6.5/dependencies"],
+      "comment": "Plain traits and generics; no macros of any kind required."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": [
+        "https://raw.githubusercontent.com/asajeffrey/parsell/master/Cargo.toml",
+        "https://crates.io/api/v1/crates/parsell/0.6.5/dependencies"
+      ],
+      "comment": "Users need no build script. The crate itself ships a build.rs with skeptic 0.4 as a build-dependency, used only to turn README examples into doc tests; this does pull skeptic into a consumer's build graph."
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": [
+        "https://crates.io/api/v1/crates/parsell/0.6.5/dependencies",
+        "https://lib.rs/crates/parsell"
+      ],
+      "comment": "Zero normal dependencies. skeptic ^0.4.0 appears as build- and dev-dependency only."
+    },
+    "wasm-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/asajeffrey/parsell/main/src/lib.rs"],
+      "comment": "Very likely (std-only, zero deps, no I/O or threads) but no CI, badge, or report demonstrates a wasm32 build, and the 2016-era crate's compatibility with current toolchains is itself unverified."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": [
+        "https://docs.rs/parsell/latest/parsell/trait.Stateful.html",
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/"
+      ],
+      "comment": "Chunked/network input is the motivating use case: a Continue state is an owned value that can be held across an await and fed the next chunk via more(). The library imposes no Send bounds; Send-ness of a concrete parser depends on user closures/types."
+    },
+    "github-stars": {
+      "value": 74,
+      "source": ["https://api.github.com/repos/asajeffrey/parsell"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 70168,
+      "source": ["https://crates.io/api/v1/crates/parsell"],
+      "comment": "All-time downloads, checked 2026-09-19."
+    },
+    "last-release": {
+      "value": "2016-03-07",
+      "source": ["https://crates.io/api/v1/crates/parsell"],
+      "comment": "0.6.5."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": [
+        "https://api.github.com/repos/asajeffrey/parsell/commits?per_page=5",
+        "https://github.com/asajeffrey/parsell/issues",
+        "https://api.github.com/repos/asajeffrey/parsell"
+      ],
+      "comment": "Last commit 2016-03-16, last release 2016-03-07, four issues open since Feb 2016 with no activity, issue creation restricted; repo not archived (GitHub pushed_at 2020-06-25 reflects a branch/default-branch change, not code). No successor named by the author; nom/winnow/combine cover the same streaming niche."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": [
+        "https://docs.rs/parsell/latest/parsell/trait.Stateful.html",
+        "https://github.com/asajeffrey/parsell",
+        "http://asajeffrey.github.io/parsell/doc/talks/sf-rust-2016-02-18/"
+      ],
+      "comment": "docs.rs reports 47% documented items; README has one worked example and links to 2016 talk slides explaining the design. Open issue #7 'Need examples' is unanswered. Sparse API docs = 2."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://github.com/asajeffrey/parsell"],
+      "comment": "Only conference slides and rustdoc; no long-form guide."
+    },
+    "notable-users": {
+      "value": null,
+      "source": ["https://crates.io/api/v1/crates/parsell/reverse_dependencies"],
+      "comment": "Zero reverse dependencies on crates.io and no well-known downstream project found."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": [
+        "https://api.github.com/repos/asajeffrey/parsell/contributors",
+        "https://api.github.com/repos/asajeffrey/parsell/commits?per_page=5"
+      ],
+      "comment": "Authored and maintained solely by Alan Jeffrey (then Mozilla); other contributors (Manishearth, eddyb, KiChjang) have 1-2 commits each."
+    }
+  }
 }

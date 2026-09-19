@@ -183,7 +183,7 @@ Users should be able to:
 - [x] lexgen — lexer generator using a Rust macro DSL, alternative to logos
 - [x] nom-supreme — error-handling and ergonomics extension layer on top of nom
 - [x] yap — lightweight, dependency-free parser combinator crate
-- [ ] parsell — streaming/pushdown parser combinator crate designed around zero-copy inputs
+- [x] parsell — streaming/pushdown parser combinator crate designed around zero-copy inputs
 
 ### Not Including (with reasons)
 - **rust-parsec** — no such crate on crates.io (the `parsec` crate is maidsafe's consensus protocol); nearest repos (`gereeter/rust-parsec`, `d-plaindoux/parsec.rust`) are unpublished and dormant since 2014–2019
