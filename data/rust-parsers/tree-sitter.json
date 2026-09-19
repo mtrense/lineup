@@ -1,5 +1,281 @@
 {
   "name": "tree-sitter",
   "description": "Rust bindings to the incremental, error-tolerant parsing library used by editors",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/Cargo.toml", "https://crates.io/api/v1/crates/tree-sitter"],
+      "comment": "Workspace Cargo.toml: `license = \"MIT\"`, inherited by the `tree-sitter` lib crate; crates.io reports MIT."
+    },
+    "approach": {
+      "value": ["generator-grammar-file", "incremental-cst"],
+      "source": ["https://github.com/tree-sitter/tree-sitter", "https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "README: \"a parser generator tool and an incremental parsing library\". Grammars are written in `grammar.js`, compiled by the CLI to C, and driven by the incremental runtime the Rust crate wraps. Dual by the same logic RESEARCH.md applies to rust-sitter."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/build.rs", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/Cargo.toml"],
+      "comment": "`build.rs` compiles the C11 runtime `lib/src/lib.c` via `cc`; Cargo.toml declares `links = \"tree-sitter\"`. Grammar crates (`tree-sitter-rust` etc.) likewise compile generated `parser.c` with `cc`."
+    },
+    "repository": {
+      "value": "https://github.com/tree-sitter/tree-sitter",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/tree-sitter",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter"],
+      "comment": "Runtime crate. Companion crates: `tree-sitter-language` (Language type shared with grammar crates), `tree-sitter-highlight`, `tree-sitter-tags`, `tree-sitter-loader`, and the `tree-sitter-cli` generator."
+    },
+    "documentation": {
+      "value": "https://tree-sitter.github.io/tree-sitter/",
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/index.html", "https://docs.rs/tree-sitter/latest/tree_sitter/index.html"],
+      "comment": "Official guide (Using Parsers, Creating Parsers, Queries, Syntax Highlighting); API reference at docs.rs/tree-sitter."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter", "https://crates.io/api/v1/crates/tree-sitter/versions"],
+      "comment": "crates.io `created_at` 2018-05-18. The oldest version still listed on the versions endpoint is 0.17.1 (2020-11-03); earlier releases are no longer listed."
+    },
+    "latest-stable-version": {
+      "value": "0.27.0",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter", "https://crates.io/api/v1/crates/tree-sitter/versions"],
+      "comment": "Checked 2026-09-19; published 2026-08-30. Research reflects tree-sitter 0.27.0 (the 0.26.x line, last 0.26.13 on 2026-08-23, had MSRV 1.77). master is already at 0.28.0-dev."
+    },
+    "grammar-class": {
+      "value": ["glr", "lr1"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "Docs: \"Tree-sitter is based on the GLR parsing algorithm. This means that while it can handle any context-free grammar, it works most efficiently with a class of context-free grammars called LR(1) Grammars.\""
+    },
+    "grammar-definition": {
+      "value": ["external-file"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "Grammar is a JavaScript DSL in `grammar.js`, compiled by `tree-sitter generate` to `src/parser.c`; the Rust crate consumes the compiled `Language`, not the grammar."
+    },
+    "left-recursion": {
+      "value": ["native"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "LR/GLR tables: left-recursive rules (e.g. `binary_expression: $.expression '+' $.expression` with `prec.left`) are the documented norm. Per Assessment Guidelines LR generators get `native`."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build", "all-parses"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "Unresolved LR(1) conflicts fail `tree-sitter generate` unless resolved with `prec`/`prec.left`/`prec.right`; conflicts listed in the grammar's `conflicts` field are instead explored by GLR (\"we want the parser to explore both possibilities\"), with `prec.dynamic` picking the surviving parse rather than returning a forest."
+    },
+    "backtracking": {
+      "value": ["none"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "Deterministic table-driven LR; ambiguity is handled by GLR stack forking, not by backtracking."
+    },
+    "lexer-integration": {
+      "value": ["built-in"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "Context-aware lexer generated from the grammar's token rules and `extras`; custom tokenisation via an optional external scanner written in C. No external token stream can be fed in."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "`prec(n, ...)`, `prec.left`, `prec.right`, and `prec.dynamic` in the grammar DSL — the grammar-level precedence/associativity facility analogous to LALRPOP `%left`/`%right`."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/2-basic-parsing.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html"],
+      "comment": "Input may be UTF-8 or UTF-16 (LE/BE) or a custom encoding via a `Decode` trait; the lexer operates on code points and grammar regexes match Unicode."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "custom-stream", "rope-text-buffer"],
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html", "https://tree-sitter.github.io/tree-sitter/using-parsers/2-basic-parsing.html"],
+      "comment": "`Parser::parse` takes `impl AsRef<[u8]>` (so `&str`, `&[u8]`, `Vec<u8>`); `parse_with_options` takes a `FnMut(byte_offset, Point) -> chunk` callback intended for \"piece tables, ropes, or other custom formats\"; `parse_utf16_le/be` take `&[u16]`. Tokens cannot be supplied."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html"],
+      "comment": "The read callback is pulled on demand until it returns an empty chunk (EOF); there is no \"need more input\" result. Parsing can be cancelled via a progress callback but not resumed. Incremental reparse of an edited buffer is a different capability (see Incremental Reparsing)."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "`Node<'tree>` is a `Copy` handle into the tree; `Node::utf8_text(&source)` returns a `&str` slice of the caller's source without allocating. The tree itself is heap-allocated by the C runtime and does not store source text."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col"],
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Every node exposes `start_byte`/`end_byte`/`byte_range` and `start_position`/`end_position` as `Point { row, column }` (0-based, column in bytes); `Range` bundles both."
+    },
+    "output-model": {
+      "value": ["lossless-cst", "generic-tree"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/2-basic-parsing.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Produces a concrete syntax tree with a node \"for every individual token in the source code, including things like commas and parentheses\"; nodes are untyped (`kind()` strings, optional field names), comments are `is_extra` nodes, whitespace is implied by byte-range gaps. No typed AST is built."
+    },
+    "semantic-actions": {
+      "value": ["post-walk"],
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/index.html"],
+      "comment": "No actions in the grammar; users walk the tree afterwards with `TreeCursor`/`Node::children` or run `Query`/`QueryCursor` patterns over it."
+    },
+    "whitespace-comment-handling": {
+      "value": ["implicit-skip-rules", "preserved-as-trivia"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Grammar `extras` (default whitespace; typically also comments) may appear anywhere without being mentioned in rules; named extras such as comments are kept in the tree and flagged via `Node::is_extra`."
+    },
+    "stateful-parsing": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html", "https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "No user state is threaded through the parse from Rust; context-sensitive lexing (indentation, heredocs) must be implemented in a C external scanner that owns its own serialisable state."
+    },
+    "error-recovery": {
+      "value": ["automatic"],
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html", "https://github.com/tree-sitter/tree-sitter"],
+      "comment": "Built-in, non-configurable repair: unrecognised input becomes `ERROR` nodes (\"parts of the code that could not be incorporated into a valid syntax tree\") and zero-width `MISSING` nodes are \"inserted by the parser in order to recover from certain kinds of syntax errors\". README: \"Robust enough to provide useful results even in the presence of syntax errors\"."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "A single parse always yields a full tree; any number of `ERROR`/`MISSING` nodes can be present and located via `has_error`, `is_error`, `is_missing`, or `(ERROR)`/`(MISSING)` query patterns."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Language.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.LookaheadIterator.html"],
+      "comment": "`ERROR` nodes carry no expected set. A `MISSING` node names the single token the parser inserted, and `Language::lookahead_iterator(state)` lets the user enumerate symbols valid in a parse state (via `Node::parse_state`), but this must be assembled by hand rather than being reported on the error."
+    },
+    "custom-error-types": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/index.html"],
+      "comment": "Parsing never returns an error type — syntax errors live in the tree as nodes. The only error types (`LanguageError`, `QueryError`, `IncludedRangesError`) are fixed setup errors, not substitutable."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Every `ERROR`/`MISSING` node has a precise byte range and row/column `Point`s (4 per guideline). No labels or secondary spans, and no message text at all — the caller must synthesise diagnostics."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/index.html", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/README.md"],
+      "comment": "No first-party or documented bridge to ariadne/miette/codespan-reporting/annotate-snippets; consumers map `Node::range()` into whichever reporter they use."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "The grammar DSL has no way to attach labels or expectations to rules, and error nodes carry only kind and span."
+    },
+    "incremental-reparsing": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/3-advanced-parsing.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Tree.html"],
+      "comment": "`Tree::edit(&InputEdit)` adjusts node ranges, then `Parser::parse(text, Some(&old_tree))` produces a new tree that \"internally shares structure with the old tree\"; `Tree::changed_ranges` reports what changed."
+    },
+    "lossless-syntax-tree": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/2-basic-parsing.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Concrete syntax tree with every token (including punctuation) and comments as `extra` nodes; whitespace is not stored as nodes but is recoverable from the byte-range gaps against the original text, which the tree does not own. RESEARCH.md names tree-sitter as the reference `true`."
+    },
+    "syntax-highlighting-queries": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://tree-sitter.github.io/tree-sitter/using-parsers/queries/index.html", "https://docs.rs/tree-sitter/latest/tree_sitter/index.html"],
+      "comment": "S-expression query language (`Query`/`QueryCursor` in the Rust API) plus the `highlights.scm`/`locals.scm`/`injections.scm` convention and the first-party `tree-sitter-highlight` and `tree-sitter-tags` crates; docs note the highlighter is used on GitHub.com."
+    },
+    "used-by-lsp-ide": {
+      "value": ["zed", "helix", "neovim"],
+      "source": ["https://raw.githubusercontent.com/zed-industries/zed/main/Cargo.toml", "https://raw.githubusercontent.com/helix-editor/helix/master/Cargo.toml", "https://crates.io/api/v1/crates/tree-house/0.4.0/dependencies", "https://github.com/neovim/neovim/blob/master/runtime/doc/treesitter.txt"],
+      "comment": "Zed depends on the `tree-sitter` crate directly (git-pinned). Helix uses the same C runtime through its own `tree-house`/`tree-house-bindings` crates rather than this crate. Neovim (C) links the C library: \"Nvim integrates the `tree-sitter` library for incremental parsing of buffers\". rust-analyzer does not use it."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://github.com/tree-sitter/tree-sitter-rust"],
+      "comment": "Maintainer benchmark with a hand-written competitor: tree-sitter-rust README reports initial parse of a 2,157-line file at 6.48 ms vs rustc's own parser, \"around two to three times as long as rustc's hand-written parser\" — i.e. the 1.5–3x `fast` band. Incremental re-parse after an edit is quoted at under a millisecond. Checked 2026-09-19."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://github.com/tree-sitter/tree-sitter/issues/1041", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/build.rs"],
+      "comment": "No measured build-time delta found. The runtime crate is a small C file compiled once via `cc`; the real cost is per grammar crate, whose generated `parser.c` can reach multi-megabyte sizes (issue #1041: 25 MB for Zig, 8.7 MB for TypeScript), but no timings were published. Left `null` per guideline."
+    },
+    "allocation-strategy": {
+      "value": ["allocates-per-node"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/3-advanced-parsing.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html"],
+      "comment": "Subtrees are heap-allocated, reference-counted objects in the C runtime (tree copy is \"incrementing an atomic reference count\"; incremental parses share unchanged subtrees). Rust-side `Node` handles are `Copy` and allocation-free, but the allocator is not user-controllable."
+    },
+    "generated-code-size": {
+      "value": ["large"],
+      "source": ["https://github.com/tree-sitter/tree-sitter/issues/1041"],
+      "comment": "Generated `parser.c` parse tables are routinely multi-megabyte: 8.7 MB for TypeScript and 25 MB for Zig reported in issue #1041 (closed as not planned)."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/lib.rs", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/Cargo.toml", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/.github/workflows/build.yml"],
+      "comment": "`#![cfg_attr(not(feature = \"std\"), no_std)]` with `extern crate alloc` (needs `alloc`); `default-features = false` drops `std`. CI runs `cargo check --no-default-features` per target. The C runtime still needs a libc/allocator at link time."
+    },
+    "msrv": {
+      "value": "1.90",
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/Cargo.toml", "https://crates.io/api/v1/crates/tree-sitter/versions"],
+      "comment": "`rust-version = \"1.90\"` in 0.27.0 (Rust 2024 edition); 0.26.13 still declared 1.77."
+    },
+    "unsafe-usage": {
+      "value": ["ffi"],
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/lib.rs"],
+      "comment": "Thin bindings over the C API: roughly 80+ `unsafe` blocks/functions, no `forbid(unsafe_code)`; optional `bindgen` feature regenerates the FFI declarations."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/Cargo.toml"],
+      "comment": "No proc-macro crates in the dependency list; grammars are compiled C, not macros."
+    },
+    "build-rs-step": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/build.rs", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/README.md"],
+      "comment": "The crate's own `build.rs` compiles the C runtime with `cc`, and every grammar crate (`tree-sitter-rust`, ...) has a `build.rs` compiling its generated `parser.c` (+ `scanner.c`). Users pulling published grammar crates write no build script themselves; users authoring a grammar do."
+    },
+    "dependency-count": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/Cargo.toml"],
+      "comment": "Non-optional: `regex` (default-features off), `streaming-iterator`, `tree-sitter-language`. Optional: `wasmtime-c-api-impl` (feature `wasm`). Build-deps: `cc`, `serde_json`, optional `bindgen`. Checked at 0.27.0."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/lib/binding_rust/build.rs", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/v0.27.0/.github/workflows/build.yml"],
+      "comment": "`wasm32-unknown-unknown` is in the CI matrix; `build.rs` has a dedicated `configure_wasm_build()` path using the wasm stdlib headers shipped by `tree-sitter-language` (`DEP_TREE_SITTER_LANGUAGE_WASM_HEADERS`). A C compiler able to target wasm32 (clang) is still required, and `Send`/`Sync` impls are gated off on `target_family = \"wasm\"`."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html", "https://docs.rs/tree-sitter/latest/tree_sitter/struct.Tree.html", "https://tree-sitter.github.io/tree-sitter/using-parsers/3-advanced-parsing.html"],
+      "comment": "`Parser`, `Tree`, and `Language` are `Send + Sync` (non-wasm targets); trees are cheaply cloned via atomic refcount for cross-thread use. The read callback itself is synchronous, so async sources must be materialised or chunked before parsing."
+    },
+    "github-stars": {
+      "value": 27000,
+      "source": ["https://github.com/tree-sitter/tree-sitter"],
+      "comment": "Rounded figure shown on the GitHub repo page (\"27k\"), checked 2026-09-19; ~2.9k forks."
+    },
+    "crates-io-downloads": {
+      "value": 39500000,
+      "source": ["https://crates.io/api/v1/crates/tree-sitter"],
+      "comment": "~39.5 M all-time (14.6 M recent) for the `tree-sitter` crate, checked 2026-09-19."
+    },
+    "last-release": {
+      "value": "2026-08-30",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter/versions"],
+      "comment": "0.27.0 published 2026-08-30T17:23Z."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/tree-sitter/versions", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/Cargo.toml"],
+      "comment": "Five releases between 2026-06-28 and 2026-08-30 (0.26.10 → 0.27.0); master already carries 0.28.0-dev. Note Helix maintains its own bindings (`tree-house-bindings`) to the same C runtime rather than using this crate."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/index.html", "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://docs.rs/tree-sitter/latest/tree_sitter/index.html"],
+      "comment": "Long-form official guide (using parsers, creating parsers, queries, highlighting) plus README examples; docs.rs API reference is only ~60% documented and much of the guide is written against the C API. No migration guides. 4 per guideline."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/using-parsers/index.html", "https://tree-sitter.github.io/tree-sitter/creating-parsers/3-writing-the-grammar.html"],
+      "comment": "The tree-sitter.github.io guide is a multi-chapter book covering grammar authoring, parsing, queries, and highlighting."
+    },
+    "notable-users": {
+      "value": "Zed, Neovim, Helix (via tree-house bindings), GitHub.com code navigation/highlighting",
+      "source": ["https://raw.githubusercontent.com/zed-industries/zed/main/Cargo.toml", "https://github.com/neovim/neovim/blob/master/runtime/doc/treesitter.txt", "https://raw.githubusercontent.com/helix-editor/helix/master/Cargo.toml", "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Zed depends on the Rust crate; Neovim embeds the C library; Helix wraps the C runtime with its own bindings; the syntax-highlighting docs state `tree-sitter-highlight` is used on GitHub.com."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://crates.io/api/v1/crates/tree-sitter/owners", "https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/Cargo.toml"],
+      "comment": "Hosted under the `tree-sitter` GitHub organisation with a `core` team; crate owners are Max Brunsfeld (Zed) and Amaan Qureshi plus the org team. Day-to-day maintenance is concentrated in those two, so the effective bus factor is closer to a small team despite the org structure."
+    }
+  }
 }
