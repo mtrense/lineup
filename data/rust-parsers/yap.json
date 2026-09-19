@@ -1,5 +1,279 @@
 {
   "name": "yap",
   "description": "Lightweight, dependency-free parser combinator crate",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml", "https://crates.io/api/v1/crates/yap"],
+      "comment": "Cargo.toml `license = \"MIT\"`; crates.io agrees."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs"],
+      "comment": "Self-described as a 'parser combinator inspired set of utility methods' built on the Iterator interface — a `Tokens` trait with combinator-style methods (many, sep_by, optional, surrounded_by, one_of), not a grammar generator."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml"],
+      "comment": "Zero runtime dependencies, so no C/C++ anywhere in the tree."
+    },
+    "repository": {
+      "value": "https://github.com/jsdw/yap",
+      "source": ["https://github.com/jsdw/yap"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/yap",
+      "source": ["https://crates.io/api/v1/crates/yap"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/yap/latest/yap/",
+      "source": ["https://docs.rs/yap/latest/yap/"],
+      "comment": "No dedicated book; docs.rs crate-level docs plus an `examples/` folder are the documentation."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/yap/versions"],
+      "comment": "0.1.0 published 2021-11-06."
+    },
+    "latest-stable-version": {
+      "value": "0.12.0",
+      "source": ["https://crates.io/api/v1/crates/yap/versions"],
+      "comment": "Checked 2026-09-19; 0.12.0 published 2023-11-18, no yanked or prerelease versions. All research reflects 0.12.0."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Combinator-style methods over an iterator; no formal grammar class is imposed (per Assessment Guidelines)."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs"],
+      "comment": "Parsers are ordinary Rust functions taking `&mut impl Tokens`; the only macro is the declarative `one_of!` helper."
+    },
+    "left-recursion": {
+      "value": ["manual-rewrite"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "No Pratt/precedence helper exists; a left-recursive function would recurse infinitely, so the grammar must be rewritten by hand."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs", "https://docs.rs/yap/latest/yap/"],
+      "comment": "'Backtracking by default' — provided functions do not consume input on failure, and `one_of!` tries alternatives in order, rewinding between them."
+    },
+    "backtracking": {
+      "value": ["unlimited"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "`Tokens::location()` / `set_location()` allow saving and rewinding to any earlier position; there is no cut/commit operator."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://github.com/jsdw/yap/tree/master/examples"],
+      "comment": "Scannerless over `&str` (`StrTokens` yields `char`), and `SliceTokens` / `IterTokens` accept any `&[T]` or `Iterator + Clone` of tokens; the repo ships a `json_logos.rs` example pairing it with logos."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html", "https://docs.rs/yap/latest/yap/chars/index.html"],
+      "comment": "No operator-precedence or Pratt facility in the `Tokens` trait or helper modules."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://raw.githubusercontent.com/jsdw/yap/master/src/types.rs"],
+      "comment": "`StrTokens` iterates `char`s, computes the next char boundary before slicing, and its location is a byte index into the string."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice", "custom-stream"],
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "`StrTokens` for `&str`, `SliceTokens<T>` for any `&[T]` (covers `&[u8]` and token slices), `IterTokens` for any `Iterator + Clone`; the `Tokens` trait is public and user-implementable."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://crates.io/api/v1/crates/yap_streaming"],
+      "comment": "No 'need more input' signal in the core crate; the third-party `yap_streaming` extension (Easyoakland, 0.2.0, Nov 2023) adds stream parsing on top."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "`Tokens::slice(from, to)` returns a zero-copy `Tokens` over a range between two saved locations; `StrTokens::remaining()` hands back the unconsumed `&str`."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "`Tokens::offset()` / `location()` are always available; for `StrTokens` the location is a byte index, for slices/iterators an element offset. No line/column tracking."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Parsing functions return whatever Rust type the user constructs (`Option<T>` / `Result<T, E>`); `parse()` converts consumed tokens via `FromStr`."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Values are built inside closures passed to `many`, `sep_by`, `optional`, `surrounded_by`, etc., and via ordinary Rust control flow around `Tokens` calls; there is no separate grammar/action layer."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Whitespace is skipped explicitly with `skip_while(|c| c.is_whitespace())` or similar; no implicit skip rules."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html", "https://docs.rs/yap/latest/yap/types/index.html"],
+      "comment": "`Tokens::with_context()` / `with_context_mut()` wrap the token stream in `WithContext` / `WithContextMut`, carrying arbitrary user state through the parse."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "No recovery or synchronisation API; failed parses rewind and return `None` / `Err` to the caller."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "No error-accumulation mechanism; functions return a single `Option` / `Result`."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/tokens.rs"],
+      "comment": "The crate defines no error type at all, so no expected-token sets are produced; users build their own errors."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs", "https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Stated design goal: 'Allow user defined errors to be returned anywhere that it might make sense'; `_err` variants (`many_err`, `sep_by_err`, `optional_err`) propagate whatever `E` the user's closure returns."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html", "https://docs.rs/yap/latest/yap/types/index.html"],
+      "comment": "yap ships no error type; the user attaches `Tokens::offset()` (a single byte/element offset) to their own errors. Ranges are possible by saving two locations, but nothing is provided out of the box, so rated 3 (single offset)."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml", "https://github.com/jsdw/yap"],
+      "comment": "Zero dependencies and no documented bridge to ariadne/miette/codespan/annotate-snippets."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "`with_context()` threads user *state*, not error labels; there is no `context`/`labelled`-style mechanism for annotating sub-parsers."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/"],
+      "comment": "One-shot iterator-based parsing; no tree reuse."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/"],
+      "comment": "Produces user-defined values, not a CST."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/yap/latest/yap/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://crates.io/api/v1/crates/yap/reverse_dependencies?per_page=20"],
+      "comment": "crates.io reverse dependencies (2026-09-19) list scale-value, scale-info-legacy, doxygen-bindgen, simple-tokenizer, yap_streaming — no editor or LSP."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs"],
+      "comment": "No independent benchmark found. The crate itself says it 'aims to be fairly quick' and avoids allocations but that 'there may be quicker alternatives' if maximum speed is needed."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://lib.rs/crates/yap"],
+      "comment": "No measurements found. Circumstantially light (about 2K lines, zero dependencies, no proc-macros), but per guidelines `null` rather than a guess."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs"],
+      "comment": "'Avoids allocations (and allows you to do the same via the iterator-centric interface) almost everywhere'; combinators return lazy `Tokens`/`Iterator` impls rather than collections, and the crate builds without `alloc`."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "source": ["https://docs.rs/yap/latest/yap/"],
+      "comment": "Combinator library; no code generation."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs", "https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml", "https://lib.rs/crates/yap"],
+      "comment": "`#![cfg_attr(not(feature = \"std\"), no_std)]`; `default = []` so the crate is no_std by default and does not require `alloc`. The `std` feature is opt-in. lib.rs shows the no-std badge."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml", "https://crates.io/api/v1/crates/yap/versions"],
+      "comment": "No `rust-version` in Cargo.toml (crates.io reports null for every version) and no MSRV statement in the README; edition 2021."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/types.rs", "https://raw.githubusercontent.com/jsdw/yap/master/src/tokens.rs"],
+      "comment": "One `unsafe { self.str.get_unchecked(..) }` in `StrTokens::next()` after computing the char boundary; no `#![forbid(unsafe_code)]`, no unsafe in tokens.rs."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml"],
+      "comment": "Zero dependencies; `one_of!` is a `macro_rules!` macro."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml"]
+    },
+    "dependency-count": {
+      "value": 0,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml", "https://lib.rs/crates/yap"],
+      "comment": "No `[dependencies]`; only dev-dependency is logos 0.12 for the example."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jsdw/yap/master/src/lib.rs", "https://raw.githubusercontent.com/jsdw/yap/master/Cargo.toml"],
+      "comment": "Inferred: pure Rust, zero dependencies, no_std by default, no I/O — nothing target-specific. Not explicitly tested for wasm in CI as far as found."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/yap/latest/yap/types/index.html", "https://docs.rs/yap/latest/yap/trait.Tokens.html"],
+      "comment": "Token types are plain structs over `&str` / `&[T]` / a `Clone` iterator (auto-`Send` when the underlying data is) and hold no interior state. Note there is no async input adaptor; consuming an async stream needs buffering (or the third-party `yap_streaming`)."
+    },
+    "github-stars": {
+      "value": 163,
+      "source": ["https://github.com/jsdw/yap"],
+      "comment": "Snapshot 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 6014690,
+      "source": ["https://crates.io/api/v1/crates/yap"],
+      "comment": "All-time downloads on 2026-09-19; lib.rs shows ~251K/month, largely via scale-value / scale-info-legacy in the Parity/subxt ecosystem."
+    },
+    "last-release": {
+      "value": "2023-11-18",
+      "source": ["https://crates.io/api/v1/crates/yap/versions"],
+      "comment": "0.12.0. docs.rs shows a later build date for this version, but the crates.io publish timestamp is authoritative."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://github.com/jsdw/yap/commits/master", "https://crates.io/api/v1/crates/yap/versions"],
+      "comment": "Last release 2023-11-18; last substantive commits Nov 2023; only a README typo fix (Feb 2025) since. Repo not archived, no seeking-maintainer notice. Checked 2026-09-19."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/yap/latest/yap/", "https://github.com/jsdw/yap/tree/master/examples"],
+      "comment": "`#![deny(missing_docs)]` with examples on almost every function plus `examples/json.rs` and `json_logos.rs`; no tutorial, book, or migration guides."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://github.com/jsdw/yap", "https://docs.rs/yap/latest/yap/"],
+      "comment": "API docs and an examples folder only."
+    },
+    "notable-users": {
+      "value": "scale-value and scale-info-legacy (Parity Technologies, part of the subxt SCALE-codec tooling)",
+      "source": ["https://raw.githubusercontent.com/paritytech/scale-value/main/Cargo.toml", "https://raw.githubusercontent.com/paritytech/scale-info-legacy/main/Cargo.toml", "https://crates.io/api/v1/crates/yap/reverse_dependencies?per_page=20"],
+      "comment": "Both Cargo.toml files verified (`yap = \"0.12.0\"`, optional in scale-value). The yap author (jsdw / James Wilson) also maintains these Parity crates, so adoption is largely in-house."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/jsdw/yap/commits/master", "https://lib.rs/crates/yap"],
+      "comment": "Essentially all commits by jsdw (James Wilson); lib.rs lists 2 other contributors with trivial changes."
+    }
+  }
 }

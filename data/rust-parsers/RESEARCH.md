@@ -182,7 +182,7 @@ Users should be able to:
 - [x] lelwel — LL(1) parser generator with a focus on error recovery and lossless output
 - [x] lexgen — lexer generator using a Rust macro DSL, alternative to logos
 - [x] nom-supreme — error-handling and ergonomics extension layer on top of nom
-- [ ] yap — lightweight, dependency-free parser combinator crate
+- [x] yap — lightweight, dependency-free parser combinator crate
 - [ ] parsell — streaming/pushdown parser combinator crate designed around zero-copy inputs
 - [ ] rust-parsec — Parsec-style combinator crate; verify the exact crates.io name and activity before researching (may be dormant)
 
