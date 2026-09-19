@@ -1,0 +1,656 @@
+{
+  "name": "Rust Parser Libraries",
+  "description": "Libraries and tools for building parsers in Rust — parser combinators, parser/lexer generators, PEG frameworks, and incremental/lossless syntax-tree toolkits — compared across parsing model, input/output, diagnostics, editor support, performance, Rust integration, and ecosystem, with a focus on language and DSL frontends",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Licensing, parsing approach, implementation, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "green" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" },
+              { "id": "bsd-3-clause", "value": "BSD-3-Clause", "color": "green" },
+              { "id": "zlib", "value": "Zlib", "color": "green" }
+            ]
+          },
+          "description": "From Cargo.toml / LICENSE; dual-licensed projects carry both tags"
+        },
+        {
+          "id": "approach",
+          "name": "Approach",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "combinator", "value": "Combinator", "color": "blue" },
+              { "id": "generator-grammar-file", "value": "Generator (grammar file)", "color": "purple" },
+              { "id": "generator-macro", "value": "Generator (macro)", "color": "purple" },
+              { "id": "peg", "value": "PEG", "color": "orange" },
+              { "id": "lexer-only", "value": "Lexer only", "color": "green" },
+              { "id": "incremental-cst", "value": "Incremental CST", "color": "red" },
+              { "id": "extension", "value": "Extension", "color": "gray" }
+            ]
+          },
+          "description": "Dominant parsing style; a second tag only when genuinely dual (e.g. pest = grammar file + PEG)"
+        },
+        {
+          "id": "implementation",
+          "name": "Implementation",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "pure-rust", "value": "Pure Rust", "color": "orange" },
+              { "id": "rust-bindings", "value": "Rust bindings", "color": "blue" }
+            ]
+          },
+          "description": "Pure Rust (no C/C++ in the dependency tree) vs bindings to a native engine"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Primary source repository"
+        },
+        {
+          "id": "crates-io",
+          "name": "Crates.io",
+          "valueType": "link",
+          "description": "Package page of the main/umbrella crate"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "docs.rs or dedicated book/site (book preferred when one exists)"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first crates.io publish"
+        },
+        {
+          "id": "latest-stable-version",
+          "name": "Latest Stable Version",
+          "valueType": "text",
+          "description": "Current non-prerelease version on crates.io; date checked noted in comment"
+        }
+      ]
+    },
+    {
+      "id": "parsing-model",
+      "name": "Parsing Model",
+      "description": "Grammar class, how the grammar is defined, and how recursion, ambiguity, and lexing are handled",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "grammar-class",
+          "name": "Grammar Class",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "lr1", "value": "LR(1)", "color": "purple" },
+              { "id": "lalr1", "value": "LALR(1)", "color": "purple" },
+              { "id": "glr", "value": "GLR", "color": "red" },
+              { "id": "peg", "value": "PEG", "color": "orange" },
+              { "id": "recursive-descent", "value": "Recursive descent", "color": "blue" },
+              { "id": "ll-k", "value": "LL(k)", "color": "green" },
+              { "id": "arbitrary", "value": "Arbitrary", "color": "gray" }
+            ]
+          },
+          "description": "What the tool can parse; combinators impose no formal class and get 'Arbitrary'"
+        },
+        {
+          "id": "grammar-definition",
+          "name": "Grammar Definition",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rust-code", "value": "Rust code", "color": "orange" },
+              { "id": "macro-dsl", "value": "Macro DSL", "color": "purple" },
+              { "id": "external-file", "value": "External file", "color": "blue" }
+            ]
+          },
+          "description": "Where the grammar lives: plain Rust, inside a macro, or a separate grammar file"
+        },
+        {
+          "id": "left-recursion",
+          "name": "Left Recursion",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "native", "value": "Native", "color": "green" },
+              { "id": "precedence-climbing", "value": "Precedence climbing", "color": "blue" },
+              { "id": "manual-rewrite", "value": "Manual rewrite", "color": "orange" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "Directly supported, via a Pratt/precedence helper, must be eliminated by hand, or not applicable (lexers)"
+        },
+        {
+          "id": "ambiguity-handling",
+          "name": "Ambiguity Handling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rejected-at-build", "value": "Rejected at build", "color": "red" },
+              { "id": "ordered-choice", "value": "Ordered choice", "color": "orange" },
+              { "id": "all-parses", "value": "All parses", "color": "purple" },
+              { "id": "backtracking", "value": "Backtracking", "color": "blue" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "LR conflicts fail generation, PEG first-match, GLR forests, or combinator alternatives"
+        },
+        {
+          "id": "backtracking",
+          "name": "Backtracking",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "unlimited", "value": "Unlimited", "color": "blue" },
+              { "id": "bounded-cut", "value": "Bounded / cut", "color": "green" },
+              { "id": "none", "value": "None", "color": "orange" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "Unlimited, bounded via a cut/commit operator, or none (deterministic table-driven)"
+        },
+        {
+          "id": "lexer-integration",
+          "name": "Lexer Integration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "built-in", "value": "Built-in", "color": "green" },
+              { "id": "external-token-stream", "value": "External token stream", "color": "blue" },
+              { "id": "pairs-with", "value": "Pairs with", "color": "purple" },
+              { "id": "is-lexer", "value": "Is lexer", "color": "orange" }
+            ]
+          },
+          "description": "Scannerless/bundled lexer, accepts any token iterator, designed to pair with a named lexer, or is itself a lexer"
+        },
+        {
+          "id": "precedence-pratt-support",
+          "name": "Precedence / Pratt Support",
+          "valueType": "boolean",
+          "description": "Dedicated operator-precedence facility (chumsky::pratt, pest PrattParser, LALRPOP %left/%right)"
+        },
+        {
+          "id": "unicode-aware",
+          "name": "Unicode-Aware",
+          "valueType": "boolean",
+          "description": "Handles UTF-8 boundaries correctly and offers char-level primitives, not just bytes"
+        }
+      ]
+    },
+    {
+      "id": "input-output",
+      "name": "Input & Output",
+      "description": "Accepted input types, streaming, zero-copy, spans, and the shape of the parse result",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "input-types",
+          "name": "Input Types",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "str", "value": "&str", "color": "green" },
+              { "id": "bytes", "value": "&[u8]", "color": "blue" },
+              { "id": "token-slice", "value": "Token slice", "color": "purple" },
+              { "id": "custom-stream", "value": "Custom stream", "color": "orange" },
+              { "id": "rope-text-buffer", "value": "Rope / text buffer", "color": "red" }
+            ]
+          },
+          "description": "Input representations the parser can consume"
+        },
+        {
+          "id": "streaming-partial-input",
+          "name": "Streaming / Partial Input",
+          "valueType": "boolean",
+          "description": "Can parse incomplete input and signal 'need more' (nom Incomplete, winnow Partial)"
+        },
+        {
+          "id": "zero-copy",
+          "name": "Zero-Copy",
+          "valueType": "boolean",
+          "description": "Output can borrow from the input without allocating"
+        },
+        {
+          "id": "span-tracking",
+          "name": "Span Tracking",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "byte-offsets", "value": "Byte offsets", "color": "green" },
+              { "id": "line-col", "value": "Line / column", "color": "blue" },
+              { "id": "custom-span-type", "value": "Custom span type", "color": "purple" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Span information available on parse results; note opt-in wrapper types (e.g. nom_locate) in comment"
+        },
+        {
+          "id": "output-model",
+          "name": "Output Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "typed-ast", "value": "Typed AST", "color": "green" },
+              { "id": "generic-tree", "value": "Generic tree", "color": "blue" },
+              { "id": "lossless-cst", "value": "Lossless CST", "color": "purple" },
+              { "id": "tokens-only", "value": "Tokens only", "color": "orange" }
+            ]
+          },
+          "description": "User-built Rust types, untyped pairs/nodes, green/red trees with trivia, or a token stream"
+        },
+        {
+          "id": "semantic-actions",
+          "name": "Semantic Actions",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "inline-rust", "value": "Inline Rust", "color": "green" },
+              { "id": "post-walk", "value": "Post-walk", "color": "blue" },
+              { "id": "combinator-map", "value": "Combinator map", "color": "purple" },
+              { "id": "n-a", "value": "N/A", "color": "gray" }
+            ]
+          },
+          "description": "How values are built: arbitrary Rust in grammar actions, walking a generic tree afterwards, or .map()/.then() chains"
+        },
+        {
+          "id": "whitespace-comment-handling",
+          "name": "Whitespace / Comment Handling",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "implicit-skip-rules", "value": "Implicit skip rules", "color": "green" },
+              { "id": "explicit-combinators", "value": "Explicit combinators", "color": "blue" },
+              { "id": "lexer-skip", "value": "Lexer skip", "color": "purple" },
+              { "id": "preserved-as-trivia", "value": "Preserved as trivia", "color": "orange" }
+            ]
+          },
+          "description": "Implicit WHITESPACE/COMMENT rules, explicit combinators, skipped by the lexer, or preserved as trivia"
+        },
+        {
+          "id": "stateful-parsing",
+          "name": "Stateful Parsing",
+          "valueType": "boolean",
+          "description": "Supports threading user state (symbol tables, indentation stack) through the parse"
+        }
+      ]
+    },
+    {
+      "id": "error-handling-diagnostics",
+      "name": "Error Handling & Diagnostics",
+      "description": "Recovery, multi-error reporting, span fidelity, and integration with diagnostic crates",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "error-recovery",
+          "name": "Error Recovery",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "red" },
+              { "id": "basic", "value": "Basic", "color": "orange" },
+              { "id": "configurable", "value": "Configurable", "color": "blue" },
+              { "id": "automatic", "value": "Automatic", "color": "green" }
+            ]
+          },
+          "description": "Stop at first error, skip-to-sync-token, user-defined strategies, or built-in repair (grmtools CPCT+, tree-sitter ERROR nodes)"
+        },
+        {
+          "id": "multiple-errors-per-parse",
+          "name": "Multiple Errors Per Parse",
+          "valueType": "boolean",
+          "description": "Can report more than one error from a single run"
+        },
+        {
+          "id": "expected-token-reporting",
+          "name": "Expected-Token Reporting",
+          "valueType": "boolean",
+          "description": "Errors carry the set of tokens/rules valid at the failure point"
+        },
+        {
+          "id": "custom-error-types",
+          "name": "Custom Error Types",
+          "valueType": "boolean",
+          "description": "User can substitute their own error type"
+        },
+        {
+          "id": "error-span-fidelity",
+          "name": "Error Span Fidelity",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = byte-range spans with labelled secondary spans; 4 = byte-range; 3 = single offset; 2 = line only; 1 = message text only"
+        },
+        {
+          "id": "diagnostic-crate-integration",
+          "name": "Diagnostic Crate Integration",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "ariadne", "value": "ariadne", "color": "green" },
+              { "id": "miette", "value": "miette", "color": "purple" },
+              { "id": "codespan-reporting", "value": "codespan-reporting", "color": "blue" },
+              { "id": "annotate-snippets", "value": "annotate-snippets", "color": "orange" },
+              { "id": "none", "value": "None", "color": "red" }
+            ]
+          },
+          "description": "Documented or first-party bridge to a diagnostic rendering crate"
+        },
+        {
+          "id": "contextual-error-messages",
+          "name": "Contextual Error Messages",
+          "valueType": "boolean",
+          "description": "Mechanism to attach human-readable labels/context to sub-parsers or rules (nom context, chumsky labelled, LALRPOP error tokens)"
+        }
+      ]
+    },
+    {
+      "id": "incremental-editor-support",
+      "name": "Incremental & Editor Support",
+      "description": "Suitability for IDE/LSP scenarios",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "incremental-reparsing",
+          "name": "Incremental Reparsing",
+          "valueType": "boolean",
+          "description": "Can reuse the previous tree when the input is edited"
+        },
+        {
+          "id": "lossless-syntax-tree",
+          "name": "Lossless Syntax Tree",
+          "valueType": "boolean",
+          "description": "Retains whitespace/comments so the source can be reconstructed exactly"
+        },
+        {
+          "id": "syntax-highlighting-queries",
+          "name": "Syntax Highlighting Queries",
+          "valueType": "boolean",
+          "description": "Ships a query/pattern language or API designed for highlighting and code navigation"
+        },
+        {
+          "id": "used-by-lsp-ide",
+          "name": "Used by an LSP / IDE",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "rust-analyzer", "value": "rust-analyzer", "color": "orange" },
+              { "id": "helix", "value": "Helix", "color": "purple" },
+              { "id": "zed", "value": "Zed", "color": "blue" },
+              { "id": "neovim", "value": "Neovim", "color": "green" },
+              { "id": "none-known", "value": "None known", "color": "gray" }
+            ]
+          },
+          "description": "Verified production editor uses; cite the consuming project's Cargo.toml or docs"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Runtime speed tier, compile-time cost, allocation behaviour, and generated code size",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "runtime-speed-tier",
+          "name": "Runtime Speed Tier",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "top-tier", "value": "Top tier", "color": "green" },
+              { "id": "fast", "value": "Fast", "color": "blue" },
+              { "id": "moderate", "value": "Moderate", "color": "orange" },
+              { "id": "slow", "value": "Slow", "color": "red" }
+            ]
+          },
+          "description": "Top tier = within ~1.5x of hand-written; fast = 1.5–3x; moderate = 3–10x; slow = >10x. Requires an independent or reproducible benchmark"
+        },
+        {
+          "id": "compile-time-impact",
+          "name": "Compile-Time Impact",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "light", "value": "Light", "color": "green" },
+              { "id": "moderate", "value": "Moderate", "color": "orange" },
+              { "id": "heavy", "value": "Heavy", "color": "red" }
+            ]
+          },
+          "description": "Incremental build cost from deep generic instantiation or large generated tables; cite measurements or issues"
+        },
+        {
+          "id": "allocation-strategy",
+          "name": "Allocation Strategy",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "allocation-free-possible", "value": "Allocation-free possible", "color": "green" },
+              { "id": "arena-friendly", "value": "Arena-friendly", "color": "blue" },
+              { "id": "allocates-per-node", "value": "Allocates per node", "color": "orange" }
+            ]
+          },
+          "description": "Whether parsing can avoid heap allocation, works with arenas, or allocates per node"
+        },
+        {
+          "id": "generated-code-size",
+          "name": "Generated Code Size",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "n-a", "value": "N/A", "color": "gray" },
+              { "id": "small", "value": "Small", "color": "green" },
+              { "id": "large", "value": "Large", "color": "red" }
+            ]
+          },
+          "description": "Generators only; N/A for combinators"
+        }
+      ]
+    },
+    {
+      "id": "rust-integration",
+      "name": "Rust Integration",
+      "description": "no_std, MSRV, unsafe usage, proc-macro and build.rs reliance, dependency footprint, WASM and async friendliness",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "no-std-support",
+          "name": "no_std Support",
+          "valueType": "boolean",
+          "description": "Compiles without std (with or without alloc — note which in comment)"
+        },
+        {
+          "id": "msrv",
+          "name": "MSRV",
+          "valueType": "text",
+          "description": "Minimum supported Rust version from Cargo.toml rust-version or README"
+        },
+        {
+          "id": "unsafe-usage",
+          "name": "Unsafe Usage",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "forbid-unsafe", "value": "Forbid unsafe", "color": "green" },
+              { "id": "minimal", "value": "Minimal", "color": "blue" },
+              { "id": "substantial", "value": "Substantial", "color": "orange" },
+              { "id": "ffi", "value": "FFI", "color": "red" }
+            ]
+          },
+          "description": "#![forbid(unsafe_code)], a few audited blocks, substantial unsafe, or FFI bindings to C"
+        },
+        {
+          "id": "proc-macro-reliance",
+          "name": "Proc-Macro Reliance",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "green" },
+              { "id": "optional", "value": "Optional", "color": "blue" },
+              { "id": "required", "value": "Required", "color": "orange" }
+            ]
+          },
+          "description": "Whether procedural macros are needed to use the library"
+        },
+        {
+          "id": "build-rs-step",
+          "name": "build.rs Step",
+          "valueType": "boolean",
+          "description": "Requires a build script to generate code (LALRPOP, tree-sitter grammar compilation)"
+        },
+        {
+          "id": "dependency-count",
+          "name": "Dependency Count",
+          "valueType": {
+            "type": "integer",
+            "direction": "descending"
+          },
+          "description": "Direct non-dev dependencies of the main (runtime) crate; lower is better"
+        },
+        {
+          "id": "wasm-compatible",
+          "name": "WASM Compatible",
+          "valueType": "boolean",
+          "description": "Compiles to wasm32-unknown-unknown and/or WASI without special setup"
+        },
+        {
+          "id": "async-friendly",
+          "name": "Async-Friendly",
+          "valueType": "boolean",
+          "description": "Parsers/results are Send and usable with async input sources without wrapper hacks"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-maintenance",
+      "name": "Ecosystem & Maintenance",
+      "description": "Popularity, release activity, maintenance status, documentation, and notable adopters",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Snapshot; date noted in comment"
+        },
+        {
+          "id": "crates-io-downloads",
+          "name": "Crates.io Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "All-time downloads of the main crate"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Most recent crates.io publish"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively maintained", "color": "green" },
+              { "id": "passively-maintained", "value": "Passively maintained", "color": "blue" },
+              { "id": "seeking-maintainer", "value": "Seeking maintainer", "color": "orange" },
+              { "id": "archived", "value": "Archived", "color": "red" },
+              { "id": "superseded", "value": "Superseded", "color": "red" }
+            ]
+          },
+          "description": "Active = release or substantive commit in last 6 months; passive = bug fixes only for 12+ months; name successor in comment when superseded"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = book + comprehensive API docs + cookbook + migration guides; 3 = solid API docs with examples; 1 = minimal or stale"
+        },
+        {
+          "id": "tutorial-book",
+          "name": "Tutorial / Book",
+          "valueType": "boolean",
+          "description": "Has a dedicated long-form guide beyond API docs"
+        },
+        {
+          "id": "notable-users",
+          "name": "Notable Users",
+          "valueType": "text",
+          "description": "2–4 well-known projects using it, with links in source"
+        },
+        {
+          "id": "bus-factor",
+          "name": "Bus Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "solo", "value": "Solo", "color": "red" },
+              { "id": "small-team", "value": "Small team", "color": "orange" },
+              { "id": "organization", "value": "Organization", "color": "green" }
+            ]
+          },
+          "description": "Single maintainer, 2–5 contributors, or company-backed / large team"
+        }
+      ]
+    }
+  ]
+}
