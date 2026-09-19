@@ -168,7 +168,7 @@ Users should be able to:
 - [x] nom — the most widely used Rust parser combinator library; byte- and string-oriented, streaming support
 - [x] winnow — fork of nom by a former nom maintainer, focused on ergonomics, imperative style, and documentation
 - [x] chumsky — combinator library designed around error recovery and rich diagnostics; Pratt parsing, `ariadne` companion
-- [ ] pest — PEG parser generator with external `.pest` grammar files and a generic `Pair` tree; large user base
+- [x] pest — PEG parser generator with external `.pest` grammar files and a generic `Pair` tree; large user base
 - [ ] lalrpop — LR(1)/LALR(1) parser generator with `.lalrpop` grammar files and inline Rust actions
 - [ ] logos — derive-macro lexer generator focused on speed; the de-facto companion to lalrpop/chumsky
 - [ ] tree-sitter — Rust bindings to the incremental, error-tolerant parsing library used by editors
