@@ -121,7 +121,7 @@ Users should be able to:
 | **GitHub Stars** | integer | Snapshot; note date in comment (higher is better). |
 | **Crates.io Downloads** | integer | All-time downloads of the main crate (higher is better). |
 | **Last Release** | date (full) | Most recent crates.io publish (newer is better). |
-| **Maintenance Status** | tags | `actively-maintained`, `passively-maintained`, `seeking-maintainer`, `archived`, `superseded` (name successor in comment, e.g. nom → winnow is *not* superseded; combine → largely dormant). |
+| **Maintenance Status** | tags | `actively-maintained`, `passively-maintained`, `seeking-maintainer`, `dormant` (no commits, releases, or issue responses in 24+ months, repo not archived), `archived`, `superseded` (name successor in comment, e.g. nom → winnow is *not* superseded; combine → largely dormant). |
 | **Documentation Quality** | rating (1–5) | See Assessment Guidelines. |
 | **Tutorial / Book** | boolean | Has a dedicated long-form guide beyond API docs (Chumsky tutorial, pest book, LALRPOP book, nom's `choosing_a_combinator` docs). |
 | **Notable Users** | text | 2–4 well-known projects using it (with links in `source`). |
@@ -159,7 +159,7 @@ Users should be able to:
 - **Runtime Speed Tier**: Requires at least one independent (non-maintainer) benchmark or a maintainer benchmark that includes competitors and is reproducible. Otherwise `null` with a comment explaining what was found.
 - **Compile-Time Impact**: Prefer `null` over a guess. Acceptable evidence: a GitHub issue with measurements, a blog post with timings, or a documented "compile times" section.
 - **Documentation Quality**: 5 = book/tutorial + comprehensive API docs + cookbook/examples + migration guides; 4 = tutorial + good API docs; 3 = solid API docs with examples; 2 = sparse API docs; 1 = minimal or stale.
-- **Maintenance Status**: `actively-maintained` = release or substantive commit in the last 6 months and issues triaged; `passively-maintained` = responds to bugs but no features in 12+ months; `archived` = repo archived or README says so.
+- **Maintenance Status**: `actively-maintained` = release or substantive commit in the last 6 months and issues triaged; `passively-maintained` = responds to bugs but no features in 12+ months; `dormant` = no commit, release, or maintainer issue/PR response in 24+ months and repo not archived; `archived` = repo archived or README says so.
 - **Used by an LSP / IDE**: Only tag from verified source (a `Cargo.toml` dependency or official docs). `none-known` is a valid value; do not leave `null`.
 - **Notable Users**: Prefer projects that are themselves well-known (compilers, editors, popular CLIs). Skip toy projects. `null` if nothing verifiable.
 - **When to use `null`**: Unverifiable performance claims; `no_std` support that is asserted but not tested in CI; features present only on an unreleased branch; conflicting information between README and docs.rs. Always add a `comment` explaining why.
