@@ -1,5 +1,276 @@
 {
   "name": "rowan",
   "description": "Lossless green/red syntax tree library underpinning rust-analyzer",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit", "apache-2-0"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml", "https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "Cargo.toml: `license = \"MIT OR Apache-2.0\"`; crates.io reports the same for 0.17.0."
+    },
+    "approach": {
+      "value": ["incremental-cst"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/README.md", "https://docs.rs/rowan/latest/rowan/"],
+      "comment": "\"A generic library for lossless syntax trees\" (green/red trees inspired by Swift libsyntax / Roslyn). rowan is not a parser: the user writes a hand-rolled lexer+parser and feeds `GreenNodeBuilder`; rowan supplies the tree data structure, cursors, and typed-AST scaffolding. Tagged per RESEARCH.md scope (\"incremental and lossless syntax-tree toolkits\")."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"],
+      "comment": "Dependencies are rustc-hash, hashbrown, text-size, memoffset, countme (+ optional serde) — all pure Rust; no build script, no `cc`."
+    },
+    "repository": {
+      "value": "https://github.com/rust-analyzer/rowan",
+      "source": ["https://crates.io/api/v1/crates/rowan"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rowan",
+      "source": ["https://crates.io/api/v1/crates/rowan"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/rowan/latest/rowan/",
+      "source": ["https://docs.rs/rowan/latest/rowan/", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/README.md"],
+      "comment": "No dedicated book. README points to the rust-analyzer book's syntax chapter (https://rust-analyzer.github.io/book/contributing/syntax.html) for the conceptual overview and to `examples/s_expressions.rs` as a tutorial."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://crates.io/api/v1/crates/rowan", "https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "crates.io `created_at` 2018-10-02. Oldest version still listed on the versions endpoint is 0.5.5 (2019-06-26); earlier releases are no longer listed."
+    },
+    "latest-stable-version": {
+      "value": "0.17.0",
+      "source": ["https://crates.io/api/v1/crates/rowan", "https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "Checked 2026-09-19; 0.17.0 published 2026-08-02. A pre-release 0.18.0-alpha.1 (2026-09-14) carries the new first-class trivia API (`leading_trivia`/`trailing_trivia`, `is_trivia`, `text_range_without_outer_trivia`). Research reflects 0.17.0 plus master."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "rowan imposes no grammar class — the parser is hand-written Rust (rust-analyzer uses hand-rolled recursive descent) that emits `start_node`/`token`/`finish_node` events to `GreenNodeBuilder`. Any parsing strategy expressible in code works."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "Grammar lives in the user's hand-written parser; rowan only defines the `SyntaxKind`/`Language` mapping."
+    },
+    "left-recursion": {
+      "value": ["n-a"],
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: rowan has no parsing algorithm, so left recursion is whatever the user's hand-written parser does (rust-analyzer uses Pratt-style precedence in its own parser crate, not in rowan)."
+    },
+    "ambiguity-handling": {
+      "value": ["n-a"],
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: no parsing algorithm in rowan."
+    },
+    "backtracking": {
+      "value": ["n-a"],
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable. `GreenNodeBuilder::checkpoint`/`start_node_at` lets the builder retroactively wrap already-emitted children (useful for left-associative infix parsing) but is not backtracking."
+    },
+    "lexer-integration": {
+      "value": ["external-token-stream"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"],
+      "comment": "Any lexer works: tokens are pushed to `GreenNodeBuilder::token(kind, &str)`. The bundled example uses `m_lexer` (dev-dependency only); rust-analyzer feeds it from `ra-ap-rustc_lexer`."
+    },
+    "precedence-pratt-support": {
+      "value": false,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "No precedence facility; only the builder `Checkpoint` helper that makes hand-written Pratt loops convenient."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://docs.rs/rowan/latest/rowan/", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/lib.rs"],
+      "comment": "Token text is `&str`, offsets are UTF-8 byte offsets via `text_size::TextSize`/`TextRange`, and `SyntaxText` offers char-level operations. rowan does no lexing so it has no char-matching primitives of its own."
+    },
+    "input-types": {
+      "value": ["token-slice"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "Input is a sequence of `(SyntaxKind, &str)` tokens pushed into `GreenNodeBuilder` (push API rather than a consumed slice); the source text itself is never read by rowan."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "No incomplete/need-more signalling; the builder is driven synchronously to `finish()`."
+    },
+    "zero-copy": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/green/node.rs", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "Green tokens own a copy of their text (DST allocation with header + inline text); the tree does not borrow from the source buffer. Identical tokens/nodes are deduplicated by the builder cache."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/api.rs", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/cursor.rs"],
+      "comment": "`SyntaxNode::text_range()` / `SyntaxToken::text_range()` return `TextRange` (UTF-8 byte offsets); `token_at_offset` and `covering_element` do offset→node lookups. Line/column conversion is left to the user."
+    },
+    "output-model": {
+      "value": ["lossless-cst", "typed-ast"],
+      "source": ["https://docs.rs/rowan/latest/rowan/", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "Primary output is the untyped green/red lossless CST. `rowan::ast::AstNode` plus user `cast()` wrappers give a zero-cost typed view over `SyntaxNode` (as in the example's `ast_node!` macro and rust-analyzer's generated AST)."
+    },
+    "semantic-actions": {
+      "value": ["post-walk"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "No actions during parsing; semantics are computed by walking/casting the finished tree (`children()`, `descendants()`, `AstNode::cast`)."
+    },
+    "whitespace-comment-handling": {
+      "value": ["preserved-as-trivia"],
+      "source": ["https://rust-analyzer.github.io/book/contributing/syntax.html", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/api.rs"],
+      "comment": "Whitespace/comments are ordinary tokens in the tree (\"whitespaces is explicit\" in the example). 0.18-alpha/master adds first-class trivia helpers: `is_trivia`, `leading_trivia`/`trailing_trivia`, `text_range_without_outer_trivia`, `next_non_trivia_token`."
+    },
+    "stateful-parsing": {
+      "value": null,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: rowan is not a parser driver. Any state (symbol tables, indentation) lives in the user's own hand-written parser that drives the builder."
+    },
+    "error-recovery": {
+      "value": null,
+      "source": ["https://rust-analyzer.github.io/book/contributing/syntax.html", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "Not applicable / indeterminate: rowan ships no recovery mechanism. Its tree model accommodates malformed input (missing children simply absent; junk wrapped in an `ERROR`-kind node, \"treated just like any other node\"), but skipping/sync strategy is entirely the user's parser."
+    },
+    "multiple-errors-per-parse": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/examples/s_expressions.rs"],
+      "comment": "rowan has no error type or error API. The bundled example accumulates `Vec<String>` errors alongside the tree, and rust-analyzer reports to a separate error sink, but this is user code."
+    },
+    "expected-token-reporting": {
+      "value": null,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: no error type in rowan."
+    },
+    "custom-error-types": {
+      "value": null,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: rowan defines no error type to substitute; errors are whatever the user's parser produces."
+    },
+    "error-span-fidelity": {
+      "value": null,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: no errors are produced by rowan. `TextRange` byte spans are available on every node/token, so user-produced errors can carry byte-range spans."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml", "https://docs.rs/rowan/latest/rowan/"],
+      "comment": "No bridge to ariadne/miette/codespan/annotate-snippets; only `text-size` spans."
+    },
+    "contextual-error-messages": {
+      "value": null,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "Not applicable: no error mechanism in rowan."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/api.rs", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "rowan itself does not reparse. It provides the building blocks — immutable green trees with structural sharing, `SyntaxNode::replace_with(GreenNode)` (O(depth) patch producing a new root), and the builder's node/token cache — on which rust-analyzer's own `syntax` crate implements heuristic block-level incremental reparsing."
+    },
+    "lossless-syntax-tree": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/README.md", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "Core purpose: \"lossless, or full fidelity\" trees where all comments and whitespace are preserved; `SyntaxNode::text()` reconstructs the source."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/rowan/latest/rowan/"],
+      "comment": "No query language; navigation is via the cursor API (`descendants`, `token_at_offset`, `covering_element`)."
+    },
+    "used-by-lsp-ide": {
+      "value": ["rust-analyzer"],
+      "source": ["https://raw.githubusercontent.com/rust-lang/rust-analyzer/master/crates/syntax/Cargo.toml"],
+      "comment": "rust-analyzer's `syntax` crate depends on `rowan` (workspace dependency). Also used by non-listed LSPs: taplo (TOML) and nil (Nix, via rnix-parser)."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "comment": "No independent benchmark found comparing rowan-based parsers to hand-written or other frameworks; rowan is a tree library rather than a parser, so `parse-benchmarks`-style suites do not include it."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "comment": "No measurement found. Small non-generic crate with five light dependencies, so likely light, but per Assessment Guidelines `null` is preferred over a guess."
+    },
+    "allocation-strategy": {
+      "value": ["allocates-per-node"],
+      "source": ["https://rust-analyzer.github.io/book/contributing/syntax.html", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/green/node.rs"],
+      "comment": "Each green node/token is a single reference-counted DST allocation (header + children/text inline); the builder cache deduplicates identical subtrees. Red `SyntaxNode` cursors are allocated lazily from thread-local free lists."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Not a generator; no code is generated."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/lib.rs", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"],
+      "comment": "No `#![no_std]` and no `std` feature flag; uses thread-locals and std collections."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/.github/workflows/ci.yaml", "https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "No `rust-version` in Cargo.toml (crates.io `rust_version` is null for 0.17.0), no README statement, and CI tests only the stable toolchain. Edition 2021."
+    },
+    "unsafe-usage": {
+      "value": ["substantial"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/lib.rs", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/cursor.rs", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/green/node.rs"],
+      "comment": "Crate-level `#![deny(unsafe_code)]` with `#[allow(unsafe_code)]` on the `green`, `cursor`, and `arc` modules: a custom `Arc`, DST green nodes via `mem::transmute` pointer casts, and a raw-pointer/`Cell`-refcounted red-node zipper with manual free lists (~9 unsafe blocks in cursor.rs, 3 in green/node.rs). Deliberate, performance-motivated unsafe core."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"],
+      "comment": "No proc-macro dependencies; `serde` derive is not used (optional `serde` with default-features off, manual impls in `serde_impls`)."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"]
+    },
+    "dependency-count": {
+      "value": 5,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml", "https://lib.rs/crates/rowan"],
+      "comment": "countme, hashbrown, memoffset, rustc-hash, text-size; plus optional `serde` behind the `serde1` feature (6 incl. optional). Checked 2026-09-19."
+    },
+    "wasm-compatible": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/.github/workflows/ci.yaml"],
+      "comment": "No wasm target in CI and no documented statement. Nothing platform-specific in the dependency tree (pure Rust, no I/O), so it likely builds for wasm32, but untested claims are recorded as null per Assessment Guidelines."
+    },
+    "async-friendly": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/src/cursor.rs", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "Red `SyntaxNode`/`SyntaxToken` cursors use `Cell` refcounts and raw pointers with thread-local free lists, so they are not `Send`. The underlying `GreenNode` is `Send + Sync` and is what rust-analyzer shares across threads."
+    },
+    "github-stars": {
+      "value": 918,
+      "source": ["https://github.com/rust-analyzer/rowan"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 20122916,
+      "source": ["https://crates.io/api/v1/crates/rowan"],
+      "comment": "All-time downloads as of 2026-09-19 (~1.65M/month per lib.rs)."
+    },
+    "last-release": {
+      "value": "2026-09-14",
+      "source": ["https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "0.18.0-alpha.1 (pre-release). Latest stable 0.17.0 was published 2026-08-02."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/rust-analyzer/rowan/commits/master", "https://crates.io/api/v1/crates/rowan/versions"],
+      "comment": "Substantive feature work in Sep 2026 (first-class trivia API, PRs #219/#220 merged by a rust-analyzer team member); releases 0.17.0 (Aug 2026) and 0.18.0-alpha.1 (Sep 2026). Historically slow-moving between rust-analyzer-driven bursts."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://docs.rs/rowan/latest/rowan/", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/README.md", "https://rust-analyzer.github.io/book/contributing/syntax.html"],
+      "comment": "docs.rs reports only ~22% of items documented and there is no rowan-specific guide; the README is a few lines pointing to the rust-analyzer book's syntax chapter (a good conceptual design doc) and one commented example. Per guidelines: 2 = sparse API docs."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/rust-analyzer/rowan/master/README.md"],
+      "comment": "README calls `examples/s_expressions.rs` a tutorial, but it is a single commented example file; the rust-analyzer book chapter is a design overview, not a rowan guide. Does not meet the 'dedicated long-form guide' bar."
+    },
+    "notable-users": {
+      "value": "rust-analyzer (syntax crate), rnix-parser / nil (Nix parser and language server), taplo (TOML toolkit and LSP)",
+      "source": ["https://raw.githubusercontent.com/rust-lang/rust-analyzer/master/crates/syntax/Cargo.toml", "https://raw.githubusercontent.com/nix-community/rnix-parser/master/Cargo.toml", "https://raw.githubusercontent.com/oxalica/nil/main/crates/syntax/Cargo.toml", "https://raw.githubusercontent.com/tamasfe/taplo/master/crates/taplo/Cargo.toml"],
+      "comment": "All verified via Cargo.toml dependencies. lib.rs lists 213 direct dependents. Biome/Rome forked rowan into its own `biome_rowan` rather than depending on it."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/rust-analyzer/rowan/commits/master", "https://raw.githubusercontent.com/rust-analyzer/rowan/master/Cargo.toml"],
+      "comment": "Hosted under the rust-analyzer GitHub org and maintained by rust-analyzer team members (original author Aleksey Kladov/matklad; recent PRs merged by ChayimFriedman2). A handful of active contributors rather than a company-backed team."
+    }
+  }
 }

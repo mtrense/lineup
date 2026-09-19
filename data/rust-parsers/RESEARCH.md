@@ -174,7 +174,7 @@ Users should be able to:
 - [x] tree-sitter — Rust bindings to the incremental, error-tolerant parsing library used by editors
 - [x] combine — early Haskell-Parsec-inspired combinator library; mature but slower-moving
 - [x] peg (rust-peg) — PEG parser generator via a procedural macro DSL embedded in Rust
-- [ ] rowan — lossless green/red syntax tree library underpinning rust-analyzer
+- [x] rowan — lossless green/red syntax tree library underpinning rust-analyzer
 - [ ] grmtools (lrpar / lrlex) — Yacc-compatible LR parser generator with automatic error recovery (CPCT+)
 - [ ] pom — PEG parser combinators using operator overloading for a grammar-like syntax
 - [ ] rust-sitter — write tree-sitter grammars as annotated Rust types via a macro
