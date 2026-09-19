@@ -1,5 +1,281 @@
 {
   "name": "peg (rust-peg)",
   "description": "PEG parser generator via a procedural macro DSL embedded in Rust",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/Cargo.toml", "https://crates.io/api/v1/crates/peg"],
+      "comment": "Cargo.toml: `license = \"MIT\"` (single license, not dual)."
+    },
+    "approach": {
+      "value": ["generator-macro", "peg"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md", "https://docs.rs/peg/latest/peg/"],
+      "comment": "Per Assessment Guidelines: PEG grammar written inside the `peg::parser!{ grammar NAME() for INPUT { ... } }` proc-macro block, expanded at compile time into a Rust module."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-macros/Cargo.toml"],
+      "comment": "peg -> peg-macros (proc-macro2, quote) + peg-runtime (zero deps). No C/C++ anywhere in the tree."
+    },
+    "repository": {
+      "value": "https://github.com/kevinmehall/rust-peg",
+      "source": ["https://crates.io/api/v1/crates/peg"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/peg",
+      "source": ["https://crates.io/api/v1/crates/peg"],
+      "comment": "`peg` is the umbrella crate re-exporting `peg-macros` (proc-macro) and `peg-runtime` (traits, ParseError); all three are released in lockstep."
+    },
+    "documentation": {
+      "value": "https://docs.rs/peg/latest/peg/",
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "No separate book; the crate-level rustdoc is the grammar syntax reference."
+    },
+    "first-release": {
+      "value": "2014",
+      "source": ["https://crates.io/api/v1/crates/peg"],
+      "comment": "crates.io `created_at` 2014-11-23 (v0.1.0)."
+    },
+    "latest-stable-version": {
+      "value": "0.8.6",
+      "source": ["https://crates.io/api/v1/crates/peg"],
+      "comment": "Checked 2026-09-19; published 2026-05-04. Research reflects peg 0.8.6."
+    },
+    "grammar-class": {
+      "value": ["peg"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Parsing expression grammar: ordered choice `/`, `&`/`!` lookahead, optional packrat memoisation via `#[cache]`."
+    },
+    "grammar-definition": {
+      "value": ["macro-dsl"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Grammar lives inside `peg::parser!{}` in the Rust source; action blocks are ordinary Rust expressions."
+    },
+    "left-recursion": {
+      "value": ["native", "precedence-climbing"],
+      "source": ["https://docs.rs/peg/latest/peg/", "https://github.com/kevinmehall/rust-peg/releases"],
+      "comment": "`#[cache_left_rec]` (since 0.8.0) 'extends the #[cache] mechanism with the ability to resolve left-recursive rules, which are otherwise an error'; `precedence!{}` implements precedence climbing for infix/prefix/postfix operators. Guideline: PEG tools get native only when left recursion is documented, which it is here."
+    },
+    "ambiguity-handling": {
+      "value": ["ordered-choice"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "`e1 / e2 / e3` tries alternatives in order and commits to the first match (PEG semantics)."
+    },
+    "backtracking": {
+      "value": ["unlimited"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Failed alternatives and `{? }` conditional actions backtrack freely; no cut/commit operator in the grammar syntax."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://docs.rs/peg/latest/peg/", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/tests/pass/tokens.rs"],
+      "comment": "Scannerless over `&str`/`&[u8]` by default; a grammar declared `for [Token]` parses any token slice with `[Token::Variant(x)]` patterns, so a separate lexer (e.g. logos) can be used."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://docs.rs/peg/latest/peg/", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md"],
+      "comment": "`precedence!{ ... }` block with `@` operand markers and `--` level separators (precedence climbing)."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/str.rs"],
+      "comment": "`str` input's `parse_elem` yields `char` and advances by `len_utf8()`; `[..]` patterns match chars; `LineCol` columns are counted in chars."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice", "custom-stream"],
+      "source": ["https://docs.rs/peg/latest/peg/", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/slice.rs"],
+      "comment": "Built-in impls for `str`, `[u8]`, and generic `[T]`; custom inputs implement `Parse`/`ParseElem`/`ParseLiteral`/`ParseSlice`."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md"],
+      "comment": "README comparison table: 'Streaming input: No'. `#[no_eof]` only allows prefix matching of complete input."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/peg/latest/peg/", "https://github.com/kevinmehall/rust-peg/tree/master/tests/pass"],
+      "comment": "`$(e)` returns the matched slice of the input (`&'input str` / `&'input [T]`); test `borrow_from_input.rs` covers ASTs borrowing from input."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "line-col"],
+      "source": ["https://docs.rs/peg/latest/peg/", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/str.rs"],
+      "comment": "`position!()` yields a `usize` byte offset; `inject name(input, lpos, rpos)` (0.8.6) auto-computes start/end offsets for every action block. `ParseError<LineCol>` for str input carries line, column, and byte offset. Custom inputs choose their own `PositionRepr`."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Each rule declares a Rust return type and builds it in its action block; no generic tree."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "`a:e1 b:e2 { rust }` actions and `{? rust }` fallible conditional actions (`Result<T, &str>`)."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "No implicit skipping: whitespace is an ordinary rule the user writes and references explicitly (docs: `_`/`__` rules 'conventionally used to match whitespace between tokens')."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/tests/pass/grammar_with_args_and_cache.rs", "https://docs.rs/peg/latest/peg/"],
+      "comment": "Grammar-level arguments (`grammar lol(config: bool) for str`) are visible in every rule; rules also take value/type/`rule<T>` parameters."
+    },
+    "error-recovery": {
+      "value": ["none"],
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html", "https://docs.rs/peg/latest/peg/"],
+      "comment": "Parse returns `Err(ParseError)` at the furthest failure position; no sync/skip or recovery API."
+    },
+    "multiple-errors-per-parse": {
+      "value": false,
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html"],
+      "comment": "Single `ParseError` (one location + expected set) per run."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/error.rs"],
+      "comment": "`ParseError.expected: ExpectedSet` (a `BTreeSet<&'static str>`) collects every literal/`expected!()` that failed at the furthest position; Display prints 'expected one of ...'."
+    },
+    "custom-error-types": {
+      "value": false,
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html"],
+      "comment": "Rules always return `Result<T, ParseError<L>>`; only the location type `L` varies with the input. Users convert afterwards via `map_err`."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/str.rs"],
+      "comment": "Guideline 3: a single failure position (`LineCol` with byte offset for str, `usize` for slices); no end position or secondary labels."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md"],
+      "comment": "No optional features or documented bridges to ariadne/miette/codespan/annotate-snippets."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "`expected!(\"text\")` injects a human-readable expectation and `quiet!{}` suppresses noisy literals from the expected set; `{? }` actions can fail with a custom `&str`."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Whole-input parse per call; no tree reuse."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "Output is whatever the user's actions build; trivia is retained only if the grammar captures it explicitly."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/peg/latest/peg/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://lib.rs/crates/peg/rev"],
+      "comment": "No rust-analyzer/helix/zed/neovim dependency found among reverse dependencies (checked 2026-09-19)."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "epage/parse-benchmarks-rs JSON benchmark (rustc 1.94.1, peg v0.8.5, checked 2026-09-19): 29 ms vs 18 ms for hand-written serde_json (~1.6x) — just over the 1.5x top-tier line; second-fastest library after winnow (27 ms), ahead of lalrpop 40, chumsky 47, pest 62, nom 68. Maintainer-authored (winnow) but includes competitors and is reproducible; 'parsers have not been validated'."
+    },
+    "compile-time-impact": {
+      "value": ["light"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md"],
+      "comment": "Same benchmark: 2 s debug build for the peg JSON parser (winnow 1 s, pest/nom 3 s, chumsky 5 s, lalrpop 12 s). Generated code is plain recursive-descent functions; proc-macro deps are only proc-macro2/quote (no syn)."
+    },
+    "allocation-strategy": {
+      "value": ["arena-friendly"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/error.rs", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/tests/pass/grammar_with_args_and_cache.rs"],
+      "comment": "Runtime needs `alloc` (expected set is a `BTreeSet`; `#[cache]` memo tables), so not allocation-free. AST allocation is fully user-controlled in actions; an arena can be threaded in as a grammar argument."
+    },
+    "generated-code-size": {
+      "value": ["small"],
+      "source": ["https://raw.githubusercontent.com/epage/parse-benchmarks-rs/main/README.md", "https://docs.rs/peg/latest/peg/"],
+      "comment": "One Rust function per rule, no parse tables; parse-benchmarks-rs reports 77 KiB binary overhead for the JSON grammar (winnow 67, pest 119, lalrpop 1,523)."
+    },
+    "no-std-support": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/lib.rs", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/.github/workflows/rust.yml", "https://github.com/kevinmehall/rust-peg/releases"],
+      "comment": "Asserted but not CI-tested (Assessment Guideline → null). peg-runtime is `#![cfg_attr(not(feature = \"std\"), no_std)]` with `alloc` required (BTreeSet); `std` is a default feature since 0.8.2. CI (rust.yml) only builds stable/1.82 with default features — no `--no-default-features` job — and 0.8.6 notes list a no-std compatibility fix, i.e. it has regressed before."
+    },
+    "msrv": {
+      "value": "1.82.0",
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/.github/workflows/rust.yml"],
+      "comment": "Cargo.toml `rust-version = \"1.82.0\"`; CI pins 1.82.0. Raised from earlier in 0.8.6."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/lib.rs", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/str.rs", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/slice.rs", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/error.rs"],
+      "comment": "No `unsafe` found in peg-runtime (lib.rs, str.rs, slice.rs, error.rs) or peg-macros/lib.rs, but no `#![forbid(unsafe_code)]` is declared, so tagged minimal rather than forbid."
+    },
+    "proc-macro-reliance": {
+      "value": ["required"],
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-macros/Cargo.toml"],
+      "comment": "`peg::parser!` is a `proc-macro = true` crate (peg-macros); it is the only way to define a grammar."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md"],
+      "comment": "Code generation happens in the proc macro; README contrasts this with lalrpop's build script."
+    },
+    "dependency-count": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/Cargo.toml"],
+      "comment": "Umbrella crate `peg`: peg-macros + peg-runtime. The runtime crate the binary links against (`peg-runtime`) has zero dependencies; peg-macros (compile-time) pulls proc-macro2 and quote."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/Cargo.toml", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/peg-runtime/lib.rs"],
+      "comment": "Inferred: pure Rust, zero-dependency runtime with no platform-specific code; the proc macro runs on the host. No wasm32 CI job verified."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/peg/latest/peg/error/struct.ParseError.html", "https://docs.rs/peg/latest/peg/"],
+      "comment": "Generated parsers are plain functions over a complete slice; `ParseError<L>` is Send + Sync when `L` is. No streaming, so async input must be fully buffered first."
+    },
+    "github-stars": {
+      "value": 1607,
+      "source": ["https://api.github.com/repos/kevinmehall/rust-peg"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 33785587,
+      "source": ["https://crates.io/api/v1/crates/peg"],
+      "comment": "All-time downloads of `peg`, checked 2026-09-19 (~2.0M/month per lib.rs)."
+    },
+    "last-release": {
+      "value": "2026-05-04",
+      "source": ["https://crates.io/api/v1/crates/peg"],
+      "comment": "v0.8.6."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/kevinmehall/rust-peg/commits/master", "https://crates.io/api/v1/crates/peg", "https://api.github.com/repos/kevinmehall/rust-peg"],
+      "comment": "Release 0.8.6 on 2026-05-04 (within 6 months of 2026-09-19) with a new feature (injected span variables); commits Nov 2025–May 2026; 43 open issues. Release cadence is slow (roughly one release per 8–14 months) but steady since 2014."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/peg/latest/peg/", "https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md"],
+      "comment": "Guideline 3: thorough crate-level grammar reference on docs.rs plus README with a worked example and comparison table; ~38 runnable test grammars serve as examples. No book/tutorial or migration guides beyond release notes; peg-runtime rustdoc coverage 82%."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/kevinmehall/rust-peg/master/README.md", "https://docs.rs/peg/latest/peg/"],
+      "comment": "Only the rustdoc grammar reference and README; no dedicated long-form guide."
+    },
+    "notable-users": {
+      "value": "LibCST (Meta/Instagram Python CST parser), gherkin (cucumber-rs), brush (Bash-compatible shell), jrsonnet",
+      "source": ["https://raw.githubusercontent.com/Instagram/LibCST/main/native/libcst/Cargo.toml", "https://raw.githubusercontent.com/cucumber-rs/gherkin/main/Cargo.toml", "https://raw.githubusercontent.com/reubeno/brush/main/brush-parser/Cargo.toml", "https://lib.rs/crates/peg/rev"],
+      "comment": "Verified via Cargo.toml for LibCST (`peg = \"0.8.5\"`), gherkin (`peg = \"0.6.3\"`), brush-parser (`peg = \"0.8.6\"`); jrsonnet-types/ir listed on lib.rs reverse deps."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/kevinmehall/rust-peg/contributors?per_page=10"],
+      "comment": "kevinmehall 502 commits; next contributor 18 (jonas-schievink), everyone else under 10. Personal repo, no org."
+    }
+  }
 }
