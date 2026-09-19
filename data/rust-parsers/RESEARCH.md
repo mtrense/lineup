@@ -166,7 +166,7 @@ Users should be able to:
 ## Candidates
 
 - [x] nom — the most widely used Rust parser combinator library; byte- and string-oriented, streaming support
-- [ ] winnow — fork of nom by a former nom maintainer, focused on ergonomics, imperative style, and documentation
+- [x] winnow — fork of nom by a former nom maintainer, focused on ergonomics, imperative style, and documentation
 - [ ] chumsky — combinator library designed around error recovery and rich diagnostics; Pratt parsing, `ariadne` companion
 - [ ] pest — PEG parser generator with external `.pest` grammar files and a generic `Pair` tree; large user base
 - [ ] lalrpop — LR(1)/LALR(1) parser generator with `.lalrpop` grammar files and inline Rust actions

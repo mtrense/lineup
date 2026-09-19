@@ -1,5 +1,278 @@
 {
   "name": "winnow",
   "description": "Fork of nom by a former nom maintainer, focused on ergonomics, imperative style, and documentation",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml", "https://crates.io/api/v1/crates/winnow"],
+      "comment": "Cargo.toml `license = \"MIT\"`; crates.io lists MIT for every version."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "Self-described as 'a byte-oriented, zero-copy, parser combinators library'."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "Only optional pure-Rust deps (memchr, anstream, anstyle, is_terminal_polyfill, terminal_size); no C/C++ in the tree."
+    },
+    "repository": {
+      "value": "https://github.com/winnow-rs/winnow",
+      "source": ["https://crates.io/api/v1/crates/winnow"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/winnow",
+      "source": ["https://crates.io/api/v1/crates/winnow"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/winnow/latest/winnow/",
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "docs.rs doubles as the book: embedded `_tutorial` (chapters 0-8) and `_topic` special-topic modules."
+    },
+    "first-release": {
+      "value": "2023",
+      "source": ["https://crates.io/api/v1/crates/winnow"],
+      "comment": "crates.io crate created 2023-02-22 (forked from nom 7)."
+    },
+    "latest-stable-version": {
+      "value": "1.0.4",
+      "source": ["https://crates.io/api/v1/crates/winnow/versions"],
+      "comment": "Checked 2026-09-19; 1.0.4 published 2026-07-13. Research reflects the 1.0.x API (0.5 -> 0.6/0.7 -> 1.0 changed error/result types, e.g. ModalResult, ContextError)."
+    },
+    "grammar-class": {
+      "value": ["arbitrary"],
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "Combinators impose no formal grammar class (per Assessment Guidelines); no documented PEG semantics."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://docs.rs/winnow/latest/winnow/_tutorial/index.html"],
+      "comment": "Parsers are plain Rust functions `fn(&mut I) -> Result<O, E>` composed with combinators."
+    },
+    "left-recursion": {
+      "value": ["precedence-climbing"],
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/fn.expression.html"],
+      "comment": "`combinator::expression()` is a documented Pratt parser (prefix/infix/postfix with binding powers). Plain recursion into a left-recursive rule still loops; rewrite or use `expression`."
+    },
+    "ambiguity-handling": {
+      "value": ["backtracking"],
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/index.html"],
+      "comment": "`alt` tries alternatives in order and returns the first success; `ErrMode::Backtrack` drives the retry."
+    },
+    "backtracking": {
+      "value": ["bounded-cut"],
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/index.html", "https://docs.rs/winnow/latest/winnow/error/index.html"],
+      "comment": "`cut_err` converts a Backtrack error into `ErrMode::Cut` so `alt` stops trying alternatives; `backtrack_err` reverses it."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/index.html", "https://docs.rs/winnow/latest/winnow/_topic/stream/index.html"],
+      "comment": "Scannerless over &str/&[u8] by default; also parses `&[T]`/`TokenSlice<T>` of user tokens (documented 'Lexing and Parsing' topic), so any token slice can be consumed."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/fn.expression.html"],
+      "comment": "`combinator::expression()` Pratt builder (prefix/infix/postfix, associativity, binding power); gated on the default `parser` feature."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/index.html", "https://docs.rs/winnow/latest/winnow/_topic/stream/index.html"],
+      "comment": "`&str` is a first-class Stream with `char` tokens (`AsChar`); byte-level `&[u8]` parsing is also available and recommended for speed."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice", "custom-stream"],
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/index.html", "https://docs.rs/winnow/latest/winnow/_topic/stream/index.html"],
+      "comment": "&str, &[u8], &[T]/TokenSlice<T>, plus user types implementing the `Stream` trait. No rope/text-buffer input."
+    },
+    "streaming-partial-input": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/_topic/partial/index.html"],
+      "comment": "`Partial<I>` wrapper + `ErrMode::Incomplete(Needed)`; ndjson example shows chunked buffering."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "Self-described as zero-copy; parsers return slices of the input (`take`, `take_while`, `Parser::take`)."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/index.html", "https://docs.rs/winnow/latest/winnow/combinator/index.html"],
+      "comment": "Opt-in via the `LocatingSlice` wrapper (implements `Location`); `Parser::span()`/`with_span()` yield `Range<usize>` byte offsets. No built-in line/column."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/winnow/latest/winnow/_tutorial/index.html"],
+      "comment": "Each parser returns an arbitrary user Rust type; no generic tree."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/index.html"],
+      "comment": "`.map()`, `.try_map()`, `.value()`, `.parse_to()` etc. on the `Parser` trait; or imperative code in a plain fn."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/winnow/latest/winnow/combinator/index.html"],
+      "comment": "No implicit skip rules; use `ascii::multispace0`, `delimited`, `preceded`, etc., or skip in a lexer when using token slices."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/index.html"],
+      "comment": "`Stateful<I, S>` stream wrapper threads user state through all parsers."
+    },
+    "error-recovery": {
+      "value": ["configurable"],
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/struct.Recoverable.html", "https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "Only behind the `unstable-recover` feature (requires `std`): `Recoverable<I, E>` stream + `RecoverableParser::recoverable_parse` collect errors and resume; user chooses where/how to recover. Not stable API as of 1.0.4."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/stream/struct.Recoverable.html"],
+      "comment": "`Recoverable` keeps a `Vec<E>` of collected errors (`into_parts()`); requires the `unstable-recover` feature. Without it, parsing stops at the first error."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://docs.rs/winnow/latest/winnow/error/enum.StrContext.html", "https://docs.rs/winnow/latest/winnow/error/index.html"],
+      "comment": "No automatic expected-set. `ContextError` only carries `StrContext::Expected(..)` items the user attaches manually via `.context()`; not rounded up per guideline."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/_topic/error/index.html", "https://docs.rs/winnow/latest/winnow/error/index.html"],
+      "comment": "Error type is a generic parameter; implement `ParserError` (+ optional `AddContext`, `FromExternalError`). Built-ins: ContextError, TreeError, EmptyError, InputError."
+    },
+    "error-span-fidelity": {
+      "value": 3,
+      "source": ["https://docs.rs/winnow/latest/winnow/error/index.html", "https://docs.rs/winnow/latest/winnow/_tutorial/chapter_7/index.html"],
+      "comment": "Top-level `ParseError::offset()` gives a single byte offset; ranges require the user to add `with_span`/LocatingSlice themselves. No labelled secondary spans."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["annotate-snippets"],
+      "source": ["https://docs.rs/winnow/latest/winnow/_tutorial/chapter_7/index.html", "https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "Tutorial chapter 7 renders errors with annotate-snippets (dev-dependency); no first-party bridge crate, no ariadne/miette/codespan docs."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/error/enum.StrContext.html", "https://docs.rs/winnow/latest/winnow/combinator/index.html"],
+      "comment": "`Parser::context(StrContext::Label(..) | StrContext::Expected(..))` accumulated in `ContextError`."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "No tree reuse; `Partial` handles appended input, not edits."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "No CST; output is whatever the user builds (toml_edit builds its own lossless document on top)."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/winnow/latest/winnow/"],
+      "comment": "No query language or highlighting API."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://raw.githubusercontent.com/rust-lang/cargo/master/Cargo.toml"],
+      "comment": "No verified editor/LSP dependency found; Cargo uses winnow directly and via toml_edit, but that is not an editor."
+    },
+    "runtime-speed-tier": {
+      "value": ["top-tier"],
+      "source": ["https://github.com/epage/parse-benchmarks-rs"],
+      "comment": "epage/parse-benchmarks-rs (maintainer-authored, includes competitors, reproducible; checked 2026-09-19, rustc 1.94.1): winnow 1.0.1 JSON parse 27 ms vs serde_json 18 ms (1.5x), nom 8 68 ms, chumsky 0.12 47 ms, pest 62 ms. Borderline top-tier/fast; treat with the usual maintainer-benchmark caution."
+    },
+    "compile-time-impact": {
+      "value": ["light"],
+      "source": ["https://github.com/epage/parse-benchmarks-rs", "https://docs.rs/winnow/latest/winnow/_topic/performance/index.html"],
+      "comment": "Same benchmark: 1 s debug build for the winnow JSON parser (lowest of all parsers; nom 3 s, chumsky 5 s, lalrpop 12 s). Performance topic warns against returning deep `impl Parser` chains."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/src/lib.rs", "https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "Core works without `alloc` (no_std, zero-copy slices, `EmptyError`); `repeat`/`ContextError` need `alloc`."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Combinator library; no generated code. No source needed."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/src/lib.rs", "https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "`#![cfg_attr(all(not(feature = \"std\"), not(test)), no_std)]`; `std` and `alloc` are separate features (default = std, ascii, binary). Works with or without `alloc`."
+    },
+    "msrv": {
+      "value": "1.65.0",
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml", "https://crates.io/api/v1/crates/winnow/versions"],
+      "comment": "Cargo.toml `rust-version = \"1.65.0\"`; docs state a policy of supporting the last 6 months of Rust releases."
+    },
+    "unsafe-usage": {
+      "value": ["minimal"],
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/src/stream/mod.rs", "https://raw.githubusercontent.com/winnow-rs/winnow/main/src/lib.rs"],
+      "comment": "No `forbid(unsafe_code)`; unsafe confined to `*_slice_unchecked` (`get_unchecked`) fast paths for &str/&[T] in stream/mod.rs (~10 occurrences)."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "No proc-macro deps; `dispatch!`/`seq!` are declarative macros."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"]
+    },
+    "dependency-count": {
+      "value": 5,
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml"],
+      "comment": "All 5 direct deps are optional (memchr behind `simd`; anstream, anstyle, is_terminal_polyfill, terminal_size behind `debug`); the default feature set pulls in 0 dependencies."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/winnow-rs/winnow/main/Cargo.toml", "https://raw.githubusercontent.com/winnow-rs/winnow/main/src/lib.rs"],
+      "comment": "Inferred: pure Rust, no_std-capable, zero default deps; no explicit wasm CI target verified."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/_topic/partial/index.html"],
+      "comment": "Parsers are plain fns/closures (Send when captures are); `Partial` + `Incomplete` lets an async reader feed buffered chunks. No async-specific API."
+    },
+    "github-stars": {
+      "value": 953,
+      "source": ["https://api.github.com/repos/winnow-rs/winnow"],
+      "comment": "Checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 913601085,
+      "source": ["https://crates.io/api/v1/crates/winnow"],
+      "comment": "Checked 2026-09-19; inflated by toml_edit/Cargo dependency chain."
+    },
+    "last-release": {
+      "value": "2026-07-13",
+      "source": ["https://crates.io/api/v1/crates/winnow/versions"],
+      "comment": "1.0.4."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/winnow/versions", "https://api.github.com/repos/winnow-rs/winnow"],
+      "comment": "Releases 2026-04, 2026-05, 2026-07; repo pushed 2026-09-17. Fork of nom 7 (nom is not superseded; both live)."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://docs.rs/winnow/latest/winnow/_tutorial/index.html", "https://docs.rs/winnow/latest/winnow/_topic/index.html"],
+      "comment": "9-chapter tutorial, special topics (why, performance, partial, stateful, custom stream, custom errors, lexing), format cookbooks (JSON, INI, HTTP, s-expr, arithmetic), nom migration guide, plus full API docs."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://docs.rs/winnow/latest/winnow/_tutorial/index.html"],
+      "comment": "`winnow::_tutorial` chapters 0-8 embedded in docs.rs."
+    },
+    "notable-users": {
+      "value": "Cargo (direct + via toml_edit), toml_edit / toml, hcl-edit",
+      "source": ["https://raw.githubusercontent.com/rust-lang/cargo/master/Cargo.toml", "https://raw.githubusercontent.com/toml-rs/toml/main/crates/toml_edit/Cargo.toml", "https://raw.githubusercontent.com/martinohmann/hcl-rs/main/crates/hcl-edit/Cargo.toml"],
+      "comment": "Verified from each project's Cargo.toml (2026-09-19)."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/winnow-rs/winnow/contributors?per_page=10"],
+      "comment": "epage (2137 commits) is the sole active maintainer; Geal's 1808 commits are inherited nom history. Other contributors <100 commits each."
+    }
+  }
 }
