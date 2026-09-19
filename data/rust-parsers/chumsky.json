@@ -1,5 +1,344 @@
 {
   "name": "chumsky",
   "description": "Combinator library designed around error recovery and rich diagnostics; Pratt parsing, ariadne companion",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": [
+        "https://crates.io/api/v1/crates/chumsky",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"
+      ],
+      "comment": "Cargo.toml: license = \"MIT\" (single license, not dual)."
+    },
+    "approach": {
+      "value": ["combinator"],
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/README.md"
+      ],
+      "comment": "Parser combinators written as Rust code; parsers are recursive descent with PEG semantics."
+    },
+    "implementation": {
+      "value": ["pure-rust"],
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"
+      ],
+      "comment": "Required deps are hashbrown, unicode-ident, unicode-segmentation (all pure Rust); optional stacker (default feature) is a Rust crate that uses psm/cc at build time — disable default features for a C-free tree."
+    },
+    "repository": {
+      "value": "https://codeberg.org/zesterer/chumsky",
+      "source": [
+        "https://codeberg.org/zesterer/chumsky",
+        "https://github.com/zesterer/chumsky"
+      ],
+      "comment": "Primary repo moved to Codeberg; the GitHub repo was archived on 2026-04-02 with a relocation notice."
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/chumsky",
+      "source": ["https://crates.io/api/v1/crates/chumsky"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/chumsky/latest/chumsky/guide/index.html",
+      "source": ["https://docs.rs/chumsky/latest/chumsky/guide/index.html"],
+      "comment": "The guide (getting started, key concepts, error & recovery, recursion, debugging, technical notes, 'Foo' tutorial) is published inside the docs.rs API docs."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://crates.io/api/v1/crates/chumsky/versions"],
+      "comment": "0.0.0 published 2021-07-10."
+    },
+    "latest-stable-version": {
+      "value": "0.13.0",
+      "source": ["https://crates.io/api/v1/crates/chumsky/versions"],
+      "comment": "Checked 2026-09-19. Version history is unusual: 1.0.0-alpha.0..alpha.8 (2023-2025) were followed by stable 0.10.0 (2025-03), 0.11.x, 0.12.0, 0.13.0 (2026-05-06). Research reflects 0.13.0."
+    },
+    "grammar-class": {
+      "value": ["arbitrary", "peg"],
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/",
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"
+      ],
+      "comment": "Combinators impose no formal class; the crate docs explicitly state parsers are recursive descent capable of parsing PEGs, and recover_with docs refer to PEG first-success semantics. README also claims context-sensitive grammars via the `extra::Context` mechanism."
+    },
+    "grammar-definition": {
+      "value": ["rust-code"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/"]
+    },
+    "left-recursion": {
+      "value": ["precedence-climbing", "native"],
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/pratt/index.html",
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"
+      ],
+      "comment": "Pratt module (feature `pratt`) for operator expressions. Additionally `Parser::memoized` docs: 'Memoization also works with recursion, so this can be used to write parsers using left recursion' — opt-in per parser, hence `native` is qualified. README: left-recursion detection in debug mode."
+    },
+    "ambiguity-handling": {
+      "value": ["ordered-choice", "backtracking"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "PEG first-success semantics on `or`/`choice`; alternatives are tried with backtracking."
+    },
+    "backtracking": {
+      "value": ["unlimited"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "No cut/commit operator; Input trait supports checkpoint/rewind. `memoized` can bound the cost of repeated backtracking."
+    },
+    "lexer-integration": {
+      "value": ["built-in", "external-token-stream"],
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/input/trait.Input.html",
+        "https://docs.rs/chumsky/latest/chumsky/guide/index.html"
+      ],
+      "comment": "Scannerless over &str (Token = char) / &[u8]; also parses &[T] token slices, Stream/IterInput from any iterator. Guide's tutorial uses chumsky for both lexing and parsing; commonly paired with logos (dev-dependency in the repo)."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/pratt/index.html"],
+      "comment": "`chumsky::pratt` with infix/prefix/postfix and left/right/none associativity; behind the `pratt` Cargo feature."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/input/trait.Input.html",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"
+      ],
+      "comment": "&str input yields `char` tokens; `&Graphemes` input via unicode-segmentation; unicode-ident dependency for identifier parsing."
+    },
+    "input-types": {
+      "value": ["str", "bytes", "token-slice", "custom-stream"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/input/trait.Input.html"],
+      "comment": "Implementors: &str, &[T], &[T; N], Bytes (tokio `bytes` feature), Stream, IterInput, IoInput (seekable reader), MappedInput, WithContext, MappedSpan, &Graphemes. User-implementable Input trait. No rope/text-buffer input."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/input/struct.Stream.html"],
+      "comment": "Stream/IterInput lazily pull tokens from an iterator but there is no nom-style Incomplete / 'need more' signal or resumable parse."
+    },
+    "zero-copy": {
+      "value": true,
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/README.md",
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"
+      ],
+      "comment": "README: 'Zero-copy parsing minimises allocation by having outputs hold references/slices of the input'; `Parser::to_slice` yields input slices."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets", "custom-span-type"],
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/span/trait.Span.html",
+        "https://docs.rs/chumsky/latest/chumsky/input/trait.Input.html"
+      ],
+      "comment": "&str input uses SimpleSpan<usize> (offset range); Span trait has Offset and Context associated types, so custom spans (e.g. with file id) are first-class via WithContext/MappedSpan. No line/column computation built in — left to ariadne etc."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "Users build arbitrary Rust types via map/map_with."
+    },
+    "semantic-actions": {
+      "value": ["combinator-map"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "map, map_with (span/state access), try_map, validate, foldl/foldr."
+    },
+    "whitespace-comment-handling": {
+      "value": ["explicit-combinators"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "`padded`, `text::whitespace`, `padded_by`; no implicit skip rules."
+    },
+    "stateful-parsing": {
+      "value": true,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/extra/index.html"],
+      "comment": "extra::State / extra::Full thread mutable user state; SimpleState helper; map_with exposes state."
+    },
+    "error-recovery": {
+      "value": ["configurable"],
+      "source": ["https://docs.rs/chumsky/latest/chumsky/recovery/index.html"],
+      "comment": "`Parser::recover_with` takes a user-chosen Strategy: skip_until, skip_then_retry_until, via_parser (arbitrary recovery parser), nested_delimiters."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/",
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"
+      ],
+      "comment": "ParseResult carries both an optional output and a Vec of errors; `validate` emits non-fatal errors."
+    },
+    "expected-token-reporting": {
+      "value": true,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/error/struct.Rich.html"],
+      "comment": "error::Rich exposes `expected()` (RichPattern set) and `found()`; Simple/Cheap/EmptyErr trade this away for speed."
+    },
+    "custom-error-types": {
+      "value": true,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/error/index.html"],
+      "comment": "Error type is a generic parameter (extra::Err); users can implement the `Error` / `LabelError` traits."
+    },
+    "error-span-fidelity": {
+      "value": 5,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/error/struct.Rich.html"],
+      "comment": "Rich carries a span on every error plus labelled contexts (`contexts()`, `in_context(label, span)`) each with its own span."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["ariadne"],
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/README.md",
+        "https://crates.io/api/v1/crates/chumsky/0.13.0/dependencies"
+      ],
+      "comment": "ariadne is by the same author; README and examples render diagnostics with it (dev-dependency ^0.5). No first-party miette/codespan bridge."
+    },
+    "contextual-error-messages": {
+      "value": true,
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html",
+        "https://docs.rs/chumsky/latest/chumsky/error/struct.Rich.html"
+      ],
+      "comment": "`Parser::labelled` plus Rich::in_context."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/"],
+      "comment": "No tree reuse API; each parse is from scratch."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"],
+      "comment": "Output is user-defined; trivia is skipped by explicit combinators unless the user captures it."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/"]
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://crates.io/api/v1/crates/chumsky/reverse_dependencies?per_page=50&sort=downloads"],
+      "comment": "None of rust-analyzer/helix/zed/neovim depend on chumsky; downstream language servers (e.g. PRQL, Aiken) use it, but those are not the editors listed in the tag set."
+    },
+    "runtime-speed-tier": {
+      "value": ["fast"],
+      "source": ["https://github.com/rosetta-rs/parse-rosetta-rs"],
+      "comment": "parse-rosetta-rs JSON benchmark (chumsky v0.12.0, rustc 1.94.1, checked 2026-09-19): chumsky 47 ms vs winnow 27 ms, peg 29 ms, lalrpop 40 ms, pest 62 ms, nom 68 ms. Suite has no hand-written reference parser, so the tier is relative to the fastest competitor (~1.7x winnow). README's own JSON bench claims parity with hand-written parsers but is maintainer-authored."
+    },
+    "compile-time-impact": {
+      "value": ["heavy"],
+      "source": [
+        "https://github.com/zesterer/chumsky/discussions/396",
+        "https://github.com/rosetta-rs/parse-rosetta-rs"
+      ],
+      "comment": "Deep GAT-based generic types stress the trait solver; discussion #396 reports 40 s -> 4 min builds after a small change, fixed ~90x by `.boxed()` on large `or` chains. parse-rosetta-rs debug build 5 s vs winnow 1 s / nom 3 s (chumsky v0.12.0)."
+    },
+    "allocation-strategy": {
+      "value": ["allocation-free-possible"],
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/README.md",
+        "https://docs.rs/chumsky/latest/chumsky/error/index.html"
+      ],
+      "comment": "Zero-copy slices, check-only mode, and EmptyErr/Cheap error types allow allocation-free parsing of slice inputs; Stream/IterInput and Rich errors allocate. Crate itself requires `alloc`."
+    },
+    "generated-code-size": {
+      "value": ["n-a"],
+      "comment": "Combinator library; no code generation. No source needed."
+    },
+    "no-std-support": {
+      "value": true,
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/src/lib.rs",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"
+      ],
+      "comment": "`#![cfg_attr(not(any(doc, feature = \"std\", test)), no_std)]` with `extern crate alloc` — no_std + alloc when default features (std, stacker) are disabled."
+    },
+    "msrv": {
+      "value": "1.65",
+      "source": ["https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"],
+      "comment": "rust-version = \"1.65\" (GATs required)."
+    },
+    "unsafe-usage": {
+      "value": ["substantial"],
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/src/input.rs",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/src/lib.rs"
+      ],
+      "comment": "No forbid(unsafe_code). The Input trait's core methods (next_maybe, span, slice, ...) are `unsafe fn` with cursor-validity preconditions; ~31 `unsafe` occurrences in input.rs plus ~5 in lib.rs (Send/Sync impls for a phantom type). Precondition-based, no raw pointer/transmute tricks, but unsafe is part of the public extension API."
+    },
+    "proc-macro-reliance": {
+      "value": ["none"],
+      "source": ["https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml"],
+      "comment": "No derive/attribute macros; optional `proc-macro` feature only adds trait impls for proc_macro2 token inputs."
+    },
+    "build-rs-step": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/zesterer/chumsky/main/Cargo.toml"],
+      "comment": "No build-dependencies / build script."
+    },
+    "dependency-count": {
+      "value": 3,
+      "source": ["https://crates.io/api/v1/crates/chumsky/0.13.0/dependencies"],
+      "comment": "0.13.0 required: hashbrown, unicode-ident, unicode-segmentation. Six more optional (stacker [default], regex-automata, lexical, either, serde, bytes, railroad, proc-macro2 per current main)."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": [
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/Cargo.toml",
+        "https://codeberg.org/zesterer/chumsky/raw/branch/main/src/lib.rs"
+      ],
+      "comment": "Inferred: pure Rust, no_std+alloc capable, no build.rs. Not verified by a CI wasm target; disable `stacker` (default) for wasm32-unknown-unknown as it relies on native stack switching."
+    },
+    "async-friendly": {
+      "value": false,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/struct.Boxed.html"],
+      "comment": "`Boxed` parsers are backed by `Rc` and are !Send/!Sync; unboxed parsers are Send only if their closures are. No async input adapter — IoInput is a blocking BufReader."
+    },
+    "github-stars": {
+      "value": 4535,
+      "source": ["https://api.github.com/repos/zesterer/chumsky"],
+      "comment": "GitHub mirror (archived 2026-04-02) as of 2026-09-19; the new Codeberg primary repo shows 104 stars."
+    },
+    "crates-io-downloads": {
+      "value": 28325543,
+      "source": ["https://crates.io/api/v1/crates/chumsky"],
+      "comment": "All-time as of 2026-09-19."
+    },
+    "last-release": {
+      "value": "2026-05-06",
+      "source": ["https://crates.io/api/v1/crates/chumsky/versions"],
+      "comment": "0.13.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": [
+        "https://codeberg.org/zesterer/chumsky",
+        "https://crates.io/api/v1/crates/chumsky/versions"
+      ],
+      "comment": "Release 2026-05-06 and commits on Codeberg as recent as 2026-09-16. Project relocated GitHub -> Codeberg in April 2026; GitHub repo archived (do not read that as abandonment)."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": [
+        "https://docs.rs/chumsky/latest/chumsky/guide/index.html",
+        "https://docs.rs/chumsky/latest/chumsky/trait.Parser.html"
+      ],
+      "comment": "Multi-chapter guide + full-language tutorial + thorough API docs with examples and example projects; no dedicated migration guide from 0.9/1.0-alpha to 0.10+ found, so not a 5."
+    },
+    "tutorial-book": {
+      "value": true,
+      "source": ["https://docs.rs/chumsky/latest/chumsky/guide/index.html"],
+      "comment": "Guide includes 'Foo: A Tutorial' building a lexer, parser and interpreter."
+    },
+    "notable-users": {
+      "value": "PRQL (prqlc-parser), Aiken smart-contract language, knuffel/knus KDL parsers, xee XPath engine",
+      "source": [
+        "https://raw.githubusercontent.com/PRQL/prql/main/prqlc/prqlc-parser/Cargo.toml",
+        "https://raw.githubusercontent.com/aiken-lang/aiken/main/crates/aiken-lang/Cargo.toml",
+        "https://crates.io/api/v1/crates/chumsky/reverse_dependencies?per_page=50&sort=downloads"
+      ],
+      "comment": "306 reverse dependencies on crates.io (2026-09-19). logos is the top reverse dependency by downloads."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": [
+        "https://api.github.com/repos/zesterer/chumsky/contributors?per_page=10",
+        "https://lib.rs/crates/chumsky"
+      ],
+      "comment": "zesterer 733 commits dominates; CraftSpider 173, Zij-IT 71, wackbyte 46, Hedgehogo 38. Three crates.io owners. Borderline solo."
+    }
+  }
 }
