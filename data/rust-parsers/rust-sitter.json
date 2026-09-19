@@ -1,5 +1,281 @@
 {
   "name": "rust-sitter",
   "description": "Write tree-sitter grammars as annotated Rust types via a macro",
-  "values": {}
+  "lastVerified": "2026-09-19",
+  "values": {
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml", "https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "`license = \"MIT\"` in runtime/Cargo.toml; crates.io and the GitHub licence badge agree. The companion `rust-sitter-macro` and `rust-sitter-tool` crates are MIT as well."
+    },
+    "approach": {
+      "value": ["generator-macro", "incremental-cst"],
+      "source": ["https://github.com/hydro-project/rust-sitter", "https://docs.rs/rust-sitter/latest/rust_sitter/"],
+      "comment": "Per the RESEARCH.md Assessment Guideline (`rust-sitter` = `generator-macro` + `incremental-cst`). Grammar is expressed as `#[rust_sitter::grammar]` / `#[leaf]` / `#[prec_left]` attributes on Rust types; the tool extracts a tree-sitter grammar from them and generates the parser. The incremental CST engine is tree-sitter's, but the public API only exposes a typed AST (see Incremental Reparsing)."
+    },
+    "implementation": {
+      "value": ["rust-bindings"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs", "https://github.com/shadaj/tree-sitter-c2rust"],
+      "comment": "Wraps the tree-sitter engine. Default feature `tree-sitter-c2rust` uses a c2rust-transpiled Rust copy of the runtime (\"1:1 correspondence with the original C code\"); `tree-sitter-standard` swaps in the C runtime. Either way the grammar itself is emitted as C (`parser.c`) by `tree-sitter-generate` and compiled with `cc` in `build.rs`, so a C compiler is always in the build and the dependency tree is not C-free."
+    },
+    "repository": {
+      "value": "https://github.com/hydro-project/rust-sitter",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"]
+    },
+    "crates-io": {
+      "value": "https://crates.io/crates/rust-sitter",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "Runtime crate. Companions: `rust-sitter-macro` (proc-macros), `rust-sitter-tool` (build-dependency that extracts the grammar and compiles the parser), `rust-sitter-common`."
+    },
+    "documentation": {
+      "value": "https://docs.rs/rust-sitter/latest/rust_sitter/",
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md"],
+      "comment": "No dedicated book; the README is the long-form guide and docs.rs documents each attribute macro (docs.rs reports ~59% item coverage)."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "0.1.0 published 2022-08-06; repository created 2022-06-26."
+    },
+    "latest-stable-version": {
+      "value": "0.4.5",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "Checked 2026-09-19; 0.4.5 published 2025-05-06 and bundles tree-sitter 0.25.2. Research reflects 0.4.5 / `main` (last commit 2025-06-18)."
+    },
+    "grammar-class": {
+      "value": ["glr", "lr1"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs", "https://github.com/hydro-project/rust-sitter"],
+      "comment": "The tool hands the extracted grammar to `tree_sitter_generate::generate_parser_for_grammar`, so the accepted class is tree-sitter's: GLR over LR(1) tables. Inherited, not re-implemented."
+    },
+    "grammar-definition": {
+      "value": ["macro-dsl"],
+      "source": ["https://github.com/hydro-project/rust-sitter", "https://docs.rs/rust-sitter/latest/rust_sitter/"],
+      "comment": "Grammar lives in a Rust module annotated `#[rust_sitter::grammar(\"name\")]`, with `#[language]`, `#[leaf(pattern|text, transform)]`, `#[prec]`/`#[prec_left]`/`#[prec_right]`, `#[extra]`, `#[repeat]`, `#[delimited]`, `#[skip]`, `#[word]` attributes on structs/enums/fields. No external grammar file is written by the user; `build.rs` re-parses the source with `syn` to extract it."
+    },
+    "left-recursion": {
+      "value": ["native"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/example/src/arithmetic.rs", "https://github.com/hydro-project/rust-sitter"],
+      "comment": "LR/GLR tables from tree-sitter; the README/example arithmetic grammar defines `Sub(Box<Expr>, '-', Box<Expr>)` as a left-recursive `#[prec_left(1)]` variant. LR generators get `native` per the guideline."
+    },
+    "ambiguity-handling": {
+      "value": ["rejected-at-build"],
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs"],
+      "comment": "Unresolved LR(1) conflicts make `tree_sitter_generate` fail inside `build.rs`; the user resolves them with `#[prec]`/`#[prec_left]`/`#[prec_right]`. The attribute set exposes no equivalent of tree-sitter's `conflicts` list, so the GLR `all-parses` path is not reachable from rust-sitter's DSL."
+    },
+    "backtracking": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs"],
+      "comment": "Deterministic table-driven tree-sitter parser; no backtracking or cut operators in the DSL."
+    },
+    "lexer-integration": {
+      "value": ["built-in"],
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/attr.leaf.html"],
+      "comment": "Tokens are declared inline with `#[leaf(text = \"...\")]` / `#[leaf(pattern = r\"...\")]` and lexed by the generated tree-sitter parser; no external token stream can be supplied. Tree-sitter external scanners (C) are not exposed."
+    },
+    "precedence-pratt-support": {
+      "value": true,
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/example/src/arithmetic.rs"],
+      "comment": "`#[rust_sitter::prec(n)]`, `#[prec_left(n)]`, `#[prec_right(n)]` map to tree-sitter's `prec`/`prec.left`/`prec.right`; the README example uses them for `-` vs `*`."
+    },
+    "unicode-aware": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://docs.rs/rust-sitter/latest/rust_sitter/attr.leaf.html"],
+      "comment": "Input is `&str` (UTF-8 enforced by the type), `#[leaf]` patterns are tree-sitter regexes matched on code points, and `transform` closures receive the token as `&str`. Spans are byte offsets, not char indices."
+    },
+    "input-types": {
+      "value": ["str"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/macro/src/expansion.rs"],
+      "comment": "Generated entry point is `pub fn parse(input: &str) -> Result<Root, Vec<ParseError>>`; it calls `tree_sitter::Parser::parse(input, None)` internally. The rope/callback inputs of the underlying tree-sitter API are not surfaced."
+    },
+    "streaming-partial-input": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs"],
+      "comment": "`parse` consumes a complete `&str` and returns either the AST or errors; there is no \"need more input\" signal."
+    },
+    "zero-copy": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/macro/src/expansion.rs"],
+      "comment": "The generated `parse(input: &str) -> Result<Root, _>` has no lifetime tying `Root` to `input`, and `Extract`/`WithLeaf` use `dyn Fn(&str) -> L` transforms that must produce owned values; leaf text is typically copied into `String`/parsed numbers. The tree-sitter tree is dropped after extraction."
+    },
+    "span-tracking": {
+      "value": ["byte-offsets"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md"],
+      "comment": "Opt-in per field/type via `Spanned<T> { value: T, span: (usize, usize) }` — byte start (inclusive) / end (exclusive) into the source. No line/column; `ParseError` carries the same `start`/`end` byte offsets."
+    },
+    "output-model": {
+      "value": ["typed-ast"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "The annotated Rust structs/enums *are* the AST; `Extract` impls for `Box`, `Vec`, `Option`, `Spanned`, `WithLeaf` walk the tree-sitter tree and build them. The generic tree-sitter CST is internal and not returned."
+    },
+    "semantic-actions": {
+      "value": ["inline-rust"],
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/attr.leaf.html", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "Actions are limited to leaf `transform = |text: &str| ...` closures (e.g. `v.parse().unwrap()`) and the structural mapping implied by the field types; there are no per-rule action blocks for non-terminals, and the `Extract` trait can be implemented by hand for custom types."
+    },
+    "whitespace-comment-handling": {
+      "value": ["implicit-skip-rules"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/example/src/arithmetic.rs"],
+      "comment": "`#[rust_sitter::extra]` on a struct (typically `#[leaf(pattern = r\"\\s\")]`) maps to tree-sitter `extras`; such nodes \"can safely be skipped while parsing\" and do not appear in the typed AST."
+    },
+    "stateful-parsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "`parse(input)` takes no user state and the `Extract` trait passes only node, source bytes, last index and an optional leaf closure; no state threading facility exists."
+    },
+    "error-recovery": {
+      "value": ["automatic"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "Inherits tree-sitter's built-in, non-configurable repair (`ERROR`/`MISSING` nodes), which `collect_parsing_errors` converts into `ParseError { reason: UnexpectedToken | MissingToken | FailedNode(Vec<ParseError>), start, end }`. Caveat: if `root_node.has_error()` the whole parse returns `Err(errors)` — no partial typed AST is produced, so recovery only serves diagnostics, not partial results."
+    },
+    "multiple-errors-per-parse": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://docs.rs/rust-sitter/latest/rust_sitter/errors/index.html"],
+      "comment": "`Err(Vec<ParseError>)`; `collect_parsing_errors` \"accumulates all errors that were emitted\" across the tree, nesting them as `FailedNode` for `ERROR` nodes with children."
+    },
+    "expected-token-reporting": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "`UnexpectedToken(String)` carries the offending text and `MissingToken(String)` names the single token tree-sitter inserted; neither carries the set of tokens that would have been valid."
+    },
+    "custom-error-types": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/macro/src/expansion.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "Return type is fixed to `Vec<::rust_sitter::errors::ParseError>` by the generated code; no generic error parameter."
+    },
+    "error-span-fidelity": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "Every `ParseError` has byte-range `start`/`end` (4 per guideline); nested `FailedNode` errors give a crude hierarchy but there are no labels or secondary spans, and no line/column."
+    },
+    "diagnostic-crate-integration": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md"],
+      "comment": "No ariadne/miette/codespan-reporting/annotate-snippets dependency or documented bridge; the README only says `Spanned` is \"useful for diagnostic tools\"."
+    },
+    "contextual-error-messages": {
+      "value": false,
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "None of the attribute macros attach labels or expectations to rules; errors carry only reason and span."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs"],
+      "comment": "The generated `parse` creates a fresh `Parser`, calls `parser.parse(input, None)` (no old tree) and discards the tree after extraction. The `rust_sitter::tree_sitter` re-export plus the generated `language()` function would let a user drive tree-sitter's `Tree::edit` path themselves, but rust-sitter's own API does not expose it."
+    },
+    "lossless-syntax-tree": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md"],
+      "comment": "Output is the user's typed AST; `#[extra]` whitespace/comment nodes are skipped and punctuation leaves are dropped unless the user keeps them as fields. The underlying tree-sitter CST is not returned."
+    },
+    "syntax-highlighting-queries": {
+      "value": false,
+      "source": ["https://docs.rs/rust-sitter/latest/rust_sitter/", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md"],
+      "comment": "No queries are generated and the tree never leaves `parse`; the `tree_sitter::Query` API is technically reachable via the re-export and `language()` but is undocumented for rust-sitter grammars."
+    },
+    "used-by-lsp-ide": {
+      "value": ["none-known"],
+      "source": ["https://crates.io/api/v1/crates/rust-sitter/reverse_dependencies?per_page=50"],
+      "comment": "crates.io reverse dependencies (5 crates, checked 2026-09-19) contain no editor or language server."
+    },
+    "runtime-speed-tier": {
+      "value": null,
+      "source": ["https://github.com/hydro-project/rust-sitter", "https://github.com/shadaj/tree-sitter-c2rust"],
+      "comment": "No independent benchmark of rust-sitter found. Underlying engine is tree-sitter (default via c2rust-transpiled runtime, whose relative speed is unmeasured) plus a post-parse extraction walk; left `null` per guideline."
+    },
+    "compile-time-impact": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs"],
+      "comment": "No published measurement. Expect non-trivial cost: `build.rs` pulls `syn` (full), `tree-sitter-generate` and `cc`, re-parses the source to extract the grammar, runs table generation and compiles `parser.c` on every change to the grammar module. Left `null` per guideline."
+    },
+    "allocation-strategy": {
+      "value": ["allocates-per-node"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "Tree-sitter heap-allocates its subtree nodes, then extraction builds the typed AST with `Box`/`Vec`/`String` per node; no arena or allocator hook."
+    },
+    "generated-code-size": {
+      "value": ["large"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs", "https://github.com/tree-sitter/tree-sitter/issues/1041"],
+      "comment": "Generates a tree-sitter `parser.c` (LR/GLR tables) per grammar and compiles it with `cc`; tree-sitter tables are routinely multi-megabyte for real languages (issue #1041: 8.7 MB TypeScript, 25 MB Zig). Small DSLs produce proportionally smaller files."
+    },
+    "no-std-support": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml"],
+      "comment": "No `no_std` attribute or `std` feature; runtime uses `std::` paths and `Vec`/`String`, and the parser depends on the tree-sitter runtime plus a C-compiled grammar."
+    },
+    "msrv": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/.github/workflows/ci.yml"],
+      "comment": "No `rust-version` in any Cargo.toml, no README statement, and CI tests stable only. Edition 2021."
+    },
+    "unsafe-usage": {
+      "value": ["ffi"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/macro/src/expansion.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs", "https://github.com/shadaj/tree-sitter-c2rust"],
+      "comment": "The runtime crate's own code has no `unsafe`, but the generated code declares `extern \"C\" { fn tree_sitter_<name>() -> Language; }` and calls it in `unsafe {}` to link the C-compiled grammar; the default `tree-sitter-c2rust` runtime is machine-transpiled C and correspondingly unsafe-heavy. No `forbid(unsafe_code)`."
+    },
+    "proc-macro-reliance": {
+      "value": ["required"],
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/macro/Cargo.toml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml"],
+      "comment": "`rust-sitter-macro` (`proc-macro = true`) is a non-optional dependency; the entire grammar DSL is attribute macros."
+    },
+    "build-rs-step": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs"],
+      "comment": "Required: `build.rs` must call `rust_sitter_tool::build_parsers(&PathBuf::from(\"src/main.rs\"))`, which extracts the grammar with `syn`, runs `tree-sitter-generate`, and compiles `parser.c` with `cc` (C11)."
+    },
+    "dependency-count": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml"],
+      "comment": "Runtime crate with default features: `rust-sitter-macro` + `tree-sitter-c2rust` (0.25.2). `tree-sitter` (C runtime) is the optional alternative behind `tree-sitter-standard`. Build-time `rust-sitter-tool` additionally pulls `syn`, `syn-inline-mod`, `serde`, `serde_json`, `tree-sitter`, `tree-sitter-generate`, `cc`, `tempfile`. Checked at 0.4.5."
+    },
+    "wasm-compatible": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/.github/workflows/ci.yml", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/tool/src/lib.rs"],
+      "comment": "Stated design goal (\"pure-Rust runtime to support `wasm32-unknown-unknown`\"); CI runs `cargo test -p rust-sitter-example --target wasm32-unknown-unknown`. The tool writes a stub sysroot (`stdint.h`, `stdlib.h`, ...) so `cc` can compile `parser.c` for wasm32, so a wasm-capable C compiler (clang) is still needed."
+    },
+    "async-friendly": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/__private.rs", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/src/lib.rs"],
+      "comment": "`parse` is a plain synchronous function returning an owned AST of user-defined types (no tree-sitter handles retained), so results are `Send` whenever the user's types are. Input must be fully materialised as `&str` first."
+    },
+    "github-stars": {
+      "value": 726,
+      "source": ["https://api.github.com/repos/hydro-project/rust-sitter"],
+      "comment": "726 stars, 28 forks, 18 open issues; checked 2026-09-19."
+    },
+    "crates-io-downloads": {
+      "value": 307459,
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "All-time downloads of `rust-sitter`, checked 2026-09-19."
+    },
+    "last-release": {
+      "value": "2025-05-06",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter"],
+      "comment": "0.4.5 published 2025-05-06T19:10Z (bumped tree-sitter to 0.25.2, forced C11)."
+    },
+    "maintenance-status": {
+      "value": ["passively-maintained"],
+      "source": ["https://api.github.com/repos/hydro-project/rust-sitter/commits?per_page=10", "https://crates.io/api/v1/crates/rust-sitter", "https://api.github.com/repos/hydro-project/rust-sitter"],
+      "comment": "Last commit 2025-06-18 and last release 2025-05-06 — more than 12 months before 2026-09-19, so not `actively-maintained`. Recent history is tree-sitter version bumps and small fixes from outside contributors merged by the author; repo not archived. Time-sensitive."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md", "https://docs.rs/rust-sitter/latest/rust_sitter/", "https://docs.rs/rust-sitter/latest/rust_sitter/attr.leaf.html"],
+      "comment": "Thorough README walkthrough (installation, every attribute, `Spanned`, `Vec`/`Option`/`Box`, debugging artifacts) and per-macro docs.rs pages with examples; but no book, no cookbook, no migration notes, and docs.rs coverage ~59% (e.g. `ParseErrorReason` variants undocumented). 3 per guideline."
+    },
+    "tutorial-book": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/hydro-project/rust-sitter/main/README.md", "https://docs.rs/rust-sitter/latest/rust_sitter/"],
+      "comment": "README-only; no dedicated long-form guide or site."
+    },
+    "notable-users": {
+      "value": "Hydro project (dfir_datalog_core, formerly hydroflow_datalog_core — the Datalog frontend), tree-sitter-sleigh",
+      "source": ["https://crates.io/api/v1/crates/rust-sitter/reverse_dependencies?per_page=50", "https://crates.io/api/v1/crates/dfir_datalog_core/0.13.0/dependencies"],
+      "comment": "Only five crates.io reverse dependencies as of 2026-09-19, most of them from the author's own Hydro project (which rust-sitter was built for). No widely known external adopter verified."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/hydro-project/rust-sitter/contributors?per_page=15", "https://raw.githubusercontent.com/hydro-project/rust-sitter/main/runtime/Cargo.toml"],
+      "comment": "Shadaj Laddad authored 89 of ~106 commits and is the sole listed crate author; all other contributors have 1–3 commits. Hosted under the `hydro-project` GitHub organisation (UC Berkeley Hydro research group), which mitigates but does not change the single-maintainer reality."
+    }
+  }
 }
