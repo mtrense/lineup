@@ -184,9 +184,9 @@ Users should be able to:
 - [x] nom-supreme — error-handling and ergonomics extension layer on top of nom
 - [x] yap — lightweight, dependency-free parser combinator crate
 - [ ] parsell — streaming/pushdown parser combinator crate designed around zero-copy inputs
-- [ ] rust-parsec — Parsec-style combinator crate; verify the exact crates.io name and activity before researching (may be dormant)
 
 ### Not Including (with reasons)
+- **rust-parsec** — no such crate on crates.io (the `parsec` crate is maidsafe's consensus protocol); nearest repos (`gereeter/rust-parsec`, `d-plaindoux/parsec.rust`) are unpublished and dormant since 2014–2019
 - **syn / proc-macro2** — parse Rust token streams only; not a general-purpose parser framework
 - **binrw / deku / scroll / zerocopy** — declarative binary formats; out of scope
 - **regex / fancy-regex** — regex engines, not parser builders
