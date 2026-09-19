@@ -49,7 +49,7 @@ Users should be able to:
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
-| **Grammar Class** | tags | What the tool can parse: `lr1`, `lalr1`, `glr`, `peg`, `recursive-descent`, `ll-k`, `arbitrary` (combinators accept anything expressible as code). Multiple allowed. |
+| **Grammar Class** | tags | What the tool can parse: `lr1`, `lalr1`, `glr`, `peg`, `recursive-descent`, `ll-k`, `arbitrary` (combinators accept anything expressible as code), `regular` (lexer generators — regular languages only). Multiple allowed. |
 | **Grammar Definition** | tags | `rust-code` (combinators, hand-written), `macro-dsl` (grammar inside a Rust macro), `external-file` (`.lalrpop`, `.pest`, `.y`, `grammar.js`). |
 | **Left Recursion** | tags | `native` (directly supported), `precedence-climbing` (via a Pratt/precedence helper), `manual-rewrite` (must eliminate), `n/a` (lexers). |
 | **Ambiguity Handling** | tags | `rejected-at-build` (LR conflicts fail generation), `ordered-choice` (PEG first-match semantics), `all-parses` (GLR forests), `backtracking` (combinators try alternatives), `n/a`. |
@@ -152,6 +152,7 @@ Users should be able to:
 
 - **Approach**: Assign the *dominant* style. `pest` = `generator-grammar-file` + `peg`. `peg` (rust-peg) = `generator-macro` + `peg`. `rust-sitter` = `generator-macro` + `incremental-cst`. `nom-supreme` = `extension`.
 - **Grammar Class for combinators**: Use `arbitrary` — combinators impose no formal grammar class. Do not also tag `peg` unless the library documents PEG semantics explicitly.
+- **Grammar Class for lexer generators**: Use `regular` — a lexer generator (logos, lexgen) compiles regular expressions to a DFA/NFA and recognises regular languages only. Do not use `arbitrary` or `null` for lexers.
 - **Left Recursion**: Combinators without a Pratt helper get `manual-rewrite`; with a documented Pratt/precedence module get `precedence-climbing`. LR generators get `native`. PEG tools get `manual-rewrite` unless they document left-recursion support.
 - **Error Recovery**: `basic` requires at least one documented skip/sync mechanism; `configurable` requires user-pluggable strategies (chumsky `recover_with`, LALRPOP `!` error token). `automatic` is reserved for tools that repair without user configuration (grmtools, tree-sitter).
 - **Error Span Fidelity**: 5 = every error carries a byte-range span *and* supports labelled secondary spans; 4 = byte-range span; 3 = single position/offset; 2 = line number only; 1 = message text only.
