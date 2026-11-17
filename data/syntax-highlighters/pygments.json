@@ -1,5 +1,267 @@
 {
   "name": "Pygments",
   "description": "The reference Python highlighter; huge lexer catalog, many formatters (HTML, LaTeX, RTF, SVG, image, ANSI), and the ancestor of several ports",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["python"],
+      "source": ["https://pypi.org/project/Pygments/"],
+      "comment": "Pure-Python package (requires Python >= 3.9 as of 2.21.0)."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://pygments.org/", "https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "Usable as a library and via the bundled `pygmentize` / `python -m pygments` command-line tool."
+    },
+    "license": {
+      "value": ["bsd-2-clause"],
+      "source": ["https://pypi.org/project/Pygments/", "https://github.com/pygments/pygments"],
+      "comment": "License-Expression BSD-2-Clause on PyPI; lexers and styles are part of the same package under the same licence."
+    },
+    "repository": {
+      "value": "https://github.com/pygments/pygments",
+      "source": ["https://github.com/pygments/pygments"]
+    },
+    "package": {
+      "value": "https://pypi.org/project/Pygments/",
+      "source": ["https://pypi.org/project/Pygments/"]
+    },
+    "documentation": {
+      "value": "https://pygments.org/docs/",
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "Dedicated docs site at pygments.org with quickstart, lexer/formatter development guides, API reference, language list and style gallery."
+    },
+    "first-release": {
+      "value": "2006",
+      "source": ["https://pygments.org/docs/changelog/", "https://pypi.org/project/Pygments/"],
+      "comment": "Version 0.5 ('PyKleur'), initial public release on 2006-10-30."
+    },
+    "latest-version": {
+      "value": "2.21.0",
+      "source": ["https://pypi.org/project/Pygments/", "https://pygments.org/docs/changelog/"],
+      "comment": "Released 2026-08-17; checked 2026-11-18. 2.22.0 is listed as unreleased in the changelog."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://pygments.org/docs/lexerdevelopment/", "https://pygments.org/"],
+      "comment": "Most lexers are RegexLexer state machines (states of regexes on a stack); some lexers are hand-written Python, but regex lexing dominates."
+    },
+    "regex-engine": {
+      "value": ["python-re"],
+      "source": ["https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "Lexer rules are compiled with Python's standard `re` module (flags default to re.MULTILINE)."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "HtmlLexer delegates <script> content to JavascriptLexer (and <style> to CssLexer) via `using()`; DelegatingLexer combines template languages with a host language (e.g. HTML+PHP)."
+    },
+    "language-auto-detection": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "`guess_lexer(text)` scores every lexer's `analyse_text()`; `guess_lexer_for_filename` combines filename and content."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "`get_lexer_for_filename` (glob patterns) and `get_lexer_for_mimetype`; `analyse_text` also checks shebangs in many lexers."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://pygments.org/docs/api/", "https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "The RegexLexer state stack is internal; no documented API to save and resume per-line lexer state. Lexing always runs over the full input text."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "No edit-aware reparsing; re-lexes the whole input."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "Pure regex state-machine lexers; some lexers distinguish e.g. Name.Function at definition sites via regex context, but there is no syntax tree or locals tracking."
+    },
+    "bundled-languages": {
+      "value": 602,
+      "source": ["https://pygments.org/", "https://pygments.org/languages/"],
+      "comment": "Pygments 2.21.0 homepage: '602 languages and text formats' (checked 2026-11-18). This is the lexer count: it includes ~53 composite template lexers (e.g. 'HTML+Django') and console/session variants, so distinct languages are somewhat fewer (roughly 530-550)."
+    },
+    "grammar-format": {
+      "value": ["pygments-lexer"],
+      "source": ["https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "Lexers are Python classes (mostly declarative RegexLexer token tables, sometimes procedural code)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["pygments"],
+      "source": ["https://pygments.org/docs/plugins/", "https://pygments.org/docs/lexerdevelopment/"],
+      "comment": "Consumes only Pygments-format lexers (built-in plus third-party plugin packages); no TextMate, Sublime, tree-sitter or KDE grammar support. It is itself the source ecosystem that Chroma and Rouge port from."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/", "https://pygments.org/docs/plugins/"],
+      "comment": "`load_lexer_from_file()` / `pygmentize -x` load a custom lexer class from a file (evaluated, trusted files only); plugin packages register lexers via entry points; custom lexer classes can also be instantiated directly."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/pygments/pygments/blob/master/pygments/lexers/__init__.py"],
+      "comment": "Lexer lookup scans the static LEXERS metadata mapping; lexer modules are imported on demand (`_load_lexers`) and cached."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://pygments.org/docs/changelog/", "https://github.com/pygments/pygments/issues/1061", "https://github.com/pygments/pygments/issues/1843"],
+      "comment": "Judgement call: lexers are hand-maintained (not tracking an upstream grammar) but updated steadily for modern syntax (e.g. Python t-strings and TOML 1.1 in 2.20, Python 3.15 in 2.21); regex lexers have recurring gaps on nested/macro constructs (e.g. Rust quote!/keyword-prefix bugs, since fixed). No spot-check run in this pass."
+    },
+    "bundled-themes": {
+      "value": 49,
+      "source": ["https://pygments.org/styles/"],
+      "comment": "Style gallery lists 49 styles for 2.21.0 (checked 2026-11-18); the package also ships a special-purpose 'lilypond' style not shown in the gallery (50 in the style mapping)."
+    },
+    "theme-format": {
+      "value": ["pygments-style"],
+      "source": ["https://pygments.org/docs/formatterdevelopment/", "https://pygments.org/styles/"],
+      "comment": "Styles are Python Style subclasses mapping token types to style strings; CSS is generated from them via `get_style_defs`."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://pygments.org/docs/tokens/"],
+      "comment": "Hierarchical token types (e.g. Token.Name.Function) with a standard set in STANDARD_TYPES; lexers may create custom subtypes, which styles fall back through parents for."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/"],
+      "comment": "HtmlFormatter emits short CSS class names by default; `noclasses=True` switches to inline styles."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/", "https://pygments.org/docs/formatterdevelopment/"],
+      "comment": "Via class-based HTML output plus per-style stylesheets generated with `get_style_defs(selector)` / `pygmentize -S`; one render can be themed light/dark by swapping or media-scoping stylesheets. No CSS-variable dual-theme mechanism; the wiring is left to the user."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "`pygments.lex(code, lexer)` and `Lexer.get_tokens()` return an iterable of (tokentype, value) pairs."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://pygments.org/docs/api/", "https://pygments.org/docs/tokens/"],
+      "comment": "Flat (tokentype, value) stream; `get_tokens_unprocessed` adds start index. RawTokenFormatter provides a text serialization (not JSON)."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/"],
+      "comment": "RawTokenFormatter ('raw'/'tokens') writes one 'tokentype<TAB>repr(value)' line per token, optionally gz/bz2-compressed, and the 'raw' lexer reads it back. Documented, but a Pygments-specific text format rather than JSON."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://pygments.org/docs/formatterdevelopment/", "https://pygments.org/docs/api/"],
+      "comment": "Tokens carry only token types. Resolved styles are available by iterating a Style class ((ttype, {color, bold, italic, ...}) tuples), but no API emits tokens with styles already attached; a custom formatter must do the join."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "`Lexer.get_tokens_unprocessed(text)` yields (index, tokentype, value) with the start position in the input; the higher-level `get_tokens` drops the index. Note that offsets are pre-filter and before option processing."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatterdevelopment/", "https://pygments.org/docs/api/"],
+      "comment": "Subclass `Formatter` and implement `format(tokensource, outfile)`; can be loaded at runtime via `load_formatter_from_file` or plugin entry points."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/", "https://pygments.org/docs/filters/"],
+      "comment": "Highlighted lines via `hl_lines` (HtmlFormatter, ImageFormatter) and a documented token-stream filter mechanism (e.g. NameHighlightFilter, codetagify, gobble). No built-in diff/focus markers or inline annotations."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-16", "ansi-256", "ansi-truecolor", "latex", "rtf", "svg", "image", "bbcode", "pango-markup", "irc"],
+      "source": ["https://pygments.org/docs/formatters/"],
+      "comment": "Built-in formatters: HTML, Terminal (16), Terminal256, TerminalTrueColor, LaTeX, RTF, SVG (experimental), Image (PNG/GIF/JPEG/BMP via Pillow), BBCode, Pango markup, IRC; also Groff/troff, raw tokens, null/text and testcase formatters (no tag)."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/"],
+      "comment": "`linenos` on HTML (table/inline), LaTeX, Terminal, Terminal256, IRC, SVG, RTF, Groff; `line_numbers` on ImageFormatter."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://pygments.org/docs/api/", "https://pygments.org/docs/formatterdevelopment/"],
+      "comment": "Lexers and formatters are generator/file-based, but `get_tokens` requires the complete input text; there is no documented API to feed input incrementally."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://pygments.org/docs/formatters/"],
+      "comment": "TerminalFormatter, Terminal256Formatter and TerminalTrueColorFormatter; `pygmentize` CLI uses them directly."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://pypi.org/project/Pygments/"],
+      "comment": "Pure-Python, py3-none-any wheel with no required dependencies. Optional extras: Pillow for ImageFormatter, colorama for the windows-terminal extra."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://pypi.org/project/Pygments/"],
+      "comment": "No first-party browser build; can only run client-side through a third-party Python-in-WASM runtime such as Pyodide."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://pypi.org/project/Pygments/"],
+      "comment": "No official WASM distribution (pure-Python wheel only)."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://pygments.org/docs/api/"],
+      "comment": "`highlight()`, `lex()` and `format()` are plain synchronous calls; no async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["ruby", "go"],
+      "source": ["https://github.com/pygments/pygments.rb", "https://github.com/alecthomas/chroma"],
+      "comment": "Ruby: pygments.rb (wrapper talking to a Python child process, under the pygments org). Go: Chroma, a port with translators for Pygments lexers and styles. Rouge (Ruby) is a Pygments-compatible reimplementation and a separate candidate."
+    },
+    "core-package-size": {
+      "value": 1250147,
+      "source": ["https://pypi.org/project/Pygments/#files"],
+      "comment": "Compressed size of pygments-2.21.0-py3-none-any.whl (~1.25 MB). Installed on disk the package is ~5 MB (unpacked from the wheel). All lexers are always included; there is no slim core distribution."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible cross-engine benchmark including Pygments was found in this pass."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "No cited measurement of time-to-first-highlight. Lexer modules load lazily, which keeps startup modest, but this is unmeasured."
+    },
+    "github-stars": {
+      "value": 2200,
+      "source": ["https://github.com/pygments/pygments"],
+      "comment": "~2.2k as displayed on GitHub, checked 2026-11-18 (rounded figure). The repository moved to GitHub from Bitbucket in 2019, so stars understate its use."
+    },
+    "monthly-downloads": {
+      "value": 1160855286,
+      "source": ["https://pypistats.org/packages/pygments"],
+      "comment": "PyPI via pypistats, last month, checked 2026-11-18. Inflated by being a transitive dependency of pip tooling, IPython, rich, pytest, Sphinx and others."
+    },
+    "last-release": {
+      "value": "2026-08-17",
+      "source": ["https://pypi.org/project/Pygments/", "https://pygments.org/docs/changelog/"],
+      "comment": "Version 2.21.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/pygments/pygments/commits/master", "https://pygments.org/docs/changelog/"],
+      "comment": "Releases 2.20.0 (2026-03-29) and 2.21.0 (2026-08-17) with new lexers and fixes; commits through 2026-09-27; PRs merged regularly. Checked 2026-11-18."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://pygments.org/docs/api/", "https://pygments.org/docs/lexerdevelopment/", "https://pygments.org/styles/"],
+      "comment": "Dedicated docs site with quickstart, lexer/formatter/filter development guides, API reference, language list, style gallery and detailed changelog. No migration guides, and some API (e.g. Style.style_for_token) is underdocumented."
+    },
+    "notable-users": {
+      "value": "Sphinx (all code highlighting), MediaWiki SyntaxHighlight extension (Wikimedia projects), Python-Markdown CodeHilite extension",
+      "source": ["https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html", "https://www.mediawiki.org/wiki/Extension:SyntaxHighlight", "https://python-markdown.github.io/extensions/code_hilite/"]
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/pygments/pygments", "https://github.com/pygments/pygments/commits/master"],
+      "comment": "Maintained by Georg Brandl, Matthäus Chajdas and Jean Abou-Samra; recent release and merge activity is mostly by Matthäus Chajdas (Anteru)."
+    }
+  }
 }
