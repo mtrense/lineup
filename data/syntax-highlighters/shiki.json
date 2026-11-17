@@ -1,5 +1,269 @@
 {
   "name": "Shiki",
   "description": "TextMate-grammar highlighter using VS Code grammars and themes; hast IR, transformers, dual themes, JS or Oniguruma-WASM regex engine",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["typescript"],
+      "source": ["https://github.com/shikijs/shiki"],
+      "comment": "Written in TypeScript, ESM-only, consumed from any JS runtime (Node, Deno, Bun, browsers, workers)."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://shiki.style/guide/", "https://shiki.style/packages/cli"],
+      "comment": "Core library `shiki`; official CLI `@shikijs/cli` (commands `shiki` / `skat`) outputs ANSI or HTML."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/shikijs/shiki", "https://github.com/shikijs/textmate-grammars-themes"],
+      "comment": "Code is MIT. Bundled grammars and themes (via tm-grammars/tm-themes) keep their upstream licences, described as permissive (MIT, Apache-2.0, etc.)."
+    },
+    "repository": {
+      "value": "https://github.com/shikijs/shiki",
+      "source": ["https://github.com/shikijs/shiki"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/shiki",
+      "source": ["https://registry.npmjs.org/shiki"]
+    },
+    "documentation": {
+      "value": "https://shiki.style/",
+      "source": ["https://shiki.style/guide/"]
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://registry.npmjs.org/shiki"],
+      "comment": "Shiki's first npm publish was 0.0.2 on 2018-10-29, the same day the repo was created. The npm name also has a 0.0.1 from 2014, but that was an unrelated package (an ejs-like template engine by another author), so it is not counted."
+    },
+    "latest-version": {
+      "value": "4.6.0",
+      "source": ["https://registry.npmjs.org/shiki"],
+      "comment": "npm dist-tag latest, checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://github.com/shikijs/shiki", "https://shiki.style/guide/regex-engines"],
+      "comment": "Interprets TextMate grammars with a fork of vscode-textmate (@shikijs/vscode-textmate). The guideline says this applies whichever regex engine is chosen."
+    },
+    "regex-engine": {
+      "value": ["oniguruma-wasm", "js-regexp"],
+      "source": ["https://shiki.style/guide/regex-engines"],
+      "comment": "Oniguruma compiled to WASM is the default. The alternative JavaScript RegExp engine transpiles Oniguruma patterns via oniguruma-to-es, and the docs say all built-in languages are supported as of 3.9.1."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://shiki.style/guide/load-lang"],
+      "comment": "The bundled HTML grammar (@shikijs/langs 4.6.0) imports the javascript and css grammars and uses TextMate injections/embeddedLangs, so HTML+JS+CSS works out of the box. Checked in the published package source."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://shiki.style/guide/install"],
+      "comment": "The language must be passed explicitly (`lang`). No content-based detection API exists in shiki 4.6.0."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://shiki.style/languages"],
+      "comment": "Languages are looked up by id or alias (e.g. `js`, `ts`), and some aliases match extensions. There is no built-in filename, extension, shebang or MIME lookup API; integrations map these themselves."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://shiki.style/guide/grammar-state"],
+      "comment": "`getLastGrammarState()` returns a GrammarState that can be passed back as `grammarState` to continue tokenizing from an intermediate state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://shiki.style/guide/grammar-state"],
+      "comment": "No edit-aware reparse. Only grammar-state resumption is available."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/shikijs/shiki"],
+      "comment": "Uses TextMate regex state machines. Function-name scopes come from regex patterns, not from a syntax tree or locals analysis (per the guideline)."
+    },
+    "bundled-languages": {
+      "value": 242,
+      "source": ["https://shiki.style/languages", "https://registry.npmjs.org/shiki"],
+      "comment": "Counted 242 language ids in `bundledLanguagesInfo` (full bundle) in the shiki 4.6.0 package, excluding aliases. Some are variants (e.g. ahk/ahk2, html/html-derivative). The web bundle has about 57. Checked 2026-11-18."
+    },
+    "grammar-format": {
+      "value": ["textmate-json"],
+      "source": ["https://shiki.style/guide/load-lang"],
+      "comment": "Grammars are TextMate grammar objects in JSON form, shipped as ESM modules."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://github.com/shikijs/textmate-grammars-themes", "https://shiki.style/guide/load-lang"],
+      "comment": "Loads any VS Code / TextMate JSON grammar directly. tm-grammars normalizes grammars from their original upstream repositories."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://shiki.style/guide/load-lang"],
+      "comment": "`highlighter.loadLanguage()` accepts a custom TextMate grammar object at runtime."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://shiki.style/guide/", "https://shiki.style/guide/install"],
+      "comment": "All grammars, themes and WASM are served as ESM and lazy-loaded on demand as async chunks."
+    },
+    "grammar-accuracy": {
+      "value": 5,
+      "source": ["https://github.com/shikijs/textmate-grammars-themes"],
+      "comment": "Rated 5 per the guideline (tracks mainstream upstream VS Code/TextMate grammars). tm-grammars is synced automatically from upstream repos, with daily publishing when there are changes. The JS engine in non-forgiving mode can differ slightly from Oniguruma. Based on sourcing, not on a systematic spot-check."
+    },
+    "bundled-themes": {
+      "value": 65,
+      "source": ["https://shiki.style/themes", "https://registry.npmjs.org/shiki"],
+      "comment": "Counted 65 entries in `bundledThemesInfo` in shiki 4.6.0, checked 2026-11-18."
+    },
+    "theme-format": {
+      "value": ["vscode-theme"],
+      "source": ["https://shiki.style/themes", "https://shiki.style/guide/theme-colors"],
+      "comment": "Uses VS Code JSON color themes. A css-variables theme can be built with `createCssVariablesTheme`."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://shiki.style/guide/install"],
+      "comment": "Tokens carry TextMate scopes, and themes resolve them to colours. `includeExplanation` exposes the matched scopes per token."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://shiki.style/packages/transformers"],
+      "comment": "Inline styles by default. The official `transformerStyleToClass` (@shikijs/transformers) converts inline styles to generated CSS classes and emits the stylesheet."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://shiki.style/guide/dual-themes"],
+      "comment": "One `codeToHtml` call with `themes: { light, dark, ... }` stores each theme's colours as CSS variables (`--shiki-dark`, etc.). `defaultColor` options include `light-dark()`."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://shiki.style/guide/install"],
+      "comment": "Documented functions: `codeToTokens`, `codeToTokensBase`, `codeToTokensWithThemes` and `codeToHast`."
+    },
+    "ir-kinds": {
+      "value": ["styled-spans", "scope-stack", "hast"],
+      "source": ["https://shiki.style/guide/install", "https://shiki.style/guide/transformers"],
+      "comment": "ThemedToken[][] has content, offset, color and fontStyle. Passing `includeExplanation` adds a scope stack per token. `codeToHast` returns a hast tree."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://shiki.style/guide/install"],
+      "comment": "hast output qualifies per the guideline. Token arrays are also plain objects."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://shiki.style/guide/install"],
+      "comment": "Tokens carry resolved `color`, `bgColor` and `fontStyle`. `codeToTokensWithThemes` returns per-theme variants."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://shiki.style/guide/decorations"],
+      "comment": "ThemedToken has an `offset` field (0-indexed start offset in the input), per the @shikijs/types 4.6.0 typings. Decorations also accept offsets or line/character positions."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://shiki.style/guide/transformers", "https://shiki.style/guide/install"],
+      "comment": "Transformer hooks (preprocess/tokens/span/line/code/pre/root/postprocess) operate on hast. Custom renderers can consume `codeToTokens` or `codeToHast` output."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://shiki.style/guide/decorations", "https://shiki.style/packages/transformers"],
+      "comment": "Decorations API covers arbitrary ranges. Official transformers cover diff, highlight, focus, error level and word highlight notations."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-16", "ansi-256", "ansi-truecolor"],
+      "source": ["https://shiki.style/guide/install", "https://shiki.style/packages/transformers", "https://shiki.style/packages/cli"],
+      "comment": "HTML uses inline styles by default. Class output comes via the official transformerStyleToClass. ANSI comes from `codeToANSI` in @shikijs/cli, which uses ansis with a `colorLevel` option (1=16, 2=256, 3=truecolor; default 3). Hast is an IR, not a format. React/JSX rendering is documented through hast-util-to-jsx-runtime (third-party), so it is not counted."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://shiki.style/packages/transformers"],
+      "comment": "Provided by `transformerRenderLineNumber` in the official @shikijs/transformers. Otherwise, CSS counters are the usual approach."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://shiki.style/packages/stream"],
+      "comment": "The official @shikijs/stream `CodeToTokenTransformStream` emits stable tokens line-by-line (optionally finer-grained with recalls) from a ReadableStream. It was previously antfu/shiki-stream (now archived and re-exporting it)."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://shiki.style/packages/cli"],
+      "comment": "`codeToANSI` from @shikijs/cli. The CLI defaults to ANSI output."
+    },
+    "native-dependencies": {
+      "value": ["wasm-embedded", "optional"],
+      "source": ["https://shiki.style/guide/regex-engines", "https://shiki.style/guide/best-performance"],
+      "comment": "The default Oniguruma engine ships as a WASM blob (onig.wasm, about 466 KB in shiki 4.6.0). The pure-JS RegExp engine avoids WASM entirely."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://shiki.style/guide/", "https://shiki.style/guide/install"],
+      "comment": "Portable and does not use Node APIs or the filesystem. Can be loaded from a CDN (esm.sh) in the browser."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://shiki.style/guide/regex-engines"],
+      "comment": "Shiki itself is JavaScript and is not compiled to WASM. Only its optional default regex engine (Oniguruma) ships as WASM; see Native Dependencies."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://shiki.style/guide/sync-usage", "https://shiki.style/guide/install"],
+      "comment": "`createHighlighter` is async, but highlighter methods are sync afterwards. `createHighlighterCoreSync` (since v1.16) is fully sync with the JS engine and pre-loaded langs/themes. The shorthands (`codeToHtml` from 'shiki') are async."
+    },
+    "bindings-ports": {
+      "value": ["php"],
+      "source": ["https://github.com/phikiphp/phiki"],
+      "comment": "Phiki (PHP) is a separate reimplementation whose name and public API are inspired by Shiki. It is a port, not an official binding. No official bindings."
+    },
+    "core-package-size": {
+      "value": 35982,
+      "source": ["https://bundlephobia.com/api/size?package=@shikijs/core@4.6.0"],
+      "comment": "@shikijs/core 4.6.0 is 35,982 bytes min+gzip (bundlephobia, 2026-11-18). That excludes the regex engine, grammars and themes. The `shiki` main entry is 65,418 bytes min+gzip before lazy chunks. Docs give 695 KB gzip for the web bundle and 1.2 MB for the full bundle including async chunks."
+    },
+    "throughput-tier": {
+      "value": ["moderate"],
+      "source": ["https://speed-highlight.github.io/core/", "https://chsm.dev/blog/2025/01/08/comparing-web-code-highlighters"],
+      "comment": "speed-highlight benchmark (Shiki 4.4 JS engine, Node 26, M4): 89,925 / 6,682 / 841 ops/min vs Prism 655,152 (tiny) and highlight.js 48,666 / 5,473 (medium/huge), about 6.5-7.3x slower than the fastest candidate in that benchmark. chsm.dev (Jan 2025, Oniguruma): about 7x slower than Prism. speed-highlight itself (not a candidate) is about 10-13x faster. Both benchmarks were run by a single author."
+    },
+    "initialization-cost": {
+      "value": ["heavy"],
+      "source": ["https://speed-highlight.github.io/core/", "https://shiki.style/guide/best-performance"],
+      "comment": "Cold start (import + first highlight) measured at 169 ms for Shiki 4.4 with the JS engine (speed-highlight benchmark). The docs say the highlighter instance 'is expensive to create'. Fine-grained bundles reduce this."
+    },
+    "github-stars": {
+      "value": 13933,
+      "source": ["https://github.com/shikijs/shiki"],
+      "comment": "Checked 2026-11-18 via the GitHub API."
+    },
+    "monthly-downloads": {
+      "value": 118842535,
+      "source": ["https://api.npmjs.org/downloads/point/2026-10-01:2026-10-31/shiki"],
+      "comment": "npm downloads of `shiki` for October 2026 (calendar month). The rolling last-month figure (2026-10-18 to 2026-11-16) was 147,155,175. Checked 2026-11-18."
+    },
+    "last-release": {
+      "value": "2026-11-02",
+      "source": ["https://registry.npmjs.org/shiki"],
+      "comment": "shiki 4.6.0 was published to npm on 2026-11-02."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://registry.npmjs.org/shiki", "https://github.com/shikijs/shiki"],
+      "comment": "Frequent releases (latest 4.6.0 on 2026-11-02), last push on 2026-11-02, and the 4.x line is under active feature development. Checked 2026-11-18."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://shiki.style/guide/", "https://shiki.style/languages", "https://shiki.style/themes"],
+      "comment": "Dedicated docs site with guides, a language/theme catalog, package docs, migration guides (v0.14, Shikiji, v1 to v4) and blog release notes. API detail is spread across guides and the TypeScript typings."
+    },
+    "notable-users": {
+      "value": "VitePress, Astro (default Markdown highlighter)",
+      "source": ["https://vitepress.dev/guide/markdown", "https://docs.astro.build/en/guides/syntax-highlighting/"],
+      "comment": "Both verified from their official docs. Other widely reported users (e.g. Nuxt Content) were not verified this pass."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://github.com/shikijs/shiki"],
+      "comment": "Maintained under the volunteer `shikijs` GitHub org. Commits are dominated by antfu (about 1,036) and the original author octref/Pine Wu (about 960), followed by orta (about 159). There is no corporate backing."
+    }
+  }
 }
