@@ -174,7 +174,7 @@ The core differentiator of this comparison: what can an application get *besides
 
 - [x] Pygments — the reference Python highlighter; huge lexer catalog, many formatters (HTML, LaTeX, RTF, SVG, image, ANSI), and the ancestor of several ports
 - [x] highlight.js — the most widely deployed JS highlighter; auto-detection, zero-dependency, runs in browser and Node
-- [ ] Prism — lightweight, extensible browser-focused JS highlighter with a plugin system
+- [x] Prism — lightweight, extensible browser-focused JS highlighter with a plugin system
 - [ ] Shiki — TextMate-grammar highlighter using VS Code grammars and themes; hast IR, transformers, dual themes, JS or Oniguruma-WASM regex engine
 - [ ] syntect — Rust highlighter using Sublime Text syntaxes; styled-span IR, ANSI/HTML output; powers bat, delta, Zola
 - [ ] tree-sitter-highlight — parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors

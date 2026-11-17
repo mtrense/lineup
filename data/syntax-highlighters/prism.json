@@ -1,5 +1,267 @@
 {
   "name": "Prism",
   "description": "Lightweight, extensible browser-focused JS highlighter with a plugin system",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["javascript"],
+      "source": ["https://api.github.com/repos/PrismJS/prism/languages", "https://raw.githubusercontent.com/PrismJS/prism/v2/package.json"],
+      "comment": "Repository is overwhelmingly JavaScript; the v2 branch (2.0.0-alpha.1) ships TypeScript type declarations (types/index.d.ts) and uses TypeScript as a dev dependency, but the stable 1.x line is plain JavaScript."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://prismjs.com/"],
+      "comment": "Browser/Node library; no first-party CLI."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/PrismJS/prism", "https://raw.githubusercontent.com/PrismJS/prism/v2/package.json"]
+    },
+    "repository": {
+      "value": "https://github.com/PrismJS/prism",
+      "source": ["https://github.com/PrismJS/prism"],
+      "comment": "Default branch is now v2 (in development); v1 lives on as the stable npm release line."
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/prismjs",
+      "source": ["https://registry.npmjs.org/prismjs"]
+    },
+    "documentation": {
+      "value": "https://prismjs.com/",
+      "source": ["https://prismjs.com/", "https://prismjs.com/docs/Prism.html"]
+    },
+    "first-release": {
+      "value": "2012",
+      "source": ["https://api.github.com/repos/PrismJS/prism"],
+      "comment": "GitHub repository created 2012-07-10 by Lea Verou (spin-off from Dabblet); the npm package was first published 2015-05-12."
+    },
+    "latest-version": {
+      "value": "1.30.0",
+      "source": ["https://registry.npmjs.org/prismjs", "https://api.github.com/repos/PrismJS/prism/releases?per_page=8"],
+      "comment": "Checked 2026-11-18. npm dist-tag latest = 1.30.0 (2025-03-10); a 2.0.0-alpha.1 prerelease was published 2026-09-08 under the alpha tag."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://prismjs.com/faq.html", "https://prismjs.com/extending.html"],
+      "comment": "Grammars are objects of regex patterns (with greedy/lookbehind/inside options); the FAQ explicitly chooses regexes over a full parser."
+    },
+    "regex-engine": {
+      "value": ["js-regexp"],
+      "source": ["https://prismjs.com/extending.html"],
+      "comment": "Token patterns are native JavaScript RegExp objects."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://prismjs.com/"],
+      "comment": "Homepage: \"Highlights embedded languages (e.g. CSS inside HTML, JavaScript inside HTML)\"; implemented via nested `inside` grammars in the markup language definition. Default bundle includes markup, css, clike, javascript."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://prismjs.com/"],
+      "comment": "Language must be given via a `language-xxx` class or API argument; no content-based guessing."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://prismjs.com/plugins/file-highlight/"],
+      "comment": "Only via the first-party File Highlight plugin (browser), which determines the language from the fetched file's extension; the core API has no extension lookup."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://prismjs.com/docs/Prism.html"],
+      "comment": "Prism.tokenize operates on the whole text and exposes no per-line state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://prismjs.com/faq.html"],
+      "comment": "Regex highlighter without a parse tree; re-highlights the full block."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://prismjs.com/faq.html"],
+      "comment": "Pure regex lexer; tokens such as `function` / `class-name` come from regex heuristics, not a syntax tree."
+    },
+    "bundled-languages": {
+      "value": 297,
+      "source": ["https://prismjs.com/"],
+      "comment": "Checked 2026-11-18: prismjs.com lists \"all 297 languages currently supported by Prism\" (v1.30.0 site; may include some dialect entries). Core default bundle in Node loads only 4 (markup, css, clike, javascript)."
+    },
+    "grammar-format": {
+      "value": ["prism-language"],
+      "source": ["https://prismjs.com/extending.html"],
+      "comment": "Plain JS objects of token patterns registered on Prism.languages."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://prismjs.com/extending.html"],
+      "comment": "Consumes only Prism-format grammars; no TextMate/tree-sitter import."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://prismjs.com/extending.html", "https://prismjs.com/"],
+      "comment": "A language is just an object assigned to Prism.languages (with extend/insertBefore helpers); Node's loadLanguages() adds components at runtime."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://prismjs.com/plugins/autoloader/", "https://prismjs.com/"],
+      "comment": "Autoloader plugin \"automatically loads the needed languages\" in the browser; loadLanguages() in Node. v2 also exports per-language modules."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://prismjs.com/known-failures.html", "https://prismjs.com/faq.html"],
+      "comment": "Solid for common constructs; Prism documents known gaps on nested constructs (JS template literal interpolation, Python f-strings with nested quotes, nested comments in Rust/Swift/Scala, Rust closure params). Grammars are hand-maintained, not tracking upstream VS Code/tree-sitter grammars."
+    },
+    "bundled-themes": {
+      "value": 8,
+      "source": ["https://prismjs.com/"],
+      "comment": "Checked 2026-11-18 (v1.30.0): Default, Dark, Funky, Okaidia, Twilight, Coy, Solarized Light, Tomorrow Night. Many more in the separate prism-themes repo."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet"],
+      "source": ["https://prismjs.com/"],
+      "comment": "Themes are plain CSS files targeting token classes."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://prismjs.com/tokens.html"],
+      "comment": "Documented standard token set (keyword, function, class-name, string, …) that themes guarantee; languages may use non-standard names but are advised to alias them to standard tokens."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://prismjs.com/", "https://prismjs.com/tokens.html"],
+      "comment": "Output is HTML spans with `token <type>` classes; styling lives entirely in the theme stylesheet."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://prismjs.com/"],
+      "comment": "Contested: qualifies only via swappable stylesheets — output is theme-independent class markup, so a light and dark theme CSS can be swapped (e.g. via media-query <link>s) without re-rendering. Prism offers no built-in dual-theme/CSS-variable API, and its themes are not scoped for coexistence."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://prismjs.com/docs/Prism.html", "https://prismjs.com/docs/Token.html"],
+      "comment": "Prism.tokenize(text, grammar) is documented as \"the most low-level function you can use\", returning a token stream of strings and Token objects."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://prismjs.com/docs/Token.html", "https://prismjs.com/extending.html"],
+      "comment": "Token stream: array of strings and Token {type, content, alias}, where content may itself be a nested token stream. hast output is provided by third-party refractor, not first-party."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://prismjs.com/docs/Token.html"],
+      "comment": "Token stream is plain-ish JS data (Token class instances) but has no documented serialization format."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://prismjs.com/tokens.html"],
+      "comment": "Tokens carry only type/alias names; colours live in CSS themes."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://prismjs.com/docs/Token.html"],
+      "comment": "Token documents no start/end offset or line/column fields (only an optional matchedStr copy)."
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://prismjs.com/docs/Prism.hooks.html", "https://prismjs.com/extending.html"],
+      "comment": "No pluggable formatter interface. Hooks (e.g. `wrap`) let you alter the generated HTML spans' attributes, and you can walk Prism.tokenize output yourself, but there is no documented formatter extension point for non-HTML targets."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://prismjs.com/plugins/line-highlight/", "https://prismjs.com/plugins/diff-highlight/", "https://prismjs.com/plugins/line-numbers/"],
+      "comment": "Via first-party browser plugins (Line Highlight with data-line ranges, Diff Highlight, Line Numbers, Command Line, etc.). These act on the DOM/highlight hooks in the browser rather than on a portable IR."
+    },
+    "output-formats": {
+      "value": ["html-classes"],
+      "source": ["https://prismjs.com/", "https://prismjs.com/docs/Prism.html"],
+      "comment": "Prism.highlight returns class-based HTML. No first-party ANSI/LaTeX/etc.; React rendering via third-party prism-react-renderer, hast via refractor."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://prismjs.com/plugins/line-numbers/"],
+      "comment": "Line Numbers plugin (browser only)."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://prismjs.com/docs/Prism.html"],
+      "comment": "highlight/tokenize take the complete text; no incremental API."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://prismjs.com/"],
+      "comment": "HTML output only."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://registry.npmjs.org/prismjs", "https://raw.githubusercontent.com/PrismJS/prism/v2/package.json"],
+      "comment": "Zero runtime dependencies in both 1.30.0 and 2.0.0-alpha.1."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://prismjs.com/"]
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://prismjs.com/"],
+      "comment": "Pure JavaScript; no WASM distribution."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://prismjs.com/docs/Prism.html", "https://prismjs.com/faq.html"],
+      "comment": "Prism.highlight / Prism.tokenize are synchronous; an optional async Web Worker mode exists for highlightAll."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/wooorm/refractor/main/package.json"],
+      "comment": "No well-known ports to other host languages. JS wrappers exist (refractor → hast, used by react-syntax-highlighter; prism-react-renderer) but are same-language integrations."
+    },
+    "core-package-size": {
+      "value": 7140,
+      "source": ["https://bundlephobia.com/api/size?package=prismjs@1.30.0", "https://prismjs.com/"],
+      "comment": "Bundlephobia min+gzip of prismjs@1.30.0 main entry (core + default markup/css/clike/javascript) = 7,140 bytes (checked 2026-11-18). prismjs.com claims the bare core is ~2 KB min+gzip, ~0.3–0.5 KB per extra language."
+    },
+    "throughput-tier": {
+      "value": ["top-tier"],
+      "source": ["https://speed-highlight.github.io/core/", "https://chsm.dev/blog/2025/01/08/comparing-web-code-highlighters"],
+      "comment": "speed-highlight benchmark (Prism 1.30.0, Node 26, M4, median of 9): Prism fastest among candidates on 1 KB inputs, within 1.42× of highlight.js on 16 KB, but ~2.1× slower than highlight.js on 128 KB; shiki-js 5–7× slower. chsm.dev (Jan 2025): Prism fastest, highlight.js ~2× slower, Shiki ~7× slower. Note non-candidate speed-highlight is ~1.7–3.3× faster than Prism."
+    },
+    "initialization-cost": {
+      "value": ["light"],
+      "source": ["https://speed-highlight.github.io/core/"],
+      "comment": "Cold start (import + first highlight) measured at 8.6 ms in the speed-highlight benchmark (Prism 1.30.0, Node 26, Apple M4); benchmark authored by a competing library's maintainer."
+    },
+    "github-stars": {
+      "value": 13071,
+      "source": ["https://api.github.com/repos/PrismJS/prism"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 184613855,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/prismjs"],
+      "comment": "npm, 2026-10-18 to 2026-11-16. Inflated by transitive installs (e.g. documentation tooling)."
+    },
+    "last-release": {
+      "value": "2025-03-10",
+      "source": ["https://api.github.com/repos/PrismJS/prism/releases?per_page=8", "https://registry.npmjs.org/prismjs"],
+      "comment": "v1.30.0 (last stable). 2.0.0-alpha.1 prerelease published 2026-09-08 not counted."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/PrismJS/prism/commits?per_page=15", "https://github.com/PrismJS/prism"],
+      "comment": "Substantive commits on the v2 branch through 2026-11-17 (new languages, plugin fixes) and a 2.0.0-alpha.1 release in Sept 2026, though the last stable v1 release was March 2025. README: only security-relevant PRs accepted while v2 is in development."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://prismjs.com/", "https://prismjs.com/extending.html", "https://prismjs.com/docs/Prism.html", "https://prismjs.com/tokens.html"],
+      "comment": "Dedicated site with usage guide, extending guide, token reference, plugin pages, FAQ, known-failures, and JSDoc API reference; no v1→v2 migration guide yet, and the API reference is thin in places (hook names undocumented)."
+    },
+    "notable-users": {
+      "value": "Gatsby (gatsby-remark-prismjs), Docusaurus (via Prism React Renderer), refractor / react-syntax-highlighter; prismjs.com also lists MDN, Stripe, Drupal",
+      "source": ["https://raw.githubusercontent.com/gatsbyjs/gatsby/master/packages/gatsby-remark-prismjs/package.json", "https://docusaurus.io/docs/markdown-features/code-blocks", "https://raw.githubusercontent.com/wooorm/refractor/main/package.json", "https://prismjs.com/"]
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://raw.githubusercontent.com/PrismJS/prism/v2/MAINTAINERS.md", "https://api.github.com/repos/PrismJS/prism/commits?per_page=15"],
+      "comment": "MAINTAINERS.md lists 5 maintainers (Lea Verou, Michael Schmidt, Golmote, James DiGioia, Jason Kurian); recent commits mostly by Dmitry Sharabin plus community contributors. Community project, no corporate backing."
+    }
+  }
 }
