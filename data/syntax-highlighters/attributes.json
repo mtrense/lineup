@@ -1,0 +1,646 @@
+{
+  "name": "Syntax Highlighters",
+  "description": "Libraries and tools that turn source code into highlighted output across every host language — regex-lexer engines, TextMate/Sublime-grammar engines, parse-tree-based engines, and highlight-first CLIs — compared across engine model, grammar and theme ecosystems, intermediate representations (token streams, scope stacks, styled spans, highlight events, hast), output formats beyond HTML, runtime footprint, performance, and maintenance",
+  "groups": [
+    {
+      "id": "general-information",
+      "name": "General Information",
+      "description": "Host language, form factor, licensing, and basic identifying information",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "host-language",
+          "name": "Host Language",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "python", "value": "Python", "color": "blue" },
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "blue" },
+              { "id": "ruby", "value": "Ruby", "color": "red" },
+              { "id": "javascript", "value": "JavaScript", "color": "orange" },
+              { "id": "typescript", "value": "TypeScript", "color": "blue" },
+              { "id": "php", "value": "PHP", "color": "purple" },
+              { "id": "swift", "value": "Swift", "color": "orange" },
+              { "id": "csharp", "value": "C#", "color": "purple" },
+              { "id": "cpp", "value": "C++", "color": "blue" },
+              { "id": "c", "value": "C", "color": "gray" },
+              { "id": "haskell", "value": "Haskell", "color": "purple" },
+              { "id": "elixir", "value": "Elixir", "color": "purple" },
+              { "id": "java", "value": "Java", "color": "red" },
+              { "id": "kotlin", "value": "Kotlin", "color": "purple" },
+              { "id": "lua", "value": "Lua", "color": "blue" }
+            ]
+          },
+          "description": "Language the engine is implemented in / primarily consumed from; multiple only when genuinely first-class in several"
+        },
+        {
+          "id": "form-factor",
+          "name": "Form Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "library", "value": "Library", "color": "blue" },
+              { "id": "cli", "value": "CLI", "color": "green" },
+              { "id": "wasm-module", "value": "WASM module", "color": "purple" },
+              { "id": "web-component", "value": "Web component", "color": "orange" }
+            ]
+          },
+          "description": "A library that ships its own CLI gets both Library and CLI"
+        },
+        {
+          "id": "license",
+          "name": "License",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "mit", "value": "MIT", "color": "green" },
+              { "id": "apache-2-0", "value": "Apache-2.0", "color": "blue" },
+              { "id": "bsd-2-clause", "value": "BSD-2-Clause", "color": "green" },
+              { "id": "bsd-3-clause", "value": "BSD-3-Clause", "color": "green" },
+              { "id": "isc", "value": "ISC", "color": "green" },
+              { "id": "mpl-2-0", "value": "MPL-2.0", "color": "orange" },
+              { "id": "gpl-3-0", "value": "GPL-3.0", "color": "red" },
+              { "id": "lgpl-2-1", "value": "LGPL-2.1", "color": "orange" },
+              { "id": "mit-or-apache-2-0", "value": "MIT OR Apache-2.0", "color": "blue" }
+            ]
+          },
+          "description": "From LICENSE / package manifest; bundled grammars may carry different licences (see comment)"
+        },
+        {
+          "id": "repository",
+          "name": "Repository",
+          "valueType": "link",
+          "description": "Canonical source repository"
+        },
+        {
+          "id": "package",
+          "name": "Package",
+          "valueType": "link",
+          "description": "Registry page (PyPI, crates.io, pkg.go.dev, RubyGems, npm, Packagist, NuGet, Hackage, Hex); for CLIs the official download page"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "valueType": "link",
+          "description": "Dedicated docs site if present, else docs.rs / readthedocs / README"
+        },
+        {
+          "id": "first-release",
+          "name": "First Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "year"
+          },
+          "description": "Year of first public release; informational rather than a ranking signal"
+        },
+        {
+          "id": "latest-version",
+          "name": "Latest Version",
+          "valueType": "text",
+          "description": "Current stable version string; date checked noted in comment"
+        }
+      ]
+    },
+    {
+      "id": "highlighting-engine",
+      "name": "Highlighting Engine",
+      "description": "How the engine recognises syntax and what that means for accuracy, nesting, and incremental use",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "engine-model",
+          "name": "Engine Model",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "regex-lexer", "value": "Regex lexer", "color": "blue" },
+              { "id": "textmate-grammar", "value": "TextMate grammar", "color": "purple" },
+              { "id": "sublime-syntax", "value": "Sublime syntax", "color": "orange" },
+              { "id": "kde-syntax", "value": "KDE syntax", "color": "blue" },
+              { "id": "parse-tree", "value": "Parse tree", "color": "green" },
+              { "id": "custom-parser", "value": "Custom parser", "color": "gray" }
+            ]
+          },
+          "description": "What actually executes at highlight time; a second tag only if the tool genuinely offers two engines"
+        },
+        {
+          "id": "regex-engine",
+          "name": "Regex Engine",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "oniguruma", "value": "Oniguruma", "color": "orange" },
+              { "id": "oniguruma-wasm", "value": "Oniguruma (WASM)", "color": "orange" },
+              { "id": "js-regexp", "value": "JS RegExp", "color": "blue" },
+              { "id": "fancy-regex", "value": "fancy-regex", "color": "purple" },
+              { "id": "rust-regex", "value": "Rust regex", "color": "purple" },
+              { "id": "pcre", "value": "PCRE", "color": "gray" },
+              { "id": "python-re", "value": "Python re", "color": "blue" },
+              { "id": "ruby-regexp", "value": "Ruby Regexp", "color": "red" },
+              { "id": "go-regexp2", "value": "Go regexp2", "color": "blue" },
+              { "id": "go-regexp", "value": "Go regexp", "color": "blue" },
+              { "id": "boost-regex", "value": "Boost.Regex", "color": "gray" },
+              { "id": "std-regex", "value": "std::regex", "color": "gray" },
+              { "id": "n-a", "value": "n/a", "color": "gray" }
+            ]
+          },
+          "description": "Regex implementation that runs the grammars; n/a for parse-tree engines"
+        },
+        {
+          "id": "embedded-languages",
+          "name": "Embedded Languages",
+          "valueType": "boolean",
+          "description": "Highlights nested languages (CSS/JS in HTML, fenced code in Markdown, injections) out of the box, at least HTML+JS+CSS"
+        },
+        {
+          "id": "language-auto-detection",
+          "name": "Language Auto-Detection",
+          "valueType": "boolean",
+          "description": "Can guess the language from content, not just filename/extension"
+        },
+        {
+          "id": "filename-extension-mapping",
+          "name": "Filename / Extension Mapping",
+          "valueType": "boolean",
+          "description": "Built-in filename/extension/shebang/mime → language lookup"
+        },
+        {
+          "id": "resumable-line-state",
+          "name": "Resumable Line State",
+          "valueType": "boolean",
+          "description": "Exposes per-line parse state that can be saved and resumed for line-by-line or viewport highlighting"
+        },
+        {
+          "id": "incremental-reparsing",
+          "name": "Incremental Reparsing",
+          "valueType": "boolean",
+          "description": "Updates highlighting after an edit by reusing the previous parse (tree-sitter, Lezer)"
+        },
+        {
+          "id": "semantic-distinctions",
+          "name": "Semantic Distinctions",
+          "valueType": "boolean",
+          "description": "Distinguishes roles beyond lexical class (definition vs call, parameter vs local) via a syntax tree or locals queries"
+        }
+      ]
+    },
+    {
+      "id": "language-grammar-support",
+      "name": "Language & Grammar Support",
+      "description": "Bundled languages, grammar formats, and which external grammar ecosystems can be reused",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "bundled-languages",
+          "name": "Bundled Languages",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Distinct languages in the default/full distribution (aliases not counted); core vs full noted in comment"
+        },
+        {
+          "id": "grammar-format",
+          "name": "Grammar Format",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "textmate-json", "value": "TextMate JSON", "color": "purple" },
+              { "id": "textmate-plist", "value": "TextMate plist", "color": "purple" },
+              { "id": "sublime-syntax", "value": "sublime-syntax", "color": "orange" },
+              { "id": "tree-sitter", "value": "tree-sitter", "color": "green" },
+              { "id": "lezer-grammar", "value": "Lezer grammar", "color": "green" },
+              { "id": "kde-xml", "value": "KDE XML", "color": "blue" },
+              { "id": "pygments-lexer", "value": "Pygments lexer", "color": "blue" },
+              { "id": "rouge-lexer", "value": "Rouge lexer", "color": "red" },
+              { "id": "chroma-xml", "value": "Chroma XML", "color": "blue" },
+              { "id": "highlightjs-language", "value": "highlight.js language", "color": "orange" },
+              { "id": "prism-language", "value": "Prism language", "color": "orange" },
+              { "id": "code", "value": "Code", "color": "gray" }
+            ]
+          },
+          "description": "Native grammar definition format; Code = lexers written in the host language"
+        },
+        {
+          "id": "grammar-ecosystem-compatibility",
+          "name": "Grammar Ecosystem Compatibility",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "vscode-textmate", "value": "VS Code / TextMate", "color": "purple" },
+              { "id": "sublime", "value": "Sublime", "color": "orange" },
+              { "id": "tree-sitter", "value": "tree-sitter", "color": "green" },
+              { "id": "pygments", "value": "Pygments", "color": "blue" },
+              { "id": "kde", "value": "KDE", "color": "blue" },
+              { "id": "own-only", "value": "Own only", "color": "gray" }
+            ]
+          },
+          "description": "External grammar ecosystems it can consume directly; build-time conversion counts (noted in comment)"
+        },
+        {
+          "id": "runtime-grammar-loading",
+          "name": "Runtime Grammar Loading",
+          "valueType": "boolean",
+          "description": "User can register a new or modified grammar at runtime without forking/rebuilding"
+        },
+        {
+          "id": "lazy-grammar-loading",
+          "name": "Lazy Grammar Loading",
+          "valueType": "boolean",
+          "description": "Grammars load on demand rather than all bundled up front"
+        },
+        {
+          "id": "grammar-accuracy",
+          "name": "Grammar Accuracy",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = tracks mainstream upstream grammars incl. modern syntax; 3 = solid for common constructs with known gaps; 1 = keyword/string/comment only"
+        }
+      ]
+    },
+    {
+      "id": "themes-styling",
+      "name": "Themes & Styling",
+      "description": "Bundled themes, theme formats, token naming, and class-based or multi-theme output",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "bundled-themes",
+          "name": "Bundled Themes",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Themes/styles shipped by default; version noted in comment"
+        },
+        {
+          "id": "theme-format",
+          "name": "Theme Format",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "vscode-theme", "value": "VS Code theme", "color": "purple" },
+              { "id": "tmtheme", "value": "tmTheme", "color": "purple" },
+              { "id": "sublime-color-scheme", "value": "Sublime color scheme", "color": "orange" },
+              { "id": "pygments-style", "value": "Pygments style", "color": "blue" },
+              { "id": "css-stylesheet", "value": "CSS stylesheet", "color": "green" },
+              { "id": "kde-theme", "value": "KDE theme", "color": "blue" },
+              { "id": "base16", "value": "Base16", "color": "orange" },
+              { "id": "code", "value": "Code", "color": "gray" }
+            ]
+          },
+          "description": "Theme definition format(s) accepted; Code = themes defined in host-language code"
+        },
+        {
+          "id": "token-classification",
+          "name": "Token Classification",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "textmate-scopes", "value": "TextMate scopes", "color": "purple" },
+              { "id": "fixed-taxonomy", "value": "Fixed taxonomy", "color": "blue" },
+              { "id": "capture-names", "value": "Capture names", "color": "green" },
+              { "id": "highlight-tags", "value": "Highlight tags", "color": "orange" }
+            ]
+          },
+          "description": "How tokens are named for styling: hierarchical scopes, closed token set, tree-sitter captures, or Lezer tags"
+        },
+        {
+          "id": "css-class-output",
+          "name": "CSS Class Output",
+          "valueType": "boolean",
+          "description": "Can emit class names instead of inline styles"
+        },
+        {
+          "id": "multi-theme-output",
+          "name": "Multi-Theme Output",
+          "valueType": "boolean",
+          "description": "One render serves several themes (light/dark) via CSS variables or multiple class sets"
+        }
+      ]
+    },
+    {
+      "id": "intermediate-representations",
+      "name": "Intermediate Representations",
+      "description": "What an application can get besides a finished string: token streams, scope stacks, styled spans, events, hast, JSON",
+      "expandedByDefault": true,
+      "attributes": [
+        {
+          "id": "public-token-api",
+          "name": "Public Token API",
+          "valueType": "boolean",
+          "description": "Documented public API yielding tokens/spans without rendering to a final format"
+        },
+        {
+          "id": "ir-kinds",
+          "name": "IR Kinds",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "token-list", "value": "Token list", "color": "blue" },
+              { "id": "scope-stack", "value": "Scope stack", "color": "purple" },
+              { "id": "styled-spans", "value": "Styled spans", "color": "orange" },
+              { "id": "highlight-events", "value": "Highlight events", "color": "green" },
+              { "id": "hast", "value": "hast", "color": "red" },
+              { "id": "html-dom", "value": "HTML DOM", "color": "orange" },
+              { "id": "syntax-tree", "value": "Syntax tree", "color": "green" },
+              { "id": "json", "value": "JSON", "color": "blue" }
+            ]
+          },
+          "description": "Kinds of documented intermediate representation exposed"
+        },
+        {
+          "id": "serializable-ir",
+          "name": "Serializable IR",
+          "valueType": "boolean",
+          "description": "IR is plain data with documented serialization (JSON, hast, serde) suitable for caching or sending over the wire"
+        },
+        {
+          "id": "theme-resolved-tokens",
+          "name": "Theme-Resolved Tokens",
+          "valueType": "boolean",
+          "description": "Can emit tokens with colours/styles already resolved from a theme, for non-CSS renderers"
+        },
+        {
+          "id": "source-offsets-in-ir",
+          "name": "Source Offsets in IR",
+          "valueType": "boolean",
+          "description": "Tokens/events carry byte/char offsets or line/column back into the source"
+        },
+        {
+          "id": "custom-formatter-api",
+          "name": "Custom Formatter API",
+          "valueType": "boolean",
+          "description": "Documented extension point for writing your own output formatter/renderer"
+        },
+        {
+          "id": "line-transforms-decorations",
+          "name": "Line Transforms / Decorations",
+          "valueType": "boolean",
+          "description": "Built-in mechanism to annotate lines/ranges (highlighted lines, diff markers, focus) on the IR before output"
+        }
+      ]
+    },
+    {
+      "id": "output-formats",
+      "name": "Output Formats",
+      "description": "First-party output targets beyond HTML: terminal, print, image",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "output-formats",
+          "name": "Output Formats",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "html-inline-styles", "value": "HTML (inline styles)", "color": "orange" },
+              { "id": "html-classes", "value": "HTML (classes)", "color": "orange" },
+              { "id": "ansi-16", "value": "ANSI 16", "color": "gray" },
+              { "id": "ansi-256", "value": "ANSI 256", "color": "gray" },
+              { "id": "ansi-truecolor", "value": "ANSI truecolor", "color": "green" },
+              { "id": "latex", "value": "LaTeX", "color": "blue" },
+              { "id": "rtf", "value": "RTF", "color": "blue" },
+              { "id": "svg", "value": "SVG", "color": "purple" },
+              { "id": "image", "value": "Image", "color": "purple" },
+              { "id": "bbcode", "value": "BBCode", "color": "gray" },
+              { "id": "pango-markup", "value": "Pango markup", "color": "gray" },
+              { "id": "odt", "value": "ODT", "color": "blue" },
+              { "id": "irc", "value": "IRC", "color": "gray" },
+              { "id": "markdown", "value": "Markdown", "color": "gray" },
+              { "id": "react-jsx", "value": "React / JSX", "color": "blue" }
+            ]
+          },
+          "description": "First-party output targets only; community plugins noted in comment"
+        },
+        {
+          "id": "line-numbers",
+          "name": "Line Numbers",
+          "valueType": "boolean",
+          "description": "Built-in line-number output for at least one format"
+        },
+        {
+          "id": "streaming-output",
+          "name": "Streaming Output",
+          "valueType": "boolean",
+          "description": "Emits output incrementally (line-by-line or chunked) before the full input is consumed"
+        },
+        {
+          "id": "terminal-ready",
+          "name": "Terminal-Ready",
+          "valueType": "boolean",
+          "description": "Ships an ANSI/terminal output path usable in CLIs without extra glue"
+        }
+      ]
+    },
+    {
+      "id": "runtime-integration",
+      "name": "Runtime & Integration",
+      "description": "Native dependencies, browser/WASM support, sync vs async API, bindings, and package size",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "native-dependencies",
+          "name": "Native Dependencies",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "none", "value": "None", "color": "green" },
+              { "id": "c-library", "value": "C library", "color": "orange" },
+              { "id": "wasm-embedded", "value": "WASM embedded", "color": "purple" },
+              { "id": "optional", "value": "Optional", "color": "blue" }
+            ]
+          },
+          "description": "Native code linked or embedded; library named in comment"
+        },
+        {
+          "id": "runs-in-browser",
+          "name": "Runs in Browser",
+          "valueType": "boolean",
+          "description": "Usable client-side in a browser without a server"
+        },
+        {
+          "id": "wasm-build",
+          "name": "WASM Build",
+          "valueType": "boolean",
+          "description": "Officially compiles to or ships as WASM"
+        },
+        {
+          "id": "synchronous-api",
+          "name": "Synchronous API",
+          "valueType": "boolean",
+          "description": "Can highlight synchronously after setup; async-only initialisation noted in comment"
+        },
+        {
+          "id": "bindings-ports",
+          "name": "Bindings / Ports",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "python", "value": "Python", "color": "blue" },
+              { "id": "rust", "value": "Rust", "color": "orange" },
+              { "id": "go", "value": "Go", "color": "blue" },
+              { "id": "ruby", "value": "Ruby", "color": "red" },
+              { "id": "javascript", "value": "JavaScript", "color": "orange" },
+              { "id": "php", "value": "PHP", "color": "purple" },
+              { "id": "swift", "value": "Swift", "color": "orange" },
+              { "id": "csharp", "value": "C#", "color": "purple" },
+              { "id": "java", "value": "Java", "color": "red" },
+              { "id": "elixir", "value": "Elixir", "color": "purple" },
+              { "id": "none", "value": "None", "color": "gray" }
+            ]
+          },
+          "description": "Official or well-known bindings in other languages; project named in comment"
+        },
+        {
+          "id": "core-package-size",
+          "name": "Core Package Size",
+          "valueType": {
+            "type": "filesize",
+            "direction": "descending"
+          },
+          "description": "Minimal usable distribution: min+gzip core for JS, installed size otherwise; what was measured noted in comment"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "description": "Throughput and initialisation cost, based on comparative benchmarks",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "throughput-tier",
+          "name": "Throughput Tier",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "top-tier", "value": "Top tier", "color": "green" },
+              { "id": "fast", "value": "Fast", "color": "blue" },
+              { "id": "moderate", "value": "Moderate", "color": "orange" },
+              { "id": "slow", "value": "Slow", "color": "red" }
+            ]
+          },
+          "description": "Relative to fastest in a shared benchmark: top-tier ≤1.5×, fast 1.5–3×, moderate 3–10×, slow >10×"
+        },
+        {
+          "id": "initialization-cost",
+          "name": "Initialization Cost",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "light", "value": "Light", "color": "green" },
+              { "id": "moderate", "value": "Moderate", "color": "orange" },
+              { "id": "heavy", "value": "Heavy", "color": "red" }
+            ]
+          },
+          "description": "Time to first highlight: light <10 ms, moderate 10–100 ms, heavy >100 ms"
+        }
+      ]
+    },
+    {
+      "id": "ecosystem-maintenance",
+      "name": "Ecosystem & Maintenance",
+      "description": "Popularity, release activity, documentation, notable users, and bus factor",
+      "expandedByDefault": false,
+      "attributes": [
+        {
+          "id": "github-stars",
+          "name": "GitHub Stars",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "Snapshot; date noted in comment"
+        },
+        {
+          "id": "monthly-downloads",
+          "name": "Monthly Downloads",
+          "valueType": {
+            "type": "integer",
+            "direction": "ascending"
+          },
+          "description": "From the primary registry; cross-registry numbers only roughly comparable — registry and date in comment"
+        },
+        {
+          "id": "last-release",
+          "name": "Last Release",
+          "valueType": {
+            "type": "date",
+            "direction": "ascending",
+            "format": "full"
+          },
+          "description": "Most recent stable release"
+        },
+        {
+          "id": "maintenance-status",
+          "name": "Maintenance Status",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "actively-maintained", "value": "Actively maintained", "color": "green" },
+              { "id": "passively-maintained", "value": "Passively maintained", "color": "blue" },
+              { "id": "seeking-maintainer", "value": "Seeking maintainer", "color": "orange" },
+              { "id": "dormant", "value": "Dormant", "color": "orange" },
+              { "id": "archived", "value": "Archived", "color": "red" },
+              { "id": "superseded", "value": "Superseded", "color": "gray" }
+            ]
+          },
+          "description": "Active = release/substantive commit in last 6 months; dormant = nothing in 24+ months, not archived"
+        },
+        {
+          "id": "documentation-quality",
+          "name": "Documentation Quality",
+          "valueType": {
+            "lower": 1,
+            "upper": 5,
+            "direction": "ascending",
+            "symbols": { "empty": "☆", "full": "★" }
+          },
+          "description": "5 = docs site with guides, API reference, language/theme catalog, migration notes; 3 = solid README + API reference; 1 = minimal or stale"
+        },
+        {
+          "id": "notable-users",
+          "name": "Notable Users",
+          "valueType": "text",
+          "description": "2–4 well-known projects or products using it"
+        },
+        {
+          "id": "bus-factor",
+          "name": "Bus Factor",
+          "valueType": {
+            "type": "tags",
+            "defaultColor": "gray",
+            "tags": [
+              { "id": "solo", "value": "Solo", "color": "red" },
+              { "id": "small-team", "value": "Small team", "color": "orange" },
+              { "id": "organization", "value": "Organization", "color": "green" }
+            ]
+          },
+          "description": "Who maintains it"
+        }
+      ]
+    }
+  ]
+}
