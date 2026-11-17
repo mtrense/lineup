@@ -1,5 +1,270 @@
 {
   "name": "highlight.js",
   "description": "The most widely deployed JS highlighter; auto-detection, zero-dependency, runs in browser and Node",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["javascript"],
+      "source": ["https://github.com/highlightjs/highlight.js"],
+      "comment": "Implemented in JavaScript; the npm package also ships TypeScript type definitions, but the source and grammars are JS."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/highlightjs/highlight.js"],
+      "comment": "Library for browser (script tag/CDN/ESM) and Node (CommonJS/ESM). No first-party CLI."
+    },
+    "license": {
+      "value": ["bsd-3-clause"],
+      "source": ["https://github.com/highlightjs/highlight.js/blob/main/LICENSE", "https://registry.npmjs.org/highlight.js/latest"],
+      "comment": "BSD 3-Clause; 'Copyright (c) 2006, Ivan Sagalaev'. Third-party grammars listed in SUPPORTED_LANGUAGES.md are separate packages with their own licences."
+    },
+    "repository": {
+      "value": "https://github.com/highlightjs/highlight.js",
+      "source": ["https://github.com/highlightjs/highlight.js"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/highlight.js",
+      "source": ["https://registry.npmjs.org/highlight.js/latest"],
+      "comment": "npm package 'highlight.js'; prebuilt browser/CDN builds are published as '@highlightjs/cdn-assets'."
+    },
+    "documentation": {
+      "value": "https://highlightjs.readthedocs.io/",
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"]
+    },
+    "first-release": {
+      "value": "2006",
+      "source": ["https://github.com/highlightjs/highlight.js/blob/main/LICENSE"],
+      "comment": "Created by Ivan Sagalaev in 2006 (LICENSE copyright year). The GitHub repo dates from 2011 and the first npm publish from 2011-07-15."
+    },
+    "latest-version": {
+      "value": "11.12.0",
+      "source": ["https://registry.npmjs.org/highlight.js/latest", "https://github.com/highlightjs/highlight.js/releases"],
+      "comment": "npm dist-tag latest as of 2026-11-18. CHANGES.md on main already lists an unreleased 11.12.1."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/mode-reference.html", "https://highlightjs.readthedocs.io/en/latest/language-guide.html"],
+      "comment": "Declarative mode trees of begin/end regexes interpreted by a JS state machine."
+    },
+    "regex-engine": {
+      "value": ["js-regexp"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/mode-reference.html"],
+      "comment": "Grammars compile to native JavaScript RegExp objects; no external regex engine."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://github.com/highlightjs/highlight.js/blob/main/src/languages/xml.js", "https://highlightjs.readthedocs.io/en/latest/mode-reference.html"],
+      "comment": "Via the mode 'subLanguage' attribute: the xml/html grammar highlights <style> contents as css and <script> contents as javascript out of the box. subLanguage can also auto-detect among a set of languages."
+    },
+    "language-auto-detection": {
+      "value": true,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://highlightjs.readthedocs.io/en/latest/language-guide.html"],
+      "comment": "highlightAuto(code, languageSubset) runs all (or a subset of) grammars and picks the highest relevance score; returns secondBest as well. highlightElement auto-detects when no language class is present."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "No filename/shebang/mime lookup API. Grammars declare aliases (several of which happen to be extensions like 'js', 'py'), resolvable via getLanguage()/registerAliases, but there is no dedicated filename or path mapping."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://github.com/highlightjs/highlight.js/blob/main/VERSION_11_UPGRADE.md"],
+      "comment": "v10 accepted a 'continuation' argument to highlight(); v11 removed it from the public API ('only intended for internal library usage'), and the result's _top is now private."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "Each highlight() call processes the full input; no edit-reuse mechanism."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/mode-reference.html"],
+      "comment": "Pure regex lexer. Grammars emit scopes like title.function or params from regex context, but there is no syntax tree or locals tracking."
+    },
+    "bundled-languages": {
+      "value": 193,
+      "source": ["https://highlightjs.org/", "https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md"],
+      "comment": "v11.12.0, checked 2026-11-18: 193 core grammars in the full npm/Node build (the site says 193; the src/languages directory has 194 .js files). The default highlight.min.js CDN build includes only a smaller 'common' subset. SUPPORTED_LANGUAGES.md also lists ~114 third-party grammar packages that aren't bundled."
+    },
+    "grammar-format": {
+      "value": ["highlightjs-language"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/language-guide.html", "https://highlightjs.readthedocs.io/en/latest/mode-reference.html"],
+      "comment": "Grammars are JS functions that return a mode-tree object."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/language-guide.html"],
+      "comment": "Only consumes its own grammar format; no TextMate/Sublime/tree-sitter import."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "registerLanguage(name, definition), unregisterLanguage and registerAliases are available at runtime (the docs describe them as mostly internal, but they are the documented way to add third-party grammars)."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://github.com/highlightjs/highlight.js"],
+      "comment": "No built-in on-demand loader. The full build registers every grammar up front. To keep bundles small you import lib/core plus individual lib/languages/* modules yourself (statically or with your own dynamic import)."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://github.com/highlightjs/highlight.js/issues/4550", "https://github.com/highlightjs/highlight.js/releases"],
+      "comment": "Hand-maintained regex grammars that don't track an upstream grammar. They are kept fairly current (11.12.0 added Python t-strings and Lua 5.5 keywords), but modern/nested syntax still has gaps, e.g. open issue #4550 (Sep 2026): TypeScript generic function declarations lose name/params highlighting. Rated 3 per the guideline."
+    },
+    "bundled-themes": {
+      "value": 266,
+      "source": ["https://github.com/highlightjs/highlight.js/tree/main/src/styles", "https://api.github.com/repos/highlightjs/highlight.js/contents/src/styles/base16", "https://highlightjs.org/"],
+      "comment": "Repo main, checked 2026-11-18: 90 stylesheets in src/styles plus 176 in src/styles/base16. highlightjs.org claims '516 themes', apparently counting differently (e.g. the minified variants listed on the demo page)."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/theme-guide.html"],
+      "comment": "A theme is a plain CSS file that styles .hljs-* scope classes. The base16 collection is ported to the same CSS format, not loaded as base16 YAML."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/theme-guide.html", "https://highlightjs.readthedocs.io/en/latest/mode-reference.html"],
+      "comment": "Closed set of scopes (keyword, string, title.function, ...) rendered as hljs-* classes. Grammars may map custom names via classNameAliases."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://highlightjs.readthedocs.io/en/latest/theme-guide.html"],
+      "comment": "Class-only output with a configurable classPrefix (default 'hljs-'). There is no inline-style mode."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/theme-guide.html", "https://github.com/highlightjs/highlight.js/tree/main/src/styles"],
+      "comment": "Borderline. One class-based render works with any theme because themes ship as swappable stylesheets (e.g. github.css / github-dark.css, which can be switched with a media query). The Research Notes count this, but there is no built-in CSS-variable or dual-theme mechanism, and the theme guide doesn't document light/dark switching."
+    },
+    "public-token-api": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://github.com/highlightjs/highlight.js/blob/main/VERSION_11_UPGRADE.md"],
+      "comment": "highlight() returns only an HTML string ('value') plus metadata. The internal token tree is exposed as _emitter, which v11 marks private ('subject to change at any time'). The documented Emitter interface (addText/startScope/endScope) is an input hook for custom grammar parsers (__emitTokens), not a token output API."
+    },
+    "ir-kinds": {
+      "value": null,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "No documented intermediate representation. Output is an HTML string (or in-place DOM mutation via highlightElement), and the token tree is private (_emitter). Wrappers like lowlight rebuild a hast tree from it, but that is outside this package."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "There is no public IR to serialize."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/theme-guide.html"],
+      "comment": "Themes are CSS only, and the library never resolves colours."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "There is no public IR, so no source offsets are exposed."
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/plugin-api.html", "https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "The plugin API (before/after:highlight, before/after:highlightElement) can rewrite input or post-process the result, but there is no documented way to replace the HTML emitter/renderer."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/plugin-api.html"],
+      "comment": "No built-in line/range decoration mechanism. Plugins can only post-process the final HTML string or the element."
+    },
+    "output-formats": {
+      "value": ["html-classes"],
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "HTML with hljs-* classes only. Terminal output (cli-highlight), hast (lowlight) and the Vue component are community or separate projects."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/line-numbers.html"],
+      "comment": "Deliberately unsupported ('not an oversight but a feature'); the docs point to third-party plugins."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://github.com/highlightjs/highlight.js/blob/main/VERSION_11_UPGRADE.md"],
+      "comment": "Highlights complete buffers only. The continuation argument that allowed chunked highlighting was removed from the public API in v11."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "No ANSI output. Terminal use needs a third-party converter such as cli-highlight."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://github.com/highlightjs/highlight.js", "https://registry.npmjs.org/highlight.js/latest"],
+      "comment": "Pure JS with zero runtime dependencies."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://github.com/highlightjs/highlight.js"],
+      "comment": "Script tag, CDN, ES modules/importmap, and Web Worker usage are all documented."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/highlightjs/highlight.js"],
+      "comment": "Pure JS with no WASM build."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html"],
+      "comment": "highlight() and highlightAuto() are synchronous, and no async initialisation is required."
+    },
+    "bindings-ports": {
+      "value": ["php"],
+      "source": ["https://github.com/scrivo/highlight.php"],
+      "comment": "scrivo/highlight.php is a community PHP port of highlight.js (~710 stars, 9.18.x stable line). There are no official bindings."
+    },
+    "core-package-size": {
+      "value": 8204,
+      "source": ["https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.12.0/es/core.min.js", "https://bundlephobia.com/package/highlight.js@11.12.0"],
+      "comment": "Core engine only, no grammars: @highlightjs/cdn-assets@11.12.0 es/core.min.js is 20,501 B minified and ~8.2 KB gzipped (gzip -9, measured 2026-11-18). Bundlephobia reports the full npm package entry (all 193 grammars) at 299.9 kB min+gzip."
+    },
+    "throughput-tier": {
+      "value": ["top-tier"],
+      "source": ["https://github.com/speed-highlight/core", "https://chsm.dev/blog/2025/01/08/comparing-web-code-highlighters"],
+      "comment": "Contested. In the reproducible speed-highlight benchmark (Node 26, M4; hljs 11.11, HTML output), highlight.js is within 1.1x of Prism on 1 KB inputs and faster than every other comparison candidate on 16 KB and 128 KB inputs; only speed-highlight, which is not a candidate, is faster. The chsm.dev Jan 2025 benchmark (single TSX sample, method not described) has Prism ~2x faster, which would mean 'fast'."
+    },
+    "initialization-cost": {
+      "value": ["moderate"],
+      "source": ["https://github.com/speed-highlight/core"],
+      "comment": "Cold start (import plus first highlight) measured at 19 ms in the speed-highlight benchmark (Prism 8.6 ms, Shiki JS engine 169 ms). Loading only lib/core plus a few grammars is likely lighter, but that wasn't measured."
+    },
+    "github-stars": {
+      "value": 25017,
+      "source": ["https://github.com/highlightjs/highlight.js"],
+      "comment": "Snapshot 2026-11-18 (GitHub API stargazers_count; the repo page shows 25.0k)."
+    },
+    "monthly-downloads": {
+      "value": 204330348,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/highlight.js"],
+      "comment": "npm, 2026-10-18 to 2026-11-16. Inflated by heavy transitive use (e.g. via lowlight and cli-highlight)."
+    },
+    "last-release": {
+      "value": "2026-08-12",
+      "source": ["https://registry.npmjs.org/highlight.js", "https://github.com/highlightjs/highlight.js/releases"],
+      "comment": "11.12.0 was published to npm 2026-08-12 (11.11.2 the day before)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/highlightjs/highlight.js/releases", "https://github.com/highlightjs/highlight.js/blob/main/CHANGES.md"],
+      "comment": "11.12.0 was released Aug 2026 with grammar fixes and a new grammar and theme. As of 2026-11-18 there are commits on main through Nov 2026, with unreleased 11.12.1 changes."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://highlightjs.readthedocs.io/en/latest/api.html", "https://github.com/highlightjs/highlight.js/blob/main/VERSION_11_UPGRADE.md", "https://highlightjs.org/demo"],
+      "comment": "Read the Docs site with API reference, language/mode guides, theme guide and plugin API, plus SUPPORTED_LANGUAGES.md, an interactive language/theme demo and version upgrade guides. Internals such as the emitter are intentionally undocumented."
+    },
+    "notable-users": {
+      "value": "Stack Overflow, Discord",
+      "source": ["https://highlightjs.org/"],
+      "comment": "highlightjs.org lists these under 'Trusted by'. Downstream wrappers like lowlight and cli-highlight are also built on it."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://raw.githubusercontent.com/highlightjs/highlight.js/main/CONTRIBUTORS.md"],
+      "comment": "Core team: Josh Goebel (maintainer) and Vladimir Jimenez. Former maintainers include the original author Ivan Sagalaev. Releases are published by joshgoebel, so in practice it relies largely on one person."
+    }
+  }
 }
