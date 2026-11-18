@@ -1,5 +1,267 @@
 {
   "name": "vscode-textmate",
   "description": "The TextMate grammar interpreter behind VS Code, usable standalone; scope-stack tokens and resumable rule stacks",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["typescript"],
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://api.github.com/repos/microsoft/vscode-textmate"],
+      "comment": "Written in TypeScript. Published as a UMD JavaScript bundle (release/main.js) with typings, usable from Node and browsers."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "Library only. The repo's `npm run inspect` script is a development aid, not a shipped CLI."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://registry.npmjs.org/vscode-textmate"],
+      "comment": "MIT. No grammars or themes are bundled, so there are no third-party grammar licences to note."
+    },
+    "repository": {
+      "value": "https://github.com/microsoft/vscode-textmate",
+      "source": ["https://github.com/microsoft/vscode-textmate"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/vscode-textmate",
+      "source": ["https://registry.npmjs.org/vscode-textmate"]
+    },
+    "documentation": {
+      "value": "https://github.com/microsoft/vscode-textmate#readme",
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "There is no docs site. The README has a usage example and points to the TSDoc comments in src/main.ts as the API documentation."
+    },
+    "first-release": {
+      "value": "2015",
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "First npm publish was 0.0.1 on 2015-09-16. The GitHub repo was created 2015-09-15."
+    },
+    "latest-version": {
+      "value": "9.3.2",
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "npm dist-tag latest, checked 2026-11-18. A stale `next` tag points to 4.0.0-next.3."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "The README calls it \"an interpreter for grammar files as defined by TextMate\". It is the reference TextMate interpreter that Shiki forks and tm4e/TextMateSharp port."
+    },
+    "regex-engine": {
+      "value": ["oniguruma-wasm"],
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-oniguruma"],
+      "comment": "The regex engine is pluggable via the required `onigLib` option (IOnigLib: createOnigScanner/createOnigString). The README and VS Code use vscode-oniguruma, an Oniguruma WASM build. Older setups used the native node `oniguruma` module. A JS-RegExp IOnigLib is possible but none is first-party."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts", "https://github.com/microsoft/vscode-textmate"],
+      "comment": "Grammars that include other scopes (e.g. HTML including source.js and source.css) are resolved through the `loadGrammar` callback, and `embeddedLanguages` maps scopes to language ids. Injection grammars are supported via `getInjections` / addGrammar's `injections`. The README still says cross-grammar injections are not supported, so that note looks out of date. Caveat: no grammars are bundled, so the caller must supply HTML, JS and CSS grammars."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No content-based detection API. Grammars are requested by scope name."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No built-in lookup. The caller maps files to scope names; VS Code does this in its extension host using language contributions."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "`tokenizeLine(line, prevState)` returns a `ruleStack` (an immutable StateStack with clone/equals) that is passed in for the next line, starting from `INITIAL`. An optional `timeLimit` and `stoppedEarly` flag support time-sliced tokenization."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No edit-aware reparse. Consumers such as VS Code re-tokenize from the first changed line using stored per-line states, and stop when a state equals the previous one."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "Pure TextMate regex state machine. Function or type scopes come from grammar regexes, not from a syntax tree (per the guideline). VS Code layers LSP semantic tokens on top separately."
+    },
+    "bundled-languages": {
+      "value": 0,
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "Engine only. The 9.3.2 tarball has 5 files (LICENSE, README, package.json, release/main.js, types) and no grammars. Grammars come from VS Code extensions or other sources."
+    },
+    "grammar-format": {
+      "value": ["textmate-json", "textmate-plist"],
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "`parseRawGrammar(content, filePath)` accepts both JSON and PLIST (.tmLanguage) grammars."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "This is the VS Code grammar engine itself, so any VS Code / TextMate grammar loads directly. Sublime .sublime-syntax files are not supported."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "Grammars are supplied at runtime through the `loadGrammar` callback or `Registry.addGrammar(rawGrammar)`."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts", "https://github.com/microsoft/vscode-textmate"],
+      "comment": "Nothing is bundled. The registry calls the async `loadGrammar(scopeName)` callback on demand for the requested grammar and each included grammar."
+    },
+    "grammar-accuracy": {
+      "value": null,
+      "comment": "No bundled grammars, so accuracy depends on the grammars the caller supplies. Not rated. As the reference interpreter it defines VS Code behaviour for those grammars."
+    },
+    "bundled-themes": {
+      "value": 0,
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "No themes are shipped. Callers pass a theme via `Registry.setTheme` or the `theme` option."
+    },
+    "theme-format": {
+      "value": ["tmtheme"],
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "`setTheme` takes an IRawTheme `{ name, settings: [{ scope, settings: { foreground, background, fontStyle } }] }`, which is the tmTheme settings structure as a JS object. VS Code converts its JSON theme `tokenColors` into this shape before passing it in. Raw VS Code theme files are not accepted directly."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "Each IToken carries a `scopes` array of hierarchical TextMate scope names."
+    },
+    "css-class-output": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No rendering of any kind. The API returns tokens only."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "One theme per Registry at a time. `setTheme` invalidates previous rule stacks, so multiple themes need separate registries or re-tokenization."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "Tokens are the library's only output. `IGrammar.tokenizeLine` and `tokenizeLine2` are exported and documented in the README example and the TSDoc."
+    },
+    "ir-kinds": {
+      "value": ["scope-stack", "styled-spans"],
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "`tokenizeLine` returns IToken {startIndex, endIndex, scopes[]}, a scope stack per token. `tokenizeLine2` returns a Uint32Array of [startIndex, metadata] pairs. The metadata encodes language id, token type, font style and foreground/background colour ids that resolve via `getColorMap()`. This is a binary styled-span form. Since 9.3 there is also per-range `fonts` info."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "Tokens are plain objects or a Uint32Array that could be JSON-encoded, but no serialization is documented (per the guideline). StateStack is an opaque in-memory object."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "`tokenizeLine2` metadata contains theme-resolved foreground/background colour ids and font style. `Registry.getColorMap()` maps the ids to colours. EncodedTokenAttributes helpers decode them."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "Tokens carry `startIndex`/`endIndex` character offsets within the line. The caller tracks line numbers."
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "There is no formatter or renderer abstraction. Callers write their own renderer from the raw token arrays, which is the only way to produce output, but no extension point is documented for it."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No decoration or transform mechanism."
+    },
+    "output-formats": {
+      "value": [],
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No first-party output formats; it emits tokens only. Rendering is left to consumers (the VS Code editor, Shiki's fork, etc.)."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No rendered output, so no line numbers."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "The API is strictly line-at-a-time. `tokenizeLine(line, prevState)` emits tokens for each line as it arrives, without needing the rest of the input. These are tokens rather than rendered output."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "No ANSI output path."
+    },
+    "native-dependencies": {
+      "value": ["wasm-embedded"],
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-oniguruma", "https://registry.npmjs.org/vscode-textmate"],
+      "comment": "The package itself has zero runtime dependencies and is pure JS, but it needs an Oniguruma implementation. The documented setup loads `onig.wasm` from vscode-oniguruma, which the caller installs and wires in. Not bundled in this package."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/microsoft/vscode/main/src/vs/workbench/services/textMate/browser/backgroundTokenization/threadedBackgroundTokenizerFactory.ts"],
+      "comment": "release/main.js is a UMD bundle. VS Code's browser workbench (including web builds) runs TextMate tokenization in a web worker, loading onig.wasm from a browser URI."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/microsoft/vscode-textmate"],
+      "comment": "The engine is JavaScript, not WASM. Only the companion regex library (vscode-oniguruma) is WASM."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "`tokenizeLine` / `tokenizeLine2` are synchronous. Initialisation is async: `onigLib` is a Promise and `loadGrammar` returns a Promise. Shiki's fork makes loading synchronous too."
+    },
+    "bindings-ports": {
+      "value": ["java", "csharp"],
+      "source": ["https://github.com/eclipse/tm4e", "https://github.com/danipen/TextMateSharp", "https://github.com/shikijs/vscode-textmate"],
+      "comment": "Ports: Eclipse tm4e (Java, \"a port of vscode-textmate\") and TextMateSharp (C#, port of vscode-textmate based on tm4e). Shiki maintains a JS fork, @shikijs/vscode-textmate, which is not a different-language binding."
+    },
+    "core-package-size": {
+      "value": 17026,
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "gzip -c of release/main.js from the 9.3.2 tarball (61,242 bytes minified), measured 2026-11-18. Excludes the required Oniguruma library (vscode-oniguruma onig.wasm), which is much larger."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "The repo has an `npm run benchmark` script but publishes no results. No independent comparative benchmark against other highlighters was found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured. Dominated by Oniguruma WASM instantiation and grammar loading, which depend on the caller's setup."
+    },
+    "github-stars": {
+      "value": 681,
+      "source": ["https://api.github.com/repos/microsoft/vscode-textmate"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 5816989,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/vscode-textmate"],
+      "comment": "npm, last month (2026-10-18 to 2026-11-16), checked 2026-11-18. Inflated by transitive dependents (e.g. tooling that depends on it). Shiki uses its own fork and does not count here."
+    },
+    "last-release": {
+      "value": "2026-01-22",
+      "source": ["https://registry.npmjs.org/vscode-textmate"],
+      "comment": "9.3.2 published to npm on 2026-01-22. The repo has no GitHub Releases."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/microsoft/vscode-textmate/commits"],
+      "comment": "Substantive commits within 6 months: a process.env fix (#284) on 2026-06-13 and the permanent-flyingfish merge (#261) on 2026-06-08. Earlier in 2026: backreference escaping and empty-end-match fixes, and font attributes in the 9.3.x line. Since then, mostly dependabot. 65 open issues. Borderline toward passively maintained; checked 2026-11-18."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://github.com/microsoft/vscode-textmate/blob/main/src/main.ts"],
+      "comment": "Short README with one Node usage example. API docs are partial TSDoc in src/main.ts: IToken, RegistryOptions fields, StateStack members and the injection options are undocumented. The README note about injections is stale. No guide or docs site."
+    },
+    "notable-users": {
+      "value": "Visual Studio Code; Shiki (via its fork @shikijs/vscode-textmate); vscode-tmgrammar-test; ported as Eclipse tm4e and TextMateSharp",
+      "source": ["https://raw.githubusercontent.com/microsoft/vscode/main/package.json", "https://registry.npmjs.org/@shikijs/core/latest", "https://github.com/PanAeon/vscode-tmgrammar-test"],
+      "comment": "VS Code's package.json depends on vscode-textmate ^9.3.2. @shikijs/core 4.6.0 depends on @shikijs/vscode-textmate ^10.1.0, a fork rather than this package. vscode-tmgrammar-test runs grammar tests \"using vscode-textmate\"."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://github.com/microsoft/vscode-textmate", "https://api.github.com/repos/microsoft/vscode-textmate/contributors"],
+      "comment": "Microsoft-owned and maintained by the VS Code team. Top contributors are alexdima (310 commits), aeschli, aiday-mar and hediet."
+    }
+  }
 }
