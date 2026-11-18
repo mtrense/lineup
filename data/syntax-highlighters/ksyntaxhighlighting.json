@@ -1,5 +1,268 @@
 {
   "name": "KSyntaxHighlighting",
   "description": "KDE Frameworks' C++/Qt engine with a large XML syntax catalog; used by Kate and Qt Creator",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["cpp"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://api.kde.org/ksyntaxhighlighting-index.html"],
+      "comment": "C++ library built on Qt (Qt Core/Gui; no Qt Widgets/QML requirement). Also exposes a QML API (src/quick), which is consumed from Qt apps rather than a separate host language."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/cli/ksyntaxhighlighter.cpp"],
+      "comment": "KF6::SyntaxHighlighting library plus the bundled `ksyntaxhighlighter` CLI (HTML/ANSI output, syntax tracing for grammar authors)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://doc.qt.io/qtcreator/qtcreator-attribution-ksyntaxhighlighting.html", "https://invent.kde.org/api/v4/projects/frameworks%2Fsyntax-highlighting/repository/tree?path=LICENSES&per_page=100"],
+      "comment": "Engine code is MIT (SPDX headers; README says contributions are MIT). Originally announced as LGPLv2+ in 2016 and later relicensed. Individual syntax definition XML files carry their own licences (e.g. html.xml LGPL, rust.xml MIT, Qt Creator lists java.xml as LGPL-2.1); the LICENSES folder also holds BSD-2/3, CC0, GPL-2.0-only, GPL-3.0-or-later, LGPL-2.0/2.1-or-later texts."
+    },
+    "repository": {
+      "value": "https://invent.kde.org/frameworks/syntax-highlighting",
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting"],
+      "comment": "Canonical repo on KDE's GitLab (invent.kde.org); read-only mirror at github.com/KDE/syntax-highlighting."
+    },
+    "package": {
+      "value": "https://download.kde.org/stable/frameworks/6.32/",
+      "source": ["https://download.kde.org/stable/frameworks/6.32/"],
+      "comment": "No language-registry package; distributed as KDE Frameworks source tarballs (syntax-highlighting-6.32.0.tar.xz) and via distro packages (e.g. kf6-syntax-highlighting)."
+    },
+    "documentation": {
+      "value": "https://api.kde.org/ksyntaxhighlighting-index.html",
+      "source": ["https://api.kde.org/ksyntaxhighlighting-index.html", "https://api.kde.org/ksyntaxhighlighting-module.html"],
+      "comment": "QDoc-generated API reference on api.kde.org plus the repo README; syntax/theme catalogs on kate-editor.org."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://kde.org/announcements/frameworks/5/5.28.0/", "https://kate-editor.org/2016/11/15/ksyntaxhighlighting-a-new-syntax-highlighting-framework/"],
+      "comment": "First shipped as a new framework in KDE Frameworks 5.28.0 on 2016-11-15. The underlying Kate highlighting engine and XML format are much older (inside KTextEditor)."
+    },
+    "latest-version": {
+      "value": "6.32.0",
+      "source": ["https://kde.org/announcements/frameworks/6/6.32.0/", "https://api.github.com/repos/KDE/syntax-highlighting/tags?per_page=10"],
+      "comment": "KDE Frameworks 6.32.0, announced 2026-11-13; latest tag as of 2026-11-18. Versioned in lockstep with monthly KDE Frameworks releases."
+    },
+    "engine-model": {
+      "value": ["kde-syntax"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://kde.org/announcements/frameworks/5/5.28.0/"],
+      "comment": "Interprets Kate XML syntax definitions (context stack with DetectChar/keyword/RegExpr rules). The reference kde-syntax engine."
+    },
+    "regex-engine": {
+      "value": ["pcre"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/rule_p.h", "https://kde.org/announcements/frameworks/6/6.32.0/"],
+      "comment": "RegExpr rules use Qt's QRegularExpression, which is backed by PCRE2. Many rules are non-regex (DetectChar, StringDetect, keyword lists, Int/Float), so regex is only part of the matching."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/data/syntax/html.xml"],
+      "comment": "html.xml includes `##CSS` for style elements and `Normal##JavaScript` for script elements (plus JSX) through cross-definition IncludeRules, so HTML+JS+CSS works out of the box."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-repository.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/repository.h"],
+      "comment": "Definitions are looked up only by name, file name/extension, or MIME type; there is no content-based guessing API."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-repository.html"],
+      "comment": "Repository::definitionForFileName / definitionsForFileName (extensions + mimetype, priority-ranked) and definitionForMimeType."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/abstracthighlighter.h"],
+      "comment": "highlightLine(text, State) returns the next opaque State, which the docs say can be stored for partial re-highlighting while editing."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html"],
+      "comment": "No parse tree to reuse. Edits are handled by re-highlighting from the stored per-line State, which counts as Resumable Line State only."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md"],
+      "comment": "Lexical context-stack engine with no syntax tree or locals tracking. The README explicitly leaves anything beyond highlighting and folding ranges to KTextEditor."
+    },
+    "bundled-languages": {
+      "value": 466,
+      "source": ["https://kate-editor.org/syntax/"],
+      "comment": "kate-editor.org/syntax (checked 2026-11-18) says KSyntaxHighlighting supports 466 languages. This counts syntax definitions, some of which are dialects or helper/sub-languages. The data/syntax directory has 417 entries; some definitions are generated at build time."
+    },
+    "grammar-format": {
+      "value": ["kde-xml"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md"],
+      "comment": "Kate XML syntax definitions in data/syntax, validated against an XSD schema (validatehl.sh). Compiled into the library as Qt resources (CBOR-indexed) at build time."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["kde"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md"],
+      "comment": "Consumes only Kate/KDE XML definitions; the reference implementation of that ecosystem (also reused by skylighting and Qt Creator). Cannot load TextMate, Sublime, or tree-sitter grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-repository.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md"],
+      "comment": "Repository::addCustomSearchPath (disk or Qt resource paths) and per-user org.kde.syntax-highlighting/syntax directories. File-system definitions override built-in ones; DefinitionDownloader can fetch updates."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/definition.cpp"],
+      "comment": "The Repository reads only metadata for every definition (\"moderately expensive\" at construction). Contexts and rules are parsed on first use via DefinitionData::load(), with a keywords-only partial load mode. All definitions still ship compiled into the library."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/data/syntax/typescript.xml", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/data/syntax/python.xml", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/data/syntax/rust.xml"],
+      "comment": "Spot check 2026-11-18: python.xml (v33) covers match/case and f-strings; rust.xml covers async/union. typescript.xml (v18) has no `satisfies` (TS 4.9), `override`, or `asserts` keywords. Grammars are hand-maintained by KDE rather than tracking an upstream grammar. Well regression-tested, with active per-release fixes (e.g. C++ #embed in 6.32). Rated 3 for known gaps on modern syntax."
+    },
+    "bundled-themes": {
+      "value": 30,
+      "source": ["https://invent.kde.org/api/v4/projects/frameworks%2Fsyntax-highlighting/repository/tree?path=data/themes&per_page=100"],
+      "comment": "30 .theme files in data/themes on master (checked 2026-11-18, ~6.32), e.g. Breeze, Atom One, Catppuccin, Dracula, GitHub, Gruvbox, Monokai, Nord, Solarized, Tokyo Night, plus a Printing theme."
+    },
+    "theme-format": {
+      "value": ["kde-theme"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://api.kde.org/ksyntaxhighlighting-theme.html"],
+      "comment": "JSON .theme files mapping the 31 default text styles and editor colours; per-definition overrides possible."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://api.kde.org/ksyntaxhighlighting-theme.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/format.h"],
+      "comment": "Each grammar's itemData maps to one of 31 Theme::TextStyle default styles (Keyword, Function, ControlFlow, String, Comment, …). Format::name() also exposes the grammar-specific itemData name."
+    },
+    "css-class-output": {
+      "value": false,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/htmlhighlighter.cpp"],
+      "comment": "The built-in HtmlHighlighter writes `<span style=\"color:…;background-color:…\">` inline styles only; there is no class-based mode."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/htmlhighlighter.cpp"],
+      "comment": "HTML output resolves one theme to inline colours; there is no single-render light/dark mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html", "https://api.kde.org/ksyntaxhighlighting-module.html"],
+      "comment": "Documented AbstractHighlighter: subclass it, call highlightLine(), and receive applyFormat(offset, length, Format) callbacks (plus applyFolding for folding regions). This is a callback stream, not a returned collection."
+    },
+    "ir-kinds": {
+      "value": ["token-list", "styled-spans"],
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/format.h"],
+      "comment": "Per-line (offset, length, Format) spans delivered via callback. A Format carries a name and TextStyle (token class) and resolves colours/bold/italic against a Theme (styled span). Folding regions are delivered as separate events. No tree or JSON form."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html"],
+      "comment": "Format and State are in-memory C++ objects (State is opaque); there is no documented serialization."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/format.h", "https://api.kde.org/ksyntaxhighlighting-module.html"],
+      "comment": "Format::textColor(theme), isBold(theme), etc. resolve the style for the current Theme. The SyntaxHighlighter class applies them directly to a QTextDocument."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html"],
+      "comment": "applyFormat/applyFolding receive offset and length within the current line (line index is tracked by the caller)."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/abstracthighlighter.h"],
+      "comment": "The docs say to subclass AbstractHighlighter and reimplement applyFormat() to produce your own output. The bundled HTML/ANSI highlighters are built this way."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-module.html"],
+      "comment": "No built-in line/range annotation mechanism; decorations are left to the host editor (e.g. KTextEditor)."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "ansi-256", "ansi-truecolor"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/cli/ksyntaxhighlighter.cpp", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/ansihighlighter.cpp", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/htmlhighlighter.cpp"],
+      "comment": "ksyntaxhighlighter `-f html|ansi|ansi256`: inline-styled HTML, 24-bit ANSI, and xterm-256 ANSI (no 16-colour mode). HtmlHighlighter/AnsiHighlighter are exported for the bundled CLI but not listed in the public class docs. The library also offers a QSyntaxHighlighter subclass for Qt rich-text documents (no matching tag)."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/cli/ksyntaxhighlighter.cpp", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/htmlhighlighter.h"],
+      "comment": "Neither the CLI options nor the HTML/ANSI highlighters offer line-number output."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/cli/ksyntaxhighlighter.cpp", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/ansihighlighter.cpp"],
+      "comment": "Input is read and highlighted line by line. The documented `-U/--unbuffered` option (ansi/ansi256) flushes output after each line. The library's highlightLine API is inherently line-incremental."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/cli/ksyntaxhighlighter.cpp"],
+      "comment": "The bundled CLI emits truecolor or 256-colour ANSI directly."
+    },
+    "native-dependencies": {
+      "value": ["c-library"],
+      "source": ["https://kate-editor.org/2016/11/15/ksyntaxhighlighting-a-new-syntax-highlighting-framework/", "https://api.kde.org/ksyntaxhighlighting-index.html"],
+      "comment": "Native C++ library that requires Qt 6 and is built with CMake/ECM. Regex is provided by Qt (PCRE2)."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-index.html"],
+      "comment": "No official browser build. Qt for WebAssembly could in principle host it, but nothing is documented."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-index.html"],
+      "comment": "No official or documented wasm32 target."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html"],
+      "comment": "highlightLine() is a plain synchronous call; only the Repository construction does up-front (synchronous) metadata loading."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://api.kde.org/ksyntaxhighlighting-index.html"],
+      "comment": "No official bindings beyond C++ and QML. The Kate XML format is reimplemented independently by skylighting (Haskell, separate candidate), and Qt Creator vendors the C++ library."
+    },
+    "core-package-size": {
+      "value": null,
+      "comment": "Native Qt library (bundles compiled-in syntax/theme resources); not comparable with JS bundle or registry package sizes."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible cross-engine benchmark found; release notes mention ongoing performance work (shared regex cache, skip offsets) but no comparative numbers."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Not measured. The Repository constructor loads metadata for all definitions (documented as moderately expensive) and per-definition rules load lazily, but no timing is published."
+    },
+    "github-stars": {
+      "value": 178,
+      "source": ["https://api.github.com/repos/KDE/syntax-highlighting"],
+      "comment": "Stars on the read-only GitHub mirror KDE/syntax-highlighting as of 2026-11-18. Development happens on invent.kde.org, so stars understate adoption."
+    },
+    "monthly-downloads": {
+      "value": null,
+      "comment": "No language package registry; shipped as KDE Frameworks tarballs and distro packages, so no comparable download metric."
+    },
+    "last-release": {
+      "value": "2026-11-13",
+      "source": ["https://kde.org/announcements/frameworks/6/6.32.0/", "https://download.kde.org/stable/frameworks/6.32/"],
+      "comment": "KDE Frameworks 6.32.0 announced 2026-11-13 (tarball uploaded 2026-11-07)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://kde.org/announcements/frameworks/6/6.32.0/", "https://api.github.com/repos/KDE/syntax-highlighting"],
+      "comment": "Monthly KDE Frameworks releases with engine and syntax changes; mirror last pushed 2026-11-18."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://api.kde.org/ksyntaxhighlighting-index.html", "https://api.kde.org/ksyntaxhighlighting-abstracthighlighter.html", "https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/README.md", "https://kate-editor.org/syntax/"],
+      "comment": "Rated 3: solid README, a QDoc API reference covering all public classes, and a syntax catalog on kate-editor.org. There are no usage guides or examples beyond the CMake snippet, and no migration notes."
+    },
+    "notable-users": {
+      "value": "Kate / KWrite / KDevelop (via KTextEditor), Qt Creator (generic highlighter)",
+      "source": ["https://kate-editor.org/2016/11/15/ksyntaxhighlighting-a-new-syntax-highlighting-framework/", "https://doc.qt.io/qtcreator/qtcreator-attribution-ksyntaxhighlighting.html"],
+      "comment": "KTextEditor switched to KSyntaxHighlighting in KF 5.29. Qt Creator vendors it in src/libs/3rdparty/syntax-highlighting for its generic highlighter. Pandoc reuses the XML definitions through skylighting, not this library."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://invent.kde.org/frameworks/syntax-highlighting", "https://kde.org/announcements/frameworks/6/6.32.0/"],
+      "comment": "Part of KDE Frameworks, maintained by KDE contributors with monthly release engineering."
+    }
+  }
 }
