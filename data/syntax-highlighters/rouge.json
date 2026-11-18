@@ -1,5 +1,269 @@
 {
   "name": "Rouge",
   "description": "Pygments-compatible Ruby highlighter; default in Jekyll and GitLab",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["ruby"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge", "https://rubygems.org/gems/rouge"],
+      "comment": "Pure Ruby gem; requires Ruby >= 3.0 as of 5.x."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/rouge.gemspec"],
+      "comment": "Ruby library plus the bundled `rougify` executable for terminal highlighting and CSS generation."
+    },
+    "license": {
+      "value": ["mit", "bsd-2-clause"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/LICENSE", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/rouge.gemspec"],
+      "comment": "Project code is MIT; gemspec declares ['MIT', 'BSD-2-Clause'] because many lexers are adaptations of Pygments lexers, whose BSD licence is reproduced in LICENSE."
+    },
+    "repository": {
+      "value": "https://codeberg.org/rouge-ruby/rouge",
+      "source": ["https://codeberg.org/rouge-ruby/rouge", "https://github.com/rouge-ruby/rouge"],
+      "comment": "Moved to Codeberg in 2026; the GitHub repo (rouge-ruby/rouge) now carries a notice pointing to Codeberg."
+    },
+    "package": {
+      "value": "https://rubygems.org/gems/rouge",
+      "source": ["https://rubygems.org/gems/rouge"]
+    },
+    "documentation": {
+      "value": "https://rouge-ruby.github.io/docs/",
+      "source": ["https://rouge-ruby.github.io/docs/", "https://rubygems.org/gems/rouge"],
+      "comment": "YARD-generated API reference (README as landing page), linked from RubyGems. The fetched build was generated 2025-12-31, so it may lag the 5.x releases. Additional guides (Languages.md, LexerDevelopment.md) live in the repo's docs/ directory."
+    },
+    "first-release": {
+      "value": "2012",
+      "source": ["https://rubygems.org/gems/rouge/versions?page=2"],
+      "comment": "Version 0.0.1 published to RubyGems on 2012-08-30."
+    },
+    "latest-version": {
+      "value": "5.1.0",
+      "source": ["https://rubygems.org/gems/rouge", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/CHANGELOG.md"],
+      "comment": "Published 2026-08-06 on RubyGems (changelog dates it 2026-08-05); checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "Most lexers subclass Rouge::RegexLexer: named states of regex rules on a state stack (push/pop!/goto), Pygments-style."
+    },
+    "regex-engine": {
+      "value": ["ruby-regexp"],
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/CHANGELOG.md"],
+      "comment": "Rules are Ruby Regexp literals (Onigmo) matched through StringScanner (the `strscan` gem, using StringScanner#fixed_anchor since 5.0.0)."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/lib/rouge/lexers/html.rb", "https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html"],
+      "comment": "HTML lexer delegates <script> content to the Javascript lexer and <style> content to the CSS lexer via RegexLexer#delegate (which uses continue_lex to keep the host lexer's state). Template lexers accept a `parent` option (e.g. `erb?parent=tex`)."
+    },
+    "language-auto-detection": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "Limited: `Lexer.guess(source:)` / `guess_by_source` uses each lexer's `detect?`, which is meant to return true only for certain in-text indicators (shebang, DOCTYPE, etc.). There is no statistical scoring like highlight.js or Pygments' analyse_text, so most snippets without such markers fall back to PlainText."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "Lexers declare filename globs and mimetypes; `guess_by_filename` / `guess_by_mimetype`, with Guessers::Disambiguation for shared globs."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html"],
+      "comment": "`continue_lex` continues lexing on the same lexer instance without resetting its state stack, but there is no documented way to snapshot and restore per-line state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html"],
+      "comment": "Regex state-machine lexer; no edit-aware reparsing."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/RegexLexer.html"],
+      "comment": "Pure lexical state machine, no syntax tree or locals tracking."
+    },
+    "bundled-languages": {
+      "value": 224,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/Languages.md"],
+      "comment": "Entries in docs/Languages.md on main, counted 2026-11-18 (around 5.1.0). The README says 'over 200'. All lexers ship in the gem; there is no core/full split."
+    },
+    "grammar-format": {
+      "value": ["rouge-lexer"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "Ruby classes using Rouge's RegexLexer state DSL (states, rules, token types, filenames, mimetypes)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/LICENSE", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "Many lexers were hand-ported from Pygments, but Rouge cannot consume Pygments, TextMate, or other external grammars. Pygments compatibility applies to token names and CSS classes, not to grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "A Rouge::RegexLexer subclass defined in application or plugin code registers itself via `tag`/`aliases` and is then found by Lexer.find/guess. The 5.1.0 changelog adds a warning on duplicate registration. There is no data-file loading; lexers are Ruby code."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/lib/rouge.rb", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/CHANGELOG.md"],
+      "comment": "rouge.rb requires every file in lib/rouge/lexers/ at load time. Some per-lexer work (state compilation, keyword/builtin data) is deferred until first use; the 5.0.0 changelog mentions 'maintaining lazy-loading behaviour'. Lexer classes themselves are not loaded on demand."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/CHANGELOG.md", "https://github.com/rouge-ruby/rouge"],
+      "comment": "Judgement call. Lexers are hand-maintained and don't track an upstream grammar. Recent releases modernised several lexers (Python 3.14 t-strings in 4.7.0, a Python overhaul and PHP property hooks in 5.0.0, modern Java syntax in 5.1.0). The GitHub mirror still showed 154 open issues and 67 open PRs, and regex lexers have a history of escape and nesting bugs (e.g. Rust string escapes). No spot-check was run in this pass."
+    },
+    "bundled-themes": {
+      "value": 13,
+      "source": ["https://github.com/rouge-ruby/rouge/tree/main/lib/rouge/themes"],
+      "comment": "13 theme files in lib/rouge/themes (base16, bw, colorful, github, gruvbox, igor_pro, magritte, molokai, monokai, monokai_sublime, pastie, thankful_eyes, tulip), listed from the GitHub mirror. Several have light/dark modes or variants (e.g. base16.light/dark, github, gruvbox), so the number of selectable theme names is higher."
+    },
+    "theme-format": {
+      "value": ["code"],
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Theme.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Themes are Ruby classes (Rouge::Theme / CSSTheme with `style` and `palette` declarations). Base16 is a Ruby theme built on a base16 palette, not a loader for base16 scheme files."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://rouge-ruby.github.io/docs/", "https://codeberg.org/rouge-ruby/rouge"],
+      "comment": "Closed, hierarchical Pygments-style token set (Token::Tokens::Name::Function, ...) with Pygments-compatible short CSS class names, so Pygments stylesheets work."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md", "https://rouge-ruby.github.io/docs/"],
+      "comment": "Formatters::HTML emits class-based spans; HTMLInline emits inline styles. Theme CSS is generated with `Theme.render(scope:)` or `rougify style`."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Through class-based HTML output plus per-theme stylesheets rendered with a configurable `scope` selector (e.g. Base16.mode(:light) and :dark), so one render can be themed by swapping or scoping stylesheets. There is no CSS-variable dual-theme mechanism; the wiring is left to the user."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://rouge-ruby.github.io/docs/"],
+      "comment": "`Lexer#lex(string)` is documented to 'yield [token, chunk] pairs', or to return an Enumerator when called without a block."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html"],
+      "comment": "Flat stream of [Token class, text] pairs. Formatter helpers such as token_lines regroup the stream by line."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html"],
+      "comment": "Tokens are in-memory Ruby token classes with no documented serialization. Token#qualname/shortname strings would allow a DIY encoding."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Theme.html"],
+      "comment": "Theme.get_style(token) resolves a token's style by walking its ancestors, but no API emits tokens with styles attached. Terminal formatters do the join internally, and a custom formatter must do it too."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html"],
+      "comment": "Pairs carry only token and text. Offsets can be derived by summing chunk lengths but are not provided."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md", "https://rouge-ruby.github.io/docs/"],
+      "comment": "README documents subclassing Rouge::Formatter, defining a `tag`, and implementing `#stream(tokens, &block)`. Subclasses of Formatters::HTML can override `safe_span`."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Formatters/HTMLLineHighlighter.html"],
+      "comment": "Limited to highlighted lines: the HTMLLineHighlighter formatter wraps another formatter and adds a class (default 'hll') to `highlight_lines`. There are no diff markers, focus, inline annotations, or token-filter mechanism."
+    },
+    "output-formats": {
+      "value": ["html-classes", "html-inline-styles", "ansi-256", "ansi-truecolor", "latex"],
+      "source": ["https://github.com/rouge-ruby/rouge/tree/main/lib/rouge/formatters", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Formatters: HTML, HTMLInline, HTMLLinewise, HTMLLineHighlighter, HTMLLineTable, HTMLTable, HTMLPygments, HTMLLegacy, Terminal256, TerminalTruecolor, Tex (LaTeX), plus Null/Plain debug formatters. There is no RTF, SVG, or image output."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "HTMLLineTable and HTMLTable render line-number gutters (with `start_line`), and HTMLLegacy has a `line_numbers` option."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://rouge-ruby.github.io/docs/Rouge/Lexer.html", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "`lex` is lazy and formatters yield string chunks via `stream`, but input is a complete string. `continue_lex` can feed more text to the same lexer instance, but this is not documented as a streaming or line-by-line highlighting API."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Terminal256 and TerminalTruecolor formatters, plus `rougify` for highlighting files in the terminal."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/rouge.gemspec", "https://codeberg.org/rouge-ruby/rouge"],
+      "comment": "README says Rouge has no external dependencies. Its only runtime dependency is the `strscan` gem (~> 3.1), a Ruby default gem that ships with MRI."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://rubygems.org/gems/rouge"],
+      "comment": "There is no first-party browser build. It could only run client-side through a third-party Ruby-in-WASM runtime such as ruby.wasm (not verified)."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://rubygems.org/gems/rouge"],
+      "comment": "No official WASM distribution; it ships only as a pure-Ruby gem."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/lib/rouge.rb"],
+      "comment": "`Rouge.highlight(text, lexer, formatter)` and `formatter.format(lexer.lex(text))` are plain synchronous calls with no async setup."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "No bindings or ports to other languages were found. The README lists only Ruby integrations (middleman-syntax, middleman-rouge, rdoc-rouge, Rouge::Rails). Rouge is itself a Pygments-compatible Ruby reimplementation."
+    },
+    "core-package-size": {
+      "value": 531000,
+      "source": ["https://rubygems.org/gems/rouge"],
+      "comment": "Gem size of rouge 5.1.0 as shown on RubyGems (531 KB, compressed .gem). This includes all lexers, themes, and formatters; there is no slim core. The installed size is larger and was not measured."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible cross-engine benchmark including current Rouge was found. The only comparisons are 2013–2016 Rouge vs pygments.rb discussions (Jekyll PR #930, rouge PR #41), which are outdated and not normalisable to the other candidates."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "No time-to-first-highlight measurement was found. `require 'rouge'` loads every lexer file eagerly (with some per-lexer work deferred), but the cost is unmeasured."
+    },
+    "github-stars": {
+      "value": 3500,
+      "source": ["https://github.com/rouge-ruby/rouge"],
+      "comment": "About 3.5k stars on the GitHub repo (now a legacy location after the move to Codeberg; the Codeberg repo had 7 stars), checked 2026-11-18. GitHub rounds the display, so the exact count is unknown."
+    },
+    "monthly-downloads": {
+      "value": 10055490,
+      "source": ["https://bestgems.org/gems/rouge", "https://rubygems.org/gems/rouge"],
+      "comment": "Estimate: BestGems daily downloads (335,183) × 30, checked 2026-11-18, from RubyGems data. RubyGems itself shows only totals (341.4M all-time). Inflated by transitive installs through Jekyll/kramdown and GitLab."
+    },
+    "last-release": {
+      "value": "2026-08-06",
+      "source": ["https://rubygems.org/gems/rouge/versions"],
+      "comment": "5.1.0 on RubyGems (changelog date 2026-08-05). Checked 2026-11-18."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge", "https://rubygems.org/gems/rouge/versions"],
+      "comment": "Releases 4.7.0 (Dec 2025), 5.0.0 (May 2026), and 5.1.0 (Aug 2026). The latest commit on Codeberg is dated 2026-11-16. The repository moved from GitHub to Codeberg in 2026."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://rouge-ruby.github.io/docs/", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/docs/LexerDevelopment.md"],
+      "comment": "A solid README covers library, Jekyll, and CLI usage and custom formatters. There is a YARD API reference (many methods have signatures only, e.g. Theme), a Languages list, and a lexer development guide, plus a detailed changelog. There is no guides site, theme gallery, or migration guide for the 5.0 breaking changes."
+    },
+    "notable-users": {
+      "value": "Jekyll (default highlighter), GitLab (server-side file, diff and Markdown highlighting), Middleman (middleman-syntax)",
+      "source": ["https://jekyllrb.com/docs/liquid/tags/", "https://docs.gitlab.com/user/project/repository/files/highlighting/", "https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Jekyll docs: 'Rouge is the default highlighter in Jekyll 3 and above.' GitLab uses Rouge server-side for repository files, MR/commit diffs, and blame, alongside client-side highlight.js. kramdown supports Rouge as an opt-in option."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://codeberg.org/rouge-ruby/rouge/raw/branch/main/README.md"],
+      "comment": "Maintainers are Jeanine Adkisson (original author), Drew Blessing, Goro Fuji, and Tan Le. The README describes Rouge as 'largely the result of the hard work of unpaid volunteers', and there is no corporate backing."
+    }
+  }
 }
