@@ -180,7 +180,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] tree-sitter-highlight — parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors
 - [x] Chroma — Go highlighter derived from Pygments lexers; used by Hugo, Gitea, glamour
 - [x] Rouge — Pygments-compatible Ruby highlighter; default in Jekyll and GitLab
-- [ ] starry-night — GitHub-grammar-compatible TextMate highlighter emitting hast; CSS-class themes matching github.com
+- [x] starry-night — GitHub-grammar-compatible TextMate highlighter emitting hast; CSS-class themes matching github.com
 - [ ] vscode-textmate — the TextMate grammar interpreter behind VS Code, usable standalone; scope-stack tokens and resumable rule stacks
 - [ ] Lezer (@lezer/highlight) — CodeMirror 6's incremental LR parser system with a standalone highlighting API
 - [ ] KSyntaxHighlighting — KDE Frameworks' C++/Qt engine with a large XML syntax catalog; used by Kate and Qt Creator

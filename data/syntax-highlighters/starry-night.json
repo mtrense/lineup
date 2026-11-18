@@ -1,5 +1,270 @@
 {
   "name": "starry-night",
   "description": "GitHub-grammar-compatible TextMate highlighter emitting hast; CSS-class themes matching github.com",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["javascript"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "ESM-only JavaScript with JSDoc types (TypeScript type definitions are generated). Runs in Node.js (16+ for the 3.x line) and in browsers."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "npm library only, with no CLI. The rehype integration is the separate rehype-starry-night plugin."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/wooorm/starry-night", "https://github.com/wooorm/starry-night"],
+      "comment": "Code is MIT. Bundled grammars keep their upstream licences, all described as permissive (MIT, ISC, Apache-2.0, BSD, MPL-2.0, WTFPL, Unlicense, etc.) and collected in the `notice` file."
+    },
+    "repository": {
+      "value": "https://github.com/wooorm/starry-night",
+      "source": ["https://github.com/wooorm/starry-night"]
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/@wooorm/starry-night",
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night"]
+    },
+    "documentation": {
+      "value": "https://github.com/wooorm/starry-night#readme",
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "No dedicated docs site. The README holds the API reference, examples, CSS theme list and language list."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night"],
+      "comment": "1.0.0 was published to npm on 2022-05-14. The repository was created on 2022-05-10."
+    },
+    "latest-version": {
+      "value": "3.11.0",
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night"],
+      "comment": "npm dist-tag latest, published 2026-08-30, checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://github.com/wooorm/starry-night", "https://registry.npmjs.org/@wooorm/starry-night"],
+      "comment": "Interprets TextMate grammars with Microsoft's vscode-textmate (a ^9.0.0 dependency). It is an open-source re-creation of GitHub's PrettyLights, not of GitHub's tree-sitter-based TreeLights."
+    },
+    "regex-engine": {
+      "value": ["oniguruma-wasm"],
+      "source": ["https://github.com/wooorm/starry-night", "https://registry.npmjs.org/@wooorm/starry-night"],
+      "comment": "Uses vscode-oniguruma (onig.wasm, version 2). The WASM URL can be supplied via the `getOnigurumaUrlFetch` (browser) or `getOnigurumaUrlFs` (Node) options. There is no JS RegExp alternative."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "The `text.html.basic` grammar includes `source.js` and `source.css` (both are in `common`), so HTML+JS+CSS works out of the box. Embedding works through TextMate includes and injections. Dependencies must be loaded; `missingScopes()` lists any that are absent."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "No content-based detection. `flagToScope` maps names, extensions and paths only."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "`flagToScope(flag)` accepts a language name, alias, extension or file path (e.g. `path/to/example.js` gives `source.js`). Grammars carry `names`, `extensions` and `extensionsWithDot`, mirroring GitHub Linguist. Shared extensions such as `.h` return only one scope."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/wooorm/starry-night/main/lib/parse.js"],
+      "comment": "Internally tokenizes line by line with vscode-textmate's rule stack, but the stack is never exposed. `highlight(value, scope)` takes the whole string and returns only the tree."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "No edit/reparse API. Each `highlight` call processes the full input."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "A TextMate-grammar engine with no syntax tree or locals tracking. False per the guideline."
+    },
+    "bundled-languages": {
+      "value": 600,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "The README's language-level figure for `all` (\"~600 languages\", described elsewhere as \"600+ grammars\"). `lib/all.js` on main (3.11.0) imports 710 grammar scopes, some of which are helper or sub-scopes (e.g. regexp flavours) rather than distinct languages. `common` has about 35 languages. Checked 2026-11-18."
+    },
+    "grammar-format": {
+      "value": ["textmate-json"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Grammars ship as JS modules exporting TextMate grammar objects (`scopeName`, `patterns`, `repository`, `injections`) plus extra fields (`names`, `extensions`, `extensionsWithDot`, `dependencies`)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Accepts any TextMate grammar that works with vscode-textmate once the `extensions`, `names` and `scopeName` fields are added. The bundled set mirrors the upstream grammars GitHub Linguist uses, and edits are supposed to go upstream."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Custom grammars can be passed to `createStarryNight(grammars)` or added later with `starryNight.register(grammars)`, which is async."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Each grammar is a separate module (`@wooorm/starry-night/<scope>`, typically 3–5 kB). Apps choose `common`, `all` or individual grammars and can `register` more later. Loading is user-driven (import, then register); there is no automatic on-demand fetch."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Uses the same upstream TextMate grammars as GitHub Linguist/PrettyLights (e.g. Microsoft TypeScript-TmLanguage, dustypomerleau/rust-syntax, MagicPython), so quality matches github.com's TextMate highlighting. Rated 4, not 5: some upstreams (e.g. MagicPython for Python) are older, and the set tracks Linguist rather than VS Code. Based on sourcing, not a systematic spot-check."
+    },
+    "bundled-themes": {
+      "value": 9,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Nine distinct GitHub colour schemes: light, dark, dimmed-dark, colorblind-light/dark, high-contrast-light/dark and tritanopia-light/dark. They ship as 15 stylesheets: those 9, 5 combined auto-switching variants (both, colorblind, dimmed, high-contrast, tritanopia), and `core`, which has no colours. Version 3.11.0, checked 2026-11-18."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Themes are plain CSS files (each under 1 kB) that use CSS custom properties. VS Code or tmTheme files are not consumed; tokens map to GitHub's fixed `pl-*` class set."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://github.com/wooorm/starry-night", "https://raw.githubusercontent.com/wooorm/starry-night/main/lib/parse.js"],
+      "comment": "Grammars produce TextMate scopes internally, but the output collapses them to GitHub PrettyLights' closed `pl-*` class set (e.g. `pl-en`, `pl-s`, `pl-c1`, `pl-k`) via a built-in GitHub theme mapping. Scopes are not exposed."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Class-only output: spans carry a single `pl-*` class each, and there are no inline styles."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "One render serves light and dark. The unsuffixed stylesheets (e.g. `style/both`) switch with `@media (prefers-color-scheme: dark)` using CSS variables, and the same class markup works with any of the shipped stylesheets."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "`starryNight.highlight(value, scope)` is documented and returns a hast `Root`, not an HTML string. There is no flat token-list API."
+    },
+    "ir-kinds": {
+      "value": ["hast"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "A hast root with up to three levels of `<span>` elements, each with one class, plus text nodes. Line endings are always direct root children, as documented in the README's \"Syntax tree\" section."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "hast is plain JSON-compatible data with a documented spec, which qualifies per the guideline."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Output carries only `pl-*` class names, and colours live in CSS. Non-CSS renderers (e.g. ANSI) must map the classes to colours themselves."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/wooorm/starry-night/main/lib/parse.js"],
+      "comment": "The generated hast nodes have no `position` fields. Offsets are computed internally but dropped."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "There is no formatter plugin interface. The design is to emit hast and let any hast utility render it, and the README documents examples for HTML (hast-util-to-html), React (hast-util-to-jsx-runtime), rehype/unified and markdown-it. Contestable under a strict reading of the guideline."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Nothing built in. The README only shows a hand-written example utility that wraps lines with `data-line-number`."
+    },
+    "output-formats": {
+      "value": ["html-classes"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "The package itself emits only hast. HTML with `pl-*` classes comes from serializing with hast-util-to-html (same author and unified ecosystem, documented in the README) or rehype-starry-night. React output via hast-util-to-jsx-runtime is shown as an example but is not counted as a first-party target. There is no ANSI or other format."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Not built in. The README gives a sample hast transform for adding line numbers and notes that GitHub itself does not number lines."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "`highlight` takes a complete string and returns a full tree, with no incremental API."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "The README mentions rendering to ANSI as a possible use of the AST, but no ANSI output ships."
+    },
+    "native-dependencies": {
+      "value": ["wasm-embedded"],
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night", "https://github.com/wooorm/starry-night"],
+      "comment": "Depends on vscode-oniguruma, which ships the Oniguruma regex engine as onig.wasm. No pure-JS fallback."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "The README has a client-side example using esm.sh and the `getOnigurumaUrlFetch` option. It warns that the WASM and grammar weight may be too heavy for browsers and suggests lowlight or refractor instead."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "starry-night itself is JavaScript and is not compiled to WASM. Only its regex dependency (Oniguruma) is WASM; see Native Dependencies."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "`createStarryNight` and `register` are async because the WASM loads asynchronously. Afterwards `highlight`, `flagToScope`, `scopes` and `missingScopes` are synchronous."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "No ports to other host languages. Related JS wrappers in the same ecosystem (rehype-starry-night, @microflash/rehype-starry-night) are not ports."
+    },
+    "core-package-size": {
+      "value": 185000,
+      "source": ["https://github.com/wooorm/starry-night", "https://bundlephobia.com/api/size?package=@wooorm/starry-night@3.11.0"],
+      "comment": "The maintainer's figure: about 185 kB bundled, minified and gzipped for starry-night plus the Oniguruma WASM, before grammars. `common` adds about 250 kB and `all` about 1.6 MB. Bundlephobia measures the main entry of 3.11.0, which pulls in all grammars, at 1,915,514 bytes gzip, so it is not comparable. Checked 2026-11-18."
+    },
+    "throughput-tier": {
+      "value": ["slow"],
+      "source": ["https://diffs.com/highlights"],
+      "comment": "Pierre's Highlights browser benchmark (three.min.js ×10, Chromium 153, M4 Pro, recorded 2026-10-21): starry-night 3.11.0 (hast) took 10.5 s. Sugar High took 0.76 s, Prism 0.99 s, highlight.js 1.35 s and Shiki 4.4.3 28.3 s. That makes starry-night about 13.8× slower than the fastest candidate (Sugar High) and 10.6× slower than Prism, so >10× gives `slow`. The benchmark is a single run by the vendor of a competing library (Highlights), and its Shiki figure is notably worse than in other benchmarks."
+    },
+    "initialization-cost": {
+      "value": null,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "Unmeasured. No cold-start benchmark covering starry-night was found. Async init loads Oniguruma WASM and compiles grammars, which suggests a cost similar to Shiki's Oniguruma setup, but there is no number to cite."
+    },
+    "github-stars": {
+      "value": 1819,
+      "source": ["https://api.github.com/repos/wooorm/starry-night"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 627218,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/@wooorm/starry-night"],
+      "comment": "npm downloads of @wooorm/starry-night for 2026-10-18 to 2026-11-16, checked 2026-11-18."
+    },
+    "last-release": {
+      "value": "2026-08-30",
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night"],
+      "comment": "3.11.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://registry.npmjs.org/@wooorm/starry-night", "https://api.github.com/repos/wooorm/starry-night"],
+      "comment": "Regular minor releases (3.9.0 Jan 2026, 3.10.0 Jun 2026, 3.11.0 Aug 2026) that refresh grammars. Last push was 2026-08-30, within 6 months of checking, and the repo had only 4 open issues/PRs."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://github.com/wooorm/starry-night"],
+      "comment": "A thorough README with a full API reference, many examples (HTML, client-side, React, line numbers, unified, markdown-it), a theme table and a complete language list. There is no dedicated docs site and no migration guides, so 3 per the guideline."
+    },
+    "notable-users": {
+      "value": "mdxjs.com (MDX docs site), unifiedjs.com (unified docs site), rehype-starry-night (official rehype plugin)",
+      "source": ["https://mdxjs.com/blog/v3/", "https://raw.githubusercontent.com/mdx-js/mdx/main/package.json", "https://raw.githubusercontent.com/unifiedjs/unifiedjs.github.io/main/package.json"],
+      "comment": "The MDX 3 announcement credits starry-night for the site's highlighting, and the mdx-js/mdx and unifiedjs.github.io manifests list @wooorm/starry-night and rehype-starry-night. GitHub itself does not use starry-night; it re-creates GitHub's closed-source PrettyLights."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/wooorm/starry-night/contributors"],
+      "comment": "Titus Wormer (wooorm) made 169 of about 173 commits and is the sole npm maintainer. The other contributors have one commit each."
+    }
+  }
 }
