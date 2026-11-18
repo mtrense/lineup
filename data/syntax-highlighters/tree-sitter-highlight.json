@@ -1,5 +1,267 @@
 {
   "name": "tree-sitter-highlight",
   "description": "Parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["rust", "c"],
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/include/tree_sitter/highlight.h", "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Written in Rust. It also exports a first-party C API (`c_lib` module plus the `tree_sitter/highlight.h` header), and the docs say it can be used from either C or Rust."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://tree-sitter.github.io/tree-sitter/cli/highlight.html"],
+      "comment": "The candidate itself is a Rust crate. The CLI tag counts the official `tree-sitter highlight` subcommand of tree-sitter-cli, which is built on this crate in the same repo."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight/0.27.2", "https://api.github.com/repos/tree-sitter/tree-sitter"],
+      "comment": "MIT. No grammars are bundled; grammar crates carry their own licences."
+    },
+    "repository": {
+      "value": "https://github.com/tree-sitter/tree-sitter",
+      "source": ["https://github.com/tree-sitter/tree-sitter/tree/master/crates/highlight"],
+      "comment": "Monorepo; the crate lives under crates/highlight."
+    },
+    "package": {
+      "value": "https://crates.io/crates/tree-sitter-highlight",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight"]
+    },
+    "documentation": {
+      "value": "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html",
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "The Syntax Highlighting chapter of the tree-sitter docs site is the guide; the API reference is on docs.rs."
+    },
+    "first-release": {
+      "value": "2019",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight", "https://github.com/tree-sitter/tree-sitter/pull/283"],
+      "comment": "Crate first published on crates.io on 2019-02-20, after PR #283 added the highlight sub-crate."
+    },
+    "latest-version": {
+      "value": "0.27.2",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight", "https://github.com/tree-sitter/tree-sitter/releases"],
+      "comment": "crates.io max_stable_version, checked 2026-11-18. The crate is versioned together with tree-sitter."
+    },
+    "engine-model": {
+      "value": ["parse-tree"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Parses into a tree-sitter syntax tree, then applies query captures from highlights.scm."
+    },
+    "regex-engine": {
+      "value": ["n-a"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Grammars are generated parsers, not regex rules. The crate does list Rust `regex` as a dependency, but it is not used to tokenise source code (most likely for auxiliary matching; exact use not verified)."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://github.com/tree-sitter/tree-sitter-html/blob/master/queries/injections.scm", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Uses tree-sitter injections (injections.scm with @injection.content / @injection.language), resolved through a callback passed to `Highlighter::highlight`. The official tree-sitter-html injections query covers JS in <script> and CSS in <style>. Caveat: the crate bundles no grammars, so the caller must supply HTML, JS and CSS grammars."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "The crate has no detection; the caller picks the HighlightConfiguration. The CLI's loader uses first-line-regex and content-regex from tree-sitter.json only to choose between grammars, not to guess languages generally."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Not in the crate. The tree-sitter CLI/loader maps `file-types` from each grammar's tree-sitter.json, but that lives outside this library."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs"],
+      "comment": "No per-line state API; each call highlights a whole document."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs"],
+      "comment": "The tree-sitter core supports incremental parsing, but this crate does not use it. Each `highlight` call parses from scratch and passes no old tree; only the parser and query cursors are reused. Editors that want incremental highlighting run tree-sitter queries directly."
+    },
+    "semantic-distinctions": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Highlights are based on the syntax tree, and locals.scm (@local.scope / @local.definition / @local.reference) makes references match their definitions, e.g. parameters vs other identifiers."
+    },
+    "bundled-languages": {
+      "value": 0,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://github.com/tree-sitter/tree-sitter/tree/master/crates/highlight"],
+      "comment": "Engine only, with no bundled grammars. Each language is added as a separate grammar crate (e.g. tree-sitter-javascript) along with its queries. Batteries-included wrappers such as inkjet and arborium bundle grammars instead."
+    },
+    "grammar-format": {
+      "value": ["tree-sitter"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Tree-sitter grammars plus highlights/injections/locals .scm queries."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["tree-sitter"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"]
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/include/tree_sitter/highlight.h"],
+      "comment": "`HighlightConfiguration::new(language, name, highlights, injections, locals)` takes a Language and query strings at runtime; in C, `ts_highlighter_add_language` does the same. Queries can be changed without rebuilding."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Nothing is bundled up front. Injected languages are resolved on demand through the injection callback, so the caller can load them lazily."
+    },
+    "grammar-accuracy": {
+      "value": null,
+      "comment": "No bundled grammars, so accuracy depends on which grammar and highlights.scm the caller supplies. Not rated."
+    },
+    "bundled-themes": {
+      "value": 0,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://tree-sitter.github.io/tree-sitter/cli/init-config.html"],
+      "comment": "The library has no theme concept; callers map highlight names to attributes or styles. The companion CLI ships one default theme in its config.json."
+    },
+    "theme-format": {
+      "value": null,
+      "source": ["https://tree-sitter.github.io/tree-sitter/cli/init-config.html"],
+      "comment": "Not applicable to the library. The CLI theme is a JSON map from highlight names to ANSI ids 0-255, hex colours or names, plus bold/italic/underline. No defined tag fits that format."
+    },
+    "token-classification": {
+      "value": ["capture-names"],
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html"],
+      "comment": "Dot-separated capture names such as `function.builtin`, matched against the caller's configured highlight-name list."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/src/highlight.rs"],
+      "comment": "HtmlRenderer's attribute callback writes any attribute, such as class=. The CLI's HTML mode defaults to class-based spans plus a generated <style> block."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/src/highlight.rs"],
+      "comment": "Class output is possible, but no swappable light/dark stylesheets ship and there is no single-render multi-theme mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "`Highlighter::highlight` returns a documented iterator of `HighlightEvent`."
+    },
+    "ir-kinds": {
+      "value": ["highlight-events"],
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "HighlightEvent::Source{start,end} / HighlightStart(Highlight) / HighlightEnd. The syntax tree is not exposed by this crate."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs"],
+      "comment": "No serde derives; events are in-memory Rust values."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Events carry only a Highlight index into the caller's name list; there are no colours or styles."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "HighlightEvent::Source carries start/end byte offsets into the source."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html"],
+      "comment": "The event iterator is the documented extension point for custom renderers. The CLI's ANSI renderer consumes these events, and HtmlRenderer takes an attribute callback."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html"],
+      "comment": "No built-in line or range decoration mechanism."
+    },
+    "output-formats": {
+      "value": ["html-classes", "html-inline-styles", "ansi-256", "ansi-truecolor"],
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html", "https://tree-sitter.github.io/tree-sitter/cli/highlight.html", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/src/highlight.rs"],
+      "comment": "Library: HtmlRenderer writes per-line HTML with caller-supplied attributes (class or style). ANSI output comes from the official `tree-sitter highlight` CLI: 256-colour palette by default, with truecolor when COLORTERM is truecolor/24bit. The CLI's HTML mode has --style classes/inline/minimal."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/src/highlight.rs", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html"],
+      "comment": "The CLI's numbered HTML document renders a table with a `line-number` cell per line. In the library, HtmlRenderer only exposes `lines()` and `line_offsets`; it does not render numbers itself."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs"],
+      "comment": "Events are produced lazily, but the whole input must be supplied and the root document is parsed before the first event, so output does not start before the full input is consumed."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://tree-sitter.github.io/tree-sitter/cli/highlight.html"],
+      "comment": "Only through the official `tree-sitter highlight` CLI, which defaults to ANSI. The library crate itself has no ANSI renderer."
+    },
+    "native-dependencies": {
+      "value": ["c-library"],
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Depends on the `tree-sitter` crate, which compiles the tree-sitter C runtime. Grammar crates are also C (generated parsers and scanners)."
+    },
+    "runs-in-browser": {
+      "value": null,
+      "source": ["https://github.com/tree-sitter/tree-sitter/pull/5851", "https://crates.io/api/v1/crates/tree-sitter-highlight-wasm"],
+      "comment": "No official browser support documented for this crate. The core tree-sitter crate supports wasm32-unknown-unknown (PR #4820, improved by #5851 merged 2026-08-15), but highlight-specific browser use is undocumented. A third-party republish, tree-sitter-highlight-wasm (0.25.9), exists. web-tree-sitter (JS) does not include this highlighter."
+    },
+    "wasm-build": {
+      "value": null,
+      "source": ["https://github.com/tree-sitter/tree-sitter/pull/5851"],
+      "comment": "wasm32 support is documented for the underlying tree-sitter crate, not explicitly for tree-sitter-highlight. Unverified."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/"],
+      "comment": "Fully synchronous; an optional cancellation flag can stop a run. One Highlighter per thread."
+    },
+    "bindings-ports": {
+      "value": ["javascript"],
+      "source": ["https://github.com/devongovett/tree-sitter-highlight", "https://github.com/devongovett/tree-sitter-highlight/blob/master/Cargo.toml", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/include/tree_sitter/highlight.h"],
+      "comment": "JavaScript: devongovett/tree-sitter-highlight, a Node (napi) wrapper around this crate (0.26.3) with HTML and hast output and a fixed set of bundled grammars. There is also a first-party C API (highlight.h), but no tag exists for C."
+    },
+    "core-package-size": {
+      "value": 20007,
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight/0.27.2"],
+      "comment": "Size of the .crate download on crates.io for 0.27.2. Excludes the tree-sitter runtime crate and all grammars."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent comparative benchmark against other highlighters found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured. Cost is dominated by compiling the highlight queries in HighlightConfiguration::new, which depends on the grammar."
+    },
+    "github-stars": {
+      "value": 27496,
+      "source": ["https://api.github.com/repos/tree-sitter/tree-sitter"],
+      "comment": "Stars for the tree-sitter monorepo, which includes this crate, as of 2026-11-18. Not specific to the highlighter."
+    },
+    "monthly-downloads": {
+      "value": 292792,
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight", "https://lib.rs/crates/tree-sitter-highlight"],
+      "comment": "crates.io recent (90-day) downloads of 878,377 divided by 3, checked 2026-11-18. lib.rs shows about 336k per month."
+    },
+    "last-release": {
+      "value": "2026-11-07",
+      "source": ["https://crates.io/api/v1/crates/tree-sitter-highlight", "https://github.com/tree-sitter/tree-sitter/releases"],
+      "comment": "0.27.2."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://github.com/tree-sitter/tree-sitter/releases", "https://api.github.com/repos/tree-sitter/tree-sitter"],
+      "comment": "Releases about monthly together with tree-sitter, and the repo was last pushed 2026-11-17. The highlight crate's API itself changes little."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/", "https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/struct.HtmlRenderer.html"],
+      "comment": "Good guide to the query concepts plus a README/docs.rs example. API reference is sparse: most HtmlRenderer methods have no doc text, and the README example pins 0.25.4."
+    },
+    "notable-users": {
+      "value": "GitHub.com (several languages); tree-sitter CLI `highlight`; inkjet; devongovett/tree-sitter-highlight (Node)",
+      "source": ["https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html", "https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/src/highlight.rs", "https://crates.io/api/v1/crates/tree-sitter-highlight/reverse_dependencies?per_page=100", "https://github.com/devongovett/tree-sitter-highlight/blob/master/Cargo.toml"],
+      "comment": "GitHub use is per the official tree-sitter docs. inkjet is the most-downloaded reverse dependency on crates.io."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://lib.rs/crates/tree-sitter-highlight", "https://api.github.com/repos/tree-sitter/tree-sitter"],
+      "comment": "Owned by the tree-sitter GitHub org; crate owners are Max Brunsfeld, the tree-sitter team and Amaan Qureshi."
+    }
+  }
 }

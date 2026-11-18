@@ -177,7 +177,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] Prism — lightweight, extensible browser-focused JS highlighter with a plugin system
 - [x] Shiki — TextMate-grammar highlighter using VS Code grammars and themes; hast IR, transformers, dual themes, JS or Oniguruma-WASM regex engine
 - [x] syntect — Rust highlighter using Sublime Text syntaxes; styled-span IR, ANSI/HTML output; powers bat, delta, Zola
-- [ ] tree-sitter-highlight — parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors
+- [x] tree-sitter-highlight — parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors
 - [ ] Chroma — Go highlighter derived from Pygments lexers; used by Hugo, Gitea, glamour
 - [ ] Rouge — Pygments-compatible Ruby highlighter; default in Jekyll and GitLab
 - [ ] starry-night — GitHub-grammar-compatible TextMate highlighter emitting hast; CSS-class themes matching github.com
