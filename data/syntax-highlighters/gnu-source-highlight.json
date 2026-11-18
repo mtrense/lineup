@@ -1,5 +1,270 @@
 {
   "name": "GNU Source-highlight",
   "description": "GNU's highlight-first CLI/library with configurable output formats; used for less input filters",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["cpp"],
+      "source": ["https://archlinux.org/packages/extra/x86_64/source-highlight/files/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "C++ program and C++ library (libsource-highlight, namespace srchilite, 85 public headers under srchilite/)."
+    },
+    "form-factor": {
+      "value": ["cli", "library"],
+      "source": ["https://www.mankier.com/1/source-highlight", "https://archlinux.org/packages/extra/x86_64/source-highlight/files/"],
+      "comment": "source-highlight CLI (plus check-regexp, source-highlight-settings, src-hilite-lesspipe.sh) and, since 3.0, the C++ library libsource-highlight.so with pkg-config file."
+    },
+    "license": {
+      "value": ["gpl-3-0"],
+      "source": ["https://formulae.brew.sh/formula/source-highlight", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "GPL-3.0-or-later (COPYING is GPLv3 in the 3.1.9 tarball; Homebrew lists GPL-3.0-or-later). Fedora's SPDX expression additionally lists GFDL for docs and GPL-2.0 for some build files."
+    },
+    "repository": {
+      "value": "https://git.savannah.gnu.org/cgit/src-highlite.git",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Savannah git repository as named in the 3.1.9 README (git://git.savannah.gnu.org/src-highlite.git). The cgit web view returned HTTP 502 and git clone failed on 2026-11-18, so the repository could not be inspected directly."
+    },
+    "package": {
+      "value": "https://ftp.gnu.org/gnu/src-highlite/",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/"],
+      "comment": "Official GNU FTP download directory (release tarballs 1.0 through 3.1.9). Widely packaged by distros (Debian/Ubuntu source-highlight + libsource-highlight, Homebrew, MacPorts, Arch)."
+    },
+    "documentation": {
+      "value": "https://www.gnu.org/software/src-highlite/source-highlight.html",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://www.mankier.com/1/source-highlight"],
+      "comment": "Texinfo-generated user manual; companion library manual (source-highlight-lib.html) and Doxygen API reference (/api/). gnu.org returned 429/ECONNRESET on 2026-11-18, so the same manuals were read from doc/ in the 3.1.9 release tarball plus the man page."
+    },
+    "first-release": {
+      "value": "2001",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "source-highlight-1.0.tar.gz dated 2001-06-11 on ftp.gnu.org. NEWS describes 1.0 as the first release, merging Lorenzo Bettini's earlier cpp2html and java2html (copyright from 1999)."
+    },
+    "latest-version": {
+      "value": "3.1.9",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/", "https://repology.org/project/source-highlight/packages"],
+      "comment": "Checked 2026-11-18; 3.1.9 (Oct 2019) is the newest tarball on ftp.gnu.org and the newest version in every repository tracked by Repology."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Declarative .lang definitions (keyword lists, regexes, delim/state/environment blocks) compiled into a regex-driven HighlightState automaton; SourceHighlighter matches rules per line."
+    },
+    "regex-engine": {
+      "value": ["boost-regex"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://formulae.brew.sh/formula/source-highlight"],
+      "comment": "README: 'Since version 2.0 Source-highlight relies on regular expressions as provided by boost' (Boost.Regex). Homebrew lists boost as the only dependency."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "html.lang has states that include css.lang inside <style> and javascript.lang inside <script> ('deal with embedded CSS/Javascript'); mechanism is .lang include within state/environment blocks."
+    },
+    "language-auto-detection": {
+      "value": true,
+      "source": ["https://www.mankier.com/1/source-highlight", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Limited: --infer-lang / srchilite::LanguageInfer inspects only the first two lines for an Emacs -*- mode -*- line, #! / #!/usr/bin/env interpreter, <?xml / <?php prologs and <!DOCTYPE. No statistical content guessing; works on stdin without a filename."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://www.mankier.com/1/source-highlight", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "lang.map maps extensions/names to .lang files (LangMap class, --lang-map); if --src-lang is omitted the language is guessed from the file extension."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://srchiliteqt.sourceforge.net/"],
+      "comment": "srchilite::SourceHighlighter highlights one line via highlightParagraph() and exposes getCurrentState()/setCurrentState() and the state stack, documented in the library manual and header; this is what Source-highlight-qt uses to implement QSyntaxHighlighter."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "No parse tree or edit API; only per-line state resume."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Pure regex lexer. A 'function' element is matched by regex (identifier followed by '('); optional ctags integration adds cross-reference links but not semantic token roles."
+    },
+    "bundled-languages": {
+      "value": 84,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://archlinux.org/packages/extra/x86_64/source-highlight/files/"],
+      "comment": "3.1.9: lang.map (174 entries incl. aliases) targets 87 distinct .lang files; excluded nohilite and the variants fixed-fortran and haskell_literate. Includes non-programming formats (changelog, diff, log, desktop, xorg, po, ldap) and source-highlight's own langdef/outlang/style formats. 114 .lang files total incl. include-only helpers. Distro blurbs say 'over 100'/'over 150' (alias counts)."
+    },
+    "grammar-format": {
+      "value": ["source-highlight-lang"],
+      "source": ["https://archlinux.org/packages/extra/x86_64/source-highlight/files/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Declarative .lang language definition files (documented in the manual's 'Language Definitions' chapter)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Only its own .lang definitions; no TextMate/Sublime/KDE/Pygments import."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://www.mankier.com/1/source-highlight"],
+      "comment": "--lang-def, --lang-map and --data-dir load user .lang files at runtime; library LangDefManager does the same. --check-lang and --show-regex help debug definitions."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": ".lang files are read from the data directory and built into a HighlightState only for the requested language (LangDefManager::getHighlightState); nothing is compiled in."
+    },
+    "grammar-accuracy": {
+      "value": 2,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Judgement from spot check of 3.1.9 definitions (2026-11-18), not issue-tracker evidence: python.lang keyword list lacks with/yield/nonlocal/None/True/False and has no f-string handling, treating docstrings as comments; rust.lang is 24 lines; no TypeScript, Kotlin or Swift definitions. Definitions unchanged since 2019."
+    },
+    "bundled-themes": {
+      "value": 49,
+      "source": ["https://archlinux.org/packages/extra/x86_64/source-highlight/files/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "3.1.9: 44 CSS style sheets (39 sh_*.css themes adopted from SHJS plus default, mono, mono-alt, cpp2html, xhtml) and 5 general .style files (default, esc, esc256, style2, style3). Excludes example CSS (Hello, Hello2) and language-specific .style files (javalog, json, lilypond, r, texinfo)."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet"],
+      "source": ["https://www.mankier.com/1/source-highlight", "https://archlinux.org/packages/extra/x86_64/source-highlight/files/"],
+      "comment": "--style-css-file reads formatting from CSS syntax (and --css links an external stylesheet for class output). The native default is source-highlight's own .style format (--style-file, default.style), which has no tag."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Element names (keyword, type, string, comment, number, preproc, symbol, function, specialchar, ...) are a conventional flat set used across .lang and .style files; .lang files may define additional element names, which style files map (falling back to normal)."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://www.mankier.com/1/source-highlight", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "html-css / xhtml-css output (or --css=FILE) emits <span class=\"keyword\"> etc. (css_common.outlang); default html output uses inline <font color> tags."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Class names are theme-independent and the bundled sh_*.css sheets use the same classes, so stylesheets can be swapped manually, but there is no documented single-render light/dark mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://metacpan.org/pod/Syntax::SourceHighlight"],
+      "comment": "Library manual documents (a) custom Formatter subclasses registered per element in FormatterManager, receiving (element, text, FormatterParams) for each match without rendering, and (b) HighlightEventListener receiving HighlightEvent (FORMAT, FORMATDEFAULT, ENTERSTATE, EXITSTATE) with HighlightToken (prefix, suffix, matched element:text pairs, matchedSize)."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://metacpan.org/pod/Syntax::SourceHighlight"],
+      "comment": "Callback-driven stream of (element name, text) tokens via Formatter or HighlightEvent/HighlightToken; no stored token list object. The sexp output language produces S-expressions but is an output format, not a documented IR."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Tokens are transient C++ objects passed to callbacks (Perl binding notes events are valid only during the callback). No documented JSON/serde form; the sexp output format is the closest thing."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Custom formatters receive element names; style resolution happens inside the built-in TextStyleFormatter for the chosen output language and is not exposed as resolved colours per token."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "FormatterParams.start is documented as 'the start position of the string to format within the whole string (line)'; line number is available to the caller driving highlightParagraph() per line."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Library manual section 'Customizing Formatting' with InfoFormatter example (subclass srchilite::Formatter, register in FormatterManager). New output formats can also be defined declaratively via .outlang files (--outlang-def)."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://www.mankier.com/1/source-highlight"],
+      "comment": "No range/line annotation mechanism. Related features: --line-range/--regex-range/--range-context filter which lines are output, and ctags-based --gen-references adds cross-reference links (inline/postline/postdoc)."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-16", "ansi-256", "latex", "odt"],
+      "source": ["https://archlinux.org/packages/extra/x86_64/source-highlight/files/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "3.1.9 outlang.map: html, html5, htmltable, html-css, xhtml, xhtmltable, xhtml-css, esc (ANSI 16), esc256, latex, latexcolor, odf, plus untagged texinfo, docbook, javadoc, mediawiki, sexp (S-expressions), groff_man, groff_mm, groff_mm_color. No RTF, SVG or image."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://www.mankier.com/1/source-highlight"],
+      "comment": "-n/--line-number[=PADDING] and --line-number-ref[=PREFIX] (with anchors); htmltablelinenum outlang."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Library manual documents line-by-line use: SourceHighlighter::highlightParagraph() on each line, with formatter output emitted per line (infoformatter-main.cpp example reads stdin line by line). CLI also reads stdin."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://archlinux.org/packages/extra/x86_64/source-highlight/files/", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "esc and esc256 output languages with esc.style/esc256.style; ships source-highlight-esc.sh and src-hilite-lesspipe.sh for use as a less input filter."
+    },
+    "native-dependencies": {
+      "value": ["c-library"],
+      "source": ["https://formulae.brew.sh/formula/source-highlight", "https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Native C++ program/library linking Boost.Regex (Boost is the only Homebrew dependency)."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Native CLI/library only; can be run server-side as a CGI (--enable-input-chroot) but no client-side build."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "No official WASM/Emscripten build or documentation."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Plain blocking C++ calls (SourceHighlight::highlight(istream, ostream, lang), SourceHighlighter::highlightParagraph)."
+    },
+    "bindings-ports": {
+      "value": null,
+      "source": ["https://metacpan.org/pod/Syntax::SourceHighlight", "https://srchiliteqt.sourceforge.net/"],
+      "comment": "Only notable binding is Perl (Syntax::SourceHighlight on CPAN, 2.1.3 from Aug 2022), which has no tag. Source-highlight-qt is a C++/Qt wrapper; Roberto Alsina's partial PyQt SIP binding was hosted on the defunct Google Code. No tag fits, and 'none' would be inaccurate."
+    },
+    "core-package-size": {
+      "value": null,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/"],
+      "comment": "Native CLI/library, not comparable with JS/Python package sizes. For reference the 3.1.9 source tarball is 1.6 MB."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible comparative benchmark found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured; .lang files are parsed and regexes compiled at startup for the requested language only."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Hosted on GNU Savannah, not GitHub (unofficial GitHub mirrors such as scopatz/src-highlite exist)."
+    },
+    "monthly-downloads": {
+      "value": null,
+      "source": ["https://formulae.brew.sh/formula/source-highlight"],
+      "comment": "CLI/native library without a language registry; distributed via distro packages. For reference Homebrew reports 3,635 installs in the last 30 days (2026-11-18), mostly as a dependency (48 on request)."
+    },
+    "last-release": {
+      "value": "2019-10-12",
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/"],
+      "comment": "source-highlight-3.1.9.tar.gz timestamp on ftp.gnu.org. Previous release 3.1.8 was 2015-03-30."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/", "https://repology.org/project/source-highlight/packages"],
+      "comment": "No release since 3.1.9 (Oct 2019, prepared by Tom Tromey after a 4-year gap); distros only carry patches. Savannah repository unreachable on 2026-11-18, so recent commit activity could not be checked; not archived."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz", "https://www.mankier.com/1/source-highlight"],
+      "comment": "Thorough Texinfo user manual (language/output/style definition formats, examples), separate library manual with examples, and Doxygen API reference; but stale (website manual still titled 3.1.8) and no guides for modern use."
+    },
+    "notable-users": {
+      "value": "GDB (source styling via libsource-highlight), AsciiDoc (default source-highlight filter), less (via bundled src-hilite-lesspipe.sh)",
+      "source": ["https://sourceware.org/gdb/current/onlinedocs/gdb.html/Output-Styling.html", "https://asciidoc-py.github.io/source-highlight-filter.html", "https://archlinux.org/packages/extra/x86_64/source-highlight/files/"],
+      "comment": "GDB uses GNU Source Highlight when linked with it, falling back to Pygments. AsciiDoc (Python) source filter defaults to GNU source-highlight."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz"],
+      "comment": "Designed and maintained by Lorenzo Bettini (AUTHORS); ChangeLog shows nearly all 2009-2012 work by him and the 2019 3.1.9 release prepared mainly by Tom Tromey, with occasional contributors."
+    }
+  }
 }
