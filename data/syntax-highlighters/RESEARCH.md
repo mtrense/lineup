@@ -178,7 +178,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] Shiki — TextMate-grammar highlighter using VS Code grammars and themes; hast IR, transformers, dual themes, JS or Oniguruma-WASM regex engine
 - [x] syntect — Rust highlighter using Sublime Text syntaxes; styled-span IR, ANSI/HTML output; powers bat, delta, Zola
 - [x] tree-sitter-highlight — parse-tree-based highlighting with highlight events and language injections; used by GitHub and editors
-- [ ] Chroma — Go highlighter derived from Pygments lexers; used by Hugo, Gitea, glamour
+- [x] Chroma — Go highlighter derived from Pygments lexers; used by Hugo, Gitea, glamour
 - [x] Rouge — Pygments-compatible Ruby highlighter; default in Jekyll and GitLab
 - [ ] starry-night — GitHub-grammar-compatible TextMate highlighter emitting hast; CSS-class themes matching github.com
 - [ ] vscode-textmate — the TextMate grammar interpreter behind VS Code, usable standalone; scope-stack tokens and resumable rule stacks

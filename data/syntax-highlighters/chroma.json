@@ -1,5 +1,269 @@
 {
   "name": "Chroma",
   "description": "Go highlighter derived from Pygments lexers; used by Hugo, Gitea, glamour",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["go"],
+      "source": ["https://github.com/alecthomas/chroma", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Pure Go library (module github.com/alecthomas/chroma/v2; master is already github.com/alecthomas/chroma/v3)."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://github.com/alecthomas/chroma", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Go library plus the `chroma` CLI (cmd/chroma; usable as a less(1) LESSOPEN preprocessor). An experimental WASM build (cmd/libchromawasm) powers the playground but is not a published module, so `wasm-module` is not tagged."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/master/COPYING", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "MIT (Copyright 2017 Alec Thomas). The COPYING file also includes the SIL Open Font License 1.1 for the Liberation Mono font embedded in the SVG formatter; pkg.go.dev reports 'MIT, OFL-1.1'."
+    },
+    "repository": {
+      "value": "https://github.com/alecthomas/chroma",
+      "source": ["https://github.com/alecthomas/chroma"]
+    },
+    "package": {
+      "value": "https://pkg.go.dev/github.com/alecthomas/chroma/v2",
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Go module index for the stable v2 line. v3 (alpha) lives at github.com/alecthomas/chroma/v3."
+    },
+    "documentation": {
+      "value": "https://pkg.go.dev/github.com/alecthomas/chroma/v2",
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2", "https://github.com/alecthomas/chroma"],
+      "comment": "No dedicated docs site: README plus the pkg.go.dev API reference. An online playground (swapoff.org/chroma/playground) shows languages and styles."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://api.github.com/repos/alecthomas/chroma", "https://news.ycombinator.com/item?id=15323707"],
+      "comment": "Repository created 2017-06-07; publicly announced on Hacker News 2017-09-24, around Hugo's switch from Pygments."
+    },
+    "latest-version": {
+      "value": "v2.27.0",
+      "source": ["https://api.github.com/repos/alecthomas/chroma/releases?per_page=10", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Latest stable, released 2026-06-17; checked 2026-11-18. v3.0.0-alpha.1 to alpha.5 (latest 2026-07-08) are also tagged. GitHub marks them as 'Latest' releases, but they are alphas under a new module path."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2", "https://news.ycombinator.com/item?id=15323707"],
+      "comment": "Pygments-style RegexLexer: named states of regex rules with push/pop mutators and emitters (ByGroups, Using). The author says Chroma 'very closely adheres to the design of Pygments'."
+    },
+    "regex-engine": {
+      "value": ["go-regexp2"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/master/go.mod"],
+      "comment": "Uses github.com/dlclark/regexp2, a backtracking .NET-compatible regex engine, rather than Go's RE2-based regexp. Master depends on regexp2/v2 v2.10.1."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexers/embedded/html.xml", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "The HTML lexer delegates <script> bodies to the JavaScript lexer and <style> bodies to the CSS lexer via `<using lexer=...>` (Go emitters Using/UsingByGroup). Template lexers (ERB, Django/Jinja, Go templates) also delegate."
+    },
+    "language-auto-detection": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go"],
+      "comment": "`lexers.Analyse(text)` picks the highest-scoring lexer (Lexer.AnalyseText; XML lexers can declare <analyse> regex scores). The README warns that very few languages implement content detection, so coverage is weak."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Lexer Config carries Filenames, AliasFilenames and MimeTypes globs. `lexers.Match(filename)` and MIME-type lookup resolve a lexer."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "LexerState (Pos, Stack, State) is an exported type for mutators, but there is no documented API to snapshot per-line state and resume tokenising. Tokenise always takes the full text."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Stateless regex lexing over the whole input. There is no edit-aware reparse."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://news.ycombinator.com/item?id=15323707", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Pure regex state-machine lexer with no syntax tree or locals tracking. Patterns such as `fn name` may emit NameFunction lexically, but there is no structural role analysis."
+    },
+    "bundled-languages": {
+      "value": 294,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Counted from the README's Supported languages table at v2.27.0 (294 lexer names, checked 2026-11-18). The table includes dialect and session variants such as Python 2, Bash Session and the Genshi variants. The README notes that `chroma --list` is authoritative and the table may lag."
+    },
+    "grammar-format": {
+      "value": ["chroma-xml", "code"],
+      "source": ["https://api.github.com/repos/alecthomas/chroma/contents/lexers?ref=v2.27.0", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexers/embedded/html.xml", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/serialise.go"],
+      "comment": "Most lexers are XML files in lexers/embedded/. About 21 lexers that need custom logic are written in Go (e.g. go, markdown, php, raku, svelte, caddyfile, genshi)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["pygments"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md", "https://news.ycombinator.com/item?id=15323707"],
+      "comment": "Build-time conversion only: `_tools/pygments2chroma_xml.py` turns Pygments lexers into Chroma XML, and Pygments styles were converted with `_tools/style.py`. Pygments lexers cannot be loaded at runtime, and complex lexers need manual ports."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "`NewXMLLexer(fs.FS, path)` loads an XML lexer at runtime, `MustNewLexer` builds one from Go rules, and `LexerRegistry.Register` / `lexers.Register` adds or replaces a lexer by name."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexers/lexers.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/serialise.go"],
+      "comment": "Partly lazy. All embedded XML lexers are registered at package init (config, filename globs and analyser regexes are parsed eagerly). Their rules are decoded only on first use through a fetchRulesFunc closure. All lexers are compiled into the binary via go:embed."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://github.com/alecthomas/chroma/pull/1373", "https://github.com/alecthomas/chroma/pull/1010", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Judgement call. Lexers are hand-maintained Pygments derivatives that don't track an upstream grammar. Mainstream-language gaps are still being fixed in 2024–2026 (TypeScript string-literal generics fixed in v2.15.0; Rust raw identifiers in declarations merged 2026-10-16). The README admits fewer lexers than Pygments and omits some advanced Pygments features."
+    },
+    "bundled-themes": {
+      "value": 77,
+      "source": ["https://api.github.com/repos/alecthomas/chroma/contents/styles?ref=v2.27.0"],
+      "comment": "77 XML style files in styles/ at v2.27.0, checked 2026-11-18 (master has 83). Includes all Pygments styles plus Catppuccin, Tokyo Night, Rose Pine, Kanagawa, GitHub (dark), etc."
+    },
+    "theme-format": {
+      "value": ["chroma-xml", "code"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Styles are XML files using Pygments style-entry syntax (e.g. 'bold #f00 bg:#000'). Styles can also be built in Go via NewStyle/StyleBuilder and registered with styles.Register."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Closed Pygments-derived TokenType set (e.g. NameFunction, CommentSpecial) with parent inheritance for styling."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/html/html.go", "https://github.com/alecthomas/chroma"],
+      "comment": "html.WithClasses(true) plus ClassPrefix and Formatter.WriteCSS to generate the stylesheet. Inline styles are the default."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/html/html.go", "https://github.com/alecthomas/chroma"],
+      "comment": "Via class-based HTML plus WithModeClasses(true). WriteCSS scopes rules as `.chroma.<mode>`, and the documented approach is to call WriteCSS once per style (e.g. a light style and its dark Counterpart), concatenate the CSS, and switch the mode class at runtime. There is no CSS-variable mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go"],
+      "comment": "Lexer.Tokenise returns an Iterator over Token{Type, Value}. Helpers include chroma.Tokenise (→ []Token), Iterator.Tokens(), Stdlib() Go iterators, Coalesce and SplitTokensIntoLines. v3 replaces Iterator with iter.Seq[Token]."
+    },
+    "ir-kinds": {
+      "value": ["token-list", "json"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/json.go"],
+      "comment": "Flat (TokenType, Value) stream. The built-in `json` formatter writes it as a JSON array of {\"type\", \"value\"} objects. A `tokens` formatter dumps a Go-syntax token listing for debugging."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/json.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go"],
+      "comment": "Token has json struct tags and TokenType implements text marshalling. The registered `json` formatter emits the token list as JSON. It is not described in the README, but it is part of the public formatter registry."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Tokens carry only a TokenType. Style.Get(tokenType) returns a resolved StyleEntry (colour, bold, italic, …), but no API emits tokens with styles attached. Formatters do the join internally."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go"],
+      "comment": "Token struct is only {Type, Value}. Offsets have to be reconstructed by summing value lengths."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/api.go"],
+      "comment": "Implement chroma.Formatter (Format(w, style, iterator)) or use chroma.FormatterFunc, and register it with formatters.Register."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/html/html.go"],
+      "comment": "Limited to HighlightLines(ranges) in the HTML formatter, plus linkable line-number anchors. There are no diff/focus markers, inline annotations, or per-line hooks. WithPreWrapper only wraps the whole block."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-16", "ansi-256", "ansi-truecolor", "svg"],
+      "source": ["https://api.github.com/repos/alecthomas/chroma/contents/formatters?ref=v2.27.0", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/tty_indexed.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/api.go"],
+      "comment": "v2.27.0 formatters are html, svg (embedded Liberation Mono font), terminal/terminal8/terminal16, terminal256, true-colour terminal, json, tokens and noop. Master (v3 alpha) adds a mIRC formatter, which is not yet in a stable release."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/html/html.go"],
+      "comment": "HTML only: WithLineNumbers, LineNumbersInTable, WithLinkableLineNumbers and BaseLineNumber."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/html/html.go", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/lexer.go"],
+      "comment": "Tokens come from a lazy iterator and formatters write to an io.Writer, but Tokenise needs the complete input string. The HTML formatter collects all tokens before writing, because line-number width depends on the total line count. There is no documented incremental-input API."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/formatters/tty_indexed.go", "https://github.com/alecthomas/chroma"],
+      "comment": "Built-in 8/16/256-colour and true-colour terminal formatters, and a CLI that works as a less(1) preprocessor."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/master/go.mod", "https://github.com/alecthomas/chroma"],
+      "comment": "Pure Go: the only runtime dependency is dlclark/regexp2 (pure Go). No cgo."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/cmd/libchromawasm/main.go", "https://github.com/alecthomas/chroma/blob/master/AGENTS.md"],
+      "comment": "Via the experimental libchromawasm build, which exposes a global JS `highlight(source, lexer, style, classes)` returning HTML. The production playground compiles it to WASM and runs it client-side. There is no published npm package."
+    },
+    "wasm-build": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2/cmd/libchromawasm", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/cmd/libchromawasm/main.go"],
+      "comment": "In-repo cmd/libchromawasm is documented as an 'experimental WASM library intended for TinyGo'. It is built from source and not distributed as a prebuilt artifact."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Plain blocking Go calls (Tokenise, Format, quick.Highlight). No async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/krymel/chroma-highlight"],
+      "comment": "No official bindings. The only wrapper found is chroma-highlight, a tiny third-party Node.js package (3 stars, bundles chroma v2.4.0) that shells out to the chroma binary, so it doesn't count as well-known. Chroma is itself a Go port of Pygments."
+    },
+    "core-package-size": {
+      "value": null,
+      "comment": "Not comparable: Go modules are compiled into the consumer's binary. Neither pkg.go.dev nor the Go proxy reports an installed size, and binary contribution depends on linked lexers (all are go:embed'ed)."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://news.ycombinator.com/item?id=15323707"],
+      "comment": "No independent or reproducible cross-engine benchmark including Chroma was found. Claims of being much faster than Pygments mostly reflect avoiding the pygmentize process spawn in Hugo, as the author notes."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "No time-to-first-highlight measurement was found. Package init registers all ~290 lexer configs (rules are deferred to first use), but the cost is unmeasured."
+    },
+    "github-stars": {
+      "value": 5085,
+      "source": ["https://api.github.com/repos/alecthomas/chroma"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": null,
+      "source": ["https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "The Go module ecosystem publishes no download counts. As a proxy, pkg.go.dev shows v2 imported by 593 packages (checked 2026-11-18)."
+    },
+    "last-release": {
+      "value": "2026-06-17",
+      "source": ["https://api.github.com/repos/alecthomas/chroma/releases?per_page=10", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "v2.27.0, the latest stable release. v3.0.0-alpha.5 followed on 2026-07-08 but is an alpha."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/alecthomas/chroma", "https://github.com/alecthomas/chroma/pull/1373"],
+      "comment": "Last push 2026-11-18, only 9 open issues, and community lexer PRs merged regularly (e.g. #1373 on 2026-10-16). v3 is in alpha alongside the v2 line."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://github.com/alecthomas/chroma", "https://pkg.go.dev/github.com/alecthomas/chroma/v2"],
+      "comment": "Solid README (quick start, language identification, formatter and HTML options, styles, CLI, lexer testing) plus a pkg.go.dev API reference and an online playground and style gallery. There is no guides site or migration notes, and some features (e.g. the json formatter) are documented only in code."
+    },
+    "notable-users": {
+      "value": "Hugo, Gitea, glamour (Charm's Markdown renderer behind Glow), moor pager",
+      "source": ["https://raw.githubusercontent.com/gohugoio/hugo/master/go.mod", "https://raw.githubusercontent.com/go-gitea/gitea/main/go.mod", "https://raw.githubusercontent.com/charmbracelet/glamour/master/go.mod", "https://raw.githubusercontent.com/alecthomas/chroma/v2.27.0/README.md"],
+      "comment": "Hugo and Gitea require chroma/v2 v2.27.0, and glamour requires v2.14.0 (checked 2026-11-18). The README lists moor and f4."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/alecthomas/chroma", "https://github.com/alecthomas/chroma/pull/1373"],
+      "comment": "Personal repository of Alec Thomas, who reviews and merges all PRs. Many lexers come from community contributors, but there is no maintainer team or organisation."
+    }
+  }
 }
