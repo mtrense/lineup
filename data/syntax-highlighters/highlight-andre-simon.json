@@ -1,5 +1,269 @@
 {
   "name": "highlight (Andre Simon)",
   "description": "Long-standing C++/Lua highlight-first CLI and library with many output formats (HTML, LaTeX, RTF, ODT, SVG, ANSI, BBCode, Pango)",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["cpp", "lua"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "Engine and CLI are C++ (Boost headers + Lua 5.x/LuaJIT at build time). Lua is first-class: all language definitions, themes and plug-ins are Lua scripts run by the embedded Lua interpreter."
+    },
+    "form-factor": {
+      "value": ["cli", "library"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/extras/swig/README_SWIG"],
+      "comment": "Primarily a CLI (plus optional Qt GUI). The highlight::CodeGenerator class (src/include/codegenerator.h) is the library interface, wrapped via SWIG; a shared library build exists (fixed in 4.22) but the C++ API is not documented beyond the header."
+    },
+    "license": {
+      "value": ["gpl-3-0"],
+      "source": ["https://gitlab.com/saalen/highlight"],
+      "comment": "GNU GPLv3 per the GitLab project licence (COPYING). Separate licences for individual bundled definitions/themes were not checked."
+    },
+    "repository": {
+      "value": "https://gitlab.com/saalen/highlight",
+      "source": ["https://gitlab.com/saalen/highlight"],
+      "comment": "Hosted on GitLab (project created 2018-06-04; history predates the GitLab move)."
+    },
+    "package": {
+      "value": "https://packages.debian.org/sid/highlight",
+      "source": ["https://packages.debian.org/sid/highlight"],
+      "comment": "Official download page is andre-simon.de, which could not be fetched on 2026-11-18 (expired TLS certificate). Debian sid package shown as the primary distro package; note it lags upstream (4.10 vs 4.22)."
+    },
+    "documentation": {
+      "value": "https://gitlab.com/saalen/highlight/-/raw/master/README.adoc",
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "The README.adoc manual (also published on andre-simon.de) plus README_PLUGINS, README_LSP_CLIENT, README_REGEX, README_LANGLIST and a man page."
+    },
+    "first-release": {
+      "value": "2002",
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/ChangeLog.adoc"],
+      "comment": "Predecessor src2css 0.1 released 2002-04-04; renamed highlight 0.1 on 2002-07-25; 1.0 on 2002-08-13."
+    },
+    "latest-version": {
+      "value": "4.22",
+      "source": ["https://gitlab.com/api/v4/projects/6678916/releases?per_page=5", "https://gitlab.com/saalen/highlight/-/raw/master/ChangeLog.adoc"],
+      "comment": "Released 2026-11-05; checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/src/include/regexelement.h"],
+      "comment": "Lua language definitions declare keyword lists/regexes, comments, strings, operators etc.; the C++ parser runs them as a regex state machine with an OnStateChange hook. Optional LSP client can add semantic tokens from an external language server."
+    },
+    "regex-engine": {
+      "value": ["boost-regex"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/regexelement.h", "https://gitlab.com/saalen/highlight/-/raw/master/ChangeLog.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/README_REGEX.adoc"],
+      "comment": "Strictly Boost.Xpressive (dynamic sregex::compile), not Boost.Regex; closest available tag. Xpressive replaced highlight's own Pattern/Matcher classes in 3.11 (2012); README_REGEX is based on the Boost regex syntax docs."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/langDefs/html.lang", "https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Via NestedSections in language definitions: html.lang embeds CSS (<style>), JavaScript (<script>), PHP and JSP out of the box."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/filetypes.conf"],
+      "comment": "Detection is by extension, filename, or first-line 'Shebang' regexes in filetypes.conf (incl. an XML declaration pattern); no general content-based guessing."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/filetypes.conf", "https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "filetypes.conf maps extensions, full filenames and shebang regexes to languages; user-overridable. Ambiguous extensions take the first association in the CLI."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "Parser state is held in private CodeGenerator members; no public API to save/restore per-line state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "Whole-input processing only (generateFile/generateString)."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README_LSP_CLIENT.adoc"],
+      "comment": "The built-in engine is a regex state machine. Since 4.0 an optional LSP client (--ls-semantic) can apply semantic tokens from an external language server (clangd, rust-analyzer, gopls...), but that requires a separate toolchain and is not built in."
+    },
+    "bundled-languages": {
+      "value": 267,
+      "source": ["https://gitlab.com/api/v4/projects/6678916/repository/tree?path=langDefs&per_page=100&page=3", "https://gitlab.com/saalen/highlight/-/raw/master/README_LANGLIST.adoc"],
+      "comment": "Count of .lang files in langDefs/ on master (267 via paginated GitLab tree API, checked 2026-11-18, ~4.22). README_LANGLIST lists roughly 255 rows (may lag); some definitions are dialect variants."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Language definitions are Lua scripts (.lang) declaring keywords, regexes, delimiters and optional Lua hook functions (since 3.0, 2010)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Consumes only its own Lua .lang definitions; no TextMate, Sublime, tree-sitter, Pygments or KDE import."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "Definitions are interpreted at runtime: --syntax accepts a .lang file path, user config dirs override bundled files, plug-ins modify definitions, and CodeGenerator::loadLanguage(path) loads one in the library."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "Only the selected .lang script (plus any nested-section languages) is loaded via loadLanguage(); definitions are separate files on disk, not compiled in."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/ChangeLog.adoc"],
+      "comment": "Judgement call: hand-maintained regex definitions not tracking an upstream grammar. Recent changelog entries fix e.g. Python interpolation outside strings, nested command substitution in shell, Vue nested sections and regexes in CMake/PHP, indicating solid common-case coverage with gaps on nested/modern constructs. No systematic spot check of TS/Rust/Python."
+    },
+    "bundled-themes": {
+      "value": 202,
+      "source": ["https://gitlab.com/api/v4/projects/6678916/repository/tree?path=themes&per_page=100", "https://gitlab.com/api/v4/projects/6678916/repository/tree?path=themes/base16&per_page=100"],
+      "comment": "97 .theme files in themes/ plus 105 in themes/base16/ (selected as base16/<name>), on master checked 2026-11-18."
+    },
+    "theme-format": {
+      "value": ["code"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Themes are Lua .theme scripts (Colour, Bold, Italic, Underline, AnsiIndex, Custom per element). The bundled Base16 collection is pre-converted to .theme files; Base16 YAML is not consumed directly."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Fixed element set (Default, Number, String, Escape, Comment, Preprocessor, Operator, Line number, keyword groups 1-n, plus LSP semantic styles); HTML classes like hl kwa/hl str."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "HTML/LaTeX/TeX/SVG reference an external stylesheet by default; --include-style embeds it, --inline-css switches to inline styles."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Class names are theme-independent, so per-theme stylesheets generated with --print-style can be swapped manually, but there is no documented single-render light/dark mechanism."
+    },
+    "public-token-api": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h", "https://gitlab.com/saalen/highlight/-/raw/master/README_PLUGINS.adoc"],
+      "comment": "CodeGenerator's public generate* methods return only rendered output; token state is private. The Lua Decorate(token, state, kwGroupID, lineHasStmt, lineno, column) plug-in hook sees each token during rendering, but is not a token-stream API."
+    },
+    "ir-kinds": {
+      "value": null,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "No documented intermediate representation; output is always a rendered format."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "No IR exposed."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "No token output; theme colours are only applied inside the format generators."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README_PLUGINS.adoc"],
+      "comment": "No IR. (The Decorate plug-in hook does receive line number and column, since 3.60.)"
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h", "https://gitlab.com/saalen/highlight/-/raw/master/README_PLUGINS.adoc"],
+      "comment": "Output generators are C++ subclasses of CodeGenerator created via an internal factory (getInstance(OutputType)); no documented way to add a new format. Lua plug-ins (Decorate, Header/FooterInjection) can only alter tokens/markup within existing formats."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README_PLUGINS.adoc", "https://gitlab.com/api/v4/projects/6678916/repository/tree?path=plugins&per_page=100"],
+      "comment": "Documented Lua plug-in hooks Decorate, DecorateLineBegin and DecorateLineEnd; bundled plug-ins include mark_lines.lua, outhtml_focus.lua, outhtml_codefold.lua and tooltip/link decorators. Applied during rendering (no separate IR)."
+    },
+    "output-formats": {
+      "value": ["html-classes", "html-inline-styles", "ansi-16", "ansi-256", "ansi-truecolor", "latex", "rtf", "odt", "svg", "bbcode", "pango-markup"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "--out-format: html (HTML5, default), xhtml, tex (plain TeX), latex, rtf, odt (Flat XML), svg, bbcode, pango, ansi, xterm256, truecolor. Plain TeX and XHTML have no dedicated tag. No image output."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "-l/--line-numbers with -m (start), -j (width), -z (zero padding); also line ranges."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Reads stdin/files and writes stdout, but no documented incremental output API. --service-mode keeps the process alive for repeated inputs separated by an EOF character, each processed whole."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "ansi, xterm256 and truecolor output formats; README shows `highlight --out-format=xterm256 file | less -R`."
+    },
+    "native-dependencies": {
+      "value": ["c-library"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://packages.debian.org/sid/highlight"],
+      "comment": "Native C++ program linking the Lua 5.x (or LuaJIT) runtime; Boost headers (Xpressive) at build time; Qt5 only for the optional GUI."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Native CLI/library; no browser build documented."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "No official WASM build found in the repository or manual (checked 2026-11-18)."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/src/include/codegenerator.h"],
+      "comment": "CodeGenerator::generateString/generateFile are blocking calls after initTheme/loadLanguage. With LSP features enabled, calls wait on the external language server."
+    },
+    "bindings-ports": {
+      "value": ["python", "php"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/extras/swig/README_SWIG", "https://gitlab.com/saalen/highlight/-/raw/master/README.adoc"],
+      "comment": "Official SWIG interface (extras/swig/highlight.i) wrapping CodeGenerator, with makefile targets for Python, Perl and PHP; also a TCL extension in extras/tcl. Perl and TCL have no tag."
+    },
+    "core-package-size": {
+      "value": null,
+      "source": ["https://packages.debian.org/sid/highlight"],
+      "comment": "Native CLI, not comparable with JS/Python package sizes. For reference the Debian sid amd64 binary package installs ~1.45 MB (plus highlight-common data)."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible cross-engine benchmark including highlight was found in this pass."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "No cited measurement of time-to-first-highlight. Each run starts a Lua state and loads one language and theme script; unmeasured."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://gitlab.com/api/v4/projects/6678916"],
+      "comment": "Not on GitHub. GitLab shows 130 stars and 169 forks (checked 2026-11-18)."
+    },
+    "monthly-downloads": {
+      "value": null,
+      "comment": "CLI distributed via source tarballs and distro packages; no single registry with download counts."
+    },
+    "last-release": {
+      "value": "2026-11-05",
+      "source": ["https://gitlab.com/api/v4/projects/6678916/releases?per_page=5", "https://gitlab.com/saalen/highlight/-/raw/master/ChangeLog.adoc"],
+      "comment": "Version 4.22."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://gitlab.com/api/v4/projects/6678916/releases?per_page=5", "https://gitlab.com/api/v4/projects/6678916"],
+      "comment": "Roughly quarterly releases (4.18 Nov 2025 through 4.22 Nov 2026) with new language definitions, features and issue-linked fixes; last activity 2026-11-15."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/README.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/README_PLUGINS.adoc", "https://gitlab.com/saalen/highlight/-/raw/master/README_LSP_CLIENT.adoc"],
+      "comment": "Thorough CLI manual with examples, separate plug-in, LSP, regex, language-list and v4 migration guides; but no API reference for the C++ library beyond header comments."
+    },
+    "notable-users": {
+      "value": "ranger file manager (scope.sh previews), fzf.vim preview script",
+      "source": ["https://raw.githubusercontent.com/ranger/ranger/master/ranger/data/scope.sh", "https://raw.githubusercontent.com/junegunn/fzf.vim/master/bin/preview.sh"],
+      "comment": "ranger's default scope.sh calls `highlight --out-format=xterm256|ansi` first, falling back to bat/pygmentize; fzf.vim's preview fallback runs `highlight -O ansi -l`."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://gitlab.com/saalen/highlight/-/raw/master/AUTHORS"],
+      "comment": "Developed and maintained by André Simon; AUTHORS lists contributed language definitions and bundled third-party libs (Diluculum, astyle, PicoJSON)."
+    }
+  }
 }
