@@ -1,5 +1,268 @@
 {
   "name": "Makeup",
   "description": "Elixir highlighter used by ExDoc; Pygments-inspired lexer architecture",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["elixir"],
+      "source": ["https://github.com/elixir-makeup/makeup", "https://hex.pm/api/packages/makeup/releases/1.2.3"],
+      "comment": "Pure Elixir library built with mix. Requires Elixir ~> 1.12 as of 1.2.3. Runs on the BEAM, so Erlang and other BEAM languages can call it too."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://makeup.hexdocs.pm/llms.txt"],
+      "comment": "Hex library only. The module list has no CLI or mix task for highlighting."
+    },
+    "license": {
+      "value": ["bsd-2-clause"],
+      "source": ["https://hex.pm/packages/makeup", "https://github.com/elixir-makeup/makeup"],
+      "comment": "Core is BSD-2-Clause. Lexers ship as separate packages with their own licences, e.g. the companion makeup_syntect is MIT."
+    },
+    "repository": {
+      "value": "https://github.com/elixir-makeup/makeup",
+      "source": ["https://github.com/elixir-makeup/makeup"]
+    },
+    "package": {
+      "value": "https://hex.pm/packages/makeup",
+      "source": ["https://hex.pm/packages/makeup"]
+    },
+    "documentation": {
+      "value": "https://makeup.hexdocs.pm/",
+      "source": ["https://makeup.hexdocs.pm/", "https://makeup.hexdocs.pm/Makeup.html"],
+      "comment": "HexDocs API reference plus README, changelog and contributing pages. hexdocs.pm/makeup now redirects to makeup.hexdocs.pm."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://hex.pm/api/packages/makeup"],
+      "comment": "Version 0.1.0 was published to Hex on 2017-08-01."
+    },
+    "latest-version": {
+      "value": "1.2.3",
+      "source": ["https://hex.pm/api/packages/makeup", "https://makeup.hexdocs.pm/changelog.html"],
+      "comment": "Published 2026-10-03; checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["custom-parser"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Each lexer is a hand-written PEG parser in Elixir code, built with NimbleParsec combinators (Makeup.Lexer.Combinators). It is not a declarative regex state table like Pygments. The contributing guide says regex or custom tokenizers are also allowed, but the official lexers use NimbleParsec."
+    },
+    "regex-engine": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://hex.pm/api/packages/makeup/releases/1.2.3"],
+      "comment": "No regex engine runs the grammars. NimbleParsec (the only dependency) compiles combinators into Elixir binary pattern-matching code at compile time. Third-party lexers could still use Erlang's :re (PCRE), but that is not the core design."
+    },
+    "embedded-languages": {
+      "value": false,
+      "source": ["https://github.com/elixir-makeup/makeup_html", "https://github.com/elixir-makeup/makeup_syntect"],
+      "comment": "Core ships no lexers. The official makeup_html lexer does not highlight embedded CSS/JS: its README sends users who need that to makeup_syntect, which wraps Rust syntect. makeup_eex nests HTML inside (H)EEx templates, but HTML+JS+CSS does not work out of the box."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Registry.html", "https://makeup.hexdocs.pm/Makeup.html"],
+      "comment": "No content-based guessing API. Lexers are looked up only by name or extension, and the default lexer is Elixir."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Registry.html"],
+      "comment": "Makeup.Registry maps file extensions to lexers (fetch_lexer_by_extension/1, supported_file_extensions/0). Lexers register their extensions themselves. There is no shebang or MIME lookup."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.html"],
+      "comment": "lex/2 always works on a complete string. split_into_lines/1 only splits an existing token list, and no per-line parser state is exposed."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.html"],
+      "comment": "No edit-aware reparsing API."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.html", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Lexers emit lexical tokens plus delimiter 'groups' for mouseover bracket matching (Makeup.Lexer.Groups). There is no syntax tree or locals tracking. PEG lexers can tell some contexts apart (e.g. function names after def), but that is still lexical."
+    },
+    "bundled-languages": {
+      "value": 0,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html", "https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://github.com/elixir-makeup/makeup_syntect"],
+      "comment": "The makeup package itself ships no lexers: the docs say all lexers, including Elixir, must be added separately. The elixir-makeup org publishes 7 first-party lexer packages (Elixir, Erlang, C, HTML, Diff, JSON, (H)EEx). The companion makeup_syntect adds 205 syntaxes through Rust syntect. Checked 2026-11-18 (makeup 1.2.3)."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Lexers are Elixir modules that implement the Makeup.Lexer behaviour, usually written with NimbleParsec combinators."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://github.com/elixir-makeup/makeup_syntect"],
+      "comment": "Core consumes only native Makeup lexers. Pygments lexers can be hand-ported but are not consumed directly. The official companion package makeup_syntect (same org) adds Sublime syntaxes through a Rust NIF and registers them in Makeup's registry."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Registry.html"],
+      "comment": "Makeup.Registry.register_lexer/2 adds a lexer module under names and extensions at runtime. Lexers are compiled Elixir modules, but any project can register its own without forking Makeup."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Registry.html", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Lexers register themselves eagerly on application start. Users pick languages by choosing which lexer packages to depend on, not through on-demand loading."
+    },
+    "grammar-accuracy": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md"],
+      "comment": "Not assessable under the guideline: no first-party lexers exist for TS, Rust or Python. Those come only through makeup_syntect, which is syntect's grammars. The Elixir lexer is maintained alongside ExDoc by the Elixir core team, but no comparative evidence was found."
+    },
+    "bundled-themes": {
+      "value": 32,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Styles.HTML.StyleMap.html"],
+      "comment": "32 style functions in Makeup.Styles.HTML.StyleMap as of 1.2.3 (most ported from Pygments, plus samba, dracula and one_dark). Checked 2026-11-18."
+    },
+    "theme-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/lib/makeup/styles/html/style_map.ex"],
+      "comment": "Styles are Elixir code (Style.make_style/1 with a token-atom => style-string map). The strings use Pygments style syntax ('bold #f92672', 'bg:#1e0010'), and the Pygments ports sit between '%% Start Pygments %%' markers. Pygments style files are not loaded directly."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/lib/makeup/styles/html/style_map.ex", "https://makeup.hexdocs.pm/Makeup.Lexer.Types.html"],
+      "comment": "Closed set of atoms that mirrors Pygments token types (:keyword_namespace, :name_function, :string_interpol, ...), rendered as short CSS classes."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html", "https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md"],
+      "comment": "HTMLFormatter emits classed spans inside <pre class=\"highlight\">. Makeup.stylesheet/2 generates the matching CSS. Class output is the only mode; there is no inline-style option."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html", "https://makeup.hexdocs.pm/Makeup.Formatters.HTML.HTMLFormatter.html"],
+      "comment": "Through class-based HTML plus per-style stylesheets: stylesheet(style, css_class) scopes the rules under a configurable top-level class. One render can serve light and dark by swapping or scoping stylesheets. There are no CSS variables, and no dedicated light/dark feature is documented."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.html", "https://makeup.hexdocs.pm/Makeup.Lexer.Types.html"],
+      "comment": "The Makeup.Lexer behaviour's lex/2 callback returns a documented token list of type {atom(), map(), iodata()}. Formatters accept this list directly."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.Types.html", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Flat list of {token_type, metadata_map, text} tuples. The metadata map can carry e.g. language and group ids for delimiter matching."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.Types.html"],
+      "comment": "Tokens are plain Elixir terms (could be encoded with :erlang.term_to_binary or JSON by hand), but there is no documented serialization format."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Formatters.HTML.HTMLFormatter.html", "https://makeup.hexdocs.pm/Makeup.Styles.HTML.StyleMap.html"],
+      "comment": "Styles are applied only through generated CSS. No API returns tokens with resolved colours."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.Types.html"],
+      "comment": "The token type has only type, metadata map and text. No offsets or line/column are documented; they have to be rebuilt by summing text lengths."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html"],
+      "comment": "Makeup.highlight/2 takes a documented :formatter option (a formatter module) plus :formatter_options, so a custom formatter can be plugged in. There is no formal Formatter behaviour; the implicit contract mirrors HTMLFormatter (format_as_binary/2 etc.)."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Formatters.HTML.HTMLFormatter.html", "https://makeup.hexdocs.pm/llms.txt"],
+      "comment": "No line or range annotation mechanism. The only built-in decoration is delimiter-group highlighting on mouseover (group_highlighter_javascript/0)."
+    },
+    "output-formats": {
+      "value": ["html-classes"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md", "https://makeup.hexdocs.pm/llms.txt"],
+      "comment": "README: 'Currently only an HTML formatter exists.'"
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html", "https://makeup.hexdocs.pm/Makeup.Formatters.HTML.HTMLFormatter.html"],
+      "comment": "The documented HTMLFormatter options are only :css_class and :highlight_tag. No line-number output."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://makeup.hexdocs.pm/Makeup.Lexer.html", "https://makeup.hexdocs.pm/Makeup.Formatters.HTML.HTMLFormatter.html"],
+      "comment": "Lexing needs the complete input string. format_as_iolist builds iodata but does not emit output incrementally."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md"],
+      "comment": "HTML formatter only. No ANSI output."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://hex.pm/api/packages/makeup/releases/1.2.3", "https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md"],
+      "comment": "Pure Elixir. The only dependency is nimble_parsec (~> 1.4), also pure Elixir. The README cites 'no external dependencies' as its advantage over Pygments. The optional makeup_syntect companion adds a Rust NIF."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://github.com/elixir-makeup/makeup"],
+      "comment": "Server-side BEAM library. No first-party browser build."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/elixir-makeup/makeup"],
+      "comment": "No official WASM distribution."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html"],
+      "comment": "Makeup.highlight/2 is a plain synchronous function call. Lexers register at application start, with no per-call initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/elixir-makeup/makeup/master/README.md"],
+      "comment": "No bindings to non-BEAM languages found. Makeup is itself a Pygments-inspired Elixir reimplementation, not a port of Pygments code."
+    },
+    "core-package-size": {
+      "value": null,
+      "source": ["https://hex.pm/api/packages/makeup/releases/1.2.3"],
+      "comment": "Not comparable and not reported: the Hex API and package page give no tarball or installed size. Elixir source packages compile into the consumer's release, and the core alone highlights nothing without a lexer package."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible comparative benchmark against other highlighters found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured. Lexers are precompiled BEAM modules registered at application start, which suggests low startup cost, but no measurement was found."
+    },
+    "github-stars": {
+      "value": 218,
+      "source": ["https://github.com/elixir-makeup/makeup"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 1018133,
+      "source": ["https://hex.pm/api/packages/makeup"],
+      "comment": "Hex 'recent' downloads (3,054,398, assumed to be the last 90 days) ÷ 3, checked 2026-11-18. Last 7 days was 280,393. Mostly transitive installs through ExDoc's makeup_elixir/makeup_erlang dependencies."
+    },
+    "last-release": {
+      "value": "2026-10-03",
+      "source": ["https://hex.pm/api/packages/makeup", "https://makeup.hexdocs.pm/changelog.html"],
+      "comment": "1.2.3: deterministic compilation, iodata token values in Lexer.merge/1, faster escaping."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://makeup.hexdocs.pm/changelog.html", "https://github.com/elixir-makeup"],
+      "comment": "Releases 1.2.2 (2026-07-01) and 1.2.3 (2026-10-03). Org repos (makeup, makeup_html, makeup_syntect) were updated in Oct–Nov 2026. Changes are mostly fixes and refinements; checked 2026-11-18."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://makeup.hexdocs.pm/Makeup.html", "https://makeup.hexdocs.pm/Makeup.Lexer.html", "https://makeup.hexdocs.pm/contributing.html"],
+      "comment": "Short README and a HexDocs API reference. Makeup.highlight/stylesheet document their options, but the Lexer callbacks have one-line docs and Lexer.Types has no prose. The contributing guide explains lexer writing conceptually without a worked example, and admits lexer options are not documented properly. There is no language or theme catalog beyond the StyleMap function list."
+    },
+    "notable-users": {
+      "value": "ExDoc (all HexDocs documentation, via makeup_elixir/makeup_erlang/makeup_c/makeup_html), NimblePublisher (optional code highlighting), makeup_syntect",
+      "source": ["https://raw.githubusercontent.com/elixir-lang/ex_doc/main/mix.exs", "https://raw.githubusercontent.com/dashbitco/nimble_publisher/master/mix.exs", "https://hex.pm/packages/makeup/dependents"],
+      "comment": "ExDoc depends on the Makeup lexer packages, which depend on makeup. NimblePublisher lists {:makeup, \"~> 1.0\", optional: true}. Hex shows 53 dependent packages."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://hex.pm/packages/makeup", "https://github.com/elixir-makeup"],
+      "comment": "Hex owners are José Valim (Elixir creator, publisher of recent releases) and tmbb (original author). It lives in the elixir-makeup GitHub org, which has no public members."
+    }
+  }
 }
