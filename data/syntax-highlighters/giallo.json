@@ -1,5 +1,270 @@
 {
   "name": "giallo",
   "description": "Rust TextMate-grammar engine aiming for VS Code-faithful highlighting",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["rust"],
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/Cargo.toml"],
+      "comment": "Pure Rust crate (edition 2024). The repo has Node scripts, but they only generate test snapshots against vscode-textmate."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/Cargo.toml", "https://docs.rs/giallo/latest/giallo/"],
+      "comment": "Library only. The one binary target, build-registry (behind the `tools` feature), builds the grammar/theme dump. It is not a highlighting CLI."
+    },
+    "license": {
+      "value": ["eupl-1-2"],
+      "source": ["https://github.com/getzola/giallo", "https://crates.io/api/v1/crates/giallo"],
+      "comment": "EUPL-1.2 for every release since 0.1.0. A 2022 placeholder 0.0.1 was MIT. The bundled grammars and themes come from shikijs/textmate-grammars-themes and keep their upstream licences (mostly MIT)."
+    },
+    "repository": {
+      "value": "https://github.com/getzola/giallo",
+      "source": ["https://github.com/getzola/giallo"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/giallo",
+      "source": ["https://crates.io/api/v1/crates/giallo"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/giallo/latest/giallo/",
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://github.com/getzola/giallo"],
+      "comment": "No dedicated docs site. The README and the docs.rs API reference are the documentation, plus an examples directory in the repo."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://crates.io/api/v1/crates/giallo", "https://zola.discourse.group/t/new-syntax-highlighter/2885"],
+      "comment": "First real release was 0.1.0 on 2025-12-19, announced on the Zola forum. The crate name was reserved with a 12 KB placeholder 0.0.1 (MIT) on 2022-08-18, which is not counted."
+    },
+    "latest-version": {
+      "value": "0.6.0",
+      "source": ["https://crates.io/api/v1/crates/giallo", "https://docs.rs/giallo/latest/giallo/"],
+      "comment": "Checked 2026-11-18. Released 2026-11-04. The README install snippet still shows 0.2.0."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/src/tokenizer/mod.rs"],
+      "comment": "The tokenizer is documented as replicating microsoft/vscode-textmate's logic. Tests compare its output with vscode-textmate snapshots."
+    },
+    "regex-engine": {
+      "value": ["fancy-regex"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/Cargo.toml", "https://raw.githubusercontent.com/getzola/giallo/master/src/grammars/engine.rs"],
+      "comment": "0.6.0 switched from a fork of rust-onig (Oniguruma C) to fancy-regex in `oniguruma_mode` (commit 'Use fancy-regex instead of onig'). The README still mentions the onig fork, which is stale. The few patterns fancy-regex can't compile are swapped for a never-matching regex."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs", "https://github.com/getzola/giallo"],
+      "comment": "TextMate external grammar includes and injections (injectTo) are resolved by `link_grammars()`. The bundled VS Code-derived html grammar embeds the css and javascript grammars, and the repo has injection snapshot tests."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs"],
+      "comment": "Content-based detection is not offered. The language must be named in HighlightOptions."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs", "https://raw.githubusercontent.com/getzola/giallo/master/src/grammars/raw.rs"],
+      "comment": "Grammar `fileTypes` are parsed but no public extension/filename lookup is exposed. Lookup is by grammar name or alias only, though some aliases match extensions (rs, py, ts, yml)."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/lib.rs", "https://github.com/frostybee/irosashi"],
+      "comment": "The tokenizer and its rule stack are private modules. `Registry::highlight` takes the whole input string. The irosashi comparison table also lists giallo as having no per-line API."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/giallo/latest/giallo/"],
+      "comment": "There is no edit/reparse API. Each call re-tokenizes the full input."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/getzola/giallo"],
+      "comment": "TextMate grammar engine with no syntax tree. Per the guideline, regex-based recognition of definitions doesn't count."
+    },
+    "bundled-languages": {
+      "value": 242,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/README.md"],
+      "comment": "243 entries in the README's generated grammar list (master, 0.6.0), minus the 'plain' grammar. Aliases are not counted, but variant grammars (html-derivative, vue-html, fortran fixed/free, etc.) are. The README calls it '220+'. Requires the `dump` feature."
+    },
+    "grammar-format": {
+      "value": ["textmate-json"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/grammars/raw.rs"],
+      "comment": "Raw grammars are deserialized with serde_json only. Plist .tmLanguage files are not parsed and would need converting to JSON first."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://github.com/getzola/giallo", "https://zola.discourse.group/t/new-syntax-highlighter/2885"],
+      "comment": "Consumes VS Code/TextMate JSON grammars directly, including the curated Shiki set. A Zola user reported adding upstream .tmLanguage.json grammars (SystemVerilog, VHDL) as long as they have a top-level name field."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs", "https://docs.rs/giallo/latest/giallo/"],
+      "comment": "Registry::add_grammar_from_path / add_grammar_from_bytes (bytes added in 0.6.0), followed by link_grammars()."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/src/grammars/matcher.rs"],
+      "comment": "The builtin dump (~1.1 MiB zstd bitcode) loads every grammar up front. Only regex compilation is deferred to first use (OnceLock per pattern), which is why the first use of each language is slower."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/scripts/generate-snapshots.js", "https://zola.discourse.group/t/new-syntax-highlighter/2885"],
+      "comment": "Rated 4. The grammars track upstream VS Code/Shiki grammars, and output is snapshot-tested against vscode-textmate. Users report a big improvement over syntect. Not 5 because no fidelity score is published, and since 0.6.0 the patterns fancy-regex can't compile silently never match."
+    },
+    "bundled-themes": {
+      "value": 65,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/README.md"],
+      "comment": "65 entries in the README's generated theme list (master, 0.6.0). The README says '~60'. These are Shiki's curated VS Code themes and require the `dump` feature."
+    },
+    "theme-format": {
+      "value": ["vscode-theme"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/themes/raw.rs"],
+      "comment": "Loads VS Code theme JSON (tokenColors) only. tmTheme plist is not supported."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/tokenizer/mod.rs", "https://raw.githubusercontent.com/getzola/giallo/master/src/highlight.rs"],
+      "comment": "Theme rules are matched against hierarchical TextMate scope stacks, vscode-textmate style. The scopes themselves are not exposed in the public token output, and generated CSS classes are per-style (e.g. Zola's z-l-*/z-d-*)."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/html.rs"],
+      "comment": "HtmlRenderer::css_class_prefix switches to class output. Registry::generate_css / generate_dual_css produce the matching stylesheets."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs"],
+      "comment": "ThemeVariant::Dual { light, dark } renders once. Inline styles use CSS light-dark(), and in class mode generate_dual_css emits l-/d- prefixed stylesheets."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://docs.rs/giallo/latest/giallo/struct.HighlightedText.html", "https://raw.githubusercontent.com/getzola/giallo/master/examples/custom_rendering.rs"],
+      "comment": "Registry::highlight returns HighlightedCode, whose `tokens: Vec<Vec<HighlightedText>>` holds one vector per line. The README says it gives back 'everything you need to implement your own renderer'."
+    },
+    "ir-kinds": {
+      "value": ["styled-spans"],
+      "source": ["https://docs.rs/giallo/latest/giallo/struct.HighlightedText.html", "https://docs.rs/giallo/latest/giallo/struct.Style.html"],
+      "comment": "HighlightedText = text plus ThemeVariant<Style> (foreground, background, font_style). Scope stacks exist internally (tokenizer::Token) but are not exported."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://docs.rs/giallo/latest/giallo/struct.HighlightedText.html", "https://docs.rs/giallo/latest/giallo/struct.Style.html"],
+      "comment": "Partial. docs.rs shows HighlightedText, Style and ThemeVariant implementing serde Serialize/Deserialize, so the token vectors serialize. The HighlightedCode wrapper (which borrows the compiled theme) does not."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://docs.rs/giallo/latest/giallo/struct.Style.html", "https://raw.githubusercontent.com/getzola/giallo/master/examples/custom_rendering.rs"],
+      "comment": "Each token carries resolved foreground/background colours and font style (one set per theme in dual mode)."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://docs.rs/giallo/latest/giallo/struct.HighlightedText.html"],
+      "comment": "HighlightedText has only `text` and `style`. Lines are implied by the outer Vec, but there are no byte/char offsets. The internal Token has a byte span, but it isn't public."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://github.com/getzola/giallo", "https://raw.githubusercontent.com/getzola/giallo/master/examples/custom_rendering.rs"],
+      "comment": "There is no formatter trait. Instead, the README documents rendering the public HighlightedCode yourself, and examples/custom_rendering.rs shows a full custom HTML renderer."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/mod.rs", "https://raw.githubusercontent.com/getzola/giallo/master/src/markdown_fence.rs"],
+      "comment": "Limited. RenderOptions.highlight_lines and hide_lines (line ranges) apply in both HTML and terminal renderers, and parse_markdown_fence parses Zola-style `hl_lines=`/`hide_lines=`. There are no diff/focus markers or arbitrary range decorations, and the options apply at render time rather than on the IR."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-truecolor"],
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/terminal.rs", "https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/html.rs"],
+      "comment": "HtmlRenderer (inline styles or CSS classes) and TerminalRenderer (ANSI, documented as requiring truecolor). The README's 'one renderer' line predates the TerminalRenderer."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/mod.rs", "https://github.com/getzola/giallo"],
+      "comment": "RenderOptions.show_line_numbers and line_number_start. The gutter CSS is exported as GIALLO_CSS."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/registry.rs", "https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/terminal.rs"],
+      "comment": "highlight() tokenizes the full input, and renderers return one String. There is no line iterator API."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/src/renderers/terminal.rs", "https://docs.rs/giallo/latest/giallo/"],
+      "comment": "TerminalRenderer emits truecolor ANSI escapes, with line numbers and highlighted lines. With dual themes you pick one via theme_type."
+    },
+    "native-dependencies": {
+      "value": ["optional"],
+      "source": ["https://raw.githubusercontent.com/getzola/giallo/master/Cargo.toml"],
+      "comment": "Since 0.6.0 the regex engine is pure-Rust fancy-regex (through 0.5.x it linked Oniguruma C via a rust-onig fork). The only C code left is the zstd crate (libzstd via zstd-sys), pulled in by the optional `dump` feature that Registry::builtin() needs. Without it the crate is pure Rust."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://forge.secondsystemtech.com/brent/11ty-plugin-giallo"],
+      "comment": "No official browser build or docs. The community 11ty-plugin-giallo compiles giallo into a Wasm component for Node, which suggests wasm32 builds are feasible, but they aren't supported first-party."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://forge.secondsystemtech.com/brent/11ty-plugin-giallo"],
+      "comment": "No official WASM target or documented wasm32 support. The only WASM build found is the community 11ty plugin."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://docs.rs/giallo/latest/giallo/", "https://github.com/getzola/giallo"],
+      "comment": "Plain synchronous Rust calls: Registry::builtin(), link_grammars(), highlight(), render()."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://forge.secondsystemtech.com/brent/11ty-plugin-giallo", "https://github.com/Yukaii/giallo.kak"],
+      "comment": "No official bindings. Small community wrappers exist: 11ty-plugin-giallo (Eleventy, via a Wasm component) and giallo.kak (Kakoune)."
+    },
+    "core-package-size": {
+      "value": 1511822,
+      "source": ["https://crates.io/api/v1/crates/giallo"],
+      "comment": "crate_size of the giallo 0.6.0 .crate on crates.io (~1.5 MB), which includes the builtin.zst grammar/theme dump (~1.1 MiB per the README)."
+    },
+    "throughput-tier": {
+      "value": ["fast"],
+      "source": ["https://github.com/toshi-kuji/fasthighlight/pull/60"],
+      "comment": "fasthighlight PR #60 (reproducible scripts, competitor-authored, 2026-11-11): 21 warm snippets took giallo 0.5.2 35 ms vs syntect 5.3.0 20 ms, about 1.75x the fastest candidate. fasthighlight (Go, not a candidate) took 0.68 ms. This was measured on 0.5.2 (Oniguruma). 0.6.0 moved to fancy-regex with several perf commits and hasn't been re-measured."
+    },
+    "initialization-cost": {
+      "value": ["moderate"],
+      "source": ["https://github.com/toshi-kuji/fasthighlight/pull/60"],
+      "comment": "Same benchmark (giallo 0.5.2): initialization 40–58 ms vs syntect ~1 ms. First use of each language adds lazy regex compilation (720 ms total across 27 snippets' languages, ~27 ms per language on average), so a first highlight lands at roughly 70 ms."
+    },
+    "github-stars": {
+      "value": 135,
+      "source": ["https://github.com/getzola/giallo"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 4524,
+      "source": ["https://crates.io/api/v1/crates/giallo"],
+      "comment": "crates.io recent_downloads (90 days) of 13,571 divided by 3, checked 2026-11-18. Mostly driven by Zola builds."
+    },
+    "last-release": {
+      "value": "2026-11-04",
+      "source": ["https://crates.io/api/v1/crates/giallo"],
+      "comment": "giallo 0.6.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://crates.io/api/v1/crates/giallo", "https://github.com/getzola/giallo"],
+      "comment": "12 releases between 2025-12 and 2026-11, the latest on 2026-11-04, with regular commits (regex engine swap, perf work). Pre-1.0 (0.x), so API breaks between minors are expected."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://github.com/getzola/giallo", "https://docs.rs/giallo/latest/giallo/"],
+      "comment": "Rated 3. There's a solid README (usage, renderers, grammar/theme lists, rationale) and a docs.rs reference (the crate uses deny(missing_docs)), plus an examples folder. There is no guide site or migration notes, and the README is partly stale (0.2.0 install snippet, onig fork, 'one renderer')."
+    },
+    "notable-users": {
+      "value": "Zola (default highlighter since 0.22); sites built on Zola, e.g. the Rust blog (blog.rust-lang.org)",
+      "source": ["https://raw.githubusercontent.com/getzola/zola/master/CHANGELOG.md", "https://raw.githubusercontent.com/getzola/zola/master/Cargo.toml", "https://github.com/rust-lang/blog.rust-lang.org/pull/1957"],
+      "comment": "Zola 0.22.0 (2026-01-09) replaced syntect with giallo, and Zola's Cargo.toml depends on giallo 0.5 with `dump`. The Rust blog's Zola 0.23.6 upgrade PR (merged 2026-10-08) adjusts for giallo's CSS classes. Smaller users: 11ty-plugin-giallo and giallo.kak."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://github.com/getzola/giallo"],
+      "comment": "Lives in the getzola org, but Keats (the Zola maintainer) made 77 of ~86 commits. The other 7 contributors have 1–2 commits each."
+    }
+  }
 }

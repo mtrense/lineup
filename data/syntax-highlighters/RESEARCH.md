@@ -187,7 +187,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] skylighting — Haskell port of KDE syntax definitions; powers Pandoc's highlighting across HTML, LaTeX, docx, ANSI
 - [x] highlight (Andre Simon) — long-standing C++/Lua highlight-first CLI and library with many output formats (HTML, LaTeX, RTF, ODT, SVG, ANSI, BBCode, Pango)
 - [x] GNU Source-highlight — GNU's highlight-first CLI/library with configurable output formats; used for `less` input filters
-- [ ] giallo — Rust TextMate-grammar engine aiming for VS Code-faithful highlighting
+- [x] giallo — Rust TextMate-grammar engine aiming for VS Code-faithful highlighting
 - [x] arborium — Rust batteries-included tree-sitter highlighting with many bundled grammars and WASM/browser support
 - [ ] inkjet — Rust batteries-included tree-sitter highlighting with bundled grammars and multiple formatters
 - [ ] Autumnus — Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)
