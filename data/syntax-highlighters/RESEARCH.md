@@ -188,7 +188,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] highlight (Andre Simon) — long-standing C++/Lua highlight-first CLI and library with many output formats (HTML, LaTeX, RTF, ODT, SVG, ANSI, BBCode, Pango)
 - [x] GNU Source-highlight — GNU's highlight-first CLI/library with configurable output formats; used for `less` input filters
 - [ ] giallo — Rust TextMate-grammar engine aiming for VS Code-faithful highlighting
-- [ ] arborium — Rust batteries-included tree-sitter highlighting with many bundled grammars and WASM/browser support
+- [x] arborium — Rust batteries-included tree-sitter highlighting with many bundled grammars and WASM/browser support
 - [ ] inkjet — Rust batteries-included tree-sitter highlighting with bundled grammars and multiple formatters
 - [ ] Autumnus — Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)
 - [ ] Makeup — Elixir highlighter used by ExDoc; Pygments-inspired lexer architecture
