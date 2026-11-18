@@ -1,5 +1,270 @@
 {
   "name": "syntect",
   "description": "Rust highlighter using Sublime Text syntaxes; styled-span IR, ANSI/HTML output; powers bat, delta, Zola",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["rust"],
+      "source": ["https://github.com/trishume/syntect", "https://crates.io/api/v1/crates/syntect"],
+      "comment": "Pure Rust crate (the default Oniguruma regex backend is a C library linked through the `onig` crate)."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/trishume/syntect", "https://docs.rs/syntect/latest/syntect/"],
+      "comment": "Library only. The repo has example programs (syncat, synhtml, synstats) but no shipped CLI binary; bat is the usual CLI built on it."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/trishume/syntect", "https://crates.io/api/v1/crates/syntect"],
+      "comment": "MIT on GitHub and crates.io. Bundled syntaxes and themes come from sublimehq/Packages and theme repos (git submodules); their licences were not checked separately."
+    },
+    "repository": {
+      "value": "https://github.com/trishume/syntect",
+      "source": ["https://github.com/trishume/syntect"]
+    },
+    "package": {
+      "value": "https://crates.io/crates/syntect",
+      "source": ["https://crates.io/api/v1/crates/syntect"]
+    },
+    "documentation": {
+      "value": "https://docs.rs/syntect",
+      "source": ["https://docs.rs/syntect/latest/syntect/"],
+      "comment": "No dedicated docs site. Uses docs.rs API reference plus the README and examples folder."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://crates.io/api/v1/crates/syntect", "https://api.github.com/repos/trishume/syntect"],
+      "comment": "Repo created 2016-05-15. First crates.io version 0.3.2 published 2016-06-20."
+    },
+    "latest-version": {
+      "value": "5.3.0",
+      "source": ["https://crates.io/api/v1/crates/syntect", "https://raw.githubusercontent.com/trishume/syntect/master/CHANGELOG.md"],
+      "comment": "Released 2025-09-27, still max_stable_version on 2026-11-18. The CHANGELOG has an Unreleased section with breaking changes (Sublime Build 4075 syntax features, parse_line_with_limit/timeout), planned for 6.x."
+    },
+    "engine-model": {
+      "value": ["sublime-syntax"],
+      "source": ["https://github.com/trishume/syntect", "https://docs.rs/syntect/latest/syntect/"],
+      "comment": "Interprets Sublime Text .sublime-syntax definitions, i.e. a TextMate-style regex/context-stack engine. Per the Assessment Guideline, syntect = sublime-syntax."
+    },
+    "regex-engine": {
+      "value": ["oniguruma", "fancy-regex"],
+      "source": ["https://docs.rs/crate/syntect/latest/features", "https://github.com/trishume/syntect"],
+      "comment": "Default feature `regex-onig` uses Oniguruma (C). `default-fancy` / `regex-fancy` swaps in the pure-Rust fancy-regex engine, which the README puts at about half Oniguruma's speed. Both are first-class, documented options."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/sublimehq/Packages/1ba99a47ee234311f7e87fc9d6153d2d9e4d4d93/HTML/HTML.sublime-syntax", "https://github.com/trishume/syntect"],
+      "comment": "The Sublime HTML syntax embeds source.js in <script> and source.css in <style> and style attributes. Verified 2026-11-18 by parsing HTML with 5.3.0's bundled default syntaxes: source.js and source.css scopes appear inside script/style tags. The README also shows a nested-languages screenshot."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.SyntaxSet.html"],
+      "comment": "No content-based guessing. `find_syntax_by_first_line` only matches first-line regexes (shebangs, mode lines) from the syntax definitions. That is counted under Filename / Extension Mapping."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.SyntaxSet.html"],
+      "comment": "find_syntax_by_extension, find_syntax_by_token (extension, then name), find_syntax_by_first_line (shebang), and find_syntax_for_file (combines them)."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.ParseState.html", "https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html"],
+      "comment": "ParseState is Clone + Eq and documented as cacheable per line (together with HighlightState) so parsing can restart from the point of a change. HighlightLines::state()/from_state() (added in 5.3.0) resume highlighting."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.ParseState.html"],
+      "comment": "No reuse of a previous parse tree. Editors can only restart line-by-line parsing from a cached ParseState at the first changed line, which is Resumable Line State."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/trishume/syntect"],
+      "comment": "Lexical context-stack engine with no syntax tree or locals tracking. Sublime syntaxes use contexts and regexes to tell some definitions from calls, but per the guideline that counts as false."
+    },
+    "bundled-languages": {
+      "value": 75,
+      "source": ["https://github.com/sublimehq/Packages/tree/1ba99a47ee234311f7e87fc9d6153d2d9e4d4d93", "https://docs.rs/syntect/latest/syntect/parsing/struct.SyntaxSet.html"],
+      "comment": "SyntaxSet::load_defaults_newlines().syntaxes().len() = 75 in syntect 5.3.0, counted by running the crate locally on 2026-11-18. These come from 48 sublimehq/Packages packages. About 10 are helper or non-language syntaxes (Plain Text, Cargo Build Results, Make Output, LaTeX Log, R Console, PHP Source, shell helpers, regex dialects), so there are roughly 65 real languages. Many newer languages (TypeScript, Kotlin, Swift, Dockerfile) are missing. bat's extended set lives outside the crate."
+    },
+    "grammar-format": {
+      "value": ["sublime-syntax"],
+      "source": ["https://docs.rs/crate/syntect/latest/features", "https://docs.rs/syntect/latest/syntect/parsing/struct.SyntaxSet.html"],
+      "comment": "Native format is YAML .sublime-syntax (`yaml-load` feature). RESEARCH.md says it also loads .tmLanguage, but I found no documented tmLanguage grammar loader in 5.3.0. `plist-load` is documented for .tmTheme themes, so textmate-plist was not tagged."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["sublime"],
+      "source": ["https://github.com/trishume/syntect", "https://github.com/trishume/syntect/issues/323"],
+      "comment": "Consumes Sublime Text syntax packages directly. In 5.3.0, Sublime Text 4 features from Build 4075 (version: 2, extends, meta_prepend/append) are not supported. Issue #323 was closed in March 2026, but the fixes are in the unreleased 6.x line."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.SyntaxSet.html"],
+      "comment": "SyntaxSet::into_builder() / SyntaxSetBuilder::add_from_folder / load_from_folder add or replace syntaxes at runtime without rebuilding the crate."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/trishume/syntect/master/CHANGELOG.md", "https://github.com/trishume/syntect"],
+      "comment": "Since 5.0.0, syntaxes in the binary dump are lazily deserialized and regexes are compiled lazily on first use. All default syntaxes are still embedded in the binary (about 200 KB per dump variant)."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://github.com/getzola/zola/issues/1787", "https://github.com/trishume/syntect/issues/323", "https://github.com/getzola/giallo"],
+      "comment": "Judgement call. The engine is nearly Sublime-3-compatible and passes almost all syntax tests. But because ST4 syntax features were unsupported in released versions, the bundled grammars are stuck on old versions: Zola (2022) said they were 'stuck on old versions of the grammars', and giallo's README says syntect uses 'old Sublime Text syntaxes'. So there are gaps on modern syntax."
+    },
+    "bundled-themes": {
+      "value": 7,
+      "source": ["https://docs.rs/syntect/latest/syntect/highlighting/struct.ThemeSet.html"],
+      "comment": "ThemeSet::load_defaults in 5.3.0: base16-ocean.dark, base16-eighties.dark, base16-mocha.dark, base16-ocean.light, InspiredGitHub, Solarized (dark), Solarized (light). Confirmed 7 by running locally on 2026-11-18."
+    },
+    "theme-format": {
+      "value": ["tmtheme"],
+      "source": ["https://docs.rs/syntect/latest/syntect/highlighting/struct.ThemeSet.html"],
+      "comment": "Loads .tmTheme (plist) files via ThemeSet::get_theme / load_from_folder. Newer .sublime-color-scheme JSON is not documented as supported."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/enum.ScopeStackOp.html", "https://docs.rs/syntect/latest/syntect/"],
+      "comment": "Hierarchical TextMate/Sublime scopes (e.g. entity.name.function.rust) are pushed and popped on a ScopeStack."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/html/index.html"],
+      "comment": "ClassedHTMLGenerator / line_tokens_to_classed_spans emit scope-derived span classes (ClassStyle selects spaced or prefixed names). css_for_theme_with_class_style generates the matching stylesheet."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/html/index.html", "https://github.com/Menci/syntect-js"],
+      "comment": "Contested. This qualifies only through swappable stylesheets: classed HTML is theme-independent, and css_for_theme_with_class_style can generate one stylesheet per theme (e.g. light and dark scoped by media query). There is no CSS-variables dual-theme render. Assessed the same way as Pygments, highlight.js and Prism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html", "https://docs.rs/syntect/latest/syntect/parsing/struct.ParseState.html"],
+      "comment": "Documented public APIs: ParseState::parse_line returns (byte offset, ScopeStackOp) changes, and HighlightLines::highlight_line returns Vec<(Style, &str)>. The README says internals are deliberately exposed for editors and code analysis."
+    },
+    "ir-kinds": {
+      "value": ["scope-stack", "styled-spans"],
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.ParseState.html", "https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html", "https://docs.rs/syntect/latest/syntect/easy/index.html"],
+      "comment": "scope-stack: ScopeStackOp sequences applied to a ScopeStack (ScopeRangeIterator/ScopeRegionIterator help walk them). styled-spans: (Style, &str) pairs with resolved foreground/background/font style."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/highlighting/struct.Style.html", "https://docs.rs/syntect/latest/syntect/parsing/enum.ScopeStackOp.html"],
+      "comment": "Partial. Style implements serde Serialize/Deserialize, so styled spans (Style, text) can be serialized with any serde format. ScopeStackOp does not implement serde, so the scope-op stream is not serializable as-is."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html", "https://docs.rs/syntect/latest/syntect/highlighting/struct.Style.html"],
+      "comment": "highlight_line returns spans with a resolved Style (RGBA foreground/background and FontStyle). bat and delta use this for terminal rendering."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/parsing/struct.ParseState.html", "https://docs.rs/syntect/latest/syntect/easy/index.html"],
+      "comment": "parse_line ops carry byte offsets within the line, and ScopeRangeIterator yields byte ranges. Styled spans are &str slices of the input line with no explicit offset field, so offsets are line-relative and the caller tracks line numbers."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/html/index.html", "https://docs.rs/syntect/latest/syntect/util/index.html"],
+      "comment": "There is no Formatter trait. The documented route is to consume styled spans or scope ops and render them yourself. The html and util modules expose building blocks (start_highlighted_html_snippet, styled_line_to_highlighted_html, as_latex_escaped), and RESEARCH.md cites syntect's highlighted_html_for_string alternatives as this pattern."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/util/index.html"],
+      "comment": "Borderline. util::modify_range applies a StyleModifier to a byte range of a highlighted line, and split_at splits spans, so ranges can be emphasized on the styled-span IR before output. There are no built-in line-highlight, diff or focus markers."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-truecolor", "latex"],
+      "source": ["https://docs.rs/syntect/latest/syntect/html/index.html", "https://docs.rs/syntect/latest/syntect/util/index.html"],
+      "comment": "HTML with inline styles (styled_line_to_highlighted_html, highlighted_html_for_string), classed HTML (ClassedHTMLGenerator), 24-bit ANSI (util::as_24_bit_terminal_escaped), and LaTeX \\textcolor (util::as_latex_escaped). There is no 16/256-colour ANSI, so consumers like bat add their own."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://docs.rs/syntect/latest/syntect/html/index.html"],
+      "comment": "No built-in line-number option in any output path. Consumers add gutters themselves."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html", "https://docs.rs/syntect/latest/syntect/html/index.html"],
+      "comment": "API is line-at-a-time: highlight_line and parse_line each take one line, and ClassedHTMLGenerator / append_highlighted_html_for_styled_line build output per line, so output can be emitted before the whole input is available."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/util/index.html", "https://github.com/trishume/syntect"],
+      "comment": "util::as_24_bit_terminal_escaped converts styled spans to truecolor ANSI escapes. The docs say it is mainly for debugging and testing, and it has no 256-colour fallback."
+    },
+    "native-dependencies": {
+      "value": ["optional"],
+      "source": ["https://docs.rs/crate/syntect/latest/features", "https://github.com/trishume/syntect"],
+      "comment": "Default build links the Oniguruma C library via the `onig` crate. The `default-fancy` feature gives a pure-Rust build (fancy-regex) with no C dependency."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://github.com/Menci/syntect-js", "https://github.com/trishume/syntect"],
+      "comment": "Only via third-party builds. With fancy-regex the crate compiles to wasm32, and Menci/syntect-js publishes @syntect/wasm for browsers (v0.0.4, unmaintained). There is no first-party browser package."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/trishume/syntect", "https://lib.rs/crates/syntect"],
+      "comment": "No official WASM artifact or documented wasm32 target. The README only says to use fancy-regex because onig is hard to build for WebAssembly. Third-party @syntect/wasm exists."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://docs.rs/syntect/latest/syntect/easy/struct.HighlightLines.html"],
+      "comment": "Fully synchronous Rust API. Load SyntaxSet and ThemeSet once, then highlight_line is a plain call."
+    },
+    "bindings-ports": {
+      "value": ["python", "javascript"],
+      "source": ["https://github.com/spyder-ide/pysyntect", "https://github.com/Menci/syntect-js"],
+      "comment": "pysyntect (spyder-ide, PyO3, PyPI/conda) and syntect-js (Menci: `syntect`, @syntect/node, @syntect/wasm on npm). Both are small and not recently updated."
+    },
+    "core-package-size": {
+      "value": 833348,
+      "source": ["https://crates.io/api/v1/crates/syntect"],
+      "comment": "crate_size of the syntect 5.3.0 .crate (compressed source including the bundled syntax/theme dumps), about 0.83 MB. The compiled binary contribution varies by features; each syntax dump is about 200 KB per SyntaxSet docs. Not directly comparable to JS min+gzip figures."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://github.com/trishume/syntect", "https://github.com/getzola/giallo/issues/73"],
+      "comment": "No independent or reproducible cross-engine benchmark found that includes syntect. The README compares it with editors (about 600 ms for 9,200 lines of jQuery vs Sublime Text 3 at 98 ms), but those are author-run figures from an old setup."
+    },
+    "initialization-cost": {
+      "value": ["moderate"],
+      "source": ["https://github.com/trishume/syntect", "https://github.com/trishume/syntect/issues/717"],
+      "comment": "README: about 23 ms to load and link default syntaxes from the binary dump with lazy regex compilation. Issue #717 (Nov 2026) measured load_defaults_newlines at about 1.8 ms warm. A local 5.3.0 release build (fancy-regex, Apple Silicon, 2026-11-18) took 10.2 ms from loading syntaxes and themes to the first highlighted line. That is on the light/moderate boundary; moderate chosen."
+    },
+    "github-stars": {
+      "value": 2465,
+      "source": ["https://api.github.com/repos/trishume/syntect"],
+      "comment": "Checked 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 5990429,
+      "source": ["https://crates.io/api/v1/crates/syntect", "https://lib.rs/crates/syntect"],
+      "comment": "crates.io recent_downloads (90 days) 17,971,286 ÷ 3, checked 2026-11-18. lib.rs reports about 7.3M/month. Heavily transitive (2,278 dependent crates)."
+    },
+    "last-release": {
+      "value": "2025-09-27",
+      "source": ["https://crates.io/api/v1/crates/syntect"],
+      "comment": "syntect 5.3.0. No newer stable release as of 2026-11-18."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/trishume/syntect/commits?per_page=15", "https://github.com/trishume/syntect/issues/323"],
+      "comment": "Substantive PRs were merged in Oct 2026 (parse_line_with_limit/timeout, set-loop fix, LaTeX escaping fix, fancy-regex 0.20), and ST4 syntax support is queued for 6.x. But there has been no release for about 14 months, and the README says the project is maintained but not under heavy development. Maintenance is mostly by collaborators (keith-hall) rather than the owner."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://docs.rs/syntect/latest/syntect/", "https://github.com/trishume/syntect"],
+      "comment": "Solid README (features, performance, fancy-regex, threading, examples) plus a well-commented docs.rs API reference and examples folder. There is no docs site, guides, language/theme catalog or migration notes, and the CHANGELOG is the only upgrade guidance."
+    },
+    "notable-users": {
+      "value": "bat, delta, Typst, Zola",
+      "source": ["https://raw.githubusercontent.com/sharkdp/bat/master/Cargo.toml", "https://raw.githubusercontent.com/dandavison/delta/main/Cargo.toml", "https://raw.githubusercontent.com/typst/typst/main/Cargo.toml", "https://github.com/getzola/zola/issues/1787"],
+      "comment": "bat (syntect 5.3.0), delta (5.0.0) and Typst (5.3, fancy-regex) verified via Cargo.toml. Zola uses syntect per its maintainer in issue #1787, but giallo was built to replace it there. The README lists more users (Yazi, Comrak, Broot, xi-editor, mdcat)."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/trishume/syntect", "https://api.github.com/repos/trishume/syntect/commits?per_page=15"],
+      "comment": "Personal repo (owner trishume), but merges come from collaborator keith-hall with contributions from several others (stefanobaghino, robinst historically)."
+    }
+  }
 }
