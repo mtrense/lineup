@@ -1,5 +1,267 @@
 {
   "name": "Lezer (@lezer/highlight)",
   "description": "CodeMirror 6's incremental LR parser system with a standalone highlighting API",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["typescript"],
+      "source": ["https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts", "https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "Written in TypeScript. Ships ESM and CJS builds with .d.ts typings, and is consumed from any JS runtime."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "npm library only. There is no CLI."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://registry.npmjs.org/@lezer/highlight", "https://github.com/lezer-parser/highlight"],
+      "comment": "MIT. The official @lezer/* grammar packages are also MIT."
+    },
+    "repository": {
+      "value": "https://code.haverbeke.berlin/lezer/highlight",
+      "source": ["https://github.com/lezer-parser/highlight", "https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "The project moved to Marijn Haverbeke's own Forgejo instance. The GitHub repo lezer-parser/highlight was archived on 2026-04-15 with a 'has moved' notice, and the npm manifest's repository field points to code.haverbeke.berlin."
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/@lezer/highlight",
+      "source": ["https://registry.npmjs.org/@lezer/highlight"]
+    },
+    "documentation": {
+      "value": "https://lezer.codemirror.net/docs/ref/#highlight",
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://lezer.codemirror.net/docs/guide/"],
+      "comment": "The highlight module section of the Lezer reference manual. The Lezer guide covers parsing, trees and mixed parsing, but not @lezer/highlight specifically."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://registry.npmjs.org/@lezer/highlight", "https://raw.githubusercontent.com/lezer-parser/highlight/main/CHANGELOG.md", "https://marijnhaverbeke.nl/blog/lezer.html"],
+      "comment": "@lezer/highlight 0.16.0 was first published on npm on 2022-04-20, and 1.0.0 followed on 2022-06-06. Lezer itself was announced on 2019-09-03; before 2022 its highlighting lived in CodeMirror's @codemirror/highlight package."
+    },
+    "latest-version": {
+      "value": "1.2.5",
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "npm `latest` dist-tag, checked 2026-11-18."
+    },
+    "engine-model": {
+      "value": ["parse-tree"],
+      "source": ["https://lezer.codemirror.net/docs/guide/", "https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "A generated LR parser (@lezer/lr) produces a syntax tree. `styleTags` attaches highlight tags to node types, and `highlightTree` walks the tree."
+    },
+    "regex-engine": {
+      "value": ["n-a"],
+      "source": ["https://lezer.codemirror.net/docs/guide/"],
+      "comment": "Tokens are declared in the grammar's @tokens block and compiled into the parser's tokenizer tables by @lezer/generator, plus optional hand-written external tokenizers. No regex engine runs grammars at highlight time."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts", "https://lezer.codemirror.net/docs/guide/", "https://raw.githubusercontent.com/lezer-parser/html/main/src/content.js", "https://registry.npmjs.org/@lezer/html/latest"],
+      "comment": "Mixed-language trees are mounted with `parseMixed` / `NodeProp.mounted`, including overlays, and `highlightTree` descends into mounted and overlay trees, applying highlighters scoped to the inner language. Caveat: @lezer/highlight bundles no grammars, and @lezer/html nests JS and CSS only when the caller passes the @lezer/javascript and @lezer/css parsers to `configureNesting`, whose default is no nesting. CodeMirror's @codemirror/lang-html does this wiring for you. Rated true for consistency with the tree-sitter-highlight entry, where grammars are also supplied by the caller."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "No content-based detection; the caller picks the parser."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Not in Lezer. The extension and filename to language table lives in CodeMirror's @codemirror/language-data, outside this candidate."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/guide/"],
+      "comment": "No per-line state API. A parse can be advanced step by step (`startParse` / `advance`), and previous parses are reused through tree fragments, but there is no line-level state that can be saved and resumed TextMate-style."
+    },
+    "incremental-reparsing": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/docs/guide/", "https://lezer.codemirror.net/", "https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts"],
+      "comment": "Lezer's core design goal. Parses take cached tree fragments from the previous parse and reuse their nodes. `highlightTree` and `highlightCode` accept a from/to range, so you can re-highlight just the changed region of the new tree. Incremental reparsing lives in @lezer/common and @lezer/lr, which are required dependencies of the highlighter."
+    },
+    "semantic-distinctions": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lezer-parser/javascript/main/src/highlight.js", "https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Tags come from syntax-tree context, e.g. in @lezer/javascript: `VariableDefinition` → definition(variableName), `CallExpression/VariableName` → function(variableName), `FunctionDeclaration/VariableDefinition` → function(definition(variableName)), `TypeDefinition` → definition(typeName). There is no scope-based locals resolution like tree-sitter's locals.scm."
+    },
+    "bundled-languages": {
+      "value": 0,
+      "source": ["https://registry.npmjs.org/@lezer/highlight", "https://lezer.codemirror.net/"],
+      "comment": "@lezer/highlight is engine-only; its sole dependency is @lezer/common. Languages come as separate grammar packages. The Lezer site lists 16 (C++, CSS, Clojure, HTML, Java, JavaScript, Julia, JSON, Lezer, Markdown, PHP, Python, Rust, Sass, XML, YAML), checked 2026-11-18; more are community-maintained."
+    },
+    "grammar-format": {
+      "value": ["lezer-grammar"],
+      "source": ["https://lezer.codemirror.net/docs/guide/"],
+      "comment": "`.grammar` files are compiled by @lezer/generator. Highlighting is attached with `styleTags` in JS code. @lezer/markdown is a hand-written parser that produces Lezer trees."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://lezer.codemirror.net/", "https://lezer.codemirror.net/docs/guide/"],
+      "comment": "Consumes only Lezer trees. CodeMirror's @codemirror/legacy-modes (stream parsers) are a CodeMirror feature, not part of Lezer."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Highlighting rules can be added or changed at runtime through `parser.configure({props: [styleTags({...})]})` or `NodeSet.extend`. A whole grammar can be compiled in memory with @lezer/generator's `buildParser`, though the docs say this is 'mostly useful for testing'; the normal workflow compiles grammars at build time."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/@lezer/highlight", "https://lezer.codemirror.net/"],
+      "comment": "Nothing is bundled up front, and each grammar is its own npm package, so apps import only what they need (e.g. via dynamic import). Lezer itself has no on-demand loader; CodeMirror's language-data adds async loading."
+    },
+    "grammar-accuracy": {
+      "value": null,
+      "comment": "No bundled grammars, and no systematic accuracy evidence found for the official @lezer/* grammars. Not rated."
+    },
+    "bundled-themes": {
+      "value": 0,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://registry.npmjs.org/@lezer/highlight/-/highlight-1.2.5.tgz"],
+      "comment": "No themes or stylesheets ship; the 1.2.5 tarball contains only dist JS and typings. `classHighlighter` is a tag-to-class mapping (`tok-*` classes) for styling with external CSS, not a theme. Themes such as One Dark are CodeMirror packages."
+    },
+    "theme-format": {
+      "value": ["code", "css-stylesheet"],
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "A highlighter is defined in JS with `tagHighlighter([{tag, class}])` or a custom `Highlighter.style(tags)`. Visual styling then lives in user CSS, e.g. against `classHighlighter`'s stable `tok-*` classes."
+    },
+    "token-classification": {
+      "value": ["highlight-tags"],
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Uses `tags.*` (comment, keyword, variableName, typeName, ...) with parent fallback (`Tag.define(parent)`) and modifiers (definition, function, constant, local, special, standard)."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Highlighters return space-separated class strings; `classHighlighter` emits stable `tok-*` classes for external CSS."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "`highlightTree` accepts an array of highlighters and combines their classes in one pass, but no light/dark mechanism is documented and no stylesheets ship."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts"],
+      "comment": "`highlightTree(tree, highlighter, putStyle(from, to, classes), from?, to?)` and `highlightCode(code, tree, highlighter, putText(text, classes), putBreak(), from?, to?)` are documented exports. Callbacks are the only output channel."
+    },
+    "ir-kinds": {
+      "value": ["token-list", "syntax-tree"],
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://lezer.codemirror.net/docs/guide/"],
+      "comment": "token-list: callback streams of (from, to, classes) or (text, classes) plus line breaks. syntax-tree: the full Lezer `Tree` with typed nodes (SyntaxNode, TreeCursor) is the input and is fully documented; `getStyleTags(node)` exposes per-node tags."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Callback output and in-memory Tree objects only; there is no documented JSON or hast serialization."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Highlighters produce class strings, not colours or styles. CodeMirror's HighlightStyle generates CSS rules, which is still class-based."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts"],
+      "comment": "`highlightTree`'s `putStyle` receives from/to character offsets, and tree nodes carry from/to positions."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "Rendering is entirely up to the caller through the `putStyle` / `putText` / `putBreak` callbacks, and a custom `Highlighter` (style + scope) can be implemented."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "No line or range annotation mechanism. Decorations are a CodeMirror editor feature."
+    },
+    "output-formats": {
+      "value": [],
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts"],
+      "comment": "No first-party formatter. Even `highlightCode` only calls putText/putBreak callbacks, and the caller builds the HTML, DOM or anything else."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "No rendering, so no line numbers. `highlightCode` signals line breaks through `putBreak`."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://lezer.codemirror.net/docs/guide/"],
+      "comment": "Highlighting needs a finished Tree. Parses can be advanced in steps and stopped early, but no documented API emits highlighted output before the input is fully parsed."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight"],
+      "comment": "No ANSI output."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "Pure JS; its only dependency is @lezer/common."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://lezer.codemirror.net/", "https://registry.npmjs.org/@codemirror/language/latest"],
+      "comment": "Pure ESM JS, and powers in-browser highlighting in CodeMirror 6."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "Plain JS; no WASM build."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts"],
+      "comment": "`highlightTree` and `highlightCode` are synchronous, and so is `parser.parse(code)`. No async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "comment": "No official or well-known bindings or ports in other languages were found. Not exhaustively verified."
+    },
+    "core-package-size": {
+      "value": 9332,
+      "source": ["https://bundlephobia.com/api/size?package=@lezer/highlight@1.2.5"],
+      "comment": "Bundlephobia min+gzip for @lezer/highlight 1.2.5 (27,073 B minified), checked 2026-11-18. Bundlephobia counts the bundled @lezer/common dependency. Excludes @lezer/lr and any grammar package, which are needed to actually highlight code."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent comparative benchmark against other highlighters found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured. Grammars are precompiled parse tables loaded as JS modules, so startup is probably light, but no measurement was found."
+    },
+    "github-stars": {
+      "value": null,
+      "source": ["https://api.github.com/repos/lezer-parser/highlight", "https://github.com/lezer-parser/highlight"],
+      "comment": "The canonical repo is now on code.haverbeke.berlin (Forgejo), not GitHub. The archived GitHub mirror lezer-parser/highlight has 41 stars as of 2026-11-18, which understates popularity."
+    },
+    "monthly-downloads": {
+      "value": 88200713,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/@lezer/highlight"],
+      "comment": "npm downloads for 2026-10-18 to 2026-11-16, checked 2026-11-18. Mostly transitive installs through CodeMirror 6."
+    },
+    "last-release": {
+      "value": "2026-09-28",
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "1.2.5 (1.2.4 was released on 2026-09-24)."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://registry.npmjs.org/@lezer/highlight", "https://github.com/lezer-parser/highlight"],
+      "comment": "Releases on 2026-09-24 and 2026-09-28 fall within 6 months. The API is stable and changes rarely, mostly bug fixes. Development moved from GitHub to code.haverbeke.berlin in April 2026; the GitHub repo is archived, but the project is not."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://lezer.codemirror.net/docs/ref/#highlight", "https://lezer.codemirror.net/docs/guide/", "https://lezer.codemirror.net/"],
+      "comment": "A dedicated docs site with a system guide, a thorough reference manual and examples. Standalone highlighting has no guide chapter (it is reference-only), and there is no theme catalog."
+    },
+    "notable-users": {
+      "value": "CodeMirror 6 (@codemirror/language); JupyterLab (@jupyterlab/codemirror); the official @lezer/* grammar packages (e.g. @lezer/html)",
+      "source": ["https://registry.npmjs.org/@codemirror/language/latest", "https://registry.npmjs.org/@jupyterlab/codemirror/latest", "https://registry.npmjs.org/@lezer/html/latest"],
+      "comment": "Traced through direct npm dependencies on @lezer/highlight. Every CodeMirror 6 embedder depends on it transitively."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://registry.npmjs.org/@lezer/highlight"],
+      "comment": "Marijn Haverbeke is the sole npm maintainer and the primary author."
+    }
+  }
 }
