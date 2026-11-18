@@ -38,7 +38,7 @@ Users should be able to:
 |-----------|------|----------------|
 | **Host Language** | tags | Language the engine is implemented in / primarily consumed from. tags: `python`, `rust`, `go`, `ruby`, `javascript`, `typescript`, `php`, `swift`, `csharp`, `cpp`, `c`, `haskell`, `elixir`, `java`, `kotlin`, `lua`. Multiple only when genuinely first-class in several (e.g. tree-sitter: `c` + `rust`). |
 | **Form Factor** | tags | tags: `library`, `cli`, `wasm-module`, `web-component`. A library that ships its own CLI gets both `library` and `cli`. |
-| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `ISC`, `MPL-2.0`, `GPL-3.0`, `LGPL-2.1`, `MIT OR Apache-2.0`. Note if bundled grammars carry different licences in the comment. |
+| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `ISC`, `MPL-2.0`, `GPL-2.0`, `GPL-3.0`, `LGPL-2.1`, `MIT OR Apache-2.0`. Note if bundled grammars carry different licences in the comment. When the engine and its default bundled-grammar distribution are licensed differently (e.g. skylighting-core BSD-3-Clause vs skylighting GPL-2.0), tag both. |
 | **Repository** | link | Canonical source repository. |
 | **Package** | link | Registry page: PyPI, crates.io, pkg.go.dev, RubyGems, npm, Packagist, SwiftPM index, NuGet, Hackage, Hex. For CLIs, the official download page or primary distro package. |
 | **Documentation** | link | Dedicated docs site if present, else docs.rs / readthedocs / README. |
@@ -50,7 +50,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Engine Model** | tags | tags: `regex-lexer` (hand-written or declarative regex state-machine lexers: Pygments, Rouge, Chroma, highlight.js, Prism), `textmate-grammar` (TextMate/VS Code grammar interpreter: Shiki, vscode-textmate, starry-night), `sublime-syntax` (syntect), `kde-syntax` (KSyntaxHighlighting, skylighting), `parse-tree` (tree-sitter, Lezer), `custom-parser` (hand-written per-language parsers). Pick the dominant model; add a second only if the tool genuinely offers two engines. |
-| **Regex Engine** | tags | Which regex implementation runs the grammars. tags: `oniguruma` (C), `oniguruma-wasm`, `js-regexp` (incl. Oniguruma-to-JS transpilation), `fancy-regex`, `rust-regex`, `pcre`, `python-re`, `ruby-regexp`, `go-regexp2`, `go-regexp`, `boost-regex`, `std-regex`, `n/a` (parse-tree engines). |
+| **Regex Engine** | tags | Which regex implementation runs the grammars. tags: `oniguruma` (C), `oniguruma-wasm`, `js-regexp` (incl. Oniguruma-to-JS transpilation), `fancy-regex`, `rust-regex`, `pcre`, `python-re`, `ruby-regexp`, `go-regexp2`, `go-regexp`, `boost-regex`, `std-regex`, `custom` (bespoke regex engine written in the host language, e.g. skylighting's pure-Haskell Regex.KDE — name it in the comment), `n/a` (parse-tree engines). |
 | **Embedded Languages** | boolean | Highlights nested languages (CSS/JS inside HTML, fenced code in Markdown, SQL in strings via injections). Must work out of the box for at least HTML+JS+CSS. |
 | **Language Auto-Detection** | boolean | Can guess the language from content (highlight.js `highlightAuto`, Pygments `guess_lexer`), not just from filename/extension. |
 | **Filename / Extension Mapping** | boolean | Has a built-in filename/extension/shebang/mime → language lookup. |
@@ -63,7 +63,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Bundled Languages** | integer | Number of languages available in the default distribution (higher is better). Count languages, not aliases; note how counted and the version in `comment`. |
-| **Grammar Format** | tags | Native grammar definition format. tags: `textmate-json`, `textmate-plist`, `sublime-syntax`, `tree-sitter`, `lezer-grammar`, `kde-xml`, `pygments-lexer` (Python classes), `rouge-lexer`, `chroma-xml`, `highlightjs-language`, `prism-language`, `code` (lexers written in host language). |
+| **Grammar Format** | tags | Native grammar definition format. tags: `textmate-json`, `textmate-plist`, `sublime-syntax`, `tree-sitter`, `lezer-grammar`, `kde-xml`, `pygments-lexer` (Python classes), `rouge-lexer`, `chroma-xml`, `highlightjs-language`, `prism-language`, `source-highlight-lang` (GNU Source-highlight `.lang` definitions), `highlight-lua` (Andre Simon highlight Lua language definitions), `code` (lexers written in host language). |
 | **Grammar Ecosystem Compatibility** | tags | Which *external* grammar ecosystems it can consume directly. tags: `vscode-textmate`, `sublime`, `tree-sitter`, `pygments`, `kde`, `own-only`. Ports that convert grammars at build time (e.g. Chroma importing Pygments lexers) count, with a comment. |
 | **Runtime Grammar Loading** | boolean | User can register a new or modified grammar at runtime without forking/rebuilding the library. |
 | **Lazy Grammar Loading** | boolean | Grammars are loaded on demand rather than all bundled up front (relevant for bundle size and startup). |
