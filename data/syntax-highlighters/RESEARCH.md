@@ -38,7 +38,7 @@ Users should be able to:
 |-----------|------|----------------|
 | **Host Language** | tags | Language the engine is implemented in / primarily consumed from. tags: `python`, `rust`, `go`, `ruby`, `javascript`, `typescript`, `php`, `swift`, `csharp`, `cpp`, `c`, `haskell`, `elixir`, `java`, `kotlin`, `lua`. Multiple only when genuinely first-class in several (e.g. tree-sitter: `c` + `rust`). |
 | **Form Factor** | tags | tags: `library`, `cli`, `wasm-module`, `web-component`. A library that ships its own CLI gets both `library` and `cli`. |
-| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `ISC`, `MPL-2.0`, `GPL-2.0`, `GPL-3.0`, `LGPL-2.1`, `MIT OR Apache-2.0`. Note if bundled grammars carry different licences in the comment. When the engine and its default bundled-grammar distribution are licensed differently (e.g. skylighting-core BSD-3-Clause vs skylighting GPL-2.0), tag both. |
+| **License** | tags | From LICENSE / package manifest. tags: `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `ISC`, `MPL-2.0`, `GPL-2.0`, `GPL-3.0`, `LGPL-2.1`, `EUPL-1.2`, `MIT OR Apache-2.0`. Note if bundled grammars carry different licences in the comment. When the engine and its default bundled-grammar distribution are licensed differently (e.g. skylighting-core BSD-3-Clause vs skylighting GPL-2.0), tag both. |
 | **Repository** | link | Canonical source repository. |
 | **Package** | link | Registry page: PyPI, crates.io, pkg.go.dev, RubyGems, npm, Packagist, SwiftPM index, NuGet, Hackage, Hex. For CLIs, the official download page or primary distro package. |
 | **Documentation** | link | Dedicated docs site if present, else docs.rs / readthedocs / README. |
