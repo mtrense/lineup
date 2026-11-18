@@ -184,7 +184,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] vscode-textmate — the TextMate grammar interpreter behind VS Code, usable standalone; scope-stack tokens and resumable rule stacks
 - [x] Lezer (@lezer/highlight) — CodeMirror 6's incremental LR parser system with a standalone highlighting API
 - [x] KSyntaxHighlighting — KDE Frameworks' C++/Qt engine with a large XML syntax catalog; used by Kate and Qt Creator
-- [ ] skylighting — Haskell port of KDE syntax definitions; powers Pandoc's highlighting across HTML, LaTeX, docx, ANSI
+- [x] skylighting — Haskell port of KDE syntax definitions; powers Pandoc's highlighting across HTML, LaTeX, docx, ANSI
 - [x] highlight (Andre Simon) — long-standing C++/Lua highlight-first CLI and library with many output formats (HTML, LaTeX, RTF, ODT, SVG, ANSI, BBCode, Pango)
 - [ ] GNU Source-highlight — GNU's highlight-first CLI/library with configurable output formats; used for `less` input filters
 - [ ] giallo — Rust TextMate-grammar engine aiming for VS Code-faithful highlighting

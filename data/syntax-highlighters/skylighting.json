@@ -1,5 +1,269 @@
 {
   "name": "skylighting",
   "description": "Haskell port of KDE syntax definitions; powers Pandoc's highlighting across HTML, LaTeX, docx, ANSI",
-  "values": {}
+  "lastVerified": "2026-11-18",
+  "values": {
+    "host-language": {
+      "value": ["haskell"],
+      "source": ["https://github.com/jgm/skylighting", "https://hackage.haskell.org/package/skylighting"],
+      "comment": "Pure Haskell library, published on Hackage."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://github.com/jgm/skylighting", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs"],
+      "comment": "Library (skylighting-core plus the skylighting package with bundled syntaxes and formatters). The `skylighting` CLI is built when the cabal `executable` flag is set. It outputs ansi, html, latex, context, typst and native."
+    },
+    "license": {
+      "value": ["bsd-3-clause", "gpl-2-0"],
+      "source": ["https://hackage.haskell.org/package/skylighting-core", "https://hackage.haskell.org/package/skylighting", "https://github.com/jgm/skylighting"],
+      "comment": "Engine (skylighting-core) is BSD-3-Clause. The `skylighting` package, which bundles the generated syntax modules, is GPL-2.0-only because some KDE XML definitions it is built from are GPL. Individual XML files carry their own licences (e.g. html.xml is LGPL)."
+    },
+    "repository": {
+      "value": "https://github.com/jgm/skylighting",
+      "source": ["https://github.com/jgm/skylighting"]
+    },
+    "package": {
+      "value": "https://hackage.haskell.org/package/skylighting",
+      "source": ["https://hackage.haskell.org/package/skylighting"],
+      "comment": "Split into skylighting-core, skylighting-format-{ansi,blaze-html,context,latex,typst}, and the umbrella skylighting package."
+    },
+    "documentation": {
+      "value": "https://hackage.haskell.org/package/skylighting",
+      "source": ["https://hackage.haskell.org/package/skylighting", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Core.html"],
+      "comment": "No dedicated docs site. Documentation is the README plus Haddock API reference on Hackage."
+    },
+    "first-release": {
+      "value": "2016",
+      "source": ["https://github.com/jgm/skylighting/blob/master/changelog.md"],
+      "comment": "Changelog lists 0.1.0.0 (initial release) dated 2016-12-23. It succeeded highlighting-kate."
+    },
+    "latest-version": {
+      "value": "0.15.0.1",
+      "source": ["https://hackage.haskell.org/package/skylighting", "https://hackage.haskell.org/package/skylighting-core"],
+      "comment": "Checked 2026-11-18 on Hackage (skylighting and skylighting-core 0.15.0.1)."
+    },
+    "engine-model": {
+      "value": ["kde-syntax"],
+      "source": ["https://github.com/jgm/skylighting"],
+      "comment": "Parses KDE XML syntax definitions into Haskell data structures that a generic `tokenize` function interprets, so IncludeRules work properly."
+    },
+    "regex-engine": {
+      "value": ["custom"],
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/changelog.md", "https://hackage.haskell.org/package/skylighting-core"],
+      "comment": "Since 0.9 it uses a pure-Haskell regex implementation (Regex.KDE, exposed via Skylighting.Regex) instead of pcre, to drop the C dependency. The changelog notes this was slower than pcre."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/xml/html.xml", "https://github.com/jgm/skylighting"],
+      "comment": "Uses KDE IncludeRules: html.xml includes `##CSS` for <style> and `Normal##JavaScript` for <script>. The README says IncludeRules are handled properly by the interpreter."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Core.html", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs"],
+      "comment": "Lookup works only by name, short name, extension or filename. The CLI has no content-based detection."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Core.html"],
+      "comment": "`syntaxesByExtension`, `syntaxesByFilename` and `lookupSyntax` use the extension globs in the KDE definitions (sExtensions)."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html"],
+      "comment": "The only entry point is `tokenize :: TokenizerConfig -> Syntax -> Text -> Either String [SourceLine]`. It works on a whole buffer and exposes no per-line state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html"],
+      "comment": "No edit/reparse API; every call tokenizes the full input."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/jgm/skylighting", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "Regex/context state machine (KDE syntax) with a fixed set of 31 lexical token types. There is no syntax tree."
+    },
+    "bundled-languages": {
+      "value": 195,
+      "source": ["https://api.github.com/repos/jgm/skylighting/contents/skylighting-core/xml"],
+      "comment": "195 .xml syntax definitions in skylighting-core/xml as of 0.15.0.1 (counted 2026-11-18). This includes a few include-only helper syntaxes (e.g. alert, comments, doxygen, javadoc, modelines, spdx-comments, todo), so the number of standalone languages is slightly lower."
+    },
+    "grammar-format": {
+      "value": ["kde-xml"],
+      "source": ["https://github.com/jgm/skylighting"],
+      "comment": "KDE KSyntaxHighlighting XML syntax definitions. Some are lightly patched (.xml.patch files in the repo)."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["kde"],
+      "source": ["https://github.com/jgm/skylighting", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Loader.html"],
+      "comment": "Consumes KDE syntax XML directly, both at build time (bundled) and at runtime. Regex features unsupported by the pure-Haskell engine may limit some definitions."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Loader.html", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs", "https://pandoc.org/MANUAL.html"],
+      "comment": "`loadSyntaxFromFile` and `loadSyntaxesFromDir` load KDE XML at runtime. The CLI has `-d/--definition` and Pandoc has `--syntax-definition`."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-0.15.0.1/docs/Skylighting-Syntax.html"],
+      "comment": "Bundled syntaxes are compiled into the auto-generated `defaultSyntaxMap`. There is no documented on-demand loading (Haskell laziness aside)."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/xml/typescript.xml", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/xml/python.xml"],
+      "comment": "Spot check 2026-11-18: python.xml (v33) handles match/case and f-strings. typescript.xml (v18) lacks `satisfies`, `override`, `accessor` and `using` keywords. The grammars are periodically synced copies of KDE's hand-maintained definitions (same versions as KSyntaxHighlighting). Rated 3 for known gaps on modern syntax."
+    },
+    "bundled-themes": {
+      "value": 8,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Styles.html", "https://pandoc.org/MANUAL.html"],
+      "comment": "As of 0.15.0.1: kate, breezeDark, pygments, espresso, tango, haddock, monochrome and zenburn. The CLI `-S` option lists only 7 (no zenburn)."
+    },
+    "theme-format": {
+      "value": ["kde-theme", "code"],
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Styles.html", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/src/Skylighting/Types.hs"],
+      "comment": "Built-in styles are Haskell `Style` values. `parseTheme` and the FromJSON instance read KDE JSON .theme files."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "Closed `TokenType` enum of 31 constructors (KeywordTok, FunctionTok, StringTok, ... NormalTok), mirroring KDE default styles. HTML class names are short forms like `kw`."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-format-blaze-html-0.1.1.3/docs/Skylighting-Format-HTML.html"],
+      "comment": "HTML formatter emits spans with short classes (e.g. KeywordTok -> `kw`). `styleToCss` generates the stylesheet for a Style."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-format-blaze-html-0.1.1.3/docs/Skylighting-Format-HTML.html", "https://quarto.org/docs/output-formats/html-code.html"],
+      "comment": "Class-based HTML with one `styleToCss` stylesheet per Style. There is no single-render light/dark mechanism. Quarto builds light/dark support on top by swapping theme CSS."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "`tokenize` returns `[SourceLine]`, where SourceLine = [Token] and Token = (TokenType, Text). This is the documented input to all formatters."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "A list of lines of (TokenType, Text) pairs."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/src/Skylighting/Types.hs", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs"],
+      "comment": "TokenType has ToJSON/FromJSON and Binary instances (and Style has a documented KDE-theme JSON mapping), so aeson can encode token lists generically. However, there is no documented serialization format for token streams, and the CLI `native` output is a Haskell `ppShow` debug dump. Strict reading of the guideline gives false."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "Tokens carry only a TokenType. Colours come from looking up `tokenStyles` in a Style map. No API emits tokens with resolved styles."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "Token = (TokenType, Text) with no offsets. Line position is implicit only in the list index."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://github.com/jgm/skylighting", "https://hackage-content.haskell.org/package/skylighting-format-blaze-html-0.1.1.3/docs/Skylighting-Format-HTML.html"],
+      "comment": "No formal typeclass. A formatter is a function `FormatOptions -> [SourceLine] -> output`. The official formatters live in separate skylighting-format-* packages built on the public types, and Pandoc writes its own (e.g. docx) the same way."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "FormatOptions only cover line numbers, start number, line anchors, title attributes, classes, ID prefix and ANSI colour level. There is no range/line annotation mechanism."
+    },
+    "output-formats": {
+      "value": ["html-classes", "ansi-16", "ansi-256", "ansi-truecolor", "latex"],
+      "source": ["https://github.com/jgm/skylighting", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Types.html"],
+      "comment": "First-party formatters: HTML (blaze-html, class-based), ANSI (16/256/truecolor via ansiColorLevel), LaTeX, ConTeXt and Typst (no tags for the last two). Pandoc's docx/ms highlighting is implemented in Pandoc, not skylighting."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-format-blaze-html-0.1.1.3/docs/Skylighting-Format-HTML.html", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs"],
+      "comment": "`numberLines` and `startNumber` in FormatOptions. CLI flags are `-n` and `-N`."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html", "https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs"],
+      "comment": "No documented incremental API. `tokenize` takes the complete Text, and the CLI reads the whole input before tokenizing."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/skylighting/bin/main.hs", "https://hackage.haskell.org/package/skylighting"],
+      "comment": "Skylighting.Format.ANSI. The CLI defaults to ANSI with auto colour-level detection from COLORTERM/TERM."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/changelog.md", "https://hackage.haskell.org/package/skylighting-core"],
+      "comment": "Pure Haskell since 0.9 replaced pcre with its own regex engine. No C libraries in the dependency list."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://github.com/jgm/pandoc/discussions/11439"],
+      "comment": "No official browser build of skylighting itself. It does run in the browser indirectly as part of Pandoc's official WASM build (pandoc 3.9+, pandoc.org/app)."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/jgm/pandoc/discussions/11439"],
+      "comment": "Skylighting ships no WASM artifact. Being pure Haskell, it compiles with GHC's wasm32 backend as part of pandoc.wasm (pandoc 3.9+)."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html"],
+      "comment": "`tokenize` is a pure function. Only runtime loading of XML definitions is in IO."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/jgm/skylighting"],
+      "comment": "No official bindings found. It is mostly consumed in other ecosystems through the Pandoc CLI or Quarto."
+    },
+    "core-package-size": {
+      "value": null,
+      "comment": "Compiled Haskell library (bundled syntaxes are generated into Haskell modules). Not comparable with JS bundle or wheel/crate sizes."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/jgm/skylighting/master/changelog.md"],
+      "comment": "Only internal benchmarks exist (vs highlighting-kate and across its own releases). The 0.9 changelog notes a slowdown from the pure-Haskell regex. No cross-engine benchmark was found."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured; no published timing for first highlight."
+    },
+    "github-stars": {
+      "value": 219,
+      "source": ["https://api.github.com/repos/jgm/skylighting"],
+      "comment": "Snapshot 2026-11-18."
+    },
+    "monthly-downloads": {
+      "value": 777,
+      "source": ["https://hackage.haskell.org/package/skylighting"],
+      "comment": "Hackage downloads in the last 30 days, checked 2026-11-18 (skylighting-core: 571). Hackage counts miss Stackage/Nix/distro and Pandoc binary installs, so they heavily understate real use."
+    },
+    "last-release": {
+      "value": "2026-11-10",
+      "source": ["https://hackage.haskell.org/package/skylighting"],
+      "comment": "0.15.0.1 uploaded to Hackage on 2026-11-10."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://hackage.haskell.org/package/skylighting", "https://api.github.com/repos/jgm/skylighting"],
+      "comment": "Release 0.15.0.1 on 2026-11-10 and last push the same day. There are frequent releases (~110 versions) and syntax updates tracking KDE."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://github.com/jgm/skylighting", "https://hackage-content.haskell.org/package/skylighting-core-0.15.0.1/docs/Skylighting-Tokenizer.html"],
+      "comment": "Rated 2. The README covers architecture, packages and the CLI. The Haddock reference is terse (e.g. `tokenize` has no prose description), with no usage examples, guides, or syntax/theme catalog beyond the Styles module."
+    },
+    "notable-users": {
+      "value": "Pandoc, Quarto, Hakyll (via Pandoc)",
+      "source": ["https://raw.githubusercontent.com/jgm/pandoc/main/pandoc.cabal", "https://quarto.org/docs/output-formats/html-code.html", "https://raw.githubusercontent.com/jaspervdj/hakyll/master/hakyll.cabal"],
+      "comment": "pandoc.cabal depends on skylighting/skylighting-core >= 0.15.0.1. Quarto docs say highlighting is implemented using skylighting. Hakyll uses it transitively through its pandoc dependency."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/jgm/skylighting/contributors?per_page=10"],
+      "comment": "John MacFarlane (jgm) has 924 commits; the next contributor has 28."
+    }
+  }
 }
