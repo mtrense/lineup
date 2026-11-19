@@ -1,5 +1,270 @@
 {
   "name": "Phiki",
   "description": "PHP port of Shiki using TextMate grammars and VS Code themes",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["php"],
+      "source": ["https://github.com/phikiphp/phiki", "https://repo.packagist.org/p2/phiki/phiki.json"],
+      "comment": "Pure PHP library. v2.x requires PHP ^8.2 and ext-mbstring; the 3.0 betas require PHP ^8.3."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://phiki.dev/2.x/overview", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Phiki.php"],
+      "comment": "Composer library with no CLI binary (`bin` is unset in composer metadata). First-party adapters for league/commonmark, Laravel (facade and Blade component) and Statamic ship inside the same package."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://github.com/phikiphp/phiki", "https://repo.packagist.org/p2/phiki/phiki.json"],
+      "comment": "MIT. The bundled grammars and themes come from Shiki's tm-grammars and tm-themes collections (credited in the README) and keep their upstream licences."
+    },
+    "repository": {
+      "value": "https://github.com/phikiphp/phiki",
+      "source": ["https://github.com/phikiphp/phiki"]
+    },
+    "package": {
+      "value": "https://packagist.org/packages/phiki/phiki",
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json"]
+    },
+    "documentation": {
+      "value": "https://phiki.dev/",
+      "source": ["https://phiki.dev/", "https://phiki.dev/2.x/overview"],
+      "comment": "phiki.dev serves 3.x docs by default; the 2.x docs live under /2.x/."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json", "https://api.github.com/repos/phikiphp/phiki"],
+      "comment": "Repo created 2024-09-23; first Packagist tag v0.0.1 on 2024-10-04."
+    },
+    "latest-version": {
+      "value": "2.2.1",
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json"],
+      "comment": "Latest stable is v2.2.1 (2026-07-22). Pre-release v3.0.0-beta2 came out 2026-11-16, and the default branch is 3.x. Checked 2026-11-19. Unless noted, the values in this file reflect 2.2.1."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://phiki.dev/2.x/overview", "https://github.com/phikiphp/phiki"],
+      "comment": "Interprets TextMate grammars with a tokenizer modelled on vscode-textmate (StateStack, ScopeStack, injections), then applies VS Code themes."
+    },
+    "regex-engine": {
+      "value": ["oniguruma"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/TextMate/PatternSearcher.php", "https://raw.githubusercontent.com/phikiphp/phiki/3.x/docs/upgrade-2.0.mdx", "https://phiki.dev/regex-engines"],
+      "comment": "In 2.x, patterns run through mbstring's mb_ereg_search_* functions, which use Oniguruma (C). 1.x used PCRE. The 3.0 betas add a PCRE engine (preg_*, with pre-translated grammars) that is used as a fallback when mbregex is unavailable. Not counted here because 3.x is still pre-release."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/COMPATIBILITY.md", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Grammar/GrammarRepository.php"],
+      "comment": "Cross-grammar includes and TextMate injection selectors are resolved by scope (GrammarRepository::getFromScope, Grammar/Injections). The compatibility report shows the html and vue samples matching vscode-textmate tokens exactly (measured on 3.x)."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/docs/upgrade-2.0.mdx", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Phiki.php"],
+      "comment": "No content-based detection. The upgrade guide recommends always specifying the language."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Grammar/Grammar.php", "https://phiki.dev/2.x/available-grammars-and-themes"],
+      "comment": "The Grammar enum has only name aliases (e.g. js, cs, f90), plus user aliases through Phiki::alias(). There is no filename, extension, shebang or MIME lookup API."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/TextMate/Tokenizer.php"],
+      "comment": "Tokenizer::tokenize(string) always tokenizes the whole input. The StateStack rule stack exists internally but is not accepted or returned by any public API."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/TextMate/Tokenizer.php"],
+      "comment": "Full re-tokenization on every call. Output can be cached via PSR-16, but that is not incremental reparsing."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://phiki.dev/2.x/overview"],
+      "comment": "TextMate regex grammars only, with no syntax tree. Function-definition scopes come from grammar regexes, which the guideline counts as false."
+    },
+    "bundled-languages": {
+      "value": 226,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Grammar/Grammar.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/snippets/AvailableGrammarsList.mdx"],
+      "comment": "2.x Grammar enum has 228 cases. Excluding the synthetic `txt` and `ansi` leaves 226; aliases are not counted. The docs list shows only 218 because it is stale (it misses antlers, djot, hurl, kdl, maml, neon, pkl, rosmsg). Checked 2026-11-19."
+    },
+    "grammar-format": {
+      "value": ["textmate-json"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/custom-grammars.mdx"],
+      "comment": "Grammars are JSON TextMate files, loaded from a path or passed as a PHP array to Grammar::parse()."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/custom-grammars.mdx", "https://github.com/phikiphp/phiki"],
+      "comment": "Bundles the tm-grammars collection (the same as Shiki's) and accepts any VS Code TextMate JSON grammar. On the 3.x PCRE engine, custom grammars must use PCRE syntax or be converted with OnigurumaToPcre."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/custom-grammars.mdx"],
+      "comment": "Phiki::grammar($name, $pathOrParsedGrammar) registers a grammar from a file or an inline array at runtime."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Grammar/GrammarRepository.php"],
+      "comment": "GrammarRepository::get() reads and parses a grammar's JSON file the first time it is requested, then memoizes it."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/COMPATIBILITY.md", "https://phiki.dev/upgrade-3.0"],
+      "comment": "Grammars track upstream VS Code/tm-grammars. Remaining divergence comes from the PHP interpreter, not the grammars. The 3.x compatibility report (Oniguruma engine) has 152 of 227 sample grammars token-identical to vscode-textmate (97.1% of tokens), with typescript, rust, python and php at 99.6% to 100%. 3.0 notes that tokenization now follows vscode-textmate more closely, so 2.x diverges somewhat more. Rated 4 rather than 5 for that interpreter-level gap."
+    },
+    "bundled-themes": {
+      "value": 60,
+      "source": ["https://phiki.dev/2.x/available-grammars-and-themes", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Theme/Theme.php"],
+      "comment": "60 Theme enum cases and 60 theme JSON files in 2.x. Checked 2026-11-19."
+    },
+    "theme-format": {
+      "value": ["vscode-theme"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/custom-themes.mdx"],
+      "comment": "VS Code colour-theme JSON (`colors` + `tokenColors`), loaded from a file or an array."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/Token.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/add-classes-transformer.mdx"],
+      "comment": "Each token carries its array of TextMate scopes; AddClassesTransformer turns them into `phiki-<scope>` classes."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/add-classes-transformer.mdx"],
+      "comment": "Output is inline styles by default. The bundled AddClassesTransformer adds scope-based classes, and `styles: false` produces class-only output."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://phiki.dev/2.x/multi-themes"],
+      "comment": "Pass an array of themes to codeToHtml(): the first is the default and each other key gets `--phiki-{key}-*` CSS variables. Light/dark switching is done with user CSS (media query or class)."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Phiki.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/transformers.mdx", "https://raw.githubusercontent.com/phikiphp/phiki/3.x/PERFORMANCE.md"],
+      "comment": "Borderline. The public methods codeToTokens(), codeToHighlightedTokens() and tokensToHighlightedTokens() return token arrays, and the documented transformer hooks `tokens` and `highlighted` expose them. The docs site describes the Token/HighlightedToken stages but has no API-reference page for these methods."
+    },
+    "ir-kinds": {
+      "value": ["scope-stack", "styled-spans"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/Token.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/HighlightedToken.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/transformers.mdx"],
+      "comment": "Token(scopes[], text, start, end) and HighlightedToken(token, settings per theme). There is also an internal HTML AST ('Phast': Root/Element/Text), modifiable through transformer hooks. It mirrors hast but is PHP objects rather than unified's hast, so it is not tagged."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/Token.php"],
+      "comment": "Tokens and the Phast AST are plain PHP objects with no documented JSON or other serialization."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Phiki.php", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/HighlightedToken.php"],
+      "comment": "codeToHighlightedTokens() returns HighlightedToken objects with resolved TokenSettings (colour, background, font style) per theme."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Token/Token.php"],
+      "comment": "Token has public `start` and `end` offsets within the line."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/transformers.mdx"],
+      "comment": "No pluggable formatter interface. Transformers (TransformerInterface/AbstractTransformer) can rewrite tokens, the HTML AST and the final output, similar to Shiki's transformers; non-HTML renderers must be built on codeToHighlightedTokens()."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/decorations.mdx", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/transformers.mdx"],
+      "comment": "Pre, code, line and gutter decorations, plus transformers. The CommonMark adapter adds annotations (highlight/focus/diff-style) through meta and annotation transformers. Substring decorations are not supported yet."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes"],
+      "source": ["https://phiki.dev/2.x/highlighting-code", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/add-classes-transformer.mdx", "https://raw.githubusercontent.com/phikiphp/phiki/3.x/docs/upgrade-2.0.mdx"],
+      "comment": "HTML only. Class output comes from the bundled AddClassesTransformer. The 1.x terminal (ANSI) output was removed in 2.0. The `ansi` grammar does the reverse: it renders ANSI-escaped text to HTML."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://phiki.dev/2.x/highlighting-code"],
+      "comment": "->withGutter() adds line numbers; ->startingLine(n) sets the first number."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Output/Html/PendingHtmlOutput.php"],
+      "comment": "PendingHtmlOutput renders the whole input at once in toString(). There is no line iterator."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/docs/upgrade-2.0.mdx"],
+      "comment": "Terminal output was removed in 2.0 for low usage and maintenance overhead."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json", "https://phiki.dev/regex-engines"],
+      "comment": "Pure PHP with no third-party C libraries of its own. 2.x does require ext-mbstring with mbregex, i.e. the Oniguruma C library bundled with or linked by PHP's mbstring. Some PHP builds omit mbregex, and PHP 8.6 deprecates it, which is why 3.x adds a PCRE fallback."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://phiki.dev/2.x/overview"],
+      "comment": "Server-side PHP only."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/phikiphp/phiki"],
+      "comment": "No official WASM build."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/2.x/src/Phiki.php"],
+      "comment": "All PHP calls are synchronous, with no async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/phikiphp/phiki"],
+      "comment": "PHP only. Phiki is itself a port of Shiki's approach. The Laravel, Statamic and CommonMark adapters are same-language integrations, not bindings."
+    },
+    "core-package-size": {
+      "value": 1757653,
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json", "https://api.github.com/repos/phikiphp/phiki/zipball/v2.2.1"],
+      "comment": "v2.2.1 Composer dist zip (GitHub zipball) is 1,757,653 bytes. Extracted it is about 9.2 MB, mostly the bundled grammar and theme JSON under resources/. Measured 2026-11-19."
+    },
+    "throughput-tier": {
+      "value": ["moderate"],
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/PERFORMANCE.md"],
+      "comment": "Reproducible maintainer benchmark (`composer performance`) on 3.x, with the same grammars and samples for all engines. Phiki takes 6.8x Shiki's time to highlight with Oniguruma and 5.9x with PCRE; tokenization is 8.5x (Oniguruma) and 7.4x (PCRE) vscode-textmate's. That is the 3-10x band, i.e. moderate. Measured on PHP 8.4 with OPcache and JIT off; 2.x numbers are not published."
+    },
+    "initialization-cost": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/phikiphp/phiki/3.x/PERFORMANCE.md"],
+      "comment": "Not measured: the benchmark explicitly excludes grammar loading and compilation."
+    },
+    "github-stars": {
+      "value": 383,
+      "source": ["https://api.github.com/repos/phikiphp/phiki"],
+      "comment": "Checked 2026-11-19."
+    },
+    "monthly-downloads": {
+      "value": 466743,
+      "source": ["https://packagist.org/packages/phiki/phiki/stats.json"],
+      "comment": "Packagist monthly installs, checked 2026-11-19. Total installs: 5.5M."
+    },
+    "last-release": {
+      "value": "2026-07-22",
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json"],
+      "comment": "v2.2.1 is the latest stable. Pre-releases v3.0.0-beta1 (2026-11-04) and beta2 (2026-11-16) are not counted."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://repo.packagist.org/p2/phiki/phiki.json", "https://api.github.com/repos/phikiphp/phiki"],
+      "comment": "Regular 2.x releases through 2026 and 3.0 betas in Nov 2026 (last push 2026-11-16). No open issues at check time."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://phiki.dev/", "https://phiki.dev/2.x/overview"],
+      "comment": "Dedicated versioned docs site with guides, a grammar/theme catalog and upgrade guides (2.0, 3.0). There is no API reference: token-level methods are undocumented and the grammar list is stale. Rated 4 rather than 5 for these gaps."
+    },
+    "notable-users": {
+      "value": "Torchlight Engine, LaRecipe, Prezet, Filament plugins (filament-log-viewer, filament-knowledge-base)",
+      "source": ["https://repo.packagist.org/p2/torchlight/engine.json", "https://repo.packagist.org/p2/binarytorch/larecipe.json", "https://packagist.org/packages/phiki/phiki/dependents.json?order_by=downloads", "https://raw.githubusercontent.com/phikiphp/phiki/2.x/docs/websites-using-phiki.mdx"],
+      "comment": "torchlight/engine requires phiki ^2, binarytorch/larecipe ^2.2, and prezet/prezet ^2.2 (Prezet is also listed on the docs site). Top dependents by downloads were checked 2026-11-19."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/phikiphp/phiki/contributors?per_page=100"],
+      "comment": "Ryan Chandler has 204 of about 232 commits; every other contributor has 5 or fewer."
+    }
+  }
 }
