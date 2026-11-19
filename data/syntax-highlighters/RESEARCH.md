@@ -74,7 +74,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Bundled Themes** | integer | Number of themes/styles shipped by default (higher is better). Note version in `comment`. |
-| **Theme Format** | tags | tags: `vscode-theme`, `tmtheme`, `sublime-color-scheme`, `pygments-style`, `chroma-xml` (Chroma XML style files using Pygments style strings), `css-stylesheet`, `kde-theme`, `base16`, `code` (themes defined in host-language code). |
+| **Theme Format** | tags | tags: `vscode-theme`, `tmtheme`, `sublime-color-scheme`, `pygments-style`, `chroma-xml` (Chroma XML style files using Pygments style strings), `css-stylesheet`, `kde-theme`, `base16`, `helix-toml` (Helix editor TOML theme definitions), `neovim-json` (JSON themes extracted from Neovim colorschemes, keyed by nvim-treesitter capture names), `code` (themes defined in host-language code). |
 | **Token Classification** | tags | How tokens are named for styling. tags: `textmate-scopes` (hierarchical, e.g. `entity.name.function`), `fixed-taxonomy` (closed set like Pygments `Token.Name.Function`, highlight.js `hljs-title`), `capture-names` (tree-sitter `@function.call`), `highlight-tags` (Lezer `tags.*`). |
 | **CSS Class Output** | boolean | Can emit class names instead of inline styles, so styling lives in a stylesheet. |
 | **Multi-Theme Output** | boolean | Can render one pass that serves several themes (light/dark) at once, e.g. via CSS variables or multiple class sets (Shiki `themes`, starry-night CSS). Class-based output alone does not count unless themes ship as swappable stylesheets — note which in `comment`. |
