@@ -1,5 +1,261 @@
 {
   "name": "Splash",
   "description": "Swift highlighter with HTML, attributed-string, and image output; used in Swift publishing tools",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["swift"],
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "Pure Swift package (Swift Package Manager); requires a Swift 5.2+ toolchain per README."
+    },
+    "form-factor": {
+      "value": ["library", "cli"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Package.swift"],
+      "comment": "Package.swift exports the Splash library plus four executables: SplashHTMLGen, SplashMarkdown, SplashImageGen (macOS only), SplashTokenizer (debug tool)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/JohnSundell/Splash"]
+    },
+    "repository": {
+      "value": "https://github.com/JohnSundell/Splash",
+      "source": ["https://github.com/JohnSundell/Splash"]
+    },
+    "package": {
+      "value": "https://swiftpackageindex.com/JohnSundell/Splash",
+      "source": ["https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "Distributed via Swift Package Manager from the Git repository; Swift Package Index is the registry-style listing."
+    },
+    "documentation": {
+      "value": "https://github.com/JohnSundell/Splash",
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "No dedicated docs site; README plus doc comments in the public source files."
+    },
+    "first-release": {
+      "value": "2018",
+      "source": ["https://api.github.com/repos/JohnSundell/Splash/releases?per_page=100"],
+      "comment": "0.1.0 published 2018-08-25."
+    },
+    "latest-version": {
+      "value": "0.16.0",
+      "source": ["https://github.com/JohnSundell/Splash/releases/tag/0.16.0", "https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "Checked 2026-11-19. master has a few later untagged commits (June 2022, e.g. 'any' keyword support)."
+    },
+    "engine-model": {
+      "value": ["custom-parser"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/SwiftGrammar.swift", "https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/Grammar.swift"],
+      "comment": "Delimiter-based tokenizer plus an ordered list of hand-written Swift SyntaxRule structs (13 rules in SwiftGrammar) that inspect previous/next/same-line tokens; first matching rule assigns the token type."
+    },
+    "regex-engine": {
+      "value": ["n-a"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/SwiftGrammar.swift"],
+      "comment": "No regex at all: rules use plain string/CharacterSet operations (hasPrefix, hasSuffix, comparisons). n/a used because no regex engine runs the grammar."
+    },
+    "embedded-languages": {
+      "value": false,
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "Only a Swift grammar ships; no HTML/JS/CSS or injection mechanism."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/MarkdownDecorator.swift"],
+      "comment": "Single-language tool; the grammar is chosen at init (defaults to SwiftGrammar). MarkdownDecorator highlights every fenced block with that grammar."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/MarkdownDecorator.swift"],
+      "comment": "No language lookup of any kind; grammar is passed explicitly."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Tokenizing/Tokenizer.swift"],
+      "comment": "Tokenizer is internal and keeps line state privately; highlight(_:) always processes a whole string."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Syntax/SyntaxHighlighter.swift"]
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/SwiftGrammar.swift", "https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Tokenizing/TokenType.swift"],
+      "comment": "Has call/type/property/dotAccess token types, but these come from token-neighbourhood heuristics (e.g. capitalised identifier = type, identifier followed by '(' = call), not a syntax tree; no definition vs call or parameter vs local distinction."
+    },
+    "bundled-languages": {
+      "value": 1,
+      "source": ["https://api.github.com/repos/JohnSundell/Splash/git/trees/master?recursive=1"],
+      "comment": "Swift only (SwiftGrammar.swift is the sole grammar), v0.16.0 / master checked 2026-11-19. An unmerged PR (#134) adds a basic JS grammar."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/Grammar.swift"],
+      "comment": "Grammars are Swift types conforming to the Grammar protocol (delimiters + [SyntaxRule])."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/Grammar.swift"]
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Grammar/Grammar.swift", "https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Syntax/SyntaxHighlighter.swift"],
+      "comment": "Public Grammar/SyntaxRule protocols; a user-defined grammar can be passed to SyntaxHighlighter's initializer without forking. Grammars are compiled Swift code, not data files."
+    },
+    "lazy-grammar-loading": {
+      "value": null,
+      "comment": "Not applicable: only one built-in grammar, compiled into the library."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://github.com/JohnSundell/Splash/releases/tag/0.16.0", "https://github.com/JohnSundell/Splash/pulls"],
+      "comment": "Heuristic hand-written Swift rules, tracked through Swift 5.5 concurrency (0.16.0) and 'any' (untagged master, 2022). No updates since for Swift 5.9 macros, Swift 6 etc.; multi-line interpolation fix PR (#131) unmerged. Solid for common constructs, gaps on newer syntax."
+    },
+    "bundled-themes": {
+      "value": 6,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Theming/Theme+Defaults.swift", "https://github.com/JohnSundell/Splash"],
+      "comment": "v0.16.0: sundellsColors, midnight, wwdc17, wwdc18, sunset, presentation — Theme structs for NSAttributedString/image output (not available on Linux). HTML output has one example stylesheet (Examples/sundellsColors.css)."
+    },
+    "theme-format": {
+      "value": ["code", "css-stylesheet"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Theming/Theme.swift", "https://github.com/JohnSundell/Splash"],
+      "comment": "Swift Theme struct (font, colours per TokenType) for attributed-string/image output; user CSS for HTML class output."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Tokenizing/TokenType.swift"],
+      "comment": "TokenType enum: keyword, string, type, call, number, comment, property, dotAccess, preprocessing, plus custom(String) for user grammars."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/HTMLOutputFormat.swift"],
+      "comment": "HTMLOutputFormat wraps tokens in <span class=\"<prefix><type>\">; optional classPrefix. Class-only, no inline styles."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "Class-based HTML could be restyled, but only one example stylesheet ships and there is no documented light/dark mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/OutputBuilder.swift", "https://github.com/JohnSundell/Splash"],
+      "comment": "Via the public OutputFormat/OutputBuilder protocols: a custom builder receives addToken(_:ofType:), addPlainText, addWhitespace callbacks and can return any type (e.g. an array of tokens). The Tokenizer itself is internal."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/OutputBuilder.swift"],
+      "comment": "(text, TokenType) stream delivered to an OutputBuilder."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Tokenizing/TokenType.swift"],
+      "comment": "No documented serialization (TokenType is not Codable); SplashTokenizer CLI prints a debug text listing only."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/AttributedStringOutputFormat.swift"],
+      "comment": "Token stream carries only TokenType. Theme colours are applied only when rendering the final NSAttributedString (Apple platforms only), which native UIs can display directly."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/OutputBuilder.swift"],
+      "comment": "Builder callbacks receive token strings and types only, no positions."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://github.com/JohnSundell/Splash", "https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/OutputBuilder.swift"],
+      "comment": "README documents implementing the OutputFormat protocol for custom outputs."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://github.com/JohnSundell/Splash"]
+    },
+    "output-formats": {
+      "value": ["html-classes", "image", "markdown"],
+      "source": ["https://github.com/JohnSundell/Splash", "https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/MarkdownDecorator.swift"],
+      "comment": "HTML with classes (HTMLOutputFormat); NSAttributedString (AttributedStringOutputFormat, non-Linux; no tag); image via SplashImageGen CLI (macOS only); Markdown with fenced blocks replaced by highlighted <pre> HTML (MarkdownDecorator / SplashMarkdown). Unmerged PR for SwiftUI Text output."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Output/HTMLOutputFormat.swift"]
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Syntax/SyntaxHighlighter.swift"],
+      "comment": "highlight(_:) takes a complete String and returns the built output; no line-by-line API."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "No ANSI output format."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Package.swift", "https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "Pure Swift on Foundation, zero package dependencies. SplashImageGen uses AppKit/CoreGraphics (macOS only)."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "No official browser distribution; Swift Package Index's build matrix reports Wasm compatibility, so it could in principle be used via SwiftWasm."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "Not documented by the project; Swift Package Index automated builds list Wasm as compatible (third-party check, not official support)."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/JohnSundell/Splash/master/Sources/Splash/Syntax/SyntaxHighlighter.swift"],
+      "comment": "highlight(_:) is a plain synchronous function; no async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "Integrations exist (SplashPublishPlugin for Publish, a Jekyll tag) but no other-language bindings."
+    },
+    "core-package-size": {
+      "value": null,
+      "comment": "Not comparable: Swift source package with no registry artifact size."
+    },
+    "throughput-tier": {
+      "value": null,
+      "comment": "No independent or reproducible comparative benchmark found; README's 'fast' claim is unquantified."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Unmeasured; likely trivial (grammar is compiled-in Swift structs) but no measurement found."
+    },
+    "github-stars": {
+      "value": 1878,
+      "source": ["https://api.github.com/repos/JohnSundell/Splash"],
+      "comment": "Checked 2026-11-19."
+    },
+    "monthly-downloads": {
+      "value": null,
+      "source": ["https://swiftpackageindex.com/JohnSundell/Splash"],
+      "comment": "Swift Package Manager has no download statistics; Swift Package Index shows none."
+    },
+    "last-release": {
+      "value": "2021-06-14",
+      "source": ["https://api.github.com/repos/JohnSundell/Splash/releases?per_page=100", "https://github.com/JohnSundell/Splash/releases/tag/0.16.0"],
+      "comment": "0.16.0."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": ["https://api.github.com/repos/JohnSundell/Splash/commits?per_page=10", "https://github.com/JohnSundell/Splash/pulls"],
+      "comment": "Last commit on master 2022-06-08, last release 2021-06; 9 open PRs (latest May 2026, incl. Swift 6 and Linux crash fixes) unmerged. Not archived. Checked 2026-11-19."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://github.com/JohnSundell/Splash"],
+      "comment": "Clear README with usage and CLI examples plus doc comments in public source, but no API reference or docs site."
+    },
+    "notable-users": {
+      "value": "Swift by Sundell (swiftbysundell.com), Publish static site generator (via SplashPublishPlugin)",
+      "source": ["https://github.com/JohnSundell/Splash", "https://github.com/JohnSundell/Publish/blob/master/Documentation/HowTo/SyntaxHighlighting/using-splash.md", "https://github.com/JohnSundell/SplashPublishPlugin"]
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/JohnSundell/Splash/contributors"],
+      "comment": "John Sundell authored 144 of ~182 commits; next contributor has 9."
+    }
+  }
 }
