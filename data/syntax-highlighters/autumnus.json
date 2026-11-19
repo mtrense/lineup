@@ -1,5 +1,272 @@
 {
   "name": "Autumnus",
   "description": "Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["rust"],
+      "source": ["https://github.com/leandrocp/autumnus", "https://docs.lumis.sh/architecture"],
+      "comment": "Now named Lumis: the Rust crate autumnus was renamed to lumis (Autumnus 0.8 to Lumis 0.1), and the Elixir package autumn to lumis. The core is Rust (lumis, lumis-core). Elixir (Rustler NIF), JS/TS, Java and Python are runtimes built on it, so they are counted under Bindings / Ports."
+    },
+    "form-factor": {
+      "value": ["library", "cli", "wasm-module"],
+      "source": ["https://github.com/leandrocp/autumnus", "https://docs.lumis.sh/architecture", "https://raw.githubusercontent.com/leandrocp/lumis/main/packages/javascript/lumis/README.md"],
+      "comment": "Rust library, the official lumis CLI (lumis-cli, also on npm as @lumis-sh/cli), and the npm package, which runs WASM parsers via web-tree-sitter in browsers. There is no web component."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/leandrocp/lumis", "https://crates.io/api/v1/crates/lumis", "https://docs.lumis.sh/reference/themes"],
+      "comment": "MIT for the repo, crate, Hex and npm packages. Bundled themes keep their source plugins' licences (listed per theme in the theme catalog). Grammars come from upstream tree-sitter repos with their own licences."
+    },
+    "repository": {
+      "value": "https://github.com/leandrocp/lumis",
+      "source": ["https://github.com/leandrocp/autumnus", "https://api.github.com/repos/leandrocp/lumis"],
+      "comment": "The old github.com/leandrocp/autumnus URL now redirects to leandrocp/lumis."
+    },
+    "package": {
+      "value": "https://crates.io/crates/lumis",
+      "source": ["https://crates.io/api/v1/crates/lumis", "https://crates.io/api/v1/crates/autumnus"],
+      "comment": "The autumnus crate (last version 0.9.0, 2026-01-23) is marked 'DEPRECATED - Use lumis instead'. Also published on Hex (lumis, formerly autumn) and npm (@lumis-sh/lumis)."
+    },
+    "documentation": {
+      "value": "https://docs.lumis.sh/",
+      "source": ["https://docs.lumis.sh/", "https://docs.rs/lumis/latest/lumis/"],
+      "comment": "Docs site with per-runtime usage guides, formatter pages, recipes, language and theme catalogs, and migration guides. The Rust API reference is on docs.rs."
+    },
+    "first-release": {
+      "value": "2025",
+      "source": ["https://crates.io/api/v1/crates/autumnus", "https://hex.pm/api/packages/autumn"],
+      "comment": "The autumnus crate was first published on crates.io on 2025-02-14, and the lumis crate on 2026-01-08. The Elixir predecessor autumn goes back further: first published on Hex on 2023-09-27."
+    },
+    "latest-version": {
+      "value": "0.19.5",
+      "source": ["https://crates.io/api/v1/crates/lumis", "https://hex.pm/api/packages/lumis", "https://registry.npmjs.org/@lumis-sh/lumis"],
+      "comment": "Checked 2026-11-19. lumis crate 0.19.5 (2026-11-13). The other runtimes are versioned separately: Hex lumis 0.10.9 and npm @lumis-sh/lumis 0.10.8."
+    },
+    "engine-model": {
+      "value": ["parse-tree"],
+      "source": ["https://docs.lumis.sh/architecture"],
+      "comment": "Tree-sitter parsers with highlight queries (mostly from nvim-treesitter) and injection queries."
+    },
+    "regex-engine": {
+      "value": ["n-a"],
+      "source": ["https://docs.lumis.sh/architecture"],
+      "comment": "Parse-tree engine. Tree-sitter query predicates such as #match? are evaluated by the tree-sitter runtime and are not a grammar regex engine."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.lumis.sh/recipes/injected-languages-html-css-js", "https://raw.githubusercontent.com/leandrocp/lumis/main/packages/javascript/lumis/README.md"],
+      "comment": "Tree-sitter injection queries, e.g. CSS and JS inside HTML. Works out of the box in Rust (all languages are on by default) and on Node, where injected languages load automatically. Browsers need the injected grammars loaded up front."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://docs.lumis.sh/usage/highlight", "https://docs.lumis.sh/recipes/auto-detect-language"],
+      "comment": "Language::guess uses file extensions, filenames, shebangs and Emacs mode lines, and falls back to plaintext. There is no statistical content guessing, so per the guideline this counts under Filename / Extension Mapping (as for syntect and arborium)."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/usage/highlight", "https://docs.lumis.sh/reference/languages"],
+      "comment": "Built-in mapping from extensions, filenames, shebangs and Emacs mode lines. The language catalog lists extensions for each language."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://docs.lumis.sh/usage/highlight"],
+      "comment": "No per-line state API. Each call highlights the whole document."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://api.github.com/search/issues?q=repo:leandrocp/lumis+is:issue+highlight&per_page=30"],
+      "comment": "No edit/reparse API. Issue #1847 'feat: incremental and range (viewport) highlighting' was still open as of 2026-11-19."
+    },
+    "semantic-distinctions": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.lumis.sh/formatters/custom"],
+      "comment": "Highlights come from tree-sitter queries on the syntax tree, mostly nvim-treesitter's highlights.scm, which distinguishes captures such as function vs function.call and parameters. Use of locals queries is not documented."
+    },
+    "bundled-languages": {
+      "value": 122,
+      "source": ["https://docs.lumis.sh/reference/languages"],
+      "comment": "Counted 122 rows in the language catalog on 2026-11-19 (lumis 0.19.5; the README says '110+'). This includes helper grammars such as markdown_inline, jinja_inline, comment, regex and ocaml_interface. All are enabled by default in Rust (all-languages feature). Rust bundles: lang-bundle-web, -web-extra, -system, -backend, -full."
+    },
+    "grammar-format": {
+      "value": ["tree-sitter"],
+      "source": ["https://docs.lumis.sh/architecture"],
+      "comment": "Tree-sitter grammars plus highlight/injection queries. They are compiled natively for Rust and to WASM (@lumis-sh/wasm-* packages) for the other runtimes."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["tree-sitter"],
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.lumis.sh/reference/languages"],
+      "comment": "Uses upstream tree-sitter grammars with highlight queries mostly from nvim-treesitter."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://github.com/idleberg/nsis-org/tree/main/packages/lumis", "https://docs.lumis.sh/languages"],
+      "comment": "JS runtime only. A third-party language object (parser WASM plus queries), such as the community @nsis/lumis package, can be passed to a formatter without forking Lumis. In Rust, parsers are Cargo features compiled into the binary, and the docs do not cover registering a custom grammar."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/languages", "https://raw.githubusercontent.com/leandrocp/lumis/main/packages/javascript/lumis/README.md"],
+      "comment": "In the Elixir, JS and CLI runtimes, each language's WASM parser loads the first time a document names it and is then reused. Bundles register languages that still load lazily. In Rust, the parsers chosen via features are compiled in."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.lumis.sh/reference/languages", "https://api.github.com/search/issues?q=repo:leandrocp/lumis+is:issue+highlight&per_page=30"],
+      "comment": "Judgement call. Upstream tree-sitter grammars with nvim-treesitter queries, pinned per language in the catalog and updated through the wasm-* packages. Issues seen are mostly runtime or integration bugs, plus a few grammar gaps: 'Partial Svelte' (#1014, open) and PHP heredocs failing under WASM (#1638, fixed). No TS/Rust/Python accuracy reports were found. Not 5 because there is no published fidelity check."
+    },
+    "bundled-themes": {
+      "value": 231,
+      "source": ["https://docs.lumis.sh/reference/themes"],
+      "comment": "Counted 231 rows in the theme catalog on 2026-11-19 (README: '200+'; the docs.rs crate page still says '120+')."
+    },
+    "theme-format": {
+      "value": ["neovim-json", "css-stylesheet"],
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.rs/lumis/latest/lumis/", "https://docs.lumis.sh/reference/themes"],
+      "comment": "Themes are JSON files extracted from Neovim colorschemes that map tree-sitter scopes to styles. Custom ones load via themes::from_file / from_json. The JS package also ships per-theme CSS files (@lumis-sh/themes/css/<theme>.css) for linked HTML, which Rust can generate with CssBuilder."
+    },
+    "token-classification": {
+      "value": ["capture-names"],
+      "source": ["https://docs.lumis.sh/architecture", "https://docs.lumis.sh/formatters/custom"],
+      "comment": "Tree-sitter capture/scope names such as keyword, function and string (nvim-treesitter style). Events carry an index into HIGHLIGHT_NAMES."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/", "https://docs.lumis.sh/formatters"],
+      "comment": "HtmlLinkedBuilder emits class-based spans to pair with a theme CSS file."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/formatters", "https://docs.rs/lumis/latest/lumis/"],
+      "comment": "HtmlMultiThemesBuilder renders one block for several themes using CSS custom properties, with a default_theme that can be light-dark(). Not available in the Java runtime."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/highlight/index.html", "https://docs.rs/lumis/latest/lumis/highlight/struct.Highlighter.html", "https://docs.lumis.sh/formatters/custom"],
+      "comment": "Rust: Highlighter::highlight returns styled segments, highlight_iter calls back per token, and highlight_events returns nested events. JS has highlightIter, and Elixir has Lumis.highlight_events/3."
+    },
+    "ir-kinds": {
+      "value": ["styled-spans", "token-list", "highlight-events"],
+      "source": ["https://docs.rs/lumis/latest/lumis/highlight/struct.Highlighter.html", "https://docs.rs/lumis/latest/lumis/highlight/index.html", "https://raw.githubusercontent.com/leandrocp/lumis/main/crates/lumis-core/src/events.rs"],
+      "comment": "Styled spans: Highlighter returns Vec<(Arc<Style>, &str)>. Token list: highlight_iter yields (text, language, range, scope, style) to a callback. Highlight events: Start{scope_index, language} / Source{start, end} / End, plus annotation and decoration events."
+    },
+    "serializable-ir": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/themes/struct.Style.html", "https://raw.githubusercontent.com/leandrocp/lumis/main/crates/lumis-core/src/events.rs"],
+      "comment": "Partial. Style implements serde Serialize/Deserialize, so styled spans can be serialized (wrapping Arc needs serde's rc feature). HighlightEvent derives only Debug/PartialEq/Eq, so the event stream has no documented serialization."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/highlight/struct.Highlighter.html", "https://docs.rs/lumis/latest/lumis/themes/struct.Style.html", "https://docs.lumis.sh/formatters/custom"],
+      "comment": "Highlighter segments and highlight_iter callbacks carry a resolved Style (fg/bg hex, bold, italic, text decoration). Per the docs, each property comes from the innermost scope that sets it."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/leandrocp/lumis/main/crates/lumis-core/src/events.rs", "https://docs.lumis.sh/formatters/custom"],
+      "comment": "Source events and highlight_iter ranges are UTF-8 byte offsets. Highlighter::highlight segments are only &str slices with no range."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/formatters/custom"],
+      "comment": "Rust Formatter trait (language() + render(source, events, output)), a JS object with render(source, events), and the Elixir Lumis.Formatter behaviour."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/", "https://docs.rs/lumis/latest/lumis/struct.HtmlInlineBuilder.html", "https://docs.lumis.sh/usage/highlight"],
+      "comment": "highlight_lines on the HTML and terminal builders, caller-provided annotations (byte or position ranges passed into the event stream), and built-in decorations such as rainbow brackets and word diff."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "ansi-truecolor", "bbcode"],
+      "source": ["https://docs.lumis.sh/formatters", "https://raw.githubusercontent.com/leandrocp/lumis/main/crates/lumis-core/src/formatter/ansi.rs"],
+      "comment": "HTML Inline, HTML Linked, HTML Multi-Themes (HTML with CSS variables), Terminal (24-bit 38;2/48;2 escapes), and BBCode Scoped. @lumis-sh/react appears to render formatter HTML rather than JSX from tokens, so it is not tagged. LaTeX is an open feature request (#1296)."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/struct.HtmlInlineBuilder.html", "https://docs.rs/lumis/latest/lumis/struct.TerminalBuilder.html"],
+      "comment": "line_numbers option on the HTML and Terminal builders. There is also a line-numbers recipe in the docs."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://docs.lumis.sh/usage/rust", "https://docs.lumis.sh/usage/highlight"],
+      "comment": "write_highlight streams to a writer but takes the complete source. The 'streaming-friendly' claim means it tolerates incomplete code, so LLM chunks can be re-highlighted. No API emits output before the full input is consumed."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://docs.rs/lumis/latest/lumis/struct.TerminalBuilder.html", "https://docs.lumis.sh/formatters"],
+      "comment": "TerminalBuilder emits ANSI escape codes, and there is also the lumis CLI."
+    },
+    "native-dependencies": {
+      "value": ["c-library", "wasm-embedded"],
+      "source": ["https://docs.rs/lumis/latest/lumis/", "https://docs.lumis.sh/architecture"],
+      "comment": "Rust links the tree-sitter C runtime and C-generated grammar parsers, and also depends on lumis-wasm-runtime (Wasmtime-based). The Elixir NIF and the Node addon run parser WASM on Wasmtime. Browsers use web-tree-sitter with WASM parsers."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/leandrocp/lumis/main/packages/javascript/lumis/README.md", "https://docs.lumis.sh/architecture"],
+      "comment": "@lumis-sh/lumis works in browsers through bundlers or CDN imports, using web-tree-sitter and the @lumis-sh/wasm-* parser packages."
+    },
+    "wasm-build": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/architecture", "https://github.com/leandrocp/autumnus"],
+      "comment": "Grammars ship as official WASM packages (@lumis-sh/wasm-*, versioned <tree-sitter-version>.<seq>). Lumis4J ships a Lumis WebAssembly module."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://docs.lumis.sh/usage/highlight", "https://raw.githubusercontent.com/leandrocp/lumis/main/packages/javascript/lumis/README.md"],
+      "comment": "The Rust and Elixir highlight calls are synchronous. In JS the one-shot highlight() is async, but createHighlighter() loads languages during an async setup and then highlights synchronously."
+    },
+    "bindings-ports": {
+      "value": ["elixir", "javascript", "java", "python"],
+      "source": ["https://github.com/leandrocp/autumnus", "https://docs.lumis.sh/community"],
+      "comment": "Official: Elixir (Hex lumis, formerly autumn) and JS/TS (@lumis-sh/lumis). Community: Java (Lumis4J by roastedroot) and Python (fastpylight by Answer.AI)."
+    },
+    "core-package-size": {
+      "value": 4569502,
+      "source": ["https://crates.io/api/v1/crates/lumis"],
+      "comment": "crate_size of the lumis 0.19.5 .crate on crates.io (about 4.6 MB compressed source). Excludes the tree-sitter-* grammar crates it depends on and lumis-core. The npm @lumis-sh/lumis 0.10.8 unpacked size is 6,252,764 bytes, excluding WASM parsers. Not comparable to JS min+gzip figures."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://lumis.sh/comparison/"],
+      "comment": "No independent or reproducible throughput benchmark found. The official comparison page compares output quality against nine other highlighters, not speed."
+    },
+    "initialization-cost": {
+      "value": null,
+      "source": ["https://docs.lumis.sh/languages"],
+      "comment": "Unmeasured. The docs suggest warming languages at startup (languages.load / Lumis.Languages.async_load) to keep parser compilation off the first request, which implies a noticeable first-load cost in the WASM runtimes. No figures published."
+    },
+    "github-stars": {
+      "value": 243,
+      "source": ["https://api.github.com/repos/leandrocp/lumis"],
+      "comment": "Checked 2026-11-19 (leandrocp/lumis, formerly autumnus)."
+    },
+    "monthly-downloads": {
+      "value": 7797,
+      "source": ["https://crates.io/api/v1/crates/lumis", "https://hex.pm/api/packages/lumis", "https://api.npmjs.org/downloads/point/last-month/@lumis-sh/lumis"],
+      "comment": "crates.io lumis recent_downloads (90 days) of 23,392 ÷ 3, checked 2026-11-19. The deprecated autumnus crate still logged 31,263 over 90 days. Hex (Elixir) is larger: 215,746 recent (90 days), about 72k per month. npm @lumis-sh/lumis had 6,122 in the last month."
+    },
+    "last-release": {
+      "value": "2026-11-13",
+      "source": ["https://crates.io/api/v1/crates/lumis", "https://hex.pm/api/packages/lumis"],
+      "comment": "lumis crate 0.19.5 and Hex lumis 0.10.9, both published 2026-11-13."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/leandrocp/lumis", "https://crates.io/api/v1/crates/lumis", "https://crates.io/api/v1/crates/autumnus"],
+      "comment": "Several releases in November 2026, last push 2026-11-19. Under the autumnus name it is superseded: that crate is deprecated in favour of lumis, which is the same project renamed."
+    },
+    "documentation-quality": {
+      "value": 5,
+      "source": ["https://docs.lumis.sh/", "https://docs.lumis.sh/migrate/autumnus", "https://docs.rs/lumis/latest/lumis/"],
+      "comment": "Dedicated docs site with per-runtime guides, many recipes, language and theme catalogs, migration guides (autumnus, Elixir, JS, MDEx), and the docs.rs API reference."
+    },
+    "notable-users": {
+      "value": "Hex.pm, MDEx (and through it Tuist and Oban Pro), Answer.AI's mdhtml via fastpylight, termframe",
+      "source": ["https://docs.lumis.sh/community", "https://github.com/leandrocp/autumnus"],
+      "comment": "From the project's own 'Used by' list, not checked against each consumer's manifest. MDEx is by the same author."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/leandrocp/lumis/contributors?per_page=10"],
+      "comment": "leandrocp has about 1,750 commits. Most other top 'contributors' appear to be authors of vendored nvim-treesitter or grammar history rather than active Lumis maintainers. The Java and Python runtimes are maintained by third parties."
+    }
+  }
 }

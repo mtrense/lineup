@@ -190,7 +190,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] giallo — Rust TextMate-grammar engine aiming for VS Code-faithful highlighting
 - [x] arborium — Rust batteries-included tree-sitter highlighting with many bundled grammars and WASM/browser support
 - [x] inkjet — Rust batteries-included tree-sitter highlighting with bundled grammars and multiple formatters
-- [ ] Autumnus — Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)
+- [x] Autumnus — Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)
 - [x] Makeup — Elixir highlighter used by ExDoc; Pygments-inspired lexer architecture
 - [ ] Phiki — PHP port of Shiki using TextMate grammars and VS Code themes
 - [ ] tempest/highlight — PHP highlighter with HTML and terminal output, designed for speed and extensibility
