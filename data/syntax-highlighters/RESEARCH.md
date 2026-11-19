@@ -197,7 +197,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] TextMateSharp — C# TextMate grammar engine port (from tm4e/vscode-textmate); used by AvaloniaEdit
 - [ ] ColorCode-Universal — Microsoft's C# highlighter for HTML and UWP/WinUI rich text output
 - [x] Splash — Swift highlighter with HTML, attributed-string, and image output; used in Swift publishing tools
-- [ ] sugar-high — tiny zero-dependency JS highlighter for JSX/JS with CSS-variable theming
+- [x] sugar-high — tiny zero-dependency JS highlighter for JSX/JS with CSS-variable theming
 
 ### Not Including (with reasons)
 - **bat / delta / glow** — consumers of syntect/Chroma, not engines (listed as notable users instead)

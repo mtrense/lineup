@@ -1,5 +1,272 @@
 {
   "name": "sugar-high",
   "description": "Tiny zero-dependency JS highlighter for JSX/JS with CSS-variable theming",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["javascript"],
+      "source": ["https://registry.npmjs.org/sugar-high/latest", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "Plain ESM JavaScript with JSDoc `// @ts-check` and hand-written `.d.ts` typings; the package has no build step. Runs in browsers and JS runtimes."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "npm library only, with no CLI. Official companions: @sugar-high/react (Code and Editor components) and @sugar-high/remark (Markdown plugin)."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://registry.npmjs.org/sugar-high/latest", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "MIT per package.json and README. The GitHub API reports no detected licence at the repo root (checked 2026-11-19). Language configs ship in the same package."
+    },
+    "repository": {
+      "value": "https://github.com/huozhi/sugar-high",
+      "source": ["https://github.com/huozhi/sugar-high"],
+      "comment": "pnpm monorepo. The core package lives in packages/sugar-high."
+    },
+    "package": {
+      "value": "https://www.npmjs.com/package/sugar-high",
+      "source": ["https://registry.npmjs.org/sugar-high/latest"],
+      "comment": "npm package page. The registry JSON was fetched for verification because the npmjs.com page returned 403 to the fetcher."
+    },
+    "documentation": {
+      "value": "https://sugar-high.vercel.app",
+      "source": ["https://sugar-high.vercel.app", "https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "Demo/docs site with React, Remark and theme pages, plus docs/API.md, MIGRATION.md and BENCHMARK.md in the repo."
+    },
+    "first-release": {
+      "value": "2022",
+      "source": ["https://registry.npmjs.org/sugar-high", "https://api.github.com/repos/huozhi/sugar-high"],
+      "comment": "Repo created on 2022-01-28. npm 0.0.1 was published the same day."
+    },
+    "latest-version": {
+      "value": "2.7.0",
+      "source": ["https://registry.npmjs.org/sugar-high/latest", "https://registry.npmjs.org/sugar-high"],
+      "comment": "Published 2026-11-13; checked 2026-11-19. v2 split the package into sugar-high, sugar-high/core and sugar-high/lang."
+    },
+    "engine-model": {
+      "value": ["custom-parser"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md", "https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz"],
+      "comment": "A hand-written character-by-character scanner (lib/core.js) that tracks 'loose context' (README: 'far lighter than an abstract syntax tree'). Each language plugs in config (keyword sets, comment/literal hooks); JS, TS, CSS, HTML, Markdown, Vue and Svelte add their own tokenize functions. It is not driven by declarative regex rules, so `regex-lexer` fits poorly. The speed-highlight comparison table calls it 'lightweight regex'."
+    },
+    "regex-engine": {
+      "value": ["js-regexp"],
+      "source": ["https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz"],
+      "comment": "Scanning is mostly manual char-code checks. Native JS RegExp is used only for helpers (Unicode letter/whitespace tests), optional sticky `word` patterns (e.g. CSS `font-size`, Rust lifetimes), and HTML script/style tag detection."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "lib/lang/embedded-html.js finds <script> and <style> blocks in HTML and tokenizes them with the JavaScript and CSS configs. Vue and Svelte reuse the HTML base. Verified from 2.7.0 source, not run."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "No content-based detection. JavaScript is the default when `lang` is omitted."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "`lang()` from sugar-high/lang maps extensions (with or without a dot) and fence aliases to canonical names, e.g. '.yml' → yaml, 'tf' → hcl. It does no shebang or MIME lookup."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "parse() always tokenizes the whole input. ParsedLine exposes tokens and annotations but no resumable state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "No edit-aware reparsing API. The React Editor re-highlights the whole value."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "The token set includes `class`, `entity` and `property`, but these come from local lookahead heuristics ('loose context'), not a syntax tree or locals tracking."
+    },
+    "bundled-languages": {
+      "value": 31,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "2.7.0 lists 32 canonical names. This count excludes `plaintext`. Vue and Svelte are counted although they reuse the HTML base. JSX, TSX, JSONC, Bash/Zsh and Terraform are dialects folded into other entries. The speed-highlight table lists 25, from an older version."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz"],
+      "comment": "Languages are JS modules exporting ParseOptions: keyword/typeKeywords Sets, onCommentStart/onCommentEnd/onLiteral hooks, optional `word` regex, custom `tokenize` and `annotateLine`."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "No import of TextMate, tree-sitter, Pygments or other external grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "`parse(code, config)` from sugar-high/core takes any config object at call time. The README shows extending the built-in GLSL config with extra type keywords. There is no global registry to add names to the `highlight()` `lang` option."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "No on-demand loader. The root `sugar-high` export includes every language. To keep bundles small you import `sugar-high/core` plus individual `sugar-high/lang/<name>` modules yourself, as with highlight.js core."
+    },
+    "grammar-accuracy": {
+      "value": 2,
+      "source": ["https://github.com/huozhi/sugar-high/issues/331", "https://github.com/huozhi/sugar-high/issues?q=is%3Aissue", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "JS/TS/JSX get dedicated tokenizers. Most other languages, e.g. Python, are only a keyword set plus comment hooks on a shared C-like scanner, so they are close to keyword/string/comment level. There is no number token type. Open #331 (2026-11-14, on 2.7.0): Go raw strings, Kotlin \"\"\" strings and C# verbatim strings run to the end of the block. Fixed reports include template-literal interpolation (#299) and CSS tokenisation (#131). The README admits the trade-off of correctness against size and speed. Rated 2, borderline 3: JS/TS fare better than the other languages. The rating rests on source review and issue titles; no systematic spot-check was run."
+    },
+    "bundled-themes": {
+      "value": 10,
+      "source": ["https://sugar-high.vercel.app/react", "https://registry.npmjs.org/@sugar-high/react/latest"],
+      "comment": "The core sugar-high package ships no theme; colours are CSS variables the user defines. The official companion @sugar-high/react 2.5.1 exports 10 themes from `@sugar-high/react/themes`: taffy, vercel, vscode, oneDarkPro, monokai, minimal, gruvbox, tokyoNight, nordLight, softMinimal. Several have light and dark palettes. The /theme page also offers copy-paste taffy CSS and Tailwind variable sets."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet", "code"],
+      "source": ["https://sugar-high.vercel.app/theme", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md", "https://sugar-high.vercel.app/react"],
+      "comment": "Core themes are CSS custom properties (--sh-keyword, --sh-string, …) in a stylesheet. @sugar-high/react themes are JS objects with light/dark palettes. There is no VS Code or tmTheme import."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz", "https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "A closed TokenType set of 11 types: identifier, keyword, string, class, property, entity, jsxliterals, sign, comment, break, space. They are rendered as `sh__token--<type>` classes. Languages can add line-level annotations, e.g. `sh__line--diff-add`."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz"],
+      "comment": "Every token gets `class=\"sh__token--<type>\"`, and the `cx` option appends custom classes, e.g. Tailwind or CSS Modules. The default output also adds `style=\"color:var(--sh-<type>)\"`, so the variables or a class rule supply the colour."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://sugar-high.vercel.app", "https://sugar-high.vercel.app/theme", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "Output references CSS variables, so one render serves light and dark by redefining the variables on an ancestor. The site documents a 'Light & Dark palettes' section, and the taffy stylesheet switches via `[data-theme='dark']`. @sugar-high/react themes carry light and dark palettes."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "`parse()` in sugar-high/core is documented and returns ParsedCode, i.e. lines with `{type, value}` tokens and annotations. The lower-level `tokenize()` returns `[typeIndex, text]` pairs and is typed as 'used by language presets and integrations'."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://registry.npmjs.org/sugar-high/-/sugar-high-2.7.0.tgz"],
+      "comment": "ParsedCode is a line-grouped token list. `generate()` also returns hast-shaped element nodes ({type:'element', tagName:'span', properties, children}) for React and syntax-tree renderers. It is not tagged `hast` because properties use a className string and a style object rather than hast conventions, and it is not documented as hast."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "ParsedCode and the generate() nodes are plain objects that would survive JSON.stringify, but no serialization format is documented, and the generated node style is not standard hast. Strict reading of the guideline gives false."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://sugar-high.vercel.app/react"],
+      "comment": "Tokens carry only a semantic type, and colours are CSS `var()` references. React theme objects map types to hex colours, but the library does not emit tokens with resolved colours."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "Tokens are `{type, value}` with no offsets. Lines carry a zero-based `index`, so columns can only be derived by summing token lengths."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "v2 deliberately separates parse() from render(). generate() is documented as building 'typed line and token nodes for integrations that render through React or another syntax tree instead of HTML'. @sugar-high/react uses it."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "`markLine` mutates line class/style/properties, e.g. highlighted lines. `mark` mutates individual tokens. Language `annotateLine` hooks add semantic line classes such as diff-add and markdown-heading. React `highlightLines` and Remark `{2,5-7}` fence metadata build on this."
+    },
+    "output-formats": {
+      "value": ["html-classes", "react-jsx"],
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://sugar-high.vercel.app/react"],
+      "comment": "Core emits an HTML string of spans with classes plus `color:var(--sh-*)` style attributes; concrete inline colours are only possible via `mark`. React output comes from the official @sugar-high/react companion, which builds on generate(). It has no ANSI, LaTeX or image output."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://sugar-high.vercel.app/react", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "@sugar-high/react <Code lineNumbers> and <Editor> render line numbers. The core package wraps each line in `.sh__line` and documents numbering via a CSS counter."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "highlight() and parse() take a complete string and return a complete result. No incremental API."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "HTML and React output only. No ANSI renderer."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://registry.npmjs.org/sugar-high/latest"],
+      "comment": "Zero runtime dependencies; package.json has devDependencies only. Pure JavaScript."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "README: 'runs in browsers and JavaScript runtimes and returns HTML without requiring a DOM'."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://registry.npmjs.org/sugar-high/latest"],
+      "comment": "Pure JS. No WASM artefact."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md"],
+      "comment": "highlight(), parse(), render() and generate() are all synchronous, with no async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/huozhi/sugar-high"],
+      "comment": "No other-language bindings found. The official companions (@sugar-high/react, @sugar-high/remark) are JS integrations. The Obsidian community plugin is a third-party integration."
+    },
+    "core-package-size": {
+      "value": 2228,
+      "source": ["https://deno.bundlejs.com/?q=sugar-high/core", "https://deno.bundlejs.com/?q=sugar-high"],
+      "comment": "bundlejs (esbuild, minified, gzip) for sugar-high@2.7.0/core: 2,228 B, the engine plus HTML renderer with no languages, checked 2026-11-19. The full `sugar-high` entry with all 32 language configs is 11,775 B. README benchmark: core plus the TypeScript language is 5.16 KiB gzip (Bun, gzip -9, 2.6.3). npm unpacked size 102,775 B."
+    },
+    "throughput-tier": {
+      "value": ["moderate"],
+      "source": ["https://speed-highlight.github.io/core/", "https://github.com/speed-highlight/core", "https://raw.githubusercontent.com/huozhi/sugar-high/main/packages/sugar-high/README.md"],
+      "comment": "Contested. In the speed-highlight benchmark (Node 26.7, Apple M4, mixed js/css/json/md/sql/py/bash corpus; sugar-high version not stated), sugar-high scored 238,406 / 13,405 / 1,376 ops/min on 1/16/128 KB. That is ~2.7× slower than Prism (tiny) and ~3.6–4.0× slower than highlight.js (medium/huge), so 'moderate', borderline 'fast'. The sugar-high README's own reproducible benchmark (2026-10-24, 2.6.3, generated TypeScript only) has it ~2–3× faster than Prism 1.30 and highlight.js 11.12, which would be 'top-tier'. The two benchmarks were run by competing maintainers and on different workloads."
+    },
+    "initialization-cost": {
+      "value": ["moderate"],
+      "source": ["https://speed-highlight.github.io/core/"],
+      "comment": "Cold start (import plus first highlight of test.js) measured 18 ms in the speed-highlight benchmark (Prism 8.6 ms, highlight.js 19 ms; Node 26.7, M4), at the low end of 'moderate'. The sugar-high README benchmark excludes initialisation. Importing only sugar-high/core plus one language was not measured."
+    },
+    "github-stars": {
+      "value": 1389,
+      "source": ["https://api.github.com/repos/huozhi/sugar-high"],
+      "comment": "Checked 2026-11-19."
+    },
+    "monthly-downloads": {
+      "value": 1884714,
+      "source": ["https://api.npmjs.org/downloads/point/last-month/sugar-high"],
+      "comment": "npm, 2026-10-20 to 2026-11-18. Much of this is likely transitive, e.g. via the Vercel blog template, @sugar-high/react and shadcn-style registries; the main consumers were not identified."
+    },
+    "last-release": {
+      "value": "2026-11-13",
+      "source": ["https://registry.npmjs.org/sugar-high"],
+      "comment": "2.7.0 published to npm. Releases are published by GitHub Actions; the GitHub Releases page is empty, and tags are used instead."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://registry.npmjs.org/sugar-high", "https://api.github.com/repos/huozhi/sugar-high", "https://github.com/huozhi/sugar-high/issues?q=is%3Aissue"],
+      "comment": "Six releases from 2.6.0 to 2.7.0 between 2026-10-07 and 2026-11-13. Last push 2026-11-15. Only 2 open issues; issues are triaged and closed quickly."
+    },
+    "documentation-quality": {
+      "value": 4,
+      "source": ["https://sugar-high.vercel.app", "https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/API.md", "https://raw.githubusercontent.com/huozhi/sugar-high/main/docs/MIGRATION.md"],
+      "comment": "Demo site with React, Remark and theme guides and a language list. Thorough README. API.md covers exports, the full lang() mapping, options, types and processing order. There are also a v1→v2 migration guide and benchmark methodology. Not rated 5: the docs are short and spread across GitHub Markdown files rather than a full docs site with a generated API reference."
+    },
+    "notable-users": {
+      "value": "Vercel's Next.js Portfolio Blog Starter (vercel/examples solutions/blog), Code Blocks (pheralb, shadcn registry highlighter), Obsidian 'Sugar High' community plugin",
+      "source": ["https://raw.githubusercontent.com/vercel/examples/main/solutions/blog/package.json", "https://github.com/vercel/examples/tree/main/solutions/blog", "https://code-blocks.pheralb.dev/docs/sugar-high/highlighter", "https://community.obsidian.md/plugins/sugar-high"],
+      "comment": "The vercel/examples blog package.json depends on sugar-high ^0.6.0. Code Blocks documents `import { highlight } from \"sugar-high\"`. The Obsidian plugin bundles sugar-high and has small reach (99 downloads)."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/huozhi/sugar-high/contributors?per_page=10"],
+      "comment": "Jiachi Liu (huozhi) has 421 commits. The next human contributor has 7. Personal repo, not under a Vercel org."
+    }
+  }
 }
