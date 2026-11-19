@@ -1,5 +1,270 @@
 {
   "name": "tempest/highlight",
   "description": "PHP highlighter with HTML and terminal output, designed for speed and extensibility",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["php"],
+      "source": ["https://repo.packagist.org/p2/tempest/highlight.json", "https://github.com/tempestphp/highlight"],
+      "comment": "Pure PHP library. Version 2.30.0 requires PHP ^8.4."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/README.md", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "Composer library only, used through `new Highlighter()->parse($code, $language)`. It ships no CLI. A league/commonmark extension (HighlightExtension) is included in the package."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/tempestphp/highlight", "https://packagist.org/packages/tempest/highlight"],
+      "comment": "MIT. Languages and CSS themes are bundled in the same package under the same licence."
+    },
+    "repository": {
+      "value": "https://github.com/tempestphp/highlight",
+      "source": ["https://github.com/tempestphp/highlight"]
+    },
+    "package": {
+      "value": "https://packagist.org/packages/tempest/highlight",
+      "source": ["https://packagist.org/packages/tempest/highlight"]
+    },
+    "documentation": {
+      "value": "https://tempestphp.com/current/packages/highlight",
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "A single docs page on the Tempest framework site, covering the quickstart, themes, gutter, special tags, CommonMark, and custom languages."
+    },
+    "first-release": {
+      "value": "2024",
+      "source": ["https://repo.packagist.org/p2/tempest/highlight.json", "https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck"],
+      "comment": "The repo was created on 2024-03-15 and announced on stitcher.io the same day. Version 1.0 was published on Packagist on 2024-03-28."
+    },
+    "latest-version": {
+      "value": "2.30.0",
+      "source": ["https://packagist.org/packages/tempest/highlight", "https://repo.packagist.org/p2/tempest/highlight.json"],
+      "comment": "Released 2026-10-27; checked 2026-11-19."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Language.php"],
+      "comment": "Each language is a PHP class that returns a list of Patterns and Injections. A Pattern is a regex with a named `match` group plus a TokenType. There is no state machine: all patterns run over the content, the resulting tokens are grouped and nested, and injections re-highlight embedded regions."
+    },
+    "regex-engine": {
+      "value": ["pcre"],
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/IsPattern.php"],
+      "comment": "Patterns run through PHP's PCRE2-backed preg_match_all with PREG_OFFSET_CAPTURE."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://api.github.com/repos/tempestphp/highlight/contents/src/Languages/Html/Injections", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "Through the Injection mechanism: HtmlLanguage ships CssInHtml, CssAttributeInHtml, JavaScriptInHtml, PhpInHtml and PhpShortEchoInHtml injections. Blade, Twig, Vue and Svelte build on this. An injection is a regex plus parseContent(), which calls the nested highlighter."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "The language must be passed explicitly to parse(). Unknown names fall back to plain text."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Language.php"],
+      "comment": "Languages are looked up only by name and getAliases() (e.g. 'htm', 'xhtml' for HTML). There is no filename, extension, shebang or MIME lookup API."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php"],
+      "comment": "parse() works on the whole string and keeps no per-line state."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php"],
+      "comment": "Every parse() call is stateless and starts from scratch."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Tokens/TokenTypeEnum.php", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "Regex patterns only, with no syntax tree. Patterns can target contexts such as a function name after `function`, but that is lexical matching, not structural analysis."
+    },
+    "bundled-languages": {
+      "value": 43,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php", "https://api.github.com/repos/tempestphp/highlight/contents/src/Languages"],
+      "comment": "The Highlighter constructor registers 44 languages on main as of 2.30.0, checked 2026-11-19. That count includes plain Text and excludes the opt-in Ellison prose checker. Text is not counted here. DocComment, Terminal, Diff, DotEnv, JSX/TSX and the template languages (Blade, Twig, Vue, Svelte) are counted. Rust, Go, C/C++, Java/Kotlin and TOML were added in October 2026."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Language.php"],
+      "comment": "Languages are PHP classes implementing Language (usually by extending BaseLanguage). Patterns and injections are PHP classes too, each wrapping a regex."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "It cannot load TextMate, Sublime, tree-sitter or Pygments grammars. Some bundled CSS themes are named after VS Code/Shiki themes, but that applies only to colours, not grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "Documented: `$highlighter->addLanguage(new MyLanguage())` registers a new language or overrides an existing one, e.g. by extending HtmlLanguage."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php"],
+      "comment": "The constructor eagerly instantiates every bundled language with `new`. Pattern lists are cached per language on first use, but the language objects are not loaded on demand."
+    },
+    "grammar-accuracy": {
+      "value": 3,
+      "source": ["https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck", "https://api.github.com/search/issues?q=repo:tempestphp/highlight+is:issue+highlighting&per_page=30"],
+      "comment": "Strongest on modern PHP (attributes, types, Blade), which motivated the project; the author's launch post admits remaining inaccuracies. It uses a coarse 13-type token taxonomy, and the newer languages (Rust, Go, C/C++, Java, Kotlin) were added in 2026 as compact regex sets. Mis-highlighting issues are few and fixed, e.g. Python `case _` bugs fixed in Oct 2026. Rated by Assessment Guideline (solid common constructs, known gaps); not spot-checked on TS/Rust/Python."
+    },
+    "bundled-themes": {
+      "value": 47,
+      "source": ["https://api.github.com/repos/tempestphp/highlight/contents/src/Themes/Css", "https://api.github.com/repos/tempestphp/highlight/contents/src/Themes"],
+      "comment": "As of main/2.30.0, checked 2026-11-19: 46 colour CSS themes in src/Themes/Css plus one terminal theme (LightTerminalTheme). The colour themes include highlight-light-lite, highlight-dark-lite, highlight-tempest, and Shiki-named themes such as github-dark, dracula, nord, tokyo-night and vitesse. The ellison.css stylesheet, for the opt-in word-complexity feature, is excluded."
+    },
+    "theme-format": {
+      "value": ["css-stylesheet", "code"],
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Themes/InlineTheme.php", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Themes/LightTerminalTheme.php"],
+      "comment": "Web themes are plain CSS stylesheets targeting `hl-*` classes; InlineTheme parses such a CSS file into inline styles. Terminal themes are PHP classes that map TokenType to ANSI TerminalStyle codes."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Tokens/TokenTypeEnum.php", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "TokenTypeEnum has 13 cases: keyword, operator, type, value, variable, property, attribute, generic, number, literal, comment, injection and hidden. These render as `hl-<type>` classes. Languages can add custom types via DynamicTokenType or their own TokenType enum."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "The default CssTheme emits `<span class=\"hl-keyword\">` and similar spans, styled by a separately imported stylesheet."
+    },
+    "multi-theme-output": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://api.github.com/repos/tempestphp/highlight/contents/src/Themes/Css"],
+      "comment": "Contested: this qualifies only through swappable stylesheets. CssTheme output does not depend on the theme, so light and dark CSS files (e.g. highlight-light-lite / highlight-dark-lite) can be swapped with a media query without re-rendering. There is no built-in dual-theme or CSS-variable mechanism, and InlineTheme supports only one theme per render."
+    },
+    "public-token-api": {
+      "value": false,
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Tokens/Token.php"],
+      "comment": "parse() returns only a rendered string. A public Token class exists (offset, value, type, children) and the ParseTokens/GroupTokens classes are public, but the docs describe no API for getting a token list."
+    },
+    "ir-kinds": {
+      "value": null,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "No documented intermediate representation. Internally the tokens form a tree (Token with children/parent), but this is not exposed as a documented API."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "There is no documented IR to serialize."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Tokens/RenderTokens.php"],
+      "comment": "Themes only return before/after markup strings per TokenType, which are concatenated into the output. Tokens with resolved colours are never exposed."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Tokens/Token.php"],
+      "comment": "The internal Token objects carry byte start/end/offset, but there is no documented IR that exposes them."
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Theme.php", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/WebTheme.php", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "Borderline. The output format comes entirely from the Theme passed to the Highlighter. Theme is a public interface (before/after per TokenType, escape), with WebTheme and TerminalTheme sub-interfaces, so a custom renderer is technically possible. The docs only cover writing CSS themes and do not document implementing Theme, so per the guideline this is not counted as a documented extension point."
+    },
+    "line-transforms-decorations": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "Through inline markers written in the source code: emphasize/strong/blur (hl-em, hl-strong, hl-blur), additions/deletions (hl-addition, hl-deletion, also shown in the gutter), and `{:classname: ... :}` custom classes, all multi-line. These are markers parsed from the input, not a programmatic decoration API. They are not supported by terminal themes."
+    },
+    "output-formats": {
+      "value": ["html-classes", "html-inline-styles", "ansi-16"],
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Themes/TerminalStyle.php", "https://api.github.com/repos/tempestphp/highlight/contents/src/Themes"],
+      "comment": "CssTheme gives class-based HTML, InlineTheme gives inline-style HTML, and LightTerminalTheme gives ANSI using standard 16-colour SGR codes (30–37, 90–97). There are no 256-colour or truecolor codes and no LaTeX, RTF or image output. The bundled CommonMark extension highlights code blocks inside Markdown-to-HTML rendering."
+    },
+    "line-numbers": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "`$highlighter->withGutter(startAt: 10)` renders a line-number gutter, which also shows addition and deletion markers. In CommonMark, `{startAt}` is appended to the fence language."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php"],
+      "comment": "parse() takes the complete string and returns the complete rendered string."
+    },
+    "terminal-ready": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Themes/LightTerminalTheme.php"],
+      "comment": "`new Highlighter(new LightTerminalTheme())` emits ANSI-escaped text. It is the only terminal theme so far; more are planned."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://repo.packagist.org/p2/tempest/highlight.json"],
+      "comment": "Requires only php ^8.4 (with the bundled PCRE extension). league/commonmark and assertchris/ellison are optional suggestions."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck", "https://tempestphp.com/current/packages/highlight"],
+      "comment": "Server-side PHP by design. The rendered HTML is static and needs only CSS on the client."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/tempestphp/highlight"],
+      "comment": "No official WASM build. Running it in the browser would need a generic PHP-in-WASM runtime, which is not offered by the project."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://tempestphp.com/current/packages/highlight"],
+      "comment": "parse() is a plain blocking call, and setup is just `new Highlighter()`."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/tempestphp/highlight"],
+      "comment": "No bindings or ports to other languages found. Framework integrations (e.g. parallax/filament-syntax-entry for Filament/Laravel) are PHP wrappers."
+    },
+    "core-package-size": {
+      "value": null,
+      "source": ["https://repo.packagist.org/p2/tempest/highlight.json"],
+      "comment": "Not reported: Packagist dist metadata has no size, and Composer source packages are not comparable to JS min+gzip sizes."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/tests/Bench/HighlighterBench.php", "https://github.com/tempestphp/highlight/pull/235"],
+      "comment": "No comparative benchmark. The maintainers' phpbench suite runs in CI on each PR and covers only this library. On the PR #235 run (Oct 2026), the PHP fixture took about 0.36 ms per parse, Twig about 0.84 ms, and most languages under 0.2 ms. The launch post says Shiki took more than 10 s for a docs page but gives no reproducible setup."
+    },
+    "initialization-cost": {
+      "value": null,
+      "source": ["https://raw.githubusercontent.com/tempestphp/highlight/main/tests/Bench/HighlighterBench.php", "https://raw.githubusercontent.com/tempestphp/highlight/main/src/Highlighter.php"],
+      "comment": "Unmeasured. The constructor only instantiates about 44 PHP language objects and loads no grammar files, which suggests a low cost. The phpbench suite builds the Highlighter outside the timed section, so cold start is not measured."
+    },
+    "github-stars": {
+      "value": 701,
+      "source": ["https://api.github.com/repos/tempestphp/highlight"],
+      "comment": "Checked 2026-11-19."
+    },
+    "monthly-downloads": {
+      "value": 194176,
+      "source": ["https://packagist.org/packages/tempest/highlight/stats.json"],
+      "comment": "Packagist monthly installs, checked 2026-11-19 (1.51M total). The count is inflated by dependents such as tempest/framework, mako/framework and symfony/tui (dev)."
+    },
+    "last-release": {
+      "value": "2026-10-27",
+      "source": ["https://repo.packagist.org/p2/tempest/highlight.json", "https://packagist.org/packages/tempest/highlight"],
+      "comment": "2.30.0."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/tempestphp/highlight", "https://repo.packagist.org/p2/tempest/highlight.json", "https://github.com/tempestphp/highlight/pull/235"],
+      "comment": "Frequent releases: 2.29.0 and 2.30.0 in Oct 2026, with several new languages merged that month. Only 2 issues were open on 2026-11-19."
+    },
+    "documentation-quality": {
+      "value": 3,
+      "source": ["https://tempestphp.com/current/packages/highlight", "https://raw.githubusercontent.com/tempestphp/highlight/main/README.md"],
+      "comment": "One solid guide page with examples for themes, gutter, markers, CommonMark and custom languages/tokens. It has no API reference, the language list is only a link to the source folder, the theme catalog is not documented, and the README is minimal."
+    },
+    "notable-users": {
+      "value": "Tempest framework (tempest/console, tempest/framework, tempestphp.com docs), Mako Framework, parallax/filament-syntax-entry (Filament), stitcher.io",
+      "source": ["https://packagist.org/packages/tempest/console", "https://packagist.org/packages/mako/framework", "https://packagist.org/packages/parallax/filament-syntax-entry", "https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck"],
+      "comment": "tempest/console requires ^2.11.4, mako/framework requires ^2.14, and filament-syntax-entry requires ^2.0. symfony/tui lists it only in require-dev, so it is not counted. stitcher.io was a planned migration in the launch post."
+    },
+    "bus-factor": {
+      "value": ["small-team"],
+      "source": ["https://api.github.com/repos/tempestphp/highlight/contributors?per_page=10", "https://api.github.com/repos/tempestphp/highlight"],
+      "comment": "Borderline solo: Brent Roose (brendt) has about 400 commits, the next contributor (xHeaven) about 45, and the rest are long-tail contributors. It is hosted under the tempestphp organization alongside the Tempest framework."
+    }
+  }
 }

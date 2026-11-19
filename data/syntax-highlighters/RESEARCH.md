@@ -193,7 +193,7 @@ The core differentiator of this comparison: what can an application get *besides
 - [x] Autumnus — Rust tree-sitter highlighter with Neovim-theme support, backing Elixir's Autumn (verify current name — possibly renamed)
 - [x] Makeup — Elixir highlighter used by ExDoc; Pygments-inspired lexer architecture
 - [x] Phiki — PHP port of Shiki using TextMate grammars and VS Code themes
-- [ ] tempest/highlight — PHP highlighter with HTML and terminal output, designed for speed and extensibility
+- [x] tempest/highlight — PHP highlighter with HTML and terminal output, designed for speed and extensibility
 - [ ] TextMateSharp — C# TextMate grammar engine port (from tm4e/vscode-textmate); used by AvaloniaEdit
 - [ ] ColorCode-Universal — Microsoft's C# highlighter for HTML and UWP/WinUI rich text output
 - [ ] Splash — Swift highlighter with HTML, attributed-string, and image output; used in Swift publishing tools
