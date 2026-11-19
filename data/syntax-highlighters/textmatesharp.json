@@ -1,5 +1,269 @@
 {
   "name": "TextMateSharp",
   "description": "C# TextMate grammar engine port (from tm4e/vscode-textmate); used by AvaloniaEdit",
-  "values": {}
+  "lastVerified": "2026-11-19",
+  "values": {
+    "host-language": {
+      "value": ["csharp"],
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "A .NET (C#) port of vscode-textmate, based on the Java port Eclipse tm4e. Targets netstandard2.0."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/danipen/TextMateSharp", "https://www.nuget.org/packages/TextMateSharp"],
+      "comment": "NuGet library (TextMateSharp, plus the TextMateSharp.Grammars package for bundled grammars and themes). The repo has a console demo project but no shipped CLI."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://api.github.com/repos/danipen/TextMateSharp", "https://www.nuget.org/packages/TextMateSharp.Grammars"],
+      "comment": "TextMateSharp and TextMateSharp.Grammars are both MIT on NuGet. The NuGet page has no separate note on licences for the bundled grammars and themes."
+    },
+    "repository": {
+      "value": "https://github.com/danipen/TextMateSharp",
+      "source": ["https://github.com/danipen/TextMateSharp"]
+    },
+    "package": {
+      "value": "https://www.nuget.org/packages/TextMateSharp",
+      "source": ["https://www.nuget.org/packages/TextMateSharp"]
+    },
+    "documentation": {
+      "value": "https://github.com/danipen/TextMateSharp#readme",
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No docs site. The README has install steps, one usage example and a pointer to the demo project."
+    },
+    "first-release": {
+      "value": "2021",
+      "source": ["https://www.nuget.org/packages/TextMateSharp/1.0.0", "https://api.github.com/repos/danipen/TextMateSharp"],
+      "comment": "Repo created 2021-06-23. NuGet 1.0.0 shows a last-updated date of 2021-06-28."
+    },
+    "latest-version": {
+      "value": "2.0.5",
+      "source": ["https://www.nuget.org/packages/TextMateSharp", "https://api.github.com/repos/danipen/TextMateSharp/releases?per_page=15"],
+      "comment": "Latest stable version as of 2026-11-19, released 2026-11-03. 3.0.0-preview.1 (managed GregsEx regex engine) came out the same day as a prerelease."
+    },
+    "engine-model": {
+      "value": ["textmate-grammar"],
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "Interprets TextMate grammars. It is a port of vscode-textmate by way of tm4e."
+    },
+    "regex-engine": {
+      "value": ["oniguruma"],
+      "source": ["https://github.com/danipen/TextMateSharp", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "Stable 1.x/2.x use Onigwrap, a native wrapper around the C Oniguruma library. 3.0.0-preview.1 (2026-11-03) replaces it with GregsEx, a fully managed C# implementation of Oniguruma 6.9.10. Its release notes say tokens are byte-identical to Onigwrap's on the samples for all bundled grammars. Once 3.0 is stable, this would become `custom`."
+    },
+    "embedded-languages": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/Resources/Grammars/html/syntaxes/html.tmLanguage.json", "https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "The bundled HTML grammar pulls in `source.js` and `source.css` with `include`, and RegistryOptions.GetGrammar resolves bundled grammars by scope name, so HTML+JS+CSS works without extra setup. Cross-grammar injections are not supported (per the README, and `GetInjections` always returns null), so injection-based embedding does not work. Judged from the code; no published output example was checked."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "No content-based detection. Grammars are looked up by scope, language id or file extension."
+    },
+    "filename-extension-mapping": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "RegistryOptions has `GetLanguageByExtension` and `GetScopeByExtension`. These use the `contributes.languages` data in each bundled grammar's package.json."
+    },
+    "resumable-line-state": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IGrammar.cs", "https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Demo/Program.cs"],
+      "comment": "`TokenizeLine(lineText, prevState, timeLimit)` returns a `RuleStack` (IStateStack) that is passed in for the next line. A time limit allows time-sliced tokenization."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IGrammar.cs"],
+      "comment": "No edit-aware reparse. After an edit, callers re-tokenize from the changed line using the stored per-line state stacks."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "Pure TextMate regex state machine with no syntax tree, so `false` per the guideline."
+    },
+    "bundled-languages": {
+      "value": 51,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/GrammarNames.cs", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "Counted the 51 entries in GrammarNames.SupportedGrammars on master, as of 2026-11-19. Each entry is a VS Code-style grammar package, e.g. Asciidoc, C#, C++, HTML, Python, Rust, Typst, YAML. Some packages hold several grammars (Git, Cpp, Markdown), and the 3.0.0-preview.1 notes count 63 grammars. The README says \"50+ languages\"."
+    },
+    "grammar-format": {
+      "value": ["textmate-json"],
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "The README says grammars load from JSON only. Plist .tmLanguage is not supported."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["vscode-textmate"],
+      "source": ["https://github.com/danipen/TextMateSharp", "https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "Consumes VS Code extension grammar packages (package.json with `contributes.grammars` and JSON grammars) directly. Limits: no cross-grammar injections and no plist grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "`RegistryOptions.LoadFromLocalDir` / `LoadFromLocalFile` register VS Code-style grammar packages from disk at runtime, with optional overwrite. A custom IRegistryOptions can also supply grammars."
+    },
+    "lazy-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "Grammar and theme files are read only when `GetGrammar` / `GetTheme` is called. Each bundled package's package.json metadata is parsed when RegistryOptions is constructed."
+    },
+    "grammar-accuracy": {
+      "value": 4,
+      "source": ["https://github.com/danipen/TextMateSharp", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "The bundled grammars are VS Code extension grammars, and since 3.0.0-preview.1 vscode-textmate's tokenization test suites run in CI. Rated 4 rather than 5 because cross-grammar injections are not supported, so grammars that depend on injections (such as the Markdown math injection) can fall short of VS Code. How often the grammars are re-synced with VS Code was not verified."
+    },
+    "bundled-themes": {
+      "value": 21,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs", "https://github.com/danipen/TextMateSharp/tree/master/src/TextMateSharp.Grammars/Resources/Themes"],
+      "comment": "Counted 21 ThemeName values mapped in RegistryOptions.GetThemeFile on master, as of 2026-11-19, matching the 21 files in Resources/Themes. They include Dark+/Light+, Dark/Light (VS), Monokai, Dimmed Monokai, One Dark, Atom One Light/Dark, Dracula, Solarized Dark/Light, both High Contrast themes, Visual Studio Dark/Light, Abyss, Kimbie Dark, Quiet Light, Red and Tomorrow Night Blue. The README says 22."
+    },
+    "theme-format": {
+      "value": ["vscode-theme"],
+      "source": ["https://github.com/danipen/TextMateSharp/tree/master/src/TextMateSharp.Grammars/Resources/Themes"],
+      "comment": "The bundled themes are VS Code colour-theme JSON files, e.g. dark_plus.json and monokai-color-theme.json."
+    },
+    "token-classification": {
+      "value": ["textmate-scopes"],
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IToken.cs"],
+      "comment": "Each IToken has a list of hierarchical TextMate scope names."
+    },
+    "css-class-output": {
+      "value": false,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No rendering of any kind. The API returns tokens only."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Grammars/RegistryOptions.cs"],
+      "comment": "One theme per Registry. Since there is no rendered output, nothing can serve several themes from one pass. Callers can re-match the scope tokens against another theme themselves."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IGrammar.cs", "https://github.com/danipen/TextMateSharp"],
+      "comment": "Tokens are the library's only output. The public `IGrammar.TokenizeLine` / `TokenizeLine2` methods are shown in the README example."
+    },
+    "ir-kinds": {
+      "value": ["scope-stack", "styled-spans"],
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IToken.cs", "https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/ITokenizeLineResult2.cs"],
+      "comment": "`TokenizeLine` returns IToken {StartIndex, EndIndex, Length, Scopes}, a scope stack per token. `TokenizeLine2` returns an `int[] Tokens` array of encoded offset/metadata pairs, the binary styled-span form ported from vscode-textmate."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IToken.cs"],
+      "comment": "Tokens are plain objects or an int array, but no serialization is documented. The state stack is an in-memory object."
+    },
+    "theme-resolved-tokens": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Demo/Program.cs", "https://github.com/danipen/TextMateSharp"],
+      "comment": "The documented path is `theme.Match(token.Scopes)`, which returns rules with foreground/background colour ids and font style, then `theme.GetColor(id)` for the hex colour (as in the README and the demo). `TokenizeLine2` metadata also encodes these attributes, following vscode-textmate."
+    },
+    "source-offsets-in-ir": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IToken.cs"],
+      "comment": "Tokens carry StartIndex/EndIndex character offsets within the line. The caller tracks line numbers."
+    },
+    "custom-formatter-api": {
+      "value": false,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No formatter or renderer abstraction. Callers render the tokens themselves (the demo uses Spectre.Console), but there is no documented extension point for this."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No decoration or transform mechanism."
+    },
+    "output-formats": {
+      "value": [],
+      "source": ["https://github.com/danipen/TextMateSharp", "https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Demo/Program.cs"],
+      "comment": "No first-party output formats. It emits tokens only. The demo renders to the terminal via the third-party Spectre.Console, and AvaloniaEdit.TextMate renders into an editor control."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No rendered output, so no line numbers."
+    },
+    "streaming-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IGrammar.cs"],
+      "comment": "The API works strictly one line at a time: `TokenizeLine(line, prevState, ...)` returns tokens for each line without needing the rest of the input. The output is tokens, not rendered text."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp.Demo/Program.cs"],
+      "comment": "No ANSI output in the library. The demo shows terminal output built with Spectre.Console."
+    },
+    "native-dependencies": {
+      "value": ["c-library"],
+      "source": ["https://www.nuget.org/packages/TextMateSharp", "https://www.nuget.org/packages/Onigwrap", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "Stable 2.0.5 depends on Onigwrap (>= 1.0.11), which wraps the native Oniguruma C library (libonigwrap). 3.0.0-preview.1 removes all native dependencies by switching to the managed GregsEx engine, so this becomes `none` once 3.0 is stable."
+    },
+    "runs-in-browser": {
+      "value": true,
+      "source": ["https://www.nuget.org/packages/TextMateSharp.Wasm", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "Runs in .NET WebAssembly (Blazor-style) apps. 1.x/2.x need the TextMateSharp.Wasm package, which supplies the assets needed to build and run TextMateSharp on WASM (last updated 2024-07-31). 3.0.0-preview.1 runs on WebAssembly without it and adds a browser WasmDemo."
+    },
+    "wasm-build": {
+      "value": true,
+      "source": ["https://www.nuget.org/packages/TextMateSharp.Wasm", "https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "WebAssembly is officially supported via the TextMateSharp.Wasm assets package for 1.x/2.x, and natively from 3.0 because the code is fully managed. It runs in the .NET WASM runtime rather than as a standalone .wasm module."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/danipen/TextMateSharp/master/src/TextMateSharp/Grammar/IGrammar.cs", "https://github.com/danipen/TextMateSharp"],
+      "comment": "Registry setup, `LoadGrammar` and `TokenizeLine` are all synchronous."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "No bindings for other languages. TextMateSharp is itself a C# port of vscode-textmate (JS) by way of Eclipse tm4e (Java)."
+    },
+    "core-package-size": {
+      "value": 107930,
+      "source": ["https://www.nuget.org/packages/TextMateSharp", "https://www.nuget.org/packages/Onigwrap", "https://www.nuget.org/packages/TextMateSharp.Grammars"],
+      "comment": "Size of the TextMateSharp 2.0.5 nupkg download (105.4 KB) as shown on NuGet on 2026-11-19, which is a compressed package rather than the installed size. Not included: the required Onigwrap native package (about 4 MB nupkg with native binaries) and the optional TextMateSharp.Grammars package (878 KB) with the bundled grammars and themes."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://github.com/danipen/TextMateSharp/releases/tag/v3.0.0-preview.1"],
+      "comment": "The only benchmark is the maintainers' 2.x vs 3.0 comparison: a 133k-line C# file tokenizes in about 5.1 s on Onigwrap and about 1.0 s on GregsEx (.NET 10, Apple M4 Pro). It includes no other highlighters, so no tier can be assigned under the guideline."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Not measured. RegistryOptions construction parses package.json metadata for all 51 bundled grammar packages, and grammars compile when first used. No published timing was found."
+    },
+    "github-stars": {
+      "value": 172,
+      "source": ["https://api.github.com/repos/danipen/TextMateSharp"],
+      "comment": "Checked 2026-11-19."
+    },
+    "monthly-downloads": {
+      "value": 100000,
+      "source": ["https://www.nuget.org/packages/TextMateSharp"],
+      "comment": "Rough estimate from NuGet, as of 2026-11-19, since NuGet does not publish monthly counts. Version 2.0.4 (2026-06-04 to 2026-11-03) has about 505K downloads, or about 100K/month, and 2.0.3 (Feb to Jun 2026) has about 452K, or about 113K/month. The lifetime average is about 2.3K/day (about 2.0M total). Much of this traffic comes transitively through Terminal.Gui and AvaloniaEdit.TextMate."
+    },
+    "last-release": {
+      "value": "2026-11-03",
+      "source": ["https://api.github.com/repos/danipen/TextMateSharp/releases?per_page=15"],
+      "comment": "v2.0.5 stable, released the same day as the v3.0.0-preview.1 prerelease."
+    },
+    "maintenance-status": {
+      "value": ["actively-maintained"],
+      "source": ["https://api.github.com/repos/danipen/TextMateSharp/releases?per_page=15", "https://api.github.com/repos/danipen/TextMateSharp"],
+      "comment": "Regular releases: 2.0.0 to 2.0.5 between Dec 2025 and Nov 2026, plus the 3.0 preview. Last push 2026-11-13. The 2.x line is maintained on the release/2.x branch."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://github.com/danipen/TextMateSharp"],
+      "comment": "README with install steps, one usage example and a demo project. No API reference, guides or docs site."
+    },
+    "notable-users": {
+      "value": "AvaloniaEdit (AvaloniaEdit.TextMate); Terminal.Gui; KubeUI",
+      "source": ["https://www.nuget.org/packages/TextMateSharp", "https://github.com/danipen/TextMateSharp"],
+      "comment": "NuGet's \"Used by\" list shows Terminal.Gui and AvaloniaEdit.TextMate as dependent packages, and AvaloniaUI/AvaloniaEdit, tui-cs/Terminal.Gui and IvanJosipovic/KubeUI among dependent GitHub repos (2026-11-19). The README names AvaloniaEdit."
+    },
+    "bus-factor": {
+      "value": ["solo"],
+      "source": ["https://api.github.com/repos/danipen/TextMateSharp/contributors"],
+      "comment": "Lives in a personal repo. danipen has 453 of about 610 commits. Other notable contributors are udlose (62) and sebastienros (30, the GregsEx migration)."
+    }
+  }
 }
