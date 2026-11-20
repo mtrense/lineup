@@ -50,7 +50,7 @@ Users should be able to:
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
 | **Engine Model** | tags | tags: `regex-lexer` (hand-written or declarative regex state-machine lexers: Pygments, Rouge, Chroma, highlight.js, Prism), `textmate-grammar` (TextMate/VS Code grammar interpreter: Shiki, vscode-textmate, starry-night), `sublime-syntax` (syntect), `kde-syntax` (KSyntaxHighlighting, skylighting), `parse-tree` (tree-sitter, Lezer), `custom-parser` (hand-written per-language parsers). Pick the dominant model; add a second only if the tool genuinely offers two engines. |
-| **Regex Engine** | tags | Which regex implementation runs the grammars. tags: `oniguruma` (C), `oniguruma-wasm`, `js-regexp` (incl. Oniguruma-to-JS transpilation), `fancy-regex`, `rust-regex`, `pcre`, `python-re`, `ruby-regexp`, `go-regexp2`, `go-regexp`, `boost-regex`, `std-regex`, `custom` (bespoke regex engine written in the host language, e.g. skylighting's pure-Haskell Regex.KDE — name it in the comment), `n/a` (parse-tree engines). |
+| **Regex Engine** | tags | Which regex implementation runs the grammars. tags: `oniguruma` (C), `oniguruma-wasm`, `js-regexp` (incl. Oniguruma-to-JS transpilation), `fancy-regex`, `rust-regex`, `pcre`, `python-re`, `ruby-regexp`, `go-regexp2`, `go-regexp`, `boost-regex`, `std-regex`, `dotnet-regex` (.NET System.Text.RegularExpressions), `custom` (bespoke regex engine written in the host language, e.g. skylighting's pure-Haskell Regex.KDE — name it in the comment), `n/a` (parse-tree engines). |
 | **Embedded Languages** | boolean | Highlights nested languages (CSS/JS inside HTML, fenced code in Markdown, SQL in strings via injections). Must work out of the box for at least HTML+JS+CSS. |
 | **Language Auto-Detection** | boolean | Can guess the language from content (highlight.js `highlightAuto`, Pygments `guess_lexer`), not just from filename/extension. |
 | **Filename / Extension Mapping** | boolean | Has a built-in filename/extension/shebang/mime → language lookup. |
@@ -97,7 +97,7 @@ The core differentiator of this comparison: what can an application get *besides
 
 | Attribute | Type | Research Notes |
 |-----------|------|----------------|
-| **Output Formats** | tags | First-party (in the main package or official companion) output targets. tags: `html-inline-styles`, `html-classes`, `ansi-16`, `ansi-256`, `ansi-truecolor`, `latex`, `rtf`, `svg`, `image` (PNG/JPEG/etc.), `bbcode`, `pango-markup`, `odt`, `irc`, `markdown`, `react` / `jsx`. Do not count community plugins; mention them in `comment`. |
+| **Output Formats** | tags | First-party (in the main package or official companion) output targets. tags: `html-inline-styles`, `html-classes`, `ansi-16`, `ansi-256`, `ansi-truecolor`, `latex`, `rtf`, `svg`, `image` (PNG/JPEG/etc.), `bbcode`, `pango-markup`, `odt`, `irc`, `markdown`, `react` / `jsx`, `native-rich-text` (platform rich-text objects, e.g. XAML RichTextBlock/Inlines, NSAttributedString). Do not count community plugins; mention them in `comment`. |
 | **Line Numbers** | boolean | Built-in line-number output for at least one format. |
 | **Streaming Output** | boolean | Can emit output incrementally (line-by-line or chunked) rather than only for a complete input buffer — relevant for pagers and LLM token streams. |
 | **Terminal-Ready** | boolean | Ships an ANSI/terminal output path suitable for CLIs without extra glue. |
