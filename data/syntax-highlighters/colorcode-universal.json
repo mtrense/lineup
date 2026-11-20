@@ -1,5 +1,270 @@
 {
   "name": "ColorCode-Universal",
   "description": "Microsoft's C# highlighter for HTML and UWP/WinUI rich text output",
-  "values": {}
+  "lastVerified": "2026-11-20",
+  "values": {
+    "host-language": {
+      "value": ["csharp"],
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "A .NET Standard port of Microsoft's original ColorCode library (CodePlex/NuGet 'ColorCode' 1.0.1, 2011). ColorCode.Core targets netstandard1.4 and netstandard2.0."
+    },
+    "form-factor": {
+      "value": ["library"],
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal", "https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "Set of NuGet libraries: ColorCode.Core (parser plus the formatter base class), ColorCode.HTML, ColorCode.UWP and ColorCode.WinUI (RichTextBlock formatters). No CLI."
+    },
+    "license": {
+      "value": ["mit"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/license.md", "https://api.github.com/repos/CommunityToolkit/ColorCode-Universal/commits?per_page=20", "https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "MIT, copyright .NET Foundation and Contributors. The project was relicensed to MIT in August 2022 (commit 'Change license to MIT', PR #25). GitHub's API reports the licence as NOASSERTION, but license.md is the standard MIT text."
+    },
+    "repository": {
+      "value": "https://github.com/CommunityToolkit/ColorCode-Universal",
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"]
+    },
+    "package": {
+      "value": "https://www.nuget.org/packages/ColorCode.Core",
+      "source": ["https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "The core package. Output packages are ColorCode.HTML, ColorCode.UWP and ColorCode.WinUI."
+    },
+    "documentation": {
+      "value": "https://github.com/CommunityToolkit/ColorCode-Universal#readme",
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "No docs site or published API reference. The README covers the packages and has short usage examples for HtmlFormatter, HtmlClassFormatter and RichTextBlockFormatter. The source has XML doc comments."
+    },
+    "first-release": {
+      "value": "2017",
+      "source": ["https://www.nuget.org/packages/ColorCode.Core", "https://api.github.com/repos/CommunityToolkit/ColorCode-Universal", "https://www.nuget.org/packages/ColorCode"],
+      "comment": "ColorCode.Core 2.0.0 was published on NuGet on 2017-11-28, and the repo was created on 2017-11-27. The original Microsoft ColorCode library it was ported from has been on NuGet since 2011 (ColorCode 1.0.1, 2011-08-05)."
+    },
+    "latest-version": {
+      "value": "2.0.15",
+      "source": ["https://www.nuget.org/packages/ColorCode.Core", "https://api.github.com/repos/CommunityToolkit/ColorCode-Universal/releases?per_page=10"],
+      "comment": "Released 2023-07-14 (GitHub release v2.0.15 and NuGet). Still the latest version as of 2026-11-20."
+    },
+    "engine-model": {
+      "value": ["regex-lexer"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Typescript.cs"],
+      "comment": "Each language is a list of regex rules with capture-group-to-scope mappings. The rules are combined into one compiled regex that runs over the whole input."
+    },
+    "regex-engine": {
+      "value": ["dotnet-regex"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs"],
+      "comment": "Uses System.Text.RegularExpressions (Match, Groups, NextMatch)."
+    },
+    "embedded-languages": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Html.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs"],
+      "comment": "There is a nested-language mechanism: a capture whose scope name has the language prefix is re-parsed with that language. The HTML grammar uses it to highlight the body of <script> as JavaScript, but it has no <style> rule, so CSS inside HTML is not highlighted. That fails the guideline's HTML+JS+CSS requirement."
+    },
+    "language-auto-detection": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Languages.cs"],
+      "comment": "Languages are looked up only by id (Languages.FindById or the named properties). There is no content-based detection."
+    },
+    "filename-extension-mapping": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Languages.cs"],
+      "comment": "No extension or filename lookup. Extensions such as .aspx and .ashx appear only in XML doc comments."
+    },
+    "resumable-line-state": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs"],
+      "comment": "Parsing runs one regex over the whole input. No per-line state is exposed."
+    },
+    "incremental-reparsing": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs"],
+      "comment": "Each call parses from scratch. No edit API."
+    },
+    "semantic-distinctions": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Typescript.cs"],
+      "comment": "Pure regex lexer with no syntax tree. The TypeScript grammar only recognises comments, strings and keywords."
+    },
+    "bundled-languages": {
+      "value": 21,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Common/LanguageId.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Languages.cs"],
+      "comment": "Version 2.0.15 / main, checked 2026-11-20. LanguageId.cs defines 25 language ids. Five are ASP.NET variants (asax, ashx, aspx, aspx(c#), aspx(vb.net)), counted here as one language. The other 20 are C#, C++, CSS, F#, HTML, Java, JavaScript, JSON, TypeScript, PHP, PowerShell, SQL, VB.NET, XML, Koka, Haskell, Markdown, Fortran, Python and MATLAB."
+    },
+    "grammar-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Python.cs"],
+      "comment": "Each language is a C# class implementing ILanguage, made up of LanguageRule regexes mapped to scope names."
+    },
+    "grammar-ecosystem-compatibility": {
+      "value": ["own-only"],
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "Cannot consume TextMate, Sublime, tree-sitter, Pygments or KDE grammars."
+    },
+    "runtime-grammar-loading": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Languages.cs"],
+      "comment": "Languages.Load(ILanguage) registers a custom language at runtime and replaces any loaded language with the same id."
+    },
+    "lazy-grammar-loading": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Languages.cs"],
+      "comment": "The static constructor registers all 25 built-in language definitions up front, and they are compiled into the ColorCode.Core assembly. Regex compilation happens on first use of each language (the CompiledLanguages cache), but the grammars themselves are not loaded on demand."
+    },
+    "grammar-accuracy": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Typescript.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Compilation/Languages/Python.cs", "https://github.com/CommunityToolkit/ColorCode-Universal/issues?q=is%3Aissue"],
+      "comment": "Based on a spot check of main on 2026-11-20 (there is no Rust grammar). TypeScript recognises only comments, strings and keywords: no template literals, numbers, decorators or regex literals, and `let`, `async`, `await` and `as` are missing from the keyword list. Python has no f-string interpolation or match/case, and only partial triple-quoted string support. Open issues include #11 (tags with no content highlighted wrongly), #45 (catastrophic backtracking in the JSON grammar) and #48 (parser infinite loop). Rated between 1 and 2."
+    },
+    "bundled-themes": {
+      "value": 2,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Styling/StyleDictionary.DefaultDark.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.UWP/RichTextBlockFormatter.cs"],
+      "comment": "StyleDictionary.DefaultLight and StyleDictionary.DefaultDark (VS-style colours), as of v2.0.15."
+    },
+    "theme-format": {
+      "value": ["code"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Styling/StyleDictionary.DefaultDark.cs"],
+      "comment": "Themes are C# StyleDictionary collections of Style objects keyed by scope name, with Foreground/Background hex colours, Bold/Italic flags and a ReferenceName used as the CSS class."
+    },
+    "token-classification": {
+      "value": ["fixed-taxonomy"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Styling/StyleDictionary.DefaultDark.cs"],
+      "comment": "Flat, closed set of ScopeName constants (e.g. Keyword, Comment, String, MarkdownHeader), each mapped to one style and CSS class name."
+    },
+    "css-class-output": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlClassFormatter.cs", "https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "HtmlClassFormatter emits class names, and GetCSSString() generates the matching stylesheet."
+    },
+    "multi-theme-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlClassFormatter.cs"],
+      "comment": "GetCSSString() builds one stylesheet from one StyleDictionary. Light and dark stylesheets can be generated by separate formatter instances and swapped by the caller, but there is no documented single-render light+dark mechanism."
+    },
+    "public-token-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/ILanguageParser.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/CodeColorizerBase.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/Scope.cs"],
+      "comment": "Borderline. ILanguageParser.Parse(sourceCode, language, Action<string, IList<Scope>>) is public and calls back with each text fragment and its scopes. Subclasses of CodeColorizerBase receive these through the abstract Write(parsedSourceCode, scopes). The README presents ColorCode.Core as the package for building your own formatter, but the only documentation beyond that is XML doc comments. Constructing a standalone LanguageParser is awkward because the built-in compiled-language cache is internal."
+    },
+    "ir-kinds": {
+      "value": ["token-list"],
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/Scope.cs"],
+      "comment": "The parser produces a sequence of (fragment text, scopes) callbacks. Scope has Name, Index, Length, and Parent/Children for nested captures, so each fragment can carry a small scope tree."
+    },
+    "serializable-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/Scope.cs"],
+      "comment": "Scope is an in-memory object (with a Parent back-reference) and has no documented serialization."
+    },
+    "theme-resolved-tokens": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/CodeColorizerBase.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.UWP/RichTextBlockFormatter.cs"],
+      "comment": "Scopes carry only scope names. A custom formatter resolves colours itself by looking them up in the public Styles dictionary. The RichTextBlock formatter produces styled XAML Runs, but those are output, not an IR."
+    },
+    "source-offsets-in-ir": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/Parsing/LanguageParser.cs"],
+      "comment": "Borderline. Scope.Index and Scope.Length are relative to the matched fragment passed to the callback, not to the source. Absolute positions are only available if the caller adds up fragment lengths."
+    },
+    "custom-formatter-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.Core/CodeColorizerBase.cs", "https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "Subclass the abstract CodeColorizerBase and implement Write(parsedSourceCode, scopes). The README describes ColorCode.Core as containing 'the classes needed to create your own formatter', and the HTML and RichTextBlock formatters are built this way."
+    },
+    "line-transforms-decorations": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlFormatter.cs"],
+      "comment": "No line-highlighting, diff or annotation mechanism."
+    },
+    "output-formats": {
+      "value": ["html-inline-styles", "html-classes", "native-rich-text"],
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.UWP/RichTextBlockFormatter.cs"],
+      "comment": "HtmlFormatter (inline styles), HtmlClassFormatter (classes plus CSS), and RichTextBlockFormatter for UWP (ColorCode.UWP) and WinUI 3 / Windows App SDK (ColorCode.WinUI), which writes XAML Paragraph/Span/Run inlines. Background colours are not applied in rich-text output."
+    },
+    "line-numbers": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlFormatter.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlClassFormatter.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.UWP/RichTextBlockFormatter.cs"],
+      "comment": "None of the formatters emit line numbers."
+    },
+    "streaming-output": {
+      "value": false,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlFormatter.cs"],
+      "comment": "GetHtmlString buffers into an internal StringWriter and returns the complete string. No caller-supplied TextWriter and no line-by-line API."
+    },
+    "terminal-ready": {
+      "value": false,
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "No ANSI formatter. Terminal consumers such as RazorConsole write their own formatter on top of ColorCode.Core."
+    },
+    "native-dependencies": {
+      "value": ["none"],
+      "source": ["https://www.nuget.org/packages/ColorCode.Core", "https://www.nuget.org/packages/ColorCode.WinUI"],
+      "comment": "ColorCode.Core and ColorCode.HTML are pure managed .NET Standard. The rich-text packages depend on the Windows platform: ColorCode.UWP needs the UWP SDK and ColorCode.WinUI needs Microsoft.WindowsAppSDK >= 1.0.4."
+    },
+    "runs-in-browser": {
+      "value": false,
+      "source": ["https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "No official browser support or documentation. ColorCode.Core is .NET Standard, so it could in principle run in Blazor WebAssembly, but the project does not state this."
+    },
+    "wasm-build": {
+      "value": false,
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "No official WASM build or documented WASM support."
+    },
+    "synchronous-api": {
+      "value": true,
+      "source": ["https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.HTML/HtmlFormatter.cs", "https://raw.githubusercontent.com/CommunityToolkit/ColorCode-Universal/main/ColorCode.UWP/RichTextBlockFormatter.cs"],
+      "comment": "GetHtmlString, FormatRichTextBlock and FormatInlines are all synchronous. There is no async initialisation."
+    },
+    "bindings-ports": {
+      "value": ["none"],
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "No bindings for other languages. It is itself a port of Microsoft's original ColorCode (.NET Framework)."
+    },
+    "core-package-size": {
+      "value": 126259,
+      "source": ["https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "Size of the ColorCode.Core 2.0.15 nupkg (123.3 KB) as shown on NuGet on 2026-11-20. This is a compressed package containing both netstandard1.4 and netstandard2.0 builds, not the installed size. ColorCode.HTML or a rich-text package is also needed for finished output."
+    },
+    "throughput-tier": {
+      "value": null,
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal/issues?q=is%3Aissue"],
+      "comment": "No comparative benchmark found. Open issues report pathological cases: #45 (catastrophic regex backtracking in the JSON grammar) and #36 and #48 (hangs or infinite loops)."
+    },
+    "initialization-cost": {
+      "value": null,
+      "comment": "Not measured. All 25 language definitions are registered in the static constructor, and each language's combined regex is compiled on first use. No published timing was found."
+    },
+    "github-stars": {
+      "value": 269,
+      "source": ["https://api.github.com/repos/CommunityToolkit/ColorCode-Universal"],
+      "comment": "Snapshot taken 2026-11-20."
+    },
+    "monthly-downloads": {
+      "value": 29010,
+      "source": ["https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "Estimate from NuGet's average of 967 downloads per day for ColorCode.Core × 30, checked 2026-11-20 (3.2M total downloads). ColorCode.WinUI averages 304 per day."
+    },
+    "last-release": {
+      "value": "2023-07-14",
+      "source": ["https://api.github.com/repos/CommunityToolkit/ColorCode-Universal/releases?per_page=10", "https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "v2.0.15."
+    },
+    "maintenance-status": {
+      "value": ["dormant"],
+      "source": ["https://api.github.com/repos/CommunityToolkit/ColorCode-Universal/commits?per_page=20", "https://api.github.com/repos/CommunityToolkit/ColorCode-Universal", "https://github.com/CommunityToolkit/ColorCode-Universal/issues?q=is%3Aissue"],
+      "comment": "As of 2026-11-20: the last commit on main was 2023-07-11 and the last release 2023-07-14, more than 24 months ago. The repo is not archived. Issues are not being triaged: #38 (request for .NET 8 compatible packages, Dec 2023) and newer bug reports #45 and #48 are open with no fix."
+    },
+    "documentation-quality": {
+      "value": 2,
+      "source": ["https://github.com/CommunityToolkit/ColorCode-Universal"],
+      "comment": "README only. It has a package overview and short usage snippets, but no published API reference, no language list (it points to LanguageId.cs) and no guide to writing languages or formatters beyond the XML doc comments in the source."
+    },
+    "notable-users": {
+      "value": "Files (files-community), WinUI 3 Gallery, AI Dev Gallery, PowerShell AIShell",
+      "source": ["https://www.nuget.org/packages/ColorCode.WinUI", "https://www.nuget.org/packages/ColorCode.Core"],
+      "comment": "From NuGet's 'Used by' GitHub dependency listings, checked 2026-11-20. Files, WinUI-Gallery and ai-dev-gallery depend on ColorCode.WinUI; PowerShell/AIShell and RazorConsole depend on ColorCode.Core."
+    },
+    "bus-factor": {
+      "value": ["organization"],
+      "source": ["https://www.nuget.org/packages/ColorCode.Core", "https://api.github.com/repos/CommunityToolkit/ColorCode-Universal/commits?per_page=20"],
+      "comment": "Owned by the CommunityToolkit organisation under the .NET Foundation (NuGet owners: Microsoft.Toolkit, dotnetfoundation). In practice recent commits come from very few people (michael-hawker, daxian-dbw), and the project is dormant."
+    }
+  }
 }
